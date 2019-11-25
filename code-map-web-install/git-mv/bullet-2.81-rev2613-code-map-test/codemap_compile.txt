@@ -1,0 +1,8 @@
+[TARGET PATH]
+bullet-bin/src/LinearMath/libLinearMath.a
+[COMPILE COMMAND]
+export LLVM_COMPILER=clang
+mkdir bullet-bin
+cd bullet-bin
+CC=wllvm CXX=wllvm++ cmake ../../bullet-2.81-rev2613-code-map-test/
+make
