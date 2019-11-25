@@ -8,7 +8,7 @@ cd $SHELL_NOW_FOLDER
 
 mv ../git-mv/* ~/WORKSPACE/
 
-#cd ~/WORKSPACE
+cd ~/WORKSPACE
 
 #git clone https://github.com/spcidealacm/AutoBuildSVFScript.git
 #git clone https://github.com/spcidealacm/code-map-ide-core.git
@@ -18,7 +18,7 @@ mv ../git-mv/* ~/WORKSPACE/
 #git clone https://github.com/spcidealacm/d3-react.git
 #git clone https://github.com/spcidealacm/d3-react-server.git
 #git clone https://github.com/spcidealacm/whole-program-llvm.git
-#git clone https://github.com/spcidealacm/bullet-2.81-rev2613-code-map-test.git
+git clone https://github.com/spcidealacm/bullet-2.81-rev2613-code-map-test.git
 
 
 cd ~/WORKSPACE/code-map-ide-core
