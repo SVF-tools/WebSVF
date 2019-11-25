@@ -1,0 +1,1 @@
+sudo apt install -y git gcc make cmake vim build-essential libssl-dev curl wget 
