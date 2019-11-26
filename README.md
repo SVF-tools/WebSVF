@@ -27,7 +27,15 @@ source Setup.sh
     - Setup Code-Map-Web environment and installtion required tools: https://youtu.be/3uzP9sVxnjc
     - Running Code-Map-Web application: https://youtu.be/OR-5y5QLoYw
 
-## Work - In - Progress
+## Work-In-Progress
+
+- 
+
+## Developer Notes
+
+- 
+
+## Patch Notes
 
 - 
 
