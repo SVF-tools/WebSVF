@@ -18,7 +18,7 @@ source Setup.sh
     - 5GB of usuable Memory (RAM)
 
     The installation process will require approximately 3-4 hours based the system's hardware specifications.
-    *At different points during the installation, the user will be required to put in their password (refer to the installation videos linked below) so please take care, else the installation will timeout and will need to be run again*
+    __At *different points* during the installation, *the user will be required to put in their password* (refer to the installation videos linked below) so please take care, else the installation will timeout and will need to be run again.__
 
     The installation process may run into errors during installation due to network disconnects or something else. Please run the code mentioned at the top for installing Code-Map-Web again and the installation process will pick up from where the error occured.
 
