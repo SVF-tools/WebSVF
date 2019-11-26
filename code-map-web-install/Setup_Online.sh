@@ -7,7 +7,7 @@ bash codemap-setup-subscripts/setupVscodeEssential.sh
 bash codemap-setup-subscripts/setupYarn.sh
 bash codemap-setup-subscripts/setupNodemon.sh
 
-source codemap-setup-subscripts/movegithubtools.sh
+source codemap-setup-subscripts/githubdownload.sh
 bash codemap-setup-subscripts/FixWatchMax.sh
 bash codemap-setup-subscripts/setCodeMapExtension.sh
 
