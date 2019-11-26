@@ -22,7 +22,7 @@ source Setup.sh
 
     The installation process may run into errors during installation due to network disconnects or something else. Please run the code mentioned at the top for installing Code-Map-Web again and the installation process will pick up from where the error occured.
 
-    Refer to the following Installation Guide Videos if need be:
+    Refer to the following Installation Guide Videos if required:
     - Setup Ubuntu environment: https://youtu.be/-NtsJYkfTbg
     - Setup Code-Map-Web environment and installtion required tools: https://youtu.be/3uzP9sVxnjc
     - Running Code-Map-Web application: https://youtu.be/OR-5y5QLoYw
