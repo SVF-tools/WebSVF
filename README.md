@@ -2,7 +2,7 @@
 
 Don't make any changes in the ~/WORKSPACE directory during installation
 
-Then run:
+Run the following code from the root directory *(./WebSVF/)* of the cloned 'WebSVF' repository to install the application:
 
 ```
 cd code-map-web-install
