@@ -6,7 +6,7 @@ sudo rm * -rf
 
 cd $SHELL_NOW_FOLDER
 
-mv ../git-mv/* ~/WORKSPACE/
+mv git-mv/* ~/WORKSPACE/
 
 cd ~/WORKSPACE
 
