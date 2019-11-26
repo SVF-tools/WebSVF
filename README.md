@@ -5,7 +5,8 @@ Don't make any changes in the ~/WORKSPACE directory during installation
 Then run:
 
 ```
-source code-map-web-install/Setup.sh
+cd code-map-web-install
+source Setup.sh
 ```
 
 ## Please Note
