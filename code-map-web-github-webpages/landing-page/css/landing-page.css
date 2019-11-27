@@ -20,7 +20,7 @@ h6 {
 
 header.masthead {
   position: relative;
-  background-color: #343a40;
+  background-color: #1e2124;
   background: url("../img/bg-masthead.jpg") no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
@@ -38,7 +38,11 @@ header.masthead .overlay {
 }
 
 header.masthead h1 {
-  font-size: 2rem;
+  
+  font-size: 8em;
+  font-family: 'IM Fell Great Primer';
+  position: relative;
+  color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -56,9 +60,13 @@ header.masthead h1 {
 }
 
 .showcase .showcase-img {
+  
   min-height: 30rem;
   background-size: cover;
+  
 }
+
+
 
 @media (min-width: 768px) {
   .showcase .showcase-text {
@@ -72,7 +80,7 @@ header.masthead h1 {
 }
 
 .features-icons .features-icons-item {
-  max-width: 20rem;
+  max-width: 60rem;
 }
 
 .features-icons .features-icons-item .features-icons-icon {

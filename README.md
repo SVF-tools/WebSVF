@@ -31,7 +31,7 @@ source Setup_Online.sh
 
     Refer to the following Installation Guide Videos if required:
     - Setup Ubuntu environment: https://youtu.be/-NtsJYkfTbg
-    - Setup Code-Map-Web environment and installtion required tools: https://youtu.be/3uzP9sVxnjc
+    - Setup Code-Map-Web environment and install required tools: https://youtu.be/3uzP9sVxnjc
     - Running Code-Map-Web application: https://youtu.be/OR-5y5QLoYw
 
 ## Work-In-Progress
