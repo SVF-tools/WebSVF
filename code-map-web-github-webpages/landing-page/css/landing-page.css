@@ -18,6 +18,12 @@ h6 {
   font-weight: 700;
 }
 
+.install-banner{
+  background-color: black;
+  background-size: contain;
+
+}
+
 header.masthead {
   position: relative;
   background-color: #1e2124;
