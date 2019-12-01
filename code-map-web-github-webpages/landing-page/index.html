@@ -31,6 +31,13 @@
       rel="stylesheet"
     />
 
+    <!-- Carousel Snippet-->
+    <link
+      href="code-map-web-github-webpages/landing-page/css/carousel.css"
+      rel="stylesheet"
+    />
+    <script src="code-map-web-github-webpages/landing-page/jscript/"></script>
+
     <!-- Custom fonts for this template -->
     <link
       href="code-map-web-github-webpages/landing-page/vendor/fontawesome-free/css/all.min.css"
@@ -81,7 +88,7 @@
               class="mb-5"
             >
               <div
-                style="font-weight: bold;color: #ffffff;font-family: 'Electrolize';font-size:2.5em;"
+                style="font-weight: bold;color: #4b75ff;font-family: 'Electrolize';font-size:2.5em;"
               >
                 Web_SVF:
               </div>
@@ -118,6 +125,125 @@
       </div>
     </header>
 
+    <!-- Carousel -->
+
+    <div
+      id="myCarousel"
+      class="carousel slide carousel-fade"
+      data-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="mask flex-center">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-md-7 col-12 order-md-1 order-2">
+                  <h4>
+                    Code Anywhere <br />
+                    with our Online Code Editor
+                  </h4>
+                  <p>
+                    Our online code editor powered by VSCode Online allows you
+                    to work on your projects anywhere. <br />
+                    Hosted on scalable AWS Servers means you can compile and
+                    computer faster than even your local machine.
+                  </p>
+                  <a href="https://github.com/SVF-tools/WebSVF" target="_blank"
+                    ><i class="fab fa-github fa-fw"></i>Find Out More</a
+                  >
+                </div>
+                <div class="col-md-5 col-12 order-md-2 order-1">
+                  <img
+                    src="code-map-web-github-webpages/landing-page/img/vscode_online_carousel.png"
+                    class="mx-auto"
+                    alt="slide"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="mask flex-center">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-md-7 col-12 order-md-1 order-2">
+                  <h4>
+                    Visualize Your Projects<br />
+                    as 3D Forced Graphs
+                  </h4>
+                  <p>
+                    Dive into code analysis with ease using our React powered 3D
+                    Forced Graph Analysis <br />
+                    Every file including external libraries are represented as
+                    nodes clustered in groups following the project heirarchy
+                  </p>
+                  <a href="https://github.com/SVF-tools/WebSVF" target="_blank"
+                    ><i class="fab fa-github fa-fw"></i>Find Out More</a
+                  >
+                </div>
+                <div class="col-md-5 col-12 order-md-2 order-1">
+                  <img
+                    src="code-map-web-github-webpages/landing-page/img/Forced-Graph_carousel.png"
+                    class="mx-auto"
+                    alt="slide"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="mask flex-center">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-md-7 col-12 order-md-1 order-2">
+                  <h4>
+                    Generate Bug Report & Annotations <br />
+                    Using SVF's Deep Code Analysis
+                  </h4>
+                  <p>
+                    With the click of a button, analyse your entire project for
+                    compile and runtime errors <br />
+                    as well as highlight potential points of failure within
+                    indvidual files
+                  </p>
+                  <a href="https://github.com/SVF-tools/WebSVF" target="_blank"
+                    ><i class="fab fa-github fa-fw"></i>Find Out More</a
+                  >
+                </div>
+                <div class="col-md-5 col-12 order-md-2 order-1">
+                  <img
+                    src="code-map-web-github-webpages/landing-page/img/bug_carousel_alt_2_480.png"
+                    class="mx-auto"
+                    alt="slide"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#myCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#myCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
     <!-- Icons Grid -->
     <section class="features-icons bg-light text-center">
       <div class="container">
@@ -129,7 +255,8 @@
               </div>
               <h3>C++ Project Support</h3>
               <p class="lead mb-0">
-                Upload you C++ project onto our online code editor and compile and run it on our secured server 
+                Upload you C++ project onto our online code editor and compile
+                and run it on our secured server
               </p>
             </div>
           </div>
@@ -140,7 +267,8 @@
               </div>
               <h3>Visualize your Data in 3D</h3>
               <p class="lead mb-0">
-                In a single click Web_SVF can compile your project and visualize as a 3D Forced graph with interacable nodes within our editor
+                In a single click Web_SVF can compile your project and visualize
+                as a 3D Forced graph with interacable nodes within our editor
               </p>
             </div>
           </div>
@@ -151,7 +279,9 @@
               </div>
               <h3>Bug Analysis</h3>
               <p class="lead mb-0">
-               One click can analyse you project for bugs and potential points of failure, highlighting them in the 3D forced graph as well as generate a detailed Bug Report.
+                One click can analyse you project for bugs and potential points
+                of failure, highlighting them in the 3D forced graph as well as
+                generate a detailed Bug Report.
               </p>
             </div>
           </div>
@@ -159,11 +289,26 @@
       </div>
     </section>
 
-    <!-- Image Showcases -->
+    <!-- Install Now Banner -->
+
+    <section class="install-banner">
+      <div class="features-icons-icon d-flex">
+        <i
+          class="fas fa-server m-auto"
+          style="font-size: 5rem; color: #4b75ff;"
+        ></i>
+      </div>
+      <br />
+      <h1>Setup your own local instance of</h1>
+      <h1 style="color: #4b75ff; font-size: 3em;">Web_SVF</h1>
+      <h2>in a few simple steps:</h2>
+    </section>
+
+    <!-- Setup Guide (Youtube Showcases) -->
     <section class="showcase">
       <div class="container-fluid p-0">
         <div class="row no-gutters">
-          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <div class="col-lg-5 order-lg-1 my-auto showcase-text">
             <div class="features-icons text-center">
               <div class="features-icons-item mx-auto">
                 <div class="features-icons-icon d-flex">
@@ -178,7 +323,7 @@
             </div>
           </div>
           <div
-            class="col-lg-6 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9"
+            class="col-lg-7 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9"
           >
             <iframe
               src="https://www.youtube.com/embed/TE6nnIHby6c"
@@ -189,62 +334,68 @@
           </div>
         </div>
         <div class="row no-gutters">
-            <div class="col-lg-6 order-lg-2 my-auto showcase-text">
-              <div class="features-icons text-center">
-                <div class="features-icons-item mx-auto">
-                  <div class="features-icons-icon d-flex">
-                    <i class="fas fa-cogs m-auto text-primary"></i>
-                  </div>
+          <div class="col-lg-5 order-lg-2 my-auto showcase-text">
+            <div class="features-icons text-center">
+              <div class="features-icons-item mx-auto">
+                <div class="features-icons-icon d-flex">
+                  <i class="fas fa-cogs m-auto text-primary"></i>
                 </div>
-                <h2>Type in the Install command</h2>
-                <p class="lead mb-0">
-                  To install a locally hosted Web_SVF server as demonstrated you can have everything required to run, installed in a few easy steps 
-                </p>
               </div>
-            </div>
-            <div
-              class="col-lg-6 order-lg-1 text-white showcase-img embed-responsive embed-responsive-16by9"
-            >
-              <iframe
-                src="https://www.youtube.com/embed/3uzP9sVxnjc"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+              <h2>Type in the Install command</h2>
+              <p class="lead mb-0">
+                To install a locally hosted Web_SVF server as demonstrated you
+                can have everything required to run, installed in a few easy
+                steps
+              </p>
             </div>
           </div>
-          <div class="row no-gutters">
-              <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                <div class="features-icons text-center">
-                  <div class="features-icons-item mx-auto">
-                    <div class="features-icons-icon d-flex">
-                      <i class="fas fa-laptop-code m-auto text-primary"></i>
-                    </div>
-                  </div>
-                  <h2>Run the Application</h2>
-                  <p class="lead mb-0">
-                    With a single command, deploy the local Web_SVF server and host you projects and their analysis with ease amongst your peers
-                  </p>
+          <div
+            class="col-lg-7 order-lg-1 text-white showcase-img embed-responsive embed-responsive-16by9"
+          >
+            <iframe
+              src="https://www.youtube.com/embed/3uzP9sVxnjc"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-lg-5 order-lg-1 my-auto showcase-text">
+            <div class="features-icons text-center">
+              <div class="features-icons-item mx-auto">
+                <div class="features-icons-icon d-flex">
+                  <i class="fas fa-laptop-code m-auto text-primary"></i>
                 </div>
               </div>
-              <div
-                class="col-lg-6 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9"
-              >
-                <iframe
-                  src="https://www.youtube.com/embed/OR-5y5QLoYw"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
+              <h2>Run the Application</h2>
+              <p class="lead mb-0">
+                With a single command, deploy the local Web_SVF server and host
+                you projects and their analysis with ease amongst your peers
+              </p>
             </div>
+          </div>
+          <div
+            class="col-lg-7 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9"
+          >
+            <iframe
+              src="https://www.youtube.com/embed/OR-5y5QLoYw"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Testimonials -->
     <section class="testimonials text-center bg-light">
       <div class="container">
-        <h2 class="mb-5">This project would not have been possible without our core contributors...</h2>
+        <h2 class="mb-5">
+          This project would not have been possible without our core
+          contributors...
+        </h2>
         <div class="row">
           <div class="col-lg-3">
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
@@ -255,25 +406,25 @@
               />
               <h5>Tianyang Guan</h5>
               <p class="font-weight-light mb-0">
-                Technical Lead <br/>
+                Technical Lead <br />
                 Full Stack Developer
               </p>
             </div>
           </div>
           <div class="col-lg-3">
-              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="code-map-web-github-webpages/landing-page/img/guanqing_Zhang.jpg"
-                  alt=""
-                />
-                <h5>Guanqing Zhang</h5>
-                <p class="font-weight-light mb-0">
-                  Data Analysis <br/>
-                  Data Analyst
-                </p>
-              </div>
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img
+                class="img-fluid rounded-circle mb-3"
+                src="code-map-web-github-webpages/landing-page/img/guanqing_Zhang.jpg"
+                alt=""
+              />
+              <h5>Guanqing Zhang</h5>
+              <p class="font-weight-light mb-0">
+                Data Analysis <br />
+                Data Analyst
+              </p>
             </div>
+          </div>
           <div class="col-lg-3">
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
               <img
@@ -283,8 +434,13 @@
               />
               <h5>Dr Guandong Xun</h5>
               <p class="font-weight-light mb-0">
-                Coordinator <br/>
-                Lecturer at <a href="https://www.uts.edu.au/research-and-teaching/our-research/advanced-analytics-institute" target="_blank">AAI-UTS</a>
+                Coordinator <br />
+                Lecturer at
+                <a
+                  href="https://www.uts.edu.au/research-and-teaching/our-research/advanced-analytics-institute"
+                  target="_blank"
+                  >AAI-UTS</a
+                >
               </p>
             </div>
           </div>
@@ -297,8 +453,13 @@
               />
               <h5>Dr Yulei Sui</h5>
               <p class="font-weight-light mb-0">
-                Supervisor <br/>
-                Lecturer at <a href="https://www.uts.edu.au/about/faculty-engineering-and-information-technology" target="_blank">FEIT-UTS</a>
+                Supervisor <br />
+                Lecturer at
+                <a
+                  href="https://www.uts.edu.au/about/faculty-engineering-and-information-technology"
+                  target="_blank"
+                  >FEIT-UTS</a
+                >
               </p>
             </div>
           </div>
@@ -372,14 +533,17 @@
                   <i class="fas fa-cloud-upload-alt fa-2x fa-fw"></i>
                 </a>
               </li>
-              
+
               <li class="list-inline-item mr-3">
                 <a href="https://github.com/SVF-tools/WebSVF" target="_blank">
                   <i class="fab fa-github fa-2x fa-fw"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="https://github.com/SVF-tools/WebSVF/fork" target="_blank">
+                <a
+                  href="https://github.com/SVF-tools/WebSVF/fork"
+                  target="_blank"
+                >
                   <i class="fas fa-code-branch fa-2x fa-fw"></i>
                 </a>
               </li>
