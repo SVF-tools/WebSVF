@@ -21,8 +21,8 @@ source Setup_Online.sh
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
 - **Installing Code-Map-Web:** Make sure the Ubuntu environment (whether its on a local or virtual machine) has access to atleast: 
-    - 4 processor cores
-    - 5GB of usuable Memory (RAM)
+    - 4 Available Processor Cores
+    - 5GB of Usuable Memory (RAM)
 
     The installation process will require approximately 3-4 hours based the system's hardware specifications.
     __At *different points* during the installation, *the user will be prompted to put in their password in the installation terminal window* (refer to the installation videos linked below) so please take care, else the installation will timeout and will need to be run again.__
