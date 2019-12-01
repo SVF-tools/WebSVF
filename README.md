@@ -36,7 +36,7 @@ source Setup_Online.sh
 
 ## Work-In-Progress
 
-- 
+- (Website-LandingPage): Sign-Up for email updates Backend.
 
 ## Developer Notes
 
