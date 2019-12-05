@@ -9,7 +9,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>WebSVF - Online Code Analysis Platform powered by SVF-Tools</title>
+    <title>Web-SVF - Online Code Analysis Platform powered by SVF-Tools</title>
 
     <!-- Google Fonts -->
     <link
@@ -22,29 +22,37 @@
     />
 
     <!-- Bootstrap core JavaScript -->
-    <script src="code-map-web-github-webpages/landing-page/vendor/jquery/jquery.min.js"></script>
-    <script src="code-map-web-github-webpages/landing-page/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="web-svf-github-webpages/landing-page/vendor/jquery/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="web-svf-github-webpages/landing-page/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link
-      href="code-map-web-github-webpages/landing-page/vendor/bootstrap/css/bootstrap.min.css"
+      href="web-svf-github-webpages/landing-page/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
+    />
+
+    <!-- Alert CSS -->
+    <link
+      href="web-svf-github-webpages/landing-page/css/sign-up.css"
+      rel="stylesheet"
+      type="text/css"
     />
 
     <!-- Carousel Snippet-->
     <link
-      href="code-map-web-github-webpages/landing-page/css/carousel.css"
+      href="web-svf-github-webpages/landing-page/css/carousel.css"
       rel="stylesheet"
     />
-    <script src="code-map-web-github-webpages/landing-page/jscript/carousel.jss"></script>
+    <script src="web-svf-github-webpages/landing-page/jscript/carousel.js"></script>
 
     <!-- Custom fonts for this template -->
     <link
-      href="code-map-web-github-webpages/landing-page/vendor/fontawesome-free/css/all.min.css"
+      href="web-svf-github-webpages/landing-page/vendor/fontawesome-free/css/all.min.css"
       rel="stylesheet"
     />
     <link
-      href="code-map-web-github-webpages/landing-page/vendor/simple-line-icons/css/simple-line-icons.css"
+      href="web-svf-github-webpages/landing-page/vendor/simple-line-icons/css/simple-line-icons.css"
       rel="stylesheet"
       type="text/css"
     />
@@ -56,7 +64,7 @@
 
     <!-- Custom styles for this template -->
     <link
-      href="code-map-web-github-webpages/landing-page/css/landing-page.min.css"
+      href="web-svf-github-webpages/landing-page/css/landing-page.min.css"
       rel="stylesheet"
     />
   </head>
@@ -70,15 +78,15 @@
             style="font-weight: bold;color: black;font-size:2em; font-family: 'Electrolize';"
             data="WebSVF"
           >
-            Web_SVF
+            Web-SVF
           </h1>
         </a>
-        <a class="btn btn-primary" href="#">Login</a>
+        <a class="btn btn-primary" href="#header-top">Sign Up</a>
       </div>
     </nav>
 
     <!-- Masthead -->
-    <header class="masthead text-white text-center">
+    <header id="header-top" class="masthead text-white text-center">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -90,7 +98,7 @@
               <div
                 style="font-weight: bold;color: #4b75ff;font-family: 'Electrolize';font-size:2.5em;"
               >
-                Web_SVF:
+                Web-SVF:
               </div>
               Online Code Analysis Platform powered by
               <a style="font-weight: bold;text-decoration: underline;"
@@ -101,13 +109,15 @@
             </h1>
           </div>
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <form>
+            <form id="signupform">
               <div class="form-row">
                 <div class="col-12 col-md-9 mb-2 mb-md-0">
                   <input
                     type="email"
+                    id="header-email"
                     class="form-control form-control-lg"
                     placeholder="Enter your email..."
+                    required
                   />
                 </div>
                 <div class="col-12 col-md-3">
@@ -115,11 +125,18 @@
                     type="submit"
                     class="btn btn-block btn-lg btn-primary"
                   >
-                    Sign up!
+                    Sign Up!
                   </button>
                 </div>
               </div>
             </form>
+          </div>
+          <div id="alertsignup" class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <h2></h2>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Email added to Mailing List. Please Use <a style="text-decoration: underline;">Password:</a> <a style="font-weight: bold;color: black;">21G12T7Y14</a>  to log into Web-SVF
+              </div>
           </div>
         </div>
       </div>
@@ -154,7 +171,7 @@
                 </div>
                 <div class="col-md-5 col-12 order-md-2 order-1">
                   <img
-                    src="code-map-web-github-webpages/landing-page/img/vscode_online_carousel.png"
+                    src="web-svf-github-webpages/landing-page/img/vscode_online_carousel.png"
                     class="mx-auto"
                     alt="slide"
                   />
@@ -184,7 +201,7 @@
                 </div>
                 <div class="col-md-5 col-12 order-md-2 order-1">
                   <img
-                    src="code-map-web-github-webpages/landing-page/img/Forced-Graph_carousel.png"
+                    src="web-svf-github-webpages/landing-page/img/Forced-Graph_carousel.png"
                     class="mx-auto"
                     alt="slide"
                   />
@@ -199,8 +216,8 @@
               <div class="row align-items-center">
                 <div class="col-md-7 col-12 order-md-1 order-2">
                   <h4>
-                    Generate Bug Report & Annotations <br />
-                    Using SVF's Deep Code Analysis
+                    Deep Bug Search <br />
+                    Using SVF's Code Analysis
                   </h4>
                   <p>
                     With the click of a button, analyse your entire project for
@@ -214,7 +231,7 @@
                 </div>
                 <div class="col-md-5 col-12 order-md-2 order-1">
                   <img
-                    src="code-map-web-github-webpages/landing-page/img/bug_carousel_alt_2_480.png"
+                    src="web-svf-github-webpages/landing-page/img/bug_carousel_alt_2_480.png"
                     class="mx-auto"
                     alt="slide"
                   />
@@ -267,7 +284,7 @@
               </div>
               <h3>Visualize your Data in 3D</h3>
               <p class="lead mb-0">
-                In a single click Web_SVF can compile your project and visualize
+                In a single click Web-SVF can compile your project and visualize
                 as a 3D Forced graph with interacable nodes within our editor
               </p>
             </div>
@@ -300,7 +317,7 @@
       </div>
       <br />
       <h1>Setup your own local instance of</h1>
-      <h1 style="color: #4b75ff; font-size: 3em;">Web_SVF</h1>
+      <h1 style="color: #4b75ff; font-size: 3em;">Web-SVF</h1>
       <h2>in a few simple steps:</h2>
     </section>
 
@@ -318,7 +335,7 @@
               <h2>Setup Development Environment (Ubuntu)</h2>
               <p class="lead mb-0">
                 Get started with setting up the development environment for
-                running the Web_SVF application.
+                running the Web-SVF application.
               </p>
             </div>
           </div>
@@ -343,7 +360,7 @@
               </div>
               <h2>Type in the Install command</h2>
               <p class="lead mb-0">
-                To install a locally hosted Web_SVF server as demonstrated you
+                To install a locally hosted Web-SVF server as demonstrated you
                 can have everything required to run, installed in a few easy
                 steps
               </p>
@@ -370,7 +387,7 @@
               </div>
               <h2>Run the Application</h2>
               <p class="lead mb-0">
-                With a single command, deploy the local Web_SVF server and host
+                With a single command, deploy the local Web-SVF server and host
                 you projects and their analysis with ease amongst your peers
               </p>
             </div>
@@ -401,7 +418,7 @@
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
               <img
                 class="img-fluid rounded-circle mb-3"
-                src="code-map-web-github-webpages/landing-page/img/Tianyang_Guan.jpg"
+                src="web-svf-github-webpages/landing-page/img/Tianyang_Guan.jpg"
                 alt=""
               />
               <h5>Tianyang Guan</h5>
@@ -415,7 +432,7 @@
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
               <img
                 class="img-fluid rounded-circle mb-3"
-                src="code-map-web-github-webpages/landing-page/img/guanqing_Zhang.jpg"
+                src="web-svf-github-webpages/landing-page/img/guanqing_Zhang.jpg"
                 alt=""
               />
               <h5>Guanqing Zhang</h5>
@@ -429,7 +446,7 @@
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
               <img
                 class="img-fluid rounded-circle mb-3"
-                src="code-map-web-github-webpages/landing-page/img/Guandong-Xun.jpg"
+                src="web-svf-github-webpages/landing-page/img/Guandong-Xun.jpg"
                 alt=""
               />
               <h5>Dr Guandong Xun</h5>
@@ -448,7 +465,7 @@
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
               <img
                 class="img-fluid rounded-circle mb-3"
-                src="code-map-web-github-webpages/landing-page/img/Yulei-Sui.jpg"
+                src="web-svf-github-webpages/landing-page/img/Yulei-Sui.jpg"
                 alt=""
               />
               <h5>Dr Yulei Sui</h5>
@@ -552,5 +569,24 @@
         </div>
       </div>
     </footer>
+
+    <!-- Firebase Database Requisites (7.5.0)-->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script
+      src="web-svf-github-webpages/landing-page/jscript/firebase/firebase-app-7.5.0.js"
+    ></script>
+
+    <!--// TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script
+      src="web-svf-github-webpages/landing-page/jscript/firebase/firebase-database-7.5.0.js"
+    ></script>
+
+    <!-- Import JS Code for Logging email IDs-->
+    <script
+      src="web-svf-github-webpages/landing-page/jscript/firebase-email-signup.js"
+    ></script>
   </body>
 </html>
