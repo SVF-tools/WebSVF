@@ -35,7 +35,7 @@ color:#d5d5d5;
 #myCarousel .carousel-item{height: fit-content; min-height: 480px; }
 #myCarousel{position:relative; z-index:1; background-color: #090420; background-size: contain;}
 /*background:url(https://i.imgur.com/6axE29k.jpg) center center no-repeat */
-.carousel-control-next, .carousel-control-prev{height:40px; width:40px; padding:12px; top:85%; bottom:auto; transform:translateY(-50%); background-color: rgba(255, 255, 255, 0); }
+.carousel-control-next, .carousel-control-prev{height:40px; width:40px; padding:12px; top:90%; bottom:auto; transform:translateY(-50%); background-color: rgba(255, 255, 255, 0); }
 
 @media only screen and (max-width: 1000px) {
   #myCarousel .carousel-item {min-height: 450px;}
@@ -43,29 +43,29 @@ color:#d5d5d5;
 
 
 @media only screen and (max-width: 900px) {
-  #myCarousel .carousel-item {min-height: 420px;}
+  #myCarousel .carousel-item {min-height: 450px;}
 }
 
 
 @media only screen and (max-width: 767px) {
-  #myCarousel .carousel-item {min-height: 740px;}
+  #myCarousel .carousel-item {min-height: 865px;}
   #myCarousel .carousel-control-next, .carousel-control-prev{top: 50%}
 }
 
 @media only screen and (max-width: 600px) {
-  #myCarousel .carousel-item {min-height: 740px;}
+  #myCarousel .carousel-item {min-height: 875px;}
 }
 
 @media only screen and (max-width: 539px) {
-  #myCarousel .carousel-item {min-height: 780px;}
+  #myCarousel .carousel-item {min-height: 885px;}
 }
 
 @media only screen and (max-width: 452px) {
-  #myCarousel .carousel-item {min-height: 820px;}
+  #myCarousel .carousel-item {min-height: 870px;}
 }
 
 @media only screen and (max-width: 370px) {
-  #myCarousel .carousel-item {min-height: 780px;}
+  #myCarousel .carousel-item {min-height: 860px;}
 }
 
 .carousel-item {
