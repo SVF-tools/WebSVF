@@ -36,7 +36,7 @@ source Setup_Online.sh
 
 ## Work-In-Progress
 
-- (Website-LandingPage): Sign-Up for email updates Backend.
+- 
 
 ## Developer Notes
 
@@ -49,5 +49,5 @@ Links to the individual repositories for all contituent components are listed be
 
 ## Patch Notes
 
-- 
+- 5/12/19:  Sign Up to Newsletter adds emails to Test Firbase Realtime Database.
 

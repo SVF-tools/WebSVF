@@ -1,1 +1,0 @@
-sudo apt install -y pkg-config libx11-dev libxkbfile-dev libsecret-1-dev fakeroot rpm
