@@ -29,6 +29,9 @@ function submitForm(e) {
   // Save message
   saveMessage(email);
 
+  // Clear form
+  document.getElementById('signupform').reset();
+
   // Show alert
   document.getElementById("alertsignup").style.display = 'block';
 
