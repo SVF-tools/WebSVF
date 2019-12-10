@@ -39,7 +39,7 @@ function submitForm(e) {
 
   setTimeout(function() {
     window.open( 
-        "http://13.55.161.159:8080", "_blank");
+        "https://aitopcoder.com:8080/", "_blank");
   }, delayInMilliseconds);
 
   // Hide alert after 3 seconds
