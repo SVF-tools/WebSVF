@@ -1,0 +1,166 @@
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  list-style-type: decimal !important;
+  padding-left: 1em;
+  line-height: 250%;
+  margin-bottom: 0.75em;
+}
+
+a{margin:0}
+
+pre{
+  margin:0
+}
+
+body{
+  margin: 30px;
+  background-color: #333;
+}
+
+#text a {
+  padding-right: 5em;
+}
+
+.button {
+  background-color: grey;
+  color: white;
+  padding: 7px 14px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-right: 15vw;
+  margin-top: 3px;
+  border-radius: 12px;
+  float: right;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid grey;
+}
+
+
+
+.pre .nocode {
+  color: #ffffff00;
+}
+
+/* The alert message box margin-bottom: 15px;padding: 20px;*/
+.alert {
+  background-color: #a03030ab; 
+  color: rgb(0, 0, 0);
+  margin-right: 15vw;
+  float: right;
+  border-color: #181616cb;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+  line-height: 1.4em;
+  font-weight: bolder;
+  padding: 0.3em;
+  font-size: 17px;
+}
+
+.alert a {
+  background-color: rgba(255, 255, 255, 0.466); 
+  color: black;
+  margin: 0.75em;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.alert-syntax {
+  background-color: #47cbffc0; 
+  color: rgb(0, 0, 0);
+  margin-right: 15vw;
+  float: right;
+  border-color: #181616cb;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+  line-height: 1.4em;
+  font-weight: bolder;
+  padding: 0.3em;
+  font-size: 17px;
+}
+
+.alert-syntax a {
+  background-color: rgba(255, 255, 255, 0.466); 
+  color: black;
+  margin: 0.75em;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.alert-compile {
+  background-color: #f8f521c5; 
+  color: rgb(0, 0, 0);
+  margin-right: 15vw;
+  float: right;
+  border-color: #181616cb;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+  line-height: 1.4em;
+  font-weight: bolder;
+  padding: 0.3em;
+  font-size: 17px;
+}
+
+.alert-compile a {
+  background-color: rgba(255, 255, 255, 0.466); 
+  color: black;
+  margin: 0.75em;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.alert-runtime {
+  background-color: #30e91fc2; 
+  color: rgb(0, 0, 0);
+  margin-right: 15vw;
+  float: right;
+  border-color: #181616cb;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+  line-height: 1.4em;
+  font-weight: bolder;
+  padding: 0.3em;
+  font-size: 17px;
+}
+
+.alert-runtime a {
+  background-color: rgba(255, 255, 255, 0.466); 
+  color: black;
+  margin: 0.75em;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+

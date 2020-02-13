@@ -1,0 +1,26 @@
+{
+  "name": "bug_report_front_end",
+  "version": "0.0.2",
+  "description": "Work in Progress",
+  "main": "test.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "jsdom": "^15.2.1",
+    "open": "^7.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshatsinghkaushik/bug_report_front_end.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshatsinghkaushik/bug_report_front_end/issues"
+  },
+  "homepage": "https://github.com/akshatsinghkaushik/bug_report_front_end#readme"
+}
