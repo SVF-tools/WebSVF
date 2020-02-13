@@ -121,7 +121,7 @@ $("#test").html(codeStringSerialised);
 /* Code for the Leader-Lines function is stored as a string in a text file
 The code is read into a variable and added in the correct format and order 
 into the bug_report html file*/
-var leader_lines_function = fs.readFileSync('code_snippets/leader-line_pseudo_code.txt','utf8')
+var leader_lines_function = fs.readFileSync('code_snippets/leader-line_pseudo_code.js','utf8')
 
 
 /*  First  'var lines ='+JSON.stringify(obj)+' => adds the JSON array containing 
