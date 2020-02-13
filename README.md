@@ -1,7 +1,9 @@
 ## 1. Clone Repository:
 
 ```
-git clone https://github.com/akshatsinghkaushik/bug_report_front_end.git
+git clone https://github.com/SVF-tools/WebSVF.git
+
+git checkout bug-report-fe
 ```
 
 ## 2. Install Dependencies:
@@ -13,7 +15,7 @@ npm install
 ## 3. Run the App (Execution):
 
 ```
-node test.js
+node test
 ```
 
 # Description:
