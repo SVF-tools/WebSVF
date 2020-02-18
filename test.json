@@ -2,7 +2,8 @@
     "bugreport": [
         {
             "id": 0,
-            "FilePath": "xxx.c",
+            "FileName": "xxx.c",
+            "FilePath": "./",            
             "Errors": [
                 {"ln": 4,"Type": "Syntax", "Error": "Null Pointer", "Description": "Null"},
                 {"ln": 8,"Type": "Runtime", "Error": "Null Pointer", "Description": "Null"},
@@ -11,7 +12,8 @@
         },
         {
             "id": 1,
-            "FilePath": "xxx.h",
+            "FileName": "xxy.c",
+            "FilePath": "./",
             "Errors": [
                 {"ln": 4,"Type": "Syntax", "Error": "Null Pointer", "Description": "Null"},
                 {"ln": 13,"Type": "Runtime", "Error": "Null Pointer", "Description": "Null"},

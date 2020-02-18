@@ -1,80 +1,60 @@
 <html lang="en"><head>
-    <link rel="stylesheet" type="text/css" href="/css/test.css">
-    <link rel="stylesheet" type="text/css" href="/css/prettify_dessert.css">
-    <script type="text/javascript" src="/js/prettify.js"></script>
-    <script src="/js/leader-line.min.js"></script>
-  </head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
-  <body onload="PR.prettyPrint()">
-    <pre id="test" class="prettyprint linenums"><button class="button nocode" onclick="showLines()">Show Lines</button><a id="1">   #include &lt;stdio.h&gt;</a> 
-<a id="2">    int main()</a>
-<a id="3">    {</a>
-<span id="err0" class="alert-syntax nocode">Null Pointer
-<a>Null</a></span><a id="4">       char c;</a>
-<a id="5">       printf("Enter a character: ");</a>
-<a id="6">       scanf("%c",&amp;c);</a>
-<a id="7">       if( (c&gt;='a' &amp;&amp; c&lt;='z') || (c&gt;='A' &amp;&amp; c&lt;='Z'))</a>
-<span id="err1" class="alert-runtime nocode">Null Pointer
-<a>Null</a></span><a id="8">           printf("%c is an alphabet.",c);</a>
-<a id="9">       else</a>
-<span id="err2" class="alert-compile nocode">Null Pointer
-<a>Null</a></span><a id="10">          printf("%c is not an alphabet.",c);</a>
-<a id="11">      return 0;</a>
-<a id="12">  }</a></pre>
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" crossorigin="anonymous">
     
-
-    <script id="showLines"></script>
-
-    <script id="LeaderLines">
-		var ref_lines =[{"start":"err0","end":4},{"start":"err1","end":8},{"start":"err2","end":10}];
-		var lines =[{"start":4,"end":8},{"start":8,"end":10}];
-		function showLines() {
-        
-        lines.forEach(function(line) {
-          var start = document.getElementById(line.start),
-            end = document.getElementById(line.end);
-
-          if (start !== null && end !== null) {
-            line.obj = new LeaderLine(start, end, {
-        /*    Add/Change Options here for altering the Leader-Lines */
-              color: 'rgba(255, 127, 80, 0.35)',
-              size: 2,
-              //path: "straight",
-              //startPlug: "disc",
-              //startPlugSize: 1.2,
-              startSocket: "right",
-              //endPlug: "arrow3",
-              endPlug: "behind",
-              endPlugSize: 1.2,
-              endSocket: "right"
-
-            });
-          }
-        });
-
-        ref_lines.forEach(function(line) {
-          var start = document.getElementById(line.start),
-            end = document.getElementById(line.end);
-
-          if (start !== null && end !== null) {
-            line.obj = new LeaderLine(start, end, {
-        /*    Add/Change Options here for altering the Leader-Lines */
-              color: 'rgba(255, 255, 255, 0.25)',
-              size: 2,
-              //path: "straight",
-              startPlug: "disc",
-              //startPlugSize: 1.2,
-              startSocket: "left",
-              //endPlug: "arrow3",
-              endPlug: "arrow2",
-              endPlugSize: 1.2,
-              endSocket: "right"
-
-            });
-          }
-        });
-      }</script>
+    <link rel="stylesheet" type="text/css" href="/css/test1.css">
+  </head>
   
+  <body>
+      <button>
+          <a href="./fileReport.html">File Report</a>
+      </button>
+      <div id="test">
 
+      </div>
+
+      <div class="row">
+          <div class="col-md-3">
+              <!-- Tabs nav -->
+              <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+							<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-xxx.c-tab" data-toggle="pill" href="#v-pills-xxxc" role="tab" aria-controls="v-pills-xxxc" aria-selected="true">
+								<i class="far fa-file-code fa-2x mr-4"></i>
+								<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">xxx.c</span></a>
+
+							<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-xxy.c-tab" data-toggle="pill" href="#v-pills-xxyc" role="tab" aria-controls="v-pills-xxyc" aria-selected="false">
+								<i class="far fa-file-code fa-2x mr-4"></i>
+								<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">xxy.c</span></a>
+
+							</div>
+          </div>
+
+
+          <div class="col-md-9">
+              <!-- Tabs content -->
+              <div class="tab-content" id="v-pills-tabContent">
+
+									<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-xxxc" role="tabpanel" aria-labelledby="v-pills-xxxc-tab">
+											<h4 class="font-italic mb-4"><a href="#" target="_blank">xxx.c</a></h4>
+											<p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+									</div>
+
+									<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-xxyc" role="tabpanel" aria-labelledby="v-pills-xxyc-tab">
+											<h4 class="font-italic mb-4"><a href="#" target="_blank">xxy.c</a></h4>
+											<p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+									</div>
+
+									</div>
+          </div>
+      </div>
+
+    <!-- Bootstrap JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
 </body></html>
