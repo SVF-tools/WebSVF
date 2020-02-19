@@ -13,7 +13,7 @@
         {
             "id": 1,
             "FileName": "xxy.c",
-            "FilePath": "./",
+            "FilePath": "./c-code-files",
             "Errors": [
                 {"ln": 4,"Type": "Syntax", "Error": "Null Pointer", "Description": "Null"},
                 {"ln": 13,"Type": "Runtime", "Error": "Null Pointer", "Description": "Null"},
