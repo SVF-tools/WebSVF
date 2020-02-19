@@ -4,7 +4,9 @@ var jsdom = require("jsdom"); //JSDOM library for emulating DOM in NodeJS
 const jquery = require("jquery"); //jQuery Library for NodeJS
 
 
-const gen_file_report = () => {
+// file_tracker => Files Tracker
+
+const gen_file_report = (file_tracker) => {
     //Reading Static Web Page File
 var web_page = fs.readFileSync("./public/fileReport.html").toString();
 
@@ -12,7 +14,7 @@ var web_page = fs.readFileSync("./public/fileReport.html").toString();
 var jsonString = JSON.parse(fs.readFileSync('test.json','utf8'));
 
 //Initialise Trackers for .c files containing errors
-var file_tracker = 0; //Files Tracker
+
 var error_tracker = 0;//Errors tacker per file
 
 var fileP = jsonString.bugreport[file_tracker].FilePath + '/' + jsonString.bugreport[file_tracker].FileName; //File Path of the current .c file being reported

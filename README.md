@@ -15,7 +15,7 @@ npm install
 ## 3. Run the App (Execution):
 
 ```
-node test
+node run start
 ```
 
 # Description:
