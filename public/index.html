@@ -83,21 +83,38 @@
 [
     {
         "ln": 4,
-        "Type": "Syntax",
-        "Error": "Null Pointer",
-        "Description": "Null"
+        "Type": "Logical",
+        "Occurrence": "Dynamic (Run-Time)",
+        "Title": "Null Reference",
+        "Description": "Null",
+        "CrossOrigin": []
     },
     {
         "ln": 8,
-        "Type": "Runtime",
-        "Error": "Null Pointer",
-        "Description": "Null"
+        "Type": "Semantic",
+        "Occurrence": "Static (Compile-Time)",
+        "Title": "Variable 'statc' not recognised",
+        "Description": "Null",
+        "CrossOrigin": [
+            {
+                "FileName": "xxy.c",
+                "FilePath": "./c-code-files",
+                "ln": 16
+            },
+            {
+                "FileName": "xxz.c",
+                "FilePath": "./c-code-files",
+                "ln": 18
+            }
+        ]
     },
     {
         "ln": 10,
-        "Type": "Compile",
-        "Error": "Null Pointer",
-        "Description": "Null"
+        "Type": "Syntax",
+        "Occurrence": "Static (Compile-Time)",
+        "Title": "Unexpected end of line",
+        "Description": "Null",
+        "CrossOrigin": []
     }
 ]
 											</pre>
@@ -110,20 +127,32 @@
     {
         "ln": 4,
         "Type": "Syntax",
-        "Error": "Null Pointer",
-        "Description": "Null"
+        "Occurrence": "Static (Compile-Time)",
+        "Title": "Missing end of function '}'",
+        "Description": "Null",
+        "CrossOrigin": [
+            {
+                "FileName": "xxy.c",
+                "FilePath": "./c-code-files",
+                "ln": 12
+            }
+        ]
     },
     {
         "ln": 13,
-        "Type": "Runtime",
-        "Error": "Null Pointer",
-        "Description": "Null"
+        "Type": "Semantic",
+        "Occurrence": "Static (Compile-Time)",
+        "Title": "Function reference 'init()' not found",
+        "Description": "Null",
+        "CrossOrigin": []
     },
     {
         "ln": 18,
-        "Type": "Syntax",
-        "Error": "Null Pointer",
-        "Description": "Null"
+        "Type": "Logical",
+        "Occurrence": "Dynamic (Run-Time)",
+        "Title": "Null Reference",
+        "Description": "Null",
+        "CrossOrigin": []
     }
 ]
 											</pre>

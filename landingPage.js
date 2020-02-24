@@ -34,7 +34,6 @@ const make_pill = (index, name, index_last) => {
     else
     output = `<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-${name_noDot}" role="tabpanel" aria-labelledby="v-pills-${name_noDot}-tab">${'\n'.repeat(1)}${'\t'.repeat(11)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink" href="#" target="_blank">${name}</a></h4>${'\n'.repeat(1)}${'\t'.repeat(11)}<pre id="errors-${name_noDot}" style="overflow-x: hidden; color:green; font-size: 1rem; font-weight: bold;"></pre>${'\n'.repeat(1)}${'\t'.repeat(9)}</div>${'\n'.repeat(2)}${'\t'.repeat(4)}`;
 
-
     return output;
 }
 
@@ -43,8 +42,6 @@ const gen_landing_page = () => {
     var jsonReport = JSON.parse(fs.readFileSync('test.json','utf8'));
 
     var jsonReport_length = Object.keys(jsonReport).length;
-
-    //console.log(jsonReport_length);
 
     //Reading Static Web Page File
     const web_page = fs.readFileSync("./public/index.html").toString();
@@ -55,9 +52,8 @@ const gen_landing_page = () => {
     //Invoke jQuery on the created Virtual DOM window 
     const $ = jquery(dom.window);
 
+    //Clear Contents in the Analysed .c files HTML tabs (#files-analysed)
     $('#files-analysed #v-pills-tab').html('');
-
-
     $('#files-analysed #v-pills-tabContent').html('');
     
 
@@ -76,11 +72,6 @@ const gen_landing_page = () => {
         //console.log(jsonReport.bugreport[i].Errors);
 
         $('#files-analysed #v-pills-tabContent #errors-'+fileName.replace('.','')).html(`\n${JSON.stringify(fileErrors, undefined, 4)}${'\n'.repeat(1)}${'\t'.repeat(11)}`);
-
-
-
-
-
 
     }
 
