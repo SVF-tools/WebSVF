@@ -2,8 +2,8 @@
 const express = require("express");
 const app = express();
 var http = require('http').Server(app);
-const open = require('open');//Open website in default browser;
-const path = require('path');
+//const open = require('open');//Open website in default browser;
+//const path = require('path');
 
 var io = require('socket.io')(http);
 
@@ -57,4 +57,4 @@ io.on('connection', (socket)  => {
     });
 });
 
-open('http://localhost:3000');
+//open('http://localhost:3000');
