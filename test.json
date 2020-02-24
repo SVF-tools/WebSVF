@@ -1,24 +1,64 @@
 {
-    "bugreport": [
+  "bugreport": [
+    {
+      "id": 0,
+      "FileName": "xxx.c",
+      "FilePath": "./",
+      "Errors": [
         {
-            "id": 0,
-            "FileName": "xxx.c",
-            "FilePath": "./",            
-            "Errors": [
-                {"ln": 4,"Type": "Syntax", "Error": "Null Pointer", "Description": "Null"},
-                {"ln": 8,"Type": "Runtime", "Error": "Null Pointer", "Description": "Null"},
-                {"ln": 10,"Type": "Compile", "Error": "Null Pointer", "Description": "Null"}
-            ]
+          "ln": 4,
+          "Type": "Syntax",
+          "Error": "Null Pointer",
+          "Description": "Null",
+          "CrossOrigin": []
         },
         {
-            "id": 1,
-            "FileName": "xxy.c",
-            "FilePath": "./c-code-files",
-            "Errors": [
-                {"ln": 4,"Type": "Syntax", "Error": "Null Pointer", "Description": "Null"},
-                {"ln": 13,"Type": "Runtime", "Error": "Null Pointer", "Description": "Null"},
-                {"ln": 18,"Type": "Syntax", "Error": "Null Pointer", "Description": "Null"}
-            ]
+          "ln": 8,
+          "Type": "Runtime",
+          "Error": "Null Pointer",
+          "Description": "Null",
+          "CrossOrigin": [
+            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 }
+          ]
+        },
+        {
+          "ln": 10,
+          "Type": "Compile",
+          "Error": "Null Pointer",
+          "Description": "Null",
+          "CrossOrigin": []
         }
-    ]
+      ]
+    },
+    {
+      "id": 1,
+      "FileName": "xxy.c",
+      "FilePath": "./c-code-files",
+      "Errors": [
+        {
+          "ln": 4,
+          "Type": "Syntax",
+          "Error": "Null Pointer",
+          "Description": "Null",
+          "CrossOrigin": [
+            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 12 }
+          ]
+        },
+        {
+          "ln": 13,
+          "Type": "Runtime",
+          "Error": "Null Pointer",
+          "Description": "Null",
+          "CrossOrigin": []
+        },
+        {
+          "ln": 18,
+          "Type": "Syntax",
+          "Error": "Null Pointer",
+          "Description": "Null",
+          "CrossOrigin": []
+        }
+      ]
+    }
+  ]
 }
