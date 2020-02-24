@@ -12,16 +12,51 @@
   </head>
   
   <body>
-      <!>
+      <!---->
       
     <div id="test">
-        <div class="py-4">
+        <div class="invisible">
         <button>
             <a id="fileclick" href="./fileReport.html" target="_blank">File Report</a>
         </button>
         </div>
 
-      <div class="row">
+        <div class="row pb-4">
+            <div class="col-md-3">
+                <!-- Tabs nav -->
+                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+							<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-bugAnalysis-tab" data-toggle="pill" href="#v-pills-bugAnalysis" role="tab" aria-controls="v-pills-bugAnalysis" aria-selected="true">
+								<i class="far fa-file-code fa-2x mr-4"></i>
+								<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Project Bug Analysis</span></a>
+
+							<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-healthReport-tab" data-toggle="pill" href="#v-pills-healthReport" role="tab" aria-controls="v-pills-healthReport" aria-selected="false">
+								<i class="far fa-file-code fa-2x mr-4"></i>
+								<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Project Health Analysis</span></a>
+
+							</div>
+            </div>
+  
+  
+            <div class="col-md-9">
+                <!-- Tabs content -->
+                <div class="tab-content" id="v-pills-tabContent">
+
+									<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-bugAnalysis" role="tabpanel" aria-labelledby="v-pills-bugAnalysis-tab">
+											<h4 class="font-italic mb-4"><a id="0*!*xxx.c" class="fileRepLink" href="#v-pills-bugAnalysis-tab" target="">Project Bug Analysis</a></h4>
+											
+									</div>
+
+									<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-healthReport" role="tabpanel" aria-labelledby="v-pills-healthReport-tab">
+											<h4 class="font-italic mb-4"><a id="1*!*xxy.c" class="fileRepLink" href="#v-pills-healthReport-tab" target="">Project Health Analysis</a></h4>
+											
+									</div>
+
+				</div>
+              </div>
+        </div>  
+
+      <div id="files-analysed" class="row">
           <div class="col-md-3">
               <!-- Tabs nav -->
               <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -44,7 +79,8 @@
 
 									<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-xxxc" role="tabpanel" aria-labelledby="v-pills-xxxc-tab">
 											<h4 class="font-italic mb-4"><a id="0*!*xxx.c" class="fileRepLink" href="#" target="_blank">xxx.c</a></h4>
-											<pre id="errors-xxxc" style="overflow-x: hidden; color:green; font-size: 1rem; font-weight: bold;">[
+											<pre id="errors-xxxc" style="overflow-x: hidden; color:green; font-size: 1rem; font-weight: bold;">
+[
     {
         "ln": 4,
         "Type": "Syntax",
@@ -63,12 +99,14 @@
         "Error": "Null Pointer",
         "Description": "Null"
     }
-]</pre>
+]
+											</pre>
 									</div>
 
 									<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-xxyc" role="tabpanel" aria-labelledby="v-pills-xxyc-tab">
 											<h4 class="font-italic mb-4"><a id="1*!*xxy.c" class="fileRepLink" href="#" target="_blank">xxy.c</a></h4>
-											<pre id="errors-xxyc" style="overflow-x: hidden; color:green; font-size: 1rem; font-weight: bold;">[
+											<pre id="errors-xxyc" style="overflow-x: hidden; color:green; font-size: 1rem; font-weight: bold;">
+[
     {
         "ln": 4,
         "Type": "Syntax",
@@ -87,11 +125,12 @@
         "Error": "Null Pointer",
         "Description": "Null"
     }
-]</pre>
+]
+											</pre>
 									</div>
 
-									</div>
-          </div>
+				</div>
+            </div>
       </div>
     </div>
 
@@ -104,7 +143,7 @@
 
         var link = document.getElementById( '' );
 
-        const links = document.querySelectorAll(".fileRepLink");
+        const links = document.querySelectorAll("#files-analysed .fileRepLink");
 
         
 
