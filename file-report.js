@@ -48,7 +48,7 @@ for (let i = 0; i < string1.length; i++) {
     //Initialize Variables storing values from Test.json for the current file (file_tracker)
     var err_ln = jsonString.bugreport[file_tracker].Errors[error_tracker].ln;
     var err_type = jsonString.bugreport[file_tracker].Errors[error_tracker].Type;
-    var err_name = jsonString.bugreport[file_tracker].Errors[error_tracker].Error;
+    var err_name = jsonString.bugreport[file_tracker].Errors[error_tracker].Title;
     var err_descr = jsonString.bugreport[file_tracker].Errors[error_tracker].Description;
 
     //Add ShowLines Button to the HTML file
