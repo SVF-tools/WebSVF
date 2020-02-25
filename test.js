@@ -1,27 +1,16 @@
-//ExpressJS config
+//ExpressJS and SocketIO config
 const express = require("express");
 const app = express();
-var http = require('http').Server(app);
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
 //const open = require('open');//Open website in default browser;
 //const path = require('path');
 
-var io = require('socket.io')(http);
-
-/* 
-
-npm i express
-npm i jsdom
-npm i jquery
-
-*/
-
 const port = 3000;
 
-//Initialize Express App
-app.use(express.static(__dirname));
-
 const fReport = require('./file-report');
-
 const landPage = require('./landingPage');
 
 

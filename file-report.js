@@ -53,20 +53,20 @@ for (let i = 0; i < string1.length; i++) {
 
     //Add ShowLines Button to the HTML file
     if(i==0) {
-        codeStringSerialised += '<button class="button nocode" onClick="showLines()">'+'Show Lines'+'</button>'+'<a id="'+(i+1)+'">'+string1[i]+'</a> \n';
+        codeStringSerialised += `<button class="remove-button nocode" onclick="removeLines()">Remove Lines</button><button id="show-lines-button" class="show-button nocode" onClick="showLines()">Show Lines</button><a id="${(i+1)}">${string1[i]}</a>\n`;
     }
     else if(err_ln==(i+1)){     //Checking if there is an error at the .c line being added to the html file
 
         //Check for Error Type and Insert Error at the correct line number 
 
         if(err_type==='Syntax'){
-            codeStringSerialised += '<span id="err'+error_tracker+'" class="alert-syntax nocode">'+err_name+'\n<a>'+err_descr+'</a></span>'+'<a id="'+(i+1)+'">'+string1[i]+'</a>'+"\n";
-        } else if(err_type==='Compile'){
-            codeStringSerialised += '<span id="err'+error_tracker+'" class="alert-compile nocode">'+err_name+'\n<a>'+err_descr+'</a></span>'+'<a id="'+(i+1)+'">'+string1[i]+'</a>'+"\n";
-        } else if(err_type==='Runtime'){
-            codeStringSerialised += '<span id="err'+error_tracker+'" class="alert-runtime nocode">'+err_name+'\n<a>'+err_descr+'</a></span>'+'<a id="'+(i+1)+'">'+string1[i]+'</a>'+"\n";
+            codeStringSerialised += `<span id="err${error_tracker}" class="alert-syntax nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;
+        } else if(err_type==='Logical'){
+            codeStringSerialised += `<span id="err${error_tracker}" class="alert-logical nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;
+        } else if(err_type==='Semantic'){
+            codeStringSerialised += `<span id="err${error_tracker}" class="alert-semantic nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;
         } else {
-            codeStringSerialised += '<span id="err'+error_tracker+'" class="alert nocode">'+err_name+'\n<a>'+err_descr+'</a></span>'+'<a id="'+(i+1)+'">'+string1[i]+'</a>'+"\n";
+            codeStringSerialised += `<span id="err${error_tracker}" class="alert nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;;
         }
 
         //Populate Separate JSON Array for Error Reference Lines
@@ -115,7 +115,7 @@ var leader_lines_function = fs.readFileSync('code_snippets/leader-line_pseudo_co
 /*  First  'var lines ='+JSON.stringify(obj)+' => adds the JSON array containing 
 the line numbers for the Leader-Lines into the html file
 Followed by added the pseduo code for Leader-Lines function defined earlier */
-$("#LeaderLines").html(('\n\t\t'+'var ref_lines ='+JSON.stringify(ll_ref_array)+';')+('\n\t\t'+'var lines ='+JSON.stringify(ll_array)+';')+'\n\t\t'+leader_lines_function);
+$("#LeaderLines").html(`\n${'\t'.repeat(2)}var ref_lines =${JSON.stringify(ll_ref_array)};\n${'\t'.repeat(2)}var lines =${JSON.stringify(ll_array)};\n${'\t'.repeat(2)}${leader_lines_function}`);
 
 
 /*Write changes from the Virtual DOM to the Web Page (.html)
