@@ -41,7 +41,11 @@ const make_pill = (index, name, index_last, insert_html) => {
 
 const gen_landing_page = () => {
 
-    const jsonReport = JSON.parse(fs.readFileSync('test.json','utf8'));
+    const jsonReport_string = fs.readFileSync('test.json','utf8');
+
+    const jsonReport = JSON.parse(jsonReport_string);
+
+    fs.writeFileSync("./public/js/bugReportJSON.js",`\nconst bugreportjson = ${jsonReport_string};`);
 
     const jsonReport_length = Object.keys(jsonReport).length;
 
