@@ -29,7 +29,19 @@ body{
   padding-right: 5em;
 }
 
-.button {
+.show-button {
+  background-color: grey;
+  color: white;
+  padding: 7px 14px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 3px;
+  border-radius: 12px;
+  float: right;
+}
+
+.remove-button {
   background-color: grey;
   color: white;
   padding: 7px 14px;
@@ -79,7 +91,7 @@ body{
 }
 
 .alert-syntax {
-  background-color: #47cbffc0; 
+  background-color: #56ccfbea; 
   color: rgb(0, 0, 0);
   margin-right: 15vw;
   float: right;
@@ -94,15 +106,21 @@ body{
 }
 
 .alert-syntax a {
-  background-color: rgba(255, 255, 255, 0.466); 
+  background-color: rgba(255, 255, 255, 0.575); 
   color: black;
   margin: 0.75em;
   font-weight: bold;
   font-size: 14px;
 }
 
-.alert-compile {
-  background-color: #f8f521c5; 
+.alert-syntax .error-title a {
+  font-weight: bolder;
+  font-size: 17px;
+
+}
+
+.alert-semantic {
+  background-color: #f7fa52ec; 
   color: rgb(0, 0, 0);
   margin-right: 15vw;
   float: right;
@@ -116,16 +134,22 @@ body{
   font-size: 17px;
 }
 
-.alert-compile a {
-  background-color: rgba(255, 255, 255, 0.466); 
+.alert-semantic a {
+  background-color: rgba(255, 255, 255, 0.575); 
   color: black;
   margin: 0.75em;
   font-weight: bold;
   font-size: 14px;
 }
 
-.alert-runtime {
-  background-color: #30e91fc2; 
+.alert-semantic .error-title a {
+  font-weight: bolder;
+  font-size: 17px;
+
+}
+
+.alert-logical {
+  background-color: #89fa3ee5; 
   color: rgb(0, 0, 0);
   margin-right: 15vw;
   float: right;
@@ -139,13 +163,20 @@ body{
   font-size: 17px;
 }
 
-.alert-runtime a {
-  background-color: rgba(255, 255, 255, 0.466); 
+.alert-logical a {
+  background-color: rgba(255, 255, 255, 0.575); 
   color: black;
   margin: 0.75em;
   font-weight: bold;
   font-size: 14px;
 }
+
+.alert-logical .error-title a {
+  font-weight: bolder;
+  font-size: 17px;
+
+}
+
 
 /* The close button */
 .closebtn {

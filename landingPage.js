@@ -11,14 +11,16 @@ const initialise_pill = () => {
     
 }
 
-const make_pillTab = (index, name) => {
+const make_pillTab = (index, name, index_last) => {
     var output;
     var name_noDot = name.replace('.','');
 
     if(index == 0)
     output = `${'\n'.repeat(2)}${'\t'.repeat(7)}<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-${name}-tab" data-toggle="pill" href="#v-pills-${name_noDot}" role="tab" aria-controls="v-pills-${name_noDot}" aria-selected="true">${'\n'.repeat(1)}${'\t'.repeat(8)}<i class="far fa-file-code fa-2x mr-4"></i>${'\n'.repeat(1)}${'\t'.repeat(8)}<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">${name}</span></a>${'\n'.repeat(2)}${'\t'.repeat(7)}`;
-    else
+    else if(!(index <= index_last))
     output = `<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-${name}-tab" data-toggle="pill" href="#v-pills-${name_noDot}" role="tab" aria-controls="v-pills-${name_noDot}" aria-selected="false">${'\n'.repeat(1)}${'\t'.repeat(8)}<i class="far fa-file-code fa-2x mr-4"></i>${'\n'.repeat(1)}${'\t'.repeat(8)}<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">${name}</span></a>${'\n'.repeat(2)}${'\t'.repeat(7)}`;
+    else
+    output = `<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-${name}-tab" data-toggle="pill" href="#v-pills-${name_noDot}" role="tab" aria-controls="v-pills-${name_noDot}" aria-selected="false">${'\n'.repeat(1)}${'\t'.repeat(8)}<i class="far fa-file-code fa-2x mr-4"></i>${'\n'.repeat(1)}${'\t'.repeat(8)}<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">${name}</span></a>${'\n'.repeat(2)}${'\t'.repeat(4)}`;
 
     return output;
 } 
@@ -65,7 +67,7 @@ const gen_landing_page = () => {
         var fileErrors = jsonReport.bugreport[i].Errors;
         
 
-        $('#files-analysed #v-pills-tab').append(make_pillTab(i,fileName));
+        $('#files-analysed #v-pills-tab').append(make_pillTab(i,fileName,jsonReport_length));
 
         $('#files-analysed #v-pills-tabContent').append(make_pill(i,fileName,jsonReport_length));
 
