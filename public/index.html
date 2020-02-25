@@ -1,65 +1,270 @@
 <html lang="en"><head>
     <!-- Google Prettify -->
-    
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" crossorigin="anonymous">
-    
+
     <link rel="stylesheet" type="text/css" href="/css/test1.css">
   </head>
-  
+
   <body>
-      <!---->
-      
+    <!---->
+
     <div id="test">
-        <div class="invisible">
+      <div class="invisible">
         <button>
-            <a id="fileclick" href="./fileReport.html" target="_blank">File Report</a>
+          <a id="fileclick" href="./fileReport.html" target="_blank">File Report</a>
         </button>
+      </div>
+
+      <div class="row pb-4">
+        <div class="col-md-3">
+          <!-- Tabs nav -->
+          <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-bugAnalysis-tab" data-toggle="pill" href="#v-pills-bugAnalysis" role="tab" aria-controls="v-pills-bugAnalysis" aria-selected="true">
+              <i class="far fa-file-code fa-2x mr-4"></i>
+              <span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Project Bug Analysis</span></a>
+
+            <a class="nav-link mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-healthReport-tab" data-toggle="pill" href="#v-pills-healthReport" role="tab" aria-controls="v-pills-healthReport" aria-selected="false">
+              <i class="far fa-file-code fa-2x mr-4"></i>
+              <span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Project Health Analysis</span></a>
+          </div>
         </div>
 
-        <div class="row pb-4">
-            <div class="col-md-3">
-                <!-- Tabs nav -->
-                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="col-md-9">
+          <!-- Tabs content -->
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-bugAnalysis" role="tabpanel" aria-labelledby="v-pills-bugAnalysis-tab">
+              <h4 class="font-italic mb-4">
+                <a id="0*!*xxx.c" class="fileRepLink" href="#v-pills-bugAnalysis-tab" target="">Project Bug Analysis</a>
+              </h4>
 
-							<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-bugAnalysis-tab" data-toggle="pill" href="#v-pills-bugAnalysis" role="tab" aria-controls="v-pills-bugAnalysis" aria-selected="true">
-								<i class="far fa-file-code fa-2x mr-4"></i>
-								<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Project Bug Analysis</span></a>
+              <!-- Project Overview Cards -->
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="card-box bg-red">
+                        <div class="inner">
+                            <h2>723</h2>
+                            <h3>Total<br>Errors</h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                    </div>
+                  </div>
 
-							<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-healthReport-tab" data-toggle="pill" href="#v-pills-healthReport" role="tab" aria-controls="v-pills-healthReport" aria-selected="false">
-								<i class="far fa-file-code fa-2x mr-4"></i>
-								<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Project Health Analysis</span></a>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="card-box bg-blue">
+                      <div class="inner">
+                        <h2>13436</h2>
+                        <h3>Syntax<br>Errors</h3>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
 
-							</div>
-            </div>
-  
-  
-            <div class="col-md-9">
-                <!-- Tabs content -->
-                <div class="tab-content" id="v-pills-tabContent">
-
-									<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-bugAnalysis" role="tabpanel" aria-labelledby="v-pills-bugAnalysis-tab">
-											<h4 class="font-italic mb-4"><a id="0*!*xxx.c" class="fileRepLink" href="#v-pills-bugAnalysis-tab" target="">Project Bug Analysis</a></h4>
-											
-									</div>
-
-									<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-healthReport" role="tabpanel" aria-labelledby="v-pills-healthReport-tab">
-											<h4 class="font-italic mb-4"><a id="1*!*xxy.c" class="fileRepLink" href="#v-pills-healthReport-tab" target="">Project Health Analysis</a></h4>
-											
-									</div>
-
-				</div>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="card-box bg-green">
+                      <div class="inner">
+                        <h2>185358</h2>
+                        <h3>Logical<br>Errors</h3>
+                      </div>
+                      <div class="icon">
+                        <i class="far fa-file-code" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="card-box bg-orange">
+                      <div class="inner">
+                        <h2>5464</h2>
+                        <h3>Semantic<br>Errors</h3>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-        </div>  
+
+              <!-- Checklist for generating Bug Overview Table -->
+              <div class="row py-4">
+                <div class="col-md text-center">
+                  <h3 class="font-weight-bold">Syntax Errors</h3>
+
+                  <ul class="" style="list-style-type:none;">
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check1" checked="">
+                        <label class="custom-control-label" for="check1">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check2">
+                        <label class="custom-control-label" for="check2">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check3" checked="">
+                        <label class="custom-control-label" for="check3">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check4" checked="">
+                        <label class="custom-control-label" for="check4">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check5">
+                        <label class="custom-control-label" for="check5">Check me</label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md text-center">
+                    <h3 class="font-weight-bold">Logical Errors</h3>
+
+                  <ul class="" style="list-style-type:none;">
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check1" checked="">
+                        <label class="custom-control-label" for="check1">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check2">
+                        <label class="custom-control-label" for="check2">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check3" checked="">
+                        <label class="custom-control-label" for="check3">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check4" checked="">
+                        <label class="custom-control-label" for="check4">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check5">
+                        <label class="custom-control-label" for="check5">Check me</label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md text-center">
+                    <h3 class="font-weight-bold">Semantic Errors</h3>
+
+                  <ul class="" style="list-style-type:none;">
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check1" checked="">
+                        <label class="custom-control-label" for="check1">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check2">
+                        <label class="custom-control-label" for="check2">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check3" checked="">
+                        <label class="custom-control-label" for="check3">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check4" checked="">
+                        <label class="custom-control-label" for="check4">Check me</label>
+                      </div>
+                    </li>
+                    <li class="py-1">
+                      <!-- Default checked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="check5">
+                        <label class="custom-control-label" for="check5">Check me</label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <table class="table table-striped pt-4">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-healthReport" role="tabpanel" aria-labelledby="v-pills-healthReport-tab">
+              <h4 class="font-italic mb-4">
+                <a id="1*!*xxy.c" class="fileRepLink" href="#v-pills-healthReport-tab" target="">Project Health Analysis</a>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div id="files-analysed" class="row">
-          <div class="col-md-3">
-              <!-- Tabs nav -->
-              <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="col-md-3">
+          <!-- Tabs nav -->
+          <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
 							<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-xxx.c-tab" data-toggle="pill" href="#v-pills-xxxc" role="tab" aria-controls="v-pills-xxxc" aria-selected="true">
 								<i class="far fa-file-code fa-2x mr-4"></i>
@@ -70,125 +275,167 @@
 								<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">xxy.c</span></a>
 
 				</div>
-          </div>
+        </div>
 
+        <div class="col-md-9">
+          <!-- Tabs content -->
+          <div class="tab-content" id="v-pills-tabContent">
+						<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-xxxc" role="tabpanel" aria-labelledby="v-pills-xxxc-tab">
+							<h4 class="font-italic mb-4"><a id="0*!*xxx.c" class="fileRepLink" href="#" target="_blank">xxx.c</a></h4>
+							<div id="errors-xxxc" class="container">
+								<div class="row">
+								
+                    <div class="error-box col-xl-6">
+                        <div class="card bg-logical-gradient mb-3">
+                            <div class="p-3 position-relative">
+                                <span class="badge badge-dark mb-3"><a class="h5">Logical Error</a></span>
+                                                                
+                                <div class="list-card-dark px-2">
+                                    <h6 class="mb-1">
+                                        <a href="#" class="" style="color:black;font-weight: bolder;font-size: 24px;">Null Reference</a>
+                                    </h6>
+                                    <p class="mb-3" style="color:black;font-weight:500;">Null</p>
+                                    <p class="mb-3 time"><span class="bg-semi-light text-dark rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: 4</span> </p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-danger ml-1"><a class="h6">Dynamic (Run-Time)</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="error-box col-xl-6">
+                        <div class="card bg-semantic-gradient mb-3">
+                            <div class="p-3 position-relative">
+                                <span class="badge badge-dark mb-3"><a class="h5">Semantic Error</a></span>
+                                                                
+                                <div class="list-card-dark px-2">
+                                    <h6 class="mb-1">
+                                        <a href="#" class="" style="color:black;font-weight: bolder;font-size: 24px;">Variable 'statc' not recognised</a>
+                                    </h6>
+                                    <p class="mb-3" style="color:black;font-weight:500;">Null</p>
+                                    <p class="mb-3 time"><span class="bg-semi-light rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: 8</span> <span class="bg-semi-dark rounded-sm mb-1 px-2 py-1 float-right"><a href="#" style="color:white;font-weight: bold;font-size: 14px;">Cross-Origin</a></span></p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-danger ml-1"><a class="h6">Static (Compile-Time)</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="error-box col-xl-6">
+                        <div class="card bg-syntax-gradient mb-3">
+                            <div class="p-3 position-relative">
+                                <span class="badge badge-dark mb-3"><a class="h5">Syntax Error</a></span>
+                                                                
+                                <div class="list-card-dark px-2">
+                                    <h6 class="mb-1">
+                                        <a href="#" class="" style="color:black;font-weight: bolder;font-size: 24px;">Unexpected end of line</a>
+                                    </h6>
+                                    <p class="mb-3" style="color:black;font-weight:500;">Null</p>
+                                    <p class="mb-3 time"><span class="bg-semi-light rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: 10</span> </p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-danger ml-1"><a class="h6">Static (Compile-Time)</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+								</div>
+					
 
-          <div class="col-md-9">
-              <!-- Tabs content -->
-              <div class="tab-content" id="v-pills-tabContent">
+					</div></div><div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-xxyc" role="tabpanel" aria-labelledby="v-pills-xxyc-tab">
+							<h4 class="font-italic mb-4"><a id="1*!*xxy.c" class="fileRepLink" href="#" target="_blank">xxy.c</a></h4>
+							<div id="errors-xxyc" class="container">
+								<div class="row">
+								
+                    <div class="error-box col-xl-6">
+                        <div class="card bg-syntax-gradient mb-3">
+                            <div class="p-3 position-relative">
+                                <span class="badge badge-dark mb-3"><a class="h5">Syntax Error</a></span>
+                                                                
+                                <div class="list-card-dark px-2">
+                                    <h6 class="mb-1">
+                                        <a href="#" class="" style="color:black;font-weight: bolder;font-size: 24px;">Missing end of function '}'</a>
+                                    </h6>
+                                    <p class="mb-3" style="color:black;font-weight:500;">Null</p>
+                                    <p class="mb-3 time"><span class="bg-semi-light rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: 4</span><span class="bg-semi-dark rounded-sm mb-1 px-2 py-1 float-right"><a href="#" style="color:white;font-weight: bold;font-size: 14px;">Cross-Origin</a></span> </p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-danger ml-1"><a class="h6">Static (Compile-Time)</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="error-box col-xl-6">
+                        <div class="card bg-semantic-gradient mb-3">
+                            <div class="p-3 position-relative">
+                                <span class="badge badge-dark mb-3"><a class="h5">Semantic Error</a></span>
+                                                                
+                                <div class="list-card-dark px-2">
+                                    <h6 class="mb-1">
+                                        <a href="#" class="" style="color:black;font-weight: bolder;font-size: 24px;">Function reference 'init()' not found</a>
+                                    </h6>
+                                    <p class="mb-3" style="color:black;font-weight:500;">Null</p>
+                                    <p class="mb-3 time"><span class="bg-semi-light rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: 13</span> </p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-danger ml-1"><a class="h6">Static (Compile-Time)</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="error-box col-xl-6">
+                        <div class="card bg-logical-gradient mb-3">
+                            <div class="p-3 position-relative">
+                                <span class="badge badge-dark mb-3"><a class="h5">Logical Error</a></span>
+                                                                
+                                <div class="list-card-dark px-2">
+                                    <h6 class="mb-1">
+                                        <a href="#" class="" style="color:black;font-weight: bolder;font-size: 24px;">Null Reference</a>
+                                    </h6>
+                                    <p class="mb-3" style="color:black;font-weight:500;">Null</p>
+                                    <p class="mb-3 time"><span class="bg-semi-light text-dark rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: 18</span> </p>
+                                </div>
+                                <div>
+                                    <span class="badge badge-danger ml-1"><a class="h6">Dynamic (Run-Time)</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+								</div>
+					
 
-									<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-xxxc" role="tabpanel" aria-labelledby="v-pills-xxxc-tab">
-											<h4 class="font-italic mb-4"><a id="0*!*xxx.c" class="fileRepLink" href="#" target="_blank">xxx.c</a></h4>
-											<pre id="errors-xxxc" style="overflow-x: hidden; color:green; font-size: 1rem; font-weight: bold;">
-[
-    {
-        "ln": 4,
-        "Type": "Logical",
-        "Occurrence": "Dynamic (Run-Time)",
-        "Title": "Null Reference",
-        "Description": "Null",
-        "CrossOrigin": []
-    },
-    {
-        "ln": 8,
-        "Type": "Semantic",
-        "Occurrence": "Static (Compile-Time)",
-        "Title": "Variable 'statc' not recognised",
-        "Description": "Null",
-        "CrossOrigin": [
-            {
-                "FileName": "xxy.c",
-                "FilePath": "./c-code-files",
-                "ln": 16
-            },
-            {
-                "FileName": "xxz.c",
-                "FilePath": "./c-code-files",
-                "ln": 18
-            }
-        ]
-    },
-    {
-        "ln": 10,
-        "Type": "Syntax",
-        "Occurrence": "Static (Compile-Time)",
-        "Title": "Unexpected end of line",
-        "Description": "Null",
-        "CrossOrigin": []
-    }
-]
-											</pre>
-									</div>
-
-									<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-xxyc" role="tabpanel" aria-labelledby="v-pills-xxyc-tab">
-											<h4 class="font-italic mb-4"><a id="1*!*xxy.c" class="fileRepLink" href="#" target="_blank">xxy.c</a></h4>
-											<pre id="errors-xxyc" style="overflow-x: hidden; color:green; font-size: 1rem; font-weight: bold;">
-[
-    {
-        "ln": 4,
-        "Type": "Syntax",
-        "Occurrence": "Static (Compile-Time)",
-        "Title": "Missing end of function '}'",
-        "Description": "Null",
-        "CrossOrigin": [
-            {
-                "FileName": "xxy.c",
-                "FilePath": "./c-code-files",
-                "ln": 12
-            }
-        ]
-    },
-    {
-        "ln": 13,
-        "Type": "Semantic",
-        "Occurrence": "Static (Compile-Time)",
-        "Title": "Function reference 'init()' not found",
-        "Description": "Null",
-        "CrossOrigin": []
-    },
-    {
-        "ln": 18,
-        "Type": "Logical",
-        "Occurrence": "Dynamic (Run-Time)",
-        "Title": "Null Reference",
-        "Description": "Null",
-        "CrossOrigin": []
-    }
-]
-											</pre>
-									</div>
-
-				</div>
-            </div>
+									</div></div></div>
+        </div>
       </div>
     </div>
 
-
     <!-- Socket JS -->
-    
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        var socket = io();
+      var socket = io();
 
-        var link = document.getElementById( '' );
+      var link = document.getElementById("");
 
-        const links = document.querySelectorAll("#files-analysed .fileRepLink");
+      const links = document.querySelectorAll("#files-analysed .fileRepLink");
 
-        
+      for (const link of links) {
+        link.addEventListener("click", event => {
+          event.preventDefault(); // prevent page reloading
 
-        for (const link of links) {
-            link.addEventListener('click', (event) => {
-            
-                event.preventDefault(); // prevent page reloading
+          //console.log(link.id);
 
-                //console.log(link.id);
+          socket.emit("file-clicked", link.id);
 
-                socket.emit('file-clicked', link.id);
-
-                document.getElementById('fileclick').click();
-            });
-        }
-
+          document.getElementById("fileclick").click();
+        });
+      }
     </script>
 
     <!-- Bootstrap JavaScript -->
@@ -197,4 +444,19 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   
+    <script>
+      $(window).on('resize', function() {
+        if($(window).height() > 400) 
+        {
+          $('#body').addClass('limit1200');
+          $('#body').removeClass('limit400');
+        }
+        else
+        {
+          $('#body').addClass('limit400');
+          $('#body').removeClass('limit1200');
+        }
+      });
+    </script>
+
 </body></html>
