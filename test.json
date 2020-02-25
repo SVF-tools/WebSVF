@@ -20,8 +20,9 @@
           "Title": "Variable 'statc' not recognised",
           "Description": "Null",
           "CrossOrigin": [
-            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
-            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
+            { "CrossOriginIndex": 0,"FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
+            { "CrossOriginIndex": 1,"FileName": "xxx.c", "FilePath": "./", "ln": 8 },
+            { "CrossOriginIndex": 2,"FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
           ]
         },
         {
@@ -46,7 +47,8 @@
           "Title": "Missing end of function '}'",
           "Description": "Null",
           "CrossOrigin": [
-            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 12 }
+            { "CrossOriginIndex": 0,"FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 },
+            { "CrossOriginIndex": 1,"FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 6 }
           ]
         },
         {
