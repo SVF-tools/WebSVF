@@ -7,6 +7,7 @@
  var syntax_map = new Map();
  var semantic_map = new Map();
  var logical_map = new Map();
+ var table_map = new Map();
 
  const initialiseChecklistMaps = () => {
    for (var i = 0; i < json_length; ++i) {
@@ -62,15 +63,13 @@
    $('#logical-ttl').html(logical_cnt);
  }
 
- const initCheckBoxesANDBugTable = () => {
+ const initCheckBoxes = () => {
    $('#syntax-error-checklist').empty();
    $('#semantic-error-checklist').empty();
    $('#logical-error-checklist').empty();
-   $('#project-errors-list tbody').empty();
 
    var id_key = 0;
-   var id_table = 1;
-   for(let [key, value] of syntax_map){
+   for(let key of syntax_map.keys()){
      const syntax_box = 
 `                    <li class="py-1">
                  <!-- Default checked -->
@@ -80,24 +79,14 @@
                  </div>
                </li>
 `;
-     const syntax_table =
-`                  <tr id="syntax-row-${id_key}">
-                    <th scope="row">${id_table}</th>
-                    <td>${key}</td>
-                    <td>Syntax Error</td>
-                    <td>${value}</td>
-                  </tr>
-`;        
+        
      $('#syntax-error-checklist').append(syntax_box);
 
-     $('#project-errors-list tbody').append(syntax_table);  
-
      ++id_key;
-     ++id_table;
    }
    
    id_key = 0;
-   for(let [key, value] of semantic_map){
+   for(let key of semantic_map.keys()){
      const semantic_box = 
 `                    <li class="py-1">
                  <!-- Default checked -->
@@ -107,24 +96,14 @@
                  </div>
                </li>
 `;
-     const semantic_table =
-`                  <tr id="semantic-row-${id_key}">
-                    <th scope="row">${id_table}</th>
-                    <td>${key}</td>
-                    <td>Semantic Error</td>
-                    <td>${value}</td>
-                  </tr>
-`;         
+         
      $('#semantic-error-checklist').append(semantic_box);
 
-     $('#project-errors-list tbody').append(semantic_table);  
-
      ++id_key;
-     ++id_table;
    }
    
    id_key = 0;
-   for(let [key, value] of logical_map){
+   for(let key of logical_map.keys()){
      const logical_box = 
 `                    <li class="py-1">
                  <!-- Default checked -->
@@ -134,24 +113,89 @@
                  </div>
                </li>
 `;
+        
+     $('#logical-error-checklist').append(logical_box);
+
+     ++id_key;
+   }
+ };
+
+ const initTableMap = () => {
+  for(let [key, value] of syntax_map){
+    table_map.set(key, value);
+  }
+  for(let [key, value] of semantic_map){
+    table_map.set(key, value);
+  }
+  for(let [key, value] of logical_map){
+    table_map.set(key, value);
+  }
+ }
+
+ const generateBugTable = () => {
+  $('#project-errors-list tbody').empty();
+  var id_table = 1;
+  for(let [key, value] of table_map){
+    
+    if(logical_map.has(key)){
      const logical_table =
-`                  <tr id="logical-row-${id_key}">
+`                  <tr>
                     <th scope="row">${id_table}</th>
                     <td>${key}</td>
                     <td>Logical Error</td>
-                    <td>${value}</td>
+                    <td class="text-center">${value}</td>
                   </tr>
-`;        
-     $('#logical-error-checklist').append(logical_box);
+`;
+      $('#project-errors-list tbody').append(logical_table);
+      ++id_table;
+      }
+     else if(semantic_map.has(key)){
+     const semantic_table =
+`                  <tr>
+                    <th scope="row">${id_table}</th>
+                    <td>${key}</td>
+                    <td>Semantic Error</td>
+                    <td class="text-center">${value}</td>
+                  </tr>
+`;
+      $('#project-errors-list tbody').append(semantic_table);
+      ++id_table;
+      }
+      else if(syntax_map.has(key)){
+     const syntax_table =
+`                  <tr>
+                    <th scope="row">${id_table}</th>
+                    <td>${key}</td>
+                    <td>Syntax Error</td>
+                    <td class="text-center">${value}</td>
+                  </tr>
+`;
+        $('#project-errors-list tbody').append(syntax_table);
+        ++id_table;
+      }
 
-     $('#project-errors-list tbody').append(logical_table);
-     ++id_key;
-     ++id_table;
-   }
+  }
+ };
 
+ const remFrmTable = (item) => {
+    if(table_map.has(item)){
+      table_map.delete(item);
+    }
+ };
 
-   
-
+ const addToTable = (item) => {
+  if(!table_map.has(item)){
+    if(syntax_map.has(item)){
+      table_map.set(item,syntax_map.get(item));
+    }
+    else if(logical_map.has(item)){
+      table_map.set(item,logical_map.get(item));
+    }
+    else if(semantic_map.has(item)){
+      table_map.set(item,semantic_map.get(item));
+    }
+    
+  }
  }
 
  const addListener = () => {
@@ -159,21 +203,27 @@
     $(document).ready(function(){
         $('input[type="checkbox"]').click(function() {
              if($(this).is(':checked')){
-                 console.log($(this).parent().find('label').html())
+                addToTable($(this).parent().find('label').html());
+                generateBugTable();
+                 //console.log($(this).parent().find('label').html())
                  //console.log('checked');
              } else if($(this).is(":not(:checked)")){
-                const id = $(this).attr('id');
-                const row_id = id.substring(11,id.length);
-                console.log(row_id);
+                //const id = $(this).attr('id');
+                //const row_id = id.substring(11,id.length);
+                //console.log(row_id);
+                remFrmTable($(this).parent().find('label').html());
+                generateBugTable();
                 
              }
          });
      });
- }
+ };
 
  initialiseChecklistMaps();
  initErrorTotals();
- initCheckBoxesANDBugTable();
+ initCheckBoxes();
+ initTableMap();
+ generateBugTable();
  addListener();
 
  
