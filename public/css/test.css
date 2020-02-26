@@ -16,8 +16,11 @@ li.L9 {
 
 a{
   margin:0;
-  font-size: 2rem;
-  line-height: 1.5em;
+}
+
+.code-body{
+  font-size: 1.4rem;
+  line-height: 2.7em;
 }
 
 pre{

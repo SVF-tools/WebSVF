@@ -53,7 +53,7 @@ for (let i = 0; i < string1.length; i++) {
 
     //Add ShowLines Button to the HTML file
     if(i==0) {
-        codeStringSerialised += `<button class="remove-button nocode" onclick="removeLines()">Remove Lines</button><button id="show-lines-button" class="show-button nocode" onClick="showLines()">Show Lines</button><a id="${(i+1)}">${string1[i]}</a>\n`;
+        codeStringSerialised += `<button class="remove-button nocode" onclick="removeLines()">Remove Lines</button><button id="show-lines-button" class="show-button nocode" onClick="showLines()">Show Lines</button><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
     }
     else if(err_ln==(i+1)){     //Checking if there is an error at the .c line being added to the html file
 
@@ -80,13 +80,13 @@ for (let i = 0; i < string1.length; i++) {
             }
 
         if(err_type==='Syntax'){
-            codeStringSerialised += `<span id="err${error_tracker}" class="alert-syntax nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;
+            codeStringSerialised += `<span id="err${error_tracker}" class="alert-syntax nocode">${err_name}\n<a>${err_descr}</a></span><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
         } else if(err_type==='Logical'){
-            codeStringSerialised += `<span id="err${error_tracker}" class="alert-logical nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;
+            codeStringSerialised += `<span id="err${error_tracker}" class="alert-logical nocode">${err_name}\n<a>${err_descr}</a></span><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
         } else if(err_type==='Semantic'){
-            codeStringSerialised += `<span id="err${error_tracker}" class="alert-semantic nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;
+            codeStringSerialised += `<span id="err${error_tracker}" class="alert-semantic nocode">${err_name}\n<a>${err_descr}</a></span><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
         } else {
-            codeStringSerialised += `<span id="err${error_tracker}" class="alert nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;;
+            codeStringSerialised += `<span id="err${error_tracker}" class="alert nocode">${err_name}\n<a>${err_descr}</a></span><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;;
         }
 
         //Populate Separate JSON Array for Error Reference Lines
@@ -120,9 +120,9 @@ for (let i = 0; i < string1.length; i++) {
     }
     else    {
         if(i!=(string1.length-1))
-        codeStringSerialised += '<a id="'+(i+1)+'">'+string1[i]+'</a>'+"\n";
+        codeStringSerialised += '<a class="code-body" id="'+(i+1)+'">'+string1[i]+'</a>'+"\n";
         else
-        codeStringSerialised += '<a id="'+(i+1)+'">'+string1[i]+'</a>';
+        codeStringSerialised += '<a class="code-body" id="'+(i+1)+'">'+string1[i]+'</a>';
     }
 }
 
