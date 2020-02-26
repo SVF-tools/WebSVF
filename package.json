@@ -11,9 +11,12 @@
     "open": "^7.0.0",
     "socket.io": "^2.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
   "scripts": {
-    "start": "node test.js"
+    "start": "node test.js",
+    "start-dev": "nodemon test.js"
   },
   "repository": {
     "type": "git",

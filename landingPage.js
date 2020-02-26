@@ -17,7 +17,7 @@ const make_pillTab = (index, name, index_last) => {
 
     if(index == 0)
     output = `${'\n'.repeat(2)}${'\t'.repeat(7)}<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-${name}-tab" data-toggle="pill" href="#v-pills-${name_noDot}" role="tab" aria-controls="v-pills-${name_noDot}" aria-selected="true">${'\n'.repeat(1)}${'\t'.repeat(8)}<i class="far fa-file-code fa-2x mr-4"></i>${'\n'.repeat(1)}${'\t'.repeat(8)}<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">${name}</span></a>${'\n'.repeat(2)}${'\t'.repeat(7)}`;
-    else if(!(index < index_last))
+    else if(!(index <index_last))
     output = `<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-${name}-tab" data-toggle="pill" href="#v-pills-${name_noDot}" role="tab" aria-controls="v-pills-${name_noDot}" aria-selected="false">${'\n'.repeat(1)}${'\t'.repeat(8)}<i class="far fa-file-code fa-2x mr-4"></i>${'\n'.repeat(1)}${'\t'.repeat(8)}<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">${name}</span></a>${'\n'.repeat(2)}${'\t'.repeat(4)}`;
     else
     output = `<a class="nav-link mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-${name}-tab" data-toggle="pill" href="#v-pills-${name_noDot}" role="tab" aria-controls="v-pills-${name_noDot}" aria-selected="false">${'\n'.repeat(1)}${'\t'.repeat(8)}<i class="far fa-file-code fa-2x mr-4"></i>${'\n'.repeat(1)}${'\t'.repeat(8)}<span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">${name}</span></a>${'\n'.repeat(2)}${'\t'.repeat(4)}`;
@@ -30,11 +30,11 @@ const make_pill = (index, name, index_last, insert_html) => {
     var name_noDot = name.replace('.','');
 
     if (index == 0)
-    output = `${'\n'.repeat(1)}${'\t'.repeat(6)}<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-${name_noDot}" role="tabpanel" aria-labelledby="v-pills-${name_noDot}-tab">${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink" href="#" target="_blank">${name}</a></h4>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(5)}`;
-    else if(!(index < index_last))
-    output = `<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-${name_noDot}" role="tabpanel" aria-labelledby="v-pills-${name_noDot}-tab">${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink" href="#" target="_blank">${name}</a></h4>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(9)}`;
+    output = `${'\n'.repeat(1)}${'\t'.repeat(6)}<div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-${name_noDot}" role="tabpanel" aria-labelledby="v-pills-${name_noDot}-tab">${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" style="padding-left: 3rem;" href="#" target="_blank">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(5)}`;
+    else if(!(index <index_last))
+    output = `<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-${name_noDot}" role="tabpanel" aria-labelledby="v-pills-${name_noDot}-tab">${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" style="padding-left: 3rem;" href="#" target="_blank">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(9)}`;
     else
-    output = `<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-${name_noDot}" role="tabpanel" aria-labelledby="v-pills-${name_noDot}-tab">${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink" href="#" target="_blank">${name}</a></h4>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(4)}`;
+    output = `<div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-${name_noDot}" role="tabpanel" aria-labelledby="v-pills-${name_noDot}-tab">${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" style="padding-left: 3rem;" href="#" target="_blank">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(4)}`;
 
     return output;
 }
@@ -45,9 +45,9 @@ const gen_landing_page = () => {
 
     const jsonReport = JSON.parse(jsonReport_string);
 
-    fs.writeFileSync("./public/js/bugReportJSON.js",`\nconst bugreportjson = ${jsonReport_string};`);
+    fs.writeFileSync("./public/js/bugReportJSON.js",`\nconst bugreportjson = ${jsonReport_string};\nconst json_length = Object.keys(bugreportjson.bugreport).length;`);
 
-    const jsonReport_length = Object.keys(jsonReport).length;
+    const jsonReport_length = Object.keys(jsonReport.bugreport).length;
 
     //Reading Static Web Page File
     const web_page = fs.readFileSync("./public/index.html").toString();
@@ -64,7 +64,7 @@ const gen_landing_page = () => {
     
 
 
-    for(var i = 0; i<=jsonReport_length; ++i){
+    for(var i = 0; i<jsonReport_length; ++i){
         //console.log(jsonReport.bugreport[i].id);
 
         var fileName = jsonReport.bugreport[i].FileName;
