@@ -59,6 +59,26 @@ for (let i = 0; i < string1.length; i++) {
 
         //Check for Error Type and Insert Error at the correct line number 
 
+            function nthIndex(str, pat, n){
+                var L= str.length, i= -1;
+                while(n-- && i++<L){
+                    i= str.indexOf(pat, i);
+                    if (i < 0) break;
+                }
+                return i;
+            }
+
+            //Shorten Error Description for FileReport's Error Bubbles
+            if(err_descr.length>25){
+                var fifthSpace = nthIndex(err_descr,' ',5);
+                var str_len = 
+                err_descr = err_descr.substring(0,fifthSpace) + '\n' + err_descr.substring(fifthSpace, err_descr.length);
+            }
+
+            if(err_descr.length>50){
+                err_descr = err_descr.substring(0,50) + '...';
+            }
+
         if(err_type==='Syntax'){
             codeStringSerialised += `<span id="err${error_tracker}" class="alert-syntax nocode">${err_name}\n<a>${err_descr}</a></span><a id="${(i+1)}">${string1[i]}</a>\n`;
         } else if(err_type==='Logical'){
@@ -75,6 +95,15 @@ for (let i = 0; i < string1.length; i++) {
         ll_ref_array.push(ll_ref);
 
         //Checking for Overflow on the counter error_tracker
+        /*
+        
+        
+        POSSIBLE ERROR IN NEXT LINE FROM
+
+        "Errors.length"
+        
+        
+        */
         if(error_tracker<(jsonString.bugreport[file_tracker].Errors.length-1)){
             
             /*Populate Leader-Lines JSON Array containing start and end positions

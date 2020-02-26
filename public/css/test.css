@@ -14,7 +14,11 @@ li.L9 {
   margin-bottom: 0.75em;
 }
 
-a{margin:0}
+a{
+  margin:0;
+  font-size: 2rem;
+  line-height: 1.5em;
+}
 
 pre{
   margin:0
@@ -103,6 +107,8 @@ body{
   font-weight: bolder;
   padding: 0.3em;
   font-size: 17px;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
 }
 
 .alert-syntax a {
@@ -132,6 +138,8 @@ body{
   font-weight: bolder;
   padding: 0.3em;
   font-size: 17px;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
 }
 
 .alert-semantic a {
@@ -161,6 +169,8 @@ body{
   font-weight: bolder;
   padding: 0.3em;
   font-size: 17px;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
 }
 
 .alert-logical a {

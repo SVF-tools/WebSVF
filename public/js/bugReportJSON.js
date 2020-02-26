@@ -11,7 +11,7 @@ const bugreportjson = {
           "Type": "Logical",
           "Occurrence": "Dynamic (Run-Time)",
           "Title": "Null Reference",
-          "Description": "Null",
+          "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": []
         },
         {
@@ -19,7 +19,7 @@ const bugreportjson = {
           "Type": "Semantic",
           "Occurrence": "Static (Compile-Time)",
           "Title": "Variable 'statc' not recognised",
-          "Description": "Null",
+          "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": [
             { "CrossOriginIndex": 0,"FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
             { "CrossOriginIndex": 1,"FileName": "xxx.c", "FilePath": "./", "ln": 8 },
@@ -31,7 +31,7 @@ const bugreportjson = {
           "Type": "Syntax",
           "Occurrence": "Static (Compile-Time)",
           "Title": "Unexpected end of line",
-          "Description": "Null",
+          "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": []
         }
       ]
@@ -46,7 +46,7 @@ const bugreportjson = {
           "Type": "Syntax",
           "Occurrence": "Static (Compile-Time)",
           "Title": "Missing end of function '}'",
-          "Description": "Null",
+          "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": [
             { "CrossOriginIndex": 0,"FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 },
             { "CrossOriginIndex": 1,"FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 6 }
@@ -57,7 +57,7 @@ const bugreportjson = {
           "Type": "Semantic",
           "Occurrence": "Static (Compile-Time)",
           "Title": "Function reference 'init()' not found",
-          "Description": "Null",
+          "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": []
         },
         {
@@ -65,7 +65,7 @@ const bugreportjson = {
           "Type": "Logical",
           "Occurrence": "Dynamic (Run-Time)",
           "Title": "Null Reference",
-          "Description": "Null",
+          "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": []
         }
       ]
@@ -73,4 +73,4 @@ const bugreportjson = {
   ]
 }
 ;
-console.log(bugreportjson.bugreport);
+const json_length = Object.keys(bugreportjson.bugreport).length;
