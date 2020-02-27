@@ -63,7 +63,7 @@ git clone https://github.com/spcidealacm/code-map-ide-extension.git
 git clone https://github.com/spcidealacm/code-map-ide-extension-3d-display.git
 git clone https://github.com/spcidealacm/d3-react.git
 git clone https://github.com/spcidealacm/d3-react-server.git
-git clone https://github.com/spcidealacm/whole-program-llvm.git
+#git clone https://github.com/spcidealacm/whole-program-llvm.git
 git clone https://github.com/spcidealacm/bullet-2.81-rev2613-code-map-test.git
 
 cd ~/WORKSPACE/code-map-ide-core
@@ -91,8 +91,16 @@ yarn
 cd ~/WORKSPACE/AutoBuildSVFScript
 source AutoInstallSvf_9.0.0_Online
 
-cd ~/WORKSPACE/whole-program-llvm
-bash setup.sh
+{
+
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+# Fingerprint: 6084 F3CF 814B 57C1 CF12 EFD5 15CF 4D18 AF4F 7421
+
+sudo apt-get install libllvm-9-ocaml-dev libllvm9 llvm-9 llvm-9-dev llvm-9-doc llvm-9-examples llvm-9-runtime -y
+
+}
+#cd ~/WORKSPACE/whole-program-llvm
+#bash setup.sh
 
 cd $SHELL_NOW_FOLDER
 }
