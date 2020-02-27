@@ -2,18 +2,11 @@
 
 Don't make any changes in the ~/WORKSPACE directory during installation
 
-Run the following code from the root directory *(./WebSVF/)* of the cloned 'WebSVF' repository to install the application:
+The repository installs all the required tools as updated till 27/11/2019, to download an install updated versions of the source libraries run the following code to fetch from github and run the installation:
 
 ```
 cd web-svf-install
 source Setup.sh
-```
-
-The repository installs all the required tools as updated till 27/11/2019, to download an install updated versions of the source libraries run the following code to fetch from github and run the online installation:
-
-```
-cd web-svf-install
-source Setup_Online.sh
 ```
 
 ## Please Note
