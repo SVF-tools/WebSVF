@@ -55,15 +55,6 @@ else
 	return
 fi
 
-echo -e "\033[42;37m Set and cmake llvm clang \033[0m"
-bash ./subset/set_cmake_llvm_9.0.0.sh ret_string
-
-if [ "x$?" = x'0' ]; then
-	echo -e "\033[44;37m Install essential system tools Well Done! \033[0m"
-else
-	echo -e "\033[41;33m Install essential system tools Somting Goes Wrong! \033[0m"
-	return;
-fi 
 
 echo -e "\033[42;37m Source PATH environment \033[0m"
 source ./subset/set_source_etc_profile_9.0.0.sh ret_string
