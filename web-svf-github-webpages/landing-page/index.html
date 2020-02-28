@@ -414,69 +414,93 @@
           contributors...
         </h2>
         <div class="row">
-          <div class="col-lg-3">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+          <div class="col-xl-4">
+            <div class="testimonial-item mx-auto mb-5 mb-xl-4">
+              <a href="" target="_blank">
               <img
                 class="img-fluid rounded-circle mb-3"
                 src="web-svf-github-webpages/landing-page/img/Tianyang_Guan.jpg"
                 alt=""
-              />
+              >
+              </a>
               <h5>Tianyang Guan</h5>
               <p class="font-weight-light mb-0">
                 Technical Lead <br />
-                Full Stack Developer
+                <strong>Full Stack Developer</strong>
               </p>
             </div>
           </div>
-          <div class="col-lg-3">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+          <div class="col-xl-4">
+            <div class="testimonial-item mx-auto mb-5 mb-xl-4">
+              <a href="https://github.com/akshatsinghkaushik" target="_blank">
               <img
                 class="img-fluid rounded-circle mb-3"
-                src="web-svf-github-webpages/landing-page/img/guanqing_Zhang.jpg"
+                src="web-svf-github-webpages/landing-page/img/Akshat_Kaushik.jpg"
                 alt=""
-              />
-              <h5>Guanqing Zhang</h5>
+              >
+              </a>
+              <h5>Akshat Kaushik</h5>
               <p class="font-weight-light mb-0">
-                Data Analysis <br />
-                Data Analyst
+                Undergraduate Developer<br />
+                <strong>Software Engineer</strong>
               </p>
             </div>
           </div>
-          <div class="col-lg-3">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img
-                class="img-fluid rounded-circle mb-3"
-                src="web-svf-github-webpages/landing-page/img/Guandong-Xun.jpg"
-                alt=""
-              />
-              <h5>Dr Guandong Xun</h5>
-              <p class="font-weight-light mb-0">
-                Coordinator <br />
-                Lecturer at
-                <a
-                  href="https://www.uts.edu.au/research-and-teaching/our-research/advanced-analytics-institute"
-                  target="_blank"
-                  >AAI-UTS</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+          
+          
+          <div class="col-xl-4">
+            <div class="testimonial-item mx-auto mb-5 mb-xl-4">
+              <a href="https://yuleisui.github.io/">
               <img
                 class="img-fluid rounded-circle mb-3"
                 src="web-svf-github-webpages/landing-page/img/Yulei-Sui.jpg"
                 alt=""
-              />
+              >
+              </a>
               <h5>Dr Yulei Sui</h5>
               <p class="font-weight-light mb-0">
                 Supervisor <br />
-                Lecturer at
+                <strong>Lecturer at
                 <a
                   href="https://www.uts.edu.au/about/faculty-engineering-and-information-technology"
                   target="_blank"
                   >FEIT-UTS</a
-                >
+                ></strong>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="testimonial-item mx-auto mb-5 mb-xl-0">
+              <img
+                class="img-fluid rounded-circle mb-3"
+                src="web-svf-github-webpages/landing-page/img/Guandong-Xun.jpg"
+                alt=""
+              >
+              <h5>Dr Guandong Xun</h5>
+              <p class="font-weight-light mb-0">
+                Coordinator <br />
+                <strong>Lecturer at
+                <a
+                  href="https://www.uts.edu.au/research-and-teaching/our-research/advanced-analytics-institute"
+                  target="_blank"
+                  >AAI-UTS</a
+                ></strong>
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="testimonial-item mx-auto mb-5 mb-xl-0">
+              <img
+                class="img-fluid rounded-circle mb-3"
+                src="web-svf-github-webpages/landing-page/img/guanqing_Zhang.jpg"
+                alt=""
+              >
+              <h5>Guanqing Zhang</h5>
+              <p class="font-weight-light mb-0">
+                Data Analysis <br />
+                <strong>Data Analyst</strong>
               </p>
             </div>
           </div>
@@ -539,9 +563,11 @@
                 <a href="#">Privacy Policy</a>
               </li>
             </ul>
-            <p class="text-muted small mb-4 mb-lg-0">
-              &copy; SVF-Tools 2019. All Rights Reserved.
+            
+            <p id="site-yr" class="text-muted small mb-4 mb-lg-0">
+              &copy; SVF-Tools . All Rights Reserved.
             </p>
+            
           </div>
           <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
             <ul class="list-inline mb-0">
@@ -588,5 +614,9 @@
     <script
       src="web-svf-github-webpages/landing-page/jscript/firebase-email-signup.js"
     ></script>
+
+    <script type="text/javascript">
+      $('#site-yr').html(`&copy; SVF-Tools ${new Date().getFullYear()}. All Rights Reserved.`);
+    </script>
   </body>
 </html>
