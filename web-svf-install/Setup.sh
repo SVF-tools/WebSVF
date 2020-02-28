@@ -60,6 +60,8 @@ unzip files.zip
 
 mv files/* ~/WORKSPACE/
 
+sudo rm -R files
+
 cd ~/WORKSPACE
 
 #git clone https://github.com/akshatsinghkaushik/AutoBuildSVFScript.git
