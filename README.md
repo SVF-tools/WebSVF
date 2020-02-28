@@ -5,28 +5,28 @@ Don't make any changes in the ~/WORKSPACE directory during installation
 The repository installs all the required tools as updated till 27/11/2019, to download an install updated versions of the source libraries run the following code to fetch from github and run the installation:
 
 ## Setting Up Ubuntu environment (optional)
-    If you have an Ubuntu environment setup, please skip to **Step 1. Cloning Project Repository**
-    Else perform the following steps:
+If you have an Ubuntu environment setup, please skip to **Step 1. Cloning Project Repository**
+Else perform the following steps:
 
 ### Download Oracle VirtualBox for your platform
-    Download VirtualBox from the following [link](https://www.virtualbox.org/wiki/Downloads)
+Download VirtualBox from the following [link](https://www.virtualbox.org/wiki/Downloads)
 
 ### Download Fresh Ubuntu 18.04 Virtual Machine(VM) Image
-    Download a quick import VM-Image using this [Google Drive (Size: 3.64GB)]() link 
-    OR
-    Follow [this](https://www.toptechskills.com/linux-tutorials-courses/how-to-install-ubuntu-1804-bionic-virtualbox/) guide to download and setup an Ubuntu Virtual Machine using the Ubuntu Installation file (.iso) 
+Download a quick import VM-Image using this [Google Drive (Size: 3.64GB)]() link 
+OR
+Follow [this](https://www.toptechskills.com/linux-tutorials-courses/how-to-install-ubuntu-1804-bionic-virtualbox/) guide to download and setup an Ubuntu Virtual Machine using the Ubuntu Installation file (.iso) 
 
 ### Import the Ubuntu VM-Image into Virtual Box
-    Using the following images, quickly setup and customise your own Ubuntu 18.04 Virtual Machine on VirtualBox:
+Using the following images, quickly setup and customise your own Ubuntu 18.04 Virtual Machine on VirtualBox:
 
-    Launch VirtualBox:
-    ![Launch VirtualBox](https://i.imgur.com/du9esrZ.png)
+Launch VirtualBox:
+![Launch VirtualBox](https://i.imgur.com/du9esrZ.png)
 
-    Click Import:
-    ![Click Import](https://i.imgur.com/0igy1E6.png)
+Click Import:
+![Click Import](https://i.imgur.com/0igy1E6.png)
 
 ## Step 1. Clone Project Repository
-    Open a terminal window in your Ubuntu environment and run the following commands in order (if you encounter errors mentioning permissions then please run these commands prefixed with _sudo_):
+Open a terminal window in your Ubuntu environment and run the following commands in order (if you encounter errors mentioning permissions then please run these commands prefixed with _sudo_):
 
 Clone into the repository and direct terminal to the install file:
 
