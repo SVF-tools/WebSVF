@@ -1,0 +1,1 @@
+cp ~/.local/share/code-server/extensions/code-map-ide-extension-3d-display/result/result.json ../data/result.json

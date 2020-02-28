@@ -14,7 +14,8 @@ sudo apt install -y python3-pip
 
 # Setup NVM
 {
-sudo apt-get install nodejs -y
+sudo apt install nodejs -y
+sudo apt install npm -y
 }
 #source codemap-setup-subscripts/setupNvm.sh
 
@@ -41,7 +42,7 @@ sudo apt update && sudo apt install -y yarn
 #bash codemap-setup-subscripts/setupYarn.sh
 
 # Setup Nodemon
-npm install -g nodemon
+sudo npm install -g nodemon
 #bash codemap-setup-subscripts/setupNodemon.sh
 
 # Download and Install Required Project Tools from Github
@@ -51,30 +52,43 @@ mkdir ~/WORKSPACE
 cd ~/WORKSPACE
 sudo rm * -rf
 
-#cd $SHELL_NOW_FOLDER
-#mv move-github-tools/AutoBuildSVFScript ~/WORKSPACE/
+cd $SHELL_NOW_FOLDER
+mv move-github-tools/* ~/WORKSPACE/
 
 cd ~/WORKSPACE
 
-https://github.com/akshatsinghkaushik/AutoBuildSVFScript.git
-git clone https://github.com/spcidealacm/code-map-ide-core.git
-git clone https://github.com/spcidealacm/code-map-react-shell.git
-git clone https://github.com/spcidealacm/code-map-ide-extension.git
-git clone https://github.com/spcidealacm/code-map-ide-extension-3d-display.git
-git clone https://github.com/spcidealacm/d3-react.git
-git clone https://github.com/spcidealacm/d3-react-server.git
+#git clone https://github.com/akshatsinghkaushik/AutoBuildSVFScript.git
+#git clone https://github.com/spcidealacm/code-map-ide-core.git
+#git clone https://github.com/spcidealacm/code-map-react-shell.git
+#git clone https://github.com/spcidealacm/code-map-ide-extension.git
+#git clone https://github.com/spcidealacm/code-map-ide-extension-3d-display.git
+#git clone https://github.com/spcidealacm/d3-react.git
+#git clone https://github.com/spcidealacm/d3-react-server.git
 #git clone https://github.com/spcidealacm/whole-program-llvm.git
-git clone https://github.com/spcidealacm/bullet-2.81-rev2613-code-map-test.git
+#git clone https://github.com/spcidealacm/bullet-2.81-rev2613-code-map-test.git
 
-cd ~/WORKSPACE/code-map-ide-core
-bash init.sh
-bash build.sh
-bash run.sh & codeMapIdeCorePID=$!
-codeMapIdeCorePID=$((codeMapIdeCorePID + 2))
-sleep 8s
-echo $$
-echo $codeMapIdeCorePID
-kill "$codeMapIdeCorePID"
+{
+sudo apt-get install -y wget
+sudo apt-get install unzip
+
+wget https://github.com/codemapweb/CodeMap/releases/download/v1.0/codemap-server.zip
+
+unzip codemap-server.zip -d ./code-server
+
+sudo rm codemap-server.zip
+}
+
+#{
+#cd ~/WORKSPACE/code-map-ide-core
+#bash init.sh
+#bash build.sh
+#bash run.sh & codeMapIdeCorePID=$!
+#codeMapIdeCorePID=$((codeMapIdeCorePID + 2))
+#sleep 8s
+#echo $$
+#echo $codeMapIdeCorePID
+#kill "$codeMapIdeCorePID"
+#}
 
 cd ~/WORKSPACE/code-map-react-shell
 yarn
