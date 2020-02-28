@@ -1,8 +1,6 @@
-# code-map-web-install
+# WebSVF
 
-Don't make any changes in the ~/WORKSPACE directory during installation
-
-The repository installs all the required tools as updated till 27/11/2019, to download an install updated versions of the source libraries run the following code to fetch from github and run the installation:
+***Don't make any changes in the ~/WORKSPACE directory during installation***
 
 ## Setting Up Ubuntu environment (optional)
 If you have an Ubuntu environment setup, please skip to [**Step 1. Cloning Project Repository**](https://github.com/SVF-tools/WebSVF#step-1-clone-project-repository). 
@@ -26,6 +24,14 @@ Using the following images, quickly setup and customise your own Ubuntu 18.04 Vi
 **Click Import:**
 
 ![Click Import](https://i.imgur.com/0igy1E6.png)
+
+**Select VM-IMage File (.ova):**
+
+![Select VM-IMage File](https://i.imgur.com/BpObObe.png)
+
+**Browse to the Downloaded file**
+
+![Browse to File](https://i.imgur.com/5R1ZDRd.png)
 
 ## Step 1. Clone Project Repository
 Open a terminal window in your Ubuntu environment and run the following commands in order (if you encounter errors mentioning permissions then please run these commands prefixed with _sudo_):
@@ -65,7 +71,7 @@ source Setup.sh
     The installation process will require approximately 20 - 40 minutes based the system's hardware specifications.
     __At *different points* during the installation, *the user may be prompted to put in their password in the installation terminal window* (refer to the installation videos linked below) so please take care, else the installation will timeout and will need to be run again.__
 
-    The installation process may run into errors during runtime (operation) because of network disconnects/timeouts or something else. Please delete the **WebSVF** and **WORKSPACE** folders from your home directory (_cd ~_) and run the code in **Step 1. Cloning Project Repository** & **Step 2. Run Install Script** of this README file for installing Code-Map-Web again. The installation will check all the steps and re-install from where the error occured.
+    The installation process may run into errors during runtime (operation) because of network disconnects/timeouts or something else. Please delete the **WebSVF** and **WORKSPACE** folders from your home directory (_cd ~_) and run the code in [**Step 1. Cloning Project Repository**](https://github.com/SVF-tools/WebSVF#step-1-clone-project-repository) & [**Step 2. Run Install Script**](https://github.com/SVF-tools/WebSVF#step-2-run-install-script) of this README file for installing Code-Map-Web again. The installation will check all the steps and re-install from where the error occured.
 
     Refer to the following Installation Guide Videos if required:
     - Setup Ubuntu environment: https://youtu.be/-NtsJYkfTbg
