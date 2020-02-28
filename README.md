@@ -5,7 +5,7 @@ Don't make any changes in the ~/WORKSPACE directory during installation
 The repository installs all the required tools as updated till 27/11/2019, to download an install updated versions of the source libraries run the following code to fetch from github and run the installation:
 
 ## Setting Up Ubuntu environment (optional)
-If you have an Ubuntu environment setup, please skip to **Step 1. Cloning Project Repository**
+If you have an Ubuntu environment setup, please skip to [**Step 1. Cloning Project Repository**](https://github.com/SVF-tools/WebSVF#step-1-clone-project-repository)
 Else perform the following steps:
 
 ### Download Oracle VirtualBox for your platform
