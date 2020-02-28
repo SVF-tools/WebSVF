@@ -53,7 +53,7 @@ cd ~/WORKSPACE
 sudo rm * -rf
 
 cd $SHELL_NOW_FOLDER
-mv move-github-tools/* ~/WORKSPACE/
+mv files/* ~/WORKSPACE/
 
 cd ~/WORKSPACE
 
