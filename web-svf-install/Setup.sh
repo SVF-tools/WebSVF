@@ -45,6 +45,8 @@ sudo apt update && sudo apt install -y yarn
 sudo npm install -g -y nodemon
 #bash codemap-setup-subscripts/setupNodemon.sh
 
+sudo apt-get install -y unzip
+
 # Download and Install Required Project Tools from Github
 {
 SHELL_NOW_FOLDER=$(cd "$(dirname "$0")";pwd)
@@ -53,6 +55,9 @@ cd ~/WORKSPACE
 sudo rm * -rf
 
 cd $SHELL_NOW_FOLDER
+
+unzip files.zip
+
 mv files/* ~/WORKSPACE/
 
 cd ~/WORKSPACE
@@ -69,7 +74,6 @@ cd ~/WORKSPACE
 
 {
 sudo apt-get install -y wget
-sudo apt-get install unzip
 
 wget https://github.com/codemapweb/CodeMap/releases/download/v1.0/codemap-server.zip
 
