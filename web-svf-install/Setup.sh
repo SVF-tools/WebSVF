@@ -114,7 +114,7 @@ cd ~/WORKSPACE/code-map-ide-extension-3d-display
 yarn
 
 cd ~/WORKSPACE/AutoBuildSVFScript
-source AutoInstallSvf
+source AutoInstallSvf_9.0.0_Online
 
 
 
