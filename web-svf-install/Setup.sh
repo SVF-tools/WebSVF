@@ -1,5 +1,5 @@
 # Refresh and Update installed Ubuntu applications
-sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt -y upgrade 
 
 # Install Dependecies
 {
@@ -12,10 +12,10 @@ sudo apt install -y python3-pip
 #bash codemap-setup-subscripts/setupPip.sh
 }
 
-# Setup NVM
+# Setup Node and npm (instead of nvm)
 {
-sudo apt install nodejs -y
-sudo apt install npm -y
+sudo apt install -y nodejs 
+sudo apt install -y npm 
 }
 #source codemap-setup-subscripts/setupNvm.sh
 
@@ -42,7 +42,7 @@ sudo apt update && sudo apt install -y yarn
 #bash codemap-setup-subscripts/setupYarn.sh
 
 # Setup Nodemon
-sudo npm install -g nodemon
+sudo npm install -g -y nodemon
 #bash codemap-setup-subscripts/setupNodemon.sh
 
 # Download and Install Required Project Tools from Github
@@ -114,7 +114,7 @@ cd ~/WORKSPACE/code-map-ide-extension-3d-display
 yarn
 
 cd ~/WORKSPACE/AutoBuildSVFScript
-source AutoInstallSvf_9.0.0_Online
+source AutoInstallSvf
 
 
 
