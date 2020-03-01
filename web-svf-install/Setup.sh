@@ -2,7 +2,7 @@
 sudo apt update && sudo apt -y upgrade 
 
 # Install Dependecies
-{
+# {
 sudo apt install -y git gcc make cmake vim build-essential libssl-dev curl wget 
 #bash codemap-setup-subscripts/setupBasic.sh
 
@@ -10,22 +10,22 @@ sudo apt install -y git gcc make cmake vim build-essential libssl-dev curl wget
 sudo apt install -y python-pip
 sudo apt install -y python3-pip
 #bash codemap-setup-subscripts/setupPip.sh
-}
+# }
 
 # Setup Node and npm (instead of nvm)
-{
+# {
 sudo apt install -y nodejs 
 sudo apt install -y npm 
-}
+# }
 #source codemap-setup-subscripts/setupNvm.sh
 
 # Setup PyGraphViz
-{
+# {
 pip install graphviz
 sudo apt install -y graphviz
 sudo apt install -y libgraphviz-dev
 pip install pygraphviz
-}
+# }
 #bash codemap-setup-subscripts/setupPygraphviz.sh
 
 # Setup VSCode Essential
@@ -33,12 +33,12 @@ sudo apt install -y pkg-config libx11-dev libxkbfile-dev libsecret-1-dev fakeroo
 #bash codemap-setup-subscripts/setupVscodeEssential.sh
 
 # Setup Yarn
-{
+# {
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 sudo apt update && sudo apt install -y yarn
-}
+# }
 #bash codemap-setup-subscripts/setupYarn.sh
 
 # Setup Nodemon
@@ -48,7 +48,7 @@ sudo npm install -g -y nodemon
 sudo apt-get install -y unzip
 
 # Download and Install Required Project Tools from Github
-{
+# {
 SHELL_NOW_FOLDER=$(cd "$(dirname "$0")";pwd)
 mkdir ~/WORKSPACE
 cd ~/WORKSPACE
@@ -80,7 +80,7 @@ cd ~/WORKSPACE
 #git clone https://github.com/spcidealacm/whole-program-llvm.git
 #git clone https://github.com/spcidealacm/bullet-2.81-rev2613-code-map-test.git
 
-{
+# {
 sudo apt-get install -y wget
 
 wget https://github.com/codemapweb/CodeMap/releases/download/v1.0/codemap-server.zip
@@ -88,9 +88,9 @@ wget https://github.com/codemapweb/CodeMap/releases/download/v1.0/codemap-server
 unzip codemap-server.zip -d ./code-server
 
 sudo rm codemap-server.zip
-}
+# }
 
-#{
+# {
 #cd ~/WORKSPACE/code-map-ide-core
 #bash init.sh
 #bash build.sh
@@ -102,7 +102,7 @@ sudo rm codemap-server.zip
 #kill "$codeMapIdeCorePID"
 #}
 
-{
+# {
 
 #wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
 # Fingerprint: 6084 F3CF 814B 57C1 CF12 EFD5 15CF 4D18 AF4F 7421
@@ -112,7 +112,7 @@ sudo rm codemap-server.zip
 #deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
 #deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
 
-}
+#}
 
 cd ~/WORKSPACE/whole-program-llvm
 bash setup.sh
@@ -136,11 +136,11 @@ source AutoInstallSvf_9.0.0_Online
 
 
 cd $SHELL_NOW_FOLDER
-}
+# }
 #source codemap-setup-subscripts/githubdownload.sh
 
 # Fix Watch-Max
-{
+# {
 ETC_SYSCTL=/etc/sysctl.conf
 
 
@@ -155,11 +155,11 @@ else
 fi
 
 sudo sysctl -p
-}
+# }
 #bash codemap-setup-subscripts/FixWatchMax.sh
 
 # Setup CodeMap Extension
-{
+# {
 mv ~/WORKSPACE/code-map-ide-extension-3d-display/ ~/.local/share/code-server/extensions/
 
 cd ~/.local/share/code-server/extensions/code-map-ide-extension-3d-display/
@@ -167,7 +167,7 @@ cd ~/.local/share/code-server/extensions/code-map-ide-extension-3d-display/
 yarn
 
 yarn compile
-}
+# }
 #bash codemap-setup-subscripts/setCodeMapExtension.sh
 
 # Uninstall deprecated dependencies
