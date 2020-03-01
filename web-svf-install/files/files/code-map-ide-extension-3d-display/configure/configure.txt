@@ -1,0 +1,9 @@
+[CMAKE BEGIN]
+CC=wllvm CXX=wllvm++ cmake
+make -j4
+[CMAKE END]
+
+[CONFIGURE BEGIN]
+CC=wllvm CXX=wllvm++ ./configure
+make -j4
+[CONFIGURE END]
