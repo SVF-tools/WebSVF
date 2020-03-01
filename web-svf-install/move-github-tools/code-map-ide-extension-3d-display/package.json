@@ -1,0 +1,90 @@
+{
+	"name": "code-map-extension",
+	"displayName": "code-map-extension",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.33.1"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.CodeMap",
+		"onCommand:extension.ConFile",
+		"onCommand:extension.InnerWEB"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.CodeMap",
+				"title": "Code Map",
+				"icon": {
+					"light": "./images/COMPILE/light.svg",
+					"dark": "./images/COMPILE/dark.svg"
+				}
+			},
+			{
+				"command": "extension.ConFile",
+				"title": "Set Con File",
+				"icon": {
+					"light": "./images/FILE/light.svg",
+					"dark": "./images/FILE/dark.svg"
+				}
+			},
+			{
+				"command": "extension.InnerWEB",
+				"title": "WEB SHOW",
+				"icon": {
+					"light": "./images/WEB/light.svg",
+					"dark": "./images/WEB/dark.svg"
+				}
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.CodeMap",
+				"key": "ctrl+alt+q"
+			},
+			{
+				"command": "extension.ConFile",
+				"key": "ctrl+alt+m"
+			},
+			{
+				"command": "extension.InnerWEB",
+				"key": "ctrl+alt+w"
+			}
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"command": "extension.InnerWEB",
+					"group": "navigation"
+				},
+				{
+					"command": "extension.ConFile",
+					"group": "navigation"
+				},
+				{
+					"command": "extension.CodeMap",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	}
+}

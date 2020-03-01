@@ -1,0 +1,471 @@
+OPENGL NOT FOUND
+GLUT NOT FOUND
+OPENGL NOT FOUND
+GLUT NOT FOUND
+objcopy: CMakeFiles/LinearMath.dir/stTfAjzN: Failed to find link section for section 10
+objcopy: CMakeFiles/LinearMath.dir/stTfAjzN: Failed to find link section for section 10
+objcopy: CMakeFiles/BulletDynamics.dir/Character/sto7DuKq: Failed to find link section for section 57
+objcopy: CMakeFiles/BulletDynamics.dir/Character/sto7DuKq: Failed to find link section for section 57
+objcopy: CMakeFiles/ConvexDecomposition.dir/styEDrdB: Failed to find link section for section 24
+objcopy: CMakeFiles/ConvexDecomposition.dir/styEDrdB: Failed to find link section for section 24
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stxFjFXW: Failed to find link section for section 221
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stxFjFXW: Failed to find link section for section 221
+objcopy: CMakeFiles/ConvexDecomposition.dir/stX3UvIt: Failed to find link section for section 49
+objcopy: CMakeFiles/ConvexDecomposition.dir/stX3UvIt: Failed to find link section for section 49
+objcopy: CMakeFiles/LinearMath.dir/stX37eEu: Failed to find link section for section 18
+objcopy: CMakeFiles/LinearMath.dir/stX37eEu: Failed to find link section for section 18
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stLdDi5K: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stLdDi5K: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stBBlZl9: Failed to find link section for section 62
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stBBlZl9: Failed to find link section for section 62
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stocst1W: Failed to find link section for section 39
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stocst1W: Failed to find link section for section 39
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/strPFKQZ: Failed to find link section for section 53
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/strPFKQZ: Failed to find link section for section 53
+objcopy: CMakeFiles/ConvexDecomposition.dir/stdmzWvq: Failed to find link section for section 30
+objcopy: CMakeFiles/ConvexDecomposition.dir/stdmzWvq: Failed to find link section for section 30
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stXR25Ys: Failed to find link section for section 43
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stXR25Ys: Failed to find link section for section 43
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stIGpdIc: Failed to find link section for section 88
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stIGpdIc: Failed to find link section for section 88
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stosloKA: Failed to find link section for section 8
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stosloKA: Failed to find link section for section 8
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stGip00J: Failed to find link section for section 57
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stGip00J: Failed to find link section for section 57
+objcopy: CMakeFiles/LinearMath.dir/stwCnqJS: Failed to find link section for section 26
+objcopy: CMakeFiles/LinearMath.dir/stwCnqJS: Failed to find link section for section 26
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stDuYh4y: Failed to find link section for section 50
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stDuYh4y: Failed to find link section for section 50
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/st9N0KlI: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/st9N0KlI: Failed to find link section for section 54
+objcopy: CMakeFiles/LinearMath.dir/stELkfbw: Failed to find link section for section 11
+objcopy: CMakeFiles/LinearMath.dir/stELkfbw: Failed to find link section for section 11
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stgkziEY: Failed to find link section for section 64
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stgkziEY: Failed to find link section for section 64
+objcopy: CMakeFiles/ConvexDecomposition.dir/stfxRGBn: Failed to find link section for section 17
+objcopy: CMakeFiles/ConvexDecomposition.dir/stfxRGBn: Failed to find link section for section 17
+objcopy: CMakeFiles/LinearMath.dir/stYGAoVs: Failed to find link section for section 17
+objcopy: CMakeFiles/LinearMath.dir/stYGAoVs: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stJDh3qu: Failed to find link section for section 66
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stJDh3qu: Failed to find link section for section 66
+objcopy: CMakeFiles/ConvexDecomposition.dir/stUodPR2: Failed to find link section for section 13
+objcopy: CMakeFiles/ConvexDecomposition.dir/stUodPR2: Failed to find link section for section 13
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/ConvexDecomposition/concavity.cpp:708:23: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+          if ( ftris.size()  && 0 )
+                             ^  ~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/ConvexDecomposition/concavity.cpp:708:23: note: use '&' for a bitwise operation
+          if ( ftris.size()  && 0 )
+                             ^~
+                             &
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/ConvexDecomposition/concavity.cpp:708:23: note: remove constant to silence this warning
+          if ( ftris.size()  && 0 )
+                           ~~^~~~
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stlpp3bM: Failed to find link section for section 56
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stlpp3bM: Failed to find link section for section 56
+1 warning generated.
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/ConvexDecomposition/concavity.cpp:708:23: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+          if ( ftris.size()  && 0 )
+                             ^  ~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/ConvexDecomposition/concavity.cpp:708:23: note: use '&' for a bitwise operation
+          if ( ftris.size()  && 0 )
+                             ^~
+                             &
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/ConvexDecomposition/concavity.cpp:708:23: note: remove constant to silence this warning
+          if ( ftris.size()  && 0 )
+                           ~~^~~~
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stuwAcmf: Failed to find link section for section 52
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stuwAcmf: Failed to find link section for section 52
+1 warning generated.
+objcopy: CMakeFiles/ConvexDecomposition.dir/stlceVJo: Failed to find link section for section 18
+objcopy: CMakeFiles/ConvexDecomposition.dir/stlceVJo: Failed to find link section for section 18
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stRlG1jF: Failed to find link section for section 22
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/stRlG1jF: Failed to find link section for section 22
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/st4ZmyN9: Failed to find link section for section 34
+objcopy: CMakeFiles/BulletCollision.dir/BroadphaseCollision/st4ZmyN9: Failed to find link section for section 34
+objcopy: CMakeFiles/HACD.dir/stgHMk1A: Failed to find link section for section 71
+objcopy: CMakeFiles/HACD.dir/stgHMk1A: Failed to find link section for section 71
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stSpqi53: Failed to find link section for section 14
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stSpqi53: Failed to find link section for section 14
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/st7ETyfj: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/st7ETyfj: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/st8JAgfK: Failed to find link section for section 39
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/st8JAgfK: Failed to find link section for section 39
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stIxbA2g: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stIxbA2g: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stFpDv06: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stFpDv06: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stgN8Yk3: Failed to find link section for section 21
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stgN8Yk3: Failed to find link section for section 21
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stSQuzZB: Failed to find link section for section 44
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/stSQuzZB: Failed to find link section for section 44
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/strXV3Ik: Failed to find link section for section 44
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/strXV3Ik: Failed to find link section for section 44
+objcopy: CMakeFiles/GIMPACTUtils.dir/stQUiOnX: Failed to find link section for section 131
+objcopy: CMakeFiles/GIMPACTUtils.dir/stQUiOnX: Failed to find link section for section 131
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/st8Mrlc0: Failed to find link section for section 64
+objcopy: CMakeFiles/BulletDynamics.dir/ConstraintSolver/st8Mrlc0: Failed to find link section for section 64
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stkH2UDq: Failed to find link section for section 21
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stkH2UDq: Failed to find link section for section 21
+objcopy: CMakeFiles/BulletDynamics.dir/Dynamics/st4FGfbX: Failed to find link section for section 35
+objcopy: CMakeFiles/BulletDynamics.dir/Dynamics/st4FGfbX: Failed to find link section for section 35
+objcopy: CMakeFiles/HACD.dir/stCVL74V: Failed to find link section for section 93
+objcopy: CMakeFiles/HACD.dir/stCVL74V: Failed to find link section for section 93
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stmo8lG2: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stmo8lG2: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletDynamics.dir/Dynamics/st8sUrMj: Failed to find link section for section 112
+objcopy: CMakeFiles/BulletDynamics.dir/Dynamics/st8sUrMj: Failed to find link section for section 112
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stnZGtmK: Failed to find link section for section 190
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stnZGtmK: Failed to find link section for section 190
+objcopy: CMakeFiles/BulletDynamics.dir/Dynamics/stxfJeXp: Failed to find link section for section 43
+objcopy: CMakeFiles/BulletDynamics.dir/Dynamics/stxfJeXp: Failed to find link section for section 43
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stKs7JMZ: Failed to find link section for section 94
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stKs7JMZ: Failed to find link section for section 94
+objcopy: CMakeFiles/BulletDynamics.dir/Dynamics/stHlYNba: Failed to find link section for section 104
+objcopy: CMakeFiles/BulletDynamics.dir/Dynamics/stHlYNba: Failed to find link section for section 104
+objcopy: CMakeFiles/HACD.dir/strwaKPc: Failed to find link section for section 69
+objcopy: CMakeFiles/HACD.dir/strwaKPc: Failed to find link section for section 69
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stxU6W4F: Failed to find link section for section 71
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stxU6W4F: Failed to find link section for section 71
+objcopy: CMakeFiles/BulletDynamics.dir/Vehicle/stQuO28E: Failed to find link section for section 67
+objcopy: CMakeFiles/BulletDynamics.dir/Vehicle/stQuO28E: Failed to find link section for section 67
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stT7s6sL: Failed to find link section for section 23
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stT7s6sL: Failed to find link section for section 23
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stzIFkwK: Failed to find link section for section 22
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stzIFkwK: Failed to find link section for section 22
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/st5yvs8Y: Failed to find link section for section 44
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/st5yvs8Y: Failed to find link section for section 44
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stmS02i6: Failed to find link section for section 159
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stmS02i6: Failed to find link section for section 159
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:236:2: warning: cast to 'btVector3FloatData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+        SET_POINTER_VALUE(pParent,*convexHullData,m_unscaledPointsFloatPtr,btVector3FloatData*);
+        ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:237:2: warning: cast to 'btVector3DoubleData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+        SET_POINTER_VALUE(pParent,*convexHullData,m_unscaledPointsDoublePtr,btVector3DoubleData*);
+        ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:241:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,convexHullData);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:265:48: warning: cast to 'btCollisionShapeData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+                        compoundChildArrayPtr->at(i).m_childShape = (btCollisionShapeData*) (int) atof(txt);
+                                                                    ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:295:26: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                m_pointerLookup.insert((void*)ptr,cd);
+                                       ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:322:36: warning: cast to 'btCompoundShapeChildData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+                        compoundData->m_childShapePtr = (btCompoundShapeChildData*) (int) atof(txt);
+                                                        ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:331:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,compoundData);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:351:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,planeData);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:385:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,convexShape);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:416:3: warning: cast to 'btRigidBodyFloatData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+                SET_POINTER_VALUE(n,dof6Data->m_typeConstraintData,m_rbA,btRigidBodyData*);
+                ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:417:3: warning: cast to 'btRigidBodyFloatData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+                SET_POINTER_VALUE(n,dof6Data->m_typeConstraintData,m_rbB,btRigidBodyData*);
+                ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:442:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,dof6Data);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:460:3: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                SET_POINTER_VALUE(n,rbData->m_collisionObjectData,m_collisionShape, void*);
+                ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:509:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,rbData);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:654:28: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                                m_pointerLookup.insert((void*)ptr,vectors);
+                                                       ^
+objcopy: CMakeFiles/HACD.dir/stlZcgM4: Failed to find link section for section 84
+objcopy: CMakeFiles/HACD.dir/stlZcgM4: Failed to find link section for section 84
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/sttNfVDM: Failed to find link section for section 30
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/sttNfVDM: Failed to find link section for section 30
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletFileLoader/bFile.cpp:948:21: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+                                                printf("%d ", array[a]);
+                                                        ~~    ^~~~~~~~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletFileLoader/bFile.cpp:966:20: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+                                        printf("%d ", ptr);
+                                                ~~    ^~~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletFileLoader/bFile.cpp:1147:42: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+                                        printf(" <%s pointer=%d>\n",oldType,dataChunk.oldPtr);
+                                                             ~~             ^~~~~~~~~~~~~~~~
+3 warnings generated.
+objcopy: CMakeFiles/BulletFileLoader.dir/stMnxU96: Failed to find link section for section 31
+objcopy: CMakeFiles/BulletFileLoader.dir/stMnxU96: Failed to find link section for section 31
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletFileLoader/bFile.cpp:948:21: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+                                                printf("%d ", array[a]);
+                                                        ~~    ^~~~~~~~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletFileLoader/bFile.cpp:966:20: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+                                        printf("%d ", ptr);
+                                                ~~    ^~~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletFileLoader/bFile.cpp:1147:42: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+                                        printf(" <%s pointer=%d>\n",oldType,dataChunk.oldPtr);
+                                                             ~~             ^~~~~~~~~~~~~~~~
+15 warnings generated.
+3 warnings generated.
+objcopy: CMakeFiles/BulletFileLoader.dir/stnmVU98: Failed to find link section for section 28
+objcopy: CMakeFiles/BulletFileLoader.dir/stnmVU98: Failed to find link section for section 28
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:236:2: warning: cast to 'btVector3FloatData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+        SET_POINTER_VALUE(pParent,*convexHullData,m_unscaledPointsFloatPtr,btVector3FloatData*);
+        ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:237:2: warning: cast to 'btVector3DoubleData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+        SET_POINTER_VALUE(pParent,*convexHullData,m_unscaledPointsDoublePtr,btVector3DoubleData*);
+        ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:241:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,convexHullData);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:265:48: warning: cast to 'btCollisionShapeData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+                        compoundChildArrayPtr->at(i).m_childShape = (btCollisionShapeData*) (int) atof(txt);
+                                                                    ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:295:26: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                m_pointerLookup.insert((void*)ptr,cd);
+                                       ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:322:36: warning: cast to 'btCompoundShapeChildData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+                        compoundData->m_childShapePtr = (btCompoundShapeChildData*) (int) atof(txt);
+                                                        ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:331:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,compoundData);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:351:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,planeData);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:385:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,convexShape);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:416:3: warning: cast to 'btRigidBodyFloatData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+                SET_POINTER_VALUE(n,dof6Data->m_typeConstraintData,m_rbA,btRigidBodyData*);
+                ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:417:3: warning: cast to 'btRigidBodyFloatData *' from smaller integer type 'int' [-Wint-to-pointer-cast]
+                SET_POINTER_VALUE(n,dof6Data->m_typeConstraintData,m_rbB,btRigidBodyData*);
+                ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:442:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,dof6Data);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:460:3: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                SET_POINTER_VALUE(n,rbData->m_collisionObjectData,m_collisionShape, void*);
+                ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:133:26: note: expanded from macro 'SET_POINTER_VALUE'
+                        (targetdata).argname= (pointertype) (int) atof(txt);\
+                                              ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:509:25: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+        m_pointerLookup.insert((void*)ptr,rbData);
+                               ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp:654:28: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                                m_pointerLookup.insert((void*)ptr,vectors);
+                                                       ^
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stH2ul4w: Failed to find link section for section 12
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stH2ul4w: Failed to find link section for section 12
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stx56xBU: Failed to find link section for section 94
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stx56xBU: Failed to find link section for section 94
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/st2Dyr2V: Failed to find link section for section 26
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/st2Dyr2V: Failed to find link section for section 26
+15 warnings generated.
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stOfUi1a: Failed to find link section for section 42
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stOfUi1a: Failed to find link section for section 42
+objcopy: CMakeFiles/BulletFileLoader.dir/stregsum: Failed to find link section for section 33
+objcopy: CMakeFiles/BulletFileLoader.dir/stregsum: Failed to find link section for section 33
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stFC0JDZ: Failed to find link section for section 10
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stFC0JDZ: Failed to find link section for section 10
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stEUvBJv: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stEUvBJv: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stTyGbFn: Failed to find link section for section 90
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stTyGbFn: Failed to find link section for section 90
+objcopy: CMakeFiles/BulletWorldImporter.dir/stOkxSiN: Failed to find link section for section 47
+objcopy: CMakeFiles/BulletWorldImporter.dir/stOkxSiN: Failed to find link section for section 47
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stp6Vg8M: Failed to find link section for section 18
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stp6Vg8M: Failed to find link section for section 18
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stc4roGT: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stc4roGT: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stxrMXcA: Failed to find link section for section 58
+objcopy: CMakeFiles/BulletXmlWorldImporter.dir/stxrMXcA: Failed to find link section for section 58
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/st90Q4uZ: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/st90Q4uZ: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stmWhMPB: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stmWhMPB: Failed to find link section for section 17
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stuPxEKO: Failed to find link section for section 21
+objcopy: CMakeFiles/BulletCollision.dir/CollisionDispatch/stuPxEKO: Failed to find link section for section 21
+objcopy: CMakeFiles/BulletSoftBody.dir/stZPxbpK: Failed to find link section for section 113
+objcopy: CMakeFiles/BulletSoftBody.dir/stZPxbpK: Failed to find link section for section 113
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stpViG5X: Failed to find link section for section 75
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stpViG5X: Failed to find link section for section 75
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletSoftBody/btSoftBodyHelpers.cpp:914:21: error: non-constant-expression cannot be narrowed from type 'unsigned int' to 'int' in initializer list [-Wc++11-narrowing]
+                const int idx[]={       hres.m_Indices[i*3+0],
+                                        ^~~~~~~~~~~~~~~~~~~~~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletSoftBody/btSoftBodyHelpers.cpp:914:21: note: insert an explicit cast to silence this issue
+                const int idx[]={       hres.m_Indices[i*3+0],
+                                        ^~~~~~~~~~~~~~~~~~~~~
+                                        static_cast<int>(    )
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletSoftBody/btSoftBodyHelpers.cpp:915:4: error: non-constant-expression cannot be narrowed from type 'unsigned int' to 'int' in initializer list [-Wc++11-narrowing]
+                        hres.m_Indices[i*3+1],
+                        ^~~~~~~~~~~~~~~~~~~~~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletSoftBody/btSoftBodyHelpers.cpp:915:4: note: insert an explicit cast to silence this issue
+                        hres.m_Indices[i*3+1],
+                        ^~~~~~~~~~~~~~~~~~~~~
+                        static_cast<int>(    )
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletSoftBody/btSoftBodyHelpers.cpp:916:4: error: non-constant-expression cannot be narrowed from type 'unsigned int' to 'int' in initializer list [-Wc++11-narrowing]
+                        hres.m_Indices[i*3+2]};
+                        ^~~~~~~~~~~~~~~~~~~~~
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletSoftBody/btSoftBodyHelpers.cpp:916:4: note: insert an explicit cast to silence this issue
+                        hres.m_Indices[i*3+2]};
+                        ^~~~~~~~~~~~~~~~~~~~~
+                        static_cast<int>(    )
+3 errors generated.
+ERROR:Failed to compile using given arguments: [-DUSE_GRAPHICAL_BENCHMARK -I/usr/local/include -I/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src -O3 -DNDEBUG -o CMakeFiles/BulletSoftBody.dir/btSoftBodyHelpers.o -c /home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletSoftBody/btSoftBodyHelpers.cpp]
+make[2]: *** [src/BulletSoftBody/CMakeFiles/BulletSoftBody.dir/btSoftBodyHelpers.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/st8RLS0P: Failed to find link section for section 75
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/st8RLS0P: Failed to find link section for section 75
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stjev4dT: Failed to find link section for section 73
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stjev4dT: Failed to find link section for section 73
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stXl2yp9: Failed to find link section for section 37
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stXl2yp9: Failed to find link section for section 37
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btCompoundShape.cpp:81:51: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                child.m_node = m_dynamicAabbTree->insert(bounds,(void*)index);
+                                                                ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btCompoundShape.cpp:313:61: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+            child.m_node = m_dynamicAabbTree->insert(bounds,(void*)index);
+                                                            ^
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stysxshV: Failed to find link section for section 21
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stysxshV: Failed to find link section for section 21
+2 warnings generated.
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btCompoundShape.cpp:81:51: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+                child.m_node = m_dynamicAabbTree->insert(bounds,(void*)index);
+                                                                ^
+/home/spc/WORKSPACE/WLLVM/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btCompoundShape.cpp:313:61: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
+            child.m_node = m_dynamicAabbTree->insert(bounds,(void*)index);
+                                                            ^
+objcopy: CMakeFiles/BulletWorldImporter.dir/st2WU9Oy: Failed to find link section for section 182
+objcopy: CMakeFiles/BulletWorldImporter.dir/st2WU9Oy: Failed to find link section for section 182
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stcWnIVx: Failed to find link section for section 20
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stcWnIVx: Failed to find link section for section 20
+2 warnings generated.
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/sti0WpgP: Failed to find link section for section 39
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/sti0WpgP: Failed to find link section for section 39
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stlMHYUB: Failed to find link section for section 73
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stlMHYUB: Failed to find link section for section 73
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stBoGcGS: Failed to find link section for section 37
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stBoGcGS: Failed to find link section for section 37
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stV2Kq88: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stV2Kq88: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stliVEIM: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stliVEIM: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/st8okT4v: Failed to find link section for section 24
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/st8okT4v: Failed to find link section for section 24
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stSu0JgC: Failed to find link section for section 16
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stSu0JgC: Failed to find link section for section 16
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stYs1qGE: Failed to find link section for section 25
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stYs1qGE: Failed to find link section for section 25
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stBLzfJD: Failed to find link section for section 34
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stBLzfJD: Failed to find link section for section 34
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stTH6ZnN: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stTH6ZnN: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/sto1SskM: Failed to find link section for section 63
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/sto1SskM: Failed to find link section for section 63
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stCii7dK: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stCii7dK: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/strVS3PK: Failed to find link section for section 29
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/strVS3PK: Failed to find link section for section 29
+objcopy: CMakeFiles/BulletSoftBody.dir/stDejMig: Failed to find link section for section 338
+objcopy: CMakeFiles/BulletSoftBody.dir/stDejMig: Failed to find link section for section 338
+make[1]: *** [src/BulletSoftBody/CMakeFiles/BulletSoftBody.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stWZmFkc: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stWZmFkc: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stA9VRkw: Failed to find link section for section 44
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stA9VRkw: Failed to find link section for section 44
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/st0eTWfH: Failed to find link section for section 20
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/st0eTWfH: Failed to find link section for section 20
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stDYEbAn: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stDYEbAn: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stFvKAhE: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stFvKAhE: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stPBhEcD: Failed to find link section for section 31
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stPBhEcD: Failed to find link section for section 31
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/sti8ytan: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/sti8ytan: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stqLbmrv: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stqLbmrv: Failed to find link section for section 40
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/sty9AWYv: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/sty9AWYv: Failed to find link section for section 54
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stUu7tNO: Failed to find link section for section 20
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stUu7tNO: Failed to find link section for section 20
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stR5656X: Failed to find link section for section 8
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stR5656X: Failed to find link section for section 8
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stD1jgOx: Failed to find link section for section 34
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stD1jgOx: Failed to find link section for section 34
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stzK1JXB: Failed to find link section for section 29
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stzK1JXB: Failed to find link section for section 29
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stGnZu16: Failed to find link section for section 43
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stGnZu16: Failed to find link section for section 43
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stcHCu2v: Failed to find link section for section 24
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stcHCu2v: Failed to find link section for section 24
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stm2em9x: Failed to find link section for section 28
+objcopy: CMakeFiles/BulletCollision.dir/CollisionShapes/stm2em9x: Failed to find link section for section 28
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stOSBHu0: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stOSBHu0: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stU21Hw4: Failed to find link section for section 30
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stU21Hw4: Failed to find link section for section 30
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stoZxHKI: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stoZxHKI: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stEcKJWb: Failed to find link section for section 207
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stEcKJWb: Failed to find link section for section 207
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stHcwxyg: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stHcwxyg: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/sttBkkyI: Failed to find link section for section 181
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/sttBkkyI: Failed to find link section for section 181
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stcBx2vA: Failed to find link section for section 15
+objcopy: CMakeFiles/BulletCollision.dir/Gimpact/stcBx2vA: Failed to find link section for section 15
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stBWnFR8: Failed to find link section for section 8
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stBWnFR8: Failed to find link section for section 8
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stnthKkL: Failed to find link section for section 39
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stnthKkL: Failed to find link section for section 39
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stLCnDnX: Failed to find link section for section 48
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stLCnDnX: Failed to find link section for section 48
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stlDUlTu: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stlDUlTu: Failed to find link section for section 19
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/st9KScTY: Failed to find link section for section 23
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/st9KScTY: Failed to find link section for section 23
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stqF8FXd: Failed to find link section for section 31
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stqF8FXd: Failed to find link section for section 31
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stgN8tNS: Failed to find link section for section 42
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stgN8tNS: Failed to find link section for section 42
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stoQuSZ9: Failed to find link section for section 98
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stoQuSZ9: Failed to find link section for section 98
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stvg9wOk: Failed to find link section for section 14
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/stvg9wOk: Failed to find link section for section 14
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/st6uiApj: Failed to find link section for section 16
+objcopy: CMakeFiles/BulletCollision.dir/NarrowPhaseCollision/st6uiApj: Failed to find link section for section 16
+make: *** [all] Error 2
+Writing output to /home/spc/.local/share/code-server/extensions/code-map-ide-extension-3d-display/wllvm/src/LinearMath/libLinearMath.a.bc
