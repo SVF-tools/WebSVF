@@ -2,7 +2,7 @@
 
 ***Don't make any changes in the ~/WORKSPACE directory during installation***
 
-The following installation only works in an Ubuntu 18.04 environment, so please refer to [this guide]() if you need assistance setting up a Virtual Machine. 
+The following installation only works in an Ubuntu 18.04 environment, so please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) if you need assistance setting up a Virtual Machine. 
 
 ## Step 1. Clone Project Repository
 Open a terminal window in your Ubuntu environment and run the following commands in order (if you encounter errors mentioning permissions then please run these commands prefixed with _sudo_):
