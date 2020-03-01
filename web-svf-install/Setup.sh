@@ -56,7 +56,11 @@ sudo rm * -rf
 
 cd $SHELL_NOW_FOLDER
 
-mv move-github-tools/* ~/WORKSPACE/
+unzip files.zip
+
+mv files/* ~/WORKSPACE/
+
+sudo rm -R files
 
 cd ~/WORKSPACE
 
