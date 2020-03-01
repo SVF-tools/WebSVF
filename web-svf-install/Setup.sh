@@ -58,6 +58,12 @@ cd $SHELL_NOW_FOLDER
 
 unzip files.zip
 
+cd ./files
+
+git clone https://github.com/spcidealacm/whole-program-llvm.git
+
+cd ../
+
 mv files/* ~/WORKSPACE/
 
 sudo rm -R files
@@ -107,8 +113,9 @@ sudo rm codemap-server.zip
 #deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
 
 }
-#cd ~/WORKSPACE/whole-program-llvm
-#bash setup.sh
+
+cd ~/WORKSPACE/whole-program-llvm
+bash setup.sh
 
 cd ~/WORKSPACE/code-map-react-shell
 yarn
