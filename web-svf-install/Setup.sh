@@ -103,8 +103,8 @@ sudo rm codemap-server.zip
 
 #sudo apt-get install clang clang-9 lldb-9 lld-9 libllvm-9-ocaml-dev libllvm9 llvm-9 llvm-9-dev llvm-9-doc llvm-9-examples llvm-9-runtime -y
 
-deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
-deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
+#deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
+#deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
 
 }
 #cd ~/WORKSPACE/whole-program-llvm
