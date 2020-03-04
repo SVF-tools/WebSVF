@@ -20,12 +20,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akshatsinghkaushik/bug_report_front_end.git"
+    "url": "git+https://github.com/SVF-tools/WebSVF.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akshatsinghkaushik/bug_report_front_end/issues"
+    "url": "https://github.com/SVF-tools/WebSVF/issues"
   },
-  "homepage": "https://github.com/akshatsinghkaushik/bug_report_front_end#readme"
+  "homepage": "https://github.com/SVF-tools/WebSVF/blob/bug-report-fe/README.md"
 }
