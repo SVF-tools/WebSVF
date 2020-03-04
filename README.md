@@ -12,7 +12,7 @@ git checkout bug-report-fe
 npm install
 ```
 
-### Install Dev Dependencies
+### Install Dev Dependencies (optional)
 ```
 npm install --only=dev
 ```
