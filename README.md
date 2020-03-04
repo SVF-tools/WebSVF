@@ -12,10 +12,21 @@ git checkout bug-report-fe
 npm install
 ```
 
+### Install Dev Dependencies
+```
+npm install --only=dev
+```
+
 ## 3. Run the App (Execution):
 
 ```
 npm run start
+```
+
+### Run the App (Dev)
+
+```
+npm run start-dev
 ```
 
 # Description:
