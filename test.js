@@ -5,27 +5,12 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-//const open = require('open');//Open website in default browser;
-//const path = require('path');
-
 const port = 3000;
 
 const fReport = require('./file-report');
 const landPage = require('./landingPage');
 
-
-
-
-
 landPage.generate();
-
-
-//For Testing
-/*
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'public')+'/fileReport.html');
-});
-*/
 
 //Serving Static Web Page using ExpressJS
 app.use(express.static("public"));
@@ -46,4 +31,19 @@ io.on('connection', (socket)  => {
     });
 });
 
+
+
+
+
+//const open = require('open');//Open website in default browser;
+//const path = require('path');
+
+//For Testing
+/*
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public')+'/fileReport.html');
+});
+*/
+
 //open('http://localhost:3000');
+

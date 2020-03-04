@@ -10,25 +10,32 @@
     <pre id="test" class="prettyprint linenums"><button class="remove-button nocode" onclick="removeLines()">Remove Lines</button><button id="show-lines-button" class="show-button nocode" onclick="showLines()">Show Lines</button><a class="code-body" id="1">   #include &lt;stdio.h&gt;</a>
 <a class="code-body" id="2">    int main()</a>
 <a class="code-body" id="3">    {</a>
-<span id="err0" class="alert-logical nocode">Null Reference
+<span id="err0" class="alert-syntax nocode">Missing end of function '}'
 <a>Description - Placeholder - Lorem
  ipsum dolor sit...</a></span><a class="code-body" id="4">       char c;</a>
 <a class="code-body" id="5">       printf("Enter a character: ");</a>
 <a class="code-body" id="6">       scanf("%c",&amp;c);</a>
 <a class="code-body" id="7">       if( (c&gt;='a' &amp;&amp; c&lt;='z') || (c&gt;='A' &amp;&amp; c&lt;='Z'))</a>
-<span id="err1" class="alert-semantic nocode">Variable 'statc' not recognised
-<a>Description - Placeholder - Lorem
- ipsum dolor sit...</a></span><a class="code-body" id="8">           printf("%c is an alphabet.",c);</a>
+<a class="code-body" id="8">           printf("%c is an alphabet.",c);</a>
 <a class="code-body" id="9">       else</a>
-<span id="err2" class="alert-syntax nocode">Unexpected end of line
+<a class="code-body" id="10">          printf("%c is not an alphabet.",c);</a>
+<a class="code-body" id="11"></a>
+<a class="code-body" id="12">       char c;</a>
+<span id="err1" class="alert-semantic nocode">Function reference 'init()' not found
 <a>Description - Placeholder - Lorem
- ipsum dolor sit...</a></span><a class="code-body" id="10">          printf("%c is not an alphabet.",c);</a>
-<a class="code-body" id="11">      return 0;</a>
-<a class="code-body" id="12">  }</a></pre>
+ ipsum dolor sit...</a></span><a class="code-body" id="13">       printf("Enter a character: ");</a>
+<a class="code-body" id="14"></a>
+<a class="code-body" id="15">       char c;</a>
+<a class="code-body" id="16">       printf("Enter a character: ");   </a>
+<a class="code-body" id="17">       </a>
+<span id="err2" class="alert-logical nocode">Null Reference
+<a>Description - Placeholder - Lorem
+ ipsum dolor sit...</a></span><a class="code-body" id="18">      return 0;</a>
+<a class="code-body" id="19">  }</a></pre>
     
     <script id="LeaderLines">
-		var ref_lines =[{"start":"err0","end":4},{"start":"err1","end":8},{"start":"err2","end":10}];
-		var lines =[{"start":4,"end":8},{"start":8,"end":10}];
+		var ref_lines =[{"start":"err0","end":4},{"start":"err1","end":13},{"start":"err2","end":18}];
+		var lines =[{"start":4,"end":13},{"start":13,"end":18}];
 		function showLines() {
         
         document.querySelector('.show-button').innerHTML = 'Add Lines';

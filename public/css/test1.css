@@ -21,6 +21,22 @@ hr{
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
+[data-toggle="collapse"]:after {
+
+  font: normal normal normal 14px/1 FontAwesome;
+  float: right;  
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f054";
+  transform: rotate(90deg) ;
+  transition: all linear 0.25s;
+  }   
+[data-toggle="collapse"].collapsed:after {
+  transform: rotate(0deg) ;
+}
+
 /* Add indicator arrow for the active tab */
 @media (min-width: 992px) {
     .nav-pills-custom .nav-link::before {
