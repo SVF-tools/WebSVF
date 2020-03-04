@@ -39,6 +39,7 @@ var codeStringSerialised = '';
 var ll_array = [];
 var ll_ref_array = [];
 
+
 for (let i = 0; i < string1.length; i++) {
 
     //Initialise JSON objects used for populating error and error-reference leader-lines JSON arrays
@@ -138,13 +139,13 @@ $("#test").html(codeStringSerialised);
 /* Code for the Leader-Lines function is stored as a string in a text file
 The code is read into a variable and added in the correct format and order 
 into the bug_report html file*/
-var leader_lines_function = fs.readFileSync('code_snippets/leader-line_pseudo_code.js','utf8')
+//var leader_lines_function = fs.readFileSync('code_snippets/leader-line_pseudo_code.js','utf8')
 
 
 /*  First  'var lines ='+JSON.stringify(obj)+' => adds the JSON array containing 
 the line numbers for the Leader-Lines into the html file
 Followed by added the pseduo code for Leader-Lines function defined earlier */
-$("#LeaderLines").html(`\n${'\t'.repeat(2)}var ref_lines =${JSON.stringify(ll_ref_array)};\n${'\t'.repeat(2)}var lines =${JSON.stringify(ll_array)};\n${'\t'.repeat(2)}${leader_lines_function}`);
+$("#LeaderLines").html(`\n${'\t'.repeat(2)}var ref_lines =${JSON.stringify(ll_ref_array)};\n${'\t'.repeat(2)}var lines =${JSON.stringify(ll_array)};`);
 
 
 /*Write changes from the Virtual DOM to the Web Page (.html)
