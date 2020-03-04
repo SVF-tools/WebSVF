@@ -21,9 +21,9 @@ const bugreportjson = {
           "Title": "Variable 'statc' not recognised",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": [
-            { "CrossOriginIndex": 0,"FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
-            { "CrossOriginIndex": 1,"FileName": "xxx.c", "FilePath": "./", "ln": 8 },
-            { "CrossOriginIndex": 2,"FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
+            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
+            { "FileName": "xxx.c", "FilePath": "./", "ln": 8 },
+            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
           ]
         },
         {
@@ -32,7 +32,9 @@ const bugreportjson = {
           "Occurrence": "Static (Compile-Time)",
           "Title": "Unexpected end of line",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "CrossOrigin": []
+          "CrossOrigin": [
+            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 }
+          ]
         }
       ]
     },
@@ -48,8 +50,8 @@ const bugreportjson = {
           "Title": "Missing end of function '}'",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": [
-            { "CrossOriginIndex": 0,"FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 },
-            { "CrossOriginIndex": 1,"FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 6 }
+            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 },
+            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 6 }
           ]
         },
         {
