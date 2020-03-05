@@ -38,48 +38,7 @@
     
     <script src="./js/leader-line_pseudo_code.js"></script>
 
-    <script>
-      function add_errLines(err_index){
-        const stack_arr = bugreportjson.bugreport[file_id].Errors[err_index].StackTrace;
-        var st_lines = [];       
-
-        if(!$.isEmptyObject(stack_arr)){
-          const st_length = Object.keys(stack_arr).length;
-                  
-          for(let i = 0; i<st_length-1;++i){
-            var ll_st = {};
-            ll_st['start'] = `${stack_arr[i].ln}`;
-            ll_st['end'] = `${stack_arr[i+1].ln}`;
-            st_lines.push(ll_st);
-          }
-          
-          console.log(st_lines);
-
-          st_lines.forEach(function(line) {
-          var start = document.getElementById(line.start),
-            end = document.getElementById(line.end);
-            
-          if (start !== null && end !== null) {
-            line.obj = new LeaderLine(start, end, {
-        /*    Add/Change Options here for altering the Leader-Lines */
-              color: 'rgba(255, 255, 255, 0.25)',
-              size: 2,
-              //path: "straight",
-              startPlug: "disc",
-              //startPlugSize: 1.2,
-              startSocket: "left",
-              //endPlug: "arrow3",
-              endPlug: "arrow2",
-              endPlugSize: 1.2,
-              endSocket: "right"
-
-            });
-          }
-        });
-
-        }
-      }  
-    </script>
+    <script src="./js/drawErrLines.js"></script>
 
     <script>
       function removeLines(){
