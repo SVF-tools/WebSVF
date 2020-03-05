@@ -11,6 +11,11 @@ const bugreportjson = {
           "Type": "Logical",
           "Occurrence": "Dynamic (Run-Time)",
           "Title": "Null Reference",
+          "StackTrace": [
+            { "ln": 1, "Title": "Null Reference" },
+            { "ln": 3, "Title": "Unexpected end of line" },
+            { "ln": 4, "Title": "Unexpected end of line" }
+          ],
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": []
         },
@@ -20,6 +25,10 @@ const bugreportjson = {
           "Occurrence": "Static (Compile-Time)",
           "Title": "Variable 'statc' not recognised",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "StackTrace": [
+            { "ln": 4, "Title": "Null Reference" },
+            { "ln": 6, "Title": "Unexpected end of line" }
+          ],
           "CrossOrigin": [
             { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
             { "FileName": "xxx.c", "FilePath": "./", "ln": 8 },
@@ -32,6 +41,10 @@ const bugreportjson = {
           "Occurrence": "Static (Compile-Time)",
           "Title": "Unexpected end of line",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "StackTrace": [
+            { "ln": 7, "Title": "Null Reference" },
+            { "ln": 10, "Title": "Unexpected end of line" }
+          ],
           "CrossOrigin": [
             { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 }
           ]
@@ -49,6 +62,10 @@ const bugreportjson = {
           "Occurrence": "Static (Compile-Time)",
           "Title": "Missing end of function '}'",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "StackTrace": [
+            { "ln": 4, "Title": "Null Reference" },
+            { "ln": 10, "Title": "Unexpected end of line" }
+          ],
           "CrossOrigin": [
             { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 },
             { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 6 }
@@ -60,6 +77,10 @@ const bugreportjson = {
           "Occurrence": "Static (Compile-Time)",
           "Title": "Function reference 'init()' not found",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "StackTrace": [
+            { "ln": 4, "Title": "Null Reference" },
+            { "ln": 10, "Title": "Unexpected end of line" }
+          ],
           "CrossOrigin": []
         },
         {
@@ -68,6 +89,10 @@ const bugreportjson = {
           "Occurrence": "Dynamic (Run-Time)",
           "Title": "Null Reference",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "StackTrace": [
+            { "ln": 4, "Title": "Null Reference" },
+            { "ln": 10, "Title": "Unexpected end of line" }
+          ],
           "CrossOrigin": []
         }
       ]

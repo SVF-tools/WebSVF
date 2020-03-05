@@ -29,7 +29,7 @@ pre{
 
 body{
   margin: 30px;
-  background-color: #333;
+  background-color: #333 !important; 
 }
 
 #text a {
@@ -67,6 +67,13 @@ body{
   border: 2px solid grey;
 }
 
+.err-button {
+  font-size: 17px;
+  background-color: #151616ce;
+  color: white;
+  border-radius: 9px;
+  font-weight: bold;
+}
 
 
 .pre .nocode {
@@ -100,13 +107,13 @@ body{
 .alert-syntax {
   background-color: #56ccfbea; 
   color: rgb(0, 0, 0);
-  margin-right: 15vw;
+  margin-right: 10%;
   float: right;
   border-color: #181616cb;
   border-style: dashed;
   border-width: 2px;
   text-align: center;
-  line-height: 1.4em;
+  line-height: 1em;
   font-weight: bolder;
   padding: 0.3em;
   font-size: 17px;
@@ -131,13 +138,13 @@ body{
 .alert-semantic {
   background-color: #f7fa52ec; 
   color: rgb(0, 0, 0);
-  margin-right: 15vw;
+  margin-right: 10%;
   float: right;
   border-color: #181616cb;
   border-style: dashed;
   border-width: 2px;
   text-align: center;
-  line-height: 1.4em;
+  line-height: 1em;
   font-weight: bolder;
   padding: 0.3em;
   font-size: 17px;
@@ -162,13 +169,13 @@ body{
 .alert-logical {
   background-color: #89fa3ee5; 
   color: rgb(0, 0, 0);
-  margin-right: 15vw;
+  margin-right: 10%;
   float: right;
   border-color: #181616cb;
   border-style: dashed;
   border-width: 2px;
   text-align: center;
-  line-height: 1.4em;
+  line-height: 1em;
   font-weight: bolder;
   padding: 0.3em;
   font-size: 17px;
