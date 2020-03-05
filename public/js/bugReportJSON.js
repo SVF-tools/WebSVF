@@ -17,7 +17,11 @@ const bugreportjson = {
             { "ln": 4, "Title": "Unexpected end of line" }
           ],
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "CrossOrigin": []
+          "CrossOrigin": [
+            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
+            { "FileName": "xxx.c", "FilePath": "./", "ln": 8 },
+            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
+          ]
         },
         {
           "ln": 8,
