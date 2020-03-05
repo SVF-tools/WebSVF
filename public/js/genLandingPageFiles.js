@@ -13,19 +13,36 @@ const make_pillTab = (index, name, index_last) => {
     return output;
 }; 
 
-const make_co_heirarKey = (er_index,er_index_last,f_name,er_name,er_type) => {
+const make_co_heirarKey = (er_index,f_index) => {
+ 
+    const cross_o = bugreportjson.bugreport[f_index].Errors[er_index].CrossOrigin;
+    const cross_o_length = Object.keys(cross_o).length;
 
-    const co_header = 
+    if(!$.isEmptyObject(cross_o)){
+        const co_header = 
 `                    <div id="cross-o-${er_index}" style="display:none;">
-                        <h2 class="text-center">${er_name} - ${er_type} Error</h2>
+                        <h2 class="text-center">${bugreportjson.bugreport[f_index].FileName} - ${bugreportjson.bugreport[f_index].Errors[er_index].Title} - ${bugreportjson.bugreport[f_index].Errors[er_index].Type} Error</h2>
                     </div>    
                     `;
-    $(`#files-analysed #v-pills-tabContent #errors-${f_name.replace('.','')}`).append(`\n${co_header}\n`);
+        $(`#files-analysed #v-pills-tabContent #errors-${bugreportjson.bugreport[f_index].FileName.replace('.','')}`).append(`\n${co_header}\n`);
 
-    add_clickListener(`#files-analysed #v-pills-tabContent #errors-${f_name.replace('.','')} #co-${f_name.replace('.','')}-errIndex-${er_index}`,`#files-analysed #v-pills-tabContent #errors-${f_name.replace('.','')} #cross-o-${er_index}`);
+        add_clickListener(`#files-analysed #v-pills-tabContent #errors-${bugreportjson.bugreport[f_index].FileName.replace('.','')} #co-${bugreportjson.bugreport[f_index].FileName.replace('.','')}-errIndex-${er_index}`,`#files-analysed #v-pills-tabContent #errors-${bugreportjson.bugreport[f_index].FileName.replace('.','')} #cross-o-${er_index}`);
+
+
+        for(let i = 0; i < cross_o_length; ++i ){
+            if(i!=0){            
+                $(`#files-analysed #v-pills-tabContent #errors-${bugreportjson.bugreport[f_index].FileName.replace('.','')} #cross-o-${er_index} #accordion-${i-1} #collapse${i-1} .card-body`).append(`\n${make_co_tab(bugreportjson.bugreport[f_index].Errors[er_index].CrossOrigin[i],i)}\n\n`);
+            }
+            else{
+                $(`#files-analysed #v-pills-tabContent #errors-${bugreportjson.bugreport[f_index].FileName.replace('.','')} #cross-o-${er_index}`).append(`\n${make_co_tab(bugreportjson.bugreport[f_index].Errors[er_index].CrossOrigin[i],i)}\n\n`);
+            }
+            
+
+        }
+
+                
     
-    $(`#files-analysed #v-pills-tabContent #errors-${f_name.replace('.','')} #cross-o-${er_index}`).append(`\n${make_co_tab(er_index,f_name,er_index_last)}\n\n`);
-
+    }
 
 };
 
@@ -35,7 +52,7 @@ const add_clickListener = (button_id, target_id) => {
       });
 }
 
-const make_co_tab = (er_index, name, er_index_last) => {
+const make_co_tab = (err_obj, indx) => {
     var output;
     //var name_noDot = name.replace('.','');
     /*
@@ -47,19 +64,17 @@ const make_co_tab = (er_index, name, er_index_last) => {
     output = "";
     */
     const syn_co = 
-`                    <div id="accordion" role="tablist">
+`                    <div id="accordion-${indx}" role="tablist">
                         <div class="card">
-                            <div class="card-header text-center" role="tab" id="headingOneOne">
+                            <div class="card-header text-center" role="tab" id="heading${indx}">
                                 <h5 class="mb-0">
-                                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Collapsible Group Item #1
+                                    <a data-toggle="collapse" href="#collapse${indx}" aria-expanded="true" aria-controls="collapse${indx}">
+                                    <strong>${err_obj.FileName}</strong> at Line No.: <strong>${err_obj.ln}</strong> in Directory: <strong>${err_obj.FilePath}</strong>
                                     </a>
                                 </h5>
                             </div>
-                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body">
-                                ...............................................................................#1
-                                </div>
+                            <div id="collapse${indx}" class="collapse show" role="tabpanel" aria-labelledby="heading${indx}" data-parent="#accordion-${indx}">
+                                <div class="card-body"></div>
                             </div>
                         </div>
                     </div>    
@@ -135,7 +150,7 @@ const gen_filesHTML = () => {
 
                 if($.isEmptyObject(fileErrors[j].CrossOrigin))
                 ;
-                else make_co_heirarKey(j,errors_length,fileName,fileErrors[j].Title,fileErrors[j].Type);                
+                else make_co_heirarKey(j,i);                
             }
             else if(fileErrors[j].Type == 'Semantic'){
 
@@ -164,7 +179,7 @@ const gen_filesHTML = () => {
 
                 if($.isEmptyObject(fileErrors[j].CrossOrigin))
                 ;
-                else make_co_heirarKey(j,errors_length,fileName,fileErrors[j].Title,fileErrors[j].Type);
+                else make_co_heirarKey(j,i);
             }
             else if(fileErrors[j].Type == 'Logical'){
 
@@ -193,7 +208,7 @@ const gen_filesHTML = () => {
 
                 if($.isEmptyObject(fileErrors[j].CrossOrigin))
                 ;
-                else make_co_heirarKey(j,errors_length,fileName,fileErrors[j].Title,fileErrors[j].Type);
+                else make_co_heirarKey(j,i);
 
             }
         }

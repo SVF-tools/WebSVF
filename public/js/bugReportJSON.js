@@ -45,9 +45,7 @@ const bugreportjson = {
             { "ln": 7, "Title": "Null Reference" },
             { "ln": 10, "Title": "Unexpected end of line" }
           ],
-          "CrossOrigin": [
-            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 }
-          ]
+          "CrossOrigin": []
         }
       ]
     },
