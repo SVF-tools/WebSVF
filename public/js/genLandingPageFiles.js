@@ -21,7 +21,8 @@ const make_co_heirarKey = (er_index,f_index) => {
     if(!$.isEmptyObject(cross_o)){
         const co_header = 
 `                    <div id="cross-o-${er_index}" style="display:none;">
-                        <h2 class="text-center">${bugreportjson.bugreport[f_index].FileName} - ${bugreportjson.bugreport[f_index].Errors[er_index].Title} - ${bugreportjson.bugreport[f_index].Errors[er_index].Type} Error</h2>
+                        <hr class="mt-5">
+                        <h2 class="text-center py-4">${bugreportjson.bugreport[f_index].FileName} - ${bugreportjson.bugreport[f_index].Errors[er_index].Title} - ${bugreportjson.bugreport[f_index].Errors[er_index].Type} Error</h2>
                     </div>    
                     `;
         $(`#files-analysed #v-pills-tabContent #errors-${bugreportjson.bugreport[f_index].FileName.replace('.','')}`).append(`\n${co_header}\n`);
@@ -66,7 +67,7 @@ const make_co_tab = (err_obj, indx) => {
     const syn_co = 
 `                    <div id="accordion-${indx}" role="tablist">
                         <div class="card">
-                            <div class="card-header text-center" role="tab" id="heading${indx}">
+                            <div class="card-header text-center bg-dark" role="tab" id="heading${indx}">
                                 <h5 class="mb-0">
                                     <a data-toggle="collapse" href="#collapse${indx}" aria-expanded="true" aria-controls="collapse${indx}">
                                     <strong>${err_obj.FileName}</strong> at Line No.: <strong>${err_obj.ln}</strong> in Directory: <strong>${err_obj.FilePath}</strong>
