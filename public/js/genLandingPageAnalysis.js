@@ -142,7 +142,7 @@
 `                  <tr>
                     <th scope="row">${id_table}</th>
                     <td>${key}</td>
-                    <td>Logical Error</td>
+                    <td><a href="bugTypeSummary.html#v-pills-logicalError-tab" target="_blank">Logical Error</a></td>
                     <td class="text-center">${value}</td>
                   </tr>
 `;
@@ -154,7 +154,7 @@
 `                  <tr>
                     <th scope="row">${id_table}</th>
                     <td>${key}</td>
-                    <td>Semantic Error</td>
+                    <td><a href="bugTypeSummary.html#v-pills-semanticError-tab" target="_blank">Semantic Error</a></td>
                     <td class="text-center">${value}</td>
                   </tr>
 `;
@@ -166,7 +166,7 @@
 `                  <tr>
                     <th scope="row">${id_table}</th>
                     <td>${key}</td>
-                    <td>Syntax Error</td>
+                    <td><a href="bugTypeSummary.html#v-pills-syntaxError-tab" target="_blank">Syntax Error</a></td>
                     <td class="text-center">${value}</td>
                   </tr>
 `;
