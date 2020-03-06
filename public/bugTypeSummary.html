@@ -1,0 +1,77 @@
+<html lang="en"><head>
+    <!-- Google Prettify -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/test1.css">
+  </head>
+  <body>
+    <div id="test">
+    <div class="row pb-4">
+        <div class="col-md-3">
+          <!-- Tabs nav -->
+          <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link-syntax mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-syntaxError-tab" data-toggle="pill" href="#v-pills-syntaxError" role="tab" aria-controls="v-pills-syntaxError" aria-selected="true">
+                <i class="fas fa-code fa-2x mr-4"></i>
+                <span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Syntax</span></a>
+
+            <a class="nav-link-semantic mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-semanticError-tab" data-toggle="pill" href="#v-pills-semanticError" role="tab" aria-controls="v-pills-semanticError" aria-selected="false">
+                <i class="fas fa-exclamation-triangle fa-2x mr-4"></i>
+                <span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Semantic</span></a>
+
+            <a class="nav-link-logical mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-logicalError-tab" data-toggle="pill" href="#v-pills-logicalError" role="tab" aria-controls="v-pills-logicalError" aria-selected="false">
+                <i class="fas fa-brain fa-2x mr-4"></i>
+                <span class="font-weight-bold large text-uppercase text-center" style="font-size: 1.5rem; ">Logical</span></a>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <!-- Tabs content -->
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-syntaxError" role="tabpanel" aria-labelledby="v-pills-syntaxError-tab">
+              <h4 class="font-italic mb-4">
+                <a id="header-syntaxError-tab" class="fileRepLink h1" style="padding-left: 3rem;" href="#v-pills-syntaxError-tab" target="">Syntax Errors</a>
+              </h4>
+              <hr>
+            </div>
+
+
+            <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-semanticError" role="tabpanel" aria-labelledby="v-pills-semanticError-tab">
+              <h4 class="font-italic mb-4">
+                <a id="header-semanticError-tab" class="fileRepLink h1" style="padding-left: 3rem;" href="#v-pills-semanticError-tab" target="">Semantic Errors</a>
+              </h4>
+              <hr>
+            </div>
+
+
+            <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-logicalError" role="tabpanel" aria-labelledby="v-pills-logicalError-tab">
+              <h4 class="font-italic mb-4">
+                <a id="header-logicalError-tab" class="fileRepLink h1" style="padding-left: 3rem;" href="#v-pills-logicalError-tab" target="">Logical Errors</a>
+              </h4>
+              <hr>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+
+      <!-- Bootstrap JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="js/bugReportJSON.js"></script>
+
+    <script src="js/genBugTypeSummary.js"></script>
+  </body>
+  </html>

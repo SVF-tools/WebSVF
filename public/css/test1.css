@@ -15,6 +15,39 @@ body{
     background: #fff;
 }
 
+.nav-pills-custom .nav-link-syntax {
+    color: #0a7c9993;
+    background: #fff;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link-syntax.active {
+    color: #0ac9f8f3;
+    background: #fff;
+}
+
+.nav-pills-custom .nav-link-semantic {
+    color: rgba(163, 93, 1, 0.561);
+    background: #fff;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link-semantic.active {
+    color: rgb(255, 159, 34);
+    background: #fff;
+}
+
+.nav-pills-custom .nav-link-logical {
+    color: rgba(2, 133, 2, 0.664);
+    background: #fff;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link-logical.active {
+    color: rgb(30, 223, 12);
+    background: #fff;
+}
+
 hr{
     border: 0;
     height: 1px;
@@ -51,11 +84,57 @@ hr{
         transform: translateY(-50%);
         opacity: 0;
     }
+    .nav-pills-custom .nav-link-syntax::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-left: 10px solid #fff;
+        border-bottom: 8px solid transparent;
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+    .nav-pills-custom .nav-link-semantic::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-left: 10px solid #fff;
+        border-bottom: 8px solid transparent;
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+    .nav-pills-custom .nav-link-logical::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-left: 10px solid #fff;
+        border-bottom: 8px solid transparent;
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        transform: translateY(-50%);
+        opacity: 0;
+    }
 }
 
-.nav-pills-custom .nav-link.active::before {
+.nav-pills-custom .nav-link-logical.active::before {
     opacity: 1;
 }
+
+.nav-pills-custom .nav-link-logical.active::before {
+    opacity: 1;
+}
+
+.nav-pills-custom .nav-link-logical.active::before {
+    opacity: 1;
+}
+
+
 
 /* Analysis Overview cards */
 .card-box {
