@@ -1,67 +1,46 @@
-# WebSVF
+# CodeMap Bug Report Plugin README
 
-***Don't make any changes in the ~/WORKSPACE directory during installation***
-
-The following installation only works in an Ubuntu 18.04 environment, so please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) if you need assistance setting up a Virtual Machine. 
-
-## Step 1. Clone Project Repository
-Open a terminal window in your Ubuntu environment and run the following commands in order (if you encounter errors mentioning permissions then please run these commands prefixed with _sudo_):
-
-Clone into the repository and direct terminal to the install file:
+## 1. Clone Repository:
 
 ```
-cd ~
-git clone https://github.com/SVF-tools/WebSVF.git
-cd ./WebSVF/
-cd ./web-svf-install/
+git clone -b bug-report-extension  https://github.com/SVF-tools/WebSVF.git
 ```
 
-## Step 2. Run Install Script
-
-Run the following command to begin installation:
+## 2. Install Dependencies:
 
 ```
-source Setup.sh
+npm install
 ```
 
-## Step 3. [Launch Required Apps and Runtimes](https://youtu.be/OR-5y5QLoYw)
+## 3. Start this extension:
 
 ```
-
+f5
 ```
 
-## Please Note
+## 4. Execute commands in the extension:
 
-- **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
+```
+ctrl+shift+p and search 'Report init' and 'Report stop', a customized icon(in the top-right) ==> Bug Report;
+```
 
-- **Installing Code-Map-Web:** Make sure the Ubuntu environment (whether its on a local or virtual machine) has access to atleast: 
-    - 4 Available Processor Cores
-    - 5GB of Usuable Memory (RAM)
+## Features
+```
+1. Report init: To initialize this extension and 'git clone -b bug-report-fe https://github.com/SVF-tools/WebSVF.git', which is a node app to generate a bug report;
+```
+```
+2. Report stop: To stop all workings related to this extension.
+```
+```
+3. Bug Report: Start the node app and show the report in an internal webview in the vscode.
+```
 
-    The installation process will require approximately 3-4 hours based the system's hardware specifications.
-    __At *different points* during the installation, *the user will be prompted to put in their password in the installation terminal window* (refer to the installation videos linked below) so please take care, else the installation will timeout and will need to be run again.__
+## Known Issues
 
-    The installation process may run into errors during runtime (operation) because of network disconnects/timeouts or something else. Please delete the **WebSVF** and **WORKSPACE** folders from your home directory (_cd ~_) and run the code in [**Step 1. Cloning Project Repository**](https://github.com/SVF-tools/WebSVF#step-1-clone-project-repository) & [**Step 2. Run Install Script**](https://github.com/SVF-tools/WebSVF#step-2-run-install-script) of this README file for installing Code-Map-Web again. The installation will check all the steps and re-install from where the error occured.
+Currently, the icon cannot be visible and invisible depends on different circumstances, so I make it visible all the time. I will try to fix it up later.
 
-    Refer to the following Installation Guide Videos if required:
-    - Setup Ubuntu environment: https://youtu.be/-NtsJYkfTbg
-    - Setup Code-Map-Web environment and install required tools: https://youtu.be/3uzP9sVxnjc
-    - Running Code-Map-Web application: https://youtu.be/OR-5y5QLoYw
+### For more information
 
-## Work-In-Progress
+* [The node app which generates bug reports, in branch bug-report-fe](https://github.com/SVF-tools/WebSVF.git)
 
-- 
-
-## Developer Notes
-
-WebSVF would not have been possible without its comprising tools and the ividual contributions of all its collaborators. 
-Links to the individual repositories for all contituent components are listed below along with their configuration in the offline-install in this repository.
-
--
-
-
-
-## Patch Notes
-
-- 5/12/19:  Sign Up to Newsletter adds emails to Test Firbase Realtime Database.
-
+**Please contact me if you have any questions!**
