@@ -3,7 +3,7 @@
 ## 1. Clone Repository:
 
 ```
-git clone -b bug-report-extension  https://github.com/SVF-tools/WebSVF.git
+git clone -b bug_report_extension  https://github.com/SVF-tools/WebSVF.git
 ```
 
 ## 2. Install Dependencies:
