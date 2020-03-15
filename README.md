@@ -37,7 +37,7 @@ ctrl+shift+p and search 'Report init' and 'Report stop', a customized icon(in th
 
 ## Known Issues
 
-No suitable method was found to make the icon appear or disappear according to the specific conditions. Therefore, when this icon cannot be used, clicking on this icon will generate a prompt， and functions are performed normally when available.
+No suitable method was found to make the icon appear or disappear according to the specific conditions. Therefore, when this icon cannot be used, clicking on this icon will generate a prompt, and functions are performed normally when available.
 I will improve it when I find a better way.
 
 ### For more information
