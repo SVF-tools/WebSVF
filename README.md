@@ -25,15 +25,18 @@ ctrl+shift+p and search 'Report init' and 'Report stop', a customized icon(in th
 ```
 
 ## Features
-```
-1. Report init: To initialize this extension and 'git clone -b bug-report-fe https://github.com/SVF-tools/WebSVF.git', which is a node app to generate a bug report;
-```
-```
-2. Report stop: To stop all workings related to this extension.
-```
-```
-3. Bug Report: Start the node app and show the report in an internal webview in the vscode.
-```
+
+### 1. Report init:
+**To initialize this extension and 'git clone -b bug-report-fe https://github.com/SVF-tools/WebSVF.git', which is a node app to generate a bug report;**
+
+
+### 2. Report stop:
+**To stop all workings related to this extension.**
+
+
+### 3. Bug Report:
+**Start the node app and show the report in an internal webview in the vscode.**
+
 
 ## Known Issues
 
