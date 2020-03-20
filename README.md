@@ -20,7 +20,9 @@ f5
 
 ## 4. Execute commands in the extension:
 
-***'Ctrl + Shift + p'*** and search ***'Report init'*** and ***'Report stop'***, a customized icon(*in the top-right*) ==> ***Bug Report***;
+***'Ctrl + Shift + p'*** and search for ***'Report init'*** and ***'Report stop'*** commands.
+Additionally there is also a customized icon(*in the top-right*) ==> ***Bug Report*** for running the Bug-Report extension.
+
 (Please refer to [Features](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#features) section for details about these commands)
 
 ## Features
