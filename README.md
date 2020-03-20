@@ -20,9 +20,9 @@ f5
 
 ## 4. Execute commands in the extension:
 
-```
-ctrl+shift+p and search 'Report init' and 'Report stop', a customized icon(in the top-right) ==> Bug Report;
-```
+
+***'Ctrl + Shift + p'*** and search ***'Report init'*** and 'Report stop', a customized icon(*in the top-right*) ==> ***Bug Report***;
+
 
 ## Features
 
