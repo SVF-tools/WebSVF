@@ -1,4 +1,5 @@
-# CodeMap Bug Report Plugin README
+# CodeMap Bug Report Plugin
+
 
 ## 1. Clone Repository:
 
@@ -17,11 +18,12 @@ npm install
 ```
 f5
 ```
+**Note:** Make sure the root directory in VSCode is the 'WebSVF' directory as cloned in [Step 1](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#1-clone-repository)
 
 ## 4. Execute commands in the extension:
 
 ***'Ctrl + Shift + p'*** and search for ***'Report init'*** and ***'Report stop'*** commands.
-Additionally there is also a customized icon(*in the top-right*) ==> ***Bug Report*** for running the Bug-Report extension.
+Additionally there is also a customized icon (*in the top-right*) ==> ***Bug Report*** for running the Bug-Report extension.
 
 (Please refer to [Features](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#features) section for details about these commands)
 
