@@ -3,6 +3,10 @@
 ```
 git clone -b bug-report-fe https://github.com/SVF-tools/WebSVF.git
 ```
+Change directory in the terminal to the cloned 'WebSVF' folder:
+
+```
+cd ./WebSVF/
 
 ## 2. Install Dependencies:
 
