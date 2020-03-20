@@ -1,9 +1,7 @@
 ## 1. Clone Repository:
 
 ```
-git clone https://github.com/SVF-tools/WebSVF.git
-
-git checkout bug-report-fe
+git clone -b bug-report-fe https://github.com/SVF-tools/WebSVF.git
 ```
 
 ## 2. Install Dependencies:
