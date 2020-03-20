@@ -43,7 +43,7 @@ function git_clone(uri){
         }
         //Send command to terminal to git clone
         terminal.sendText("git clone -b bug-report-fe "+uri); 
-        terminal.sendText("cp -f test.json "+folder+"/test.json");
+        terminal.sendText("cp -Force test.json "+folder+"/test.json");
     }catch(e){
         //Show logs when exception occured
         let log = vscode.window.createOutputChannel("bug_report/log");
