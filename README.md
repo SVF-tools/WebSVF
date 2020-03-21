@@ -7,6 +7,7 @@ Change directory in the terminal to the cloned 'WebSVF' folder:
 
 ```
 cd ./WebSVF/
+```
 
 ## 2. Install Dependencies:
 
