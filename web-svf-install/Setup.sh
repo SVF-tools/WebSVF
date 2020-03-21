@@ -58,7 +58,7 @@ cd $SHELL_NOW_FOLDER
 
 sudo curl -O -k https://srv-file6.gofile.io/download/sIywfi/files.zip
 
-unzip files.zip
+sudo unzip files.zip
 
 cd ./files
 
@@ -66,7 +66,7 @@ git clone https://github.com/spcidealacm/whole-program-llvm.git
 
 cd ../
 
-mv files/* ~/WORKSPACE/
+sudo mv files/* ~/WORKSPACE/
 
 sudo rm -R files
 
