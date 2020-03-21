@@ -56,7 +56,7 @@ sudo rm * -rf
 
 cd $SHELL_NOW_FOLDER
 
-curl -O -k https://srv-file6.gofile.io/download/sIywfi/files.zip
+sudo curl -O -k https://srv-file6.gofile.io/download/sIywfi/files.zip
 
 unzip files.zip
 
