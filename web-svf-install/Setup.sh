@@ -82,38 +82,38 @@ cd ~/WORKSPACE
 #git clone https://github.com/spcidealacm/bullet-2.81-rev2613-code-map-test.git
 
 # {
-sudo apt-get install -y wget
+#sudo apt-get install -y wget
 
-wget https://github.com/codemapweb/CodeMap/releases/download/v1.0/codemap-server.zip
+#wget https://github.com/codemapweb/CodeMap/releases/download/v1.0/codemap-server.zip
 
-unzip codemap-server.zip -d ./code-server
+#unzip codemap-server.zip -d ./code-server
 
-sudo rm codemap-server.zip
-# }
-
-# {
-#cd ~/WORKSPACE/code-map-ide-core
-#bash init.sh
-#bash build.sh
-#bash run.sh & codeMapIdeCorePID=$!
-#codeMapIdeCorePID=$((codeMapIdeCorePID + 2))
-#sleep 8s
-#echo $$
-#echo $codeMapIdeCorePID
-#kill "$codeMapIdeCorePID"
+#sudo rm codemap-server.zip
 #}
 
-# {
+ {
+cd ~/WORKSPACE/code-map-ide-core
+bash init.sh
+bash build.sh
+bash run.sh & codeMapIdeCorePID=$!
+codeMapIdeCorePID=$((codeMapIdeCorePID + 2))
+sleep 8s
+echo $$
+echo $codeMapIdeCorePID
+kill "$codeMapIdeCorePID"
+}
 
-#wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
-# Fingerprint: 6084 F3CF 814B 57C1 CF12 EFD5 15CF 4D18 AF4F 7421
+ {
 
-#sudo apt-get install clang clang-9 lldb-9 lld-9 libllvm-9-ocaml-dev libllvm9 llvm-9 llvm-9-dev llvm-9-doc llvm-9-examples llvm-9-runtime -y
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+ Fingerprint: 6084 F3CF 814B 57C1 CF12 EFD5 15CF 4D18 AF4F 7421
 
-#deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
-#deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
+sudo apt-get install clang clang-9 lldb-9 lld-9 libllvm-9-ocaml-dev libllvm9 llvm-9 llvm-9-dev llvm-9-doc llvm-9-examples llvm-9-runtime -y
 
-#}
+deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
+deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-9 main
+
+}
 
 cd ~/WORKSPACE/whole-program-llvm
 bash setup.sh
