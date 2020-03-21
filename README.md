@@ -12,7 +12,6 @@ Open a terminal window in your Ubuntu environment and run the following commands
 Clone into the repository and direct terminal to the install file:
 
 ```
-cd ~
 git clone https://github.com/SVF-tools/WebSVF.git
 cd ./WebSVF/web-svf-install/
 ```
