@@ -56,6 +56,7 @@ sudo rm * -rf
 
 cd $SHELL_NOW_FOLDER
 
+wget https://docs.google.com/uc?export=download&id=1B9SRsJNBJ5xleaCkUdWcaXHT_WeGxY-_
 unzip files.zip
 
 cd ./files
