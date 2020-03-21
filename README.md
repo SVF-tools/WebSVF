@@ -54,7 +54,11 @@ source Setup.sh
 
 ## Developer Notes
 
-WebSVF would not have been possible without its comprising tools and the ividual contributions of all its collaborators. 
+- Non-Essential code was pruned from the repository branches, to access the files please use these links: [***3d-codemap-server***](https://docs.google.com/uc?export=download&id=1SXbdeUj8KWGpz6FBztOOye2-UXBjSC3Q) , [***llvm_binary_install***](https://docs.google.com/uc?export=download&id=14wzusP0aTkkIBtH9S4TQSjiNhH9K8JZ5)
+
+## Acknowledgement
+
+WebSVF would not have been possible without its comprising tools and the individual contributions of all its collaborators. 
 Links to the individual repositories for all contituent components are listed below along with their configuration in the offline-install in this repository.
 
 -
