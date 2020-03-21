@@ -14,8 +14,7 @@ Clone into the repository and direct terminal to the install file:
 ```
 cd ~
 git clone https://github.com/SVF-tools/WebSVF.git
-cd ./WebSVF/
-cd ./web-svf-install/
+cd ./WebSVF/web-svf-install/
 ```
 
 ## Step 2. Run Install Script
