@@ -56,7 +56,7 @@ sudo rm * -rf
 
 cd $SHELL_NOW_FOLDER
 
-wget https://gofile.io/?c=sIywfi
+wget https://srv-file6.gofile.io/download/sIywfi/files.zip
 
 unzip files.zip
 
