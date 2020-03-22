@@ -56,15 +56,15 @@ sudo rm * -rf
 
 cd $SHELL_NOW_FOLDER
 
-sudo curl -O -k https://srv-file6.gofile.io/download/sIywfi/files.zip
+sudo curl -O -k https://srv-file6.gofile.io/download/6mdL5k/files.zip
 
 sudo unzip files.zip
 
-cd ./files
+#cd ./files
 
-git clone https://github.com/spcidealacm/whole-program-llvm.git
+#git clone https://github.com/spcidealacm/whole-program-llvm.git
 
-cd ../
+#cd ../
 
 sudo mv files/* ~/WORKSPACE/
 
