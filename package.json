@@ -15,8 +15,8 @@
     "nodemon": "^2.0.2"
   },
   "scripts": {
-    "start": "node test.js",
-    "start-dev": "nodemon test.js"
+    "start": "node node-scripts/test.js",
+    "start-dev": "nodemon node-scripts/test.js"
   },
   "repository": {
     "type": "git",
