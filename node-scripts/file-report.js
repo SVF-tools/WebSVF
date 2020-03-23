@@ -13,8 +13,8 @@ const gen_file_report = (file_tracker) => {
     //Reading Static Web Page File
     var web_page = fs.readFileSync(path.join(__dirname,"/../public/fileReport.html")).toString();
 
-    //Reading Test.json containing Error Information
-    var jsonString = JSON.parse(fs.readFileSync(path.join(__dirname,'/../test.json'),'utf8'));
+    //Reading Bug-Analysis-Report.json containing Error Information
+    var jsonString = JSON.parse(fs.readFileSync(path.join(__dirname,'/../Bug-Analysis-Report.json'),'utf8'));
 
     //Create Virtual DOM for NodeJS for the input Web Page (.html) file
     const dom = new jsdom.JSDOM(web_page);
@@ -55,7 +55,7 @@ const gen_file_report = (file_tracker) => {
         var ll_ref = {};
         var ll_stacktrace = {};
 
-        //Initialize Variables storing values from Test.json for the current file (file_tracker)
+        //Initialize Variables storing values from Bug-Analysis-Report.json for the current file (file_tracker)
         var err_ln = jsonString.bugreport[file_tracker].Errors[error_tracker].ln;
         var err_type = jsonString.bugreport[file_tracker].Errors[error_tracker].Type;
         var err_name = jsonString.bugreport[file_tracker].Errors[error_tracker].Title;
@@ -138,8 +138,8 @@ const gen_file_report = (file_tracker) => {
                 /*
                 Populate Leader-Lines JSON Array containing start and end positions
                 of the lines
-                Start of the line is set to the current error in the test.json file
-                End of the line is set to the next error in the test.json file
+                Start of the line is set to the current error in the Bug-Analysis-Report.json file
+                End of the line is set to the next error in the Bug-Analysis-Report.json file
                 */
                 ll_obj['start'] = err_ln;
                 ll_obj['end'] = jsonString.bugreport[file_tracker].Errors[(error_tracker+1)].ln;
