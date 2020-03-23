@@ -6,7 +6,7 @@ const path = require("path");
 
 const gen_landing_page = () => {
 
-    const jsonReport_string = fs.readFileSync(path.join(__dirname,'/../test.json'),'utf8');
+    const jsonReport_string = fs.readFileSync(path.join(__dirname,'/../Bug-Analysis-Report.json'),'utf8');
 
     const jsonReport = JSON.parse(jsonReport_string);
 
