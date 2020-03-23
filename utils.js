@@ -93,10 +93,6 @@ function open_internal_browser(uri){
         <iframe id="myiframe" class="vscode-light" src="`+uri+`" width="100%" height="1000px" frameborder="0"></iframe>
     </body>
     </html>`;
-
-    panel.webview.onDidReceiveMessage(message => {
-        console.log('插件收到的消息：', message);
-    }, undefined, undefined);
 }
 
 function bug_report_stop(){
