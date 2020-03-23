@@ -2,6 +2,8 @@
 const fs = require("fs"); //File Reader/Writer Library
 var jsdom = require("jsdom"); //JSDOM library for emulating DOM in NodeJS
 const jquery = require("jquery"); //jQuery Library for NodeJS
+const path = require("path");
+
 
 
 // file_tracker => Files Tracker
@@ -9,10 +11,10 @@ const jquery = require("jquery"); //jQuery Library for NodeJS
 const gen_file_report = (file_tracker) => {
 
     //Reading Static Web Page File
-    var web_page = fs.readFileSync("./public/fileReport.html").toString();
+    var web_page = fs.readFileSync(path.join(__dirname,"/../public/fileReport.html")).toString();
 
     //Reading Test.json containing Error Information
-    var jsonString = JSON.parse(fs.readFileSync('test.json','utf8'));
+    var jsonString = JSON.parse(fs.readFileSync(path.join(__dirname,'/../test.json'),'utf8'));
 
     //Create Virtual DOM for NodeJS for the input Web Page (.html) file
     const dom = new jsdom.JSDOM(web_page);
@@ -61,7 +63,7 @@ const gen_file_report = (file_tracker) => {
 
         //Add ShowLines Button to the HTML file
         if(i==0) {
-            codeStringSerialised += `<button class="remove-button nocode" onclick="removeLines()">Remove Lines</button><button id="show-lines-button" class="show-button nocode" onClick="showLines()">Show Lines</button><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
+            codeStringSerialised += `<button class="remove-button nocode" onclick="removeLines()">Remove Lines</button><button id="show-lines-button" class="show-button nocode" onClick="showLines()">Show Lines</button><a class="mx-4" href="http://localhost:3000/" target="_self"}><button id="show-lines-button" class="show-button nocode">Home</button></a><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
         }
         else if(err_ln==(i+1)){     //Checking if there is an error at the .c line being added to the html file
 
@@ -172,7 +174,7 @@ const gen_file_report = (file_tracker) => {
 
     /*Write changes from the Virtual DOM to the Web Page (.html)
     file to be loaded by the ExpressJS WebServer */
-    fs.writeFileSync("./public/fileReport.html", dom.serialize());
+    fs.writeFileSync(path.join(__dirname,"/../public/fileReport.html"), dom.serialize());
 } 
 
 module.exports = {
