@@ -1,8 +1,12 @@
 const vscode = require('vscode');
 const fs = require('fs');
+const request = require('request');
+const extract = require('extract-zip')
 
 let panel =  null;//webview
-const folder = "WebSVF";
+const folder = "WebSVF-bug-report-fe";
+const json_file = "/WebSVF-bug-report-fe/Bug-Analysis-Report.json";
+const node_app_folder = "node-scripts/"
 
 function create_terminal(_name){
     var flag = true;//To determine a terminal if it has the same '_name'.
@@ -24,32 +28,47 @@ function create_terminal(_name){
 }
 
 function git_clone(uri){
-    //The name of the folder which is cloned from the remote git.
-    let folder_name = uri.split(".git")[0];
-    folder_name = folder_name.substring(folder_name.lastIndexOf("/")+1);
-    
     //Get or Create a terminal
     let terminal = this.create_terminal("bug_report");
     //Show commands in the terminal
     terminal.show(true);
 
     //Check if the folder has already existed
-    let folder_path = vscode.workspace.rootPath+"/"+folder_name;
+    let folder_path = vscode.workspace.rootPath+"/"+folder;
     
     try{
         if(fs.existsSync(folder_path)){
             //If the folder exists, then remove it.
             terminal.sendText("rm -rf "+folder);
         }
-        //Send command to terminal to git clone
-        terminal.sendText("git clone -b bug-report-fe "+uri); 
-        terminal.sendText("cp -Force test.json "+folder+"/test.json");
+
+        downloadFile(uri,folder_path+".zip",function(){
+            extractZip(vscode.workspace.rootPath,terminal);
+        });
     }catch(e){
         //Show logs when exception occured
         let log = vscode.window.createOutputChannel("bug_report/log");
         log.show();
         log.appendLine("Git Clone failed! Please try again.");
     }
+}
+
+function downloadFile(uri,destination,callback){
+    var stream = fs.createWriteStream(destination);
+    request(uri).pipe(stream).on('close', callback);
+}
+
+function extractZip(folder_path,terminal){
+    extract(folder_path+"/"+folder+".zip", {dir: folder_path}, function (err) {
+        // extraction is complete. make sure to handle the err
+        if(err){
+            console.log(err.message);
+            //terminal.sendText("rm -rf "+folder);
+        }else{
+            terminal.sendText("rm -r "+folder+".zip");
+            //terminal.sendText("cp -f Bug-Analysis-Report.json "+json_file);
+        }
+    });
 }
 
 function bug_report(){
@@ -60,7 +79,7 @@ function bug_report(){
     //Show commands in the terminal
     terminal.show(true);
     //Start the node app
-    terminal.sendText("node test.js");
+    terminal.sendText("node "+node_app_folder+"test.js");
 }
 
 function open_internal_browser(uri){
@@ -108,6 +127,8 @@ function bug_report_stop(){
 module.exports = {
     create_terminal,
     git_clone,
+    downloadFile,
+    extractZip,
     bug_report,
     open_internal_browser,
     bug_report_stop
