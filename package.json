@@ -3,6 +3,12 @@
 	"displayName": "code-map",
 	"description": "3d web-svf debug tool ",
 	"version": "0.0.1",
+	"publisher": "tianyangguan",
+	"author": {
+		"name": "Tianyang Guan",
+		"email": "spcidealacm@gmail.com",
+		"url": "https://github.com/spcidealacm"
+	},
 	"engines": {
 		"vscode": "^1.43.0"
 	},
