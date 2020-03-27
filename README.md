@@ -18,7 +18,7 @@ Launch Terminal/Command-Prompt on your System:
 
 ```Image - GIF```
 
-Clone into the repository:
+Clone into the repository by entering the following command in the Terminal/Command-Prompt:
 
 ```
 git clone https://github.com/SVF-tools/WebSVF.git
