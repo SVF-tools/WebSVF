@@ -188,7 +188,7 @@ const gen_bugTypeTabs = (type_bug) => {
                                                                 
                                 <div class="list-card-dark px-2">
                                     <h6 class="mb-1">
-                                        <a class="fileRepLink1" style="color:black;font-weight: bolder;font-size: 24px;">${fileErrors[j].Title}</a>
+                                        <a href="#${fileErrors[j].ln}" class="fileRepLink1" style="color:black;font-weight: bolder;font-size: 24px;">${fileErrors[j].Title}</a>
                                     </h6>
                                     <p class="mb-3" style="color:black;font-weight:500;">${fileErrors[j].Description}</p>
                                     <p class="mb-3 time"><span class="bg-semi-light rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: ${fileErrors[j].ln}</span>${$.isEmptyObject(fileErrors[j].CrossOrigin)? `` : `<button id="co-${fileName.replace('.','')}-errIndex-${j}" class="bg-semi-dark rounded-sm mb-1 px-2 py-1 float-right"><a style="color:white;font-weight: bold;font-size: 14px;">Cross-Origin</a></button>`} </p>
@@ -217,7 +217,7 @@ const gen_bugTypeTabs = (type_bug) => {
                                                                 
                                 <div class="list-card-dark px-2">
                                     <h6 class="mb-1">
-                                        <a class="fileRepLink1" style="color:black;font-weight: bolder;font-size: 24px;">${fileErrors[j].Title}</a>
+                                        <a href="#${fileErrors[j].ln}" class="fileRepLink1" style="color:black;font-weight: bolder;font-size: 24px;">${fileErrors[j].Title}</a>
                                     </h6>
                                     <p class="mb-3" style="color:black;font-weight:500;">${fileErrors[j].Description}</p>
                                     <p class="mb-3 time"><span class="bg-semi-light rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: ${fileErrors[j].ln}</span> ${$.isEmptyObject(fileErrors[j].CrossOrigin)? `` : `<button id="co-${fileName.replace('.','')}-errIndex-${j}" class="bg-semi-dark rounded-sm mb-1 px-2 py-1 float-right"><a style="color:white;font-weight: bold;font-size: 14px;">Cross-Origin</a></button>`}</p>
@@ -246,7 +246,7 @@ const gen_bugTypeTabs = (type_bug) => {
                                                                 
                                 <div class="list-card-dark px-2">
                                     <h6 class="mb-1">
-                                        <a class="fileRepLink1" style="color:black;font-weight: bolder;font-size: 24px;">${fileErrors[j].Title}</a>
+                                        <a href="#${fileErrors[j].ln}" class="fileRepLink1" style="color:black;font-weight: bolder;font-size: 24px;">${fileErrors[j].Title}</a>
                                     </h6>
                                     <p class="mb-3" style="color:black;font-weight:500;">${fileErrors[j].Description}</p>
                                     <p class="mb-3 time"><span class="bg-semi-light text-dark rounded-sm border border-dark pl-2 pb-1 pt-1 pr-2" style="color:black;font-weight:500;">Line No: ${fileErrors[j].ln}</span> ${$.isEmptyObject(fileErrors[j].CrossOrigin)? `` : `<button id="co-${fileName.replace('.','')}-errIndex-${j}" class="bg-semi-dark rounded-sm mb-1 px-2 py-1 float-right"><a style="color:white;font-weight: bold;font-size: 14px;">Cross-Origin</a></button>`}</p>
