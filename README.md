@@ -17,18 +17,22 @@ Clone into the repository:
 git clone https://github.com/SVF-tools/WebSVF.git
 ```
 
-## Step 3. Run Install Script
+## Step 3. Install *Bug-Report-FE* VSCode Extension
 
 
-## Step 4. Launch Web-SVF
+## Step 4. Open Project Folder in VSCode
 
-```
+Open the Project folder containing code files and the ***Bug-Report-Analysis.json*** from the *Bug Analysis* Tool.
 
-```
+```Image - GIF```
+
+## Step 5. View the Bug Analysis using *Bug-Report-FE* VSCode Extension
+
+```Image - GIF```
 
 ## Known Issues
 
-- **Component non compatible with OS:** If the component of Web-SVF is not compatible with your OS, please note that certain legacy components were developed specifically for ***Ubuntu 18.04***. If you run into such issues please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) if you need assistance setting up a Virtual Machine. 
+- **Component not compatible with OS:** If the component of Web-SVF is not compatible with your OS, please note that certain legacy components were developed specifically for ***Ubuntu 18.04***. If you run into such issues please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) if you need assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
@@ -39,7 +43,7 @@ git clone https://github.com/SVF-tools/WebSVF.git
 ## Developer Notes
 
 ***For Development instructions regarding any of the components comprising Web-SVF please refer to the respective branches:***
-***(Setup Instructions in each branch assume you have followed **[Step 1. Setup Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide below)***
+***(Setup Instructions in each branch assume you have followed **[Step 1. Setup Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide)***
 
 - **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe) :**
 
