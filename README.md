@@ -2,16 +2,16 @@
 
 ***DEVS: Please refer to the [Developer Notes](https://github.com/SVF-tools/WebSVF/tree/master#developer-notes) for latest updates.***
 
-***For Development instructions regarding any of the components comprising Web-SVF please refer to the repective branches:***
+***For Development instructions regarding any of the components comprising Web-SVF please refer to the respective branches:***
 ***(Setup Instructions in each branch assume you have followed **[Step 1. Setup Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide below)***
 
-- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe):**
+- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe) :**
 
 NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
 
-- **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension):**
+- **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension) :**
 
-This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe)**. It is deployed through the installation of the *bug-report-fe.vsix* on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server]()* deployed online. The *bug-report-fe.vsix* can be found in the [master brach].
+This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe)**. It is deployed through the installation of the ***bug-report-fe.vsix*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online. The ***bug-report-fe.vsix*** file can be found in the [master brach].
 
 - **[code_map_extensions](https://github.com/SVF-tools/WebSVF/tree/code_map_extension)**
 
@@ -32,7 +32,7 @@ git clone https://github.com/SVF-tools/WebSVF.git
 ## Step 3. Run Install Script
 
 
-## Step 4. [Launch Required Apps and Runtimes](https://youtu.be/OR-5y5QLoYw)
+## Step 4. Launch Web-SVF
 
 ```
 
