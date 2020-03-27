@@ -2,18 +2,6 @@
 
 ***DEVS: Please refer to the [Developer Notes](https://github.com/SVF-tools/WebSVF/tree/master#developer-notes) for latest updates.***
 
-***For Development instructions regarding any of the components comprising Web-SVF please refer to the respective branches:***
-***(Setup Instructions in each branch assume you have followed **[Step 1. Setup Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide below)***
-
-- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe) :**
-
-NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
-
-- **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension) :**
-
-This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe)**. It is deployed through the installation of the ***bug-report-fe.vsix*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online. The ***bug-report-fe.vsix*** file can be found in the [master brach].
-
-- **[code_map_extensions](https://github.com/SVF-tools/WebSVF/tree/code_map_extension)**
 
 ## Step 1. Setup Requisite Software
 
@@ -50,20 +38,26 @@ git clone https://github.com/SVF-tools/WebSVF.git
 
 ## Developer Notes
 
-**Non-Essential code was pruned from the repository branches, to access the files please use these links:**
+***For Development instructions regarding any of the components comprising Web-SVF please refer to the respective branches:***
+***(Setup Instructions in each branch assume you have followed **[Step 1. Setup Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide below)***
 
-- [27/03/2020]
-[***master***](https://docs.google.com/uc?export=download&id=1iAoCApwVEGajNFXaUmLMclrSs5AjnrLE)
+- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe) :**
 
-- [21/03/2020]
-Non-Essential code was pruned from the repository branches, to access the files please use these links: [***3d-codemap-server***](https://docs.google.com/uc?export=download&id=1SXbdeUj8KWGpz6FBztOOye2-UXBjSC3Q) , [***llvm_binary_install***](https://docs.google.com/uc?export=download&id=14wzusP0aTkkIBtH9S4TQSjiNhH9K8JZ5)
+NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
+
+- **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension) :**
+
+This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe)**. It is deployed through the installation of the ***bug-report-fe.vsix*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online. The ***bug-report-fe.vsix*** file can be found in the [master brach].
+
+- **[code_map_extensions](https://github.com/SVF-tools/WebSVF/tree/code_map_extension)**
 
 ## Acknowledgement
 
 WebSVF would not have been possible without its comprising tools and the individual contributions of all its collaborators. 
 Links to the individual repositories for all contituent components are listed below along with their configuration in the offline-install in this repository.
 
-- **[SVF](https://github.com/SVF-tools/SVF)**
+- **[SVF](https://github.com/SVF-tools/SVF) :**
+
 SVF is a static tool that enables scalable and precise interprocedural dependence analysis for C and C++ programs. SVF allows value-flow construction and pointer analysis to be performed iteratively, thereby providing increasingly improved precision for both.
 
 
