@@ -11,6 +11,12 @@
     <link rel="stylesheet" type="text/css" href="css/test1.css">
   </head>
   <body>
+    <div class="invisible">
+      <button>
+        <a id="fileclick" href="./fileReport.html" target="_self">File Report</a>
+      </button>
+    </div>
+
     <a class="mx-4" href="http://localhost:3000/" target="_self"}><button id="show-lines-button" class="show-button nocode">Home</button></a>
     <div id="test">
     <div class="row pb-4">
@@ -81,6 +87,35 @@
     <script>
       var socket = io();
       socket.emit('bugSummary');
+
+      $('.fileRepLink').click(function(event){
+        event.preventDefault(); // prevent page reloading
+
+          //console.log(link.id);
+
+          socket.emit("file-clicked", $(this).attr('id'));
+          //console.log($(this).attr('id'));
+
+          document.getElementById("fileclick").click();
+      });
+
+      $('.fileRepLink1').click(function(event){
+        event.preventDefault();
+
+        var href1 = $(this).attr("href");
+
+        var href2 = $('#fileclick').attr("href");
+
+        $('#fileclick').attr("href",href2+href1);
+
+        //console.log($(this).closest('.container').prev().prev().attr('id'));
+        socket.emit("file-clicked", $(this).closest('.container').prev().prev().find('.fileRepLink').attr('id'));
+
+        document.getElementById("fileclick").click();
+
+        $('#fileclick').attr("href",href2);
+      });
+
     </script>
 
   </body>

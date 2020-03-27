@@ -75,11 +75,11 @@ const make_pill = (index, name, index_last) => {
     var name_noDot = name.replace('.','');
 
     if (index == 0)
-    output = `${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" style="padding-left: 3rem;">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(5)}`;
+    output = `${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" href="#" style="padding-left: 3rem;">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(5)}`;
     else if(!(index <index_last))
-    output = `${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" style="padding-left: 3rem;">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(9)}`;
+    output = `${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" href="#" style="padding-left: 3rem;">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(9)}`;
     else
-    output = `${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" style="padding-left: 3rem;">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(4)}`;
+    output = `${'\n'.repeat(1)}${'\t'.repeat(7)}<h4 class="font-italic mb-4"><a id="${index}*!*${name}" class="fileRepLink h1" href="#" style="padding-left: 3rem;">${name}</a></h4><hr>${'\n'.repeat(1)}${'\t'.repeat(7)}<div id="errors-${name_noDot}" class="container">${'\n'.repeat(1)}${'\t'.repeat(8)}<div class="row">${'\n'.repeat(1)}${'\t'.repeat(8)}</div>${'\n'.repeat(1)}${'\t'.repeat(5)}${'\n'.repeat(2)}${'\t'.repeat(4)}`;
 
     console.log(output);
     return output;
