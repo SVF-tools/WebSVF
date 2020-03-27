@@ -19,6 +19,10 @@ http.listen(port, () => console.log(`Example app listening on port ${port}!`));
 io.on('connection', (socket)  => {
     console.log( "a user has connected!" );
 
+    socket.on( 'bugSummary', () => {
+        console.log('Test');
+    });
+
     socket.on( 'disconnect', () => {
         console.log( 'user disconnected' );
     });
