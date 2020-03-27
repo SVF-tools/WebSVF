@@ -51,7 +51,7 @@ View the Bug Analysis for the Project using '*Bug-Report-FE*' VSCode Extension
 ## Developer Notes
 
 ***For Development instructions regarding any of the components comprising Web-SVF please refer to the respective branches:***
-***(Setup Instructions in each branch assume you have followed **[Step 1. Setup Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide)***
+***(Setup Instructions in each branch assume you have followed **[Step 1. Install Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide)***
 
 - **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe) :**
 
