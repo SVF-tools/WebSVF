@@ -1,15 +1,14 @@
 const vscode = require('vscode');
 const fs = require('fs');
-const utils = require('./utils');
+const utils = require('./utils'); //utils
+var constants = require("./constants"); //Constants
 /**
  * @param {vscode.ExtensionContext} context
  */
 module.exports = function(context) {
     
     context.subscriptions.push(vscode.commands.registerCommand('extension.bugreport', function () {
-        let folder = "/.bug-report/WebSVF-bug-report-fe/";
-        let file_path = vscode.workspace.rootPath+folder+"Bug-Analysis-Report.json";//  workspace/bug-report-fe/WebSVF-bug-report-fe/Bug-Analysis-Report.json
-        console.log(file_path);
+        let file_path = constants.workspace + '/'+constants.node_app + constants.node_branch + constants.workspace_json; //workspace/.bug-report/WebSVF-bug-report-fe/Bug-Analysis-Report.json
         if(fs.existsSync(file_path)){
             return new Promise(function (resolve, reject) {                
                 utils.bug_report();//Send command via terminal to start the node app.
