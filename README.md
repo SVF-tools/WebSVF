@@ -22,6 +22,7 @@ git clone https://github.com/SVF-tools/WebSVF.git
 
 ## Step 3. Install '*Bug-Report-FE*' VSCode Extension
 
+```Image - GIF```
 
 ## Step 4. Open Project Folder in VSCode
 
