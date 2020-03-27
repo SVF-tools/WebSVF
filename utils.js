@@ -4,8 +4,8 @@ const request = require('request');
 const extract = require('extract-zip')
 
 let panel =  null;//webview
-const folder = "WebSVF-bug-report-fe";
-const json_file = "/WebSVF-bug-report-fe/Bug-Analysis-Report.json";
+const folder = ".bug-report";
+const json_file = "/bug-report/Bug-Analysis-Report.json";
 const node_app_folder = "node-scripts/"
 
 function create_terminal(_name){
@@ -59,7 +59,7 @@ function downloadFile(uri,destination,callback){
 }
 
 function extractZip(folder_path,terminal){
-    extract(folder_path+"/"+folder+".zip", {dir: folder_path}, function (err) {
+    extract(folder_path+"/"+folder+".zip", {dir: folder_path+"/"+folder}, function (err) {
         // extraction is complete. make sure to handle the err
         if(err){
             console.log(err.message);
@@ -75,11 +75,11 @@ function bug_report(){
     //Get or Create a terminal
     let terminal = this.create_terminal("bug_report");
     //cd to the folder
-    terminal.sendText("cd "+folder);
+    terminal.sendText("cd "+folder+"/WebSVF-bug-report-fe/");
     //Show commands in the terminal
     terminal.show(true);
     //Start the node app
-    terminal.sendText("node "+node_app_folder+"test.js");
+    terminal.sendText("npm run start");
 }
 
 function open_internal_browser(uri){

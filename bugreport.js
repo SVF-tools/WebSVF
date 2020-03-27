@@ -7,7 +7,7 @@ const utils = require('./utils');
 module.exports = function(context) {
     
     context.subscriptions.push(vscode.commands.registerCommand('extension.bugreport', function () {
-        let folder = "/WebSVF-bug-report-fe/";
+        let folder = "/.bug-report/WebSVF-bug-report-fe/";
         let file_path = vscode.workspace.rootPath+folder+"Bug-Analysis-Report.json";//  workspace/bug-report-fe/WebSVF-bug-report-fe/Bug-Analysis-Report.json
         console.log(file_path);
         if(fs.existsSync(file_path)){
