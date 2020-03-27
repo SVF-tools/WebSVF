@@ -14,6 +14,10 @@
 
 ## Step 2. Clone Project Repository
 
+Launch Terminal/Command-Prompt on your System:
+
+```Image - GIF```
+
 Clone into the repository:
 
 ```
