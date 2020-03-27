@@ -1,30 +1,42 @@
-# WebSVF
+# Web-SVF
 
 ***DEVS: Please refer to the [Developer Notes](https://github.com/SVF-tools/WebSVF/tree/master#developer-notes) for latest updates.***
 
-***Don't make any changes in the ~/WORKSPACE directory during installation***
+***For Development instructions regarding any of the components comprising Web-SVF please refer to the repective branches:***
+***(Setup Instructions in each branch assume you have followed [## Step 1. Setup Requisite Software]() in this guide below)***
 
-The following installation only works in an Ubuntu 18.04 environment, so please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) if you need assistance setting up a Virtual Machine. 
+- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe)**
 
-## Step 1. Clone Project Repository
-Open a terminal window in your Ubuntu environment and run the following commands in order (if you encounter errors mentioning permissions then please run these commands prefixed with _sudo_):
+- **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension)**
 
-Clone into the repository and direct terminal to the install file:
+- **[code_map_extensions](https://github.com/SVF-tools/WebSVF/tree/code_map_extension)**
+
+## Step 1. Setup Requisite Software
+
+### Windows
+
+### Ubuntu
+
+## Step 2. Clone Project Repository
+
+Clone into the repository:
 
 ```
 git clone https://github.com/SVF-tools/WebSVF.git
 ```
 
-## Step 2. Run Install Script
+## Step 3. Run Install Script
 
 
-## Step 3. [Launch Required Apps and Runtimes](https://youtu.be/OR-5y5QLoYw)
+## Step 4. [Launch Required Apps and Runtimes](https://youtu.be/OR-5y5QLoYw)
 
 ```
 
 ```
 
 ## Known Issues
+
+- **Component non compatible with OS:** If the component of Web-SVF is not compatible with your OS, please note that certain legacy components were developed specifically for ***Ubuntu 18.04***. If you run into such issues please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) if you need assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
@@ -33,6 +45,8 @@ git clone https://github.com/SVF-tools/WebSVF.git
 - 
 
 ## Developer Notes
+
+**Non-Essential code was pruned from the repository branches, to access the files please use these links:**
 
 - [27/03/2020]
 [***master***](https://docs.google.com/uc?export=download&id=1iAoCApwVEGajNFXaUmLMclrSs5AjnrLE)
@@ -48,8 +62,6 @@ Links to the individual repositories for all contituent components are listed be
 -
 
 
-
 ## Patch Notes
 
-- 5/12/19:  Sign Up to Newsletter adds emails to Test Firbase Realtime Database.
-
+Please find the CHANGELOG **[here]()**
