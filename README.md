@@ -42,7 +42,7 @@ View the Bug Analysis for the Project using '*Bug-Report-FE*' VSCode Extension
 
 ## Known Issues
 
-- **Component not compatible with OS:** If the component of Web-SVF is not compatible with your OS, please note that certain legacy components were developed specifically for ***Ubuntu 18.04***. If you run into such issues please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) if you need assistance setting up a Virtual Machine. 
+- **Component not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 18.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
