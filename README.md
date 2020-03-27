@@ -13,16 +13,10 @@ Clone into the repository and direct terminal to the install file:
 
 ```
 git clone https://github.com/SVF-tools/WebSVF.git
-cd ./WebSVF/web-svf-install/
 ```
 
 ## Step 2. Run Install Script
 
-Run the following command to begin installation:
-
-```
-source Setup.sh
-```
 
 ## Step 3. [Launch Required Apps and Runtimes](https://youtu.be/OR-5y5QLoYw)
 
@@ -30,29 +24,18 @@ source Setup.sh
 
 ```
 
-## Please Note
+## Known Issues
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
-
-- **Installing Code-Map-Web:** Make sure the Ubuntu environment (whether its on a local or virtual machine) has access to atleast: 
-    - 4 Available Processor Cores
-    - 5GB of Usuable Memory (RAM)
-
-    The installation process will require approximately 3-4 hours based the system's hardware specifications.
-    __At *different points* during the installation, *the user will be prompted to put in their password in the installation terminal window* (refer to the installation videos linked below) so please take care, else the installation will timeout and will need to be run again.__
-
-    The installation process may run into errors during runtime (operation) because of network disconnects/timeouts or something else. Please delete the **WebSVF** and **WORKSPACE** folders from your home directory **('cd ~')** and run the code in [**Step 1. Cloning Project Repository**](https://github.com/SVF-tools/WebSVF#step-1-clone-project-repository) & [**Step 2. Run Install Script**](https://github.com/SVF-tools/WebSVF#step-2-run-install-script) of this README file for installing Code-Map-Web again. The installation will check all the steps and re-install from where the error occured.
-
-    Refer to the following Installation Guide Videos if required:
-    - Setup Ubuntu environment: https://youtu.be/-NtsJYkfTbg
-    - Setup Code-Map-Web environment and install required tools: https://youtu.be/3uzP9sVxnjc
-    - Running Code-Map-Web application: https://youtu.be/OR-5y5QLoYw
 
 ## Work-In-Progress
 
 - 
 
 ## Developer Notes
+
+- [27/03/2020]
+[***master***](https://docs.google.com/uc?export=download&id=1iAoCApwVEGajNFXaUmLMclrSs5AjnrLE)
 
 - [21/03/2020]
 Non-Essential code was pruned from the repository branches, to access the files please use these links: [***3d-codemap-server***](https://docs.google.com/uc?export=download&id=1SXbdeUj8KWGpz6FBztOOye2-UXBjSC3Q) , [***llvm_binary_install***](https://docs.google.com/uc?export=download&id=14wzusP0aTkkIBtH9S4TQSjiNhH9K8JZ5)
