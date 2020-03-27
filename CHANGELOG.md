@@ -12,7 +12,7 @@ Non-Essential code was pruned from the repository branches, to access the files 
 
 ## Patch Notes
 
-- 5/12/19:  Sign Up to Newsletter adds emails to Test Firbase Realtime Database.
+- 5/12/19:  Sign Up to Newsletter adds emails to Test Firbase Realtime Database in Web-SVF Github Page.
 
 ## [Unreleased]
 
