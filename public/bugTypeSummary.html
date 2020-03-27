@@ -74,5 +74,14 @@
     <script src="js/bugReportJSON.js"></script>
 
     <script src="js/genBugTypeSummary.js"></script>
+
+    <!-- Socket JS -->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.emit('bugSummary');
+    </script>
+
   </body>
   </html>
