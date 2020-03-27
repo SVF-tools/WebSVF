@@ -36,21 +36,21 @@ View the Bug Analysis for the Project using '*Bug-Report-FE*' VSCode Extension
 
 ```Image - GIF```
 
-## Software Architecture
+# Software Architecture
 
 ```Image - GIF```
 
-## Known Issues
+# Known Issues
 
 - **Component not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 18.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
-## Work-In-Progress
+# Work-In-Progress
 
 - 
 
-## Developer Notes
+# Developer Notes
 
 ***For Development instructions regarding any of the components comprising Web-SVF please refer to the respective branches:***
 ***(Setup Instructions in each branch assume you have followed **[Step 1. Install Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide)***
@@ -65,7 +65,11 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 - **[code_map_extensions](https://github.com/SVF-tools/WebSVF/tree/code_map_extension)**
 
-## Acknowledgement
+## Patch Notes
+
+Please find the CHANGELOG **[here](https://github.com/SVF-tools/WebSVF/blob/master/CHANGELOG.md)**
+
+# Acknowledgement
 
 WebSVF would not have been possible without its comprising tools and the individual contributions of all its collaborators. 
 Links to the individual repositories for all contituent components are listed below along with their configuration in the offline-install in this repository.
@@ -73,8 +77,3 @@ Links to the individual repositories for all contituent components are listed be
 - **[SVF](https://github.com/SVF-tools/SVF) :**
 
 SVF is a static tool that enables scalable and precise interprocedural dependence analysis for C and C++ programs. SVF allows value-flow construction and pointer analysis to be performed iteratively, thereby providing increasingly improved precision for both.
-
-
-## Patch Notes
-
-Please find the CHANGELOG **[here](https://github.com/SVF-tools/WebSVF/blob/master/CHANGELOG.md)**
