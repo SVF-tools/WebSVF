@@ -3,11 +3,13 @@
 ***DEVS: Please refer to the [Developer Notes](https://github.com/SVF-tools/WebSVF/tree/master#developer-notes) for latest updates.***
 
 
-## Step 1. Setup Requisite Software
+## Step 1. Install Requisite Software
 
-### Windows
+- **[NodeJS](https://nodejs.org/en/download/)**
 
-### Ubuntu
+
+- **[VSCode](https://code.visualstudio.com/download)**
+
 
 ## Step 2. Clone Project Repository
 
