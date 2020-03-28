@@ -12,8 +12,6 @@
   </head>
 
   <body>
-    <!---->
-
     <div id="test">
       <div class="invisible">
         <button>
@@ -435,20 +433,14 @@
     <script src="./js/genLandingPageFiles.js"></script>
 
     <!-- Socket JS -->
-
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
 
-      //var link = document.getElementById("");
-
       $('#files-analysed .fileRepLink').click(function(event){
         event.preventDefault(); // prevent page reloading
 
-          //console.log(link.id);
-
           socket.emit("file-clicked", $(this).attr('id'));
-          //console.log($(this).attr('id'));
 
           document.getElementById("fileclick").click();
       });
@@ -462,29 +454,14 @@
 
         $('#fileclick').attr("href",href2+href1);
 
-        //console.log($(this).closest('.tabBody').children().find('.fileRepLink').attr('id'));
         socket.emit("file-clicked", $(this).closest('.tabBody').children().find('.fileRepLink').attr('id'));
 
         document.getElementById("fileclick").click();
 
         $('#fileclick').attr("href",href2);
       });
-      /*
-      const links = document.querySelectorAll("#files-analysed .fileRepLink");
-
-      for (const link of links) {
-        link.addEventListener("click", event => {
-          event.preventDefault(); // prevent page reloading
-
-          //console.log(link.id);
-
-          socket.emit("file-clicked", link.id);
-
-          document.getElementById("fileclick").click();
-        });
-      }
-      */
     </script>   
   
 
-</body></html>
+</body>
+</html>

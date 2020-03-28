@@ -1,60 +1,3 @@
-/*
-var syntax_cnt = 0;
-var semantic_cnt = 0;
-var logical_cnt = 0;
-
-var syntax_map = new Map();
-var semantic_map = new Map();
-var logical_map = new Map();
-
-const initialiseMaps = () => {
-    for (var i = 0; i < json_length; ++i) {
-      const ers_length = Object.keys(bugreportjson.bugreport[i].Errors)
-        .length;
- 
-      //console.log(ers_length);
- 
-      for (var j = 0; j < ers_length; ++j) {
-        var er_item = bugreportjson.bugreport[i].Errors[j];
-        if (er_item.Type == "Syntax") {
-          if (syntax_map.has(er_item.Title)) {
-            syntax_map.set(
-              er_item.Title,
-              syntax_map.get(er_item.Title) + 1
-            );
-            ++syntax_cnt;
-          } else {
-            syntax_map.set(er_item.Title, 1);
-            ++syntax_cnt;
-          }
-        } else if (er_item.Type == "Semantic") {
-          if (semantic_map.has(er_item.Title)) {
-            semantic_map.set(
-              er_item.Title,
-              semantic_map.get(er_item.Title) + 1
-            );
-            ++semantic_cnt;
-          } else {
-            semantic_map.set(er_item.Title, 1);
-            ++semantic_cnt;
-          }
-        } else if (er_item.Type == "Logical") {
-          if (logical_map.has(er_item.Title)) {
-            logical_map.set(
-              er_item.Title,
-              logical_map.get(er_item.Title) + 1
-            );
-            ++logical_cnt;
-          } else {
-            logical_map.set(er_item.Title, 1);
-            ++logical_cnt;
-          }
-        }
-      }
-    }
-};
-*/ 
-
 const generateTabs = () => {
 
     for(let ctr = 0; ctr<3; ++ctr){
@@ -127,15 +70,6 @@ const add_clickListener = (button_id, target_id) => {
 
 const make_co_tab = (err_obj, indx) => {
     var output;
-    //var name_noDot = name.replace('.','');
-    /*
-    if(index == 0)
-    output = "";
-    else if(!(index <index_last))
-    output = "";
-    else
-    output = "";
-    */
     const syn_co = 
 `                    <div id="accordion-${indx}" role="tablist">
                         <div class="card">
@@ -164,17 +98,12 @@ const gen_bugTypeTabs = (type_bug) => {
     for(var i = 0; i<json_length; ++i){
         
         var fileName = bugreportjson.bugreport[i].FileName;
-        //var filePath = bugreportjson.bugreport[i].FilePath;
         var fileErrors = bugreportjson.bugreport[i].Errors;
         
-        //console.log($(`#test #v-pills-tabContent #v-pills-${type_bug}Error`).html());
-
-        //console.log(`#v-pills-${type_bug}Error`);
         //Initialize Bug Type Tabs
         $(`#test #v-pills-tabContent #v-pills-${type_bug}Error`).append(`${make_pill(i,fileName,json_length)}`);
 
         /* Insert Errors into Landing Page's Display Tabs with correct formatting */
-
         const errors_length = Object.keys(fileErrors).length;
         
         for(var j = 0; j<errors_length; ++j){
@@ -267,16 +196,12 @@ const gen_bugTypeTabs = (type_bug) => {
 
             }
         }
+
         //Fix HTML Indentation
         $(`#files-analysed #v-pills-tabContent #errors-${fileName.replace('.','')} .row`).append(`${'\n'.repeat(1)}${'\t'.repeat(8)}`);
         
     }
 
 };
-
-
-
-//initialiseMaps();
-
 
 generateTabs();

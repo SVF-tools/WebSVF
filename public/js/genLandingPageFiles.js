@@ -55,15 +55,6 @@ const add_clickListener = (button_id, target_id) => {
 
 const make_co_tab = (err_obj, indx) => {
     var output;
-    //var name_noDot = name.replace('.','');
-    /*
-    if(index == 0)
-    output = "";
-    else if(!(index <index_last))
-    output = "";
-    else
-    output = "";
-    */
     const syn_co = 
 `                    <div id="accordion-${indx}" role="tablist">
                         <div class="card">
@@ -109,7 +100,6 @@ const gen_filesHTML = () => {
     for(var i = 0; i<json_length; ++i){
         
         var fileName = bugreportjson.bugreport[i].FileName;
-        //var filePath = bugreportjson.bugreport[i].FilePath;
         var fileErrors = bugreportjson.bugreport[i].Errors;
         
         //Initialize Landing Page's Display Tabs
@@ -118,7 +108,6 @@ const gen_filesHTML = () => {
         $('#files-analysed #v-pills-tabContent').append(`${make_pill(i,fileName,json_length)}`);
 
         /* Insert Errors into Landing Page's Display Tabs with correct formatting */
-
         const errors_length = Object.keys(fileErrors).length;
         
         for(var j = 0; j<errors_length; ++j){
@@ -211,6 +200,7 @@ const gen_filesHTML = () => {
 
             }
         }
+        
         //Fix HTML Indentation
         $(`#files-analysed #v-pills-tabContent #errors-${fileName.replace('.','')} .row`).append(`${'\n'.repeat(1)}${'\t'.repeat(8)}`);
         

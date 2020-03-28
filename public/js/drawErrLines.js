@@ -2,8 +2,6 @@ function add_errLines(err_index){
     const stack_arr = bugreportjson.bugreport[file_id].Errors[err_index].StackTrace;
     var st_lines = [];
     var line_clr;
-    
-           
 
     if(!$.isEmptyObject(stack_arr)){
        const st_length = Object.keys(stack_arr).length;
