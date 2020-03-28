@@ -178,8 +178,5 @@ const gen_file_report = (file_tracker) => {
 } 
 
 module.exports = {
-    generate: gen_file_report,
-    bar: function () {
-      // whatever
-    }
+    generate: gen_file_report
   };

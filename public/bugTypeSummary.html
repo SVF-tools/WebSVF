@@ -82,7 +82,6 @@
     <script src="js/genBugTypeSummary.js"></script>
 
     <!-- Socket JS -->
-
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
@@ -91,10 +90,7 @@
       $('.fileRepLink').click(function(event){
         event.preventDefault(); // prevent page reloading
 
-          //console.log(link.id);
-
           socket.emit("file-clicked", $(this).attr('id'));
-          //console.log($(this).attr('id'));
 
           document.getElementById("fileclick").click();
       });
@@ -108,7 +104,6 @@
 
         $('#fileclick').attr("href",href2+href1);
 
-        //console.log($(this).closest('.container').prev().prev().attr('id'));
         socket.emit("file-clicked", $(this).closest('.container').prev().prev().find('.fileRepLink').attr('id'));
 
         document.getElementById("fileclick").click();

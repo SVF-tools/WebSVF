@@ -1,5 +1,3 @@
- //console.log(json_length);
-
  var syntax_cnt = 0;
  var semantic_cnt = 0;
  var logical_cnt = 0;
@@ -13,8 +11,6 @@
    for (var i = 0; i < json_length; ++i) {
      const ers_length = Object.keys(bugreportjson.bugreport[i].Errors)
        .length;
-
-     //console.log(ers_length);
 
      for (var j = 0; j < ers_length; ++j) {
        var er_item = bugreportjson.bugreport[i].Errors[j];
@@ -205,12 +201,8 @@
              if($(this).is(':checked')){
                 addToTable($(this).parent().find('label').html());
                 generateBugTable();
-                 //console.log($(this).parent().find('label').html())
-                 //console.log('checked');
-             } else if($(this).is(":not(:checked)")){
-                //const id = $(this).attr('id');
-                //const row_id = id.substring(11,id.length);
-                //console.log(row_id);
+             } 
+             else if($(this).is(":not(:checked)")){
                 remFrmTable($(this).parent().find('label').html());
                 generateBugTable();
                 
@@ -225,15 +217,3 @@
  initTableMap();
  generateBugTable();
  addListener();
-
- 
- //project-errors-list
- /* Testing --
- console.log(`Syntax Map Size: ${syntax_map.size}`);
- console.log(`Semantic Map Size: ${semantic_map.size}`);
- console.log(`Logical Map Size: ${logical_map.size}`);
-
- for (let [key, value] of logical_map) {
-   console.log(key + " - " + value);
- }
- -- */

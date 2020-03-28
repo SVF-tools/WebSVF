@@ -19,10 +19,6 @@ http.listen(port, () => console.log(`Example app listening on port ${port}!`));
 io.on('connection', (socket)  => {
     console.log( "a user has connected!" );
 
-    socket.on( 'TestbugSummary', () => {
-        //console.log('Test');
-    });
-
     socket.on( 'disconnect', () => {
         console.log( 'user disconnected' );
     });
@@ -34,20 +30,3 @@ io.on('connection', (socket)  => {
         fReport.generate(fileID);
     });
 });
-
-
-
-
-
-//const open = require('open');//Open website in default browser;
-//const path = require('path');
-
-//For Testing
-/*
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'public')+'/fileReport.html');
-});
-*/
-
-//open('http://localhost:3000');
-
