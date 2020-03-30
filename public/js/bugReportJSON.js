@@ -4,7 +4,7 @@ const bugreportjson = {
     {
       "id": 0,
       "FileName": "xxx.c",
-      "FilePath": "./c-code-files",
+      "FilePath": "./test_files/c-code-files",
       "Errors": [
         {
           "ln": 4,
@@ -56,7 +56,7 @@ const bugreportjson = {
     {
       "id": 1,
       "FileName": "xxy.c",
-      "FilePath": "./c-code-files",
+      "FilePath": "./test_files/c-code-files",
       "Errors": [
         {
           "ln": 4,
