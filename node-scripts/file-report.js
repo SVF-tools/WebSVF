@@ -61,13 +61,73 @@ const gen_file_report = (file_tracker) => {
         var err_name = jsonString.bugreport[file_tracker].Errors[error_tracker].Title;
         var err_descr = jsonString.bugreport[file_tracker].Errors[error_tracker].Description;
 
+        
+
+        if(string1[i].length>50){
+
+            var after_line = string1[i];
+            var len = string1[i].length;
+            const len_c = len;
+            string1[i] = '';
+
+            while(len!=0){
+
+                const splitSpace_firstHalf = after_line.substring(40,45).indexOf(' ');
+                const splitSpace_secondHalf = after_line.substring(45,50).indexOf(' ');
+
+                if(splitSpace_secondHalf!=-1){
+                    if(len==len_c){
+                        string1[i] += after_line.substring(0,45+splitSpace_secondHalf);
+                        len -= after_line.substring(0,45+splitSpace_secondHalf).length;
+                        after_line = after_line.substring(45+splitSpace_secondHalf,after_line.length);
+                    }
+                    else{
+                        string1[i] += '<br class="nocode"/>       ' + after_line.substring(0,45+splitSpace_secondHalf);
+                        len -= after_line.substring(0,45+splitSpace_secondHalf).length;
+                        after_line = after_line.substring(45+splitSpace_secondHalf,after_line.length);
+                    }
+                }
+                else if(splitSpace_firstHalf!=-1){
+                    if(len==len_c){
+                        string1[i] += after_line.substring(0,40+splitSpace_firstHalf);
+                        len -= after_line.substring(0,40+splitSpace_firstHalf).length;
+                        after_line = after_line.substring(40+splitSpace_firstHalf,after_line.length);
+                    }
+                    else{
+                        string1[i] += '<br class="nocode"/>       ' + after_line.substring(0,40+splitSpace_firstHalf);
+                        len -= after_line.substring(0,40+splitSpace_firstHalf).length;
+                        after_line = after_line.substring(40+splitSpace_firstHalf,after_line.length);
+                    }                    
+                }
+                else if(len>50 && len<100){
+                    if(len==len_c){
+                        string1[i] += after_line.substring(0,50);
+                        len -= 50;
+                        after_line = after_line.substring(50,after_line.length);
+                    }
+                    else{
+                        string1[i] += '<br class="nocode"/>       ' + after_line.substring(0,50);
+                        len -= 50;
+                        after_line = after_line.substring(50,after_line.length);
+                    }                    
+                }
+
+                if(after_line.length<=50){
+                    string1[i] += '<br class="nocode"/>       ' + after_line;
+                    len -= after_line.length;
+                }
+                
+            }
+        }
+
         //Add ShowLines Button to the HTML file
         if(i==0) {
             codeStringSerialised += `<button class="remove-button nocode" onclick="removeLines()">Remove Lines</button><button id="show-lines-button" class="show-button nocode" onClick="showLines()">Show Lines</button><a class="mx-4" href="http://localhost:3000/" target="_self"}><button id="show-lines-button" class="show-button nocode">Home</button></a><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
         }
         else if(err_ln==(i+1)){     //Checking if there is an error at the .c line being added to the html file
 
-            
+                
+            /** 
                 function nthIndex(str, pat, n){
                     var L= str.length, i= -1;
                     while(n-- && i++<L){
@@ -76,20 +136,55 @@ const gen_file_report = (file_tracker) => {
                     }
                     return i;
                 }
+                */
+
+                //Shorten Error Name for FileReport's Error Bubbles
+                if(err_name.length>25){
+
+                    const splitSpace_firstHalf = err_name.substring(20,25).indexOf(' ');
+                    const splitSpace_secondHalf = err_name.substring(25,30).indexOf(' ');
+                    if(splitSpace_secondHalf!=-1){
+                        err_name = err_name.substring(0,25+splitSpace_secondHalf) + '\n' + err_name.substring(25+splitSpace_secondHalf, err_name.length);
+                    }
+                    else if(splitSpace_firstHalf!=-1){
+                        err_name = err_name.substring(0,20+splitSpace_firstHalf) + '\n' + err_name.substring(20+splitSpace_firstHalf, err_name.length);
+                    }
+                    else if(err_name.length<30){
+                        err_name = err_name.substring(0,24) + '\n-' + err_name.substring(24, err_name.length);
+                    }
+                    else{
+                        err_name = err_name.substring(0,29) + '\n-' + err_name.substring(29, err_name.length);
+                    }
+                }
 
                 //Shorten Error Description for FileReport's Error Bubbles
                 if(err_descr.length>25){
-                    var fifthSpace = nthIndex(err_descr,' ',5);
-                    var str_len = 
-                    err_descr = err_descr.substring(0,fifthSpace) + '\n' + err_descr.substring(fifthSpace, err_descr.length);
+
+                    const splitSpace_firstHalf = err_descr.substring(20,25).indexOf(' ');
+                    const splitSpace_secondHalf = err_descr.substring(25,30).indexOf(' ');
+                    if(splitSpace_secondHalf!=-1){
+                        err_descr = err_descr.substring(0,25+splitSpace_secondHalf) + '\n' + err_descr.substring(25+splitSpace_secondHalf, err_descr.length);
+                    }
+                    else if(splitSpace_firstHalf!=-1){
+                        err_descr = err_descr.substring(0,20+splitSpace_firstHalf) + '\n' + err_descr.substring(20+splitSpace_firstHalf, err_descr.length);
+                    }
+                    else if(err_descr.length<30){
+                        err_descr = err_descr.substring(0,24) + '\n' + '-' + err_descr.substring(24, err_descr.length);
+                    }
+                    else{
+                        err_descr = err_descr.substring(0,29) + '\n'+'-' + err_descr.substring(29, err_descr.length);
+                    }
                 }
 
                 if(err_descr.length>50){
                     err_descr = err_descr.substring(0,50) + '...';
                 }
+
+                if(err_name.length>40){
+                    err_name = err_name.substring(0,40) + '...';
+                }
             
             //Check for Error Type and Insert Error at the correct line number 
-            
             if(err_type==='Syntax'){
                 codeStringSerialised += `<span id="err${error_tracker}" class="alert-syntax nocode"><button id="${error_tracker}*!*err" onclick="add_errLines(${error_tracker})" class="err-button">${err_name}</button>\n<a>${err_descr}</a></span><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
                 if(!$.isEmptyObject(jsonString.bugreport[file_tracker].Errors[error_tracker].StackTrace)){
