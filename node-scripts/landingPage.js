@@ -6,9 +6,23 @@ const path = require("path");
 
 const gen_landing_page = () => {
 
-    const jsonReport_string = fs.readFileSync(path.join(__dirname,'/../Bug-Analysis-Report.json'),'utf8');
 
-    const jsonReport = JSON.parse(jsonReport_string);
+    const json_relativePath = fs.readFileSync(path.join(__dirname,'/../config/bug-analysis-JSON_relative-dir.config'),'utf8');
+    const json_absolutePath = fs.readFileSync(path.join(__dirname,'/../config/bug-analysis-JSON_absolute-dir.config'),'utf8');
+
+    var jsonReport_string;
+
+    if(json_relativePath.length!=0){
+        jsonReport_string = fs.readFileSync(path.join(__dirname,`/../${json_relativePath}`),'utf8');
+    }
+    else if(json_abolutePath.length!=0){
+        jsonReport_string = fs.readFileSync(json_absolutePath,'utf8');
+    }
+    else{
+        jsonReport_string = fs.readFileSync(path.join(__dirname,`/../test_files/Bug-Analysis-Report.json`),'utf8');
+    }
+
+    //const jsonReport = JSON.parse(jsonReport_string);
 
     //Add json object containing bug analysis report to 'bugReportJSON.js' which loads the object in the index.html (Landing Page) context
     fs.writeFileSync(path.join(__dirname,"/../public/js/bugReportJSON.js"),`\nconst bugreportjson = ${jsonReport_string};\nconst json_length = Object.keys(bugreportjson.bugreport).length;`);
