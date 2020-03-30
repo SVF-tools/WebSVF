@@ -18,7 +18,7 @@
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": [
             { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
-            { "FileName": "xxx.c", "FilePath": "./", "ln": 8 },
+            { "FileName": "xxx.c", "FilePath": "./c-code-files", "ln": 8 },
             { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
           ]
         },
@@ -34,7 +34,7 @@
           ],
           "CrossOrigin": [
             { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
-            { "FileName": "xxx.c", "FilePath": "./", "ln": 8 },
+            { "FileName": "xxx.c", "FilePath": "./c-code-files", "ln": 8 },
             { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
           ]
         },
