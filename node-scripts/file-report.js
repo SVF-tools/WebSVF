@@ -4,8 +4,6 @@ var jsdom = require("jsdom"); //JSDOM library for emulating DOM in NodeJS
 const jquery = require("jquery"); //jQuery Library for NodeJS
 const path = require("path");
 
-
-
 // file_tracker => Files Tracker
 
 const gen_file_report = (file_tracker) => {
@@ -14,7 +12,22 @@ const gen_file_report = (file_tracker) => {
     var web_page = fs.readFileSync(path.join(__dirname,"/../public/fileReport.html")).toString();
 
     //Reading Bug-Analysis-Report.json containing Error Information
-    var jsonString = JSON.parse(fs.readFileSync(path.join(__dirname,'/../Bug-Analysis-Report.json'),'utf8'));
+    const json_relativePath = fs.readFileSync(path.join(__dirname,'/../config/bug-analysis-JSON_relative-dir.config'),'utf8');
+    const json_absolutePath = fs.readFileSync(path.join(__dirname,'/../config/bug-analysis-JSON_absolute-dir.config'),'utf8');
+
+    var jsonString;
+
+    if(json_relativePath.length!=0){
+        jsonString = fs.readFileSync(path.join(__dirname,`/../${json_relativePath}`),'utf8');
+    }
+    else if(json_abolutePath.length!=0){
+        jsonString = fs.readFileSync(json_absolutePath,'utf8');
+    }
+    else{
+        jsonString = fs.readFileSync(path.join(__dirname,`/../test_files/Bug-Analysis-Report.json`),'utf8');
+    }
+    
+    jsonString = JSON.parse(jsonString);
 
     //Create Virtual DOM for NodeJS for the input Web Page (.html) file
     const dom = new jsdom.JSDOM(web_page);

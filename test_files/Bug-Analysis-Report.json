@@ -1,5 +1,4 @@
-
-const bugreportjson = {
+{
   "bugreport": [
     {
       "id": 0,
@@ -101,5 +100,3 @@ const bugreportjson = {
     }
   ]
 }
-;
-const json_length = Object.keys(bugreportjson.bugreport).length;
