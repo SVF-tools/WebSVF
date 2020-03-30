@@ -6,6 +6,8 @@
 
 ## Step 1. Install Requisite Software
 
+- **[Git](https://git-scm.com/downloads)**
+
 - **[NodeJS](https://nodejs.org/en/download/)**
 
 
