@@ -1,6 +1,6 @@
 function showLines() {
         
-        document.querySelector('.show-button').innerHTML = 'Add Lines';
+        document.querySelector('#show-lines-button').innerHTML = 'Add Lines';
         
         lines.forEach(function(line) {
           var start = document.getElementById(line.start),
