@@ -17,9 +17,9 @@
           ],
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "CrossOrigin": [
-            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
-            { "FileName": "xxx.c", "FilePath": "./c-code-files", "ln": 8 },
-            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
+            { "FileName": "xxy.c", "FilePath": "./test_files/c-code-files", "ln": 16 },
+            { "FileName": "xxx.c", "FilePath": "./test_files/c-code-files", "ln": 8 },
+            { "FileName": "xxz.c", "FilePath": "./test_files/c-code-files", "ln": 18 }
           ]
         },
         {
@@ -33,9 +33,9 @@
             { "ln": 6, "Title": "Unexpected end of line" }
           ],
           "CrossOrigin": [
-            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 16 },
-            { "FileName": "xxx.c", "FilePath": "./c-code-files", "ln": 8 },
-            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 18 }
+            { "FileName": "xxy.c", "FilePath": "./test_files/c-code-files", "ln": 16 },
+            { "FileName": "xxx.c", "FilePath": "./test_files/c-code-files", "ln": 8 },
+            { "FileName": "xxz.c", "FilePath": "./test_files/c-code-files", "ln": 18 }
           ]
         },
         {
@@ -68,8 +68,8 @@
             { "ln": 10, "Title": "Unexpected end of line" }
           ],
           "CrossOrigin": [
-            { "FileName": "xxz.c", "FilePath": "./c-code-files", "ln": 12 },
-            { "FileName": "xxy.c", "FilePath": "./c-code-files", "ln": 6 }
+            { "FileName": "xxz.c", "FilePath": "./test_files/c-code-files", "ln": 12 },
+            { "FileName": "xxy.c", "FilePath": "./test_files/c-code-files", "ln": 6 }
           ]
         },
         {
