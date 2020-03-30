@@ -1,8 +1,13 @@
 <html lang="en"><head>
+    <!-- Custom StyleSheet for File Report -->
     <link rel="stylesheet" type="text/css" href="/css/fileReport.css">
-    <link rel="stylesheet" type="text/css" href="/css/prettify_dessert.css">
-    <script type="text/javascript" src="/js/prettify.js"></script>
-    <script src="/js/leader-line.min.js"></script>
+
+    <!-- CSS and JavaScript for Code Annotation using Google Prettify-->
+    <link rel="stylesheet" type="text/css" href="/vendor/prettify/prettify_dessert.css">
+    <script type="text/javascript" src="/vendor/prettify/prettify.js"></script>
+
+    <!-- leader-line javscript library for generating reference lines in Bug Report -->
+    <script type="text/javascript" src="/vendor/leader-line/leader-line.min.js"></script>
   </head>
 
   <body>
@@ -28,7 +33,7 @@
 <a class="code-body" id="6">       scanf("%c",&amp;c);</a>
 <a class="code-body" id="7">       if( (c&gt;='a' &amp;&amp; c&lt;='z') || (c&gt;='A'<br class="nocode">        &amp;&amp; c&lt;='Z'))</a>
 <span id="err1" class="alert-semantic nocode"><button id="1*!*err" onclick="add_errLines(1)" class="err-button">Variable 'statc' not
- recognised Lorem I...</button>
+ recognised</button>
 <a>Description - Placeholder
  - Lorem ipsum dolor sit...</a></span><a class="code-body" id="8">           printf("%c is an alphabet.",c);</a>
 <a class="code-body" id="9">       else</a>
@@ -38,7 +43,7 @@
 <a class="code-body" id="11">      return 0;</a>
 <a class="code-body" id="12">  }</a></pre>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/vendor/jquery/3.4.1/jquery-3.4.1.slim.min.js"></script>
 
     <script>
       PR.prettyPrint();
@@ -68,7 +73,7 @@
           .querySelectorAll(".leader-line")
           .forEach(e => e.parentNode.removeChild(e));
 
-        document.querySelector(".show-button").innerHTML = "Show Lines";
+        document.querySelector("#show-lines-button").innerHTML = "Show Lines";
       }
     </script>
 
