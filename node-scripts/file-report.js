@@ -122,7 +122,7 @@ const gen_file_report = (file_tracker) => {
 
         //Add ShowLines Button to the HTML file
         if(i==0) {
-            codeStringSerialised += `<button class="remove-button nocode" onclick="removeLines()">Remove Lines</button><button id="show-lines-button" class="show-button nocode" onClick="showLines()">Show Lines</button><a class="mx-4" href="http://localhost:3000/" target="_self"}><button id="show-lines-button" class="show-button nocode">Home</button></a><a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
+            codeStringSerialised += `<a class="code-body" id="${(i+1)}">${string1[i]}</a>\n`;
         }
         else if(err_ln==(i+1)){     //Checking if there is an error at the .c line being added to the html file
 
@@ -254,7 +254,7 @@ const gen_file_report = (file_tracker) => {
 
     //jQuery HTML Manipulation
     $("#test").html(codeStringSerialised);
-
+    $("#heading").html(jsonString.bugreport[file_tracker].FileName);
     /* Code for the Leader-Lines function is stored as a string in a text file
     The code is read into a variable and added in the correct format and order 
     into the bug_report html file*/
