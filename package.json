@@ -62,5 +62,9 @@
 	"dependencies": {
 		"extract-zip": "^1.7.0",
 		"request": "^2.88.2"
-	}
+	},
+	"repository": {
+        "type": "git",
+        "url": "https://github.com/SVF-tools/WebSVF.git"
+    },
 }
