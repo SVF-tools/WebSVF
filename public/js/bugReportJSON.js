@@ -27,7 +27,7 @@ const bugreportjson = {
           "ln": 8,
           "Type": "Semantic",
           "Occurrence": "Static (Compile-Time)",
-          "Title": "Variable 'statc' not recognised",
+          "Title": "Variable 'statc' not recognised Lorem Ipsum Lorem",
           "Description": "Description - Placeholder - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "StackTrace": [
             { "ln": 4, "Title": "Null Reference" },
