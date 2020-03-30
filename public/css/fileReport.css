@@ -18,6 +18,14 @@ a{
   margin:0;
 }
 
+#heading {
+  padding-left: 4vw;
+  color: white;
+  font-size: 6vw;
+  margin-block-end: 0.4em;
+  margin-block-start: 0.2em;
+}
+
 .code-body{
   font-size: 2vw;
   line-height: 2.7em;
@@ -44,10 +52,7 @@ body{
   text-align: center;
   text-decoration: none;
   font-size: 2vw;
-  margin-top: 0.1vw;
   border-radius: 12px;
-  float: right;
-  margin-right: 0.5vw;
 }
 
 .remove-button {
@@ -57,10 +62,8 @@ body{
   text-align: center;
   text-decoration: none;
   font-size: 2vw;
-  margin-right: 0.2vw;
-  margin-top: 0.1vw;
   border-radius: 12px;
-  float: right;
+  justify-self: right;
 }
 
 .button:hover {
