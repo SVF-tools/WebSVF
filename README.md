@@ -1,3 +1,41 @@
+# Bug Analysis Tool - Front-End - NodeJS
+
+# Description:
+
+The following NodeJS app generates the Front-End for the Bug Analysis Tool.
+
+The Node app requires `` Bug-Analysis-Report.json `` file from the Bug Analysis Tool's Back-End.
+It reads the location of the ***Bug-Analysis-Report.json*** file from the `` bug-analysis-JSON_absolute-dir.config ``
+present in the `` ./config `` directory of the Node app, which is also provided by the Bug Analysis Tool's Back-End.
+
+For a full breakdown analysis of the schema for the `` Bug-Analysis-Report.json `` file, refer to **[this guide](https://github.com/SVF-tools/WebSVF/blob/bug-report-fe/docs/Analysis%20Report%20Schema.md)**.
+
+The Node app then deploys a **ExpressJS** server at port **3000** (using http) to deploy the front-end. Reading from _Bug-Analysis-Report.json_ file, it obtains all the information about the **'.c files'** analysed by the Bug Analysis Tool's Back-End as well as the information about all the bugs present in them.
+
+The Node App is deployed primarily through the [VSCode extension](https://github.com/SVF-tools/WebSVF/blob/master/src/bug-report-fe_extension/bug-report-fe_extension_0.0.1.vsix), which initialises the app and runs it inside a VSCode window as long the requisite conditions are met (i.e. ***Bug-Analysis-Report.json*** file is present). For development and testing purpopses however, please follow the [Setup Instructions]() below to get the Fron-End up and running.
+
+The Front-End comprises of 3 different screens to diplay different Levels of Bug Reports for the anlysed projects:
+
+- **Project Bug Analysis Overview (Landing Page) :**
+
+
+
+- **Project Bug List by Bug-Type :**
+
+
+
+- **Bug Analysis Report (per file) :**
+
+
+
+# Setup Instructions
+
+Make sure you have the [requisite software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-install-requisite-software) installed before following the Setup instructions.
+
+Then follow the given steps to initialize the Node app in a ***testing environment***. 
+
+Please Note, all the commands mentioned below are to be typed/copied and run in the **terminal/command-prompt** window.
+
 ## 1. Clone Repository:
 
 ```
@@ -32,10 +70,7 @@ npm run start
 npm run start-dev
 ```
 
-# Description:
-
-Deploys a **ExpressJS** server at port **3000**, reading from _test.json_ file from which it obtains the filepath of the first c file in the JSON array and serves it as an HTML on the deployed Web Server. Accessible at [localhost:3000](http://localhost:3000/)
-
+After launch, the app is accessible at [localhost:3000](http://localhost:3000/).
 
 # Reference:
 
