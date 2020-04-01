@@ -2,22 +2,35 @@
 
 All notable changes to the ***Web-SVF*** repository will be documented in this file.
 
-**Non-Essential code was pruned from the repository branches, to access the files please use these links:**
+## [Unreleased]
 
-- [27/03/2020]
-[***master***](https://docs.google.com/uc?export=download&id=1iAoCApwVEGajNFXaUmLMclrSs5AjnrLE)
+- 
 
-- [21/03/2020]
-Non-Essential code was pruned from the repository branches, to access the files please use these links: [***3d-codemap-server***](https://docs.google.com/uc?export=download&id=1SXbdeUj8KWGpz6FBztOOye2-UXBjSC3Q) , [***llvm_binary_install***](https://docs.google.com/uc?export=download&id=14wzusP0aTkkIBtH9S4TQSjiNhH9K8JZ5)
+## [0.0.1] - Date
+### Added
+- 
+### Changed
+- 
+### Deprecated
+- 
+### Removed
+- 
+### Fixed
+- 
+### Security
+- 
 
 ## Patch Notes
 
-- 5/12/19:  Sign Up to Newsletter adds emails to Test Firbase Realtime Database in Web-SVF Github Page.
+- [2020-03-27] - **Removed Branch** :
+[***master***](https://docs.google.com/uc?export=download&id=1iAoCApwVEGajNFXaUmLMclrSs5AjnrLE)
 
-## [Unreleased]
+- [2020-03-21] - **Removed Branches** : 
+[***3d-codemap-server***](https://docs.google.com/uc?export=download&id=1SXbdeUj8KWGpz6FBztOOye2-UXBjSC3Q) , [***llvm_binary_install***](https://docs.google.com/uc?export=download&id=14wzusP0aTkkIBtH9S4TQSjiNhH9K8JZ5)
 
-- Initial release
+- [2019-12-05] - **Linked Database for Storing Sign-Up Email IDs** :  Sign Up to Newsletter adds emails to a Test Firbase Realtime Database from the Web-SVF Github Page.
 
 
+[Unreleased]: Link
+[0.0.1]: Link
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
