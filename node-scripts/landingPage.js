@@ -7,15 +7,12 @@ const path = require("path");
 const gen_landing_page = () => {
 
 
-    const json_relativePath = fs.readFileSync(path.join(__dirname,'/../config/bug-analysis-JSON_relative-dir.config'),'utf8');
+    //const json_relativePath = fs.readFileSync(path.join(__dirname,'/../config/bug-analysis-JSON_relative-dir.config'),'utf8');
     const json_absolutePath = fs.readFileSync(path.join(__dirname,'/../config/bug-analysis-JSON_absolute-dir.config'),'utf8');
 
     var jsonReport_string;
 
-    if(json_relativePath.length!=0){
-        jsonReport_string = fs.readFileSync(path.join(__dirname,`/../${json_relativePath}`),'utf8');
-    }
-    else if(json_abolutePath.length!=0){
+    if(json_absolutePath.length!=0){
         jsonReport_string = fs.readFileSync(json_absolutePath,'utf8');
     }
     else{
