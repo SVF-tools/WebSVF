@@ -79,13 +79,13 @@ The second level in the JSON Schema contains all the essential bug analysis info
 ## **Level 3**
 The third level in the Bug Analysis JSON schema defines the ``"Errors": []`` JSON Array containing Bug Anlysis information for [every file]() analysed by the *Bug Anslysis Tool's Back-End*. Every element in the ``"Errors": []`` JSON Array represents a separate bug in the *analysed '.c' file* and has 7 key fields:
 
-- ``"ln": ``- A numeric value depicting the line number within the analysed **'.c' file** at which the particular bug was found.
-- ``"Type": ``- 
-- ``"Occurrence": ``- 
-- ``"Title": ``- 
-- ``"Description": ``-
-- ``"StackTrace": ``-
-- ``"CrossOrigin": ``-
+- ``"ln": ``- A numeric value denoting the line number within the analysed **'.c' file** at which the particular bug was found.
+- ``"Type": ``- A string value denoting the Type of error. For more information on Types of error use the following [reference link](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#reference).
+- ``"Occurrence": ``- A string value denoting when the error occurs during development or deployment, currently, it can be one of two values **'Dynamic (Run-Time)'** or **'Static (Compile-Time)'**.
+- ``"Title": ``- A string value denoting the Title of the current Error element.
+- ``"Description": ``- A string value denoting the description for the current Error element.
+- ``"StackTrace": [] ``- A JSON Array containing information about the line-numbers within the same **'.c' file**, affected by the current error.
+- ``"CrossOrigin": [] ``- A JSON Array containing information about the errors and line-numbers across different *'.c' file* in the project, affected by the current error.
 
 ```json
 {
@@ -110,3 +110,33 @@ The third level in the Bug Analysis JSON schema defines the ``"Errors": []`` JSO
   ]
 }
 ```
+
+## **Level 4**
+The last level in the JSON Schema heirarchy, defines the elements within the ``"StackTrace": [] ``and ``"CrossOrigin": [] `` JSON arrays which contain information regarding the line-numbers within the same file as the error file (StackTrace Array) as well as across different files in the project (CrossOrigin Array).
+
+```json
+"StackTrace": 
+[
+  { "ln": #, "Title": "Error-Title-1" },
+  { "ln": #, "Title": "Error-Title-2" },
+  .
+  .
+  .
+]
+```
+- ``"ln": ``- A numeric value denoting the affected line-number within the same **'.c' file**.
+- ``"Title": ``- A String Value denoting a title for affected line-number within the same **'.c' file** [This value is not used in the Front-End yet].
+
+```json
+"CrossOrigin": 
+[
+  { "FileName": "Filename-1.c", "FilePath": "Absolute Path", "ln": # },
+  { "FileName": "Filename-2.c", "FilePath": "Absolute Path", "ln": # },
+  .
+  .
+  .
+]
+```
+- ``"ln": ``- A numeric value denoting the line-number in another **'.c' file** in the anlysed project where the same error persists.
+- ``"FileName": ``- A String Value denoting name of the **'.c' file** in the analysed project where the same error persists.
+- ``"FilePath": ``- A String Value denoting absolute path of the **'.c' file** in the analysed project where the same error persists.
