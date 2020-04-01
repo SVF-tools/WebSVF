@@ -1,5 +1,11 @@
 # Bug Analysis Tool - Front-End - NodeJS
 
+## **Index**
+1. **[Description](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#description)**
+    1.  **[Bug-Analysis-Report.json Schema Breakdown](https://github.com/SVF-tools/WebSVF/blob/bug-report-fe/docs/Analysis%20Report%20Schema.md)**
+1. **[Setup Instructions](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#setup-instructions)**
+1. **[Reference](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#reference)**
+
 # Description:
 
 The following NodeJS app generates the Front-End for the Bug Analysis Tool.
