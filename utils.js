@@ -83,6 +83,8 @@ function extractZip(node_abspath,terminal){
         }else{
             terminal.sendText("rm -r "+constants.node_app+".zip");
             //terminal.sendText("cp -f Bug-Analysis-Report.json "+json_file);
+            let cfg_abspath = constants.workspace + '/'+constants.node_app + constants.node_branch + constants.config_abspath;
+            fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
         }
     });
 }
