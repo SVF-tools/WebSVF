@@ -61,7 +61,7 @@ The last type of button called the ***Stack Trace*** button is present in each o
 
 # Setup Instructions
 
-Make sure you have the [requisite software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-install-requisite-software) installed before following the Setup instructions.
+Make sure you have the **[requisite software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-install-requisite-software)** installed before following the Setup instructions.
 
 Then follow the given steps to initialize the Node app in a ***testing environment***.
 To run the app in the ***production environment***, please follow the [instructions](https://github.com/SVF-tools/WebSVF/#step-by-step-installation-guide) on the [master](https://github.com/SVF-tools/WebSVF/) brach.
