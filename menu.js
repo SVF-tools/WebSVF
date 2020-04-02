@@ -3,6 +3,8 @@ const fs = require('fs');
 const utils = require('./utils'); //utils
 var constants = require("./constants"); //Constants
 var StatusBar = require("./statusBar"); //StatusBarItem
+var os = require("os");
+var path = require("path");
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -11,13 +13,24 @@ module.exports = function(context) {
         let workspace = vscode.workspace.rootPath;
         let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
         let status = StatusBar.statusBar.text.split(": ")[1];
-        
-        let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app//node app absolute path.
-        
-        let config_abspath = node_abspath + constants.node_branch + constants.config_abspath;
-        
+
+
+        let node_abspath = null;
+        let config_abspath = null;
+
+        if(os.platform() == "win32"){
+            config_abspath = os.userInfo().homedir + path.sep + constants.node_app + constants.node_branch + constants.config_abspath;
+        }else{
+            node_abspath = constants.workspace.substring(0,constants.workspace.indexOf(path.sep,6)+1) + constants.node_app//node app absolute path.
+            config_abspath = node_abspath + constants.node_branch + constants.config_abspath;
+        }
+
         if(status == "Initializing"){
-            vscode.window.showInformationMessage("Please wait a moment for initializing");
+            vscode.window.showInformationMessage("Please wait a moment for initializing, do you want to stop?", "Yes", "No").then(selection => {//Display a message box for user to choose.
+                if(selection == "Yes"){
+                    stop();
+                }
+            });
         }else if(status == "Running"){
             vscode.window.showInformationMessage("Stop this 'Bug Analysis Tool'?", "Yes", "No").then(selection => {//Display a message box for user to choose.
                 if(selection == "Yes"){
