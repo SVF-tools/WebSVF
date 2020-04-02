@@ -10,8 +10,12 @@ module.exports = function(context) {
     context.subscriptions.push(vscode.commands.registerCommand('extension.menu', function () {
         let workspace = vscode.workspace.rootPath;
         let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
-        let config_abspath = constants.workspace + '/'+constants.node_app + constants.node_branch + constants.config_abspath; //workspace/.bug-report/WebSVF-bug-report-fe/config/bug-analysis-JSON_absolute-dir.config
         let status = StatusBar.statusBar.text.split(": ")[1];
+        
+        let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app//node app absolute path.
+        
+        let config_abspath = node_abspath + constants.node_branch + constants.config_abspath;
+        
         if(status == "Initializing"){
             vscode.window.showInformationMessage("Please wait a moment for initializing");
         }else if(status == "Running"){

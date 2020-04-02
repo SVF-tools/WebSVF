@@ -42,11 +42,11 @@ function init(uri){
     //Show commands in the terminal
     terminal.show(true);
     //Check if the folder has already existed
-    let node_abspath = constants.workspace+"/"+constants.node_app; //node app absolute path.
+    let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app//node app absolute path.
     try{
         if(fs.existsSync(node_abspath)){
             //If the folder exists, then remove it.
-            terminal.sendText("rm -rf "+constants.node_app);
+            terminal.sendText("rm -rf "+node_abspath);
         }
 
         downloadFile(uri,node_abspath+".zip",function(){
@@ -82,8 +82,8 @@ function extractZip(node_abspath,terminal){
         if(err){
             console.log(err.message);
         }else{
-            terminal.sendText("rm -r "+constants.node_app+".zip");
-            let cfg_abspath = constants.workspace + '/'+constants.node_app + constants.node_branch + constants.config_abspath;
+            terminal.sendText("rm -r "+node_abspath+".zip");
+            let cfg_abspath = node_abspath + constants.node_branch + constants.config_abspath;
             fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
             setStatusBar("Bug Analysis Tool: Initialized", "White");
         }
@@ -97,7 +97,9 @@ function bug_report(){
     //Get or Create a terminal
     let terminal = this.get_terminal("bug_report");
     //cd to the folder
-    terminal.sendText("cd " + constants.node_app + constants.node_branch);
+    let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1)//node app absolute path.
+    let node_branch = node_abspath + constants.node_app + constants.node_branch;
+    terminal.sendText("cd " + node_branch);
     //Show commands in the terminal
     terminal.show(true);
     //Start the node app
