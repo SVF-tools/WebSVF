@@ -16,6 +16,8 @@ function activate(context) {
 	require('./init.js')(context);
 	require('./stop.js')(context);
 	require('./bugreport.js')(context);
+	require('./statusBar').getSttatusBar();
+
 	
 }
 //exports.activate = activate;
