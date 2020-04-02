@@ -25,19 +25,21 @@ module.exports = function(context) {
                 }
             });
         }else if (fs.existsSync(workspace_json) && fs.existsSync(config_abspath)) {
-            vscode.window.showInformationMessage("Please select an option:", "Report Init", "Report Analysis").then(selection => {//Display a message box for user to choose.
-                if(selection == "Report Init"){
-                    init();
-                }else if(selection == "Report Analysis"){
-                    analysis();
-                }
-            });
+            analysis();
+            // vscode.window.showInformationMessage("Please select an option:", "Report Init", "Report Analysis").then(selection => {//Display a message box for user to choose.
+            //     if(selection == "Report Init"){
+            //         init();
+            //     }else if(selection == "Report Analysis"){
+            //         analysis();
+            //     }
+            // });
         }else if(fs.existsSync(workspace_json) && !fs.existsSync(config_abspath)){
-            vscode.window.showInformationMessage("Missing necessary files, do you want to load the 'Bug Analysis Tool'?", "Yes", "No").then(selection => {//Display a message box for user to choose.
-                if(selection == "Yes"){
-                    init();
-                }
-            });
+            init();
+            // vscode.window.showInformationMessage("Missing necessary files, do you want to load the 'Bug Analysis Tool'?", "Yes", "No").then(selection => {//Display a message box for user to choose.
+            //     if(selection == "Yes"){
+            //         init();
+            //     }
+            // });
         }else{
             //Display an error message box to the user when there is no test.json found.
             vscode.window.showErrorMessage('No Bug-Analysis-Report.json found in the workplace, the bug_report plugin cannot be actived!');
