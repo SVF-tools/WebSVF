@@ -5,7 +5,7 @@
 ## **Index**
 
 1. **[Installation Guide](https://github.com/SVF-tools/WebSVF#installation-guide)**
-1. **[Software Architecture](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#reference)**
+1. **[Application Data-Flow Diagram](https://github.com/SVF-tools/WebSVF#application-data-flow-diagram)**
 1. **[Known Issues](https://github.com/SVF-tools/WebSVF#known-issues)**
 1. **[Developer Notes](https://github.com/SVF-tools/WebSVF#developer-notes)**
 1. **[Acknowledgement](https://github.com/SVF-tools/WebSVF#acknowledgement)**
