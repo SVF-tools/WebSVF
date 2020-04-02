@@ -3,6 +3,7 @@ const fs = require('fs');
 const request = require('request');
 const extract = require('extract-zip'); //decompress zip files
 var constants = require("./constants"); //Constants
+var StatusBar = require("./statusBar"); //StatusBarItem
 
 let panel =  null;//webview
 
@@ -82,9 +83,9 @@ function extractZip(node_abspath,terminal){
             console.log(err.message);
         }else{
             terminal.sendText("rm -r "+constants.node_app+".zip");
-            //terminal.sendText("cp -f Bug-Analysis-Report.json "+json_file);
             let cfg_abspath = constants.workspace + '/'+constants.node_app + constants.node_branch + constants.config_abspath;
             fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
+            setStatusBar("Bug Analysis Tool: Initialized", "White");
         }
     });
 }
@@ -139,6 +140,11 @@ function open_internal_browser(uri){
     </html>`;
 }
 
+function setStatusBar(text, color){
+    StatusBar.statusBar.text = text;
+    StatusBar.statusBar.color = color;
+}
+
 /**
  * Cloes the webview, kill the port, dispose the terminal.
  */
@@ -159,5 +165,6 @@ module.exports = {
     extractZip,
     bug_report,
     open_internal_browser,
+    setStatusBar,
     bug_report_stop
 }

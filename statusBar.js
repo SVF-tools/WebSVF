@@ -8,8 +8,8 @@ const StatusBar = {
         if(this.flag == true){
             let StatusBarAlignment = vscode.StatusBarAlignment;
             this.statusBar = vscode.window.createStatusBarItem(StatusBarAlignment.Left);
-            this.statusBar.text = "Go to sleep!"
-            this.statusBar.command = 'extension.bugreport';
+            this.statusBar.text = "Bug Analysis Tool"
+            this.statusBar.command = 'extension.menu';
             this.statusBar.show();
             this.flag = false;
         }
