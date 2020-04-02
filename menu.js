@@ -12,7 +12,9 @@ module.exports = function(context) {
         let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
         let config_abspath = constants.workspace + '/'+constants.node_app + constants.node_branch + constants.config_abspath; //workspace/.bug-report/WebSVF-bug-report-fe/config/bug-analysis-JSON_absolute-dir.config
         let status = StatusBar.statusBar.text.split(": ")[1];
-        if(status == "Running"){
+        if(status == "Initializing"){
+            vscode.window.showInformationMessage("Please wait a moment for initializing");
+        }else if(status == "Running"){
             vscode.window.showInformationMessage("Stop this 'Bug Analysis Tool'?", "Yes", "No").then(selection => {//Display a message box for user to choose.
                 if(selection == "Yes"){
                     stop();
