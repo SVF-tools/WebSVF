@@ -72,11 +72,11 @@ View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: 
 
 Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
 
-<img src="gifs/InitialiseExtension.gif" height="480">
+<img src="gifs/RunExtension.gif" height="480">
 
 # Software Architecture
 
-<img src="gifs/RunExtension.gif" height="480">
+<img src="https://i.imgur.com/k9EsGo2.png" height="640">
 
 # Known Issues
 
