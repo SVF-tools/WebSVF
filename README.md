@@ -16,9 +16,9 @@
 
 ## Step 2. Download VSCode Extension File
 
-There are two methods to obtain the VSCode Extension Install file, the easiest is to download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/raw/master/src/bug-report-fe_extension/bug-report-fe_extension_0.9.0.vsix)*** file directly or clone the git repository (significantly larger download size).
+There are two methods to obtain the VSCode Extension Install file, the easiest is to download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/raw/master/src/bug-report-fe_extension/bug-report-fe_extension_0.9.0.vsix)*** file directly or *clone the git repository (Not Recommended: significantly larger download size)*.
 
-### Clone Git Repository
+### Clone Git Repository (Large Download Size)
 
 Launch the installed VSCode application. 
 
@@ -42,7 +42,7 @@ Install '*Bug-Report-FE*' VSCode Extension in your VSCode application window fro
 
 <img src="gifs/DirectInstallExt.gif" height="480">
 
-If you used Git, the file can be found in the following directory: ``WebSVF/src/bug-report-fe_extension/``
+If you used ***Git***, the file can be found in the following directory: ``WebSVF/src/bug-report-fe_extension/``
 
 <img src="gifs/GitInstallExt.gif" height="480">
 
