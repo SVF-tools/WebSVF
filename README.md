@@ -4,10 +4,10 @@
 1. **[Description](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Description)**
 1. **[Setup Instruction](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Setup-Instruction)**
 1. **[Features](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Features)**
-1. **[More Information](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#For more information)**
+1. **[More Information](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#For-more-information)**
 
 # Description
-This is a **Bug Analysis Extension** run in VSCode, supported by **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#Bug Analysis Tool - Front-End - NodeJS)**
+This is a **Bug Analysis Extension** run in VSCode, supported by **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#Bug-Analysis-Tool---Front-End---NodeJS)**
 
 # Setup Instruction
 ## 1. Clone Repository:
