@@ -2,7 +2,7 @@
 
 ## **Index**
 1. **[Description](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Description)**
-1. **[Setup Instruction](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Setup Instruction)**
+1. **[Setup Instruction](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Setup-Instruction)**
 1. **[Features](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Features)**
 1. **[More Information](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#For more information)**
 
