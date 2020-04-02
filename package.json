@@ -17,31 +17,10 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.init",
-				"title": "Report init"
-			},
-			{
-				"command": "extension.stop",
-				"title": "Report stop"
-			},
-			{
-				"command": "extension.bugreport",
-				"title": "Bug Report",
-				"icon": {
-					"light": "./public/images/bug.png",
-					"dark": "./public/images/bug.png"
-				}
+				"command": "extension.menu",
+				"title": "Report menu"
 			}
-		],
-		"menus": {
-			"editor/title": [
-				{
-					"when": "isLinux || isMac || isWindows",
-					"command": "extension.bugreport",
-					"group": "navigation"
-				}
-			]
-		}
+		]
 	},
 	"scripts": {
 		"lint": "eslint .",
