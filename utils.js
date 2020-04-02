@@ -4,6 +4,8 @@ const request = require('request');
 const extract = require('extract-zip'); //decompress zip files
 var constants = require("./constants"); //Constants
 var StatusBar = require("./statusBar"); //StatusBarItem
+var os = require("os");
+var path = require("path");
 
 let panel =  null;//webview
 
@@ -42,11 +44,23 @@ function init(uri){
     //Show commands in the terminal
     terminal.show(true);
     //Check if the folder has already existed
-    let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app//node app absolute path.
+
+    let node_abspath = null;
+    let platform = os.platform();
+    if(platform == "win32"){
+        node_abspath = os.userInfo().homedir + path.sep + constants.node_app; //node app absolute path.
+    }else{
+        node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app //node app absolute path.
+    }
     try{
         if(fs.existsSync(node_abspath)){
             //If the folder exists, then remove it.
-            terminal.sendText("rm -rf "+node_abspath);
+            if(platform == "win32"){
+                terminal.sendText("rm -r "+node_abspath);
+            }else{
+                terminal.sendText("rm -rf "+node_abspath);
+            }
+            
         }
 
         downloadFile(uri,node_abspath+".zip",function(){
@@ -58,6 +72,7 @@ function init(uri){
         log.show();
         log.appendLine("Download failed! Please try again.");
     }
+    
 }
 
 /**
@@ -97,8 +112,15 @@ function bug_report(){
     //Get or Create a terminal
     let terminal = this.get_terminal("bug_report");
     //cd to the folder
-    let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1)//node app absolute path.
-    let node_branch = node_abspath + constants.node_app + constants.node_branch;
+    //let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1)//node app absolute path.
+    let node_branch = null;
+    let platform = os.platform();
+    if(platform == "win32"){
+        node_branch = os.userInfo().homedir + path.sep + constants.node_app + constants.node_branch; //node app absolute path.
+    }else{
+        node_branch = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app + constants.node_branch; //node app absolute path.
+    }
+
     terminal.sendText("cd " + node_branch);
     //Show commands in the terminal
     terminal.show(true);
