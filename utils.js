@@ -56,7 +56,7 @@ function init(uri){
         if(fs.existsSync(node_abspath)){
             //If the folder exists, then remove it.
             if(platform == "win32"){
-                terminal.sendText("rm -r "+node_abspath);
+                terminal.sendText(`rm -r "${node_abspath}"`);
             }else{
                 terminal.sendText("rm -rf "+node_abspath);
             }
@@ -97,7 +97,7 @@ function extractZip(node_abspath,terminal){
         if(err){
             console.log(err.message);
         }else{
-            terminal.sendText("rm -r "+node_abspath+".zip");
+            terminal.sendText(`rm -r "${node_abspath}.zip"`);
             let cfg_abspath = node_abspath + constants.node_branch + constants.config_abspath;
             fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
             setStatusBar("Bug Analysis Tool: Initialized", "White");
@@ -121,7 +121,7 @@ function bug_report(){
         node_branch = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app + constants.node_branch; //node app absolute path.
     }
 
-    terminal.sendText("cd " + node_branch);
+    terminal.sendText(`cd "${node_branch}"`);
     //Show commands in the terminal
     terminal.show(true);
     //Start the node app
