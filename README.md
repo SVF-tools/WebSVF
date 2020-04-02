@@ -14,7 +14,11 @@
 - **[VSCode](https://code.visualstudio.com/download)**
 
 
-## Step 2. Clone Project Repository
+## Step 2. Download VSCode Extension File
+
+There are two methods to obtain the VSCode Extension Install file, the easiest is to download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/raw/master/src/bug-report-fe_extension/bug-report-fe_extension_0.9.0.vsix)*** file directly or clone the git repository (significantly larger download size).
+
+### Clone Git Repository
 
 Launch the installed VSCode application. 
 
@@ -24,7 +28,7 @@ Browse to the directory where you want to install the WebSVF repository.
 
 Open a new Terminal/Command-Prompt in VSCode:
 
-```Image - GIF```
+<img src="gifs/TerminalGitClone.gif" height="480">
 
 Clone into the repository by entering the following command in the Terminal/Command-Prompt:
 
@@ -34,15 +38,25 @@ git clone https://github.com/SVF-tools/WebSVF.git
 
 ## Step 3. Install '*Bug-Report-FE*' VSCode Extension
 
-Install '*Bug-Report-FE*' VSCode Extension in your VSCode application window.
+Install '*Bug-Report-FE*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/raw/master/src/bug-report-fe_extension/bug-report-fe_extension_0.9.0.vsix)*** file.
 
-```Image - GIF```
+<img src="gifs/DirectInstallExt.gif" height="480">
+
+If you used Git, the file can be found in the following directory: ``WebSVF/src/bug-report-fe_extension/``
+
+<img src="gifs/GitInstallExt.gif" height="480">
 
 ## Step 4. Open Project Folder in VSCode
 
+**If you used Git to download the installation file:**
+
 Close the currently opened folder in VSCode and open the ``WebSVF/demo/`` directory from the folder where you installed the WebSVF repository in VSCode.
 
-```Image - GIF```
+<img src="gifs/OpenProjectFolder.gif" height="480">
+
+**If you directly downloaded the installation file:**
+
+Download and copy the [``Bug-Analysis-Report.json``](https://docs.google.com/uc?export=download&id=1g7QW0Pd2r4JAIrU0QqaDMBsSIHuZfezm) file in the current folder opened in your VSCode application window.
 
 ## Step 5. Initialise the '*Bug-Report-FE*' VSCode Extension
 
@@ -50,21 +64,19 @@ Install the dependencies for the Bug Analysis Tool's Front-End by clicking on th
 
 The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***.
 
-```Image - GIF```
+<img src="gifs/InitialiseExtension.gif" height="480">
 
 ## Step 6. View the Bug Analysis for the Project
 
 View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. Similar to the previous button transformation, the button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
 
-```Image - GIF```
-
 Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
 
-
+<img src="gifs/InitialiseExtension.gif" height="480">
 
 # Software Architecture
 
-<img src="https://i.imgur.com/k9EsGo2.png" height="640">
+<img src="gifs/RunExtension.gif" height="480">
 
 # Known Issues
 
