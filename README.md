@@ -20,7 +20,7 @@ Launch the installed VSCode application.
 
 Browse to the directory where you want to install the WebSVF repository.
 
-<img src="https://i.imgur.com/zzKcjH6.gif" height="480">
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/img/Open%20VSCode.gif" height="480">
 
 Open a new Terminal/Command-Prompt in VSCode:
 
