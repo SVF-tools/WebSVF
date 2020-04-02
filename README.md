@@ -3,7 +3,7 @@
 ## **Index**
 1. **[Description](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Description)**
 1. **[Setup Instruction](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Setup-Instruction)**
-1. **[More Information](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#For-more-information)**
+1. **[More Information](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#For-more-information)**
 
 # Description
 This is a **Bug Analysis Extension** installed in VSCode, which can run across platforms, and support **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#Bug-Analysis-Tool---Front-End---NodeJS)**
