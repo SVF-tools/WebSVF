@@ -1,8 +1,8 @@
 'use strict';
 
 import { StatusBarItem, StatusBarAlignment, window, ThemeColor } from 'vscode';
-import { GenericDataStructure } from './GenericDataStructure';
-import { Push } from './Push';
+import { GenericDataStructure } from './genericDataStructure';
+import { Push } from './push';
 
 export class Statusbar extends Push {
 

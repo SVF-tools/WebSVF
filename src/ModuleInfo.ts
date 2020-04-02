@@ -1,8 +1,10 @@
 'use strict';
 
+import { ExtensionContext } from 'vscode';
 import { Codemap } from './codemap';
+// import { Codemap } from './codeMapLocal';
 import { Statusbar } from './statusbar';
-import { GenericDataStructure } from './GenericDataStructure';
+import { GenericDataStructure } from './genericDataStructure';
 
 export class ModuleInfo {
 
