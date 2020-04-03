@@ -16,7 +16,7 @@ The Node app requires `` Bug-Analysis-Report.json `` file from the Bug Analysis 
 It reads the location of the ***Bug-Analysis-Report.json*** file from the `` bug-analysis-JSON_absolute-dir.config ``
 present in the `` ./config `` directory of the Node app, which is also provided by the Bug Analysis Tool's Back-End.
 
-For a full breakdown analysis of the schema for the `` Bug-Analysis-Report.json `` file, refer to **[this guide](https://github.com/SVF-tools/WebSVF/blob/bug-report-fe/docs/Analysis%20Report%20Schema.md)**.
+For a full breakdown analysis of the schema for the `` Bug-Analysis-Report.json `` file, refer to **[this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md)**.
 
 The Node app then deploys a **ExpressJS** server at port **3000** (using http) to deploy the front-end. Reading from _Bug-Analysis-Report.json_ file, it obtains all the information about the **'.c files'** analysed by the Bug Analysis Tool's Back-End as well as the information about all the bugs present in them.
 
