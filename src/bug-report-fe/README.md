@@ -71,12 +71,12 @@ Please Note, all the commands mentioned below are to be typed/copied and run in 
 ## 1. Clone Repository:
 
 ```
-git clone -b bug-report-fe https://github.com/SVF-tools/WebSVF.git
+git clone https://github.com/SVF-tools/WebSVF.git
 ```
 Change directory in the terminal to the cloned 'WebSVF' folder:
 
 ```
-cd ./WebSVF/
+cd ./WebSVF/src/bug-report-fe
 ```
 
 ## 2. Install Dependencies (Optional):
