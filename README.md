@@ -72,15 +72,9 @@ If you used ***Git***, the file can be found in the following directory: ``WebSV
 
 ## Step 4. Open Project Folder in VSCode
 
-**If you used Git to download the installation file:**
-
-Close the currently opened folder in VSCode and open the ``WebSVF/demo/`` directory from the folder where you installed the WebSVF repository in VSCode.
+Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
 
 <img src="gifs/OpenProjectFolder.gif" height="480">
-
-**If you directly downloaded the installation file:**
-
-Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
 
 ## Step 5. Initialise the '*Bug-Report-FE*' VSCode Extension
 
