@@ -56,7 +56,7 @@ function init(uri){
         if(fs.existsSync(node_abspath)){
             //If the folder exists, then remove it.
             if(platform == "win32"){
-                terminal.sendText(`rm -r "${node_abspath}"`);
+                //terminal.sendText(`rd/s/q "${node_abspath}"`);
             }else{
                 terminal.sendText("rm -rf "+node_abspath);
             }
