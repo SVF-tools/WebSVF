@@ -4,7 +4,7 @@
 
 ## **Index**
 
-1. **[Description](https://github.com/SVF-tools/WebSVF#installation-guide)**
+1. **[Description](https://github.com/SVF-tools/WebSVF#description)**
 1. **[Installation Guide](https://github.com/SVF-tools/WebSVF#installation-guide)**
 1. **[Application Data-Flow Diagram](https://github.com/SVF-tools/WebSVF#application-data-flow-diagram)**
 1. **[Known Issues](https://github.com/SVF-tools/WebSVF#known-issues)**
@@ -12,6 +12,18 @@
 1. **[Acknowledgement](https://github.com/SVF-tools/WebSVF#acknowledgement)**
 
 # Description
+
+The Web-SVF, Bug Analysis Tool is comprised of 3 main components:
+
+- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe) :**
+
+NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
+
+- **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe_extension) :**
+
+This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe)**. It is deployed through the installation of the ***bug-report-fe.vsix*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online. The ***bug-report-fe.vsix*** file can be found in the [master brach].
+
+- **[code_map_extensions](https://github.com/SVF-tools/WebSVF/tree/code_map_extension)**
 
 # Installation Guide
 
@@ -27,7 +39,7 @@
 
 ## Step 2. Download VSCode Extension File
 
-There are two methods to obtain the VSCode Extension Install file, the easiest is to download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/raw/master/src/bug-report-fe_extension/bug-report-fe_extension_0.9.0.vsix)*** file directly or *clone the git repository (Not Recommended: significantly larger download size)*.
+There are two methods to obtain the VSCode Extension Install file, the easiest is to download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file directly or *clone the git repository (Not Recommended: significantly larger download size)*.
 
 ### Clone Git Repository (Large Download Size)
 
@@ -49,7 +61,7 @@ git clone https://github.com/SVF-tools/WebSVF.git
 
 ## Step 3. Install '*Bug-Report-FE*' VSCode Extension
 
-Install '*Bug-Report-FE*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/raw/master/src/bug-report-fe_extension/bug-report-fe_extension_0.9.0.vsix)*** file.
+Install '*Bug-Report-FE*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file.
 
 <img src="gifs/DirectInstallExt.gif" height="480">
 
@@ -67,7 +79,7 @@ Close the currently opened folder in VSCode and open the ``WebSVF/demo/`` direct
 
 **If you directly downloaded the installation file:**
 
-Download and copy the [``Bug-Analysis-Report.json``](https://docs.google.com/uc?export=download&id=1g7QW0Pd2r4JAIrU0QqaDMBsSIHuZfezm) file in the current folder opened in your VSCode application window.
+Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
 
 ## Step 5. Initialise the '*Bug-Report-FE*' VSCode Extension
 
@@ -96,19 +108,6 @@ Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
 # Developer Notes
-
-***For Development instructions regarding any of the components comprising Web-SVF please refer to the respective branches:***
-***(Setup Instructions in each branch assume you have followed **[Step 1. Install Requisite Software](https://github.com/SVF-tools/WebSVF/tree/master#step-1-setup-requisite-software)** in this guide)***
-
-- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe) :**
-
-NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
-
-- **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension) :**
-
-This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe)**. It is deployed through the installation of the ***bug-report-fe.vsix*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online. The ***bug-report-fe.vsix*** file can be found in the [master brach].
-
-- **[code_map_extensions](https://github.com/SVF-tools/WebSVF/tree/code_map_extension)**
 
 ## Patch Notes
 
