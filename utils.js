@@ -98,8 +98,8 @@ function extractZip(node_abspath,terminal){
             console.log(err.message);
         }else{
             terminal.sendText(`rm -r "${node_abspath}.zip"`);
-            let cfg_abspath = node_abspath + constants.node_branch + constants.config_abspath;
-            fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
+            // let cfg_abspath = node_abspath + constants.node_branch + constants.config_abspath;
+            // fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
             setStatusBar("Bug Analysis Tool: Initialized", "White");
         }
     });
@@ -111,6 +111,8 @@ function extractZip(node_abspath,terminal){
 function bug_report(){
     //Get or Create a terminal
     let terminal = this.get_terminal("bug_report");
+    let cfg_abspath = os.userInfo().homedir + path.sep + constants.node_app + constants.node_branch + constants.config_abspath;
+    fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
     //cd to the folder
     //let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1)//node app absolute path.
     let node_branch = null;
