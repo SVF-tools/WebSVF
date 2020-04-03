@@ -1,7 +1,5 @@
 # Web-SVF
 
-***DEVS: Please refer to the [Developer Notes](https://github.com/SVF-tools/WebSVF/tree/master#developer-notes) for latest updates.***
-
 ## **Index**
 
 1. **[Description](https://github.com/SVF-tools/WebSVF#description)**
@@ -24,6 +22,9 @@ NodeJS based Web-Server that is responsible for Front-End output of the *Bug Ana
 This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe)**. It is deployed through the installation of the ***bug-report-fe.vsix*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online. The ***bug-report-fe.vsix*** file can be found in the [master brach].
 
 - **[code_map_extensions](https://github.com/SVF-tools/WebSVF/tree/code_map_extension)**
+
+
+***DEVS: Please refer to the [Developer Notes](https://github.com/SVF-tools/WebSVF/tree/master#developer-notes) for latest updates.***
 
 # Installation Guide
 
