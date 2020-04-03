@@ -1,6 +1,10 @@
 # Change Log
 
+<<<<<<< HEAD
 All notable changes to the ***Web-SVF*** repository will be documented in this file.
+=======
+All notable changes to the ***bug-report-fe*** branch of the **Web-SVF** repository will be documented in this file.
+>>>>>>> origin/bug-report-fe
 
 ## [Unreleased]
 
@@ -22,6 +26,7 @@ All notable changes to the ***Web-SVF*** repository will be documented in this f
 
 ## Patch Notes
 
+<<<<<<< HEAD
 - [2020-03-27] - **Removed Branch** :
 [***master***](https://docs.google.com/uc?export=download&id=1iAoCApwVEGajNFXaUmLMclrSs5AjnrLE)
 
@@ -34,3 +39,10 @@ All notable changes to the ***Web-SVF*** repository will be documented in this f
 [Unreleased]: Link
 [0.0.1]: Link
 
+=======
+- [Date] - **Change** :
+
+
+[Unreleased]: Link
+[0.0.1]: Link
+>>>>>>> origin/bug-report-fe
