@@ -28,6 +28,8 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 # Installation Guide
 
+## **Guide Video (Youtube)**
+
 [![Installation Guide for Bug Analysis Tool (WebSVF)](https://img.youtube.com/vi/--a1rgFE_Cs/hqdefault.jpg)](https://www.youtube.com/watch?v=--a1rgFE_Cs)
 
 ## Step 1. Install Requisite Software
