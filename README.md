@@ -4,7 +4,7 @@
 
 1. **[Description](https://github.com/SVF-tools/WebSVF#description)**
 1. **[Installation Guide](https://github.com/SVF-tools/WebSVF#installation-guide)**
-1. **[Application Data-Flow Diagram](https://github.com/SVF-tools/WebSVF#application-data-flow-diagram)**
+1. **[Architecture Diagram](https://github.com/SVF-tools/WebSVF#architecture-diagram)**
 1. **[Known Issues](https://github.com/SVF-tools/WebSVF#known-issues)**
 1. **[Developer Notes](https://github.com/SVF-tools/WebSVF#developer-notes)**
 1. **[Acknowledgement](https://github.com/SVF-tools/WebSVF#acknowledgement)**
@@ -27,6 +27,8 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 ***DEVS: Please refer to the [Developer Notes](https://github.com/SVF-tools/WebSVF/tree/master#developer-notes) for latest updates.***
 
 # Installation Guide
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
 ## Step 1. Install Requisite Software
 
@@ -92,7 +94,7 @@ Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another 
 
 <img src="gifs/RunExtension.gif" height="480">
 
-# Application Data-Flow Diagram
+# Architecture Diagram
 
 <img src="https://i.imgur.com/0aep07k.png" height="640">
 
