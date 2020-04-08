@@ -13,9 +13,9 @@
 
 The Web-SVF, Bug Analysis Tool is comprised of 3 main components:
 
-- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe) :**
+- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe) :**
 
-NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
+NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
 
 - **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe_extension) :**
 
