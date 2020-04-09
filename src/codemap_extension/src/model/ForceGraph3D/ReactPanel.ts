@@ -1,6 +1,11 @@
 "use strict";
 import * as vscode from "vscode";
-import { ReactPanelManager, ReactPanel } from "../../components/ReactPanel";
+import {
+    ReactPanelManager,
+    ReactPanel,
+    ReactInfo,
+    WebViewInfo,
+} from "../../components/ReactPanel";
 import { ConventPage } from "../../components/ConventPage";
 
 export class ReactPanelForceGraph3DManager {
@@ -9,10 +14,16 @@ export class ReactPanelForceGraph3DManager {
         return ReactPanelForceGraph3DManager._key;
     }
 
-    public static createPanel(filePath: string): boolean {
+    public static createPanel(
+        filePath: string,
+        newReactPanel?: ReactPanel
+    ): boolean {
         if (
             this._key === undefined &&
-            ReactPanelManager.createReactPanelByJsonFile(filePath)
+            ReactPanelManager.createReactPanelByJsonFile(
+                filePath,
+                newReactPanel
+            )
         ) {
             ConventPage.ConventHtml("./build/react-part/index.html");
             this._key = ReactPanelManager.recognizeKey(filePath);
@@ -44,5 +55,30 @@ export class ReactPanelForceGraph3DManager {
             return true;
         }
         return false;
+    }
+}
+
+export class ReactPanelForceGraph3D extends ReactPanel {
+    constructor(reactInfo: ReactInfo, webViewInfo: WebViewInfo) {
+        super(reactInfo, webViewInfo);
+        this.reactPanel.webview.onDidReceiveMessage(
+            (message) => {
+                switch (message.command) {
+                    case "alert":
+                        vscode.window.showErrorMessage(message.text);
+                        return;
+                    case "toSomeWhere":
+                        const filePath = message.path;
+                        const lineNumber = message.line;
+                        const startPosition = message.start;
+                        const endPosition = message.end;
+                        vscode.window.showInformationMessage(
+                            `filePath: ${filePath}\n lineNumber: ${lineNumber}\n startPosition: ${startPosition} \n endPosition: ${endPosition}`
+                        );
+                }
+            },
+            null,
+            this.disposables
+        );
     }
 }

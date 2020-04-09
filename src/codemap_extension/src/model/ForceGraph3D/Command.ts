@@ -2,7 +2,11 @@
 import * as vscode from "vscode";
 import { ActivateVscodeContext } from "../../components/ActivateVscodeContext";
 import { StatusBarForceGraph3DManager } from "./StatusBar";
-import { ReactPanelForceGraph3DManager } from "./ReactPanel";
+import {
+    ReactPanelForceGraph3DManager,
+    ReactPanelForceGraph3D,
+} from "./ReactPanel";
+import { ReactPanelManager, ForceGraphInfo } from "../../components/ReactPanel";
 import * as CommonInterface from "./CommonInterface";
 
 export interface CommandInfo {
@@ -70,8 +74,16 @@ export class RegisterCommandForceGraph3D {
             StatusBarForceGraph3DManager.switchBar ===
             CommonInterface.SwitchBar.on
         ) {
-            ReactPanelForceGraph3DManager.createPanel(
+            const forceGraphInfo: ForceGraphInfo = ReactPanelManager.createForceGraphInfo(
                 this.coreData.PanelConfigPath
+            );
+            const newReactPanel: ReactPanelForceGraph3D = new ReactPanelForceGraph3D(
+                forceGraphInfo.reactInfo,
+                forceGraphInfo.webViewInfo
+            );
+            ReactPanelForceGraph3DManager.createPanel(
+                this.coreData.PanelConfigPath,
+                newReactPanel
             );
         } else {
             ReactPanelForceGraph3DManager.deletePanel();

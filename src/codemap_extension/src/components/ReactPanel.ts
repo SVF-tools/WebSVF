@@ -45,12 +45,20 @@ export class ReactPanelManager {
     //All ReactPanel store here
     private static _reactPanelUnit: Map<string, ReactPanel> = new Map();
     //Create React Panel
-    public static createReactPanel(forceGraphInfo: ForceGraphInfo): boolean {
+    public static createReactPanel(
+        forceGraphInfo: ForceGraphInfo,
+        newReactPanel?: ReactPanel
+    ): boolean {
         if (this.findReactPanel(forceGraphInfo.key) === undefined) {
-            const newPanel: ReactPanel = new ReactPanel(
-                forceGraphInfo.reactInfo,
-                forceGraphInfo.webViewInfo
-            );
+            let newPanel: ReactPanel;
+            if (newReactPanel !== undefined) {
+                newPanel = newReactPanel;
+            } else {
+                newPanel = new ReactPanel(
+                    forceGraphInfo.reactInfo,
+                    forceGraphInfo.webViewInfo
+                );
+            }
             ReactPanelManager._reactPanelUnit.set(forceGraphInfo.key, newPanel);
             return true;
         }
@@ -84,13 +92,22 @@ export class ReactPanelManager {
         return false;
     }
     //Through Json File Info create React Panel
-    public static createReactPanelByJsonFile(filePath: string): boolean {
+    public static createReactPanelByJsonFile(
+        filePath: string,
+        newReactPanel?: ReactPanel
+    ): boolean {
+        const forceGraphInfo: ForceGraphInfo = this.createForceGraphInfo(
+            filePath
+        );
+        return this.createReactPanel(forceGraphInfo, newReactPanel);
+    }
+    public static createForceGraphInfo(filePath: string): ForceGraphInfo {
         const forceGraphInfo: ForceGraphInfo = {
             key: this.recognizeKey(filePath),
             reactInfo: this.assemblyReactInfoFromJsonFile(filePath),
             webViewInfo: this.assemblyWebViewInfoFromJsonFile(filePath),
         };
-        return this.createReactPanel(forceGraphInfo);
+        return forceGraphInfo;
     }
     public static recognizeKey(filePath: string): string {
         const allInfo = require(filePath);
@@ -141,12 +158,12 @@ export class ReactPanelManager {
 }
 
 export class ReactPanel {
-    private _reactPanel: vscode.WebviewPanel;
+    protected _reactPanel: vscode.WebviewPanel;
     public get reactPanel(): vscode.WebviewPanel {
         return this._reactPanel;
     }
-    private disposables: vscode.Disposable[] = [];
-    private readonly extensionPath: string =
+    protected disposables: vscode.Disposable[] = [];
+    protected readonly extensionPath: string =
         ActivateVscodeContext.context.extensionPath;
 
     constructor(reactInfo: ReactInfo, webViewInfo: WebViewInfo) {
@@ -177,7 +194,6 @@ export class ReactPanel {
         );
 
         // Set the webview 's initial html content
-        // this.reactPanel.webview.html = this.getWebView(webViewInfo);
         this.reactPanel.webview.html = ConventPage.ConventHtml(
             "./build/react-part/index.html"
         );
