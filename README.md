@@ -77,7 +77,7 @@ Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another 
 
 # Vsix Generation Guide
 
-Manually generate vsix extension file instead of download via termial. Be sure in the extension directory.
+Manually generate vsix extension file instead of downloading via termial. Be sure in the extension directory.
 
 <img src="gifs/PackageVsix.gif" height="480">
 
