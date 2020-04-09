@@ -77,7 +77,17 @@ Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another 
 
 # Vsix Generation Guide
 
+Manually generate vsix extension file instead of download via termial. Be sure in the extension directory.
+
 <img src="gifs/PackageVsix.gif" height="480">
+
+```
+sudo npm i vsce -g
+```
+
+```
+vsce package
+```
 
 # Architecture Diagram
 
