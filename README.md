@@ -44,35 +44,13 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 ## Step 2. Download VSCode Extension File
 
-There are two methods to obtain the VSCode Extension Install file, the easiest is to download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file directly or *clone the git repository (Not Recommended: significantly larger download size)*.
-
-### Clone Git Repository (Large Download Size)
-
-Launch the installed VSCode application. 
-
-Browse to the directory where you want to install the WebSVF repository.
-
-<img src="gifs/OpenVSCode.gif" height="480">
-
-Open a new Terminal/Command-Prompt in VSCode:
-
-<img src="gifs/TerminalGitClone.gif" height="480">
-
-Clone into the repository by entering the following command in the Terminal/Command-Prompt:
-
-```
-git clone https://github.com/SVF-tools/WebSVF.git
-```
+Download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file directly.
 
 ## Step 3. Install '*Bug-Report-FE*' VSCode Extension
 
 Install '*Bug-Report-FE*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file.
 
 <img src="gifs/DirectInstallExt.gif" height="480">
-
-If you used ***Git***, the file can be found in the following directory: ``WebSVF/src/bug-report-fe_extension/``
-
-<img src="gifs/GitInstallExt.gif" height="480">
 
 ## Step 4. Open Project Folder in VSCode
 
