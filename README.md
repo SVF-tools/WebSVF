@@ -2,12 +2,16 @@
 
 ## **Index**
 
-1. **[Description](https://github.com/SVF-tools/WebSVF#description)**
-1. **[Installation Guide](https://github.com/SVF-tools/WebSVF#installation-guide)**
-1. **[Architecture Diagram](https://github.com/SVF-tools/WebSVF#architecture-diagram)**
-1. **[Known Issues](https://github.com/SVF-tools/WebSVF#known-issues)**
-1. **[Developer Notes](https://github.com/SVF-tools/WebSVF#developer-notes)**
-1. **[Acknowledgement](https://github.com/SVF-tools/WebSVF#acknowledgement)**
+1. **[Description](#description)**
+1. **[Architecture Diagram](#architecture-overview)**
+1. **[Installation Guide](#installation-guide)**
+1. **[Known Issues](#known-issues)**
+1. **[Developer Notes](#developer-notes)**
+1. **[Acknowledgement](#acknowledgement)**
+
+# Architecture Overview
+
+<img src="https://i.imgur.com/6qMmFdQ.jpg" height="640">
 
 # Description
 
@@ -63,10 +67,6 @@ The ***'Bug Analysis Tool' button's*** text will now transform into a red color 
 View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. Similar to the previous button transformation, the button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
 
 Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
-
-# Architecture Diagram
-
-<img src="https://i.imgur.com/6qMmFdQ.jpg" height="640">
 
 # Known Issues
 
