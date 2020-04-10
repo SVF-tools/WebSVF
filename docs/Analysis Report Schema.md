@@ -1,4 +1,4 @@
-# Schema Breakdown for [Bug-Report-Analysis.json](https://github.com/SVF-tools/WebSVF/blob/master/demo/Bug-Analysis-Report.json)
+# Schema Breakdown for [Bug-Report-Analysis.json](https://github.com/SVF-tools/WebSVF/blob/master/docs/Bug-Analysis-Report.json.md)
 
 ```json
 {
