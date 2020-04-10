@@ -10,7 +10,7 @@
 
 The following NodeJS app generates the Front-End for the Bug Analysis Tool.
 
-<img src="https://i.imgur.com/0aep07k.png" height="640">
+<img src="https://i.imgur.com/6qMmFdQ.jpg" height="640">
 
 The Node app requires `` Bug-Analysis-Report.json `` file from the Bug Analysis Tool's Back-End.
 It reads the location of the ***Bug-Analysis-Report.json*** file from the `` bug-analysis-JSON_absolute-dir.config ``
