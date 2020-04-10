@@ -1,0 +1,25 @@
+{
+    "name": "ForceGraph3D",
+    "alignment": "left",
+    "priority": 100,
+    "unit": [
+        {
+            "command": "extension.graphVisualization",
+            "text": "$(beaker) 3D CODE GRAPH",
+            "color": "errorForeground",
+            "show": true
+        },
+        {
+            "command": "extension.graphVisualization",
+            "text": "$(sync~spin) LOADING...",
+            "color": "inputValidation.warningBackground",
+            "show": true
+        },
+        {
+            "command": "extension.graphVisualization",
+            "text": "$(verified) 3D CODE GRAPH",
+            "color": "activityBar.activeBorder",
+            "show": true
+        }
+    ]
+}
