@@ -17,15 +17,15 @@
 
 The Web-SVF, Bug Analysis Tool is comprised of 3 main components:
 
-- **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe) :**
+- **[bug-report-fe](/src/bug-report-fe) :**
 
 NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
 
-- **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe_extension) :**
+- **[bug_report_extension](/src/bug-report-fe_extension) :**
 
 This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe)**. It is deployed through the installation of the ***[bug-report-fe.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online.
 
-- **[code_map_extensions](https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/README.md)**
+- **[code_map_extensions](/src/codemap_extension/)**
 
 
 # Installation Guide
