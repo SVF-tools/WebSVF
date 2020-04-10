@@ -1,32 +1,27 @@
 "use strict";
 import * as vscode from "vscode";
 import {
-    ReactPanelManager,
-    ReactPanel,
-    ReactInfo,
+    WebPanelManager,
+    WebPanel,
+    WebInfo,
     WebViewInfo,
-} from "../../components/ReactPanel";
-import { ConventPage } from "../../components/ConventPage";
+} from "../../components/WebPanel";
 
-export class ReactPanelForceGraph3DManager {
+export class WebPanelForceGraph3DManager {
     private static _key: string | undefined = undefined;
     public static get key(): string | undefined {
-        return ReactPanelForceGraph3DManager._key;
+        return WebPanelForceGraph3DManager._key;
     }
 
     public static createPanel(
         filePath: string,
-        newReactPanel?: ReactPanel
+        newWebPanel?: WebPanel
     ): boolean {
         if (
             this._key === undefined &&
-            ReactPanelManager.createReactPanelByJsonFile(
-                filePath,
-                newReactPanel
-            )
+            WebPanelManager.createWebPanelByJsonFile(filePath, newWebPanel)
         ) {
-            ConventPage.ConventHtml("./build/web-part/index.html");
-            this._key = ReactPanelManager.recognizeKey(filePath);
+            this._key = WebPanelManager.recognizeKey(filePath);
             return true;
         }
         return false;
@@ -35,7 +30,7 @@ export class ReactPanelForceGraph3DManager {
     public static deletePanel(): boolean {
         if (
             this.key !== undefined &&
-            ReactPanelManager.deleteReactPanel(this.key)
+            WebPanelManager.deleteWebPanel(this.key)
         ) {
             this._key = undefined;
             return true;
@@ -43,9 +38,9 @@ export class ReactPanelForceGraph3DManager {
         return false;
     }
 
-    public static getPanel(): ReactPanel | undefined {
+    public static getPanel(): WebPanel | undefined {
         if (this._key !== undefined) {
-            return ReactPanelManager.findReactPanel(this._key);
+            return WebPanelManager.findWebPanel(this._key);
         }
         return undefined;
     }
@@ -58,10 +53,10 @@ export class ReactPanelForceGraph3DManager {
     }
 }
 
-export class ReactPanelForceGraph3D extends ReactPanel {
-    constructor(reactInfo: ReactInfo, webViewInfo: WebViewInfo) {
-        super(reactInfo, webViewInfo);
-        this.reactPanel.webview.onDidReceiveMessage(
+export class WebPanelForceGraph3D extends WebPanel {
+    constructor(webInfo: WebInfo) {
+        super(webInfo);
+        this.webPanel.webview.onDidReceiveMessage(
             (message) => {
                 switch (message.command) {
                     case "alert":
@@ -75,6 +70,12 @@ export class ReactPanelForceGraph3D extends ReactPanel {
                         vscode.window.showInformationMessage(
                             `filePath: ${filePath}\n lineNumber: ${lineNumber}\n startPosition: ${startPosition} \n endPosition: ${endPosition}`
                         );
+                        return;
+                    case "connect":
+                        this.webPanel.webview.postMessage({
+                            status: "connected",
+                        });
+                        return;
                 }
             },
             null,

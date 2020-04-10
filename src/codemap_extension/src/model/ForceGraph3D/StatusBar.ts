@@ -2,7 +2,7 @@
 import * as vscode from "vscode";
 import * as StatusBar from "../../components/StatusBar";
 import * as CommonInterface from "./CommonInterface";
-import { ReactPanelForceGraph3DManager } from "./ReactPanel";
+import { WebPanelForceGraph3DManager } from "./WebPanel";
 import { setInterval } from "timers";
 
 export class StatusBarForceGraph3DManager {
@@ -134,11 +134,11 @@ export class StatusBarForceGraph3DManager {
     }
 
     private static webPanelReady(): boolean{
-        if(this.switchBar === CommonInterface.SwitchBar.on && ReactPanelForceGraph3DManager.hasKey()){
+        if(this.switchBar === CommonInterface.SwitchBar.on && WebPanelForceGraph3DManager.hasKey()){
             return true;
         }
 
-        if(this.switchBar === CommonInterface.SwitchBar.off && !ReactPanelForceGraph3DManager.hasKey()){
+        if(this.switchBar === CommonInterface.SwitchBar.off && !WebPanelForceGraph3DManager.hasKey()){
             return true;
         }
 

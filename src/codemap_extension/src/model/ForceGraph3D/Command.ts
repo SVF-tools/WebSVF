@@ -2,11 +2,12 @@
 import * as vscode from "vscode";
 import { ActivateVscodeContext } from "../../components/ActivateVscodeContext";
 import { StatusBarForceGraph3DManager } from "./StatusBar";
+import { WebPanelForceGraph3DManager, WebPanelForceGraph3D } from "./WebPanel";
 import {
-    ReactPanelForceGraph3DManager,
-    ReactPanelForceGraph3D,
-} from "./ReactPanel";
-import { ReactPanelManager, ForceGraphInfo } from "../../components/ReactPanel";
+    WebPanelManager,
+    WebInfo,
+    WebViewInfo,
+} from "../../components/WebPanel";
 import * as CommonInterface from "./CommonInterface";
 
 export interface CommandInfo {
@@ -74,19 +75,18 @@ export class RegisterCommandForceGraph3D {
             StatusBarForceGraph3DManager.switchBar ===
             CommonInterface.SwitchBar.on
         ) {
-            const forceGraphInfo: ForceGraphInfo = ReactPanelManager.createForceGraphInfo(
+            const webViewInfo: WebViewInfo = WebPanelManager.generateWebViewInfo(
                 this.coreData.PanelConfigPath
             );
-            const newReactPanel: ReactPanelForceGraph3D = new ReactPanelForceGraph3D(
-                forceGraphInfo.reactInfo,
-                forceGraphInfo.webViewInfo
+            const newWebPanel: WebPanelForceGraph3D = new WebPanelForceGraph3D(
+                webViewInfo.webInfo
             );
-            ReactPanelForceGraph3DManager.createPanel(
+            WebPanelForceGraph3DManager.createPanel(
                 this.coreData.PanelConfigPath,
-                newReactPanel
+                newWebPanel
             );
         } else {
-            ReactPanelForceGraph3DManager.deletePanel();
+            WebPanelForceGraph3DManager.deletePanel();
         }
     }
 }
