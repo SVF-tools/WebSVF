@@ -1,0 +1,17 @@
+{
+    "name": "ForceGraph3D",
+    "ReactInfo": {
+        "viewType": "react",
+        "title": "3D CODE ANALYSIS GRAPH",
+        "column": "active",
+        "enableScripts": true,
+        "localResourceRoots": "build"
+    },
+    "WebViewInfo": {
+        "sourcePath": "build/react-part",
+        "configJson": "asset-manifest.json",
+        "content": "files",
+        "js": "main.js",
+        "css": "main.css"
+    }
+}
