@@ -4,7 +4,6 @@
 
 1. **[Description](https://github.com/SVF-tools/WebSVF#description)**
 1. **[Installation Guide](https://github.com/SVF-tools/WebSVF#installation-guide)**
-1. **[Vsix Generation Guide](https://github.com/SVF-tools/WebSVF#installation-guide)**
 1. **[Architecture Diagram](https://github.com/SVF-tools/WebSVF#architecture-diagram)**
 1. **[Known Issues](https://github.com/SVF-tools/WebSVF#known-issues)**
 1. **[Developer Notes](https://github.com/SVF-tools/WebSVF#developer-notes)**
@@ -74,20 +73,6 @@ View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: 
 Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
 
 <img src="gifs/RunExtension.gif" height="480">
-
-# Vsix Generation Guide
-
-Manually generate vsix extension file instead of downloading via termial. Be sure in the extension directory.
-
-<img src="gifs/PackageVsix.gif" height="480">
-
-```
-sudo npm i vsce -g
-```
-
-```
-vsce package
-```
 
 # Architecture Diagram
 
