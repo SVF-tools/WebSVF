@@ -46,7 +46,9 @@
         "create_all": "yarn create_vscode && yarn create_react",
         "cp_react": "cp -rf react-part/build ./build/react-part",
         "cl": "yarn clear_all",
-        "go": "yarn create_all && yarn cp_react"
+        "go_react": "yarn create_all && yarn cp_react",
+        "mv_web": "cp -rf ./web-part ./build/",
+        "go": "yarn create_vscode"
     },
     "devDependencies": {
         "@types/glob": "^7.1.1",

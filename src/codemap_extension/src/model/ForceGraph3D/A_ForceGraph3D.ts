@@ -19,10 +19,11 @@ function getConfigPath(): CommonInterface.ConfigPath {
     const BarConfigPath = path.join(rootPath, "BarConfig.json");
     const ReactPanelConfigPath = path.join(rootPath, "ReactPanelConfig.json");
     const CommandConfigPath = path.join(rootPath, "CommandConfig.json");
+    const WebPanelConfigPath = path.join(rootPath, "WebPanelConfig.json");
 
     const configPath: CommonInterface.ConfigPath = {
         barConfigPath: BarConfigPath,
-        PanelConfigPath: ReactPanelConfigPath,
+        PanelConfigPath: WebPanelConfigPath,
         CommandConfigPath: CommandConfigPath,
     };
     return configPath;

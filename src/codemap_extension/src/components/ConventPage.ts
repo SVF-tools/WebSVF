@@ -12,6 +12,9 @@ export class ConventPage {
         html = html.replace(
             /(<link.+?href="|<script.+?src="|<img.+?src="|.jsonUrl\(")(.+?)"/g,
             (m, $1, $2) => {
+                if($2[0] !== '/'){
+                    return $1 + $2;
+                }
                 return (
                     $1 +
                     vscode.Uri.file(path.join(dirPath, $2))
