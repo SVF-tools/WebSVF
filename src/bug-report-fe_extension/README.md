@@ -1,9 +1,10 @@
 # CodeMap Bug Analysis Plugin
 
 ## **Index**
-1. **[Description](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Description)**
-1. **[Setup Instruction](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Setup-Instruction)**
-1. **[More Information](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#For-more-information)**
+1. **[Description](#Description)**
+1. **[Setup Instruction](#Setup-Instruction)**
+1. **[Vsix Generation Guide](#Vsix-Generation-Guide)**
+1. **[More Information](#For-more-information)**
 
 # Description
 This is a **Bug Analysis Extension** installed in VSCode, which can run across platforms, and support **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#Bug-Analysis-Tool---Front-End---NodeJS)**
@@ -50,6 +51,20 @@ f5
 A ***'status bar'*** named ***'Bug Analysis Tool'*** in the bottom-left corner and can run ***'Initialization'***, ***'Analysis'*** and ***'Stop'*** functions according to different conditions.
 
 (Please refer to [Description](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Description) section for details about these functions)
+
+# Vsix Generation Guide
+
+Manually generate vsix extension file instead of downloading via termial. Be sure in the extension directory.
+
+<img src="gifs/PackageVsix.gif" height="480">
+
+```
+sudo npm i vsce -g
+```
+
+```
+vsce package
+```
 
 ### For more information
 
