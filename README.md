@@ -48,13 +48,9 @@ Download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://githu
 
 Install '*Bug-Report-FE*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file.
 
-<img src="gifs/DirectInstallExt.gif" height="480">
-
 ## Step 4. Open Project Folder in VSCode
 
 Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
-
-<img src="gifs/OpenProjectFolder.gif" height="480">
 
 ## Step 5. Initialise the '*Bug-Report-FE*' VSCode Extension
 
@@ -62,15 +58,11 @@ Install the dependencies for the Bug Analysis Tool's Front-End by clicking on th
 
 The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***.
 
-<img src="gifs/InitialiseExtension.gif" height="480">
-
 ## Step 6. View the Bug Analysis for the Project
 
 View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. Similar to the previous button transformation, the button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
 
 Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
-
-<img src="gifs/RunExtension.gif" height="480">
 
 # Architecture Diagram
 
