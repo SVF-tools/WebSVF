@@ -14,7 +14,5 @@ export enum SwitchBar {
 
 export enum BarSituation {
     waiting,
-    running,
+    going,
 }
-
-
