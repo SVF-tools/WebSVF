@@ -34,7 +34,7 @@ export class StatusBarForceGraph3DManager {
             );
 
             this._switchBar = CommonInterface.SwitchBar.off;
-            this._barSituation = CommonInterface.BarSituation.running;
+            this._barSituation = CommonInterface.BarSituation.going;
 
             this._key = StatusBar.ManageStatusBar.recognizeKey(
                 coreData.barConfigPath
@@ -47,17 +47,18 @@ export class StatusBarForceGraph3DManager {
     }
 
     // This function is used for command control bar
-    public static switchTurn() {
+    public static switchTurn(): boolean {
         if (!this.couldSwitchTurn()) {
             vscode.window.showWarningMessage("Waiting for loading...");
-            return;
+            return false;
         }
         this._switchStatusChange();
         this._refreshBar();
+        return true;
     }
 
     public static couldSwitchTurn(): boolean {
-        return this.barSituation === CommonInterface.BarSituation.running
+        return this.barSituation === CommonInterface.BarSituation.going
             ? true
             : false;
     }
@@ -100,11 +101,17 @@ export class StatusBarForceGraph3DManager {
     }
 
     private static refreshBarBase(statusCode: number) {
+        if (statusCode === StatusBar.StatusCode.loading) {
+            vscode.window.showErrorMessage(
+                "You cannot set status code as loading when refresh bar."
+            );
+            return;
+        }
         if (this.bar !== undefined && this.bar.statusBarInfoUnit !== null) {
+            this._barSituation = CommonInterface.BarSituation.waiting;
             this.bar.setStatusBar(
                 this.bar.statusBarInfoUnit["unit"][StatusBar.StatusCode.loading]
             );
-            this._barSituation = CommonInterface.BarSituation.waiting;
         } else {
             vscode.window.showErrorMessage(
                 "RefreshBarBase bar.statusBarInfoUnit is null"
@@ -121,7 +128,7 @@ export class StatusBarForceGraph3DManager {
                     this.bar.setStatusBar(
                         this.bar.statusBarInfoUnit["unit"][statusCode]
                     );
-                    this._barSituation = CommonInterface.BarSituation.running;
+                    this._barSituation = CommonInterface.BarSituation.going;
                 } else {
                     vscode.window.showErrorMessage(
                         "SetTimeout bar.statusBarInfoUnit is null"

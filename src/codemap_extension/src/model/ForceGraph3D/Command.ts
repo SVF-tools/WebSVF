@@ -3,11 +3,7 @@ import * as vscode from "vscode";
 import { ActivateVscodeContext } from "../../components/ActivateVscodeContext";
 import { StatusBarForceGraph3DManager } from "./StatusBar";
 import { WebPanelForceGraph3DManager, WebPanelForceGraph3D } from "./WebPanel";
-import {
-    WebPanelManager,
-    WebInfo,
-    WebViewInfo,
-} from "../../components/WebPanel";
+import { WebPanelManager, WebViewInfo } from "../../components/WebPanel";
 import * as CommonInterface from "./CommonInterface";
 
 export interface CommandInfo {
@@ -66,11 +62,11 @@ export class RegisterCommandForceGraph3D {
 
     private mainFunc() {
         // vscode.window.showInformationMessage("3D FORCE GRAPH");
-        StatusBarForceGraph3DManager.switchTurn();
-
-        this.loadWebPanel();
+        if (StatusBarForceGraph3DManager.switchTurn()) {
+            this.loadWebPanel();
+        }
     }
-    public turnAndLoad(){
+    public turnAndLoad() {
         this.mainFunc();
     }
     private loadWebPanel() {
