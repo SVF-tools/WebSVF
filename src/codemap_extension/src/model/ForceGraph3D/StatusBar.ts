@@ -23,6 +23,12 @@ export class StatusBarForceGraph3DManager {
     private static _barSituation:
         | CommonInterface.BarSituation
         | undefined = undefined;
+
+    public static set barSituation(
+        value: CommonInterface.BarSituation | undefined
+    ) {
+        StatusBarForceGraph3DManager._barSituation = value;
+    }
     public static get barSituation(): CommonInterface.BarSituation | undefined {
         return StatusBarForceGraph3DManager._barSituation;
     }

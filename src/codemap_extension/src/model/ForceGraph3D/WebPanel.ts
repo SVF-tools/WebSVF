@@ -7,9 +7,14 @@ import {
     WebViewInfo,
 } from "../../components/WebPanel";
 
+import { LineTagManager, LineTag } from "../../components/LineTag";
+import { LineTagForceGraph3DManager } from "./LineTag";
+
 import { StatusBarForceGraph3DManager } from "./StatusBar";
 import { RegisterCommandForceGraph3DManager } from "./Command";
 import * as CommonInterface from "./CommonInterface";
+
+import { ActivateVscodeContext } from "../../components/ActivateVscodeContext";
 
 export class WebPanelForceGraph3DManager {
     private static _key: string | undefined = undefined;
@@ -90,10 +95,60 @@ export class WebPanelForceGraph3D extends WebPanel {
                 const lineNumber = message.line;
                 const startPosition = message.start;
                 const endPosition = message.end;
-                vscode.window.showInformationMessage(
-                    `filePath: ${filePath}\n lineNumber: ${lineNumber}\n startPosition: ${startPosition} \n endPosition: ${endPosition}`
-                );
+                const activeEditor = ActivateVscodeContext.activeEditor;
+                if (activeEditor) {
+                    vscode.window.showTextDocument(activeEditor.document);
+                }
+
+                let num = 0;
+                const handle: NodeJS.Timeout = setInterval(() => {
+                    if (
+                        vscode.window.activeTextEditor?.document.uri.fsPath ===
+                        ActivateVscodeContext.activeEditor?.document.uri.fsPath
+                    ) {
+                        this.LoadTag(lineNumber);
+                        clearInterval(handle);
+                    }
+                }, 0);
+
                 return;
+        }
+    }
+
+    protected LoadTag(lineNumber: number) {
+        const activeEditor = vscode.window.activeTextEditor;
+
+        if (activeEditor === undefined) {
+            vscode.window.showWarningMessage("Try to open an editor first.");
+        } else {
+            const preKey: string = LineTagManager.assemblyKey(
+                activeEditor,
+                lineNumber
+            );
+
+            if (LineTagManager.findLineTag(preKey) === undefined) {
+                const key = LineTagForceGraph3DManager.createLineTag(
+                    activeEditor,
+                    lineNumber
+                );
+                if (preKey !== key) {
+                    vscode.window.showErrorMessage("preKey !== key.");
+                }
+                const lineTag: LineTag | undefined =
+                    key !== undefined
+                        ? LineTagManager.findLineTag(key)
+                        : undefined;
+
+                if (lineTag !== undefined) {
+                    lineTag.LoadDecoration();
+                } else {
+                    vscode.window.showErrorMessage("linTag is undefined.");
+                }
+            } else {
+                if (!LineTagManager.deleteLineTag(preKey)) {
+                    vscode.window.showErrorMessage("deleteLineTag false.");
+                }
+            }
         }
     }
 }

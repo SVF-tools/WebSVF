@@ -6,16 +6,9 @@ import { StatusBarForceGraph3DManager } from "./StatusBar";
 import { RegisterCommandForceGraph3DManager } from "./Command";
 import * as CommonInterface from "./CommonInterface";
 
-function getRootPath(): string {
-    return path.join(
-        ActivateVscodeContext.context.extensionPath,
-        "configuration",
-        "ForceGraph3D"
-    );
-}
 function getConfigPath(): CommonInterface.ConfigPath {
     // Load configure info from Json file
-    const rootPath: string = getRootPath();
+    const rootPath: string = CommonInterface.getConfigRootPath();
     const BarConfigPath = path.join(rootPath, "BarConfig.json");
     const ReactPanelConfigPath = path.join(rootPath, "ReactPanelConfig.json");
     const CommandConfigPath = path.join(rootPath, "CommandConfig.json");
