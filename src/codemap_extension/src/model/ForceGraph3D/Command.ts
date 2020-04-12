@@ -70,6 +70,9 @@ export class RegisterCommandForceGraph3D {
 
         this.loadWebPanel();
     }
+    public turnAndLoad(){
+        this.mainFunc();
+    }
     private loadWebPanel() {
         if (
             StatusBarForceGraph3DManager.switchBar ===
