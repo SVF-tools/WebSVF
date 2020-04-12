@@ -21,6 +21,11 @@ export interface WebViewInfo {
     webInfo: WebInfo;
 }
 
+export enum WebStatus {
+    complete,
+    incomplete,
+}
+
 export class WebPanelManager {
     //All WebPanel store here
     private static _webPanelUnit: Map<string, WebPanel> = new Map();
@@ -121,6 +126,16 @@ export class WebPanelManager {
 
 export class WebPanel {
     private _webPanel: vscode.WebviewPanel;
+    private _webStatus: WebStatus;
+    protected get webStatus(): WebStatus {
+        return this._webStatus;
+    }
+    protected set webStatus(value: WebStatus) {
+        this._webStatus = value;
+    }
+    public webReady() {
+        return this.webStatus === WebStatus.complete ? true : false;
+    }
     protected get webPanel(): vscode.WebviewPanel {
         return this._webPanel;
     }
@@ -133,6 +148,7 @@ export class WebPanel {
         ActivateVscodeContext.context.extensionPath;
 
     constructor(webInfo: WebInfo) {
+        this._webStatus = WebStatus.incomplete;
         // Through Web Info set and create a vscode web view.
         this._webPanel = vscode.window.createWebviewPanel(
             webInfo["viewType"],
@@ -167,16 +183,24 @@ export class WebPanel {
 
         // Handle messages from the webview
         this._webPanel.webview.onDidReceiveMessage(
-            (message) => {
-                switch (message.command) {
-                    case "alert":
-                        vscode.window.showErrorMessage(message.text);
-                        return;
-                }
-            },
+            (message) => this.receiveMessage(message),
             null,
             this.disposables
         );
+    }
+
+    protected receiveMessage(message: any) {
+        switch (message.command) {
+            case "alert":
+                vscode.window.showErrorMessage(message.text);
+                return;
+            case "connect":
+                this._webStatus = WebStatus.complete;
+                this.webPanel.webview.postMessage({
+                    status: "connected",
+                });
+                return;
+        }
     }
 
     // Clean up resources

@@ -16,3 +16,5 @@ export enum BarSituation {
     waiting,
     running,
 }
+
+

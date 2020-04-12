@@ -133,12 +133,19 @@ export class StatusBarForceGraph3DManager {
         }, 100);
     }
 
-    private static webPanelReady(): boolean{
-        if(this.switchBar === CommonInterface.SwitchBar.on && WebPanelForceGraph3DManager.hasKey()){
+    private static webPanelReady(): boolean {
+        if (
+            this.switchBar === CommonInterface.SwitchBar.on &&
+            WebPanelForceGraph3DManager.hasKey() &&
+            WebPanelForceGraph3DManager.webReady()
+        ) {
             return true;
         }
 
-        if(this.switchBar === CommonInterface.SwitchBar.off && !WebPanelForceGraph3DManager.hasKey()){
+        if (
+            this.switchBar === CommonInterface.SwitchBar.off &&
+            !WebPanelForceGraph3DManager.hasKey()
+        ) {
             return true;
         }
 

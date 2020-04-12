@@ -14,11 +14,6 @@ const gData = {
         })),
 };
 
-vscode.postMessage({
-    command: "connect",
-    text: "Hello world",
-});
-
 const Graph = ForceGraph3D()(document.getElementById("graph"))
     // .forceEngine("ngraph")
     // .cooldownTicks(300)
@@ -110,3 +105,12 @@ window.addEventListener("message", (event) => {
     const message = event.data;
     document.getElementById("showSpan").textContent = message.status;
 });
+
+document.onreadystatechange = function () {
+    if (document.readyState === "complete") {
+        vscode.postMessage({
+            command: "connect",
+            text: "Hello world",
+        });
+    }
+};
