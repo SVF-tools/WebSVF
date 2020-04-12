@@ -49,6 +49,11 @@ export class WebPanelForceGraph3DManager {
         return undefined;
     }
 
+    public static webReady(): boolean {
+        const panel: WebPanel | undefined = this.getPanel();
+        return panel !== undefined ? panel.webReady() : false;
+    }
+
     public static hasKey(): boolean {
         if (this._key !== undefined) {
             return true;
@@ -60,43 +65,35 @@ export class WebPanelForceGraph3DManager {
 export class WebPanelForceGraph3D extends WebPanel {
     constructor(webInfo: WebInfo) {
         super(webInfo);
-        this.webPanel.webview.onDidReceiveMessage(
-            (message) => {
-                switch (message.command) {
-                    case "alert":
-                        vscode.window.showErrorMessage(message.text);
-                        return;
-                    case "toSomeWhere":
-                        const filePath = message.path;
-                        const lineNumber = message.line;
-                        const startPosition = message.start;
-                        const endPosition = message.end;
-                        vscode.window.showInformationMessage(
-                            `filePath: ${filePath}\n lineNumber: ${lineNumber}\n startPosition: ${startPosition} \n endPosition: ${endPosition}`
-                        );
-                        return;
-                    case "connect":
-                        this.webPanel.webview.postMessage({
-                            status: "connected",
-                        });
-                        return;
-                }
-            },
-            null,
-            this.disposables
-        );
-
         this.webPanel.onDidDispose(
             () => {
-                if(StatusBarForceGraph3DManager.switchBar === CommonInterface.SwitchBar.on){
+                if (
+                    StatusBarForceGraph3DManager.switchBar ===
+                    CommonInterface.SwitchBar.on
+                ) {
                     RegisterCommandForceGraph3DManager.rcf?.turnAndLoad();
                     return;
-                }else{
+                } else {
                     this.dispose();
                 }
             },
             null,
             this.disposables
         );
+    }
+
+    protected receiveMessage(message: any) {
+        super.receiveMessage(message);
+        switch (message.command) {
+            case "toSomeWhere":
+                const filePath = message.path;
+                const lineNumber = message.line;
+                const startPosition = message.start;
+                const endPosition = message.end;
+                vscode.window.showInformationMessage(
+                    `filePath: ${filePath}\n lineNumber: ${lineNumber}\n startPosition: ${startPosition} \n endPosition: ${endPosition}`
+                );
+                return;
+        }
     }
 }
