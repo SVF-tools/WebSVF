@@ -7,6 +7,10 @@ import {
     WebViewInfo,
 } from "../../components/WebPanel";
 
+import { StatusBarForceGraph3DManager } from "./StatusBar";
+import { RegisterCommandForceGraph3DManager } from "./Command";
+import * as CommonInterface from "./CommonInterface";
+
 export class WebPanelForceGraph3DManager {
     private static _key: string | undefined = undefined;
     public static get key(): string | undefined {
@@ -76,6 +80,19 @@ export class WebPanelForceGraph3D extends WebPanel {
                             status: "connected",
                         });
                         return;
+                }
+            },
+            null,
+            this.disposables
+        );
+
+        this.webPanel.onDidDispose(
+            () => {
+                if(StatusBarForceGraph3DManager.switchBar === CommonInterface.SwitchBar.on){
+                    RegisterCommandForceGraph3DManager.rcf?.turnAndLoad();
+                    return;
+                }else{
+                    this.dispose();
                 }
             },
             null,
