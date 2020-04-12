@@ -6,6 +6,9 @@ import { WebPanelForceGraph3DManager, WebPanelForceGraph3D } from "./WebPanel";
 import { WebPanelManager, WebViewInfo } from "../../components/WebPanel";
 import * as CommonInterface from "./CommonInterface";
 
+import { LineTagManager, LineTag } from "../../components/LineTag";
+import { LineTagForceGraph3DManager } from "./LineTag";
+
 export interface CommandInfo {
     [key: string]: string;
     key: string;
@@ -63,10 +66,13 @@ export class RegisterCommandForceGraph3D {
     private mainFunc() {
         // vscode.window.showInformationMessage("3D FORCE GRAPH");
         if (StatusBarForceGraph3DManager.switchTurn()) {
+            ActivateVscodeContext.activeEditor = vscode.window.activeTextEditor;
             this.loadWebPanel();
         }
     }
     public turnAndLoad() {
+        StatusBarForceGraph3DManager.barSituation =
+            CommonInterface.BarSituation.going;
         this.mainFunc();
     }
     private loadWebPanel() {

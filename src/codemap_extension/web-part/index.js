@@ -15,9 +15,6 @@ const gData = {
 };
 
 const Graph = ForceGraph3D()(document.getElementById("graph"))
-    // .forceEngine("ngraph")
-    // .cooldownTicks(300)
-    // .cooldownTime(20000)
     .enableNodeDrag(false)
     .graphData(gData);
 
