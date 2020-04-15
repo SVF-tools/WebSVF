@@ -6,18 +6,18 @@ import { LineTagManager, LineTag } from "../../components/LineTag";
 export class LineTagForceGraph3DManager {
     private static filePath: string = "LineTag.json";
     public static createLineTag(
-        activeEditor: vscode.TextEditor | undefined,
-        line: number
+        activeEditorUri: vscode.Uri,
+        line: number,
+        start: number,
+        end: number
     ): undefined | string {
-        if (activeEditor === undefined) {
-            return undefined;
-        } else {
-            const configFilePath = commonInterface.getConfigPath(this.filePath);
-            return LineTagManager.createLineTag(
-                activeEditor,
-                line,
-                configFilePath
-            );
-        }
+        const configFilePath = commonInterface.getConfigPath(this.filePath);
+        return LineTagManager.createLineTag(
+            activeEditorUri,
+            line,
+            start,
+            end,
+            configFilePath
+        );
     }
 }

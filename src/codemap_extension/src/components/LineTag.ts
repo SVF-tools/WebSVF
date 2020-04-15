@@ -22,10 +22,10 @@ export enum LightOrDark {
 
 export interface CreateLineTagInfo {
     [key: string]:
-        | vscode.TextEditor
+        | vscode.Uri
         | Array<vscode.Range>
         | vscode.TextEditorDecorationType;
-    activeEditor: vscode.TextEditor;
+    activeEditorUri: vscode.Uri;
     markSpace: Array<vscode.Range>;
     textLoadEditorDecoration: vscode.TextEditorDecorationType;
 }
@@ -36,14 +36,20 @@ export class LineTagManager {
         return LineTagManager._LineTagList;
     }
     public static createLineTag(
-        activeEditor: vscode.TextEditor, // which file
+        activeEditorUri: vscode.Uri, // which file
         markLine: number, // which line
+        start: number,
+        end: number,
         filePathOrType: string | vscode.TextEditorDecorationType // Decoration file or Type
     ): string {
-        const key: string = this.assemblyKey(activeEditor, markLine);
-        const range: vscode.Range = this.assemblyVscodeRange(markLine);
+        const key: string = this.assemblyKey(activeEditorUri, markLine);
+        const range: vscode.Range = this.assemblyVscodeRange(
+            markLine,
+            start,
+            end
+        );
         const createLineTagInfo: CreateLineTagInfo = this.assemblyCreateLineTagInfo(
-            activeEditor,
+            activeEditorUri,
             range,
             filePathOrType
         );
@@ -70,16 +76,16 @@ export class LineTagManager {
 
     public static assemblyVscodeRange(
         line1: number,
-        line2?: number
+        start: number,
+        end: number
     ): vscode.Range {
-        line2 = line2 === undefined ? line1 : line2;
-        const position_1: vscode.Position = new vscode.Position(line1, 2);
-        const position_2: vscode.Position = new vscode.Position(line2 + 1, 20);
+        const position_1: vscode.Position = new vscode.Position(line1, start);
+        const position_2: vscode.Position = new vscode.Position(line1, end);
         return new vscode.Range(position_1, position_2);
     }
 
     public static assemblyCreateLineTagInfo(
-        activeEditor: vscode.TextEditor,
+        activeEditorUri: vscode.Uri,
         markLine: vscode.Range,
         filePathOrType: string | vscode.TextEditorDecorationType
     ): CreateLineTagInfo {
@@ -91,7 +97,7 @@ export class LineTagManager {
                 ? this.generateTextEditorDecorationByJsonFile(filePathOrType)
                 : filePathOrType;
         const createLineTagInfo: CreateLineTagInfo = {
-            activeEditor: activeEditor,
+            activeEditorUri: activeEditorUri,
             markSpace: markSpace,
             textLoadEditorDecoration: textLoadEditorDecoration,
         };
@@ -100,10 +106,10 @@ export class LineTagManager {
     }
 
     public static assemblyKey(
-        activeEditor: vscode.TextEditor,
+        activeEditorUri: vscode.Uri,
         line: number
     ): string {
-        return activeEditor.document.uri.fsPath + " " + line.toString();
+        return activeEditorUri.fsPath + " " + line.toString();
     }
 
     private static assemblyLineTagFromJsonFile(
@@ -148,14 +154,16 @@ export class LineTagManager {
         const lightOptions: vscode.ThemableDecorationRenderOptions = {
             gutterIconPath: vscode.Uri.file(info["light"]["svgPath"]),
             gutterIconSize: "contain",
-            backgroundColor: "green",
-            borderColor: "blue",
+            color: "#fff",
+            backgroundColor: "#ffbd2a",
+            overviewRulerColor: "rgba(255,189,42,0.8)",
         };
         const darkOptions: vscode.ThemableDecorationRenderOptions = {
             gutterIconPath: vscode.Uri.file(info["dark"]["svgPath"]),
             gutterIconSize: "contain",
-            backgroundColor: "green",
-            borderColor: "blue",
+            color: "#fff",
+            backgroundColor: "#ffbd2a",
+            overviewRulerColor: "rgba(255,189,42,0.8)",
         };
         const options: vscode.DecorationRenderOptions = {
             light: lightOptions,
@@ -179,6 +187,18 @@ export class LineTagManager {
         const options = this.generateDecorationOptionsByJsonFile(filePath);
         return this.generateTextEditorDecoration(options);
     }
+
+    public static LoadDecoration() {
+        this.LineTagList.forEach((value, key) => {
+            value.LoadDecoration();
+        });
+    }
+
+    public static UnLoadDecoration() {
+        this.LineTagList.forEach((value, key) => {
+            value.UnLoadDecoration();
+        });
+    }
 }
 
 export class LineTag {
@@ -190,13 +210,19 @@ export class LineTag {
                 ? newDec
                 : this.createLineTagInfo.textLoadEditorDecoration;
 
-        this.createLineTagInfo.activeEditor.setDecorations(
-            newDec,
-            this.createLineTagInfo.markSpace
-        );
+        if (vscode.window.activeTextEditor) {
+            let activeEditor = vscode.window.activeTextEditor;
+            let uri = activeEditor.document.uri;
+            if (this.createLineTagInfo.activeEditorUri.fsPath === uri.fsPath) {
+                activeEditor.setDecorations(
+                    newDec,
+                    this.createLineTagInfo.markSpace
+                );
+            }
+        }
     }
     public UnLoadDecoration() {
-        vscode.window.showInformationMessage("UnLoadDecoration");
+        // vscode.window.showInformationMessage("UnLoadDecoration");
         this.createLineTagInfo.textLoadEditorDecoration.dispose();
     }
 }

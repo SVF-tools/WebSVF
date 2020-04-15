@@ -1,7 +1,6 @@
 "use strict";
 import * as vscode from "vscode";
 import * as path from "path";
-import { ActivateVscodeContext } from "./ActivateVscodeContext";
 
 export class AbsPath {
     public static vsPath(relativePath: string) {
@@ -23,10 +22,13 @@ export class AbsPath {
     }
 
     private static getAbsolutePath(relativePath: string) {
-        return path.join(this.getExtensionPath(), relativePath);
+        return path.join(this.getFolderPath(), relativePath);
     }
 
-    private static getExtensionPath(): string {
-        return ActivateVscodeContext.context.extensionPath;
+    private static getFolderPath(): string {
+        if (vscode.workspace.workspaceFolders) {
+            return vscode.workspace.workspaceFolders[0].uri.fsPath;
+        }
+        return "";
     }
 }
