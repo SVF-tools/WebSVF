@@ -193,13 +193,13 @@ export class WebPanel {
         switch (message.command) {
             case "alert":
                 vscode.window.showErrorMessage(message.text);
-                return;
+                break;
             case "connect":
                 this._webStatus = WebStatus.complete;
                 this.webPanel.webview.postMessage({
                     status: "connected",
                 });
-                return;
+                break;
         }
     }
 

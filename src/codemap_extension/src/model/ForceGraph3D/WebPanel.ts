@@ -7,6 +7,8 @@ import {
     WebViewInfo,
 } from "../../components/WebPanel";
 
+import { AbsPath } from "../../components/AbsPath";
+
 import { LineTagManager, LineTag } from "../../components/LineTag";
 import { LineTagForceGraph3DManager } from "./LineTag";
 
@@ -91,63 +93,56 @@ export class WebPanelForceGraph3D extends WebPanel {
         super.receiveMessage(message);
         switch (message.command) {
             case "toSomeWhere":
-                const filePath = message.path;
+                const filePathUri = vscode.Uri.file(message.path);
                 const lineNumber = message.line;
                 const startPosition = message.start;
                 const endPosition = message.end;
-                const activeEditor = ActivateVscodeContext.activeEditor;
-                if (activeEditor) {
-                    vscode.window.showTextDocument(activeEditor.document);
-                }
 
-                let num = 0;
-                const handle: NodeJS.Timeout = setInterval(() => {
-                    if (
-                        vscode.window.activeTextEditor?.document.uri.fsPath ===
-                        ActivateVscodeContext.activeEditor?.document.uri.fsPath
-                    ) {
-                        this.LoadTag(lineNumber);
-                        clearInterval(handle);
-                    }
-                }, 0);
+                // vscode.window.showInformationMessage(
+                //     `filePathUri: ${filePathUri}`
+                // );
 
-                return;
+                this.LoadTag(
+                    filePathUri,
+                    lineNumber,
+                    startPosition,
+                    endPosition
+                );
+
+                let range: vscode.Range = new vscode.Range(
+                    lineNumber,
+                    startPosition,
+                    lineNumber,
+                    endPosition
+                );
+
+                vscode.window.showTextDocument(filePathUri, {
+                    selection: range,
+                    viewColumn: 2,
+                });
+
+                break;
         }
     }
 
-    protected LoadTag(lineNumber: number) {
-        const activeEditor = vscode.window.activeTextEditor;
+    protected LoadTag(
+        uri: vscode.Uri,
+        lineNumber: number,
+        start: number,
+        end: number
+    ) {
+        const preKey: string = LineTagManager.assemblyKey(uri, lineNumber);
 
-        if (activeEditor === undefined) {
-            vscode.window.showWarningMessage("Try to open an editor first.");
-        } else {
-            const preKey: string = LineTagManager.assemblyKey(
-                activeEditor,
-                lineNumber
+        if (LineTagManager.findLineTag(preKey) === undefined) {
+            const key = LineTagForceGraph3DManager.createLineTag(
+                uri,
+                lineNumber,
+                start,
+                end
             );
-
-            if (LineTagManager.findLineTag(preKey) === undefined) {
-                const key = LineTagForceGraph3DManager.createLineTag(
-                    activeEditor,
-                    lineNumber
-                );
-                if (preKey !== key) {
-                    vscode.window.showErrorMessage("preKey !== key.");
-                }
-                const lineTag: LineTag | undefined =
-                    key !== undefined
-                        ? LineTagManager.findLineTag(key)
-                        : undefined;
-
-                if (lineTag !== undefined) {
-                    lineTag.LoadDecoration();
-                } else {
-                    vscode.window.showErrorMessage("linTag is undefined.");
-                }
-            } else {
-                if (!LineTagManager.deleteLineTag(preKey)) {
-                    vscode.window.showErrorMessage("deleteLineTag false.");
-                }
+        } else {
+            if (!LineTagManager.deleteLineTag(preKey)) {
+                vscode.window.showErrorMessage("deleteLineTag false.");
             }
         }
     }

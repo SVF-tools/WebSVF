@@ -15,6 +15,11 @@ export interface CommandInfo {
     command: string;
 }
 
+export enum statusHighLight {
+    show,
+    hide,
+}
+
 export class RegisterCommandForceGraph3DManager {
     private static _rcf: RegisterCommandForceGraph3D | undefined = undefined;
     public static get rcf(): RegisterCommandForceGraph3D | undefined {
@@ -90,8 +95,33 @@ export class RegisterCommandForceGraph3D {
                 this.coreData.PanelConfigPath,
                 newWebPanel
             );
+            this.changeConfigForHightLine(statusHighLight.show);
         } else {
             WebPanelForceGraph3DManager.deletePanel();
+            this.changeConfigForHightLine(statusHighLight.hide);
+        }
+    }
+
+    private changeConfigForHightLine(status: statusHighLight) {
+        let settings = vscode.workspace.getConfiguration("codeMap");
+        let Flag = 0;
+        switch (status) {
+            case statusHighLight.show:
+                Flag = 1;
+                settings.update("ShowOrHide", "show").then(showInfo);
+                break;
+            case statusHighLight.hide:
+                Flag = 2;
+                settings.update("ShowOrHide", "hide").then(showInfo);
+                break;
+            default:
+                Flag = 3;
+                settings.update("ShowOrHide", "hide").then(showInfo);
+                break;
+        }
+
+        function showInfo() {
+            vscode.window.showInformationMessage(`Flag: ${Flag}`);
         }
     }
 }

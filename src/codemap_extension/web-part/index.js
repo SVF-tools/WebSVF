@@ -3,6 +3,7 @@ const vscode = acquireVsCodeApi();
 let highlightNodes = new Set();
 let highlightLink = new Set();
 let hoverNode = null;
+let locking = false;
 const N = 80;
 const gData = {
     nodes: [...Array(N).keys()].map((i) => ({ id: i })),
@@ -27,39 +28,68 @@ Graph.nodeColor((node) =>
     .linkDirectionalParticles((link) => (highlightLink.has(link) ? 4 : 0))
     .linkDirectionalParticleWidth(4)
     .onNodeHover((node) => {
-        console.log("NODE: ", node);
-        // no state change
-        if (!node && !hoverNode) {
-            return;
-        }
-
-        if (!node && hoverNode) {
-            highlightNodes.delete(hoverNode);
-            links.forEach((link) => {
-                if (link.source === hoverNode && highlightLink.has(link)) {
-                    highlightLink.delete(link);
-                }
-            });
-            hoverNode = null;
-        }
-
-        if (node) {
-            hoverNode = node;
-            highlightNodes.add(node);
-            links.forEach((link) => {
-                if (link.source === node && !highlightLink.has(link)) {
-                    highlightLink.add(link);
-                }
-            });
-        }
-        updateHighlight();
+        // console.log("NODE: ", node);
+        // if (locking) {
+        //     return;
+        // }
+        // // no state change
+        // if (!node && !hoverNode) {
+        //     return;
+        // }
+        // if (!node && hoverNode) {
+        //     highlightNodes.delete(hoverNode);
+        //     links.forEach((link) => {
+        //         if (link.source === hoverNode && highlightLink.has(link)) {
+        //             highlightLink.delete(link);
+        //         }
+        //     });
+        //     hoverNode = null;
+        // }
+        // if (node) {
+        //     hoverNode = node;
+        //     highlightNodes.add(node);
+        //     links.forEach((link) => {
+        //         if (link.source === node && !highlightLink.has(link)) {
+        //             highlightLink.add(link);
+        //         }
+        //     });
+        // }
+        // updateHighlight();
     })
     .onLinkHover((link) => {
         updateHighlight();
     })
     .onNodeClick((node) => {
-        postMessage(`node.id: ${node.id}`);
-        postInfo();
+        // postMessage(`node.id: ${node.id}`);
+        info = {
+            path:
+                "/Users/apple/WORKSPACE_3/WebSVF/src/bug-report-fe/public/js/genLandingPageAnalysis.js",
+            line: node.id,
+            start: 5,
+            end: 10,
+        };
+        postInfo(info);
+        if (node) {
+            if (highlightNodes.has(node)) {
+                locking = false;
+                highlightNodes.delete(node);
+                links.forEach((link) => {
+                    if (link.source === node && highlightLink.has(link)) {
+                        highlightLink.delete(link);
+                    }
+                });
+            } else {
+                locking = true;
+                highlightNodes.add(node);
+                links.forEach((link) => {
+                    if (link.source === node && !highlightLink.has(link)) {
+                        highlightLink.add(link);
+                    }
+                });
+            }
+        }
+
+        updateHighlight();
     });
 
 function updateHighlight() {
@@ -79,17 +109,13 @@ function postMessage(send_text) {
     });
 }
 
-function postInfo() {
-    let filePath = "filePath";
-    let line = 5;
-    let start = 3;
-    let end = 7;
+function postInfo(info) {
     vscode.postMessage({
         command: "toSomeWhere",
-        path: filePath,
-        line: line,
-        start: start,
-        end: end,
+        path: info.path,
+        line: info.line,
+        start: info.start,
+        end: info.end,
     });
 }
 window.addEventListener("resize", function () {

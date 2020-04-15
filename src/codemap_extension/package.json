@@ -25,7 +25,18 @@
                 "command": "extension.graphVisualization",
                 "title": "Web View"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "3D CODE GRAPH",
+            "properties": {
+                "codeMap.ShowOrHide": {
+                    "type": "string",
+                    "default": "hide",
+                    "description": "Enable or disable the highlight"
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "yarn run compile",
