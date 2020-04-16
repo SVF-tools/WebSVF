@@ -121,7 +121,7 @@ export class RegisterCommandForceGraph3D {
         }
 
         function showInfo() {
-            vscode.window.showInformationMessage(`Flag: ${Flag}`);
+            // vscode.window.showInformationMessage(`Flag: ${Flag}`);
         }
     }
 }
