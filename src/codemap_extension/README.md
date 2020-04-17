@@ -31,8 +31,11 @@ You can use VS Code to launch and debug the extension.
 Trying to click on the button at the bottom left.
 
 ![](./images/red.png)
+
 After a while time to wait all function load.
+
 ![](./images/load.png)
+
 It will show the red block when all function stopped.
 
 ![](./images/blue.png)
