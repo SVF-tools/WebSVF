@@ -3,7 +3,7 @@
 ## **Index**
 
 1. **[Description](#description)**
-1. **[Architecture Diagram](#architecture-overview)**
+1. **[Architecture Overview](#architecture-overview)**
 1. **[Installation Guide](#installation-guide)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
@@ -19,11 +19,11 @@ The Web-SVF, Bug Analysis Tool is comprised of 3 main components:
 
 - **[WebSVF-frontend-server](/src/WebSVF-frontend-server) :**
 
-NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
+NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[WebSVF-frontend-extension](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
 
-- **[bug_report_extension](/src/WebSVF-frontend-server_extension) :**
+- **[WebSVF-frontend-extension](/src/WebSVF-frontend-server_extension) :**
 
-This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server)**. It is deployed through the installation of the ***[WebSVF-frontend-server.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online.
+This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server)**. It is deployed through the installation of the ***[WebSVF-frontend-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online.
 
 - **[codemap_extension](/src/codemap_extension/)**
 
@@ -46,11 +46,11 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 ## Step 2. Download VSCode Extension File
 
-Download the early release ***[WebSVF-frontend-server_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-server_extension_0.9.0.vsix)*** file directly.
+Download the early release ***[WebSVF-frontend-server-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file directly.
 
 ## Step 3. Install '*WebSVF-frontend-server*' VSCode Extension
 
-Install '*WebSVF-frontend-server*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[WebSVF-frontend-server_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-server_extension_0.9.0.vsix)*** file.
+Install '*WebSVF-frontend-server*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[WebSVF-frontend-server_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file.
 
 ## Step 4. Open Project Folder in VSCode
 
