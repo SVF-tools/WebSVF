@@ -1,4 +1,4 @@
-# Schema Breakdown for [Bug-Report-Analysis.json](https://github.com/SVF-tools/WebSVF/blob/master/docs/Bug-Analysis-Report.json.md)
+# Schema Breakdown for [Bug-Report-Analysis.json](/Bug-Analysis-Report.json.md)
 
 ```json
 {
@@ -76,7 +76,7 @@ The second level in the JSON Schema contains all the essential bug analysis info
 The third level in the Bug Analysis JSON schema defines the ``"Errors": []`` JSON Array containing Bug Anlysis information for [every file]() analysed by the *Bug Anslysis Tool's Back-End*. Every element in the ``"Errors": []`` JSON Array represents a separate bug in the *analysed '.c' file* and has 7 key fields:
 
 - ``"ln": ``- A numeric value denoting the line number within the analysed **'.c' file** at which the particular bug was found.
-- ``"Type": ``- A string value denoting the Type of error. For more information on Types of error use the following [reference link](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#reference).
+- ``"Type": ``- A string value denoting the Type of error. For more information on Types of error use the following [reference link](../src/WebSVF-frontend-server/README.md#reference).
 - ``"Occurrence": ``- A string value denoting when the error occurs during development or deployment, currently, it can be one of two values **'Dynamic (Run-Time)'** or **'Static (Compile-Time)'**.
 - ``"Title": ``- A string value denoting the Title of the current Error element.
 - ``"Description": ``- A string value denoting the description for the current Error element.

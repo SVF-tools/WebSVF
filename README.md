@@ -1,4 +1,4 @@
-# Web-SVF
+# WebSVF
 
 ## **Index**
 
@@ -17,13 +17,13 @@
 
 The Web-SVF, Bug Analysis Tool is comprised of 3 main components:
 
-- **[bug-report-fe](/src/bug-report-fe) :**
+- **[WebSVF-frontend-server](/src/WebSVF-frontend-server) :**
 
-NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
+NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[bug_report_extension](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server_extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
 
-- **[bug_report_extension](/src/bug-report-fe_extension) :**
+- **[bug_report_extension](/src/WebSVF-frontend-server_extension) :**
 
-This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[bug-report-fe](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe)**. It is deployed through the installation of the ***[bug-report-fe.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online.
+This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server)**. It is deployed through the installation of the ***[WebSVF-frontend-server.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-server_extension_0.9.0.vsix)*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online.
 
 - **[codemap_extension](/src/codemap_extension/)**
 
@@ -46,19 +46,19 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 ## Step 2. Download VSCode Extension File
 
-Download the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file directly.
+Download the early release ***[WebSVF-frontend-server_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-server_extension_0.9.0.vsix)*** file directly.
 
-## Step 3. Install '*Bug-Report-FE*' VSCode Extension
+## Step 3. Install '*WebSVF-frontend-server*' VSCode Extension
 
-Install '*Bug-Report-FE*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[bug-report-fe_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/bug-report-fe_extension_0.9.0.vsix)*** file.
+Install '*WebSVF-frontend-server*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[WebSVF-frontend-server_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-server_extension_0.9.0.vsix)*** file.
 
 ## Step 4. Open Project Folder in VSCode
 
 Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
 
-## Step 5. Initialise the '*Bug-Report-FE*' VSCode Extension
+## Step 5. Initialise the '*WebSVF-frontend-server*' VSCode Extension
 
-Install the dependencies for the Bug Analysis Tool's Front-End by clicking on the ***'Bug Analysis Tool' button*** in the bottom left corner of your VSCode application window (provided by the '*Bug-Report-FE*' VSCode Extension).
+Install the dependencies for the Bug Analysis Tool's Front-End by clicking on the ***'Bug Analysis Tool' button*** in the bottom left corner of your VSCode application window (provided by the '*WebSVF-frontend-server*' VSCode Extension).
 
 The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***.
 
