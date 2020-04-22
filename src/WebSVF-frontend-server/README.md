@@ -1,10 +1,10 @@
 # Bug Analysis Tool - Front-End - NodeJS
 
 ## **Index**
-1. **[Description](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#description)**
+1. **[Description](#description)**
     1.  **[Bug-Analysis-Report.json Schema Breakdown](https://github.com/SVF-tools/WebSVF/blob/master/docs/Analysis%20Report%20Schema.md)**
-1. **[Setup Instructions](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#setup-instructions)**
-1. **[Reference](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#reference)**
+1. **[Setup Instructions](#setup-instructions)**
+1. **[Reference](#reference)**
 
 # Description:
 
@@ -20,7 +20,7 @@ For a full breakdown analysis of the schema for the `` Bug-Analysis-Report.json 
 
 The Node app then deploys a **ExpressJS** server at port **3000** (using http) to deploy the front-end. Reading from _Bug-Analysis-Report.json_ file, it obtains all the information about the **'.c files'** analysed by the Bug Analysis Tool's Back-End as well as the information about all the bugs present in them.
 
-***The Node App is deployed primarily through the [VSCode extension](https://github.com/SVF-tools/WebSVF/tree/master/src/bug-report-fe_extension)***, which initialises the app and runs it inside a VSCode window as long the requisite conditions are met (i.e. ***Bug-Analysis-Report.json*** file is present). For development and testing purpopses however, please follow the [Setup Instructions](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#setup-instructions) below to get the Front-End up and running.
+***The Node App is deployed primarily through the [VSCode extension](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-extension)***, which initialises the app and runs it inside a VSCode window as long the requisite conditions are met (i.e. ***Bug-Analysis-Report.json*** file is present). For development and testing purpopses however, please follow the [Setup Instructions](#setup-instructions) below to get the Front-End up and running.
 
 The Front-End comprises of 3 different screens to diplay different Levels of Bug Reports for the analysed projects:
 
@@ -76,7 +76,7 @@ git clone https://github.com/SVF-tools/WebSVF.git
 Change directory in the terminal to the cloned 'WebSVF' folder:
 
 ```
-cd ./WebSVF/src/bug-report-fe
+cd ./WebSVF/src/WebSVF-frontend-server
 ```
 
 ## 2. Install Dependencies (Optional):

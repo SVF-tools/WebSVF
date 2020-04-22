@@ -63,7 +63,7 @@ Graph.nodeColor((node) =>
         // postMessage(`node.id: ${node.id}`);
         info = {
             path:
-                "/Users/apple/WORKSPACE_3/WebSVF/src/bug-report-fe/public/js/genLandingPageAnalysis.js",
+                "/Users/apple/WORKSPACE_3/WebSVF/src/WebSVF-frontend-server/public/js/genLandingPageAnalysis.js",
             line: node.id,
             start: 5,
             end: 10,

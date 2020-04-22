@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the ***bug-report-fe*** branch of the **Web-SVF** repository will be documented in this file.
+All notable changes to the ***WebSVF-frontend-server*** branch of the **Web-SVF** repository will be documented in this file.
 
 ## [Unreleased]
 

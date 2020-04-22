@@ -7,7 +7,7 @@
 1. **[More Information](#For-more-information)**
 
 # Description
-This is a **Bug Analysis Extension** installed in VSCode, which can run across platforms, and support **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/bug-report-fe#Bug-Analysis-Tool---Front-End---NodeJS)**
+This is a **Bug Analysis Extension** installed in VSCode, which can run across platforms, and support **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/WebSVF-frontend-server#Bug-Analysis-Tool---Front-End---NodeJS)**
 
 This extension can detect whether the **Bug Analysis Tool** is missing. If missing, it will download the **Bug Analysis Tool** as a `` zip``  file in the user's root path, decompress the `` zip``  into a `` hidden folder``  in the user's root path and then remove the `` zip``. Also, if the **Bug Analysis Tool** is missing, but the `` hidden folder``  exists, this extension will remove the `` hidden folder``  firstly and then load the **Bug Analysis Tool** again.
 
@@ -68,6 +68,6 @@ vsce package
 
 ### For more information
 
-* [The node app which generates bug reports, in branch bug-report-fe](https://github.com/SVF-tools/WebSVF.git)
+* [The node app which generates bug reports, in branch WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF.git)
 
 **Please contact me if you have any questions!**
