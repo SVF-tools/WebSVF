@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="theme-color" content="#000000" />
-    <title>CODE MAP</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+    <head>
+        <style>
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            #middleBtn {
+                width: 100px;
+                transition: width 2s;
+                -moz-transition: width 2s;
+                /* Firefox 4 */
+                -webkit-transition: width 2s;
+                /* Safari 和 Chrome */
+                -o-transition: width 2s;
+            }
+
+            #graph {
+                border: 2px solid #a1a1a1;
+                padding: 10px 40px;
+                background: #dddddd;
+                width: 300px;
+                border-radius: 25px;
+                height: 100%;
+                background-color: black;
+                transition: width 2s;
+                -moz-transition: width 2s;
+                /* Firefox 4 */
+                -webkit-transition: width 2s;
+                /* Safari 和 Chrome */
+                -o-transition: width 2s;
+            }
+
+            #btnGroup {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 10px;
+            }
+        </style>
+
+        <!-- <script src="//unpkg.com/3d-force-graph"></script> -->
+        <script src="/3d-force-graph.min.js"></script>
+
+        <title>3D FORCE GRAPH</title>
+    </head>
+    <body>
+        <div id="3d-graph">HELLO</div>
+        <div
+            id="btnGroup"
+            class="btn-group"
+            role="group"
+            aria-label="Basic example"
+        >
+            <button id="leftBtn" type="button" class="btn btn-info">
+                Left
+            </button>
+            <button id="middleBtn" type="button" class="btn btn-secondary">
+                Middle
+            </button>
+            <button id="rightBtn" type="button" class="btn btn-info">
+                Right
+            </button>
+        </div>
+        <script src="/control.js"></script>
+    </body>
 </html>

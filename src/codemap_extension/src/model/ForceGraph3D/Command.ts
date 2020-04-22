@@ -2,17 +2,22 @@
 import * as vscode from "vscode";
 import { ActivateVscodeContext } from "../../components/ActivateVscodeContext";
 import { StatusBarForceGraph3DManager } from "./StatusBar";
-import {
-    ReactPanelForceGraph3DManager,
-    ReactPanelForceGraph3D,
-} from "./ReactPanel";
-import { ReactPanelManager, ForceGraphInfo } from "../../components/ReactPanel";
+import { WebPanelForceGraph3DManager, WebPanelForceGraph3D } from "./WebPanel";
+import { WebPanelManager, WebViewInfo } from "../../components/WebPanel";
 import * as CommonInterface from "./CommonInterface";
+
+import { LineTagManager, LineTag } from "../../components/LineTag";
+import { LineTagForceGraph3DManager } from "./LineTag";
 
 export interface CommandInfo {
     [key: string]: string;
     key: string;
     command: string;
+}
+
+export enum statusHighLight {
+    show,
+    hide,
 }
 
 export class RegisterCommandForceGraph3DManager {
@@ -65,28 +70,58 @@ export class RegisterCommandForceGraph3D {
 
     private mainFunc() {
         // vscode.window.showInformationMessage("3D FORCE GRAPH");
-        StatusBarForceGraph3DManager.switchTurn();
-
-        this.loadWebPanel();
+        if (StatusBarForceGraph3DManager.switchTurn()) {
+            ActivateVscodeContext.activeEditor = vscode.window.activeTextEditor;
+            this.loadWebPanel();
+        }
+    }
+    public turnAndLoad() {
+        StatusBarForceGraph3DManager.barSituation =
+            CommonInterface.BarSituation.going;
+        this.mainFunc();
     }
     private loadWebPanel() {
         if (
             StatusBarForceGraph3DManager.switchBar ===
             CommonInterface.SwitchBar.on
         ) {
-            const forceGraphInfo: ForceGraphInfo = ReactPanelManager.createForceGraphInfo(
+            const webViewInfo: WebViewInfo = WebPanelManager.generateWebViewInfo(
                 this.coreData.PanelConfigPath
             );
-            const newReactPanel: ReactPanelForceGraph3D = new ReactPanelForceGraph3D(
-                forceGraphInfo.reactInfo,
-                forceGraphInfo.webViewInfo
+            const newWebPanel: WebPanelForceGraph3D = new WebPanelForceGraph3D(
+                webViewInfo.webInfo
             );
-            ReactPanelForceGraph3DManager.createPanel(
+            WebPanelForceGraph3DManager.createPanel(
                 this.coreData.PanelConfigPath,
-                newReactPanel
+                newWebPanel
             );
+            this.changeConfigForHightLine(statusHighLight.show);
         } else {
-            ReactPanelForceGraph3DManager.deletePanel();
+            WebPanelForceGraph3DManager.deletePanel();
+            this.changeConfigForHightLine(statusHighLight.hide);
+        }
+    }
+
+    private changeConfigForHightLine(status: statusHighLight) {
+        let settings = vscode.workspace.getConfiguration("codeMap");
+        let Flag = 0;
+        switch (status) {
+            case statusHighLight.show:
+                Flag = 1;
+                settings.update("ShowOrHide", "show").then(showInfo);
+                break;
+            case statusHighLight.hide:
+                Flag = 2;
+                settings.update("ShowOrHide", "hide").then(showInfo);
+                break;
+            default:
+                Flag = 3;
+                settings.update("ShowOrHide", "hide").then(showInfo);
+                break;
+        }
+
+        function showInfo() {
+            // vscode.window.showInformationMessage(`Flag: ${Flag}`);
         }
     }
 }

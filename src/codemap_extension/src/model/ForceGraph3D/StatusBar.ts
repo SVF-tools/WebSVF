@@ -2,7 +2,7 @@
 import * as vscode from "vscode";
 import * as StatusBar from "../../components/StatusBar";
 import * as CommonInterface from "./CommonInterface";
-import { ReactPanelForceGraph3DManager } from "./ReactPanel";
+import { WebPanelForceGraph3DManager } from "./WebPanel";
 import { setInterval } from "timers";
 
 export class StatusBarForceGraph3DManager {
@@ -23,6 +23,12 @@ export class StatusBarForceGraph3DManager {
     private static _barSituation:
         | CommonInterface.BarSituation
         | undefined = undefined;
+
+    public static set barSituation(
+        value: CommonInterface.BarSituation | undefined
+    ) {
+        StatusBarForceGraph3DManager._barSituation = value;
+    }
     public static get barSituation(): CommonInterface.BarSituation | undefined {
         return StatusBarForceGraph3DManager._barSituation;
     }
@@ -34,7 +40,7 @@ export class StatusBarForceGraph3DManager {
             );
 
             this._switchBar = CommonInterface.SwitchBar.off;
-            this._barSituation = CommonInterface.BarSituation.running;
+            this._barSituation = CommonInterface.BarSituation.going;
 
             this._key = StatusBar.ManageStatusBar.recognizeKey(
                 coreData.barConfigPath
@@ -47,17 +53,18 @@ export class StatusBarForceGraph3DManager {
     }
 
     // This function is used for command control bar
-    public static switchTurn() {
+    public static switchTurn(): boolean {
         if (!this.couldSwitchTurn()) {
             vscode.window.showWarningMessage("Waiting for loading...");
-            return;
+            return false;
         }
         this._switchStatusChange();
         this._refreshBar();
+        return true;
     }
 
     public static couldSwitchTurn(): boolean {
-        return this.barSituation === CommonInterface.BarSituation.running
+        return this.barSituation === CommonInterface.BarSituation.going
             ? true
             : false;
     }
@@ -100,11 +107,17 @@ export class StatusBarForceGraph3DManager {
     }
 
     private static refreshBarBase(statusCode: number) {
+        if (statusCode === StatusBar.StatusCode.loading) {
+            vscode.window.showErrorMessage(
+                "You cannot set status code as loading when refresh bar."
+            );
+            return;
+        }
         if (this.bar !== undefined && this.bar.statusBarInfoUnit !== null) {
+            this._barSituation = CommonInterface.BarSituation.waiting;
             this.bar.setStatusBar(
                 this.bar.statusBarInfoUnit["unit"][StatusBar.StatusCode.loading]
             );
-            this._barSituation = CommonInterface.BarSituation.waiting;
         } else {
             vscode.window.showErrorMessage(
                 "RefreshBarBase bar.statusBarInfoUnit is null"
@@ -121,7 +134,7 @@ export class StatusBarForceGraph3DManager {
                     this.bar.setStatusBar(
                         this.bar.statusBarInfoUnit["unit"][statusCode]
                     );
-                    this._barSituation = CommonInterface.BarSituation.running;
+                    this._barSituation = CommonInterface.BarSituation.going;
                 } else {
                     vscode.window.showErrorMessage(
                         "SetTimeout bar.statusBarInfoUnit is null"
@@ -133,12 +146,19 @@ export class StatusBarForceGraph3DManager {
         }, 100);
     }
 
-    private static webPanelReady(): boolean{
-        if(this.switchBar === CommonInterface.SwitchBar.on && ReactPanelForceGraph3DManager.hasKey()){
+    private static webPanelReady(): boolean {
+        if (
+            this.switchBar === CommonInterface.SwitchBar.on &&
+            WebPanelForceGraph3DManager.hasKey() &&
+            WebPanelForceGraph3DManager.webReady()
+        ) {
             return true;
         }
 
-        if(this.switchBar === CommonInterface.SwitchBar.off && !ReactPanelForceGraph3DManager.hasKey()){
+        if (
+            this.switchBar === CommonInterface.SwitchBar.off &&
+            !WebPanelForceGraph3DManager.hasKey()
+        ) {
             return true;
         }
 

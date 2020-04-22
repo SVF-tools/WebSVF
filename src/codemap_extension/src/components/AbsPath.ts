@@ -12,10 +12,13 @@ export class AbsPath {
         return AbsPath.getAbsolutePath(relativePath);
     }
 
+    public static absUri(relativePath: string) {
+        const absPath = this.absPath(relativePath);
+        return vscode.Uri.file(absPath);
+    }
+
     private static getVscodeResource(relativePath: string) {
-        const diskPath = vscode.Uri.file(
-            path.join(this.getExtensionPath(), relativePath)
-        );
+        const diskPath = this.absUri(relativePath);
         return diskPath.with({ scheme: "vscode-resource" }).toString();
     }
 

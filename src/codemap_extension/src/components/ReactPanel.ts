@@ -207,7 +207,7 @@ export class ReactPanel {
                 switch (message.command) {
                     case "alert":
                         vscode.window.showErrorMessage(message.text);
-                        return;
+                        break;
                 }
             },
             null,
