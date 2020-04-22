@@ -3,7 +3,7 @@
 ## **Index**
 
 1. **[Description](#description)**
-1. **[Architecture Diagram](#architecture-overview)**
+1. **[Architecture Overview](#architecture-overview)**
 1. **[Installation Guide](#installation-guide)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
