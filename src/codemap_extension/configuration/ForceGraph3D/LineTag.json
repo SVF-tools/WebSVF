@@ -1,0 +1,9 @@
+{
+    "name": "ForceGraph3D",
+    "light": {
+        "svgPath": "images/code.svg"
+    },
+    "dark": {
+        "svgPath": "images/code.svg"
+    }
+}

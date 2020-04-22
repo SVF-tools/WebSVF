@@ -1,0 +1,11 @@
+{
+    "name": "ForceGraph3D",
+    "WebInfo": {
+        "viewType": "code_map",
+        "title": "3D CODE ANALYSIS GRAPH",
+        "column": "active",
+        "enableScripts": true,
+        "localResourceRoots": "web-part",
+        "webLocation": "./web-part/index.html"
+    }
+}

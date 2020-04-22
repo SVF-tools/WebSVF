@@ -25,7 +25,7 @@ export class ReactPanelForceGraph3DManager {
                 newReactPanel
             )
         ) {
-            ConventPage.ConventHtml("./build/react-part/index.html");
+            ConventPage.ConventHtml("./build/web-part/index.html");
             this._key = ReactPanelManager.recognizeKey(filePath);
             return true;
         }
@@ -66,7 +66,7 @@ export class ReactPanelForceGraph3D extends ReactPanel {
                 switch (message.command) {
                     case "alert":
                         vscode.window.showErrorMessage(message.text);
-                        return;
+                        break;
                     case "toSomeWhere":
                         const filePath = message.path;
                         const lineNumber = message.line;
@@ -75,6 +75,7 @@ export class ReactPanelForceGraph3D extends ReactPanel {
                         vscode.window.showInformationMessage(
                             `filePath: ${filePath}\n lineNumber: ${lineNumber}\n startPosition: ${startPosition} \n endPosition: ${endPosition}`
                         );
+                        break;
                 }
             },
             null,
