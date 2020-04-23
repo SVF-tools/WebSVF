@@ -56,7 +56,7 @@ A ***'status bar'*** named ***'Bug Analysis Tool'*** in the bottom-left corner a
 
 Manually generate vsix extension file instead of downloading via termial. Be sure in the extension directory.
 
-<img src="/gifs/PackageVsix.gif" height="480">
+<img src="/src/WebSVF-frontend-extension/gifs/PackageVsix.gif" height="480">
 
 ```
 sudo npm i vsce -g
