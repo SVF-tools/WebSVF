@@ -23,12 +23,12 @@ This extension can kill all workings related to this extension and dispose of th
 ## 1. Clone Repository:
 
 ```
-git clone -b bug_report_extension  https://github.com/SVF-tools/WebSVF.git
+git clone https://github.com/SVF-tools/WebSVF.git
 ```
 Change directory in the terminal to the cloned 'WebSVF' folder:
 
 ```
-cd ./WebSVF/
+cd ./WebSVF/src/WebSVF-frontend-extension
 ```
 
 ## 2. Install Dependencies:
@@ -40,7 +40,7 @@ npm install
 ## 3. Start this extension:
 
 ```
-f5
+Press F5
 ```
 **Note 1:** Make sure the root directory in VSCode is the 'WebSVF' directory as cloned in [Step 1](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#1-clone-repository).
 
