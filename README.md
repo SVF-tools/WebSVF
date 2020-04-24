@@ -50,7 +50,7 @@ Download the early release ***[WebSVF-frontend-server-extension_0.9.0.vsix](http
 
 ## Step 3. Install '*WebSVF-frontend-server*' VSCode Extension
 
-Install '*WebSVF-frontend-server*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[WebSVF-frontend-server_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file.
+Install '*WebSVF-frontend-server*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[WebSVF-frontend-server-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file.
 
 ## Step 4. Open Project Folder in VSCode
 
