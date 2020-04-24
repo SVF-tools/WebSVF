@@ -11,7 +11,7 @@
 
 # Architecture Overview
 
-<img src="docs/Architecture-Overview.jpg" height="640">
+<img src="docs/WebSVF Architecture.png" height="640">
 
 # Description
 
