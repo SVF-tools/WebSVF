@@ -1,4 +1,4 @@
-# Schema Breakdown for [Bug-Report-Analysis.json](/Bug-Analysis-Report.json.md)
+# Schema Breakdown for [Bug-Report-Analysis.json](./Bug-Analysis-Report.json.md)
 
 ```json
 {
