@@ -10,7 +10,8 @@ After the program is compiled by analysis, it is used to display the analysis no
 ## Build Instructions
 
 -   Clone the repository
--   Run `yarn` in the repository root
+-   Run `cd codemap_extension`
+-   Run `yarn`  
 -   Run `yarn create_all`
 
 ## Dev Instructions
@@ -19,7 +20,8 @@ This project uses yarn workspaces and consists of the sub-projects _data-process
 To setup a dev environment, follow these steps:
 
 -   Clone the repository
--   Run `yarn` in the repository root
+-   Run `cd codemap_extension`
+-   Run `yarn`
 -   Run `yarn go` initially
 
 For the _render-webpanel_ project code,
