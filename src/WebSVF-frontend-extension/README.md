@@ -13,7 +13,7 @@ This is a **Bug Analysis Extension** installed in VSCode, which can run across p
 
 This extension can detect whether the **Bug Analysis Tool** is missing. If missing, it will download the **Bug Analysis Tool** as a `` zip``  file in the user's root path, decompress the `` zip``  into a `` hidden folder``  in the user's root path and then remove the `` zip``. Also, if the **Bug Analysis Tool** is missing, but the `` hidden folder``  exists, this extension will remove the `` hidden folder``  firstly and then load the **Bug Analysis Tool** again.
 
-This extension requires ``**[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF#step-4-open-project-folder-in-vscode)**`` file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
+This extension requires **[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF#step-4-open-project-folder-in-vscode)** file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
 
 The extension can run the **Bug Analysis Tool** and start an ininternal webview in the VSCode to listen to the port 3000 to show the ***Analysis Report***.
 
