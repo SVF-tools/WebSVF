@@ -9,11 +9,11 @@
 1. **[More Information](#For-more-information)**
 
 # Description
-This is a **Bug Analysis Extension** installed in VSCode, which can run across platforms, and support **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/WebSVF-frontend-server#Bug-Analysis-Tool---Front-End---NodeJS)**
+This is a **Bug Analysis Extension** installed in VSCode, which can run across platforms, and support **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server#bug-analysis-tool---front-end---nodejs)**
 
 This extension can detect whether the **Bug Analysis Tool** is missing. If missing, it will download the **Bug Analysis Tool** as a `` zip``  file in the user's root path, decompress the `` zip``  into a `` hidden folder``  in the user's root path and then remove the `` zip``. Also, if the **Bug Analysis Tool** is missing, but the `` hidden folder``  exists, this extension will remove the `` hidden folder``  firstly and then load the **Bug Analysis Tool** again.
 
-This extension requires `` ##[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF#step-4-open-project-folder-in-vscode)## `` file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
+This extension requires ``**[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF#step-4-open-project-folder-in-vscode)**`` file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
 
 The extension can run the **Bug Analysis Tool** and start an ininternal webview in the VSCode to listen to the port 3000 to show the ***Analysis Report***.
 
@@ -27,22 +27,24 @@ This extension can kill all workings related to this extension and dispose of th
 ```
 git clone https://github.com/SVF-tools/WebSVF.git
 ```
-Open and change directory in the terminal to the directory **WebSVF/src/WebSVF-frontend-extension/**.
+```
+Open and change directory in the terminal to the directory **WebSVF/src/WebSVF-frontend-extension**
+```
 
 ## 2. Install Dependencies:
 
 ```
-Run `npm install` in the terminal
+Run **npm install** in the terminal
 ```
 
 ## 3. Start this extension:
 
 ```
-Press `F5` in your VSCode application window
+Press *F5* in your VSCode application window
 ```
 **Note 1:** Make sure the root directory in VSCode is the **WebSVF/src/WebSVF-frontend-extension/** directory, not the ``WebSVF`` as cloned in [Step 1](#1-clone-repository).
 
-**Note 2:** When the final WebSVF-frontend-extension is finished, it will be packaged into a **vsix** file (Compressed file in the VSCode Extension format) and can be installed directly into VSCode, no need to repeat steps 1 to 3. Please refer to the **[VSIX  Setup Instruction](#VSIX-Setup-Instruction)** to get the instruction via **vsix installing**.
+**Note 2:** Another method to use this extension is to packag it into a **vsix** file (Compressed file in the VSCode Extension format) and can be installed directly into VSCode, no need to repeat steps 1 to 3. Please refer to the **[VSIX  Setup Instruction](#VSIX-Setup-Instruction)** to get the instruction via **vsix installing**.
 
 
 # VSIX Setup Instruction
@@ -55,9 +57,7 @@ Press `F5` in your VSCode application window
 -   Click **Install from VSIX**.
 -   Choose the target vsix file, which should be ***WebSVF-frontend-extension** or other custom name.
 -   Reload the VSCode window if required.
-```
-Currently, the **WebSVF-frontend-extension** should be installed and can be triggered. Please refer to the **[Extension Operation Guide](#Extension-Operation-Guide)**
-```
+**Note :** Currently, the **WebSVF-frontend-extension** should be installed and can be triggered. Please refer to the **[Extension Operation Guide](#Extension-Operation-Guide)**
 
 # Extension Operation Guide
 ## 1. Brief Introduction:
