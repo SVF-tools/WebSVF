@@ -34,7 +34,7 @@ export function configListener() {
             if (editor) {
                 let fsPath = editor.document.uri.fsPath;
                 ActivateVscodeContext.activeEditor = editor;
-                vscode.window.showInformationMessage(`fsPath: ${fsPath}`);
+                // vscode.window.showInformationMessage(`fsPath: ${fsPath}`);
                 switch (showOrHide) {
                     case "show":
                         LineTagManager.LoadDecoration();
