@@ -93,33 +93,40 @@ export class WebPanelForceGraph3D extends WebPanel {
         super.receiveMessage(message);
         switch (message.command) {
             case "toSomeWhere":
-                const filePathUri = vscode.Uri.file(message.path);
-                const lineNumber = message.line;
-                const startPosition = message.start;
-                const endPosition = message.end;
+                // const filePathUri = vscode.Uri.file(message.path);
+                if (ActivateVscodeContext.activeEditor) {
+                    const filePathUri =
+                        ActivateVscodeContext.activeEditor.document.uri;
+                    const lineNumber = message.line;
+                    const startPosition = message.start;
+                    const endPosition = message.end;
 
-                // vscode.window.showInformationMessage(
-                //     `filePathUri: ${filePathUri}`
-                // );
+                    // vscode.window.showInformationMessage(
+                    //     `filePathUri: ${filePathUri}`
+                    // );
 
-                this.LoadTag(
-                    filePathUri,
-                    lineNumber,
-                    startPosition,
-                    endPosition
-                );
+                    this.LoadTag(
+                        filePathUri,
+                        lineNumber,
+                        startPosition,
+                        endPosition
+                    );
 
-                let range: vscode.Range = new vscode.Range(
-                    lineNumber,
-                    startPosition,
-                    lineNumber,
-                    endPosition
-                );
+                    let range: vscode.Range = new vscode.Range(
+                        lineNumber,
+                        startPosition,
+                        lineNumber,
+                        endPosition
+                    );
 
-                vscode.window.showTextDocument(filePathUri, {
-                    selection: range,
-                    viewColumn: 2,
-                });
+                    vscode.window.showTextDocument(filePathUri, {
+                        selection: range,
+                        viewColumn: 2,
+                    });
+                }
+                else{
+                    vscode.window.showErrorMessage("Open a long lines file for test.");
+                }
 
                 break;
         }
