@@ -75,16 +75,16 @@ Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate anot
 
 ## 4. Images for the **'Bug Analysis Tool' status bar**:
 ### Bug Analysis Tool
-<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool.jpg">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool.jpg" height="50px">
 
 ### Bug Analysis Tool: Initializing
-<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initializing.png">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initializing.png" height="50px">
 
 ### Bug Analysis Tool: Initialized
-<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initialized.jpg">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initialized.jpg" height="50px">
 
 ### Bug Analysis Tool: Running
-<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running.png">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running.png" height="50px">
 
 **Note:** (Please refer to [Description](#Description) section for details about the functions)
 
