@@ -2,7 +2,9 @@
 
 ## **Index**
 1. **[Description](#Description)**
-1. **[Setup Instruction](#Setup-Instruction)**
+1. **[Source code Setup Instrction](#Source-Code-Setup-Instruction)**
+1. **[VSIX Setup Instruction](##VSIX-Setup-Instruction)**
+1. **[Extension Operation Guide](#Extension-Operation-Guide)**
 1. **[Vsix Generation Guide](#Vsix-Generation-Guide)**
 1. **[More Information](#For-more-information)**
 
@@ -11,7 +13,7 @@ This is a **Bug Analysis Extension** installed in VSCode, which can run across p
 
 This extension can detect whether the **Bug Analysis Tool** is missing. If missing, it will download the **Bug Analysis Tool** as a `` zip``  file in the user's root path, decompress the `` zip``  into a `` hidden folder``  in the user's root path and then remove the `` zip``. Also, if the **Bug Analysis Tool** is missing, but the `` hidden folder``  exists, this extension will remove the `` hidden folder``  firstly and then load the **Bug Analysis Tool** again.
 
-This extension requires `` Bug-Analysis-Report.json `` file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
+This extension requires `` ##[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF#step-4-open-project-folder-in-vscode)## `` file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
 
 The extension can run the **Bug Analysis Tool** and start an ininternal webview in the VSCode to listen to the port 3000 to show the ***Analysis Report***.
 
@@ -19,42 +21,63 @@ This extension can kill all workings related to this extension and dispose of th
 
 ***All processes in this extension are controlled by a status bar (Information displayed is variable) according to different conditions.***
 
-# Setup Instruction
+# Source Code Setup Instruction
 ## 1. Clone Repository:
 
 ```
 git clone https://github.com/SVF-tools/WebSVF.git
 ```
-Change directory in the terminal to the cloned 'WebSVF' folder:
-
-```
-cd ./WebSVF/src/WebSVF-frontend-extension
-```
+Open and change directory in the terminal to the directory **WebSVF/src/WebSVF-frontend-extension/**.
 
 ## 2. Install Dependencies:
 
 ```
-npm install
+Run `npm install` in the terminal
 ```
 
 ## 3. Start this extension:
 
 ```
-Press F5
+Press `F5` in your VSCode application window
 ```
-**Note 1:** Make sure the root directory in VSCode is the 'WebSVF' directory as cloned in [Step 1](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#1-clone-repository).
+**Note 1:** Make sure the root directory in VSCode is the **WebSVF/src/WebSVF-frontend-extension/** directory, not the ``WebSVF`` as cloned in [Step 1](#1-clone-repository).
 
-**Note 2:** When the final plug-in is finished, it will be packaged into a **vsix** file (Compressed file in plug-in format) and installed directly into VSCode, no need to repeat steps 1 to 3. At the final completion, this Setup Instruction will be modified.
+**Note 2:** When the final WebSVF-frontend-extension is finished, it will be packaged into a **vsix** file (Compressed file in the VSCode Extension format) and can be installed directly into VSCode, no need to repeat steps 1 to 3. Please refer to the **[VSIX  Setup Instruction](#VSIX-Setup-Instruction)** to get the instruction via **vsix installing**.
 
-## 4. Execute commands in the extension:
 
+# VSIX Setup Instruction
+## 1. Get Vsix file:
+**[Download the VSIX file](https://github.com/SVF-tools/WebSVF#step-2-download-vscode-extension-file)** or **[Generate the vsix file via source code](#Vsix-Generation-Guide)**
+
+## 2. Install the WebSVF-frontend-extension vsix file
+-   Click the **Extensions** in the left side.
+-   Click **More actions** in the form of three dots in the **Extensions**.
+-   Click **Install from VSIX**.
+-   Choose the target vsix file, which should be ***WebSVF-frontend-extension** or other custom name.
+-   Reload the VSCode window if required.
+```
+Currently, the **WebSVF-frontend-extension** should be installed and can be triggered. Please refer to the **[Extension Operation Guide](#Extension-Operation-Guide)**
+```
+
+# Extension Operation Guide
+## 1. Brief Introduction:
 A ***'status bar'*** named ***'Bug Analysis Tool'*** in the bottom-left corner and can run ***'Initialization'***, ***'Analysis'*** and ***'Stop'*** functions according to different conditions.
 
-(Please refer to [Description](https://github.com/SVF-tools/WebSVF/tree/bug_report_extension#Description) section for details about these functions)
+## 2. Initialise the '*WebSVF-frontend-Extension*':
+Clicking on the ***'Bug Analysis Tool' status bar*** in the bottom left corner of your VSCode application window.
+
+The ***'Bug Analysis Tool' status bar's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the status bar text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***.
+
+## 3. View the Bug Analysis for the Project
+View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' status bar***. Similar to the previous status bar transformation, the status bar text will turn red and the status bar will read ***'Bug Analysis Tool: Running'***. 
+
+Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
+
+**Note:** (Please refer to [Description](#Description) section for details about the functions)
 
 # Vsix Generation Guide
 
-Manually generate vsix extension file instead of downloading via termial. Be sure in the extension directory.
+Manually generate vsix extension file instead of downloading via termial. Be sure in the extension directory .
 
 <img src="/src/WebSVF-frontend-extension/gifs/PackageVsix.gif" height="480">
 
