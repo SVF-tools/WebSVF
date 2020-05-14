@@ -104,6 +104,6 @@ vsce package
 
 ### For more information
 
-* [The node app which generates bug reports, in branch WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF.git)
+* [The node app which generates bug reports, WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF/blob/master/src/WebSVF-frontend-server)
 
-**Please contact me if you have any questions!**
+**Please contact me ([@ZichengQu](https://github.com/ZichengQu)) if you have any questions!**
