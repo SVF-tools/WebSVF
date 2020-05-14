@@ -7,14 +7,14 @@ It is a vscode extension which can be installed into Vscode 1.41.0 at least.
 
 After the program is compiled by analysis, it is used to display the analysis node information.
 
-## Build Instructions
+## Dev Instructions
 
 -   Clone the repository
 -   Run `cd codemap_extension`
 -   Run `yarn`  
--   Run `yarn create_all`
+-   Run `yarn go`
 
-## Dev Instructions
+## User Instructions
 
 This project uses yarn workspaces and consists of the sub-projects _data-process_, _extension_ and _render-web-panel_.
 To setup a dev environment, follow these steps:
@@ -22,14 +22,12 @@ To setup a dev environment, follow these steps:
 -   Clone the repository
 -   Run `cd codemap_extension`
 -   Run `yarn`
--   Run `yarn go` initially
+-   Run `yarn go`
+-   Run `vsce package`
 
-For the _render-webpanel_ project code,
-Find `./web-part` And All `./src/webpanel.ts` folder.
+It will create vsix file, then install by vscode ide.
 
-In fact, it uses the express server to virtualize a front-end rendering thread.
-
-You can use VS Code to launch and debug the extension.
+Open a project first and open a long lines file.
 
 Trying to click on the button at the bottom left.
 
@@ -45,21 +43,15 @@ It will show the red block when all function stopped.
 
 And server running will show light blue.
 
-Because of the exceptional features of the webpage in vscode, We use server style to avoid the problem of vscode's restrictions on static webpage resources.
-
-When the button in the lower-left corner turns blue, a thread will run inside the IDE extension process. The rendered front-end page port 6886 nominally
-
-Otherwise, the extension will start a webserver on its own, hosting the `web` folder of the _render_ project.
+Click the node, it will hightlight on a file which you have open before.
 
 ## Publish Instructions
 
 -   Follow the Build Instructions
--   `cd codemap_extension`
--   `vsce package`
-
-## Architecture
-
-![](https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/codemap_flowchart.png)
+-   Run `cd codemap_extension`
+-   Run `yarn`
+-   Run `yarn go`
+-   Run `vsce package`
 
 ## Webview
 
