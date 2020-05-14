@@ -28,19 +28,19 @@ This extension can kill all workings related to this extension and dispose of th
 git clone https://github.com/SVF-tools/WebSVF.git
 ```
 ```
-Open and change directory in the terminal to the directory **WebSVF/src/WebSVF-frontend-extension**
+Open and change directory in the terminal to the directory WebSVF/src/WebSVF-frontend-extension
 ```
 
 ## 2. Install Dependencies:
 
 ```
-Run **npm install** in the terminal
+Run npm install in the terminal
 ```
 
 ## 3. Start this extension:
 
 ```
-Press *F5* in your VSCode application window
+Press F5 in your VSCode application window
 ```
 **Note 1:** Make sure the root directory in VSCode is the **WebSVF/src/WebSVF-frontend-extension/** directory, not the ``WebSVF`` as cloned in [Step 1](#1-clone-repository).
 
@@ -75,16 +75,16 @@ Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate anot
 
 ## 4. Images for the **'Bug Analysis Tool' status bar**:
 ### Bug Analysis Tool
-<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool.jpg" height="48">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool.jpg">
 
 ### Bug Analysis Tool: Initializing
-<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initializing.jpg" height="48">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initializing.jpg">
 
 ### Bug Analysis Tool: Initialized
-<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initialized.jpg" height="48">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initialized.jpg">
 
 ### Bug Analysis Tool: Running
-<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running.jpg" height="48">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running.jpg">
 
 **Note:** (Please refer to [Description](#Description) section for details about the functions)
 
