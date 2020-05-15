@@ -42,21 +42,17 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 - **[VSCode](https://code.visualstudio.com/download)**
 
-## Step 2. Install SVF (Ubuntu 18.04 and 20.04 only)
 
-SVF Installation only for Ubuntu 18.04 or 20.04 LTS.
-Please follow the link to make it work: [WebSVF-codemap-extension](/src/SetupSVF/)
+## Step 2. Install WebSVF-backend
 
-## Step 3. Install WebSVF-backend
-
-1. Setup nodeJS and SVF.
+1. Install **[SVF (Ubuntu 18.04 and 20.04 only)](/src/SetupSVF/)**
 2. Move the generateJSON.js to the root path of SVF.
 3. Generate the .bc file in the root path of SVF.
 4. Use this commond line to generate the JSON file. The JSON file will be generated at the root path of SVF.
       
   `node generateJSON.js name_of_bcfile`
   
-## Step 4. Install WebSVF-frontend: server and extension
+## Step 3. Install WebSVF-frontend: server and extension
 
 ### **Guide Video (Youtube)**
 
