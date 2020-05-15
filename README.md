@@ -60,13 +60,13 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 ### Setup Intructions:  
 
-- **Download VSCode Extension File**
-
-Download the early release ***[WebSVF-frontend-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file directly.
+- **Download [VSCode Extension File](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)**
 
 - **Install '*WebSVF-frontend*' VSCode Extension**
 
-Install '*WebSVF-frontend*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[WebSVF-frontend-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file.
+Enter the following command in the terminal to Install the Extension: 
+
+`code PathToDownloadedVSIX\WebSVF-frontend-extension_0.9.0.vsix`
 
 - **Open Project Folder in VSCode**
 
@@ -76,13 +76,12 @@ Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tool
 
 Install the dependencies for the Bug Analysis Tool's Front-End by clicking on the ***'Bug Analysis Tool' button*** in the bottom left corner of your VSCode application window (provided by the '*WebSVF-frontend*' VSCode Extension).
 
-The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***. (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more information)
+The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***.
 
 - **View the Bug Analysis for the Project**
 
 View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. Similar to the previous button transformation, the button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
 
-Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
 (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more information)
 
 ## Step 4. Install WebSVF-codemap-extension
