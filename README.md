@@ -26,7 +26,8 @@ NodeJS based Web-Server that is responsible for Front-End output of the *Bug Ana
 
 This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server)**. It is deployed through the installation of the ***[WebSVF-frontend-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online.
 
-- **[WebSVF-codemap-extension](/src/codemap_extension/)**
+- **[WebSVF-codemap-extension](/src/codemap_extension/) :**
+
 This VSCode Extension could use 3D force graph to present bug information. Vsix file need to create by user self. Please follow the user guide link to install. This extension needs to be used when there is a network.
 
 
@@ -73,9 +74,27 @@ Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another 
 
 # Installation Guide (for WebSVF-codemap-extension)
 
+If you follow have Bug report extension install guide. Step 1 should be ignore.
+
+## Step 1. Install Requisite Software
+
+- **[Git](https://git-scm.com/downloads)**
+
+- **[NodeJS](https://nodejs.org/en/download/)**
+
+- **[VSCode](https://code.visualstudio.com/download)**
+
+## Step 2. Compile VSCode Extension File
+## Step 3. Open a project and Analysis in VSCode
+## Setp 4. Show 3D code map and highlight link
+
+follow by the user instructions: [WebSVF-codemap-extension](/src/codemap_extension/). 
+
+
+
 # Known Issues
 
-- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 18.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
+- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 18.04 or 20.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
