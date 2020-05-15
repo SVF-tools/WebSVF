@@ -83,12 +83,12 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 ## Step 4. Install WebSVF-codemap-extension
 
-- **Download extension: [VSIX release](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)
-  ![](./docs/DOWNLOAD_VISX.png)**
-- **Extension installation**
-  ![](docs/VSIX_installation.png)
-- **Installed situation**
-  ![](docs/3D_CODEMAP.png)
+- **Download extension: [VSIX release](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**  
+  <img src='./docs/DOWNLOAD_VISX.png' width='375'/>
+- **Extension installation**  
+  <img src='./docs/VSIX_installation.png' width='375'/>
+- **Installed situation**  
+  <img src='./docs/3D_CODEMAP.png' width='375'/>
 - **Follow [User Instructions](./src/codemap_extension/README.md)**
 
 
