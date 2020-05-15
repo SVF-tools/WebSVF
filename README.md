@@ -70,7 +70,7 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 - **Open Project Folder in VSCode**
 
-    Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-            Report.json) file in the current folder opened in your VSCode application window.
+    Download and copy the `[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-            Report.json)` file in the current folder opened in your VSCode application window.
 
 - **Initialise the '*WebSVF-frontend*' VSCode Extension**
 
