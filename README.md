@@ -88,7 +88,8 @@ If you follow have Bug report extension install guide. Step 1 should be ignore.
 
 - **[VSCode](https://code.visualstudio.com/download)**
 
-## Step 2. Compile VSCode Extension File
+## Step 2. Compile VSCode Extension File Or Use VSIX release
+[VSIX Link](https://github.com/SVF-tools/WebSVF/releases/download/0.0.1/codemap-extension-0.0.1.vsix).
 ## Step 3. Open a project and Analysis in VSCode
 ## Setp 4. Show 3D code map and highlight link
 
