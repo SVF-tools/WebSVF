@@ -4,8 +4,7 @@
 
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
-1. **[Installation Guide (for WebSVF-frontend: server and extension)](#installation-guide-for-websvf-frontend-server-and-extension)**
-1. **[Installation Guide (for WebSVF-codemap-extension)](#installation-guide-for-websvf-codemap-extension)**
+1. **[Installation Guide](#installation-guide)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
 1. **[Acknowledgement](#acknowledgement)**
@@ -16,7 +15,7 @@
 
 # Description
 
-The Web-SVF, Bug Analysis Tool is comprised of 3 main components:
+The Web-SVF, Bug Analysis Tool is comprised of 4 main components:
 
 - **[WebSVF-frontend-server](/src/WebSVF-frontend-server) :**
 
@@ -30,16 +29,10 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 This VSCode Extension could use 3D force graph to present bug information. Vsix file need to create by user self. Please follow the user guide link to install. This extension needs to be used when there is a network.
 
-# Installation Guide (for SVF)
-SVF Installation only for Ubuntu 18.04 or 20.04 LTS.
-Please follow the link to make it work: [WebSVF-codemap-extension](/src/SetupSVF/)
+- **[WebSVF-backend](https://github.com/SVF-tools/WebSVF/tree/generateJSON/src/WebSVF-generateJSON) :**
 
 
-# Installation Guide (for WebSVF-frontend: server and extension)
-
-## **Guide Video (Youtube)**
-
-[![Installation Guide for Bug Analysis Tool (WebSVF)](https://img.youtube.com/vi/--a1rgFE_Cs/hqdefault.jpg)](https://www.youtube.com/watch?v=--a1rgFE_Cs)
+# Installation Guide
 
 ## Step 1. Install Requisite Software
 
@@ -47,40 +40,62 @@ Please follow the link to make it work: [WebSVF-codemap-extension](/src/SetupSVF
 
 - **[NodeJS](https://nodejs.org/en/download/)**
 
-
 - **[VSCode](https://code.visualstudio.com/download)**
 
+## Step 2. Install SVF (Ubuntu 18.04 and 20.04 only)
 
-## Step 2. Download VSCode Extension File
+SVF Installation only for Ubuntu 18.04 or 20.04 LTS.
+Please follow the link to make it work: [WebSVF-codemap-extension](/src/SetupSVF/)
+
+## Step 3. Install WebSVF-backend
+
+1. Setup nodeJS and SVF.
+2. Move the generateJSON.js to the root path of SVF.
+3. Generate the .bc file in the root path of SVF.
+4. Use this commond line to generate the JSON file. The JSON file will be generated at the root path of SVF.
+      
+  `node generateJSON.js name_of_bcfile`
+  
+## Step 4. Install WebSVF-frontend: server and extension
+
+### **Guide Video (Youtube)**
+
+[![Installation Guide for Bug Analysis Tool (WebSVF)](https://img.youtube.com/vi/--a1rgFE_Cs/hqdefault.jpg)](https://www.youtube.com/watch?v=--a1rgFE_Cs)
+
+### Setup Intructions:  
+
+1. **Download VSCode Extension File**
 
 Download the early release ***[WebSVF-frontend-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file directly.
 
-## Step 3. Install '*WebSVF-frontend*' VSCode Extension
+2. **Install '*WebSVF-frontend*' VSCode Extension**
 
 Install '*WebSVF-frontend*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[WebSVF-frontend-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file.
 
-## Step 4. Open Project Folder in VSCode
+3. **Open Project Folder in VSCode**
 
 Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
 
-## Step 5. Initialise the '*WebSVF-frontend*' VSCode Extension
+4. **Initialise the '*WebSVF-frontend*' VSCode Extension**
 
 Install the dependencies for the Bug Analysis Tool's Front-End by clicking on the ***'Bug Analysis Tool' button*** in the bottom left corner of your VSCode application window (provided by the '*WebSVF-frontend*' VSCode Extension).
 
 The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***. (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more information)
 
-## Step 6. View the Bug Analysis for the Project
+5. **View the Bug Analysis for the Project**
 
 View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. Similar to the previous button transformation, the button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
 
 Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
 (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more information)
 
-# Installation Guide (for WebSVF-codemap-extension)
+## Step 4. Install WebSVF-codemap-extension
 
+**Compile VSCode Extension File Or Use [VSIX release](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**
 
-## Step 1. Compile VSCode Extension File Or Use [VSIX release](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1).
+### Setup Intructions (for installing VSIX file): 
 
+1. **Download**
 
 
 # Known Issues
