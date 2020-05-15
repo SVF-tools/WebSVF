@@ -30,6 +30,10 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 This VSCode Extension could use 3D force graph to present bug information. Vsix file need to create by user self. Please follow the user guide link to install. This extension needs to be used when there is a network.
 
+# Installation Guide (for SVF)
+SVF Installation only for Ubuntu 18.04 or 20.04 LTS.
+Please follow the link to make it work: [WebSVF-codemap-extension](/src/SetupSVF/)
+
 
 # Installation Guide (for WebSVF-frontend: server and extension)
 
