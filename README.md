@@ -78,7 +78,7 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 - **View the Bug Analysis for the Project**
 
-    View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. Similar to the previous         button transformation, the button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
+    View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. The button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
     (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more          information)
 
 ## Step 4. Install WebSVF-codemap-extension
