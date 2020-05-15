@@ -88,7 +88,7 @@ If you follow have Bug report extension install guide. Step 1 should be ignore.
 ## Step 3. Open a project and Analysis in VSCode
 ## Setp 4. Show 3D code map and highlight link
 
-follow by the user instructions: [WebSVF-codemap-extension](/src/codemap_extension/). 
+Step 2 ~ 4 follow by the user instructions: [WebSVF-codemap-extension](/src/codemap_extension/). 
 
 
 
