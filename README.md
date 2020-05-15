@@ -4,8 +4,8 @@
 
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
-1. **[Installation Guide (for WebSVF-frontend: server and extension)](#installation-guide)**
-1. **[Installation Guide (for WebSVF-codemap-extension)](#installation-guide)**
+1. **[Installation Guide (for WebSVF-frontend: server and extension)](#installation-guide-for-websvf-frontend-server-and-extension)**
+1. **[Installation Guide (for WebSVF-codemap-extension)](#installation-guide-for-websvf-codemap-extension)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
 1. **[Acknowledgement](#acknowledgement)**
@@ -61,14 +61,14 @@ Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tool
 
 Install the dependencies for the Bug Analysis Tool's Front-End by clicking on the ***'Bug Analysis Tool' button*** in the bottom left corner of your VSCode application window (provided by the '*WebSVF-frontend*' VSCode Extension).
 
-The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***. (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md##extension-operation-guide) for more information)
+The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***. (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more information)
 
 ## Step 6. View the Bug Analysis for the Project
 
 View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. Similar to the previous button transformation, the button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
 
 Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
-(Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md##extension-operation-guide) for more information)
+(Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more information)
 
 # Installation Guide (for WebSVF-codemap-extension)
 
