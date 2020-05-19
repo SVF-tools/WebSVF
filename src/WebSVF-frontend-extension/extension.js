@@ -19,7 +19,6 @@ function activate(context) {
 	// require('./bugreport.js')(context);
 	require('./statusBar').getSttatusBar();
 
-	
 }
 //exports.activate = activate;
 
