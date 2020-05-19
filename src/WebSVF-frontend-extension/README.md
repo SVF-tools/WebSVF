@@ -21,8 +21,6 @@ This extension can kill all workings related to this extension and dispose of th
 
 ***All processes in this extension are controlled by a status bar (Information displayed is variable) according to different conditions.***
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/WebSVF%20Architecture.jpg">
-
 # Source Code Setup Instruction
 ## 1. Clone Repository:
 
