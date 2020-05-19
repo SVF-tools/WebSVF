@@ -21,6 +21,8 @@ This extension can kill all workings related to this extension and dispose of th
 
 ***All processes in this extension are controlled by a status bar (Information displayed is variable) according to different conditions.***
 
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running_2.png">
+
 # Source Code Setup Instruction
 ## 1. Clone Repository:
 
@@ -91,7 +93,6 @@ Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate anot
 
 <img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initialized 2.png">
 <img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running 2.png">
-
 
 **Note:** (Please refer to [Description](#Description) section for details about the functions)
 
