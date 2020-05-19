@@ -56,14 +56,16 @@ function init(uri){
         if(fs.existsSync(node_abspath)){
             //If the folder exists, then remove it.
             if(platform == "win32"){
-                //terminal.sendText(`rd/s/q "${node_abspath}"`);
+                terminal.sendText("# Step(1/3) Removing the broken WebSVF-Frontend-Server, please wait...");
+                //terminal.sendText(`rd/s/q "${node_abspath}"`); // Will replace the old one without warning.
             }else{
+                terminal.sendText("# Step(1/3) Removing the broken WebSVF-Frontend-Server, please wait...");
                 terminal.sendText("rm -rf "+node_abspath);
             }
             
         }
 
-        downloadFile(uri,node_abspath+".zip",function(){
+        downloadFile(terminal, uri,node_abspath+".zip",function(){
             extractZip(node_abspath,terminal);
         });
     }catch(e){
@@ -81,7 +83,8 @@ function init(uri){
  * @param {*} destination 
  * @param {*} callback 
  */
-function downloadFile(uri,destination,callback){
+function downloadFile(terminal, uri, destination, callback){
+    terminal.sendText("# Step(2/3) Loading the WebSVF-Frontend-Server, please wait...");
     var stream = fs.createWriteStream(destination);
     request(uri).pipe(stream).on('close', callback);
 }
@@ -92,6 +95,7 @@ function downloadFile(uri,destination,callback){
  * @param {*} terminal 
  */
 function extractZip(node_abspath,terminal){
+    terminal.sendText("# Step(3/3) Uncompressing the WebSVF-Frontend-Server, please wait...")
     extract(node_abspath+".zip", {dir: node_abspath}, function (err) {
         // extraction is complete. make sure to handle the err
         if(err){
@@ -101,6 +105,7 @@ function extractZip(node_abspath,terminal){
             // let cfg_abspath = node_abspath + constants.node_branch + constants.config_abspath;
             // fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
             setStatusBar("Bug Analysis Tool: Initialized", "White");
+            terminal.sendText("# Initialization finished, please click the 'Bug Analysis Tool' to generate the bug report!");
         }
     });
 }
