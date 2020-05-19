@@ -89,9 +89,8 @@ View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: 
 
 Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
 
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initialized 2.png">
 <img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running 2.png">
-
-## 4. Images for the **'Bug Analysis Tool' status bar**:
 
 
 **Note:** (Please refer to [Description](#Description) section for details about the functions)
