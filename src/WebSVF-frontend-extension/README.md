@@ -10,16 +10,18 @@
 
 # Description
 This is a **Bug Analysis Extension** installed in VSCode, which can run across platforms, and support **[Bug Analysis Tool](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server#bug-analysis-tool---front-end---nodejs)**
-
+<img src="https://raw.githubusercontent.com/SVF-tools/WebSVF/master/docs/WebSVF%20Architecture.jpg">
 This extension can detect whether the **Bug Analysis Tool** is missing. If missing, it will download the **Bug Analysis Tool** as a `` zip``  file in the user's root path, decompress the `` zip``  into a `` hidden folder``  in the user's root path and then remove the `` zip``. Also, if the **Bug Analysis Tool** is missing, but the `` hidden folder``  exists, this extension will remove the `` hidden folder``  firstly and then load the **Bug Analysis Tool** again.
 
-This extension requires **[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF#step-4-open-project-folder-in-vscode)** file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
+This extension requires **[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF#setup-intructions)** file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
 
 The extension can run the **Bug Analysis Tool** and start an ininternal webview in the VSCode to listen to the port 3000 to show the ***Analysis Report***.
 
 This extension can kill all workings related to this extension and dispose of the special terminal.
 
 ***All processes in this extension are controlled by a status bar (Information displayed is variable) according to different conditions.***
+
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/WebSVF%20Architecture.jpg">
 
 # Source Code Setup Instruction
 ## 1. Clone Repository:
@@ -57,23 +59,13 @@ Press F5 in your VSCode application window
 -   Click **Install from VSIX**.
 -   Choose the target vsix file, which should be ***WebSVF-frontend-extension** or other custom name.
 -   Reload the VSCode window if required.
+<img src="https://raw.githubusercontent.com/SVF-tools/WebSVF/master/docs/VSIX_installation.png">
 **Note :** Currently, the **WebSVF-frontend-extension** should be installed and can be triggered. Please refer to the **[Extension Operation Guide](#Extension-Operation-Guide)**
 
 # Extension Operation Guide
 ## 1. Brief Introduction:
 A ***'status bar'*** named ***'Bug Analysis Tool'*** in the bottom-left corner and can run ***'Initialization'***, ***'Analysis'*** and ***'Stop'*** functions according to different conditions.
 
-## 2. Initialise the '*WebSVF-frontend-Extension*':
-Clicking on the ***'Bug Analysis Tool' status bar*** in the bottom left corner of your VSCode application window.
-
-The ***'Bug Analysis Tool' status bar's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the status bar text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***.
-
-## 3. View the Bug Analysis for the Project
-View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' status bar***. Similar to the previous status bar transformation, the status bar text will turn red and the status bar will read ***'Bug Analysis Tool: Running'***. 
-
-Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
-
-## 4. Images for the **'Bug Analysis Tool' status bar**:
 ### Bug Analysis Tool
 <img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool.jpg" height="50px">
 
@@ -85,6 +77,24 @@ Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate anot
 
 ### Bug Analysis Tool: Running
 <img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running.png" height="50px">
+
+## 2. Initialise the '*WebSVF-frontend-Extension*':
+Clicking on the ***'Bug Analysis Tool' status bar*** in the bottom left corner of your VSCode application window.
+
+The ***'Bug Analysis Tool' status bar's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the status bar text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***.
+
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool 2.png">
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Initializing 2.png">
+
+## 3. View the Bug Analysis for the Project
+View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' status bar***. Similar to the previous status bar transformation, the status bar text will turn red and the status bar will read ***'Bug Analysis Tool: Running'***. 
+
+Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
+
+<img src="/src/WebSVF-frontend-extension/gifs/Bug Analysis Tool Running 2.png">
+
+## 4. Images for the **'Bug Analysis Tool' status bar**:
+
 
 **Note:** (Please refer to [Description](#Description) section for details about the functions)
 
