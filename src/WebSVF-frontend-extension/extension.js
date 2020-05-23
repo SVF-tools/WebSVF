@@ -18,6 +18,7 @@ function activate(context) {
 	// require('./stop.js')(context);
 	// require('./bugreport.js')(context);
 	require('./statusBar').getSttatusBar();
+	require('./terminalListener')(context);
 
 }
 //exports.activate = activate;

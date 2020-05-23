@@ -127,7 +127,6 @@ function bug_report(){
     }else{
         node_branch = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app + constants.node_branch; //node app absolute path.
     }
-
     terminal.sendText(`cd "${node_branch}"`);
     //Show commands in the terminal
     terminal.show(true);
@@ -189,6 +188,13 @@ function bug_report_stop(){
     }
 }
 
+function terminal_stop(){
+    if(panel!=null){
+        panel.dispose();//CLose this webview.
+        panel = null;//Reset the panel.
+    }
+}
+
 module.exports = {
     get_terminal,
     init,
@@ -197,5 +203,6 @@ module.exports = {
     bug_report,
     open_internal_browser,
     setStatusBar,
-    bug_report_stop
+    bug_report_stop,
+    terminal_stop
 }
