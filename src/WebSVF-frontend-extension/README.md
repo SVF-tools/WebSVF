@@ -118,4 +118,4 @@ vsce package
 
 * [The node app which generates bug reports, WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF/blob/master/src/WebSVF-frontend-server)
 
-**Please contact me ([@ZichengQu](https://github.com/ZichengQu)) if you have any questions!**
+**Please contact the [WebSVF development team](https://svf-tools.github.io/WebSVF/) or me ([@ZichengQu](https://github.com/ZichengQu)) if you have any concerns!**
