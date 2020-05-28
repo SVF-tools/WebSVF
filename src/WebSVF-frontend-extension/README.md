@@ -98,9 +98,12 @@ Clicking on the ***'Bug Analysis Tool: Running'*** status bar will generate anot
 
 # Vsix Generation Guide
 
-Manually generate vsix extension file instead of downloading via termial. Be sure in the extension directory .
+Manually generate vsix extension file instead of downloading via termial. Be sure in the extension directory 'WebSVF/src/WebSVF-frontend-extension'.
 
 <img src="/src/WebSVF-frontend-extension/gifs/PackageVsix.gif" height="480">
+```
+npm install
+```
 
 ```
 sudo npm i vsce -g
