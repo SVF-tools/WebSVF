@@ -41,16 +41,16 @@ else
 	return;
 fi 
 
-# 改造SVF setup.sh文件让它适应当前系统并安装
-echo -e "\033[42;37m CREATE NEW SVF \033[0m"
-bash ./sub/5.process_svf.sh
+# # 改造SVF setup.sh文件让它适应当前系统并安装
+# echo -e "\033[42;37m CREATE NEW SVF \033[0m"
+# bash ./sub/5.process_svf.sh
 
-if [ "x$?" = x'0' ]; then
-	echo -e "\033[44;37m CREATE NEW SVF SUCCESS! \033[0m"
-else
-	echo -e "\033[41;33m CREATE NEW SVF FAILED! \033[0m"
-	return;
-fi
+# if [ "x$?" = x'0' ]; then
+# 	echo -e "\033[44;37m CREATE NEW SVF SUCCESS! \033[0m"
+# else
+# 	echo -e "\033[41;33m CREATE NEW SVF FAILED! \033[0m"
+# 	return;
+# fi
 
 
 # 测试
