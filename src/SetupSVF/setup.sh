@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# system tools
+# 1. system tools
 sudo apt-get update
 sudo apt-get install -y curl
 sudo apt-get install -y gcc gdb build-essential
@@ -18,7 +18,7 @@ else
 	return;
 fi
 
-# check network
+# 2. check network
 timeout=5
 target=www.github.com
 ret_code=`curl -I -s --connect-timeout $timeout $target -w %{http_code} | tail -n1`
@@ -29,49 +29,43 @@ else
 	return
 fi
 
-# download llvm svf and set
+# 3. download llvm svf and set
 echo -e "\033[42;37m DOWNLOAD LLVM SVF \033[0m"
-SVFToolsDIR="SVFTools"
-SetupSVFDIR="SetupSVF"
-SHELL_FOLDER="$(pwd)"
-echo "${SHELL_FOLDER}"
-ToolsPath="${HOME}"
-LLVM_DOWNLOAD_MAIN_PATH="https://github.com/llvm/llvm-project/releases/download"
-SVF_DOWNLOAD_MAIN_PATH="https://github.com/codemapweb/SVF/releases/download/"
-LLVM_EDITION="llvmorg-10.0.0"
-SVF_EDITION="1.0"
-TARXZ=".tar.xz"
-LOG="LOG"
-STORE="STORE"
 
-OID_LLVM_FILE_NAME="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04"
-LLVM_FILE_NAME="clang-llvm"
-SVF_FILE_NAME="SVF"
+LLVM_DOWNLOAD_MAIN_PATH="https://github.com/llvm/llvm-project/releases/download" # llvm download page
+SVF_DOWNLOAD_MAIN_PATH="https://github.com/codemapweb/SVF/releases/download/" # svf download page
+LLVM_EDITION="llvmorg-10.0.0" # llvm release edition
+SVF_EDITION="1.0" # svf release edition
+TARXZ=".tar.xz" # tar.xz tail
+LOG="LOG" # log dir name
+STORE="STORE" # store dir name
 
-## tar
-OLD_LLVM_TARXZ="${OID_LLVM_FILE_NAME}${TARXZ}"
-LLVM_TARXZ="${LLVM_FILE_NAME}${TARXZ}"
-SVF_TARXZ="${SVF_FILE_NAME}${TARXZ}"
+OID_LLVM_FILE_NAME="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04" # original llvm file name
+LLVM_FILE_NAME="clang-llvm" # llvm file name
+SVF_FILE_NAME="SVF" # svf file name
 
-## path
-SETUP_PATH="${SHELL_FOLDER}"
-TOOLS_PATH="${ToolsPath}/${SVFToolsDIR}"
-LOG_PATH="${SETUP_PATH}/${LOG}"
+SVFToolsDIR="SVFTools" # svf tools dir name
+TOOLS_PATH="${HOME}/${SVFToolsDIR}" # svf tools dir path
+SETUP_PATH="$(pwd)" # script pwd
 
-## path file
-OLD_LLVM_TOOLS_FILE="${TOOLS_PATH}/${OID_LLVM_FILE_NAME}"
-LLVM_TOOLS_FILE="${TOOLS_PATH}/${LLVM_FILE_NAME}"
-SVF_TOOLS_FILE="${TOOLS_PATH}/${SVF_NAME}"
+OLD_LLVM_TARXZ="${OID_LLVM_FILE_NAME}${TARXZ}" # original llvm tar.xz
+LLVM_TARXZ="${LLVM_FILE_NAME}${TARXZ}" # llvm tar.xz
+SVF_TARXZ="${SVF_FILE_NAME}${TARXZ}"# svf tar.xz
 
-## tar path
-STORE_PATH=${SETUP_PATH}/${STORE}
-LLVM_TARXZ_STORE="${STORE_PATH}/${OLD_LLVM_TARXZ}" #llvm store
-SVF_TARXZ_STORE="${STORE_PATH}/${SVF_TARXZ}" #svf store
+OLD_LLVM_TOOLS_FILE="${TOOLS_PATH}/${OID_LLVM_FILE_NAME}" # original llvm file name
+LLVM_TOOLS_FILE="${TOOLS_PATH}/${LLVM_FILE_NAME}" # llvm file name
+SVF_TOOLS_FILE="${TOOLS_PATH}/${SVF_NAME}" # svf file name
+
+LOG_PATH="${SETUP_PATH}/${LOG}" # log path
+STORE_PATH=${SETUP_PATH}/${STORE} # store path
+LLVM_TARXZ_STORE="${STORE_PATH}/${OLD_LLVM_TARXZ}" # llvm store path
+SVF_TARXZ_STORE="${STORE_PATH}/${SVF_TARXZ}" # svf store path
 
 OLD_LLVM_TOOLS_PATH_TARXZ="${TOOLS_PATH}/${OLD_LLVM_TARXZ}" # old llvm using
 LLVM_TOOLS_PATH_TARXZ="${TOOLS_PATH}/${LLVM_TARXZ}" # llvm using
 SVF_TOOLS_PATH_TARXZ="${TOOLS_PATH}/${SVF_TARXZ}" #svf using
 
+# generate log path
 if [ ! -d "$LOG_PATH" ]; then
     echo "mkdir ${LOG_PATH}"
     mkdir ${LOG_PATH}
@@ -79,6 +73,7 @@ else
     echo "ALREADY HAS ${LOG_PATH}"
 fi
 
+# generate store path
 if [ ! -d "$STORE_PATH" ]; then
     echo "mkdir ${STORE_PATH}"
     mkdir ${STORE_PATH}
@@ -86,6 +81,7 @@ else
     echo "ALREADY HAS ${STORE_PATH}"
 fi
 
+# create log file 
 TIME=$(date "+%Y%m%d-%H%M%S")
 LOG_FILE=${LOG_PATH}/${TIME}.txt
 touch ${LOG_FILE}
@@ -98,18 +94,19 @@ fi
 mkdir ${TOOLS_PATH}
 echo "mkdir ${TOOLS_PATH}" | tee -a ${LOG_FILE}
 
+# download llvm and set
 echo "DOWNLOAD LLVM" | tee -a ${LOG_FILE}
 cd ${STORE_PATH}
 wget -c ${LLVM_DOWNLOAD_MAIN_PATH}/${LLVM_EDITION}/${OLD_LLVM_TARXZ} -a ${LOG_FILE} # download release
 tar -xvf ${LLVM_TARXZ_STORE} -C ${TOOLS_PATH} | tee -a ${LOG_FILE} 2>&1 # tar -x
 mv ${OLD_LLVM_TOOLS_FILE} ${LLVM_TOOLS_FILE} | tee -a ${LOG_FILE} 2>&1 # change llvm name
 
+# download svf ans set
 echo "DOWNLOAD SVF" | tee -a ${LOG_FILE}
 cd ${STORE_PATH}
 wget -c ${SVF_DOWNLOAD_MAIN_PATH}/${SVF_EDITION}/${SVF_TARXZ} -a ${LOG_FILE} # download release
 tar -xvf ${SVF_TARXZ_STORE} -C ${TOOLS_PATH} | tee -a ${LOG_FILE} 2>&1 # tar -x
 cd ${SHELL_FOLDER}
-
 
 if [ "x$?" = x'0' ]; then
 	echo -e "\033[44;37m DOWNLOAD LLVM SVF SUCCESS. \033[0m"
@@ -130,7 +127,6 @@ echo 'export PATH=$LLVM_DIR/bin:$PATH' | sudo tee -a $ETC_PROFILE
 echo 'export SVF_HOME=$HOME/SVFTools/SVF' | sudo tee -a $ETC_PROFILE
 echo 'export PATH=$SVF_HOME/Release-build/bin:$PATH' | sudo tee -a $ETC_PROFILE
 source $ETC_PROFILE
-
 if [ "x$?" = x'0' ]; then
 	echo -e "\033[44;37m SET ENVIRONMENT PATH SUCCESS! \033[0m"
 else
@@ -146,9 +142,7 @@ if [ "$filename" = "" ]; then
 fi
 echo "clang -c -emit-llvm -g ./${filename} -o ./result.bc" | tee -a
 clang -c -emit-llvm -g ./$filename -o ./result.bc
-
 wpa -ander ./result.bc
-
 if [ "x$?" = x'0' ]; then
 	echo -e "\033[44;37m TEST SUCCESS! \033[0m"
 else
