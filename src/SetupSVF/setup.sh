@@ -17,7 +17,7 @@ if [ -d "$SVFTools_Path" ]; then
 fi
 mkdir "${SVFTools_Path}"
 
-# 2.3 unzip release to svf tools
+# 2.3 unzip release to svf dir path
 tar -xvf "${LLVM_TARXZ}" -C "${SVFTools_Path}"
 tar -xvf "${SVF_TARXZ}" -C "${SVFTools_Path}"
 
