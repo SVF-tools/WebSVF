@@ -39,5 +39,16 @@ echo 'export PATH=$SVF_HOME/Debug-build/bin:$PATH' | sudo tee -a $ETC_PROFILE
 source $ETC_PROFILE
 
 # 4. test
+rm example.c result.bc
+echo "#include<stdio.h>
+int main()
+{
+	int a=3;
+	int b=4;
+	int c=0;
+    c = a*b;
+    return c;
+}" >> example.c
 clang -c -emit-llvm -g ./example.c -o ./result.bc
 wpa -ander ./result.bc
+rm example.c result.bc
