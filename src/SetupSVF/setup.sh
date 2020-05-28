@@ -30,7 +30,7 @@ mv "${SVFTools_Path}/${LLVM_ORIGINAL_NAME}" "${SVFTools_Path}/${LLVM_NAME}"
 ETC_PROFILE=/etc/profile
 sudo sed -i '/export LLVM_DIR=/ d' $ETC_PROFILE
 sudo sed -i '/export PATH=$LLVM_DIR\/bin:$PATH/ d' $ETC_PROFILE
-sudo sed -i '/export SVF_HOME=$HOME\/SVFTools\/SVF/ d' $ETC_PROFILE
+sudo sed -i '/export SVF_HOME=/ d' $ETC_PROFILE
 sudo sed -i '/export PATH=$SVF_HOME\/Debug-build\/bin:$PATH/ d' $ETC_PROFILE
 echo "export LLVM_DIR=${SVFTools_Path}/${LLVM_NAME}" |sudo tee -a $ETC_PROFILE
 echo 'export PATH=$LLVM_DIR/bin:$PATH' | sudo tee -a $ETC_PROFILE
