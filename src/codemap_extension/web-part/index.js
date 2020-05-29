@@ -15,6 +15,14 @@ const gData = {
         })),
 };
 
+function addSpriteText(node) {
+    const sprite = new SpriteText(node.id);
+    sprite.color = "#fff";
+    sprite.textHeight = 10;
+    sprite.position.set(0, 12, 0);
+    return sprite;
+}
+
 const Graph = ForceGraph3D()(document.getElementById("graph"))
     .enableNodeDrag(false)
     .graphData(gData);
@@ -27,6 +35,7 @@ Graph.nodeColor((node) =>
     .linkWidth((link) => (highlightLink.has(link) ? 4 : 1))
     .linkDirectionalParticles((link) => (highlightLink.has(link) ? 4 : 0))
     .linkDirectionalParticleWidth(4)
+    .nodeRelSize(6)
     .onNodeHover((node) => {
         // console.log("NODE: ", node);
         // if (locking) {
@@ -90,6 +99,16 @@ Graph.nodeColor((node) =>
         }
 
         updateHighlight();
+    })
+    .nodeThreeObject((node) => {
+        const sprite = new SpriteText(node.id);
+        sprite.color = "#fff";
+        sprite.textHeight = 10;
+        sprite.position.set(0, 12, 0);
+        return sprite;
+    })
+    .nodeThreeObjectExtend((node) => {
+        return true;
     });
 
 function updateHighlight() {

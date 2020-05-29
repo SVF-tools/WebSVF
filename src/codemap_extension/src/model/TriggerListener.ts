@@ -11,7 +11,7 @@ export function configListener() {
         function () {
             let settings = vscode.workspace.getConfiguration("codeMap");
             let showOrHide = settings.get("ShowOrHide");
-            vscode.window.showInformationMessage(`ShowOrHide: ${showOrHide}`);
+            // vscode.window.showInformationMessage(`ShowOrHide: ${showOrHide}`);
             if (vscode.window.activeTextEditor) {
                 switch (showOrHide) {
                     case "show":
