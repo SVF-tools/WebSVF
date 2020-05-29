@@ -1,45 +1,51 @@
 #!/bin/bash
+# System: Ubuntu 18.04/20.04
 # 1. install system tools
-sudo apt-get update
-sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6
+sudo apt-get update # ubuntu update
+sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6 # essential tools
 
 # 2. setup llvm svf
 # 2.1 download llvm svf release
-LLVM_TARXZ="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz"
-SVF_TARXZ="SVF.tar.xz"
-wget -c "https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/${llvmTarxz}"
-wget -c "https://github.com/codemapweb/SVF/releases/download/1.0/${SVF_TARXZ}"
+LLVM_TARXZ="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz" # llvm 10.0.0 release name
+SVF_TARXZ="SVF.tar.xz" # SVF release name
+wget -c "https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/${llvmTarxz}" # download llvm release
+wget -c "https://github.com/codemapweb/SVF/releases/download/1.0/${SVF_TARXZ}" # download svf release 
 
 # 2.2 generate SVF dir 
-SVFTools_Path="${HOME}/SVFTools"
+SVFTools_Path="${HOME}/SVFTools" # llvm svf installation path
 if [ -d "$SVFTools_Path" ]; then
-    rm -rf "${SVFTools_Path}"
+    rm -rf "${SVFTools_Path}" # if have something, then clean svf installation path
 fi
-mkdir "${SVFTools_Path}"
+mkdir "${SVFTools_Path}" # generate svf installation path
 
 # 2.3 unzip release to svf dir path
-tar -xvf "${LLVM_TARXZ}" -C "${SVFTools_Path}"
-tar -xvf "${SVF_TARXZ}" -C "${SVFTools_Path}"
+tar -xvf "${LLVM_TARXZ}" -C "${SVFTools_Path}" # unzip llvm to svf installation path
+tar -xvf "${SVF_TARXZ}" -C "${SVFTools_Path}" # unzip svf to svf installation path
 
 # 2.4 rename llvm
-LLVM_ORIGINAL_NAME="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04"
-LLVM_NAME="clang-llvm"
-mv "${SVFTools_Path}/${LLVM_ORIGINAL_NAME}" "${SVFTools_Path}/${LLVM_NAME}"
+LLVM_ORIGINAL_NAME="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04" # after unzip llvm file name
+LLVM_NAME="clang-llvm" # llvm file name which we want to use
+mv "${SVFTools_Path}/${LLVM_ORIGINAL_NAME}" "${SVFTools_Path}/${LLVM_NAME}" # rename llvm
 
 # 3. set path
-ETC_PROFILE=/etc/profile
-sudo sed -i '/export LLVM_DIR=/ d' $ETC_PROFILE
-sudo sed -i '/export PATH=$LLVM_DIR\/bin:$PATH/ d' $ETC_PROFILE
-sudo sed -i '/export SVF_HOME=/ d' $ETC_PROFILE
-sudo sed -i '/export PATH=$SVF_HOME\/Debug-build\/bin:$PATH/ d' $ETC_PROFILE
-echo "export LLVM_DIR=${SVFTools_Path}/${LLVM_NAME}" |sudo tee -a $ETC_PROFILE
-echo 'export PATH=$LLVM_DIR/bin:$PATH' | sudo tee -a $ETC_PROFILE
-echo "export SVF_HOME=${SVFTools_Path}/SVF" | sudo tee -a $ETC_PROFILE
-echo 'export PATH=$SVF_HOME/Debug-build/bin:$PATH' | sudo tee -a $ETC_PROFILE
-source $ETC_PROFILE
+ETC_PROFILE=/etc/profile # path file
+# 3.1 delete related path
+sudo sed -i '/export LLVM_DIR=/ d' $ETC_PROFILE # delete LLVM_DIR
+sudo sed -i '/export PATH=$LLVM_DIR\/bin:$PATH/ d' $ETC_PROFILE # delete LLVM_DIR from PATH
+sudo sed -i '/export SVF_HOME=/ d' $ETC_PROFILE # delete SVF_HOME
+sudo sed -i '/export PATH=$SVF_HOME\/Debug-build\/bin:$PATH/ d' $ETC_PROFILE # delete SVF_HOME from PATH
+# 3.2 add current llvm svf path
+echo "export LLVM_DIR=${SVFTools_Path}/${LLVM_NAME}" |sudo tee -a $ETC_PROFILE # add LLVM_DIR
+echo 'export PATH=$LLVM_DIR/bin:$PATH' | sudo tee -a $ETC_PROFILE # add LLVM_DIR to PATH
+echo "export SVF_HOME=${SVFTools_Path}/SVF" | sudo tee -a $ETC_PROFILE # add SVF_HOME
+echo 'export PATH=$SVF_HOME/Debug-build/bin:$PATH' | sudo tee -a $ETC_PROFILE # add SVF_HOME to PATH
+# 3.3 refresh path
+source $ETC_PROFILE # refresh path
 
 # 4. test
+# 4.1 delete residual files
 rm example.c result.bc
+# 4.2 create test example.c
 echo "#include<stdio.h>
 int main()
 {
@@ -48,7 +54,10 @@ int main()
 	int c=0;
     c = a*b;
     return c;
-}" >> example.c
-clang -c -emit-llvm -g ./example.c -o ./result.bc
-wpa -ander ./result.bc
+}" >> example.c # write c program into example.c
+# 4.3 test llvm through clang
+clang -c -emit-llvm -g ./example.c -o ./result.bc # generate result.bc
+# 4.4 test svf through wpa
+wpa -ander ./result.bc # analysis result.bc
+# 4.5 delete residual files
 rm example.c result.bc
