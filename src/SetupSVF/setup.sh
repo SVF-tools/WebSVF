@@ -75,3 +75,30 @@ clang -c -emit-llvm -g ./example.c -o ./result.bc # generate result.bc
 wpa -ander ./result.bc # analysis result.bc
 # 4.5 delete residual files
 rm example.c result.bc
+
+########
+# 5. reboot for set path
+########
+readTime(){
+    second=$1
+    while(( $second>0 ))
+    do
+        echo "${second}"
+        sleep 1
+        let "second--"
+    done
+}
+read -n1 -p "SVF configure need reboot now [Y/n]:" answer 
+case $answer in 
+Y | y) 
+    echo -e "\nReboot after 3s"
+    readTime 3
+    shutdown -r now;;
+"") 
+    echo "Reboot after 3s"
+    readTime 3
+    shutdown -r now;;
+*) 
+    echo ""
+    echo "Please reboot by youself to make sure SVF work.";;
+esac
