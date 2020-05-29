@@ -1,11 +1,16 @@
 #!/bin/bash
-# System: Ubuntu 18.04/20.04
+# System: Ubuntu 18.04 / 20.04
+# type: 'source setup.sh' for install llvm and svf
 
+########
 # 1. install system tools
+########
 sudo apt-get update # ubuntu update
 sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6 # essential tools
 
+########
 # 2. setup llvm svf
+########
 # 2.1 download llvm svf release
 LLVM_TARXZ="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz" # llvm 10.0.0 release name
 SVF_TARXZ="SVF.tar.xz" # SVF release name
@@ -28,7 +33,9 @@ LLVM_ORIGINAL_NAME="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04" # after unz
 LLVM_NAME="clang-llvm" # llvm file name which we want to use
 mv "${INSTALL_DIR}/${LLVM_ORIGINAL_NAME}" "${INSTALL_DIR}/${LLVM_NAME}" # rename llvm
 
+########
 # 3. set path
+########
 ETC_PROFILE=/etc/profile # path file
 # 3.1 delete related path
 sudo sed -i '/export LLVM_DIR=/ d' $ETC_PROFILE # delete LLVM_DIR
@@ -43,7 +50,9 @@ echo 'export PATH=$SVF_HOME/Debug-build/bin:$PATH' | sudo tee -a $ETC_PROFILE # 
 # 3.3 refresh path
 source $ETC_PROFILE # refresh path
 
+########
 # 4. test
+########
 # 4.1 delete residual files
 rm example.c result.bc
 # 4.2 create test example.c
