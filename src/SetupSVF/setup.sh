@@ -6,8 +6,8 @@
 # 1. install system tools
 ########
 sudo apt-get update # ubuntu update
-sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6 libglib2.0-dev libncurses5 libtool python3.8 # essential tools
-sudo pip3 install wllvm # install wllvm
+sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6 libglib2.0-dev libncurses5 libtool libgraphviz-dev graphviz python3.8 # essential tools
+sudo pip3 install wllvm pygraphviz # install wllvm and pygraphviz
 
 
 ########
