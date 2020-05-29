@@ -12,21 +12,21 @@ SVF_TARXZ="SVF.tar.xz" # SVF release name
 wget -c "https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/${llvmTarxz}" # download llvm release
 wget -c "https://github.com/codemapweb/SVF/releases/download/1.0/${SVF_TARXZ}" # download svf release 
 
-# 2.2 generate SVF dir 
-SVFTools_Path="${HOME}/SVFTools" # llvm & svf installation dir path
-if [ -d "$SVFTools_Path" ]; then
-    rm -rf "${SVFTools_Path}" # if already has llvm & svf installation dir path, delete it.
+# 2.2 generate llvm & SVF installation dir 
+INSTALL_DIR="${HOME}/SVFTools" # llvm & svf installation dir 
+if [ -d "$INSTALL_DIR" ]; then
+    rm -rf "${INSTALL_DIR}" # if already has llvm & svf installation dir, delete it.
 fi
-mkdir "${SVFTools_Path}" # generate llvm & svf installation dir path
+mkdir "${INSTALL_DIR}" # generate llvm & svf installation dir
 
-# 2.3 unzip release to svf dir path
-tar -xvf "${LLVM_TARXZ}" -C "${SVFTools_Path}" # unzip llvm to llvm & svf installation dir path
-tar -xvf "${SVF_TARXZ}" -C "${SVFTools_Path}" # unzip svf to llvm & svf installation dir path
+# 2.3 unzip release to svf dir
+tar -xvf "${LLVM_TARXZ}" -C "${INSTALL_DIR}" # unzip llvm to llvm & svf installation dir
+tar -xvf "${SVF_TARXZ}" -C "${INSTALL_DIR}" # unzip svf to llvm & svf installation dir
 
 # 2.4 rename llvm
 LLVM_ORIGINAL_NAME="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04" # after unzip llvm file name
 LLVM_NAME="clang-llvm" # llvm file name which we want to use
-mv "${SVFTools_Path}/${LLVM_ORIGINAL_NAME}" "${SVFTools_Path}/${LLVM_NAME}" # rename llvm
+mv "${INSTALL_DIR}/${LLVM_ORIGINAL_NAME}" "${INSTALL_DIR}/${LLVM_NAME}" # rename llvm
 
 # 3. set path
 ETC_PROFILE=/etc/profile # path file
@@ -36,9 +36,9 @@ sudo sed -i '/export PATH=$LLVM_DIR\/bin:$PATH/ d' $ETC_PROFILE # delete LLVM_DI
 sudo sed -i '/export SVF_HOME=/ d' $ETC_PROFILE # delete SVF_HOME
 sudo sed -i '/export PATH=$SVF_HOME\/Debug-build\/bin:$PATH/ d' $ETC_PROFILE # delete SVF_HOME from PATH
 # 3.2 add current llvm svf path
-echo "export LLVM_DIR=${SVFTools_Path}/${LLVM_NAME}" |sudo tee -a $ETC_PROFILE # add LLVM_DIR
+echo "export LLVM_DIR=${INSTALL_DIR}/${LLVM_NAME}" |sudo tee -a $ETC_PROFILE # add LLVM_DIR
 echo 'export PATH=$LLVM_DIR/bin:$PATH' | sudo tee -a $ETC_PROFILE # add LLVM_DIR to PATH
-echo "export SVF_HOME=${SVFTools_Path}/SVF" | sudo tee -a $ETC_PROFILE # add SVF_HOME
+echo "export SVF_HOME=${INSTALL_DIR}/SVF" | sudo tee -a $ETC_PROFILE # add SVF_HOME
 echo 'export PATH=$SVF_HOME/Debug-build/bin:$PATH' | sudo tee -a $ETC_PROFILE # add SVF_HOME to PATH
 # 3.3 refresh path
 source $ETC_PROFILE # refresh path
