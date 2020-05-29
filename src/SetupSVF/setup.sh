@@ -1,6 +1,6 @@
 #!/bin/bash
 # System: Ubuntu 18.04 / 20.04
-# type: 'source setup.sh' for install llvm and svf
+# type: 'source setup.sh' for install llvm wllvm svf
 
 ########
 # 1. install system tools
