@@ -73,5 +73,10 @@
         "mocha": "^7.0.1",
         "typescript": "^3.7.5",
         "vscode-test": "^1.3.0"
+    },
+    "dependencies": {
+        "three": "^0.117.1",
+        "three-spritetext": "^1.5.1",
+        "three-trackballcontrols": "^0.0.8"
     }
 }
