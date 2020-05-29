@@ -20,8 +20,8 @@ fi
 mkdir "${SVFTools_Path}" # generate llvm & svf installation dir path
 
 # 2.3 unzip release to svf dir path
-tar -xvf "${LLVM_TARXZ}" -C "${SVFTools_Path}" # unzip llvm to svf installation path
-tar -xvf "${SVF_TARXZ}" -C "${SVFTools_Path}" # unzip svf to svf installation path
+tar -xvf "${LLVM_TARXZ}" -C "${SVFTools_Path}" # unzip llvm to llvm & svf installation dir path
+tar -xvf "${SVF_TARXZ}" -C "${SVFTools_Path}" # unzip svf to llvm & svf installation dir path
 
 # 2.4 rename llvm
 LLVM_ORIGINAL_NAME="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04" # after unzip llvm file name
