@@ -7,6 +7,8 @@
 ########
 sudo apt-get update # ubuntu update
 sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6 python3.8 # essential tools
+sudo pip3 install wllvm # install wllvm
+
 
 ########
 # 2. setup llvm svf
@@ -42,11 +44,13 @@ sudo sed -i '/export LLVM_DIR=/ d' $ETC_PROFILE # delete LLVM_DIR
 sudo sed -i '/export PATH=$LLVM_DIR\/bin:$PATH/ d' $ETC_PROFILE # delete LLVM_DIR from PATH
 sudo sed -i '/export SVF_HOME=/ d' $ETC_PROFILE # delete SVF_HOME
 sudo sed -i '/export PATH=$SVF_HOME\/Debug-build\/bin:$PATH/ d' $ETC_PROFILE # delete SVF_HOME from PATH
+sudo sed -i '/export LLVM_COMPILER= d' $ETC_PROFILE # delete LLVM_COMPILER
 # 3.2 add current llvm svf path
-echo "export LLVM_DIR=${INSTALL_DIR}/${LLVM_NAME}" |sudo tee -a $ETC_PROFILE # add LLVM_DIR
-echo 'export PATH=$LLVM_DIR/bin:$PATH' | sudo tee -a $ETC_PROFILE # add LLVM_DIR to PATH
-echo "export SVF_HOME=${INSTALL_DIR}/SVF" | sudo tee -a $ETC_PROFILE # add SVF_HOME
-echo 'export PATH=$SVF_HOME/Debug-build/bin:$PATH' | sudo tee -a $ETC_PROFILE # add SVF_HOME to PATH
+echo "export LLVM_DIR=${INSTALL_DIR}/${LLVM_NAME}" |sudo tee -a $ETC_PROFILE # add LLVM_DIR for llvm
+echo 'export PATH=$LLVM_DIR/bin:$PATH' | sudo tee -a $ETC_PROFILE # add LLVM_DIR to PATH for llvm
+echo "export SVF_HOME=${INSTALL_DIR}/SVF" | sudo tee -a $ETC_PROFILE # add SVF_HOME for svf
+echo 'export PATH=$SVF_HOME/Debug-build/bin:$PATH' | sudo tee -a $ETC_PROFILE # add SVF_HOME to PATH for svf
+echo 'export LLVM_COMPILER=clang' | sudo tee -a $ETC_PROFILE # add LLVM_COMPILER for wllvm
 # 3.3 refresh path
 source $ETC_PROFILE # refresh path
 
