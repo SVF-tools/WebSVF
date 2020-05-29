@@ -46,7 +46,7 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 ## Step 2. Install WebSVF-backend
 
 1. Install **[SVF (Ubuntu 18.04 and 20.04 only)](/src/SetupSVF/)**
-2. Move the generateJSON.js to the root path of SVF.  
+2. Download the **[generateJSON.js](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/generateJSON.js)** to the root path of SVF.  
 
 3. Use WLLVM to compile a C project to LLVM Bitcode (.bc) file.  
 
