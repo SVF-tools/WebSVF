@@ -1,5 +1,6 @@
 #!/bin/bash
 # System: Ubuntu 18.04/20.04
+
 # 1. install system tools
 sudo apt-get update # ubuntu update
 sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6 # essential tools
@@ -12,11 +13,11 @@ wget -c "https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/$
 wget -c "https://github.com/codemapweb/SVF/releases/download/1.0/${SVF_TARXZ}" # download svf release 
 
 # 2.2 generate SVF dir 
-SVFTools_Path="${HOME}/SVFTools" # llvm svf installation path
+SVFTools_Path="${HOME}/SVFTools" # llvm & svf installation dir path
 if [ -d "$SVFTools_Path" ]; then
-    rm -rf "${SVFTools_Path}" # if have something, then clean svf installation path
+    rm -rf "${SVFTools_Path}" # if already has llvm & svf installation dir path, delete it.
 fi
-mkdir "${SVFTools_Path}" # generate svf installation path
+mkdir "${SVFTools_Path}" # generate llvm & svf installation dir path
 
 # 2.3 unzip release to svf dir path
 tar -xvf "${LLVM_TARXZ}" -C "${SVFTools_Path}" # unzip llvm to svf installation path
