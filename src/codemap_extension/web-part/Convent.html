@@ -38,6 +38,13 @@
                 font-size: 10px;
                 /* visibility: hidden; */
             }
+
+            #modeGroup {
+                position: absolute;
+                top: 60px;
+                right: 40px;
+                font-size: 10px;
+            }
         </style>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,6 +94,16 @@
             </button>
 
             <span id="showSpan" class="badge badge-success">to connect...</span>
+        </div>
+        <div
+            id="modeGroup"
+            class="mode-group"
+            role="group"
+            aria-label="mode example"
+        >
+            <button id="modeBtn" type="button" class="btn btn-info">
+                WHOLE LABEL
+            </button>
         </div>
         <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/index.js"></script>
     </body>

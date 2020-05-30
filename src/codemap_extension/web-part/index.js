@@ -28,10 +28,14 @@ const Graph = ForceGraph3D()(document.getElementById("graph")).enableNodeDrag(
 );
 // .jsonUrl("./test.json");
 // .graphData(gData);
+let label = "wholelabel";
 
 Graph.nodeColor((node) =>
     highlightNodes.has(node) ? "rgb(255,0,0,1)" : "rgba(0,255,255,0.6)"
 )
+    .linkDirectionalArrowLength(3.5)
+    .linkDirectionalArrowRelPos(1)
+    .linkCurvature(0.25)
     .linkWidth((link) => (highlightLink.has(link) ? 4 : 1))
     .linkDirectionalParticles((link) => (highlightLink.has(link) ? 4 : 0))
     .linkDirectionalParticleWidth(4)
@@ -103,9 +107,9 @@ Graph.nodeColor((node) =>
         updateHighlight();
     })
     .nodeThreeObject((node) => {
-        const sprite = new SpriteText(node.nodeid);
+        const sprite = new SpriteText(node.wholelabel);
         sprite.color = "#fff";
-        sprite.textHeight = 10;
+        sprite.textHeight = 4;
         sprite.position.set(0, 12, 0);
         return sprite;
     })
@@ -119,6 +123,41 @@ function updateHighlight() {
         .linkWidth(Graph.linkWidth())
         .linkDirectionalParticles(Graph.linkDirectionalParticles());
 }
+document.getElementById("modeBtn").addEventListener("click", () => {
+    if (label == "wholelabel") {
+        Graph.nodeLabel((node) => node.wholelabel)
+            .nodeThreeObject((node) => {
+                const sprite = new SpriteText(node.nodeid);
+                sprite.color = "#fff";
+                sprite.textHeight = 12;
+                sprite.position.set(0, 12, 0);
+                return sprite;
+            })
+            .nodeThreeObjectExtend((node) => {
+                return true;
+            });
+        label = "nodeid";
+        document.getElementById("modeBtn").innerText = "NODE ID MODE";
+    } else {
+        if (label == "nodeid") {
+            Graph.nodeLabel(
+                (node) => "FILE: " + node.fsPath + " LINE: " + node.line
+            )
+                .nodeThreeObject((node) => {
+                    const sprite = new SpriteText(node.wholelabel);
+                    sprite.color = "#fff";
+                    sprite.textHeight = 4;
+                    sprite.position.set(0, 12, 0);
+                    return sprite;
+                })
+                .nodeThreeObjectExtend((node) => {
+                    return true;
+                });
+            label = "wholelabel";
+            document.getElementById("modeBtn").innerText = "WHOLE LABEL";
+        }
+    }
+});
 document.getElementById("leftBtn").addEventListener("click", () => {
     postMessage("value_follow_graph", "3dCodeGraph");
     postMessage("Value Follow Graph", "info");
