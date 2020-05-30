@@ -23,12 +23,11 @@ function addSpriteText(node) {
     return sprite;
 }
 
-const Graph = ForceGraph3D()(document.getElementById("graph"))
-    .enableNodeDrag(false)
-    // .jsonUrl("./test.json");
-    .graphData(gData);
-
-const { nodes, links } = Graph.graphData();
+const Graph = ForceGraph3D()(document.getElementById("graph")).enableNodeDrag(
+    false
+);
+// .jsonUrl("./test.json");
+// .graphData(gData);
 
 Graph.nodeColor((node) =>
     highlightNodes.has(node) ? "rgb(255,0,0,1)" : "rgba(0,255,255,0.6)"
@@ -70,20 +69,20 @@ Graph.nodeColor((node) =>
         updateHighlight();
     })
     .onNodeClick((node) => {
-        // postMessage(`node.id: ${node.id}`);
-        info = {
-            path:
-                "/Users/apple/WORKSPACE_3/WebSVF/src/WebSVF-frontend-server/public/js/genLandingPageAnalysis.js",
-            line: node.id,
-            start: 5,
-            end: 10,
-        };
-        postInfo(info);
+        // info = {
+        //     path:
+        //         "/Users/apple/WORKSPACE_3/WebSVF/src/WebSVF-frontend-server/public/js/genLandingPageAnalysis.js",
+        //     line: node.id,
+        //     start: 5,
+        //     end: 10,
+        // };
+        // postInfo(info);
+        console.log("NODE: ", node);
         if (node) {
             if (highlightNodes.has(node)) {
                 locking = false;
                 highlightNodes.delete(node);
-                links.forEach((link) => {
+                GraphData.links.forEach((link) => {
                     if (link.source === node && highlightLink.has(link)) {
                         highlightLink.delete(link);
                     }
@@ -91,9 +90,11 @@ Graph.nodeColor((node) =>
             } else {
                 locking = true;
                 highlightNodes.add(node);
-                links.forEach((link) => {
+                GraphData.links.forEach((link) => {
                     if (link.source === node && !highlightLink.has(link)) {
                         highlightLink.add(link);
+                    } else {
+                        console.log(link.source, node);
                     }
                 });
             }
@@ -102,7 +103,7 @@ Graph.nodeColor((node) =>
         updateHighlight();
     })
     .nodeThreeObject((node) => {
-        const sprite = new SpriteText(node.id);
+        const sprite = new SpriteText(node.nodeid);
         sprite.color = "#fff";
         sprite.textHeight = 10;
         sprite.position.set(0, 12, 0);
@@ -119,11 +120,12 @@ function updateHighlight() {
         .linkDirectionalParticles(Graph.linkDirectionalParticles());
 }
 document.getElementById("leftBtn").addEventListener("click", () => {
-    postMessage("HH", "value_follow_graph");
-    postMessage("Left Button", "info");
+    postMessage("value_follow_graph", "3dCodeGraph");
+    postMessage("Value Follow Graph", "info");
 });
 document.getElementById("middleBtn").addEventListener("click", () => {
-    postMessage("This is test button.", "error");
+    postMessage("control_follow_graph", "3dCodeGraph");
+    postMessage("Control Follow Graph", "info");
 });
 function postMessage(send_text, command) {
     vscode.postMessage({
@@ -145,6 +147,24 @@ window.addEventListener("resize", function () {
     Graph.width(window.innerWidth - 2).height(window.innerHeight - 2);
     console.log("width: ", window.innerWidth - 2);
     console.log("height: ", window.innerHeight - 2);
+});
+window.addEventListener("message", (event) => {
+    const message = event.data;
+    switch (message.status) {
+        case "connected":
+            document.getElementById("showSpan").textContent = message.status;
+            break;
+        case "3dCodeGraph":
+            // Graph.jsonUrl("vscode-resource:" + message.filePath);
+            const dataObj = JSON.parse(message.data);
+            Graph.graphData(dataObj);
+            GraphData = Graph.graphData();
+            console.log("GraphData:", GraphData);
+            document.getElementById("showSpan").textContent = message.filePath;
+            break;
+        default:
+            break;
+    }
 });
 
 document.onreadystatechange = function () {
