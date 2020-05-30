@@ -20,7 +20,7 @@ for n in G.nodes():
     file_position = re.search(r"file: [a-zA-Z0-9/\-.]+", info)
     fl_position = re.search(r"fl: [a-zA-Z0-9/\-.]+", info)
     fsPath = "NULL"
-    line = "NULL"
+    line = -1
 
     if node_id:
         node_id = int(node_id.group()[7:])
@@ -40,7 +40,7 @@ for n in G.nodes():
         "wholelabel": info,
         "ncolor": n.attr['color'],
         "fsPath": fsPath,
-        "line": line
+        "line": int(line)
     }
     file["nodes"].append(node)
     listid += 1
@@ -58,7 +58,7 @@ for e in G.edges():
 jsonData = json.dumps(file, indent=4)
 finialData = codecs.decode(jsonData, 'unicode_escape')
 print(finialData)
-# sys.stdout.write("%s,\n" % (json.dumps(file)))
+    # sys.stdout.write("%s,\n" % (json.dumps(file)))
 with open(sys.argv[2], 'w') as outfile:
     outfile.write(finialData)
     print("DONE!\n")
