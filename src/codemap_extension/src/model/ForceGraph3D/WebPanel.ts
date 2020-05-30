@@ -1,5 +1,6 @@
 "use strict";
 import * as vscode from "vscode";
+import * as path from "path";
 import {
     WebPanelManager,
     WebPanel,
@@ -92,6 +93,22 @@ export class WebPanelForceGraph3D extends WebPanel {
     protected receiveMessage(message: any) {
         super.receiveMessage(message);
         switch (message.command) {
+            case "value_follow_graph":
+                const rootPath = vscode.workspace.rootPath;
+                if (rootPath) {
+                    const filePath = path.join(
+                        rootPath,
+                        "3D_CODE_GRAPH",
+                        "value_follow_graph.json"
+                    );
+                    this.webPanel.webview.postMessage({
+                        status: "value_follow_graph",
+                        filePath: filePath,
+                    });
+                } else {
+                    vscode.window.showErrorMessage("Cannot find a workspace.");
+                }
+                break;
             case "toSomeWhere":
                 // const filePathUri = vscode.Uri.file(message.path);
                 if (ActivateVscodeContext.activeEditor) {
@@ -123,9 +140,10 @@ export class WebPanelForceGraph3D extends WebPanel {
                         selection: range,
                         viewColumn: 2,
                     });
-                }
-                else{
-                    vscode.window.showErrorMessage("Open a long lines file for test.");
+                } else {
+                    vscode.window.showErrorMessage(
+                        "Open a long lines file for test."
+                    );
                 }
 
                 break;
