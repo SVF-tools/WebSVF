@@ -5,10 +5,14 @@ var constants = require("./constants"); //Constants
 var StatusBar = require("./statusBar"); //StatusBarItem
 var os = require("os");
 var path = require("path");
+var net = require('net')
 /**
  * @param {vscode.ExtensionContext} context
  */
 module.exports = function(context) {
+
+    let timeInterval = null;
+
     context.subscriptions.push(vscode.commands.registerCommand('extension.menu', function () {
         let workspace = vscode.workspace.rootPath;
         let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
@@ -69,11 +73,9 @@ module.exports = function(context) {
         utils.setStatusBar("Bug Analysis Tool: Running", "Red");
         new Promise(function (resolve, reject) {                
             utils.bug_report();//Send command via terminal to start the node app.
-            resolve();
+            resolve(1);
         }).then(function () {
-            setTimeout(function () {
-                utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side.
-              }, 5000);
+            timeInterval = setInterval(function () {portIsOccupied(3000);}, 1000);
         })
     }
 
@@ -81,4 +83,26 @@ module.exports = function(context) {
         utils.setStatusBar("Bug Analysis Tool", "White");
         utils.bug_report_stop();
     }
+
+    function portIsOccupied (port) {
+        // Create the service and listen on the port
+        var server = net.createServer().listen(port);
+      
+        server.on('listening', function () { // Execution of this code indicates that the port is not occupied
+          server.close(); // Close the service
+          //console.log('The port【' + port + '】 is available.');
+        });
+      
+        server.on('error', function (err) {
+
+            let flag = err.message.split(" ")[1];
+            flag = flag.substring(0, flag.length-1);
+
+            if (flag === 'EADDRINUSE') { // The port has been occupied
+                //console.log('The port【' + port + '】 is occupied, please change other port.');
+                utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side.
+                clearInterval(timeInterval);
+            }
+        });
+      }
 };
