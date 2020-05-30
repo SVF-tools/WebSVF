@@ -131,7 +131,12 @@ function bug_report(){
     //Show commands in the terminal
     terminal.show(true);
     //Start the node app
-    terminal.sendText("npm run start");
+    
+    if(platform == "win32"){
+        terminal.sendText("npm run start");
+    }else{
+        terminal.sendText("sudo npm run start");
+    }
 }
 
 /**
