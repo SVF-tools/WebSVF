@@ -1,6 +1,7 @@
 "use strict";
 import * as vscode from "vscode";
 import * as path from "path";
+import * as fs from "fs";
 import {
     WebPanelManager,
     WebPanel,
@@ -93,17 +94,20 @@ export class WebPanelForceGraph3D extends WebPanel {
     protected receiveMessage(message: any) {
         super.receiveMessage(message);
         switch (message.command) {
-            case "value_follow_graph":
+            case "3dCodeGraph":
                 const rootPath = vscode.workspace.rootPath;
                 if (rootPath) {
+                    const fileName = message.text+".json";
                     const filePath = path.join(
                         rootPath,
                         "3D_CODE_GRAPH",
-                        "value_follow_graph.json"
+                        fileName
                     );
+                    const data = fs.readFileSync(filePath, "utf-8");
                     this.webPanel.webview.postMessage({
-                        status: "value_follow_graph",
+                        status: "3dCodeGraph",
                         filePath: filePath,
+                        data: data,
                     });
                 } else {
                     vscode.window.showErrorMessage("Cannot find a workspace.");
