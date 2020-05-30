@@ -93,62 +93,69 @@ export class WebPanelForceGraph3D extends WebPanel {
 
     protected receiveMessage(message: any) {
         super.receiveMessage(message);
+        let rootPath = null;
         switch (message.command) {
             case "3dCodeGraph":
-                const rootPath = vscode.workspace.rootPath;
-                if (rootPath) {
-                    const fileName = message.text+".json";
-                    const filePath = path.join(
-                        rootPath,
-                        "3D_CODE_GRAPH",
-                        fileName
-                    );
-                    const data = fs.readFileSync(filePath, "utf-8");
-                    this.webPanel.webview.postMessage({
-                        status: "3dCodeGraph",
-                        filePath: filePath,
-                        data: data,
-                    });
-                } else {
+                rootPath = vscode.workspace.rootPath;
+                if (!rootPath) {
                     vscode.window.showErrorMessage("Cannot find a workspace.");
+                    break;
                 }
+                let graphFileName = message.text + ".json";
+                let graphFilePath = path.join(
+                    rootPath,
+                    "3D_CODE_GRAPH",
+                    graphFileName
+                );
+                const data = fs.readFileSync(graphFilePath, "utf-8");
+                this.webPanel.webview.postMessage({
+                    status: "3dCodeGraph",
+                    filePath: graphFilePath,
+                    data: data,
+                });
                 break;
             case "toSomeWhere":
-                // const filePathUri = vscode.Uri.file(message.path);
-                if (ActivateVscodeContext.activeEditor) {
-                    const filePathUri =
-                        ActivateVscodeContext.activeEditor.document.uri;
-                    const lineNumber = message.line;
-                    const startPosition = message.start;
-                    const endPosition = message.end;
-
-                    // vscode.window.showInformationMessage(
-                    //     `filePathUri: ${filePathUri}`
-                    // );
-
-                    this.LoadTag(
-                        filePathUri,
-                        lineNumber,
-                        startPosition,
-                        endPosition
-                    );
-
-                    let range: vscode.Range = new vscode.Range(
-                        lineNumber,
-                        startPosition,
-                        lineNumber,
-                        endPosition
-                    );
-
-                    vscode.window.showTextDocument(filePathUri, {
-                        selection: range,
-                        viewColumn: 2,
-                    });
-                } else {
-                    vscode.window.showErrorMessage(
-                        "Open a long lines file for test."
-                    );
+                rootPath = vscode.workspace.rootPath;
+                if (!rootPath) {
+                    vscode.window.showErrorMessage("Cannot find a workspace.");
+                    break;
                 }
+                let linkFilePath = path.join(rootPath, message.path);
+                let exitFile = true;
+                fs.access(linkFilePath, function (err) {
+                    if (err) {
+                        exitFile = false;
+                    }
+                });
+                if (!exitFile) {
+                    vscode.window.showErrorMessage(
+                        "Cannot find " + linkFilePath
+                    );
+                    break;
+                }
+                const filePathUri = vscode.Uri.file(linkFilePath);
+                const lineNumber = message.line - 1;
+                const startPosition = message.start;
+                const endPosition = message.end;
+
+                this.LoadTag(
+                    filePathUri,
+                    lineNumber,
+                    startPosition,
+                    endPosition
+                );
+
+                let range: vscode.Range = new vscode.Range(
+                    lineNumber,
+                    startPosition,
+                    lineNumber,
+                    endPosition
+                );
+
+                vscode.window.showTextDocument(filePathUri, {
+                    selection: range,
+                    viewColumn: 2,
+                });
 
                 break;
         }

@@ -28,14 +28,14 @@ const Graph = ForceGraph3D()(document.getElementById("graph")).enableNodeDrag(
 );
 // .jsonUrl("./test.json");
 // .graphData(gData);
-let label = "wholelabel";
+let label = "nodeid";
 
 Graph.nodeColor((node) =>
     highlightNodes.has(node) ? "rgb(255,0,0,1)" : "rgba(0,255,255,0.6)"
 )
-    .linkDirectionalArrowLength(3.5)
-    .linkDirectionalArrowRelPos(1)
-    .linkCurvature(0.25)
+    // .linkDirectionalArrowLength(3.5)
+    // .linkDirectionalArrowRelPos(1)
+    // .linkCurvature(0.25)
     .linkWidth((link) => (highlightLink.has(link) ? 4 : 1))
     .linkDirectionalParticles((link) => (highlightLink.has(link) ? 4 : 0))
     .linkDirectionalParticleWidth(4)
@@ -73,14 +73,13 @@ Graph.nodeColor((node) =>
         updateHighlight();
     })
     .onNodeClick((node) => {
-        // info = {
-        //     path:
-        //         "/Users/apple/WORKSPACE_3/WebSVF/src/WebSVF-frontend-server/public/js/genLandingPageAnalysis.js",
-        //     line: node.id,
-        //     start: 5,
-        //     end: 10,
-        // };
-        // postInfo(info);
+        info = {
+            path: node.fsPath,
+            line: node.line,
+            start: 1,
+            end: 10,
+        };
+        postInfo(info);
         console.log("NODE: ", node);
         if (node) {
             if (highlightNodes.has(node)) {
@@ -106,11 +105,12 @@ Graph.nodeColor((node) =>
 
         updateHighlight();
     })
+    .nodeLabel((node) => node.wholelabel)
     .nodeThreeObject((node) => {
-        const sprite = new SpriteText(node.wholelabel);
+        const sprite = new SpriteText(node.nodeid);
         sprite.color = "#fff";
-        sprite.textHeight = 4;
-        sprite.position.set(0, 12, 0);
+        sprite.textHeight = 6;
+        sprite.position.set(0, 0, 0);
         return sprite;
     })
     .nodeThreeObjectExtend((node) => {
@@ -124,13 +124,21 @@ function updateHighlight() {
         .linkDirectionalParticles(Graph.linkDirectionalParticles());
 }
 document.getElementById("modeBtn").addEventListener("click", () => {
-    if (label == "wholelabel") {
+    if (label === "wholelabel") {
         Graph.nodeLabel((node) => node.wholelabel)
             .nodeThreeObject((node) => {
+                // const sprite = new SpriteText(
+                //     "ID: " +
+                //         node.nodeid +
+                //         "\nFILE: " +
+                //         node.fsPath +
+                //         " LINE: " +
+                //         node.line
+                // );
                 const sprite = new SpriteText(node.nodeid);
                 sprite.color = "#fff";
-                sprite.textHeight = 12;
-                sprite.position.set(0, 12, 0);
+                sprite.textHeight = 6;
+                sprite.position.set(0, 0, 0);
                 return sprite;
             })
             .nodeThreeObjectExtend((node) => {
@@ -139,7 +147,7 @@ document.getElementById("modeBtn").addEventListener("click", () => {
         label = "nodeid";
         document.getElementById("modeBtn").innerText = "NODE ID MODE";
     } else {
-        if (label == "nodeid") {
+        if (label === "nodeid") {
             Graph.nodeLabel(
                 (node) => "FILE: " + node.fsPath + " LINE: " + node.line
             )
@@ -159,10 +167,14 @@ document.getElementById("modeBtn").addEventListener("click", () => {
     }
 });
 document.getElementById("leftBtn").addEventListener("click", () => {
+    highlightNodes.clear();
+    highlightLink.clear();
     postMessage("value_follow_graph", "3dCodeGraph");
     postMessage("Value Follow Graph", "info");
 });
 document.getElementById("middleBtn").addEventListener("click", () => {
+    highlightNodes.clear();
+    highlightLink.clear();
     postMessage("control_follow_graph", "3dCodeGraph");
     postMessage("Control Follow Graph", "info");
 });
