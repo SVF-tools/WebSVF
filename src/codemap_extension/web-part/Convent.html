@@ -89,5 +89,24 @@
             <span id="showSpan" class="badge badge-success">to connect...</span>
         </div>
         <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/index.js"></script>
+        <script>
+            window.addEventListener("message", (event) => {
+                const message = event.data;
+                switch (message.status) {
+                    case "connected":
+                        document.getElementById("showSpan").textContent =
+                            message.status;
+                        break;
+                    case "value_follow_graph":
+                        Graph.jsonUrl("vscode-resource:" + message.filePath);
+                        // Graph.jsonUrl("./test.json");
+                        document.getElementById("showSpan").textContent =
+                            message.filePath;
+                        break;
+                    default:
+                        break;
+                }
+            });
+        </script>
     </body>
 </html>

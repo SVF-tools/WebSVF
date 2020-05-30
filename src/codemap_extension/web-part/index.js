@@ -25,6 +25,7 @@ function addSpriteText(node) {
 
 const Graph = ForceGraph3D()(document.getElementById("graph"))
     .enableNodeDrag(false)
+    // .jsonUrl("./test.json");
     .graphData(gData);
 
 const { nodes, links } = Graph.graphData();
@@ -117,13 +118,16 @@ function updateHighlight() {
         .linkWidth(Graph.linkWidth())
         .linkDirectionalParticles(Graph.linkDirectionalParticles());
 }
-document.getElementById("leftBtn").addEventListener("click", () => {});
-document.getElementById("middleBtn").addEventListener("click", () => {
-    postMessage("This is test button.");
+document.getElementById("leftBtn").addEventListener("click", () => {
+    postMessage("HH", "value_follow_graph");
+    postMessage("Left Button", "info");
 });
-function postMessage(send_text) {
+document.getElementById("middleBtn").addEventListener("click", () => {
+    postMessage("This is test button.", "error");
+});
+function postMessage(send_text, command) {
     vscode.postMessage({
-        command: "alert",
+        command: command,
         text: send_text,
     });
 }
@@ -141,11 +145,6 @@ window.addEventListener("resize", function () {
     Graph.width(window.innerWidth - 2).height(window.innerHeight - 2);
     console.log("width: ", window.innerWidth - 2);
     console.log("height: ", window.innerHeight - 2);
-});
-
-window.addEventListener("message", (event) => {
-    const message = event.data;
-    document.getElementById("showSpan").textContent = message.status;
 });
 
 document.onreadystatechange = function () {
