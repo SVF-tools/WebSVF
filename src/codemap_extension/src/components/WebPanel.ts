@@ -151,7 +151,7 @@ export class WebPanel {
         this._webStatus = WebStatus.incomplete;
         // Through Web Info set and create a vscode web view.
         let rootPath = vscode.workspace.rootPath;
-        if(!rootPath){
+        if (!rootPath) {
             rootPath = path.join(
                 this.extensionPath,
                 webInfo["localResourceRoots"]
@@ -173,6 +173,9 @@ export class WebPanel {
                         )
                     ),
                     vscode.Uri.file(rootPath),
+                    vscode.Uri.file(
+                        path.join(this.extensionPath, "node_modules")
+                    ),
                 ],
                 retainContextWhenHidden: true,
             }

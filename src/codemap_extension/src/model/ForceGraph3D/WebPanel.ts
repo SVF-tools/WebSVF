@@ -113,6 +113,7 @@ export class WebPanelForceGraph3D extends WebPanel {
                     filePath: graphFilePath,
                     data: data,
                 });
+                LineTagManager.clear();
                 break;
             case "toSomeWhere":
                 rootPath = vscode.workspace.rootPath;
