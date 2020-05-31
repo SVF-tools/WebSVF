@@ -152,7 +152,7 @@ function showNodeInfo(node) {
         let child_p1 = document.createElement("p");
         let child_p2 = document.createElement("p");
         let child_hr = document.createElement("hr");
-        child_h4.innerHTML = "NODE: "+node.nodeid;
+        child_h4.innerHTML = "NODE: " + node.nodeid;
         child_h4.setAttribute("class", "alert-heading");
         let nodeLine = node.line === -1 ? "NULL" : node.line;
         labelInfo1 = "FILE: " + node.fsPath + "\nLINE: " + nodeLine;
@@ -166,6 +166,14 @@ function showNodeInfo(node) {
         obj.appendChild(child_p2);
         showNodeLinkInfo(true);
     }
+}
+function clearNodeInfo() {
+    let obj = document.getElementById("infoGround");
+    obj.innerText = "";
+    let child_h4 = document.createElement("h4");
+    child_h4.innerHTML = "NODE INFO";
+    child_h4.setAttribute("class", "alert-heading");
+    obj.appendChild(child_h4);
 }
 
 function updateHighlight() {
@@ -222,7 +230,6 @@ document.getElementById("leftBtn").addEventListener("click", () => {
     // postMessage("Value Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: VFG";
     deleteWelcome();
-    showNodeLinkInfo(true);
 });
 document.getElementById("middleBtn").addEventListener("click", () => {
     highlightNodes.clear();
@@ -231,7 +238,6 @@ document.getElementById("middleBtn").addEventListener("click", () => {
     // postMessage("Control Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: CFG";
     deleteWelcome();
-    showNodeLinkInfo(true);
 });
 function deleteWelcome() {
     deleteDocElement("welcomeInfo");
