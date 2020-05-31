@@ -78,9 +78,19 @@ Graph.nodeColor((node) =>
             path: node.fsPath,
             line: node.line,
             start: 1,
-            end: 10,
+            end: 1,
         };
-        postInfo(info);
+        // postInfo(info);
+        let hasSameHightLightNode = false;
+        highlightNodes.forEach((h_node) => {
+            if (node.id !==h_node.id && node.line === h_node.line && node.fsPath === h_node.fsPath) {
+                hasSameHightLightNode = true;
+                return false;
+            }
+        });
+        if (!hasSameHightLightNode) {
+            postInfo(info);
+        }
         console.log("NODE: ", node);
         if (node) {
             if (highlightNodes.has(node)) {
@@ -174,12 +184,14 @@ document.getElementById("leftBtn").addEventListener("click", () => {
     highlightLink.clear();
     postMessage("value_follow_graph", "3dCodeGraph");
     postMessage("Value Follow Graph", "info");
+    document.getElementById("showSpan").textContent = "MODE: VFG";
 });
 document.getElementById("middleBtn").addEventListener("click", () => {
     highlightNodes.clear();
     highlightLink.clear();
     postMessage("control_follow_graph", "3dCodeGraph");
     postMessage("Control Follow Graph", "info");
+    document.getElementById("showSpan").textContent = "MODE: CFG";
 });
 function postMessage(send_text, command) {
     vscode.postMessage({
@@ -205,7 +217,7 @@ window.addEventListener("message", (event) => {
     const message = event.data;
     switch (message.status) {
         case "connected":
-            document.getElementById("showSpan").textContent = message.status;
+            document.getElementById("showSpan").textContent = "CONNECTED";
             break;
         case "3dCodeGraph":
             // Graph.jsonUrl("vscode-resource:" + message.filePath);
@@ -214,7 +226,6 @@ window.addEventListener("message", (event) => {
             GraphData = Graph.graphData();
 
             console.log("GraphData:", GraphData);
-            document.getElementById("showSpan").textContent = message.filePath;
             break;
         default:
             break;
