@@ -1,12 +1,22 @@
 "use strict";
 import * as path from "path";
 import { ActivateVscodeContext } from "../../components/ActivateVscodeContext";
+import { VscodeUriInfo } from "../../components/ReactPanel";
+import { Uri } from "vscode";
 
 export interface ConfigPath {
     [key: string]: string;
     barConfigPath: string;
     PanelConfigPath: string;
     CommandConfigPath: string;
+}
+
+export interface PositionInfo {
+    [key: string]: number | Uri;
+    filePathUri: Uri;
+    lineNumber: number; 
+    startPosition: number;
+    endPosition: number;
 }
 
 export enum SwitchBar {

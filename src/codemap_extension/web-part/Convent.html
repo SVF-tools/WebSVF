@@ -45,6 +45,25 @@
                 right: 40px;
                 font-size: 10px;
             }
+            #infoGround {
+                position: absolute;
+                top: 120px;
+                right: 40px;
+                width: 200px;
+                font-size: 10px;
+            }
+            #welcomeInfo {
+                text-align: center; /*让div内部文字居中*/
+                border-radius: 20px;
+                width: 300px;
+                height: 350px;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
         </style>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -88,6 +107,19 @@
             <button id="modeBtn" type="button" class="btn btn-info">
                 NODE ID MODE
             </button>
+        </div>
+        <div id="welcomeInfo" class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well done!</h4>
+            <p>
+                Aww yeah, you successfully read this important alert message.
+                This example text is going to run a bit longer so that you can
+                see how spacing within an alert works with this kind of content.
+            </p>
+            <hr />
+            <p class="mb-0">
+                Whenever you need to, be sure to use margin utilities to keep
+                things nice and tidy.
+            </p>
         </div>
         <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/index.js"></script>
     </body>

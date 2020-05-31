@@ -73,16 +73,25 @@ Graph.nodeColor((node) =>
     .onLinkHover((link) => {
         updateHighlight();
     })
+    .onNodeRightClick((node) => {
+        info = {
+            path: node.fsPath,
+            line: node.line,
+            start: 0,
+            end: 0,
+        };
+        postPosition(info);
+    })
     .onNodeClick((node) => {
         info = {
             path: node.fsPath,
             line: node.line,
-            start: 1,
-            end: 1,
+            start: 0,
+            end: 0,
         };
-        // postInfo(info);
         let hasSameHightLightNode = false;
         highlightNodes.forEach((h_node) => {
+            // if same line and fsPath, we don't need to highlight the node
             if (
                 node.id !== h_node.id &&
                 node.line === h_node.line &&
@@ -93,7 +102,7 @@ Graph.nodeColor((node) =>
             }
         });
         if (!hasSameHightLightNode) {
-            postInfo(info);
+            postHighLightInfo(info);
         }
         console.log("NODE: ", node);
         if (node) {
@@ -185,25 +194,47 @@ document.getElementById("leftBtn").addEventListener("click", () => {
     highlightNodes.clear();
     highlightLink.clear();
     postMessage("value_follow_graph", "3dCodeGraph");
-    postMessage("Value Follow Graph", "info");
+    // postMessage("Value Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: VFG";
+    deleteWelcome();
 });
 document.getElementById("middleBtn").addEventListener("click", () => {
     highlightNodes.clear();
     highlightLink.clear();
     postMessage("control_follow_graph", "3dCodeGraph");
-    postMessage("Control Follow Graph", "info");
+    // postMessage("Control Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: CFG";
+    deleteWelcome();
 });
+function deleteWelcome() {
+    deleteDocElement("welcomeInfo");
+}
+function deleteDocElement(id) {
+    let obj = document.getElementById(id);
+    console.log(obj);
+    if (obj) {
+        let parentObj = obj.parentNode;
+        parentObj.removeChild(obj);
+    }
+}
 function postMessage(send_text, command) {
     vscode.postMessage({
         command: command,
         text: send_text,
     });
 }
-function postInfo(info) {
+function postPosition(info) {
     vscode.postMessage({
         command: "toSomeWhere",
+        path: info.path,
+        line: info.line,
+        start: info.start,
+        end: info.end,
+    });
+}
+function postHighLightInfo(info) {
+    vscode.postMessage({
+        command: "toSomeWhereHighLight",
         path: info.path,
         line: info.line,
         start: info.start,
