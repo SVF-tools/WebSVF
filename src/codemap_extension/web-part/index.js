@@ -83,7 +83,11 @@ Graph.nodeColor((node) =>
         // postInfo(info);
         let hasSameHightLightNode = false;
         highlightNodes.forEach((h_node) => {
-            if (node.id !==h_node.id && node.line === h_node.line && node.fsPath === h_node.fsPath) {
+            if (
+                node.id !== h_node.id &&
+                node.line === h_node.line &&
+                node.fsPath === h_node.fsPath
+            ) {
                 hasSameHightLightNode = true;
                 return false;
             }
@@ -107,8 +111,6 @@ Graph.nodeColor((node) =>
                 GraphData.links.forEach((link) => {
                     if (link.source === node && !highlightLink.has(link)) {
                         highlightLink.add(link);
-                    } else {
-                        console.log(link.source, node);
                     }
                 });
             }
