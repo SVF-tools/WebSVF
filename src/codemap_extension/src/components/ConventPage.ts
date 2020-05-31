@@ -15,7 +15,7 @@ export class ConventPage {
         );
         let html = fs.readFileSync(resourcePath, "utf-8");
         html = html.replace(
-            /(<link.+?href="|<script.+?src="|<img.+?src=")(.+?)"/g,
+            /(<link.+?href="|<script.+?src="|<img.+?src="|import.+?from ")(.+?)"/g,
             (m, $1, $2) => {
                 if (ActivateVscodeContext.context.asAbsolutePath($2) !== $2) {
                     $2 = path.join(dirName, $2);

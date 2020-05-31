@@ -69,6 +69,12 @@ export class LineTagManager {
             return true;
         }
     }
+    public static clear(){
+        this.LineTagList.forEach(element => {
+            element.UnLoadDecoration();
+        });
+        this.LineTagList.clear();
+    }
 
     public static findLineTag(key: string): LineTag | undefined {
         return this.LineTagList.get(key);

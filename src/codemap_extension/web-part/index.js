@@ -1,4 +1,5 @@
 // Random tree
+
 const vscode = acquireVsCodeApi();
 let highlightNodes = new Set();
 let highlightLink = new Set();
@@ -14,6 +15,7 @@ const gData = {
             target: Math.round(Math.random() * (id - 1)),
         })),
 };
+let label = "nodeid";
 
 function addSpriteText(node) {
     const sprite = new SpriteText(node.id);
@@ -24,22 +26,21 @@ function addSpriteText(node) {
 }
 
 const Graph = ForceGraph3D()(document.getElementById("graph")).enableNodeDrag(
-    false
+    true
 );
-// .jsonUrl("./test.json");
-// .graphData(gData);
-let label = "nodeid";
 
 Graph.nodeColor((node) =>
     highlightNodes.has(node) ? "rgb(255,0,0,1)" : "rgba(0,255,255,0.6)"
 )
-    // .linkDirectionalArrowLength(3.5)
-    // .linkDirectionalArrowRelPos(1)
-    // .linkCurvature(0.25)
     .linkWidth((link) => (highlightLink.has(link) ? 4 : 1))
     .linkDirectionalParticles((link) => (highlightLink.has(link) ? 4 : 0))
     .linkDirectionalParticleWidth(4)
     .nodeRelSize(6)
+    .onNodeDragEnd((node) => {
+        node.fx = node.x;
+        node.fy = node.y;
+        node.fz = node.z;
+    })
     .onNodeHover((node) => {
         // console.log("NODE: ", node);
         // if (locking) {
@@ -105,7 +106,11 @@ Graph.nodeColor((node) =>
 
         updateHighlight();
     })
-    .nodeLabel((node) => node.wholelabel)
+    .nodeLabel((node) => {
+        let nodeLine = node.line === -1 ? "NULL" : node.line;
+        labelInfo = "FILE: " + node.fsPath + " LINE: " + nodeLine;
+        return labelInfo;
+    })
     .nodeThreeObject((node) => {
         const sprite = new SpriteText(node.nodeid);
         sprite.color = "#fff";
@@ -125,16 +130,12 @@ function updateHighlight() {
 }
 document.getElementById("modeBtn").addEventListener("click", () => {
     if (label === "wholelabel") {
-        Graph.nodeLabel((node) => node.wholelabel)
+        Graph.nodeLabel((node) => {
+            let nodeLine = node.line === -1 ? "NULL" : node.line;
+            labelInfo = "FILE: " + node.fsPath + " LINE: " + nodeLine;
+            return labelInfo;
+        })
             .nodeThreeObject((node) => {
-                // const sprite = new SpriteText(
-                //     "ID: " +
-                //         node.nodeid +
-                //         "\nFILE: " +
-                //         node.fsPath +
-                //         " LINE: " +
-                //         node.line
-                // );
                 const sprite = new SpriteText(node.nodeid);
                 sprite.color = "#fff";
                 sprite.textHeight = 6;
@@ -148,9 +149,11 @@ document.getElementById("modeBtn").addEventListener("click", () => {
         document.getElementById("modeBtn").innerText = "NODE ID MODE";
     } else {
         if (label === "nodeid") {
-            Graph.nodeLabel(
-                (node) => "FILE: " + node.fsPath + " LINE: " + node.line
-            )
+            Graph.nodeLabel((node) => {
+                let nodeLine = node.line === -1 ? "NULL" : node.line;
+                labelInfo = "FILE: " + node.fsPath + " LINE: " + nodeLine;
+                return labelInfo;
+            })
                 .nodeThreeObject((node) => {
                     const sprite = new SpriteText(node.wholelabel);
                     sprite.color = "#fff";
@@ -184,7 +187,6 @@ function postMessage(send_text, command) {
         text: send_text,
     });
 }
-
 function postInfo(info) {
     vscode.postMessage({
         command: "toSomeWhere",
@@ -210,6 +212,7 @@ window.addEventListener("message", (event) => {
             const dataObj = JSON.parse(message.data);
             Graph.graphData(dataObj);
             GraphData = Graph.graphData();
+
             console.log("GraphData:", GraphData);
             document.getElementById("showSpan").textContent = message.filePath;
             break;
