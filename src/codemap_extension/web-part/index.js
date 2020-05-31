@@ -69,6 +69,7 @@ Graph.nodeColor((node) =>
         //     });
         // }
         // updateHighlight();
+        showNodeInfo(node);
     })
     .onLinkHover((link) => {
         updateHighlight();
@@ -103,6 +104,8 @@ Graph.nodeColor((node) =>
         });
         if (!hasSameHightLightNode) {
             postHighLightInfo(info);
+        } else {
+            postPosition(info);
         }
         console.log("NODE: ", node);
         if (node) {
@@ -142,6 +145,28 @@ Graph.nodeColor((node) =>
     .nodeThreeObjectExtend((node) => {
         return true;
     });
+function showNodeInfo(node) {
+    if (node) {
+        let obj = document.getElementById("infoGround");
+        let child_h4 = document.createElement("h4");
+        let child_p1 = document.createElement("p");
+        let child_p2 = document.createElement("p");
+        let child_hr = document.createElement("hr");
+        child_h4.innerHTML = "NODE: "+node.nodeid;
+        child_h4.setAttribute("class", "alert-heading");
+        let nodeLine = node.line === -1 ? "NULL" : node.line;
+        labelInfo1 = "FILE: " + node.fsPath + "\nLINE: " + nodeLine;
+        child_p1.innerHTML = labelInfo1;
+        labelInfo2 = node.wholelabel;
+        child_p2.innerHTML = labelInfo2;
+        obj.innerText = "";
+        obj.appendChild(child_h4);
+        obj.appendChild(child_p1);
+        obj.appendChild(child_hr);
+        obj.appendChild(child_p2);
+        showNodeLinkInfo(true);
+    }
+}
 
 function updateHighlight() {
     // trigger update of highlighted objects in scene
@@ -197,6 +222,7 @@ document.getElementById("leftBtn").addEventListener("click", () => {
     // postMessage("Value Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: VFG";
     deleteWelcome();
+    showNodeLinkInfo(true);
 });
 document.getElementById("middleBtn").addEventListener("click", () => {
     highlightNodes.clear();
@@ -205,9 +231,17 @@ document.getElementById("middleBtn").addEventListener("click", () => {
     // postMessage("Control Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: CFG";
     deleteWelcome();
+    showNodeLinkInfo(true);
 });
 function deleteWelcome() {
     deleteDocElement("welcomeInfo");
+}
+function showNodeLinkInfo(handle) {
+    if (handle) {
+        document.getElementById("infoGround").style.display = "";
+    } else {
+        document.getElementById("infoGround").style.display = "none";
+    }
 }
 function deleteDocElement(id) {
     let obj = document.getElementById(id);
