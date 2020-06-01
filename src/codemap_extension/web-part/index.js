@@ -103,6 +103,7 @@ Graph.nodeColor((node) =>
                 return false;
             }
         });
+        console.log("INFO: ", info);
         if (!hasSameHightLightNode) {
             postHighLightInfo(info);
         } else {

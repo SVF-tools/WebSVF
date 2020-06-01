@@ -325,6 +325,10 @@ export class LineTag {
                     newDec,
                     this.createLineTagInfo.markSpace
                 );
+            } else {
+                console.log("ERROR: ");
+                console.log(this.createLineTagInfo.activeEditorUri.fsPath);
+                console.log(uri.fsPath);
             }
         }
     }

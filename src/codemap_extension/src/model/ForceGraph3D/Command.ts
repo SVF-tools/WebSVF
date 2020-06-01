@@ -33,6 +33,67 @@ export class RegisterCommandTextControl extends CommonInterface.RegisterCommand 
     }
     protected mainFunc() {
         vscode.window.showInformationMessage("Text Control");
+        let activeEditor = vscode.window.activeTextEditor;
+        if (activeEditor && WebPanelForceGraph3DManager.key) {
+            this.create(activeEditor);
+            this.Load(activeEditor);
+        }
+    }
+
+    protected create(activeEditor: vscode.TextEditor) {
+        let KeyList = this.generateFileInfo(activeEditor);
+        let uri = activeEditor.document.uri;
+        console.log("KeyList.size: ", KeyList.size);
+        KeyList.forEach((lineNumber, preKey) => {
+            if (LineTagManager.findLineTag(preKey) === undefined) {
+                const key = LineTagForceGraph3DManager.createLineTag(
+                    uri,
+                    lineNumber,
+                    0,
+                    0,
+                    "Theme_1"
+                );
+                console.log("key: ", key);
+            } else {
+                if (!LineTagManager.deleteLineTag(preKey)) {
+                    vscode.window.showErrorMessage("deleteLineTag false.");
+                }
+            }
+        });
+    }
+
+    protected Load(editor: vscode.TextEditor) {
+        let settings = vscode.workspace.getConfiguration("codeMap");
+        let graphMode = settings.get("GraphMode");
+        let fsPath = editor.document.uri.fsPath;
+        // vscode.window.showInformationMessage(`fsPath: ${fsPath}`);
+        switch (graphMode) {
+            case "NotSelect":
+                LineTagManager.UnLoadDecoration();
+                break;
+            default:
+                LineTagManager.LoadDecoration();
+                break;
+        }
+    }
+
+    protected generateFileInfo(
+        activeEditor: vscode.TextEditor
+    ): Map<string, number> {
+        let KeyList = new Map<string, number>();
+        let selections = activeEditor.selections;
+        let uri = vscode.Uri.file(activeEditor.document.fileName);
+        selections.forEach((element) => {
+            for (
+                let lineNumber = element.start.line;
+                lineNumber <= element.end.line;
+                lineNumber++
+            ) {
+                const preKey = LineTagManager.assemblyKey(uri, lineNumber);
+                KeyList.set(preKey, lineNumber);
+            }
+        });
+        return KeyList;
     }
 }
 

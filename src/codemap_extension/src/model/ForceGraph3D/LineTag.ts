@@ -13,6 +13,11 @@ export class LineTagForceGraph3DManager {
         themeName: string
     ): undefined | string {
         const configFilePath = commonInterface.getConfigPath(this.filePath);
+        console.log("activeEditorUri: ", activeEditorUri);
+        console.log("line: ", line);
+        console.log("start: ", start);
+        console.log("end: ", end);
+        console.log("themeName: ", themeName);
         return LineTagManager.createLineTag(
             activeEditorUri,
             line,
