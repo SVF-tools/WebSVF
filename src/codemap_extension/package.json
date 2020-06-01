@@ -36,7 +36,15 @@
                     "description": "Enable or disable the highlight"
                 }
             }
-        }
+        },
+        "keybindings": [
+            {
+                "command": "extension.textControl",
+                "key": "ctrl+alt+shift+l",
+                "mac": "cmd+alt+shift+l",
+                "when": "editorTextFocus"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "yarn run compile",
