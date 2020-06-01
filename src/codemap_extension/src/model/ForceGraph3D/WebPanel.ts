@@ -112,6 +112,8 @@ export class WebPanelForceGraph3D extends WebPanel {
             vscode.window.showErrorMessage("Cannot find a workspace.");
             return;
         }
+        let settings = vscode.workspace.getConfiguration("codeMap");
+        settings.update("GraphMode", message.text).then();
         let graphFileName = message.text + ".json";
         let graphFilePath = path.join(rootPath, "3D_CODE_GRAPH", graphFileName);
         const data = fs.readFileSync(graphFilePath, "utf-8");
@@ -211,6 +213,7 @@ export class WebPanelForceGraph3D extends WebPanel {
                 end,
                 themeName
             );
+            console.log("key: ", key);
         } else {
             if (!LineTagManager.deleteLineTag(preKey)) {
                 vscode.window.showErrorMessage("deleteLineTag false.");

@@ -38,6 +38,11 @@
                     "type": "string",
                     "default": "hide",
                     "description": "Enable or disable the highlight"
+                },
+                "codeMap.GraphMode": {
+                    "type": "string",
+                    "default": "NotSelect",
+                    "description": "Select graph mode"
                 }
             }
         },
