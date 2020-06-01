@@ -9,23 +9,34 @@ import * as CommonInterface from "./CommonInterface";
 import { LineTagManager, LineTag } from "../../components/LineTag";
 import { LineTagForceGraph3DManager } from "./LineTag";
 
-
-
 export class RegisterCommandForceGraph3DManager {
     private static _rcf: RegisterCommandForceGraph3D | undefined = undefined;
+    private static _rct: RegisterCommandTextControl | undefined = undefined;
+    public static get rct(): RegisterCommandTextControl | undefined {
+        return RegisterCommandForceGraph3DManager._rct;
+    }
     public static get rcf(): RegisterCommandForceGraph3D | undefined {
         return RegisterCommandForceGraph3DManager._rcf;
     }
     public static initial(coreData: CommonInterface.ConfigPath): boolean {
         if (this._rcf === undefined) {
             this._rcf = new RegisterCommandForceGraph3D(coreData);
+            this._rct = new RegisterCommandTextControl(coreData);
             return true;
         }
         return false;
     }
 }
+export class RegisterCommandTextControl extends CommonInterface.RegisterCommand {
+    constructor(protected coreData: CommonInterface.ConfigPath) {
+        super(coreData, "TextControl");
+    }
+    protected mainFunc() {
+        vscode.window.showInformationMessage("Text Control");
+    }
+}
 
-export class RegisterCommandForceGraph3D extends CommonInterface.RegisterCommand{
+export class RegisterCommandForceGraph3D extends CommonInterface.RegisterCommand {
     constructor(protected coreData: CommonInterface.ConfigPath) {
         super(coreData, "ForceGraph3D");
     }
@@ -64,7 +75,9 @@ export class RegisterCommandForceGraph3D extends CommonInterface.RegisterCommand
         }
     }
 
-    protected changeConfigForHightLine(status: CommonInterface.statusHighLight) {
+    protected changeConfigForHightLine(
+        status: CommonInterface.statusHighLight
+    ) {
         let settings = vscode.workspace.getConfiguration("codeMap");
         let Flag = 0;
         switch (status) {

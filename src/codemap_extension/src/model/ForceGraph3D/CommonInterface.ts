@@ -12,11 +12,12 @@ export interface ConfigPath {
 }
 
 export interface PositionInfo {
-    [key: string]: number | vscode.Uri;
+    [key: string]: number | vscode.Uri | string;
     filePathUri: vscode.Uri;
-    lineNumber: number; 
+    lineNumber: number;
     startPosition: number;
     endPosition: number;
+    themeName: string;
 }
 
 export enum SwitchBar {
