@@ -89,6 +89,7 @@ Graph.nodeColor((node) =>
             line: node.line,
             start: 0,
             end: 0,
+            themeName: "Theme_2",
         };
         let hasSameHightLightNode = false;
         highlightNodes.forEach((h_node) => {
@@ -279,6 +280,7 @@ function postHighLightInfo(info) {
         line: info.line,
         start: info.start,
         end: info.end,
+        themeName: info.themeName,
     });
 }
 window.addEventListener("resize", function () {

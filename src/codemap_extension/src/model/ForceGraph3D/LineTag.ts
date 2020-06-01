@@ -9,7 +9,8 @@ export class LineTagForceGraph3DManager {
         activeEditorUri: vscode.Uri,
         line: number,
         start: number,
-        end: number
+        end: number,
+        themeName: string
     ): undefined | string {
         const configFilePath = commonInterface.getConfigPath(this.filePath);
         return LineTagManager.createLineTag(
@@ -17,6 +18,7 @@ export class LineTagForceGraph3DManager {
             line,
             start,
             end,
+            themeName,
             configFilePath
         );
     }

@@ -24,6 +24,10 @@
             {
                 "command": "extension.graphVisualization",
                 "title": "Web View"
+            },
+            {
+                "command": "extension.textControl",
+                "title": "Text Control"
             }
         ],
         "configuration": {
@@ -40,8 +44,8 @@
         "keybindings": [
             {
                 "command": "extension.textControl",
-                "key": "ctrl+alt+shift+l",
-                "mac": "cmd+alt+shift+l",
+                "key": "ctrl+alt+l",
+                "mac": "cmd+alt+l",
                 "when": "editorTextFocus"
             }
         ]

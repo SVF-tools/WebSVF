@@ -93,6 +93,7 @@ export class WebPanelForceGraph3D extends WebPanel {
 
     protected receiveMessage(message: any) {
         super.receiveMessage(message);
+        console.log(message);
         switch (message.command) {
             case "3dCodeGraph":
                 this.CodeGraphShow(message);
@@ -145,6 +146,7 @@ export class WebPanelForceGraph3D extends WebPanel {
             lineNumber: message.line - 1,
             startPosition: message.start,
             endPosition: message.end,
+            themeName: message.themeName,
         };
         return info;
     }
@@ -188,14 +190,16 @@ export class WebPanelForceGraph3D extends WebPanel {
             info.filePathUri,
             info.lineNumber,
             info.startPosition,
-            info.endPosition
+            info.endPosition,
+            info.themeName
         );
     }
     protected LoadTag(
         uri: vscode.Uri,
         lineNumber: number,
         start: number,
-        end: number
+        end: number,
+        themeName: string
     ) {
         const preKey: string = LineTagManager.assemblyKey(uri, lineNumber);
 
@@ -204,7 +208,8 @@ export class WebPanelForceGraph3D extends WebPanel {
                 uri,
                 lineNumber,
                 start,
-                end
+                end,
+                themeName
             );
         } else {
             if (!LineTagManager.deleteLineTag(preKey)) {
