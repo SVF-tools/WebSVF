@@ -150,6 +150,13 @@ export class WebPanel {
     constructor(webInfo: WebInfo) {
         this._webStatus = WebStatus.incomplete;
         // Through Web Info set and create a vscode web view.
+        let rootPath = vscode.workspace.rootPath;
+        if (!rootPath) {
+            rootPath = path.join(
+                this.extensionPath,
+                webInfo["localResourceRoots"]
+            );
+        }
         this._webPanel = vscode.window.createWebviewPanel(
             webInfo["viewType"],
             webInfo["title"],
@@ -164,6 +171,10 @@ export class WebPanel {
                             this.extensionPath,
                             webInfo["localResourceRoots"]
                         )
+                    ),
+                    vscode.Uri.file(rootPath),
+                    vscode.Uri.file(
+                        path.join(this.extensionPath, "node_modules")
                     ),
                 ],
                 retainContextWhenHidden: true,
@@ -191,8 +202,11 @@ export class WebPanel {
 
     protected receiveMessage(message: any) {
         switch (message.command) {
-            case "alert":
+            case "error":
                 vscode.window.showErrorMessage(message.text);
+                break;
+            case "info":
+                vscode.window.showInformationMessage(message.text);
                 break;
             case "connect":
                 this._webStatus = WebStatus.complete;

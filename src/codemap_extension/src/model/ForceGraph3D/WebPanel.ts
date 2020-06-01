@@ -1,5 +1,7 @@
 "use strict";
 import * as vscode from "vscode";
+import * as path from "path";
+import * as fs from "fs";
 import {
     WebPanelManager,
     WebPanel,
@@ -91,45 +93,113 @@ export class WebPanelForceGraph3D extends WebPanel {
 
     protected receiveMessage(message: any) {
         super.receiveMessage(message);
+        console.log(message);
         switch (message.command) {
+            case "3dCodeGraph":
+                this.CodeGraphShow(message);
+                break;
+            case "toSomeWhereHighLight":
+                this.CodeHightLight(message);
+                break;
             case "toSomeWhere":
-                const filePathUri = vscode.Uri.file(message.path);
-                const lineNumber = message.line;
-                const startPosition = message.start;
-                const endPosition = message.end;
-
-                // vscode.window.showInformationMessage(
-                //     `filePathUri: ${filePathUri}`
-                // );
-
-                this.LoadTag(
-                    filePathUri,
-                    lineNumber,
-                    startPosition,
-                    endPosition
-                );
-
-                let range: vscode.Range = new vscode.Range(
-                    lineNumber,
-                    startPosition,
-                    lineNumber,
-                    endPosition
-                );
-
-                vscode.window.showTextDocument(filePathUri, {
-                    selection: range,
-                    viewColumn: 2,
-                });
-
+                this.CodeFindPosition(message);
                 break;
         }
     }
+    protected CodeGraphShow(message: any) {
+        let rootPath = vscode.workspace.rootPath;
+        if (!rootPath) {
+            vscode.window.showErrorMessage("Cannot find a workspace.");
+            return;
+        }
+        let graphFileName = message.text + ".json";
+        let graphFilePath = path.join(rootPath, "3D_CODE_GRAPH", graphFileName);
+        const data = fs.readFileSync(graphFilePath, "utf-8");
+        this.webPanel.webview.postMessage({
+            status: "3dCodeGraph",
+            filePath: graphFilePath,
+            data: data,
+        });
+        LineTagManager.clear();
+    }
+    protected FindPosition(
+        message: any
+    ): CommonInterface.PositionInfo | undefined {
+        let rootPath = vscode.workspace.rootPath;
+        if (!rootPath) {
+            vscode.window.showErrorMessage("Cannot find a workspace.");
+            return;
+        }
+        let linkFilePath = path.join(rootPath, message.path);
+        let exitFile = true;
+        fs.access(linkFilePath, function (err) {
+            if (err) {
+                exitFile = false;
+            }
+        });
+        if (!exitFile) {
+            vscode.window.showErrorMessage("Cannot find " + linkFilePath);
+            return;
+        }
+        const info: CommonInterface.PositionInfo = {
+            filePathUri: vscode.Uri.file(linkFilePath),
+            lineNumber: message.line - 1,
+            startPosition: message.start,
+            endPosition: message.end,
+            themeName: message.themeName,
+        };
+        return info;
+    }
+    protected CodeHightLight(
+        message: any
+    ): CommonInterface.PositionInfo | undefined {
+        const info:
+            | CommonInterface.PositionInfo
+            | undefined = this.CodeFindPosition(message);
+        if (!info) {
+            return;
+        }
 
+        this.LoadTagInfo(info);
+        return info;
+    }
+    protected CodeFindPosition(
+        message: any
+    ): CommonInterface.PositionInfo | undefined {
+        const info:
+            | CommonInterface.PositionInfo
+            | undefined = this.FindPosition(message);
+        if (!info) {
+            return;
+        }
+        let range: vscode.Range = new vscode.Range(
+            info.lineNumber,
+            info.startPosition,
+            info.lineNumber,
+            info.endPosition
+        );
+
+        vscode.window.showTextDocument(info.filePathUri, {
+            selection: range,
+            viewColumn: 2,
+        });
+        return info;
+    }
+    protected LoadTagInfo(info: CommonInterface.PositionInfo) {
+        this.LoadTag(
+            info.filePathUri,
+            info.lineNumber,
+            info.startPosition,
+            info.endPosition,
+            info.themeName
+        );
+    }
     protected LoadTag(
         uri: vscode.Uri,
         lineNumber: number,
         start: number,
-        end: number
+        end: number,
+        themeName: string
     ) {
         const preKey: string = LineTagManager.assemblyKey(uri, lineNumber);
 
@@ -138,7 +208,8 @@ export class WebPanelForceGraph3D extends WebPanel {
                 uri,
                 lineNumber,
                 start,
-                end
+                end,
+                themeName
             );
         } else {
             if (!LineTagManager.deleteLineTag(preKey)) {

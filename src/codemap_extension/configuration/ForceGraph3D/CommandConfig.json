@@ -1,4 +1,6 @@
 {
-    "name": "ForceGraph3D",
-    "command": "extension.graphVisualization"
+    "name_ForceGraph3D": "ForceGraph3D",
+    "command_ForceGraph3D": "extension.graphVisualization",
+    "name_TextControl": "TextControl",
+    "command_TextControl": "extension.textControl"
 }

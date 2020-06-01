@@ -11,7 +11,7 @@ export function configListener() {
         function () {
             let settings = vscode.workspace.getConfiguration("codeMap");
             let showOrHide = settings.get("ShowOrHide");
-            vscode.window.showInformationMessage(`ShowOrHide: ${showOrHide}`);
+            // vscode.window.showInformationMessage(`ShowOrHide: ${showOrHide}`);
             if (vscode.window.activeTextEditor) {
                 switch (showOrHide) {
                     case "show":
@@ -33,6 +33,7 @@ export function configListener() {
             let showOrHide = settings.get("ShowOrHide");
             if (editor) {
                 let fsPath = editor.document.uri.fsPath;
+                ActivateVscodeContext.activeEditor = editor;
                 // vscode.window.showInformationMessage(`fsPath: ${fsPath}`);
                 switch (showOrHide) {
                     case "show":

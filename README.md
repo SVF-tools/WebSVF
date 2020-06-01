@@ -2,8 +2,8 @@
 
 ## **Index**
 
-1. **[Description](#description)**
 1. **[Architecture Overview](#architecture-overview)**
+1. **[Description](#description)**
 1. **[Installation Guide](#installation-guide)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
@@ -11,28 +11,28 @@
 
 # Architecture Overview
 
-<img src="docs/Architecture-Overview.jpg" height="640">
+<img src="docs/WebSVF Architecture.jpg">
 
 # Description
 
-The Web-SVF, Bug Analysis Tool is comprised of 3 main components:
+The Web-SVF, Bug Analysis Tool is comprised of 4 main components:
 
 - **[WebSVF-frontend-server](/src/WebSVF-frontend-server) :**
 
 NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. Please refer to the **[WebSVF-frontend-extension](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-extension)** for instructions regarding its deployment. It is deployed automatically by the **Bug Analysis VSCode Extension**.
 
-- **[WebSVF-frontend-extension](/src/WebSVF-frontend-server_extension) :**
+- **[WebSVF-frontend-extension](/src/WebSVF-frontend-extension) :**
 
 This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the *Bug Analysis* tool, **[WebSVF-frontend-server](https://github.com/SVF-tools/WebSVF/tree/master/src/WebSVF-frontend-server)**. It is deployed through the installation of the ***[WebSVF-frontend-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file on *[VSCode locally](https://code.visualstudio.com/download)* or in *[code-server](https://github.com/cdr/code-server)* deployed online.
 
-- **[codemap_extension](/src/codemap_extension/)**
+- **[WebSVF-codemap-extension](/src/codemap_extension/) :**
+
+This VSCode Extension could use 3D force graph to present bug information. Vsix file need to create by user self. Please follow the user guide link to install. This extension needs to be used when there is a network.
+
+- **[WebSVF-backend](https://github.com/SVF-tools/WebSVF/tree/generateJSON/src/WebSVF-generateJSON) :**
 
 
 # Installation Guide
-
-## **Guide Video (Youtube)**
-
-[![Installation Guide for Bug Analysis Tool (WebSVF)](https://img.youtube.com/vi/--a1rgFE_Cs/hqdefault.jpg)](https://www.youtube.com/watch?v=--a1rgFE_Cs)
 
 ## Step 1. Install Requisite Software
 
@@ -40,37 +40,76 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 - **[NodeJS](https://nodejs.org/en/download/)**
 
-
 - **[VSCode](https://code.visualstudio.com/download)**
 
 
-## Step 2. Download VSCode Extension File
+## Step 2. Install WebSVF-backend
 
-Download the early release ***[WebSVF-frontend-server-extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file directly.
+1. Install **[SVF (Ubuntu 18.04 and 20.04 only)](/src/SetupSVF/)**
+2. Download the **[generateJSON.js](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/generateJSON.js)** to the root path of SVF.  
 
-## Step 3. Install '*WebSVF-frontend-server*' VSCode Extension
+3. Use WLLVM to compile a C project to LLVM Bitcode (.bc) file.  
 
-Install '*WebSVF-frontend-server*' VSCode Extension in your VSCode application window from the directory where you downloaded the early release ***[WebSVF-frontend-server_extension_0.9.0.vsix](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)*** file.
+4. Run following command line in the root path of SVF.  
 
-## Step 4. Open Project Folder in VSCode
+      
+       node generateJSON.js your_path_of_c_project  
+      
+      
+5. Bug-Analysis-Report.json will be generated at the root path of your C project.  
 
-Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
+The example of your_path_of_c_project: (Make sure you have compile a C project to LLVM Bitcode (.bc) successfully).  
 
-## Step 5. Initialise the '*WebSVF-frontend-server*' VSCode Extension
+       node generateJSON.js /home/pie/Downloads/pkg-config-0.26
 
-Install the dependencies for the Bug Analysis Tool's Front-End by clicking on the ***'Bug Analysis Tool' button*** in the bottom left corner of your VSCode application window (provided by the '*WebSVF-frontend-server*' VSCode Extension).
+The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
-The ***'Bug Analysis Tool' button's*** text will now transform into a red color reading ***'Bug Analysis Tool: Initializing'***. Please wait until the button text transforms back to its original white color and reads ***'Bug Analysis Tool: Initialized'***.
+  
+## Step 3. Install WebSVF-frontend: server and extension
 
-## Step 6. View the Bug Analysis for the Project
+### **Guide Video (Youtube)**
 
-View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. Similar to the previous button transformation, the button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
+[![Installation Guide for Bug Analysis Tool (WebSVF)](https://img.youtube.com/vi/--a1rgFE_Cs/hqdefault.jpg)](https://www.youtube.com/watch?v=--a1rgFE_Cs)
 
-Clicking on the ***'Bug Analysis Tool: Running'*** button will generate another prompt asking if you want to stop the Bug Analysis Front-End app. Clicking on 'YES' will stop the app and close the Front-End whereas clicking on 'NO' will let the app keep running.
+### Setup Intructions:  
+
+- **Download [VSCode Extension File](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)**
+
+- **Install '*WebSVF-frontend*' VSCode Extension**
+
+     Enter the following command in the terminal to Install the Extension:
+     
+     `code PathToDownloadedVSIX\WebSVF-frontend-extension_0.9.0.vsix`
+
+- **Open Project Folder in VSCode**
+
+    Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
+
+- **Initialise the '*WebSVF-frontend*' VSCode Extension**
+
+    Install WebSVF-frontend-server by clicking on the ***'Bug Analysis Tool' button*** in the bottom left corner of your VSCode             application window (provided by the '*WebSVF-frontend*' VSCode Extension). Wait till the button reads: ***'Bug Analysis Tool:           Initialized'***
+
+- **View the Bug Analysis for the Project**
+
+    View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. The button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
+    (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more          information)
+
+## Step 4. Install WebSVF-codemap-extension
+
+- **Download extension: [VSIX release](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**  
+  <img src='./docs/DOWNLOAD_VISX.png' width='480'/>
+- **Extension installation**  
+  <img src='./docs/VSIX_installation.png' width='480'/>
+- **Installed situation**  
+  <img src='./docs/3D_CODEMAP.png' width='480'/>
+- **Follow [User Instructions](./src/codemap_extension/README.md)**
+
+
+
 
 # Known Issues
 
-- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 18.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
+- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 18.04 or 20.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
