@@ -12,6 +12,15 @@ async function installDependencies(dependency) {
   return;
 }
 
+function installDependenciesSync(dependency) {
+  console.error('Attempting Synchrounous Installation')
+  if(dependency==='code'){
+    execa.sync('snap', ['install','code', '--classic']);
+  }else{
+    execa.sync('apt', ['install','-y', dependency]);
+  }
+}
+
 export async function createAnalysis(options) {
 
   //A JavaScript object containing boolean values representing whether a particular depndency is installed or not
@@ -116,13 +125,27 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('NPM')}`,
             enabled: () => true,
             skip: () => depInstall.npm,
-            task: () => installDependencies('npm')    //installNpm()
+            task: () => {
+              try{
+                installDependencies('npm')
+              } catch(e){
+                console.error(e);
+                installDependenciesSync('npm')
+              }
+            }    //installNpm()
           },
           {
             title: `Installing ${chalk.inverse('NodeJS')}`,
             enabled: () => true,
             skip: () => depInstall.node,
-            task: () => installDependencies('node')      //installNode()
+            task: () => {
+              try{
+                installDependencies('node')
+              } catch(e){
+                console.error(e);
+                installDependenciesSync('node')
+              }
+            }      //installNode()
           },
           // {
           //   title: `Updating ${chalk.inverse('Node')}`,
@@ -134,13 +157,27 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('VSCode')}`,
             enabled: () => true,
             skip: () => depInstall.vscode,
-            task: () => installDependencies('code')
+            task: () => {
+              try{
+                installDependencies('code')
+              } catch(e){
+                console.error(e);
+                installDependenciesSync('code')
+              }
+            }
           },
           {
             title: `Installing ${chalk.inverse('Git')} Installation`,
             enabled: () => true,
             skip: () => depInstall.git,
-            task: () => installDependencies('git')
+            task: () => {
+              try{
+                installDependencies('git')
+              } catch(e){
+                console.error(e);
+                installDependenciesSync('git')
+              }
+            }
           }
         ], {concurrent: true});
       }      
