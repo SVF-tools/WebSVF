@@ -9,6 +9,8 @@ import * as CommonInterface from "./CommonInterface";
 import { LineTagManager, LineTag } from "../../components/LineTag";
 import { LineTagForceGraph3DManager } from "./LineTag";
 
+import * as path from "path";
+
 export class RegisterCommandForceGraph3DManager {
     private static _rcf: RegisterCommandForceGraph3D | undefined = undefined;
     private static _rct: RegisterCommandTextControl | undefined = undefined;
@@ -33,12 +35,113 @@ export class RegisterCommandTextControl extends CommonInterface.RegisterCommand 
         super(coreData, "TextControl");
     }
     protected mainFunc() {
-        vscode.window.showInformationMessage("Text Control");
         let activeEditor = vscode.window.activeTextEditor;
         if (activeEditor && WebPanelForceGraph3DManager.key) {
-            this.create(activeEditor);
-            this.Load(activeEditor);
+            this.SendToWebPage(activeEditor);
         }
+    }
+
+    protected SendToWebPage(activeEditor: vscode.TextEditor) {
+        const rootPath = vscode.workspace.rootPath;
+        if (!rootPath) {
+            console.log("ERROR rootPath: ", rootPath);
+        } else {
+            let KeyList = this.generateFileInfo(activeEditor);
+            let uri = activeEditor.document.uri;
+            let flag = "TextControl";
+            console.log("KeyList.size: ", KeyList.size);
+            let message = {
+                status: "NodeHighLight",
+                selections: new Array(),
+            };
+
+            KeyList.forEach((lineNumber, preKey) => {
+                let highLightSwitch = true; // default is node turn on.
+                if (LineTagManager.findLineTag(preKey, flag)) {
+                    highLightSwitch = false; // There is key means the node has been turn on, so turn off it.
+                }
+                let selection = this.generateSelectInfo(
+                    activeEditor.document.fileName.replace(rootPath + "/", ""),
+                    highLightSwitch,
+                    lineNumber + 1
+                ); // lineNumber +1 is current line number
+                message.selections.push(selection);
+            });
+            this.SendInfo(message);
+        }
+    }
+
+    public HandleHightLight(message: any) {
+        console.log("message:", message);
+        this.hightLight(message);
+        this.Load();
+    }
+
+    protected hightLight(message: any) {
+        const rootPath = vscode.workspace.rootPath;
+        if (rootPath) {
+            let selections = message.selections;
+            let info = this.generateHighLightInfo(selections, true);
+            console.log("selections: ", info);
+            let flag = "TextControl";
+            info.forEach((data) => {
+                console.log("uri: ", data.uri);
+                LineTagManager.turnOff(data.preKey, flag, "saveByFlag"); // delete all not TextControl select
+                if (LineTagManager.findLineTag(data.preKey, flag)) {
+                    if (!LineTagManager.deleteLineTagBase(data.preKey)) {
+                        vscode.window.showErrorMessage("deleteLineTag false.");
+                    }
+                } else {
+                    const key = LineTagForceGraph3DManager.createLineTag(
+                        data.uri,
+                        data.line,
+                        0,
+                        0,
+                        "Theme_2",
+                        "TextControl"
+                    );
+                    console.log("key: ", key);
+                }
+            });
+        }
+    }
+
+    protected generateHighLightInfo(
+        selections: any,
+        mode: boolean
+    ): Array<{ preKey: string; uri: vscode.Uri; line: number }> {
+        let info = new Array();
+        const rootPath = vscode.workspace.rootPath;
+        if (rootPath) {
+            selections.forEach(
+                (selection: {
+                    fileName: string;
+                    line: number;
+                    switch: boolean;
+                }) => {
+                    if (selection.switch === mode) {
+                        const uri = vscode.Uri.file(
+                            path.join(rootPath, selection.fileName)
+                        );
+                        const line = selection.line - 1;
+                        const preKey = LineTagManager.assemblyKey(uri, line);
+                        info.push({ preKey, uri, line });
+                    }
+                }
+            );
+        }
+        return info;
+    }
+
+    protected generateKeyList(info: Map<string, number>) {
+        let KeyList = new Map<string, number>();
+
+        info.forEach((line, filename) => {
+            let uri = vscode.Uri.file(filename);
+            const preKey = LineTagManager.assemblyKey(uri, line);
+            KeyList.set(preKey, line);
+        });
+        return KeyList;
     }
 
     protected create(activeEditor: vscode.TextEditor) {
@@ -66,22 +169,15 @@ export class RegisterCommandTextControl extends CommonInterface.RegisterCommand 
         });
     }
 
-    protected SendInfo() {
-        const settings = vscode.workspace.getConfiguration("codeMap");
-        const graphMode = settings.get("GraphMode");
-        if (graphMode === "NotSelect") {
-            vscode.window.showErrorMessage(
-                "Please select a Graph Type. VFG or CFG etc."
-            );
-            return;
-        }
+    protected SendInfo(message: any) {
+        WebPanelForceGraph3DManager.getPanel()?.webPanel.webview.postMessage(
+            message
+        );
     }
 
-    protected Load(editor: vscode.TextEditor) {
+    protected Load() {
         let settings = vscode.workspace.getConfiguration("codeMap");
         let graphMode = settings.get("GraphMode");
-        let fsPath = editor.document.uri.fsPath;
-        // vscode.window.showInformationMessage(`fsPath: ${fsPath}`);
         switch (graphMode) {
             case "NotSelect":
                 LineTagManager.UnLoadDecoration();
@@ -93,26 +189,15 @@ export class RegisterCommandTextControl extends CommonInterface.RegisterCommand 
     }
 
     protected generateSelectInfo(
-        activeEditor: vscode.TextEditor,
-        lineSwitch: boolean
+        fileName: string,
+        lineSwitch: boolean,
+        lineNumber: number
     ) {
-        let selections = activeEditor.selections;
         let message = {
-            fileName: "",
-            switch: true,
-            selections: new Array<number>(),
+            fileName: fileName,
+            switch: lineSwitch,
+            line: lineNumber,
         };
-        message.fileName = activeEditor.document.fileName;
-        message.switch = lineSwitch;
-        selections.forEach((element) => {
-            for (
-                let lineNumber = element.start.line - 1;
-                lineNumber <= element.end.line - 1;
-                lineNumber++
-            ) {
-                message.selections.push(lineNumber);
-            }
-        });
         return message;
     }
 
