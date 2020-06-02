@@ -13,12 +13,19 @@ async function installDependencies(dependency) {
 }
 
 function installDependenciesSync(dependency) {
-  console.error(chalk.inverse('Attempting Synchrounous Installation'))
+  console.error(`${chalk.inverse(`Retrying Installation for ${dependency}`)}`)
   if(dependency==='code'){
     execa.sync('snap', ['install','code', '--classic']);
   }else{
     execa.sync('apt', ['install','-y', dependency]);
   }
+}
+
+function updateNodeVersionSync() {
+  console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(process.version)} is outdated\nAttempting Update, Please Wait...`)}`)
+  execa.sync('sudo', ['npm','cache', 'clean', '-f']);
+  execa.sync('sudo', ['npm','install', '-g', 'n']);
+  execa.sync('sudo', ['n','stable']);
 }
 
 export async function createAnalysis(options) {
@@ -125,34 +132,27 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('NPM')}`,
             enabled: () => true,
             skip: () => depInstall.npm,
-            task: () => {
-              try{
-                installDependencies('npm')
-              } catch(e){
-                console.error(e);
-                installDependenciesSync('npm')
-              }
-            }    //installNpm()
+            task: () => installDependencies('npm').catch((e)=>{
+              console.error(e);
+              installDependenciesSync('npm');
+              depInstall.npm = true;
+            })    //installNpm()
           },
           {
             title: `Installing ${chalk.inverse('NodeJS')}`,
             enabled: () => true,
             skip: () => depInstall.node,
-            task: () => {
-              try{
-                installDependencies('node')
-              } catch(e){
-                console.error(e);
-                installDependenciesSync('node')
-              }
-            }      //installNode()
+            task: () => installDependencies('node').catch((e)=>{
+              console.error(e);
+              installDependenciesSync('node');
+            })      //installNode()
           },
-          // {
-          //   title: `Updating ${chalk.inverse('Node')}`,
-          //   enabled: () => true,
-          //   skip: () => depInstall.nodeVers,
-          //   task: () => updateNodeVersion()
-          // },
+          {
+            title: `Updating ${chalk.inverse('Node')}`,
+            enabled: () => true,
+            skip: () => depInstall.nodeVers,
+            task: () => updateNodeVersionSync()
+          },
           {
             title: `Installing ${chalk.inverse('VSCode')}`,
             enabled: () => true,
