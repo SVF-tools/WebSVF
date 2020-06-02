@@ -72,22 +72,22 @@ export async function createAnalysis(options) {
           {
             title: `Checking ${chalk.inverse('NPM')} Installation`,
             enabled: () => true,
-            task: () => commandExists('npm').then(()=>{depInstall.npm=true;})
+            task: () => commandExists('npm').then(()=>{depInstall.npm=true;}).catch()
           },
           {
             title: `Checking ${chalk.inverse('NodeJS')} Installation`,
             enabled: () => true,
-            task: () => commandExists('node').then(()=>{depInstall.node=true;})
+            task: () => commandExists('node').then(()=>{depInstall.node=true;}).catch()
           },
           {
             title: `Checking ${chalk.inverse('VSCode')} Installation`,
             enabled: () => true,
-            task: () => commandExists('code').then(()=>{depInstall.vscode=true;})
+            task: () => commandExists('code').then(()=>{depInstall.vscode=true;}).catch()
           },
           {
             title: `Checking ${chalk.inverse('Git')} Installation`,
             enabled: () => true,
-            task: () => commandExists('git').then(()=>{depInstall.git=true;})
+            task: () => commandExists('git').then(()=>{depInstall.git=true;}).catch()
           }
         ], {concurrent: true});
       }      
