@@ -12,14 +12,14 @@ async function installDependencies(dependency) {
   return;
 }
 
-function installDependenciesSync(dependency) {
-  console.error(`${chalk.inverse(`Retrying Installation for ${chalk.red.bold(dependency)}`)}`)
-  if(dependency==='code'){
-    execa.sync('snap', ['install','code', '--classic']);
-  }else{
-    execa.sync('apt', ['install','-y', dependency]);
-  }
-}
+// function installDependenciesSync(dependency) {
+//   console.error(`${chalk.inverse(`Retrying Installation for ${chalk.red.bold(dependency)}`)}`)
+//   if(dependency==='code'){
+//     execa.sync('snap', ['install','code', '--classic']);
+//   }else{
+//     execa.sync('apt', ['install','-y', dependency]);
+//   }
+// }
 
 function updateNodeVersionSync() {
   console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(process.version)} is outdated\nAttempting Update, Please Wait...`)}`)
@@ -134,8 +134,9 @@ export async function createAnalysis(options) {
             skip: () => depInstall.npm,
             task: () => installDependencies('npm').then(()=>depInstall.npm = true).catch((e)=>{
               console.error(e);
-              installDependenciesSync('npm');
-              depInstall.npm = true;
+              console.error(`${chalk.inverse(`Please Update your Node Version from  ${chalk.red.bold(process.version)} to ${chalk.red.bold('>=10.0')} manually\n Or Run the command again`)}`)
+              //installDependenciesSync('npm');
+              //depInstall.npm = true;
             })
           },
           {
@@ -144,8 +145,9 @@ export async function createAnalysis(options) {
             skip: () => depInstall.node,
             task: () => installDependencies('node').then(()=>depInstall.node = true).catch((e)=>{
               console.error(e);
-              installDependenciesSync('node');
-              depInstall.node = true;
+              console.error(`${chalk.inverse(`Please Update your Node Version from  ${chalk.red.bold(process.version)} to ${chalk.red.bold('>=10.0')} manually\n Or Run the command again`)}`)
+              //installDependenciesSync('node');
+              //depInstall.node = true;
             })
           },
           {
@@ -163,8 +165,9 @@ export async function createAnalysis(options) {
             skip: () => depInstall.vscode,
             task: () => installDependencies('code').then(()=>depInstall.vscode = true).catch((e)=>{
               console.error(e);
-              installDependenciesSync('code');
-              depInstall.vscode = true;
+              console.error(`${chalk.inverse(`Please Update your Node Version from  ${chalk.red.bold(process.version)} to ${chalk.red.bold('>=10.0')} manually\n Or Run the command again`)}`)
+              //installDependenciesSync('code');
+              //depInstall.vscode = true;
             })
           },
           {
@@ -173,8 +176,9 @@ export async function createAnalysis(options) {
             skip: () => depInstall.git,
             task: () => installDependencies('git').then(()=>depInstall.git = true).catch((e)=>{
               console.error(e);
-              installDependenciesSync('git');
-              depInstall.git = true;
+              console.error(`${chalk.inverse(`Please Update your Node Version from  ${chalk.red.bold(process.version)} to ${chalk.red.bold('>=10.0')} manually\n Or Run the command again`)}`)
+              //installDependenciesSync('git');
+              //depInstall.git = true;
             })
           }
         ], {concurrent: true});
