@@ -2,24 +2,44 @@ import getos from 'getos';
 import chalk from 'chalk';
 import Listr from 'listr';
 import execa from 'execa';
+import path from 'path';
 import commandExists from 'command-exists';
 
 async function installDependencies(dependency) {
-  const result = await execa('sudo', ['apt','install','-y', dependency]);
+  if(dependency==='code'){
+    const result = await execa('sudo', ['snap','install', dependency, '--classic']);
+  }
+  else{
+    const result = await execa('sudo', ['apt','install','-y', dependency]);
+  }
+  
   if (result.failed) {
     return Promise.reject(new Error(`Failed to install ${dependency}`));
   }
   return;
 }
 
-// function installDependenciesSync(dependency) {
-//   console.error(`${chalk.inverse(`Retrying Installation for ${chalk.red.bold(dependency)}`)}`)
-//   if(dependency==='code'){
-//     execa.sync('snap', ['install','code', '--classic']);
-//   }else{
-//     execa.sync('apt', ['install','-y', dependency]);
-//   }
-// }
+async function installSVF(path) {
+    const result = await execa('source', ['setup.sh'],{
+      cwd: path,
+    });
+  
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('SVF')}`));
+  }
+  return;
+}
+
+async function generateJSON(path, projectDir) {
+  const result = await execa('node', ['generateJSON.js', projectDir],{
+    cwd: path,
+  });
+
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('SVF')}`));
+  }
+  return;
+}
 
 function updateNodeVersionSync() {
   console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(process.version)} is outdated\nAttempting Update, Please Wait...`)}`)
@@ -36,16 +56,25 @@ export async function createAnalysis(options) {
     node: false,
     nodeVers: false,
     npm: false,
-    git: false
+    git: false,
+    svf: false
   }
 
-   //Define the list of tasks to run using the listr node module
+  const currentFileUrl = import.meta.url;
+  const templateDir = path.resolve(
+      decodeURI(new URL(currentFileUrl).pathname.substring(new URL(currentFileUrl).pathname.indexOf('/')+1)),
+      '../'
+  );
+
+  //console.error(templateDir);
+
+  //Define the list of tasks to run using the listr node module
   const tasks = new Listr([
     {
       title: 'Checking OS Compatibility',
       enabled: () => true,
       task: () => getos((e,os) => {
-        if(e) return console.log(e)
+        if(e) return console.error(e)
 
         os = {
           ...os,
@@ -113,13 +142,18 @@ export async function createAnalysis(options) {
             title: `Checking ${chalk.inverse('Git')} Installation`,
             enabled: () => true,
             task: () => commandExists('git').then(()=>{depInstall.git=true;}).catch(()=>{})
+          },
+          {
+            title: `Checking ${chalk.inverse('SVF')} Installation`,
+            enabled: () => true,
+            task: () => commandExists('wpa').then(()=>{depInstall.svf=true;}).catch(()=>{})
           }
-        ], {concurrent: false});
+        ], {concurrent: true});
       }      
     },
     {
       title: 'Installing Dependencies',
-      enabled: () => true,
+      enabled: () => options.runInstall,
       skip: () => {
         if(depInstall.vscode===true&&depInstall.npm===true&&depInstall.node===true&&depInstall.git===true&&depInstall.nodeVers===true){
           return true;
@@ -133,8 +167,10 @@ export async function createAnalysis(options) {
             enabled: () => true,
             skip: () => depInstall.npm,
             task: () => installDependencies('npm').then(()=>depInstall.npm = true).catch((e)=>{
+              
+              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('npm')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
               console.error(e);
-              console.error(`${chalk.inverse(`Please Update your Node Version from  ${chalk.red.bold(process.version)} to ${chalk.red.bold('>=10.0')} manually\n Or Run the command again`)}`)
+
               //installDependenciesSync('npm');
               //depInstall.npm = true;
             })
@@ -144,10 +180,32 @@ export async function createAnalysis(options) {
             enabled: () => true,
             skip: () => depInstall.node,
             task: () => installDependencies('node').then(()=>depInstall.node = true).catch((e)=>{
+              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('NodeJS')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
               console.error(e);
-              console.error(`${chalk.inverse(`Please Update your Node Version from  ${chalk.red.bold(process.version)} to ${chalk.red.bold('>=10.0')} manually\n Or Run the command again`)}`)
               //installDependenciesSync('node');
               //depInstall.node = true;
+            })
+          },
+          {
+            title: `Installing ${chalk.inverse('VSCode')}`,
+            enabled: () => true,
+            skip: () => depInstall.vscode,
+            task: () => installDependencies('code').then(()=>depInstall.vscode = true).catch((e)=>{
+              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('VSCode')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+              console.error(e);
+              //installDependenciesSync('code');
+              //depInstall.vscode = true;
+            })
+          },
+          {
+            title: `Installing ${chalk.inverse('Git')}`,
+            enabled: () => true,
+            skip: () => depInstall.git,
+            task: () => installDependencies('git').then(()=>depInstall.git = true).catch((e)=>{
+              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('Git')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+              console.error(e);
+              //installDependenciesSync('git');
+              //depInstall.git = true;
             })
           },
           {
@@ -158,31 +216,27 @@ export async function createAnalysis(options) {
               updateNodeVersionSync();
               depInstall.nodeVers = true;
             }
-          },
-          {
-            title: `Installing ${chalk.inverse('VSCode')}`,
-            enabled: () => true,
-            skip: () => depInstall.vscode,
-            task: () => installDependencies('code').then(()=>depInstall.vscode = true).catch((e)=>{
-              console.error(e);
-              console.error(`${chalk.inverse(`Please Update your Node Version from  ${chalk.red.bold(process.version)} to ${chalk.red.bold('>=10.0')} manually\n Or Run the command again`)}`)
-              //installDependenciesSync('code');
-              //depInstall.vscode = true;
-            })
-          },
-          {
-            title: `Installing ${chalk.inverse('Git')}`,
-            enabled: () => true,
-            skip: () => depInstall.git,
-            task: () => installDependencies('git').then(()=>depInstall.git = true).catch((e)=>{
-              console.error(e);
-              console.error(`${chalk.inverse(`Please Update your Node Version from  ${chalk.red.bold(process.version)} to ${chalk.red.bold('>=10.0')} manually\n Or Run the command again`)}`)
-              //installDependenciesSync('git');
-              //depInstall.git = true;
-            })
           }
-        ], {concurrent: true});
+        ], {concurrent: false});
       }      
+    },
+    {
+      title: 'Installing SVF',
+      enabled: () => options.runInstall,
+      //skip: () => depInstall.svf,
+      task: () => installSVF(templateDir).then(()=>depInstall.svf = true).catch((e)=>{
+        console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('SVF')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+        console.error(e);
+      })
+    },
+    {
+      title: `Generating ${chalk.yellow.bold('Bug-Report-Analysis.json')}`,
+      enabled: () => options.generateJSON!=='',
+      skip: () => depInstall.svf,
+      task: () => generateJSON(templateDir, options.generateJSON).then(()=>depInstall.svf = true).catch((e)=>{
+        console.error(`${chalk.inverse(`Something went wrong generating ${chalk.red.bold('Bug-Report-Analysis.json')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+        console.error(e);
+      })
     }
   ]);
 
