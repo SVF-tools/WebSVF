@@ -136,11 +136,18 @@ export async function createAnalysis(options) {
           {
             title: `Checking ${chalk.inverse('NodeJS')} Version`,
             enabled: () => true,
-            task: () => checkNodeVersion({ node: ">= 10"},(error,result)=> {
-              if(result.isSatisfied){
+            task: () => {
+              const version = process.version;
+              if(parseFloat(version.substr(1,version.length))>=10){
                 depInstall.nodeVers = true;
               }
-            })
+              console.log(process.version);
+            }
+            // checkNodeVersion({ node: ">= 10"},(error,result)=> {
+            //   if(result.isSatisfied){
+            //     depInstall.nodeVers = true;
+            //   }
+            // })
           },
           {
             title: `Checking ${chalk.inverse('VSCode')} Installation`,
