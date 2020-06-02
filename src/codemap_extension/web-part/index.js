@@ -90,7 +90,7 @@ Graph.nodeColor((node) =>
             start: 0,
             end: 0,
             themeName: "Theme_1",
-            flag: "onNodeClick"
+            flag: "onNodeClick",
         };
         let hasSameHightLightNode = false;
         highlightNodes.forEach((h_node) => {
@@ -304,10 +304,63 @@ window.addEventListener("message", (event) => {
 
             console.log("GraphData:", GraphData);
             break;
+        case "NodeHighLight":
+            nodeHighLight(message);
+            break;
         default:
             break;
     }
 });
+
+function nodeHighLight(message) {
+    console.log("NodeHighLight: \n", message);
+    GraphData = Graph.graphData();
+    message.selections.forEach((selectNode) => {
+        let selectSwitch = selectNode.switch;
+        selectNode.switch = false;// sent back info false means don't have the node in GraphData, so the line try to flash
+        GraphData.nodes.forEach((graphNode) => {
+            if (
+                graphNode.fsPath === selectNode.fileName &&
+                graphNode.line === selectNode.line
+            ) {
+                selectNode.switch = true;// have the node
+                if (!selectSwitch && highlightNodes.has(graphNode)) {
+                    //turn off
+                    locking = false;
+                    highlightNodes.delete(graphNode);
+                    GraphData.links.forEach((link) => {
+                        if (link.source === graphNode && highlightLink.has(link)) {
+                            highlightLink.delete(link);
+                        }
+                    });
+                    
+                } else {
+                    if (selectSwitch && !highlightNodes.has(graphNode)) {
+                        //turn on
+                        locking = true;
+                        highlightNodes.add(graphNode);
+                        GraphData.links.forEach((link) => {
+                            if (
+                                link.source === graphNode &&
+                                !highlightLink.has(link)
+                            ) {
+                                highlightLink.add(link);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
+
+    let newMessage = {
+        command: message.status,
+        selections: message.selections
+    };
+
+    vscode.postMessage(newMessage);
+    updateHighlight();
+}
 
 document.onreadystatechange = function () {
     if (document.readyState === "complete") {

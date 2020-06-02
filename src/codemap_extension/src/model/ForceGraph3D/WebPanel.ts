@@ -104,7 +104,13 @@ export class WebPanelForceGraph3D extends WebPanel {
             case "toSomeWhere":
                 this.CodeFindPosition(message);
                 break;
+            case "NodeHighLight":
+                this.NodeHightLight(message);
+                break;
         }
+    }
+    protected NodeHightLight(message: any) {
+        RegisterCommandForceGraph3DManager.rct?.HandleHightLight(message);
     }
     protected CodeGraphShow(message: any) {
         let rootPath = vscode.workspace.rootPath;
@@ -149,7 +155,7 @@ export class WebPanelForceGraph3D extends WebPanel {
             startPosition: message.start,
             endPosition: message.end,
             themeName: message.themeName,
-            flag: message.flag
+            flag: message.flag,
         };
         return info;
     }
