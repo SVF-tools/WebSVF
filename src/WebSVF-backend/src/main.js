@@ -21,13 +21,6 @@ async function installDependencies(dependency) {
   return;
 }
 
-//Checks the System's OS to determine if the system can run WebSVF
-// function checkOS() {
-//   let osInfo = 
-
-  
-// }
-
 export async function createAnalysis(options) {
 
   //A JavaScript object containing boolean values representing whether a particular depndency is installed or not
@@ -59,16 +52,15 @@ export async function createAnalysis(options) {
           console.error(`%s Sorry WebSVF is not compatible with the %s distribution of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${os.dist}`), chalk.blue.bold(`${os.os}`), chalk.black.bgWhite('-- Please check back later --'));
           process.exit(1);
         }
-        else if(!osInfo.release){
+        else if(!os.release){
           console.error(`%s %s release version could not be verified${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${os.dist}`), chalk.black.bgWhite('-- Please check back later --'));
           process.exit(1);
         }
-        else if(!osInfo.release.includes('18.04')&&!os.release.includes('20.04')){
+        else if(!os.release.includes('18.04')&&!os.release.includes('20.04')){
           console.error(`%s Sorry WebSVF is not compatible with version %s of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.yellow(`${os.release}`), chalk.cyan.bold(`${os.dist}`), chalk.black.bgWhite('-- Please check back later --'));
           process.exit(1);
         }
         
-        //console.log(osInfo);
         return true;
     })
     },
