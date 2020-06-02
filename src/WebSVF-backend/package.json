@@ -1,11 +1,11 @@
 {
-  "name": "@akshatsinghkaushik/create-project",
+  "name": "@websvf/create-analysis",
   "version": "1.0.0",
   "description": "A CLI to bootstrap my new projects",
   "main": "src/index.js",
   "bin": {
-    "@akshatsinghkaushik/create-project": "bin/create-project",
-    "create-project": "bin/create-project"
+    "@websvf/create-analysis": "bin/create-analysis",
+    "create-analysis": "bin/create-analysis"
   },
   "publishConfig": {
     "access": "public"
@@ -15,20 +15,21 @@
   },
   "keywords": [
     "cli",
-    "create-project"
+    "create-analysis"
   ],
   "files": [
     "bin/",
     "src/",
     "templates/"
   ],
-  "author": "",
+  "author": "akshatsinghkaushik",
   "license": "ISC",
   "dependencies": {
     "arg": "^4.1.3",
     "chalk": "^4.0.0",
     "esm": "^3.2.25",
     "execa": "^4.0.2",
+    "getos": "^3.2.1",
     "inquirer": "^7.1.0",
     "listr": "^0.14.3",
     "ncp": "^2.0.0",
