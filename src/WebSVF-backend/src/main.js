@@ -157,14 +157,10 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('VSCode')}`,
             enabled: () => true,
             skip: () => depInstall.vscode,
-            task: () => {
-              try{
-                installDependencies('code')
-              } catch(e){
-                console.error(e);
-                installDependenciesSync('code')
-              }
-            }
+            task: () => installDependencies('code').catch((e)=>{
+              console.error(e);
+              installDependenciesSync('code');
+            })
           },
           {
             title: `Installing ${chalk.inverse('Git')} Installation`,
