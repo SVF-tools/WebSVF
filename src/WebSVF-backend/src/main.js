@@ -168,7 +168,7 @@ export async function createAnalysis(options) {
             })
           },
           {
-            title: `Installing ${chalk.inverse('Git')} Installation`,
+            title: `Installing ${chalk.inverse('Git')}`,
             enabled: () => true,
             skip: () => depInstall.git,
             task: () => installDependencies('git').then(()=>depInstall.git = true).catch((e)=>{
@@ -182,11 +182,16 @@ export async function createAnalysis(options) {
     }
   ]);
 
+  let cnt =0;
   //Run the list of tasks defined above
   try{
     await tasks.run();
   }catch(e){
     console.error(e);
+    if(cnt<2){
+      await tasks.run();
+      ++cnt;
+    }
   }
 
   console.log(depInstall);
