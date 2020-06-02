@@ -145,13 +145,17 @@ export async function createAnalysis(options) {
             task: () => installDependencies('node').catch((e)=>{
               console.error(e);
               installDependenciesSync('node');
+              depInstall.node = true;
             })      //installNode()
           },
           {
             title: `Updating ${chalk.inverse('Node')}`,
             enabled: () => true,
             skip: () => depInstall.nodeVers,
-            task: () => updateNodeVersionSync()
+            task: () => {
+              updateNodeVersionSync();
+              depInstall.nodeVers = true;
+            }
           },
           {
             title: `Installing ${chalk.inverse('VSCode')}`,
@@ -160,6 +164,7 @@ export async function createAnalysis(options) {
             task: () => installDependencies('code').catch((e)=>{
               console.error(e);
               installDependenciesSync('code');
+              depInstall.vscode = true;
             })
           },
           {
