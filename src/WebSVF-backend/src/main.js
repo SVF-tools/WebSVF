@@ -171,10 +171,10 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('Git')} Installation`,
             enabled: () => true,
             skip: () => depInstall.git,
-            task: () => installDependencies('code').catch((e)=>{
+            task: () => installDependencies('git').catch((e)=>{
               console.error(e);
-              installDependenciesSync('code');
-              depInstall.vscode = true;
+              installDependenciesSync('git');
+              depInstall.git = true;
             })
           }
         ], {concurrent: true});
