@@ -13,7 +13,7 @@ async function installDependencies(dependency) {
 }
 
 function installDependenciesSync(dependency) {
-  console.error('Attempting Synchrounous Installation')
+  console.error(chalk.inverse('Attempting Synchrounous Installation'))
   if(dependency==='code'){
     execa.sync('snap', ['install','code', '--classic']);
   }else{
