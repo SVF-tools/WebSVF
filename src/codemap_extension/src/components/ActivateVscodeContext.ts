@@ -1,7 +1,6 @@
 "use strict";
 
 import * as vscode from "vscode";
-import { settings } from "cluster";
 
 export class ActivateVscodeContext {
     private static _activeEditor: vscode.TextEditor | undefined =

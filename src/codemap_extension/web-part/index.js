@@ -89,7 +89,8 @@ Graph.nodeColor((node) =>
             line: node.line,
             start: 0,
             end: 0,
-            themeName: "Theme_2",
+            themeName: "Theme_1",
+            flag: "onNodeClick"
         };
         let hasSameHightLightNode = false;
         highlightNodes.forEach((h_node) => {

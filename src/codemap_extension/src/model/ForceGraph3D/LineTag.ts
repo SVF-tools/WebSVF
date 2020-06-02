@@ -6,11 +6,12 @@ import { LineTagManager, LineTag } from "../../components/LineTag";
 export class LineTagForceGraph3DManager {
     private static filePath: string = "LineTag.json";
     public static createLineTag(
-        activeEditorUri: vscode.Uri,
-        line: number,
-        start: number,
-        end: number,
-        themeName: string
+        activeEditorUri: vscode.Uri, // which file
+        line: number, // which line
+        start: number, // start position
+        end: number, // end position
+        themeName: string, // which theme want use (in configuration/LineTag.json)
+        flag: string // who set the linTag
     ): undefined | string {
         const configFilePath = commonInterface.getConfigPath(this.filePath);
         console.log("activeEditorUri: ", activeEditorUri);
@@ -24,7 +25,8 @@ export class LineTagForceGraph3DManager {
             start,
             end,
             themeName,
-            configFilePath
+            configFilePath,
+            flag
         );
     }
 }
