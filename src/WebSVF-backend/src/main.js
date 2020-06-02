@@ -13,7 +13,7 @@ async function installDependencies(dependency) {
 }
 
 function installDependenciesSync(dependency) {
-  console.error(`${chalk.inverse(`Retrying Installation for ${dependency}`)}`)
+  console.error(`${chalk.inverse(`Retrying Installation for ${chalk.red.bold(dependency)}`)}`)
   if(dependency==='code'){
     execa.sync('snap', ['install','code', '--classic']);
   }else{
@@ -171,14 +171,11 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('Git')} Installation`,
             enabled: () => true,
             skip: () => depInstall.git,
-            task: () => {
-              try{
-                installDependencies('git')
-              } catch(e){
-                console.error(e);
-                installDependenciesSync('git')
-              }
-            }
+            task: () => installDependencies('code').catch((e)=>{
+              console.error(e);
+              installDependenciesSync('code');
+              depInstall.vscode = true;
+            })
           }
         ], {concurrent: true});
       }      
