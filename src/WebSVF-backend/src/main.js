@@ -2,20 +2,7 @@ import getos from 'getos';
 import chalk from 'chalk';
 import Listr from 'listr';
 import execa from 'execa';
-import { exec } from 'child_process';
-
-import checkNodeVersion from 'check-node-version';
 import commandExists from 'command-exists';
-
-
-// async function checkInstall(app){
-//   return commandExists(app, (error, cmdExists)=>{
-//     if(cmdExists){
-//       return;
-//     }
-//     throw new Error('Test');
-//   })
-// }
 
 async function installDependencies(dependency) {
   const result = await execa('apt', ['install','-y', dependency]);
@@ -23,48 +10,6 @@ async function installDependencies(dependency) {
     return Promise.reject(new Error(`Failed to install ${dependency}`));
   }
   return;
-}
-
-async function installNpm() {
-  exec("sudo apt install -y npm", (error, stdout, stderr) => {
-      if (error) {
-          console.log(`error: ${error.message}`);
-          return;
-      }
-      if (stderr) {
-          console.log(`stderr: ${stderr}`);
-          return;
-      }
-      console.log(`stdout: ${stdout}`);
-  });
-}
-
-async function installNode() {
-  exec("sudo apt install -y node", (error, stdout, stderr) => {
-      if (error) {
-          console.log(`error: ${error.message}`);
-          return;
-      }
-      if (stderr) {
-          console.log(`stderr: ${stderr}`);
-          return;
-      }
-      console.log(`stdout: ${stdout}`);
-  });
-}
-
-async function updateNodeVersion() {
-  exec("sudo apt install -y npm", (error, stdout, stderr) => {
-      if (error) {
-          console.log(`error: ${error.message}`);
-          return;
-      }
-      if (stderr) {
-          console.log(`stderr: ${stderr}`);
-          return;
-      }
-      console.log(`stdout: ${stdout}`);
-  });
 }
 
 export async function createAnalysis(options) {
@@ -141,13 +86,7 @@ export async function createAnalysis(options) {
               if(parseFloat(version.substr(1,version.length))>=10){
                 depInstall.nodeVers = true;
               }
-              console.log(process.version);
             }
-            // checkNodeVersion({ node: ">= 10"},(error,result)=> {
-            //   if(result.isSatisfied){
-            //     depInstall.nodeVers = true;
-            //   }
-            // })
           },
           {
             title: `Checking ${chalk.inverse('VSCode')} Installation`,
@@ -166,7 +105,7 @@ export async function createAnalysis(options) {
       title: 'Installing Dependencies',
       enabled: () => true,
       skip: () => {
-        if(depInstall.vscode===true&&depInstall.npm===true&&depInstall.node===true&&depInstall.git===true){
+        if(depInstall.vscode===true&&depInstall.npm===true&&depInstall.node===true&&depInstall.git===true&&depInstall.nodeVers===true){
           return true;
         }
       },
@@ -177,20 +116,20 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('NPM')}`,
             enabled: () => true,
             skip: () => depInstall.npm,
-            task: () => installNpm()    //installDependencies('npm')
+            task: () => installDependencies('npm')    //installNpm()
           },
           {
             title: `Installing ${chalk.inverse('NodeJS')}`,
             enabled: () => true,
             skip: () => depInstall.node,
-            task: () => installNode()      //installDependencies('node')
+            task: () => installDependencies('node')      //installNode()
           },
-          {
-            title: `Updating ${chalk.inverse('Node')}`,
-            enabled: () => true,
-            skip: () => depInstall.nodeVers,
-            task: () => updateNodeVersion()
-          },
+          // {
+          //   title: `Updating ${chalk.inverse('Node')}`,
+          //   enabled: () => true,
+          //   skip: () => depInstall.nodeVers,
+          //   task: () => updateNodeVersion()
+          // },
           {
             title: `Installing ${chalk.inverse('VSCode')}`,
             enabled: () => true,
