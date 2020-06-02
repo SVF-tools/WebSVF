@@ -1,77 +1,62 @@
+import getos from 'getos';
 import chalk from 'chalk';
-import fs from 'fs';
-import ncp from 'ncp';
-import path from 'path';
-import { promisify } from 'util';
-import execa from 'execa';
 import Listr from 'listr';
-import { projectInstall } from 'pkg-install';
 
-const access = promisify(fs.access);
-const copy = promisify(ncp);
 
-async function copyTemplateFiles(options) {
- return copy(options.templateDirectory, options.targetDirectory, {
-   clobber: false,
- });
+async function checkOS() {
+  let osInfo = getos((e,os) => {
+      if(e) return console.log(e)
+      return os;
+  });
+
+  if(!osInfo.os){
+    console.error(`%s ${osInfo}`, chalk.red.bold('ERROR'));
+    process.exit(1);
+  }
+
+  osInfo = {
+    ...osInfo,
+    os: 'linux',
+    dist: 'Ubuntu',
+    release: '20.04'
+  };
+
+  if(osInfo.os!=='linux'){
+    console.error(`%s Sorry WebSVF is not compatible with %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.blue.bold(`${osInfo.os}`), chalk.black.bgWhite('-- Please check back later --'));
+    process.exit(1);
+  }
+  else if(osInfo.dist!=='Ubuntu'){
+    console.error(`%s Sorry WebSVF is not compatible with the %s distribution of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${osInfo.dist}`), chalk.blue.bold(`${osInfo.os}`), chalk.black.bgWhite('-- Please check back later --'));
+    process.exit(1);
+  }
+  else if(!osInfo.release){
+    console.error(`%s %s release version could not be verified${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${osInfo.dist}`), chalk.black.bgWhite('-- Please check back later --'));
+    process.exit(1);
+  }
+  else if(!osInfo.release.includes('18.04')&&!osInfo.release.includes('20.04')){
+    console.error(`%s Sorry WebSVF is not compatible with version %s of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.yellow(`${osInfo.release}`), chalk.cyan.bold(`${osInfo.dist}`), chalk.black.bgWhite('-- Please check back later --'));
+    process.exit(1);
+  }
+  
+  //console.log(osInfo);
+  return true;
 }
 
-async function initGit(options) {
-    const result = await execa('git', ['init'], {
-      cwd: options.targetDirectory,
-    });
-    if (result.failed) {
-      return Promise.reject(new Error('Failed to initialize git'));
+export async function createAnalysis(options) {
+
+   //Define the list of tasks to run using the listr node module
+  const tasks = new Listr([
+    {
+      title: 'Checking OS Compatibility',
+      task: () => checkOS(),
+      enabled: () => true
     }
-    return;
-}
-
-export async function createProject(options) {
- options = {
-   ...options,
-   targetDirectory: options.targetDirectory || process.cwd(),
- };
-
- const currentFileUrl = import.meta.url;
- const templateDir = path.resolve(
-    decodeURI(new URL(currentFileUrl).pathname.substring(new URL(currentFileUrl).pathname.indexOf('/')+1)),
-   '../../templates',
-   options.template.toLowerCase()
- );
- options.templateDirectory = templateDir;
-
- try {
-   await access(templateDir, fs.constants.R_OK);
- } catch (err) {
-   console.error('%s Invalid template name', chalk.red.bold('ERROR'));
-   process.exit(1);
- }
-
- const tasks = new Listr([
-    {
-      title: 'Copy project files',
-      task: () => copyTemplateFiles(options),
-    },
-    {
-      title: 'Initialize git',
-      task: () => initGit(options),
-      enabled: () => options.git,
-    },
-    {
-      title: 'Install dependencies',
-      task: () =>
-        projectInstall({
-          cwd: options.targetDirectory,
-        }),
-      skip: () =>
-        !options.runInstall
-          ? 'Pass --install to automatically install dependencies'
-          : undefined,
-    },
   ]);
- 
+
+  //Run the list of tasks defined above
   await tasks.run();
 
- console.log('%s Project ready', chalk.green.bold('DONE'));
- return true;
+  
+
+  return true;
 }
