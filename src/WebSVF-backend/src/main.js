@@ -114,7 +114,7 @@ export async function createAnalysis(options) {
             enabled: () => true,
             task: () => commandExists('git').then(()=>{depInstall.git=true;}).catch(()=>{})
           }
-        ], {concurrent: true});
+        ], {concurrent: false});
       }      
     },
     {
