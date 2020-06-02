@@ -22,44 +22,11 @@ async function installDependencies(dependency) {
 }
 
 //Checks the System's OS to determine if the system can run WebSVF
-async function checkOS() {
-  let osInfo = getos((e,os) => {
-      if(e) return console.log(e)
-      return os;
-  });
+// function checkOS() {
+//   let osInfo = 
 
-  if(!osInfo.os){
-    console.error(`%s ${osInfo}`, chalk.red.bold('ERROR'));
-    process.exit(1);
-  }
-
-  osInfo = {
-    ...osInfo,
-    os: 'linux',
-    dist: 'Ubuntu',
-    release: '20.04'
-  };
-
-  if(osInfo.os!=='linux'){
-    console.error(`%s Sorry WebSVF is not compatible with %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.blue.bold(`${osInfo.os}`), chalk.black.bgWhite('-- Please check back later --'));
-    process.exit(1);
-  }
-  else if(osInfo.dist!=='Ubuntu'){
-    console.error(`%s Sorry WebSVF is not compatible with the %s distribution of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${osInfo.dist}`), chalk.blue.bold(`${osInfo.os}`), chalk.black.bgWhite('-- Please check back later --'));
-    process.exit(1);
-  }
-  else if(!osInfo.release){
-    console.error(`%s %s release version could not be verified${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${osInfo.dist}`), chalk.black.bgWhite('-- Please check back later --'));
-    process.exit(1);
-  }
-  else if(!osInfo.release.includes('18.04')&&!osInfo.release.includes('20.04')){
-    console.error(`%s Sorry WebSVF is not compatible with version %s of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.yellow(`${osInfo.release}`), chalk.cyan.bold(`${osInfo.dist}`), chalk.black.bgWhite('-- Please check back later --'));
-    process.exit(1);
-  }
   
-  //console.log(osInfo);
-  return true;
-}
+// }
 
 export async function createAnalysis(options) {
 
@@ -76,7 +43,34 @@ export async function createAnalysis(options) {
     {
       title: 'Checking OS Compatibility',
       enabled: () => true,
-      task: () => checkOS()
+      task: () => getos((e,os) => {
+        if(e) return console.log(e)
+
+        if(!os.os){
+          console.error(`%s ${os}`, chalk.red.bold('ERROR'));
+          process.exit(1);
+        }
+      
+        if(os.os!=='linux'){
+          console.error(`%s Sorry WebSVF is not compatible with %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.blue.bold(`${os.os}`), chalk.black.bgWhite('-- Please check back later --'));
+          process.exit(1);
+        }
+        else if(os.dist!=='Ubuntu'){
+          console.error(`%s Sorry WebSVF is not compatible with the %s distribution of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${os.dist}`), chalk.blue.bold(`${os.os}`), chalk.black.bgWhite('-- Please check back later --'));
+          process.exit(1);
+        }
+        else if(!osInfo.release){
+          console.error(`%s %s release version could not be verified${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${os.dist}`), chalk.black.bgWhite('-- Please check back later --'));
+          process.exit(1);
+        }
+        else if(!osInfo.release.includes('18.04')&&!os.release.includes('20.04')){
+          console.error(`%s Sorry WebSVF is not compatible with version %s of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.yellow(`${os.release}`), chalk.cyan.bold(`${os.dist}`), chalk.black.bgWhite('-- Please check back later --'));
+          process.exit(1);
+        }
+        
+        //console.log(osInfo);
+        return true;
+    })
     },
     {
       title: 'Checking Dependency Installations',
