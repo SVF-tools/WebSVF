@@ -132,7 +132,7 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('NPM')}`,
             enabled: () => true,
             skip: () => depInstall.npm,
-            task: () => installDependencies('npm').catch((e)=>{
+            task: () => installDependencies('npm').then(()=>depInstall.npm = true).catch((e)=>{
               console.error(e);
               installDependenciesSync('npm');
               depInstall.npm = true;
@@ -142,7 +142,7 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('NodeJS')}`,
             enabled: () => true,
             skip: () => depInstall.node,
-            task: () => installDependencies('node').catch((e)=>{
+            task: () => installDependencies('node').then(()=>depInstall.node = true).catch((e)=>{
               console.error(e);
               installDependenciesSync('node');
               depInstall.node = true;
@@ -161,7 +161,7 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('VSCode')}`,
             enabled: () => true,
             skip: () => depInstall.vscode,
-            task: () => installDependencies('code').catch((e)=>{
+            task: () => installDependencies('code').then(()=>depInstall.vscode = true).catch((e)=>{
               console.error(e);
               installDependenciesSync('code');
               depInstall.vscode = true;
@@ -171,7 +171,7 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('Git')} Installation`,
             enabled: () => true,
             skip: () => depInstall.git,
-            task: () => installDependencies('git').catch((e)=>{
+            task: () => installDependencies('git').then(()=>depInstall.git = true).catch((e)=>{
               console.error(e);
               installDependenciesSync('git');
               depInstall.git = true;
