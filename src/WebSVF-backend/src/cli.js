@@ -10,6 +10,8 @@ function parseArgumentsIntoOptions(rawArgs) {
       '--yes': Boolean,
       '--install': Boolean,
       '--out': String,
+      '--generateJSON': String,
+      '-gen': '--generateJSON',
       '-o': '--out',
       '-y': '--yes',
       '-i': '--install',
@@ -21,6 +23,8 @@ function parseArgumentsIntoOptions(rawArgs) {
   return {
     skipPrompts: args['--yes'] || false,
     template: args._[0],
+    generateJSON: args['--generateJSON'] || '',
+    output: args['--output'] || '',
     runInstall: args['--install'] || false,
   };
 }

@@ -4,7 +4,7 @@ var exec = require('child_process').exec;
 var path = require('path');
 var arguments = process.argv.splice(2);
 var projectPath = arguments[0] + "/";
-exec(". ./setup.sh");
+//exec(". ./setup.sh");
 String.prototype.endWith = function(endStr) {
     var d = this.length-endStr.length;
     return (d >= 0 && this.lastIndexOf(endStr) == d);
