@@ -5,7 +5,7 @@ import execa from 'execa';
 import commandExists from 'command-exists';
 
 async function installDependencies(dependency) {
-  const result = await execa('apt', ['install','-y', dependency]);
+  const result = await execa('sudo', ['apt','install','-y', dependency]);
   if (result.failed) {
     return Promise.reject(new Error(`Failed to install ${dependency}`));
   }
@@ -136,7 +136,7 @@ export async function createAnalysis(options) {
               console.error(e);
               installDependenciesSync('npm');
               depInstall.npm = true;
-            })    //installNpm()
+            })
           },
           {
             title: `Installing ${chalk.inverse('NodeJS')}`,
@@ -146,7 +146,7 @@ export async function createAnalysis(options) {
               console.error(e);
               installDependenciesSync('node');
               depInstall.node = true;
-            })      //installNode()
+            })
           },
           {
             title: `Updating ${chalk.inverse('Node')}`,
@@ -182,16 +182,11 @@ export async function createAnalysis(options) {
     }
   ]);
 
-  let cnt =0;
   //Run the list of tasks defined above
   try{
     await tasks.run();
   }catch(e){
     console.error(e);
-    if(cnt<2){
-      await tasks.run();
-      ++cnt;
-    }
   }
 
   console.log(depInstall);
