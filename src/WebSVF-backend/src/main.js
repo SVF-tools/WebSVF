@@ -2,6 +2,9 @@ import getos from 'getos';
 import chalk from 'chalk';
 import Listr from 'listr';
 import execa from 'execa';
+import { exec } from 'child_process';
+
+import checkNodeVersion from 'check-node-version';
 import commandExists from 'command-exists';
 
 
@@ -22,12 +25,55 @@ async function installDependencies(dependency) {
   return;
 }
 
+async function installNpm() {
+  exec("sudo apt install -y npm", (error, stdout, stderr) => {
+      if (error) {
+          console.log(`error: ${error.message}`);
+          return;
+      }
+      if (stderr) {
+          console.log(`stderr: ${stderr}`);
+          return;
+      }
+      console.log(`stdout: ${stdout}`);
+  });
+}
+
+async function installNode() {
+  exec("sudo apt install -y node", (error, stdout, stderr) => {
+      if (error) {
+          console.log(`error: ${error.message}`);
+          return;
+      }
+      if (stderr) {
+          console.log(`stderr: ${stderr}`);
+          return;
+      }
+      console.log(`stdout: ${stdout}`);
+  });
+}
+
+async function updateNodeVersion() {
+  exec("sudo apt install -y npm", (error, stdout, stderr) => {
+      if (error) {
+          console.log(`error: ${error.message}`);
+          return;
+      }
+      if (stderr) {
+          console.log(`stderr: ${stderr}`);
+          return;
+      }
+      console.log(`stdout: ${stdout}`);
+  });
+}
+
 export async function createAnalysis(options) {
 
   //A JavaScript object containing boolean values representing whether a particular depndency is installed or not
   const depInstall = {
     vscode: false,
     node: false,
+    nodeVers: false,
     npm: false,
     git: false
   }
@@ -39,6 +85,13 @@ export async function createAnalysis(options) {
       enabled: () => true,
       task: () => getos((e,os) => {
         if(e) return console.log(e)
+
+        os = {
+          ...os,
+          os: 'linux',
+          dist: 'Ubuntu',
+          release: '18.04' 
+        }
 
         if(!os.os){
           console.error(`%s ${os}`, chalk.red.bold('ERROR'));
@@ -81,6 +134,15 @@ export async function createAnalysis(options) {
             task: () => commandExists('node').then(()=>{depInstall.node=true;}).catch(()=>{})
           },
           {
+            title: `Checking ${chalk.inverse('NodeJS')} Version`,
+            enabled: () => true,
+            task: () => checkNodeVersion({ node: ">= 10"},(error,result)=> {
+              if(result.isSatisfied){
+                depInstall.nodeVers = true;
+              }
+            })
+          },
+          {
             title: `Checking ${chalk.inverse('VSCode')} Installation`,
             enabled: () => true,
             task: () => commandExists('code').then(()=>{depInstall.vscode=true;}).catch(()=>{})
@@ -103,26 +165,33 @@ export async function createAnalysis(options) {
       },
       task: () => {
         return new Listr([
+          
           {
-            title: `Install ${chalk.inverse('NPM')}`,
+            title: `Installing ${chalk.inverse('NPM')}`,
             enabled: () => true,
             skip: () => depInstall.npm,
-            task: () => installDependencies('npm')
+            task: () => installNpm()    //installDependencies('npm')
           },
           {
-            title: `Install ${chalk.inverse('NodeJS')}`,
+            title: `Installing ${chalk.inverse('NodeJS')}`,
             enabled: () => true,
             skip: () => depInstall.node,
-            task: () => installDependencies('node')
+            task: () => installNode()      //installDependencies('node')
           },
           {
-            title: `Install ${chalk.inverse('VSCode')}`,
+            title: `Updating ${chalk.inverse('Node')}`,
+            enabled: () => true,
+            skip: () => depInstall.nodeVers,
+            task: () => updateNodeVersion()
+          },
+          {
+            title: `Installing ${chalk.inverse('VSCode')}`,
             enabled: () => true,
             skip: () => depInstall.vscode,
             task: () => installDependencies('code')
           },
           {
-            title: `Checking ${chalk.inverse('Git')} Installation`,
+            title: `Installing ${chalk.inverse('Git')} Installation`,
             enabled: () => true,
             skip: () => depInstall.git,
             task: () => installDependencies('git')
