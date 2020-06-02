@@ -27,6 +27,7 @@ export class RegisterCommandForceGraph3DManager {
         return false;
     }
 }
+
 export class RegisterCommandTextControl extends CommonInterface.RegisterCommand {
     constructor(protected coreData: CommonInterface.ConfigPath) {
         super(coreData, "TextControl");
@@ -43,23 +44,37 @@ export class RegisterCommandTextControl extends CommonInterface.RegisterCommand 
     protected create(activeEditor: vscode.TextEditor) {
         let KeyList = this.generateFileInfo(activeEditor);
         let uri = activeEditor.document.uri;
+        let flag = "TextControl";
         console.log("KeyList.size: ", KeyList.size);
         KeyList.forEach((lineNumber, preKey) => {
-            if (LineTagManager.findLineTag(preKey) === undefined) {
+            LineTagManager.turnOff(preKey, flag, "saveByFlag"); // delete all not TextControl select
+            if (LineTagManager.findLineTag(preKey, flag)) {
+                if (!LineTagManager.deleteLineTagBase(preKey)) {
+                    vscode.window.showErrorMessage("deleteLineTag false.");
+                }
+            } else {
                 const key = LineTagForceGraph3DManager.createLineTag(
                     uri,
                     lineNumber,
                     0,
                     0,
-                    "Theme_1"
+                    "Theme_2",
+                    "TextControl"
                 );
                 console.log("key: ", key);
-            } else {
-                if (!LineTagManager.deleteLineTag(preKey)) {
-                    vscode.window.showErrorMessage("deleteLineTag false.");
-                }
             }
         });
+    }
+
+    protected SendInfo() {
+        const settings = vscode.workspace.getConfiguration("codeMap");
+        const graphMode = settings.get("GraphMode");
+        if (graphMode === "NotSelect") {
+            vscode.window.showErrorMessage(
+                "Please select a Graph Type. VFG or CFG etc."
+            );
+            return;
+        }
     }
 
     protected Load(editor: vscode.TextEditor) {
@@ -75,6 +90,30 @@ export class RegisterCommandTextControl extends CommonInterface.RegisterCommand 
                 LineTagManager.LoadDecoration();
                 break;
         }
+    }
+
+    protected generateSelectInfo(
+        activeEditor: vscode.TextEditor,
+        lineSwitch: boolean
+    ) {
+        let selections = activeEditor.selections;
+        let message = {
+            fileName: "",
+            switch: true,
+            selections: new Array<number>(),
+        };
+        message.fileName = activeEditor.document.fileName;
+        message.switch = lineSwitch;
+        selections.forEach((element) => {
+            for (
+                let lineNumber = element.start.line - 1;
+                lineNumber <= element.end.line - 1;
+                lineNumber++
+            ) {
+                message.selections.push(lineNumber);
+            }
+        });
+        return message;
     }
 
     protected generateFileInfo(

@@ -149,6 +149,7 @@ export class WebPanelForceGraph3D extends WebPanel {
             startPosition: message.start,
             endPosition: message.end,
             themeName: message.themeName,
+            flag: message.flag
         };
         return info;
     }
@@ -193,7 +194,8 @@ export class WebPanelForceGraph3D extends WebPanel {
             info.lineNumber,
             info.startPosition,
             info.endPosition,
-            info.themeName
+            info.themeName,
+            info.flag
         );
     }
     protected LoadTag(
@@ -201,7 +203,8 @@ export class WebPanelForceGraph3D extends WebPanel {
         lineNumber: number,
         start: number,
         end: number,
-        themeName: string
+        themeName: string,
+        flag: string
     ) {
         const preKey: string = LineTagManager.assemblyKey(uri, lineNumber);
 
@@ -211,7 +214,8 @@ export class WebPanelForceGraph3D extends WebPanel {
                 lineNumber,
                 start,
                 end,
-                themeName
+                themeName,
+                flag
             );
             console.log("key: ", key);
         } else {
