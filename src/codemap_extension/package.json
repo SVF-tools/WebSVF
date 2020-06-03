@@ -36,6 +36,14 @@
             {
                 "command": "extension.ForceNodeBefore",
                 "title": "ForceNodeBefore"
+            },
+            {
+                "command": "extension.SelectRangeUp",
+                "title": "SelectRange"
+            },
+            {
+                "command": "extension.SelectRangeDown",
+                "title": "SelectRange"
             }
         ],
         "configuration": {
@@ -72,6 +80,18 @@
                 "key": "ctrl+alt+Left",
                 "mac": "cmd+alt+Left",
                 "when": "editorFocus"
+            },
+            {
+                "command": "extension.SelectRangeUp",
+                "key": "ctrl+alt+Up",
+                "mac": "cmd+alt+Up",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.SelectRangeDown",
+                "key": "ctrl+alt+Down",
+                "mac": "cmd+alt+Down",
+                "when": "editorTextFocus"
             }
         ]
     },

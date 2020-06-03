@@ -16,11 +16,25 @@ export class RegisterCommandForceGraph3DManager {
     private static _rct: RegisterCommandTextControl | undefined = undefined;
     private static _rcn: RegisterCommandForceNodeNext | undefined = undefined;
     private static _rcb: RegisterCommandForceNodeBefore | undefined = undefined;
+    private static _rcu: RegisterCommandSelectRangeUp | undefined = undefined;
+    private static _rcd: RegisterCommandSelectRangeDown | undefined = undefined;
+    public static get rcd(): RegisterCommandSelectRangeDown | undefined {
+        return RegisterCommandForceGraph3DManager._rcd;
+    }
     public static get rct(): RegisterCommandTextControl | undefined {
         return RegisterCommandForceGraph3DManager._rct;
     }
     public static get rcf(): RegisterCommandForceGraph3D | undefined {
         return RegisterCommandForceGraph3DManager._rcf;
+    }
+    public static get rcn(): RegisterCommandForceNodeNext | undefined {
+        return RegisterCommandForceGraph3DManager._rcn;
+    }
+    public static get rcu(): RegisterCommandSelectRangeUp | undefined {
+        return RegisterCommandForceGraph3DManager._rcu;
+    }
+    public static get rcb(): RegisterCommandForceNodeBefore | undefined {
+        return RegisterCommandForceGraph3DManager._rcb;
     }
     public static initial(coreData: CommonInterface.ConfigPath): boolean {
         if (this._rcf === undefined) {
@@ -28,9 +42,42 @@ export class RegisterCommandForceGraph3DManager {
             this._rct = new RegisterCommandTextControl(coreData);
             this._rcn = new RegisterCommandForceNodeNext(coreData);
             this._rcb = new RegisterCommandForceNodeBefore(coreData);
+            this._rcu = new RegisterCommandSelectRangeUp(coreData);
+            this._rcd = new RegisterCommandSelectRangeDown(coreData);
             return true;
         }
         return false;
+    }
+}
+
+export class RegisterCommandSelectRangeUp extends CommonInterface.RegisterCommand {
+    constructor(protected coreData: CommonInterface.ConfigPath) {
+        super(coreData, "SelectRangeUp");
+    }
+    protected mainFunc() {
+        // vscode.window.showInformationMessage("UP");
+        let activeEditor = vscode.window.activeTextEditor;
+    }
+
+    protected SendInfo(message: any) {
+        WebPanelForceGraph3DManager.getPanel()?.webPanel.webview.postMessage(
+            message
+        );
+    }
+}
+
+export class RegisterCommandSelectRangeDown extends CommonInterface.RegisterCommand {
+    constructor(protected coreData: CommonInterface.ConfigPath) {
+        super(coreData, "SelectRangeDown");
+    }
+    protected mainFunc() {
+        vscode.window.showInformationMessage("DOWN");
+    }
+
+    protected SendInfo(message: any) {
+        WebPanelForceGraph3DManager.getPanel()?.webPanel.webview.postMessage(
+            message
+        );
     }
 }
 
