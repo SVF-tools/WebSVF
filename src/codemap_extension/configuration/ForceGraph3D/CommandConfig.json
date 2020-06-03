@@ -2,5 +2,9 @@
     "name_ForceGraph3D": "ForceGraph3D",
     "command_ForceGraph3D": "extension.graphVisualization",
     "name_TextControl": "TextControl",
-    "command_TextControl": "extension.textControl"
+    "command_TextControl": "extension.textControl",
+    "name_ForceNodeNext": "ForceNodeNext",
+    "command_ForceNodeNext": "extension.ForceNodeNext",
+    "name_ForceNodeBefore": "ForceNodeBefore",
+    "command_ForceNodeBefore": "extension.ForceNodeBefore"
 }
