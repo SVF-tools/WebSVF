@@ -14,6 +14,8 @@ import * as path from "path";
 export class RegisterCommandForceGraph3DManager {
     private static _rcf: RegisterCommandForceGraph3D | undefined = undefined;
     private static _rct: RegisterCommandTextControl | undefined = undefined;
+    private static _rcn: RegisterCommandForceNodeNext | undefined = undefined;
+    private static _rcb: RegisterCommandForceNodeBefore | undefined = undefined;
     public static get rct(): RegisterCommandTextControl | undefined {
         return RegisterCommandForceGraph3DManager._rct;
     }
@@ -24,9 +26,43 @@ export class RegisterCommandForceGraph3DManager {
         if (this._rcf === undefined) {
             this._rcf = new RegisterCommandForceGraph3D(coreData);
             this._rct = new RegisterCommandTextControl(coreData);
+            this._rcn = new RegisterCommandForceNodeNext(coreData);
+            this._rcb = new RegisterCommandForceNodeBefore(coreData);
             return true;
         }
         return false;
+    }
+}
+
+export class RegisterCommandForceNodeNext extends CommonInterface.RegisterCommand {
+    constructor(protected coreData: CommonInterface.ConfigPath) {
+        super(coreData, "ForceNodeNext");
+    }
+    protected mainFunc() {
+        // vscode.window.showInformationMessage("NEXT");
+        this.SendInfo({ status: "ForceNodeNext" });
+    }
+
+    protected SendInfo(message: any) {
+        WebPanelForceGraph3DManager.getPanel()?.webPanel.webview.postMessage(
+            message
+        );
+    }
+}
+
+export class RegisterCommandForceNodeBefore extends CommonInterface.RegisterCommand {
+    constructor(protected coreData: CommonInterface.ConfigPath) {
+        super(coreData, "ForceNodeBefore");
+    }
+    protected mainFunc() {
+        // vscode.window.showInformationMessage("BEFORE");
+        this.SendInfo({ status: "ForceNodeBefore" });
+    }
+
+    protected SendInfo(message: any) {
+        WebPanelForceGraph3DManager.getPanel()?.webPanel.webview.postMessage(
+            message
+        );
     }
 }
 
@@ -143,32 +179,6 @@ export class RegisterCommandTextControl extends CommonInterface.RegisterCommand 
         });
         return KeyList;
     }
-
-    protected create(activeEditor: vscode.TextEditor) {
-        let KeyList = this.generateFileInfo(activeEditor);
-        let uri = activeEditor.document.uri;
-        let flag = "TextControl";
-        console.log("KeyList.size: ", KeyList.size);
-        KeyList.forEach((lineNumber, preKey) => {
-            LineTagManager.turnOff(preKey, flag, "saveByFlag"); // delete all not TextControl select
-            if (LineTagManager.findLineTag(preKey, flag)) {
-                if (!LineTagManager.deleteLineTagBase(preKey)) {
-                    vscode.window.showErrorMessage("deleteLineTag false.");
-                }
-            } else {
-                const key = LineTagForceGraph3DManager.createLineTag(
-                    uri,
-                    lineNumber,
-                    0,
-                    0,
-                    "Theme_2",
-                    "TextControl"
-                );
-                console.log("key: ", key);
-            }
-        });
-    }
-
     protected SendInfo(message: any) {
         WebPanelForceGraph3DManager.getPanel()?.webPanel.webview.postMessage(
             message
