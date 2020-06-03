@@ -5,9 +5,9 @@
 ########
 # 1. install system tools
 ########
-sudo apt-get update # ubuntu update
-sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6 libglib2.0-dev libncurses5 libtool libgraphviz-dev graphviz python3.8 # essential tools
-sudo pip3 install wllvm pygraphviz # install wllvm and pygraphviz
+#sudo apt-get update # ubuntu update
+#sudo apt-get install -y curl gcc gdb build-essential cmake wget git libtinfo-dev libtinfo5 libtinfo6 libglib2.0-dev libncurses5 libtool libgraphviz-dev graphviz python3.8 # essential tools
+#sudo pip3 install wllvm pygraphviz # install wllvm and pygraphviz
 
 
 ########
@@ -55,50 +55,55 @@ echo 'export LLVM_COMPILER=clang' | sudo tee -a $ETC_PROFILE # add LLVM_COMPILER
 source $ETC_PROFILE # refresh path
 
 ########
+# 4. Set path
+########
+PATH=$PATH
+
+########
 # 4. test
 ########
 # 4.1 delete residual files
-rm example.c result.bc
+#rm example.c result.bc
 # 4.2 create test example.c
-echo "#include<stdio.h>
-int main()
-{
-	int a=3;
-	int b=4;
-	int c=0;
-    c = a*b;
-    return c;
-}" >> example.c # write c program into example.c
+#echo "#include<stdio.h>
+#int main()
+# {
+#	int a=3;
+#	int b=4;
+#	int c=0;
+#    c = a*b;
+#    return c;
+#}" >> example.c # write c program into example.c
 # 4.3 test llvm through clang
-clang -c -emit-llvm -g ./example.c -o ./result.bc # generate result.bc
+#clang -c -emit-llvm -g ./example.c -o ./result.bc # generate result.bc
 # 4.4 test svf through wpa
-wpa -ander ./result.bc # analysis result.bc
+#wpa -ander ./result.bc # analysis result.bc
 # 4.5 delete residual files
-rm example.c result.bc
+#rm example.c result.bc
 
 ########
 # 5. reboot for set path
 ########
-readTime(){
-    second=$1
-    while(( $second>0 ))
-    do
-        echo "${second}"
-        sleep 1
-        let "second--"
-    done
-}
-read -n1 -p "SVF configure need reboot now [Y/n]:" answer 
-case $answer in 
-Y | y) 
-    echo -e "\nReboot after 3s"
-    readTime 3
-    shutdown -r now;;
-"") 
-    echo "Reboot after 3s"
-    readTime 3
-    shutdown -r now;;
-*) 
-    echo ""
-    echo "Please reboot by youself to make sure SVF work.";;
-esac
+#readTime(){
+#    second=$1
+#    while(( $second>0 ))
+#    do
+#        echo "${second}"
+#        sleep 1
+#        let "second--"
+#    done
+#}
+#read -n1 -p "SVF configure need reboot now [Y/n]:" answer 
+#case $answer in 
+#Y | y) 
+#    echo -e "\nReboot after 3s"
+#    readTime 3
+#    shutdown -r now;;
+#"") 
+#    echo "Reboot after 3s"
+#    readTime 3
+#    shutdown -r now;;
+#*) 
+#    echo ""
+#    echo "Please reboot by youself to make sure SVF work.";;
+#esac

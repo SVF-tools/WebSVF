@@ -26,7 +26,31 @@ async function installSVF(path) {
     });
   //console.log(result.stdout)
   if (result.failed) {
-    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('SVF')} ${import.meta.url}`));
+    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('SVF')}`));
+  }
+  return;
+}
+
+async function updatePackages() {
+  const result = await execa('sudo', ['apt-get', 'update']);
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to update ${chalk.yellow.bold('Ubuntu Packages')}`));
+  }
+  return;
+}
+
+async function installSVFEssentialTools() {
+  const result = await execa('sudo', ['apt-get', 'install', '-y' , 'curl', 'gcc', 'gdb', 'build-essential', 'cmake', 'wget', 'libtinfo-dev', 'libtinfo5', 'libtinfo6', 'libglib2.0-dev', 'libncurses5', 'libtool', 'libgraphviz-dev', 'graphviz', 'python3.8']);
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('Essential Tools for SVF Installation')}`));
+  }
+  return;
+}
+
+async function installSVFDependencies() {
+  const result = await execa('sudo', ['pip3', 'install', 'wllvm', 'pygraphviz']);
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('WLLVM and pygraphviz')}`));
   }
   return;
 }
@@ -42,12 +66,12 @@ async function generateJSON(path, projectDir) {
   return;
 }
 
-function updateNodeVersionSync() {
-  console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(process.version)} is outdated\nAttempting Update, Please Wait...`)}`)
-  execa.sync('sudo', ['npm','cache', 'clean', '-f']);
-  execa.sync('sudo', ['npm','install', '-g', 'n']);
-  execa.sync('sudo', ['n','stable']);
-}
+// function updateNodeVersionSync() {
+//   console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(process.version)} is outdated\nAttempting Update, Please Wait...`)}`)
+//   execa.sync('sudo', ['npm','cache', 'clean', '-f']);
+//   execa.sync('sudo', ['npm','install', '-g', 'n']);
+//   execa.sync('sudo', ['n','stable']);
+// }
 
 export async function createAnalysis(options) {
 
@@ -129,18 +153,21 @@ export async function createAnalysis(options) {
               const version = process.version;
               if(parseFloat(version.substr(1,version.length))>=10){
                 depInstall.nodeVers = true;
+              }else{
+                console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(process.version)} is outdated${'\n'.repeat(2)}Please Update node to version ${chalk.yellow.bold('>=10')}`)}`)
+                process.exit(1);
               }
             }
           },
-          {
-            title: `Updating ${chalk.inverse('Node')}`,
-            enabled: () => true,
-            skip: () => depInstall.nodeVers,
-            task: () => {
-              updateNodeVersionSync();
-              depInstall.nodeVers = true;
-            }
-          },
+          // {
+          //   title: `Updating ${chalk.inverse('Node')}`,
+          //   enabled: () => true,
+          //   skip: () => depInstall.nodeVers,
+          //   task: () => {
+          //     updateNodeVersionSync();
+          //     depInstall.nodeVers = true;
+          //   }
+          // },
           {
             title: `Checking ${chalk.inverse('VSCode')} Installation`,
             enabled: () => true,
@@ -214,10 +241,59 @@ export async function createAnalysis(options) {
       title: 'Installing SVF',
       enabled: () => options.runInstall,
       skip: () => depInstall.svf,
-      task: () => installSVF(templateDir).then(()=>depInstall.svf = true).catch((e)=>{
-        console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('SVF')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-        console.error(e);
-      })
+      task: () => {
+        return new Listr([
+          {
+            title: `Installing ${chalk.blue('SVF Dependencies')}`,
+            enabled: () => true,
+            task: () => {
+              return new Listr([
+                {
+                  title: `Updating ${chalk.blue('Ubuntu Packages')}`,
+                  enabled: () => true,
+                  task: () => updatePackages.then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong updating ${chalk.red.bold('Ubuntu Packages')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                    console.error(e);
+                  })
+                },
+                {
+                  title: `Installing ${chalk.inverse('Essential Tools')}`,
+                  enabled: () => true,
+                  task: () => installSVFEssentialTools.then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong instaling ${chalk.red.bold('Essential Tools for SVF Installation')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                    console.error(e);
+                  })
+                },
+                {
+                  title: `Installing ${chalk.inverse('WLLVM and pygraphviz')}`,
+                  enabled: () => true,
+                  task: () => installSVFDependencies.then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('WLLVM and pygraphviz')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                    console.error(e);
+                  })
+                },
+                
+              ],{concurrent: false})
+            }
+          },
+          {
+            title: `Run ${chalk.inverse('setupSVF.sh')} Script`,
+            enabled: () => true,
+            task: () => installSVF(templateDir).then(()=>{}).catch((e)=>{
+              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('SVF')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+              console.error(e);
+            })
+          },
+          {
+            title: `Checking ${chalk.inverse('SVF')} Installation`,
+            enabled: () => true,
+            task: () => commandExists('wpa').then(()=>{depInstall.svf = true;}).catch((e)=>{
+              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('SVF')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+              console.error(e);
+            })
+          },
+        ], {concurrent: false})
+      }
     },
     {
       title: `Generating ${chalk.yellow.bold('Bug-Report-Analysis.json')}`,
