@@ -41,6 +41,28 @@
             "isWholeLine": true,
             "backgroundColor": "green",
             "border": "2px solid white"
+        },
+        "Theme_3": {
+            "name": "ForceGraph3D",
+            "light": {
+                "svgPath": "",
+                "gutterIconSize": "contain",
+                "color": "",
+                "backgroundColor": "",
+                "overviewRulerColor": ""
+            },
+            "dark": {
+                "svgPath": "",
+                "gutterIconSize": "contain",
+                "color": "",
+                "backgroundColor": "",
+                "overviewRulerColor": ""
+            },
+            "renderOption": {
+                "isWholeLine": true,
+                "backgroundColor": "green",
+                "border": "2px solid white"
+            }
         }
     }
 }

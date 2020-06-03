@@ -6,5 +6,9 @@
     "name_ForceNodeNext": "ForceNodeNext",
     "command_ForceNodeNext": "extension.ForceNodeNext",
     "name_ForceNodeBefore": "ForceNodeBefore",
-    "command_ForceNodeBefore": "extension.ForceNodeBefore"
+    "command_ForceNodeBefore": "extension.ForceNodeBefore",
+    "name_SelectRangeUp": "SelectRangeUp",
+    "command_SelectRangeUp": "extension.SelectRangeUp",
+    "name_SelectRangeDown": "SelectRangeDown",
+    "command_SelectRangeDown": "extension.SelectRangeDown"
 }
