@@ -98,11 +98,19 @@ The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](h
 
 - **Download extension: [VSIX file and TEST zip](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**  
   <img src='./docs/DOWNLOAD_VISX.png' width='480'/>
+
+  VSIX file is vscdoe extension. TEST zip for extension testing. 
 - **Extension installation**  
   <img src='./docs/VSIX_installation.png' width='480'/>
+
+  Through this picture show to install extension. and then unzip TEST.zip. Use vscode open TEST work folder.
 - **Installed situation**  
   <img src='./docs/3D_CODEMAP.png' width='480'/>
+
+  After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 - **Follow [User Instructions](./src/codemap_extension/README.md)**
+  
+  Please follow the User Instruction to use it.
 
 
 
