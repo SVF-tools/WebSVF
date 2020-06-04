@@ -1,6 +1,6 @@
-# **3D Code Map**
+# **<p align="center">3D Code Map<p>**
 
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='480'/>
+<img align="center" src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='480'/>
 
 Program Analysis tool for bug detection.
 It is a vscode extension which can be installed into Vscode 1.43.0 at least.
@@ -9,10 +9,10 @@ After the program is compiled by analysis, it is used to display the analysis no
 
 ## **Dev Instructions**
 
--  **Clone the repository**
--  **Run `cd codemap_extension`**
--  **Run `yarn`**  
--  **Run `yarn go` for build or `F5` for debug**
+-   **Clone the repository**
+-   **Run `cd codemap_extension`**
+-   **Run `yarn`**
+-   **Run `yarn go` for build or `F5` for debug**
 
 ## **User Instructions**
 
@@ -22,19 +22,19 @@ After the program is compiled by analysis, it is used to display the analysis no
 
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/DOWNLOAD_VISX.png' width='720'/>
 
-  VSIX file is vscdoe extension. TEST zip for extension testing. 
+VSIX file is vscdoe extension. TEST zip for extension testing.
 
-**2. Extension installation**  
+**2. Extension installation**
 
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/VSIX_installation.png' width='720'/>
 
-  Through this picture show to install extension. and then unzip TEST.zip. Use vscode open **TEST** work folder.
+Through this picture show to install extension. and then unzip TEST.zip. Use vscode open **TEST** work folder.
 
-**3. Installed situation**  
+**3. Installed situation**
 
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/3D_CODEMAP.png' width='720'/>
 
-  After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
+After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 
 ### **3D CODE MAP**
 
@@ -42,10 +42,10 @@ After the program is compiled by analysis, it is used to display the analysis no
 
 **Require Folder and Files**
 
-- **`C/C++ Project` in `VSCODE WORKSPACE`**
-- **`3D_CODE_GRAPH` as folder in `VSCODE WORKSPACE`**
-- **`control_follow_graph.json` in `3D_CODE_GRAPH`**
-- **`value_follow_graph.json` in `3D_CODE_GRAPH`**
+-   **`C/C++ Project` in `VSCODE WORKSPACE`**
+-   **`3D_CODE_GRAPH` as folder in `VSCODE WORKSPACE`**
+-   **`control_follow_graph.json` in `3D_CODE_GRAPH`**
+-   **`value_follow_graph.json` in `3D_CODE_GRAPH`**
 
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/require.png' width='480'/>
 
@@ -54,7 +54,6 @@ You can try to use **TEST.zip** to unzip and open it for test.
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/project.gif" width='720'>
 
 As you see, 3D_CODE_GRAPH is needed to store control graph and value follow graph.
-
 
 **2. Click statusbar to show 3D CODE MAP**
 
@@ -82,7 +81,6 @@ Click the CFG or VFG button will show the two graph.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/1.gif" width='720'>
 
-
 **2. show node label**
 
 Hover over any node will show the label.
@@ -95,12 +93,11 @@ Right Click node will jump to the code line.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/3.gif" width='720'>
 
-
 **4. Show all label**
 
 Click `NODE ID MODE` button will show all label on node.
 
-Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least. 
+Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/4.gif" width='720'>
 
@@ -133,4 +130,3 @@ MAC: `cmd + alt + ->` or `cmd + alt + <-`
 It will make camera find the highlight node position.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/7.gif" width='720'>
-
