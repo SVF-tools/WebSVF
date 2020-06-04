@@ -1,7 +1,7 @@
 import arg from 'arg';
 import inquirer from 'inquirer';
-//import { createProject } from './main';
 import { createAnalysis } from './main';
+import execa from 'execa';
 
 
 function parseArgumentsIntoOptions(rawArgs) {
@@ -11,7 +11,9 @@ function parseArgumentsIntoOptions(rawArgs) {
       '--install': Boolean,
       '--out': String,
       '--generateJSON': String,
-      '-gen': '--generateJSON',
+      '--user': String,
+      '-g': '--generateJSON',
+      '-u': '--user',
       '-o': '--out',
       '-y': '--yes',
       '-i': '--install',
@@ -23,6 +25,7 @@ function parseArgumentsIntoOptions(rawArgs) {
   return {
     skipPrompts: args['--yes'] || false,
     template: args._[0],
+    user: args['--user'] || '',
     generateJSON: args['--generateJSON'] || '',
     output: args['--output'] || '',
     runInstall: args['--install'] || false,
@@ -30,7 +33,21 @@ function parseArgumentsIntoOptions(rawArgs) {
 }
 
 async function promptForMissingOptions(options) {
-  // const defaultTemplate = 'JavaScript';
+
+  const mapExclude = new Map([
+    ['root', 'user'], ['daemon', 'user'], ['bin', 'user'], ['sys', 'user'], ['sync', 'user'], ['games', 'user'], ['man', 'user'], ['lp', 'user'], ['mail', 'user'], ['news', 'user'], ['uucp', 'user'], ['proxy', 'user'], ['www-data', 'user'], ['backup', 'user'], ['list', 'user'], ['irc', 'user'], ['gnats', 'user'], ['nobody', 'user'], ['systemd-network', 'user'], ['systemd-resolve', 'user'], ['systemd-timesync', 'user'], ['messagebus', 'user'], ['syslog', 'user'], ['_apt', 'user'], ['tss', 'user'], ['uuidd', 'user'], ['tcpdump', 'user'], ['avahi-autoipd', 'user'], ['usbmux', 'user'], ['rtkit', 'user'], ['dnsmasq', 'user'], ['cups-pk-helper', 'user'], ['speech-dispatcher', 'user'], ['avahi', 'user'], ['kernoops', 'user'], ['saned', 'user'], ['nm-openvpn', 'user'], ['hplip', 'user'], ['whoopsie', 'user'], ['colord', 'user'], ['geoclue', 'user'], ['pulse', 'user'], ['gnome-initial-setup', 'user'], ['gdm', 'user'], ['systemd-coredump', 'user'], ['vboxadd', 'user']
+   ]);
+
+  const result = await execa('cut', ['-d:','-f1', '/etc/passwd']);       
+
+  const mapT = result.stdout.split('\n').filter((item)=>(!mapExclude.has(item)));
+
+  const defaultTemplate = mapT[0];
+
+  console.log(defaultTemplate);
+
+
+
   // if (options.skipPrompts) {
   //   return {
   //     ...options,
@@ -38,16 +55,26 @@ async function promptForMissingOptions(options) {
   //   };
   // }
  
-  // const questions = [];
-  // if (!options.template) {
-  //   questions.push({
-  //     type: 'list',
-  //     name: 'template',
-  //     message: 'Please choose which project template to use',
-  //     choices: ['JavaScript', 'TypeScript'],
-  //     default: defaultTemplate,
-  //   });
-  // }
+  const questions = [];
+  if (!options.user) {
+    questions.push({
+      type: 'list',
+      name: 'user',
+      message: 'Please choose which user to install WebSVF for:',
+      choices: mapT,
+      default: defaultTemplate,
+    });
+  }
+  else if(mapT.indexOf(`${options.user}`)===-1){
+    console.log(`${options.user}`);
+    questions.push({
+      type: 'list',
+      name: 'user',
+      message: 'User does not Exist, Please select one of the users:',
+      choices: mapT,
+      default: defaultTemplate,
+    });
+  }
  
   // if (!options.git) {
   //   questions.push({
@@ -58,21 +85,28 @@ async function promptForMissingOptions(options) {
   //   });
   // }
  
-  // const answers = await inquirer.prompt(questions);
-  // return {
-  //   ...options,
-  //   template: options.template || answers.template,
-  //   git: options.git || answers.git,
-  // };
+  const answers = await inquirer.prompt(questions);
+  return {
+    ...options,
+    user: options.user || answers.user,
+
+    //template: options.template || answers.template,
+
+    //git: options.git || answers.git,
+  };
+
+  return {
+    ...options
+  };
 }
 
 export async function cli(args) {
 
     let options = parseArgumentsIntoOptions(args);
 
-    //options = await promptForMissingOptions(options);
+    options = await promptForMissingOptions(options);
 
     await createAnalysis(options);
 
-    console.log(options);
+    //console.log(options);
 }
