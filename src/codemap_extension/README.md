@@ -1,7 +1,7 @@
 # 3D Code Map
 
 Program Analysis tool for bug detection.
-It is a vscode extension which can be installed into Vscode 1.41.0 at least.
+It is a vscode extension which can be installed into Vscode 1.43.0 at least.
 
 ![](https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/demo.gif)
 
@@ -13,21 +13,15 @@ After the program is compiled by analysis, it is used to display the analysis no
 -   Run `cd codemap_extension`
 -   Run `yarn`  
 -   Run `yarn go`
+-   Run `vsce package`
 
 ## User Instructions
 
-This project uses yarn workspaces and consists of the sub-projects _data-process_, _extension_ and _render-web-panel_.
-To setup a dev environment, follow these steps:
+Download [vsix file and test zip](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)
 
--   Clone the repository
--   Run `cd codemap_extension`
--   Run `yarn`
--   Run `yarn go`
--   Run `vsce package`
 
-It will create vsix file, then install by vscode ide.
 
-Open a project first and open a long lines file.
+
 
 Trying to click on the button at the bottom left.
 

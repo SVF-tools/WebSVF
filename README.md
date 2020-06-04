@@ -96,7 +96,7 @@ The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](h
 
 ## Step 4. Install WebSVF-codemap-extension
 
-- **Download extension: [VSIX release](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**  
+- **Download extension: [VSIX file and TEST zip](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**  
   <img src='./docs/DOWNLOAD_VISX.png' width='480'/>
 - **Extension installation**  
   <img src='./docs/VSIX_installation.png' width='480'/>
