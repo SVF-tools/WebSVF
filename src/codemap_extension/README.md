@@ -4,9 +4,9 @@
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='480'/>
 </p>
 
-<p align="center">Program Analysis tool for bug detection. It is a vscode extension which can be installed into Vscode 1.43.0 at least.</p>
+**<p align="center">Program Analysis tool for bug detection. It is a vscode extension which can be installed into Vscode 1.43.0 at least.</p>**
 
-<p align="center">After the program is compiled by analysis, it is used to display the analysis node information.</p>
+**<p align="center">After the program is compiled by analysis, it is used to display the analysis node information.</p>**
 
 
 ## **<p align="center">Architecture Overview</p>**
@@ -61,7 +61,7 @@ You can try to use **TEST.zip** to unzip and open it for test.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/project.gif" width='720'>
 
-As you see, 3D_CODE_GRAPH is needed to store control graph and value follow graph.
+As you see, **3D_CODE_GRAPH** is needed to store control graph and value follow graph.
 
 **2. Click statusbar to show 3D CODE MAP**
 
