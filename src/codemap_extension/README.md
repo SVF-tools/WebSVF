@@ -2,13 +2,12 @@
 
 <p align="center">
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='480'/>
-
-
-Program Analysis tool for bug detection.
-It is a vscode extension which can be installed into Vscode 1.43.0 at least.
-
-After the program is compiled by analysis, it is used to display the analysis node information.
 </p>
+
+<p align="center">Program Analysis tool for bug detection. It is a vscode extension which can be installed into Vscode 1.43.0 at least.</p>
+
+<p align="center">After the program is compiled by analysis, it is used to display the analysis node information.</p>
+
 
 ## **<p align="center">Architecture Overview</p>**
 
