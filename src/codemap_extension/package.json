@@ -2,6 +2,7 @@
     "name": "codemap-extension",
     "displayName": "ForceGraph3D For Code Analysis",
     "description": "ForceGraph3D For Code Analysis",
+    "icon": "images/logo.png",
     "version": "0.0.1",
     "publisher": "Raymond",
     "author": {
@@ -71,25 +72,25 @@
             },
             {
                 "command": "extension.ForceNodeNext",
-                "key": "ctrl+alt+shift+j",
+                "key": "ctrl+alt+j",
                 "mac": "cmd+alt+Right",
                 "when": "editorFocus"
             },
             {
                 "command": "extension.ForceNodeBefore",
-                "key": "ctrl+alt+shift+k",
+                "key": "ctrl+alt+k",
                 "mac": "cmd+alt+Left",
                 "when": "editorFocus"
             },
             {
                 "command": "extension.SelectRangeUp",
-                "key": "ctrl+alt+shift+i",
+                "key": "ctrl+alt+i",
                 "mac": "cmd+alt+Up",
                 "when": "editorTextFocus"
             },
             {
                 "command": "extension.SelectRangeDown",
-                "key": "ctrl+alt+shift+m",
+                "key": "ctrl+alt+m",
                 "mac": "cmd+alt+Down",
                 "when": "editorTextFocus"
             }
