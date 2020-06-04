@@ -20,7 +20,7 @@
   "files": [
     "bin/",
     "src/",
-    "tscripts/"
+    "scripts/"
   ],
   "author": "akshatsinghkaushik",
   "license": "ISC",

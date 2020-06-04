@@ -9,7 +9,6 @@ import commandExists from 'command-exists';
 import fs from 'fs';
 import ncp from 'ncp';
 
-
 const copy = promisify(ncp);
 const access = promisify(fs.access);
 
@@ -34,18 +33,6 @@ async function copyFiles(from,to) {
   });
  }
 
-// async function installSVF(path) {
-//   //console.log(path);
-//     const result = await execa.command('sh setupSVF.sh',{
-//       cwd: path,
-//     });
-//   //console.log(result.stdout)
-//   if (result.failed) {
-//     return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('SVF')}`));
-//   }
-//   return;
-// }
-
 async function updatePackages() {
   const result = await execa('sudo', ['apt-get', 'update']);
   if (result.failed) {
@@ -53,10 +40,6 @@ async function updatePackages() {
   }
   return;
 }
-
-// async function installSVFEssentialToolsOutput(options) {
-//   return execaout('sudo', ['apt-get', 'install', '-y' , 'curl', 'gcc', 'gdb', 'build-essential', 'cmake', 'wget', 'libtinfo-dev', 'libtinfo5', 'libtinfo6', 'libglib2.0-dev', 'libncurses5', 'libtool', 'libgraphviz-dev', 'graphviz', 'python3-pip']);
-//  }
 
 async function download(dir, link) {
   return execaout('wget', ['-c', link],{
@@ -88,25 +71,8 @@ async function installVSCodeDependencies() {
   return;
 }
 
-async function importMSKey() {
-  const result = await execa('wget', ['-q', 'https://packages.microsoft.com/keys/microsoft.asc', '-O-', '|', 'sudo', 'apt-key', 'add', '-']);
-  if (result.failed) {
-    return Promise.reject(new Error(`Failed to import ${chalk.yellow.bold('Microsoft GPG Key')}`));
-  }
-  return;
-}
-
-async function enableVSCodeRepository() {
-  const result = await execa('sudo', ['add-apt-repository', '"deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"']);
-  if (result.failed) {
-    return Promise.reject(new Error(`Failed to import ${chalk.yellow.bold('Microsoft GPG Key')}`));
-  }
-  return;
-}
-
 async function installVSCode() {
-  //const result = await execa('sudo', ['apt', 'install', '-y', 'code']);
-  const result = await execa('sudo', ['apt', 'install', '-y', './code_1.45.1-1589445302_amd64.deb']);//sudo apt install ./name.deb
+  const result = await execa('sudo', ['apt', 'install', '-y', './code_1.45.1-1589445302_amd64.deb']);
 
   if (result.failed) {
     return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('VSCode')}`));
@@ -115,8 +81,7 @@ async function installVSCode() {
 }
 
 async function removeInstallFiles() {
-  //const result = await execa('sudo', ['apt', 'install', '-y', 'code']);
-  const result = await execa('sudo', ['rm', '-rf', './code_1.45.1-1589445302_amd64.deb']);//sudo apt install ./name.deb
+  const result = await execa('sudo', ['rm', '-rf', './code_1.45.1-1589445302_amd64.deb']);
 
   if (result.failed) {
     return Promise.reject(new Error(`Failed to remove ${chalk.yellow.bold('VSCode Install File')}`));
@@ -144,16 +109,6 @@ async function createSVFToolsDirectory(user) {
     return Promise.reject(new Error(`Failed to remove ${chalk.yellow.bold('VSCode Install File')}`));
   }
   return;
-}
-
-async function checkReadWritePermissions(dir,rw) {
-  if(rw==='read'){
-    await access(dir, fs.constants.R_OK);
-  }
-  else{
-    await access(dir, fs.constants.W_OK);
-  }
-  
 }
 
 async function generateJSON(path, projectDir) {
@@ -325,15 +280,6 @@ export async function createAnalysis(options) {
             skip: () => depInstall.vscode,
             task: () => {
               return new Listr([
-              //  { 
-              //   title: `Updating ${chalk.blue('Ubuntu Packages')}`,
-              //   enabled: () => true,
-              //   task: () => updatePackages().then(()=>{}).catch((e)=>{
-              //     console.error(`${chalk.inverse(`Something went wrong updating ${chalk.red.bold('Ubuntu Packages')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-              //     console.error(e);
-              //     process.exit(1);
-              //   })
-              //   },
                 {
                   title: `Installing ${chalk.blue('Dependencies')}`,
                   enabled: () => true,
@@ -348,15 +294,6 @@ export async function createAnalysis(options) {
                   enabled: () => true,
                   task: () => execao('wget', ['https://az764295.vo.msecnd.net/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb'])
                 },
-                // {
-                //   title: `Enabling ${chalk.blue('VSCode Repository')}`,
-                //   enabled: () => true,
-                //   task: () => enableVSCodeRepository().then(()=>{}).catch((e)=>{
-                //     console.error(`${chalk.inverse(`Something went wrong enabling ${chalk.red.bold('VSCode Repository')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-                //     console.error(e);
-                //     process.exit(1);
-                //   })
-                // },
                 {
                   title: `Installing ${chalk.yellow('VSCode')}`,
                   enabled: () => true,
@@ -377,10 +314,6 @@ export async function createAnalysis(options) {
                 }
               ],{concurrent: false})
             }
-            // installDependencies('code').then(()=>depInstall.vscode = true).catch((e)=>{
-            //   console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('VSCode')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-            //   console.error(e);
-            // })
           },
           {
             title: `Installing ${chalk.inverse('Git')}`,
@@ -437,64 +370,6 @@ export async function createAnalysis(options) {
               ],{concurrent: false})
             }
           },
-          // {
-          //   title: `Downloading and Installing ${chalk.blue('LLVM, Clang & SVF')}`,
-          //   enabled: () => true,
-          //   task: () => execao('sh', ['setupSVF.sh'],{
-          //       cwd: templateDir,
-          //     }, (result)=>{console.error(result)})
-            
-          //   // installSVF(templateDir).then(()=>{}).catch((e)=>{
-          //   //   console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('SVF')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-          //   //   console.error(e);
-          //   // })
-          // }
-          // {
-          //   title: `Checking if ${chalk.blue('SVF-Tools')} directory exists`,
-          //   enabled: () => true,
-          //   task: () => checkReadWritePermissions('~/SVFTools','read').then(()=>{dirPresence.svfToolsR=true}).catch(()=>{})
-          //  },
-          // {
-          //   title: `Checking if ${chalk.blue('SVF-Tools/SVF')} directory exists`,
-          //   enabled: () => true,
-          //   task: () => {
-
-          //     let readable = false;
-
-          //     try {
-          //       await access('~/SVF-Tools/SVF', fs.constants.R_OK);
-          //     } catch (err) {
-          //       // console.error('%s Invalid template name', chalk.red.bold('ERROR'));
-          //       // process.exit(1);
-          //       readable = false;
-          //     }
-              
-          //     if(readable===true){
-          //       dirPresence.svfR = true;
-          //     }
-          //   }
-          // },
-          // {
-          //   title: `Checking for ${chalk.blue('Write Access')}`,
-          //   enabled: () => true,
-          //   //skip: () => ,
-          //   task: () => {
-
-          //     let readable = false;
-
-          //     try {
-          //       await access('~/', fs.constants.W_OK);
-          //     } catch (err) {
-          //       // console.error('%s Invalid template name', chalk.red.bold('ERROR'));
-          //       // process.exit(1);
-          //       readable = false;
-          //     }
-              
-          //     if(readable===true){
-          //       dirPresence.homeW = true;
-          //     }
-          //   }
-          // },
           {
             title: `Deleting ${chalk.inverse.blue('Old SVF Files')}`,
             enabled: () => false && dirPresence.svfR,
@@ -539,14 +414,6 @@ export async function createAnalysis(options) {
                 cwd: `/home/${options.user}/SVFTools/`
               },(result)=>{dirPresence.llvmclangUnpack = true})
           },
-          // {
-          //   title: `Making ${chalk.blue('clang-llvm')} directory`,
-          //   enabled: () => !dirPresence.llvmclang,
-          //   skip: () => !dirPresence.homeW,
-          //   task: () => execao('mkdir', ['-m', 'a=rwx','clang-llvm'],{
-          //     cwd: `/home/${options.user}/SVFTools/`,
-          //   })
-          // },
           {
             title: `Renaming ${chalk.inverse.blue('LLVM-Clang')} directory`,
             enabled: () => (!dirPresence.llvmclang && dirPresence.llvmclangUnpack),
@@ -573,10 +440,9 @@ export async function createAnalysis(options) {
                   if (err) {
                       throw err;
                   }
-                  const dataSplit = data.toString().split('########\n# 1. set path\n########');
+                  const dataSplit = data.toString().replace('#########', `########\nINSTALL_DIR="/home/${options.user}/SVFTools"`).replace(/\r\n/gm, "\n");
 
-                  fs.writeFile(`/home/${options.user}/SVFTools/setupSVF.sh`, `${dataSplit[0]}\n########\n# 1. set path\n########\nINSTALL_DIR="/home/${options.user}/SVFTools"${dataSplit[1]}`, (err) => {
-                    // throws an error, you could also catch it here
+                  fs.writeFile(`/home/${options.user}/SVFTools/setupSVF.sh`, `########\nINSTALL_DIR="/home/${options.user}/SVFTools"`, (err) => {
                     if (err) throw err;
 
                     execao('sh', ['setupSVF.sh'],{
@@ -602,19 +468,7 @@ export async function createAnalysis(options) {
             task: () => execao('rm', ['-rf','clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz', `SVF.tar.xz` ],{//, 'setupSVF.sh'
                 cwd: `/home/${options.user}/SVFTools/`
               })
-          },
-          
-
-          // {
-          //   title: `Creating ${chalk.blue('SVF-Tools')} directory`,
-          //   enabled: () => !dirPresence.svfR,
-          //   skip: () => !dirPresence.homeW,
-          //   task: () => createSVFToolsDirectory().then(()=>{}).catch((e)=>{
-          //     console.error(`${chalk.inverse(`Something went wrong creating ${chalk.red.bold('SVF-Tools')} directory${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-          //     console.error(e);
-          //     process.exit(1);
-          //   })
-          // }
+          }
         ], {concurrent: false})
       }
     },
