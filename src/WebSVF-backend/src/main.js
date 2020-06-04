@@ -89,17 +89,6 @@ async function removeInstallFiles() {
   return;
 }
 
-async function removeOldSVF(user) {
-  const result = await execa('rm', ['-rf', 'SVF'],{
-    cwd: `/home/${user}/SVFTools/`,
-  });
-
-  if (result.failed) {
-    return Promise.reject(new Error(`Failed to remove ${chalk.yellow.bold('VSCode Install File')}`));
-  }
-  return;
-}
-
 async function createSVFToolsDirectory(user) {
   const result = await execa('mkdir', ['-m', 'a=rwx','SVFTools'],{
     cwd: `/home/${user}`,
@@ -141,7 +130,8 @@ export async function createAnalysis(options) {
     llvmclangUnpack: true,
     llvmclang: true,
     codemap: true,
-    frontend: true
+    frontend: true,
+    extDir: true
   }
   
 
@@ -149,6 +139,12 @@ export async function createAnalysis(options) {
     await access(`/home/${options.user}/SVFTools`, fs.constants.R_OK);
   } catch (err) {
     dirPresence.svfToolsR = false;
+  }
+
+  try {
+    await access(`/home/${options.user}/SVFTools/SVF`, fs.constants.R_OK);
+  } catch (err) {
+    dirPresence.svfR = false;
   }
 
   try {
@@ -179,6 +175,12 @@ export async function createAnalysis(options) {
     await access(`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension`, fs.constants.R_OK);
   } catch (err) {
     dirPresence.frontend = false;
+  }
+
+  try {
+    await access(`/home/${options.user}/.vscode/extensions`, fs.constants.R_OK);
+  } catch (err) {
+    dirPresence.extDir = false;
   }
 
   
@@ -336,7 +338,7 @@ export async function createAnalysis(options) {
             })
           },
           {
-            title: `Installing ${chalk.inverse('Git')}`,
+            title: `Installing ${chalk.inverse('Unzip')}`,
             enabled: () => true,
             //skip: () => depInstall.git,
             task: () => execao('sudo', ['apt', 'install', '-y', 'unzip'])
@@ -345,89 +347,114 @@ export async function createAnalysis(options) {
       }      
     },
     {
-      title: `Downloading ${chalk.inverse('WebSVF-frontend-extension')}`,
+      title: `Installing ${chalk.inverse('WebSVF Extensions')}`,
       enabled: () => depInstall.vscode && !dirPresence.frontend,
-      skip: () => !options.runInstall,
-      task: () => execao('wget', ['-c','https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix'])
-    },
-    {
-      title: `Downloading ${chalk.inverse('WebSVF-codemap-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.codemap,
-      skip: () => !options.runInstall,
-      task: () => execao('wget', ['-c', 'https://github.com/SVF-tools/WebSVF/releases/download/0.0.1/codemap-extension-0.0.1.vsix'])
-    },
-    {
-      title: `Copying ${chalk.blue('WebSVF-frontend-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.frontend,
-      skip: () => !options.runInstall,
-      task: () => execao('mv', ['-f','WebSVF-frontend-extension_0.9.0.vsix', `/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0.zip`])
-    },
-    {
-      title: `Copying ${chalk.blue('WebSVF-codemap-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.codemap,
-      skip: () => !options.runInstall,
-      task: () => execao('mv', ['-f','codemap-extension-0.0.1.vsix',`/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1.zip`])
-    },
-    {
-      title: `Making directory ${chalk.blue('WebSVF-codemap-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.codemap,
-      skip: () => !options.runInstall,
-      task: () => execao('mkdir', ['-m', 'a=rwx','codemap-extension-0.0.1'],{
-        cwd: `/home/${options.user}/.vscode/extensions`
-      })
-    },
-    {
-      title: `Making directory ${chalk.blue('WebSVF-frontend-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.frontend,
-      skip: () => !options.runInstall,
-      task: () => execao('mkdir', ['-m', 'a=rwx','WebSVF-frontend-extension_0.9.0'],{
-        cwd: `/home/${options.user}/.vscode/extensions`
-      })
-    },
-    {
-      title: `Extracting ${chalk.blue('WebSVF-codemap-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.codemap,
-      skip: () => !options.runInstall,
-      task: () => execao('unzip', ['codemap-extension-0.0.1.zip', '-d', `/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1`],{
-        cwd: `/home/${options.user}/.vscode/extensions`
-      })
-    },
-    {
-      title: `Extracting ${chalk.blue('WebSVF-frontend-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.frontend,
-      skip: () => !options.runInstall,
-      task: () => execao('unzip', ['WebSVF-frontend-extension_0.9.0.zip', '-d', `/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0`],{
-        cwd: `/home/${options.user}/.vscode/extensions`
-      })
-    },
-    {
-      title: `Extracting ${chalk.blue('WebSVF-codemap-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.codemap,
-      skip: () => !options.runInstall,
-      task: () => execao('mv', ['-f',`/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1/extension/`,`/home/${options.user}/.vscode/extensions/codemap-extension/`])
-    },
-    {
-      title: `Extracting ${chalk.blue('WebSVF-frontend-extension')}`,
-      enabled: () => depInstall.vscode && !dirPresence.frontend,
-      skip: () => !options.runInstall,
-      task: () => execao('mv', ['-f',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0/extension/`,`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`])
-    },
-    {
-      title: `Allowing ${chalk.blue('access to extensions')}`,
-      enabled: () => depInstall.vscode && !dirPresence.frontend && !dirPresence.codemap,
       skip: () => !options.runInstall,
       task: () => {
-        execao('chmod', ['-R','u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`]);
-        execao('chmod', ['-R','u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/codemap-extension/`]);
+        return new Listr([
+          {
+            title: `Downloading ${chalk.inverse('WebSVF-frontend-extension')}`,
+            enabled: () => depInstall.vscode && !dirPresence.frontend,
+            skip: () => !options.runInstall,
+            task: () => execao('wget', ['-c','https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix'])
+          },
+          {
+            title: `Downloading ${chalk.inverse('WebSVF-codemap-extension')}`,
+            enabled: () => depInstall.vscode && !dirPresence.codemap,
+            skip: () => !options.runInstall,
+            task: () => execao('wget', ['-c', 'https://github.com/SVF-tools/WebSVF/releases/download/0.0.1/codemap-extension-0.0.1.vsix'])
+          },
+          {
+            title: `Making directory ${chalk.blue('VSCode Extensions')}`,
+            enabled: () => !dirPresence.extDir,
+            //skip: () => !options.runInstall,
+            task: () => execao('mkdir', ['-m', 'a=rwx', '.vscode'],{
+              cwd: `/home/${options.user}`
+            })
+          },
+          {
+            title: `Making directory ${chalk.blue('VSCode Extensions')}`,
+            enabled: () => !dirPresence.extDir,
+            //skip: () => !options.runInstall,
+            task: () => execao('mkdir', ['-m', 'a=rwx', '-p', 'extensions'],{
+              cwd: `/home/${options.user}/.vscode`
+            })
+          },
+          {
+            title: `Copying ${chalk.blue('WebSVF-frontend-extension')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.frontend),
+            //skip: () => !options.runInstall,
+            task: () => execao('mv', ['-f','WebSVF-frontend-extension_0.9.0.vsix', `/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0.zip`])
+          },
+          {
+            title: `Copying ${chalk.blue('WebSVF-codemap-extension')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.codemap),
+            skip: () => !options.runInstall,
+            task: () => execao('mv', ['-f','codemap-extension-0.0.1.vsix',`/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1.zip`])
+          },
+          {
+            title: `Making directory ${chalk.blue('WebSVF-codemap-extension')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.codemap),
+            skip: () => !options.runInstall,
+            task: () => execao('mkdir', ['-m', 'a=rwx','codemap-extension-0.0.1'],{
+              cwd: `/home/${options.user}/.vscode/extensions`
+            })
+          },
+          {
+            title: `Making directory ${chalk.blue('WebSVF-frontend-extension')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.frontend),
+            skip: () => !options.runInstall,
+            task: () => execao('mkdir', ['-m', 'a=rwx','WebSVF-frontend-extension_0.9.0'],{
+              cwd: `/home/${options.user}/.vscode/extensions`
+            })
+          },
+          {
+            title: `Extracting ${chalk.blue('WebSVF-codemap-extension')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.codemap),
+            skip: () => !options.runInstall,
+            task: () => execao('unzip', ['codemap-extension-0.0.1.zip', '-d', `/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1`],{
+              cwd: `/home/${options.user}/.vscode/extensions`
+            })
+          },
+          {
+            title: `Extracting ${chalk.blue('WebSVF-frontend-extension')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.frontend),
+            skip: () => !options.runInstall,
+            task: () => execao('unzip', ['WebSVF-frontend-extension_0.9.0.zip', '-d', `/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0`],{
+              cwd: `/home/${options.user}/.vscode/extensions`
+            })
+          },
+          {
+            title: `Extracting ${chalk.blue('WebSVF-codemap-extension')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.codemap),
+            skip: () => !options.runInstall,
+            task: () => execao('mv', ['-f',`/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1/extension/`,`/home/${options.user}/.vscode/extensions/codemap-extension/`])
+          },
+          {
+            title: `Extracting ${chalk.blue('WebSVF-frontend-extension')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.frontend),
+            skip: () => !options.runInstall,
+            task: () => execao('mv', ['-f',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0/extension/`,`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`])
+          },
+          {
+            title: `Allowing ${chalk.blue('access to extensions')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.frontend && !dirPresence.codemap),
+            skip: () => !options.runInstall,
+            task: () => {
+              execao('chmod', ['-R','u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`]);
+              execao('chmod', ['-R','u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/codemap-extension/`]);
+            }
+          },
+          {
+            title: `Removing ${chalk.blue('Extension files')}`,
+            enabled: () => (depInstall.vscode && !dirPresence.frontend && !dirPresence.codemap),
+            skip: () => !options.runInstall,
+            task: () => execao('rm', ['-rf','WebSVF-frontend-extension_0.9.0.zip','codemap-extension-0.0.1.zip', 'codemap-extension-0.0.1/', 'WebSVF-frontend-extension_0.9.0/'],{
+              cwd: `/home/${options.user}/.vscode/extensions`
+            })
+          },
+        ],{concurrent: false})
       }
-    },
-    {
-      title: `Removing ${chalk.blue('Extension files')}`,
-      enabled: () => depInstall.vscode && !dirPresence.frontend && !dirPresence.codemap,
-      skip: () => !options.runInstall,
-      task: () => execao('rm', ['-rf','WebSVF-frontend-extension_0.9.0.zip','codemap-extension-0.0.1.zip', 'codemap-extension-0.0.1/', 'WebSVF-frontend-extension_0.9.0/'],{
-        cwd: `/home/${options.user}/.vscode/extensions`
-      })
     },
     {
       title: `Installing ${chalk.inverse('SVF')}`,
@@ -470,16 +497,6 @@ export async function createAnalysis(options) {
                 
               ],{concurrent: false})
             }
-          },
-          {
-            title: `Deleting ${chalk.inverse.blue('Old SVF Files')}`,
-            enabled: () => false && dirPresence.svfR,
-            skip: () => !dirPresence.homeW,
-            task: () => removeOldSVF(options.user).then(()=>{}).catch((e)=>{
-              console.error(`${chalk.inverse(`Something went wrong removing ${chalk.red.bold('Old SVF Files')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-              console.error(e);
-              process.exit(1);
-            })
           },
           {
             title: `Creating ${chalk.inverse.blue('SVF-Tools')} directory`,
@@ -550,24 +567,12 @@ export async function createAnalysis(options) {
                       cwd: `/home/${options.user}/SVFTools/`,
                     }, (result)=>{
                       console.error(`${chalk.inverse.green('SUCCESS')}: Please RESTART your system to finish Installation`);
-                      process.exit(1);
+                      execao('rm', ['-rf','clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz', `SVF.tar.xz`, 'setupSVF.sh' ],{
+                        cwd: `/home/${options.user}/SVFTools/`
+                      })
                     })
                 });
                 });
-              })
-          },
-          {
-            title: `Setting PATHs for ${chalk.inverse.blue('LLVM, Clang & SVF')}`,
-            enabled: () => false,
-            task: () => {}
-          },
-          {
-
-            title: `${chalk.inverse.blue('Cleaning Up')}`,
-            enabled: () => (dirPresence.svfR && dirPresence.llvmclang),
-            skip: () => !dirPresence.homeW,
-            task: () => execao('rm', ['-rf','clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz', `SVF.tar.xz`, 'setupSVF.sh' ],{
-                cwd: `/home/${options.user}/SVFTools/`
               })
           }
         ], {concurrent: false})

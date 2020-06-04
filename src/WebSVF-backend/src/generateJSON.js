@@ -4,7 +4,7 @@ var exec = require('child_process').exec;
 var path = require('path');
 var arguments = process.argv.splice(2);
 var projectPath = arguments[0] + "/";
-//exec(". ./setup.sh");
+exec(". ./setup.sh");
 String.prototype.endWith = function(endStr) {
     var d = this.length-endStr.length;
     return (d >= 0 && this.lastIndexOf(endStr) == d);
@@ -48,22 +48,21 @@ function analyzeData_1(output) {
     var bugreports;
     var bugreportsArray = [];
     var errors = [];
-    var errorStringArray_1 = output.split("\n\n");
-    errorStringArray_1.pop();
-    //console.log(errorStringArray.length);
-    var errorStringArray = [];
-    errorStringArray_1.forEach(element => {
-        if (element.indexOf("PartialLeak") != -1 && element.indexOf("NeverFree") != -1) {
-            var array = element.split("\n");
-            errorStringArray.push(array.shift());
-            var partialLeakString = array.join("\n");
-            errorStringArray.push(partialLeakString);
-        } else {
-            errorStringArray.push(element);
+    var errorStringArray_1 = output.split("\n");
+    var errorStringInstance = "";
+    errorStringArray_1.forEach(row => {
+        if (row.indexOf("PartialLeak") != -1 || row.indexOf("NeverFree") != -1) {
+            row = "\n\n" + row;
+        }
+        errorStringInstance += (row + "\n");
+    });
+    var errorStringArray = errorStringInstance.split("\n\n");
+    errorStringArray.forEach((r, i) => {
+        if (!(r.indexOf("PartialLeak") != -1 || r.indexOf("NeverFree") != -1)) {
+            errorStringArray.splice(i, 1);
         }
     });
     errorStringArray.forEach(element => {
-        console.log("-------------------------\n" + element);
         var error;
         if (element.indexOf("PartialLeak") != -1) {
             error = analyzePLError(element);
