@@ -4,7 +4,7 @@
 
 ########
 # 1. set path
-########
+#########
 ETC_PROFILE=/etc/profile # path file
 LLVM_ORIGINAL_NAME="clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04" # after unzip llvm file name
 LLVM_NAME="clang-llvm" # llvm file name which we want to use

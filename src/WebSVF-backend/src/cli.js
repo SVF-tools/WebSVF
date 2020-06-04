@@ -44,7 +44,7 @@ async function promptForMissingOptions(options) {
 
   const defaultTemplate = mapT[0];
 
-  console.log(defaultTemplate);
+  //console.log(defaultTemplate);
 
 
 
