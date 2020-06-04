@@ -12,7 +12,7 @@ After the program is compiled by analysis, it is used to display the analysis no
 -  **Clone the repository**
 -  **Run `cd codemap_extension`**
 -  **Run `yarn`**  
--  **Run `yarn go` to build or `F5` to debug**
+-  **Run `yarn go` for build or `F5` for debug**
 
 ## **User Instructions**
 
