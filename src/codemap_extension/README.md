@@ -40,6 +40,14 @@ After the program is compiled by analysis, it is used to display the analysis no
 
 **1. Vscode open a C/C++ project**
 
+**Require Folder and Files**
+
+- **`C/C++ Project` in `VSCODE WORKSPACE`**
+- **`3D_CODE_GRAPH` as folder in `VSCODE WORKSPACE`**
+- **`control_follow_graph.json` in `3D_CODE_GRAPH`**
+- **`value_follow_graph.json` in `3D_CODE_GRAPH`**
+
+
 You can try to use **TEST.zip** to unzip and open it for test.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/project.gif" width='720'>
