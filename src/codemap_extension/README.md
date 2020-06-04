@@ -1,4 +1,4 @@
-# **<p align="center">3D Code Map</p>**
+# **<p align="center">3D CODE MAP</p>**
 
 <p align="center">
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='480'/>
