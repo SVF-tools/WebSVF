@@ -1,14 +1,14 @@
 {
     "name": "codemap-extension",
-    "displayName": "ForceGraph3D For Code Analysis",
-    "description": "ForceGraph3D For Code Analysis",
+    "displayName": "CODE MAP",
+    "description": "Analysis online",
     "icon": "images/logo.png",
     "version": "0.0.1",
     "publisher": "Raymond",
     "author": {
         "name": "Raymond Guan",
         "email": "spcidealacm@gmail.com",
-        "url": "https://github.com/spcidealacm"
+        "url": "https://github.com/SVF-tools/WebSVF/tree/master/src/codemap_extension"
     },
     "engines": {
         "vscode": "^1.43.0"
