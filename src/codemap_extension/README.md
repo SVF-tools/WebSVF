@@ -83,7 +83,7 @@ Click the CFG or VFG button will show the two graph.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/1.gif" width='720'>
 
-**2. show node label**
+**2. Show node label**
 
 Hover over any node will show the label.
 
