@@ -19,16 +19,19 @@ After the program is compiled by analysis, it is used to display the analysis no
 ### **Installation**
 
 **1. Download extension: [VSIX file and TEST zip](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**
+
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/DOWNLOAD_VISX.png' width='480'/>
 
   VSIX file is vscdoe extension. TEST zip for extension testing. 
 
 **2. Extension installation**  
+
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/VSIX_installation.png' width='480'/>
 
   Through this picture show to install extension. and then unzip TEST.zip. Use vscode open TEST work folder.
 
 **3. Installed situation**  
+
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/3D_CODEMAP.png' width='480'/>
 
   After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
@@ -37,7 +40,7 @@ After the program is compiled by analysis, it is used to display the analysis no
 
 **1. Vscode open a C/C++ project**
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6cdsaMRHczg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/project.gif" width='120'>
 
 As you see, 3D_CODE_GRAPH is needed to store control graph and value follow graph.
 You can try to use TEST.zip to unzip and open it for test.
