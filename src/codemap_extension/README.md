@@ -9,6 +9,10 @@ It is a vscode extension which can be installed into Vscode 1.43.0 at least.
 
 After the program is compiled by analysis, it is used to display the analysis node information.
 
+## **Architecture Overview**
+
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/codemap_flowchart.png' width='480'/>
+
 ## **Dev Instructions**
 
 -   **Clone the repository**
