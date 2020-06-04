@@ -8,12 +8,10 @@ import execao from 'execa-output';
 import commandExists from 'command-exists';
 import fs from 'fs';
 import ncp from 'ncp';
-import os from 'os';
 
 
 const copy = promisify(ncp);
 const access = promisify(fs.access);
-
 
 async function installDependencies(dependency) {
   let result;
@@ -29,6 +27,12 @@ async function installDependencies(dependency) {
   }
   return;
 }
+
+async function copyFiles(from,to) {
+  return copy(from, to, {
+    clobber: true,
+  });
+ }
 
 // async function installSVF(path) {
 //   //console.log(path);
@@ -49,6 +53,16 @@ async function updatePackages() {
   }
   return;
 }
+
+// async function installSVFEssentialToolsOutput(options) {
+//   return execaout('sudo', ['apt-get', 'install', '-y' , 'curl', 'gcc', 'gdb', 'build-essential', 'cmake', 'wget', 'libtinfo-dev', 'libtinfo5', 'libtinfo6', 'libglib2.0-dev', 'libncurses5', 'libtool', 'libgraphviz-dev', 'graphviz', 'python3-pip']);
+//  }
+
+async function download(dir, link) {
+  return execaout('wget', ['-c', link],{
+    cwd: dir
+  });
+ }
 
 async function installSVFEssentialTools() {
   const result = await execa('sudo', ['apt-get', 'install', '-y' , 'curl', 'gcc', 'gdb', 'build-essential', 'cmake', 'wget', 'libtinfo-dev', 'libtinfo5', 'libtinfo6', 'libglib2.0-dev', 'libncurses5', 'libtool', 'libgraphviz-dev', 'graphviz', 'python3-pip']); //'libtinfo6',
@@ -110,9 +124,9 @@ async function removeInstallFiles() {
   return;
 }
 
-async function removeOldSVF() {
-  const result = await execa('sudo', ['rmdir', 'SVF'],{
-    cwd: `${os.homedir()}/SVFTools`,
+async function removeOldSVF(user) {
+  const result = await execa('rm', ['-rf', 'SVF'],{
+    cwd: `/home/${user}/SVFTools/`,
   });
 
   if (result.failed) {
@@ -121,9 +135,9 @@ async function removeOldSVF() {
   return;
 }
 
-async function createSVFToolsDirectory() {
-  const result = await execa('sudo', ['mkdir', 'SVF-Tools'],{
-    cwd: `${os.homedir()}`,
+async function createSVFToolsDirectory(user) {
+  const result = await execa('mkdir', ['-m', 'a=rwx','SVFTools'],{
+    cwd: `/home/${user}`,
   });
 
   if (result.failed) {
@@ -168,23 +182,38 @@ export async function createAnalysis(options) {
   const dirPresence = {
     svfToolsR: true,
     homeW: true,
-    svfR: true
+    svfR: true,
+    llvmclangUnpack: true,
+    llvmclang: true
   }
+  
 
   try {
-    await access(`${os.homedir()}/SVFTools`, fs.constants.R_OK);
+    await access(`/home/${options.user}/SVFTools`, fs.constants.R_OK);
   } catch (err) {
     dirPresence.svfToolsR = false;
   }
 
   try {
-    await access(`${os.homedir()}`, fs.constants.W_OK);
+    await access(`/home/${options.user}/SVFTools/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04`, fs.constants.R_OK);
+  } catch (err) {
+    dirPresence.llvmclangUnpack = false;
+  }
+
+  try {
+    await access(`/home/${options.user}/SVFTools/clang-llvm`, fs.constants.R_OK);
+  } catch (err) {
+    dirPresence.llvmclang = false;
+  }
+
+  try {
+    await access(`/home/${options.user}`, fs.constants.W_OK);
   } catch (err) {
     dirPresence.homeW = false;
   }
 
   try {
-    await access(`${os.homedir()}/SVFTools/SVF`, fs.constants.R_OK);
+    await access(`/home/${options.user}/SVFTools/SVF`, fs.constants.R_OK);
   } catch (err) {
     dirPresence.svfR = false;
   }
@@ -367,7 +396,7 @@ export async function createAnalysis(options) {
       }      
     },
     {
-      title: 'Installing SVF',
+      title: `Installing ${chalk.inverse('SVF')}`,
       enabled: () => options.runInstall,
       skip: () => depInstall.svf,
       task: () => {
@@ -468,9 +497,9 @@ export async function createAnalysis(options) {
           // },
           {
             title: `Deleting ${chalk.inverse.blue('Old SVF Files')}`,
-            enabled: () => dirPresence.svfR,
+            enabled: () => false && dirPresence.svfR,
             skip: () => !dirPresence.homeW,
-            task: () => removeOldSVF().then(()=>{}).catch((e)=>{
+            task: () => removeOldSVF(options.user).then(()=>{}).catch((e)=>{
               console.error(`${chalk.inverse(`Something went wrong removing ${chalk.red.bold('Old SVF Files')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
               console.error(e);
               process.exit(1);
@@ -480,12 +509,102 @@ export async function createAnalysis(options) {
             title: `Creating ${chalk.inverse.blue('SVF-Tools')} directory`,
             enabled: () => !dirPresence.svfToolsR,
             skip: () => !dirPresence.homeW,
-            task: () => createSVFToolsDirectory().then(()=>{}).catch((e)=>{
+            task: () => createSVFToolsDirectory(options.user).then(()=>{}).catch((e)=>{
               console.error(`${chalk.inverse(`Something went wrong creating ${chalk.red.bold('SVF-Tools')} directory${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
               console.error(e);
               process.exit(1);
             })
           },
+          {
+            title: `Downloading ${chalk.inverse.blue('LLVM-Clang 10.0')} binary`,
+            enabled: () => (!dirPresence.llvmclangUnpack && !dirPresence.llvmclang),
+            skip: () => !dirPresence.homeW,
+            task: () => execao('wget', ['-c', 'https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz'],{
+                cwd: `/home/${options.user}/SVFTools/`
+              })
+          },
+          {
+            title: `Downloading ${chalk.inverse.blue('SVF')} binary`,
+            enabled: () => !dirPresence.svfR,
+            skip: () => !dirPresence.homeW,
+            task: () => execao('wget', ['-c', 'https://github.com/codemapweb/SVF/releases/download/1.0/SVF.tar.xz'],{
+                cwd: `/home/${options.user}/SVFTools/`
+              })
+          },
+          {
+            title: `Unpacking ${chalk.inverse.blue('LLVM-Clang 10.0')} binary`,
+            enabled: () => (!dirPresence.llvmclangUnpack && !dirPresence.llvmclang),
+            skip: () => !dirPresence.homeW,
+            task: () => execao('tar', ['-xvf','clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz', '-C', `/home/${options.user}/SVFTools/`],{
+                cwd: `/home/${options.user}/SVFTools/`
+              },(result)=>{dirPresence.llvmclangUnpack = true})
+          },
+          // {
+          //   title: `Making ${chalk.blue('clang-llvm')} directory`,
+          //   enabled: () => !dirPresence.llvmclang,
+          //   skip: () => !dirPresence.homeW,
+          //   task: () => execao('mkdir', ['-m', 'a=rwx','clang-llvm'],{
+          //     cwd: `/home/${options.user}/SVFTools/`,
+          //   })
+          // },
+          {
+            title: `Renaming ${chalk.inverse.blue('LLVM-Clang')} directory`,
+            enabled: () => (!dirPresence.llvmclang && dirPresence.llvmclangUnpack),
+            skip: () => !dirPresence.homeW,
+            task: () => execao('mv', [`/home/${options.user}/SVFTools/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04`,`/home/${options.user}/SVFTools/clang-llvm`],{
+              cwd: `/home/${options.user}/SVFTools/`,
+            },(result)=>{dirPresence.llvmclang = true})
+          },
+          {
+            title: `Unpacking ${chalk.inverse.blue('SVF')} binary`,
+            enabled: () => !dirPresence.svfR,
+            skip: () => !dirPresence.homeW,
+            task: () => execao('tar', ['-xvf','SVF.tar.xz', '-C', `/home/${options.user}/SVFTools/`],{
+                cwd: `/home/${options.user}/SVFTools/`
+            },(result)=>{dirPresence.svfR = true})
+          },
+          {
+            title: `Setting PATHs for ${chalk.inverse.blue('LLVM, Clang & SVF')}`,
+            enabled: () => true,
+            task: () => execao('cp', ['-f', 'setupSVF.sh', `/home/${options.user}/SVFTools/`],{
+                cwd: templateDir,
+              }, (result)=>{
+                fs.readFile(`/home/${options.user}/SVFTools/setupSVF.sh`, (err, data) => {
+                  if (err) {
+                      throw err;
+                  }
+                  const dataSplit = data.toString().split('########\n# 1. set path\n########');
+
+                  fs.writeFile(`/home/${options.user}/SVFTools/setupSVF.sh`, `${dataSplit[0]}\n########\n# 1. set path\n########\nINSTALL_DIR="/home/${options.user}/SVFTools"${dataSplit[1]}`, (err) => {
+                    // throws an error, you could also catch it here
+                    if (err) throw err;
+
+                    execao('sh', ['setupSVF.sh'],{
+                      cwd: `/home/${options.user}/SVFTools/`,
+                    }, (result)=>{
+                      console.error(`${chalk.inverse.green('SUCCESS')}: Please RESTART your system to finish Installation`);
+                      process.exit(1);
+                    })
+                });
+                });
+              })
+          },
+          {
+            title: `Setting PATHs for ${chalk.inverse.blue('LLVM, Clang & SVF')}`,
+            enabled: () => false,
+            task: () => {}
+          },
+          {
+
+            title: `${chalk.inverse.blue('Cleaning Up')}`,
+            enabled: () => (dirPresence.svfR && dirPresence.llvmclang),
+            skip: () => !dirPresence.homeW,
+            task: () => execao('rm', ['-rf','clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz', `SVF.tar.xz` ],{//, 'setupSVF.sh'
+                cwd: `/home/${options.user}/SVFTools/`
+              })
+          },
+          
+
           // {
           //   title: `Creating ${chalk.blue('SVF-Tools')} directory`,
           //   enabled: () => !dirPresence.svfR,
@@ -517,8 +636,8 @@ export async function createAnalysis(options) {
     console.error(e);
   }
 
-  console.log(depInstall);
-  console.log(dirPresence);
+  //console.log(depInstall);
+  //console.log(dirPresence);
 
   return true;
 }
