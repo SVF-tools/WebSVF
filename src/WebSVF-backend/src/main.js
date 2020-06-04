@@ -3,14 +3,25 @@ import chalk from 'chalk';
 import Listr from 'listr';
 import execa from 'execa';
 import path from 'path';
+import { promisify } from 'util';
+import execao from 'execa-output';
 import commandExists from 'command-exists';
+import fs from 'fs';
+import ncp from 'ncp';
+import os from 'os';
+
+
+const copy = promisify(ncp);
+const access = promisify(fs.access);
+
 
 async function installDependencies(dependency) {
+  let result;
   if(dependency==='code'){
-    const result = await execa('sudo', ['snap','install', dependency, '--classic']);
+    result = await execa('sudo', ['snap','install', '--classic', dependency ]);
   }
   else{
-    const result = await execa('sudo', ['apt','install','-y', dependency]);
+    result = await execa('sudo', ['apt','install','-y', dependency]);
   }
   
   if (result.failed) {
@@ -19,17 +30,17 @@ async function installDependencies(dependency) {
   return;
 }
 
-async function installSVF(path) {
-  //console.log(path);
-    const result = await execa('sh', ['setupSVF.sh'],{
-      cwd: path,
-    });
-  //console.log(result.stdout)
-  if (result.failed) {
-    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('SVF')}`));
-  }
-  return;
-}
+// async function installSVF(path) {
+//   //console.log(path);
+//     const result = await execa.command('sh setupSVF.sh',{
+//       cwd: path,
+//     });
+//   //console.log(result.stdout)
+//   if (result.failed) {
+//     return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('SVF')}`));
+//   }
+//   return;
+// }
 
 async function updatePackages() {
   const result = await execa('sudo', ['apt-get', 'update']);
@@ -40,7 +51,7 @@ async function updatePackages() {
 }
 
 async function installSVFEssentialTools() {
-  const result = await execa('sudo', ['apt-get', 'install', '-y' , 'curl', 'gcc', 'gdb', 'build-essential', 'cmake', 'wget', 'libtinfo-dev', 'libtinfo5', 'libtinfo6', 'libglib2.0-dev', 'libncurses5', 'libtool', 'libgraphviz-dev', 'graphviz', 'python3.8']);
+  const result = await execa('sudo', ['apt-get', 'install', '-y' , 'curl', 'gcc', 'gdb', 'build-essential', 'cmake', 'wget', 'libtinfo-dev', 'libtinfo5', 'libtinfo6', 'libglib2.0-dev', 'libncurses5', 'libtool', 'libgraphviz-dev', 'graphviz', 'python3-pip']); //'libtinfo6',
   if (result.failed) {
     return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('Essential Tools for SVF Installation')}`));
   }
@@ -55,6 +66,82 @@ async function installSVFDependencies() {
   return;
 }
 
+async function installVSCodeDependencies() {
+  const result = await execa('sudo', ['apt', 'install', '-y', 'wget']);
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('VSCode Dependencies')}`));
+  }
+  return;
+}
+
+async function importMSKey() {
+  const result = await execa('wget', ['-q', 'https://packages.microsoft.com/keys/microsoft.asc', '-O-', '|', 'sudo', 'apt-key', 'add', '-']);
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to import ${chalk.yellow.bold('Microsoft GPG Key')}`));
+  }
+  return;
+}
+
+async function enableVSCodeRepository() {
+  const result = await execa('sudo', ['add-apt-repository', '"deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"']);
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to import ${chalk.yellow.bold('Microsoft GPG Key')}`));
+  }
+  return;
+}
+
+async function installVSCode() {
+  //const result = await execa('sudo', ['apt', 'install', '-y', 'code']);
+  const result = await execa('sudo', ['apt', 'install', '-y', './code_1.45.1-1589445302_amd64.deb']);//sudo apt install ./name.deb
+
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to install ${chalk.yellow.bold('VSCode')}`));
+  }
+  return;
+}
+
+async function removeInstallFiles() {
+  //const result = await execa('sudo', ['apt', 'install', '-y', 'code']);
+  const result = await execa('sudo', ['rm', '-rf', './code_1.45.1-1589445302_amd64.deb']);//sudo apt install ./name.deb
+
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to remove ${chalk.yellow.bold('VSCode Install File')}`));
+  }
+  return;
+}
+
+async function removeOldSVF() {
+  const result = await execa('sudo', ['rmdir', 'SVF'],{
+    cwd: `${os.homedir()}/SVFTools`,
+  });
+
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to remove ${chalk.yellow.bold('VSCode Install File')}`));
+  }
+  return;
+}
+
+async function createSVFToolsDirectory() {
+  const result = await execa('sudo', ['mkdir', 'SVF-Tools'],{
+    cwd: `${os.homedir()}`,
+  });
+
+  if (result.failed) {
+    return Promise.reject(new Error(`Failed to remove ${chalk.yellow.bold('VSCode Install File')}`));
+  }
+  return;
+}
+
+async function checkReadWritePermissions(dir,rw) {
+  if(rw==='read'){
+    await access(dir, fs.constants.R_OK);
+  }
+  else{
+    await access(dir, fs.constants.W_OK);
+  }
+  
+}
+
 async function generateJSON(path, projectDir) {
   const result = await execa('node', ['generateJSON.js', projectDir],{
     cwd: path,
@@ -65,13 +152,6 @@ async function generateJSON(path, projectDir) {
   }
   return;
 }
-
-// function updateNodeVersionSync() {
-//   console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(process.version)} is outdated\nAttempting Update, Please Wait...`)}`)
-//   execa.sync('sudo', ['npm','cache', 'clean', '-f']);
-//   execa.sync('sudo', ['npm','install', '-g', 'n']);
-//   execa.sync('sudo', ['n','stable']);
-// }
 
 export async function createAnalysis(options) {
 
@@ -85,10 +165,34 @@ export async function createAnalysis(options) {
     svf: false
   }
 
+  const dirPresence = {
+    svfToolsR: true,
+    homeW: true,
+    svfR: true
+  }
+
+  try {
+    await access(`${os.homedir()}/SVFTools`, fs.constants.R_OK);
+  } catch (err) {
+    dirPresence.svfToolsR = false;
+  }
+
+  try {
+    await access(`${os.homedir()}`, fs.constants.W_OK);
+  } catch (err) {
+    dirPresence.homeW = false;
+  }
+
+  try {
+    await access(`${os.homedir()}/SVFTools/SVF`, fs.constants.R_OK);
+  } catch (err) {
+    dirPresence.svfR = false;
+  }
+
   let currentFileUrl = import.meta.url;
-  let templateDir = path.resolve(
+  let templateDir = '/'+path.join(
     decodeURI(new URL(currentFileUrl).pathname.substring(new URL(currentFileUrl).pathname.indexOf('/')+1)),
-    'src'
+    '../../scripts'
   );
 
   //Define the list of tasks to run using the listr node module
@@ -98,13 +202,6 @@ export async function createAnalysis(options) {
       enabled: () => true,
       task: () => getos((e,os) => {
         if(e) return console.error(e)
-
-        os = {
-          ...os,
-          os: 'linux',
-          dist: 'Ubuntu',
-          release: '18.04' 
-        }
 
         if(!os.os){
           console.error(`%s ${os}`, chalk.red.bold('ERROR'));
@@ -123,7 +220,7 @@ export async function createAnalysis(options) {
           console.error(`%s %s release version could not be verified${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${os.dist}`), chalk.black.bgWhite('-- Please check back later --'));
           process.exit(1);
         }
-        else if(!os.release.includes('18.04')&&!os.release.includes('20.04')){
+        else if(!os.release.includes('20.04')){
           console.error(`%s Sorry WebSVF is not compatible with version %s of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.yellow(`${os.release}`), chalk.cyan.bold(`${os.dist}`), chalk.black.bgWhite('-- Please check back later --'));
           process.exit(1);
         }
@@ -139,12 +236,18 @@ export async function createAnalysis(options) {
           {
             title: `Checking ${chalk.inverse('NPM')} Installation`,
             enabled: () => true,
-            task: () => commandExists('npm').then(()=>{depInstall.npm=true;}).catch(()=>{})
+            task: () => commandExists('npm').then(()=>{depInstall.npm=true;}).catch(()=>{
+              console.error(`${chalk.inverse(`${chalk.blue.bold('npm')} command not found${'\n'.repeat(2)} Please install ${chalk.blue.bold('NodeJS')} version ${chalk.yellow.bold('>=10')} ${'\n'.repeat(2)} Then Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up`)}`)
+              process.exit(1);
+            })
           },
           {
             title: `Checking ${chalk.inverse('NodeJS')} Installation`,
             enabled: () => true,
-            task: () => commandExists('node').then(()=>{depInstall.node=true;}).catch(()=>{})
+            task: () => commandExists('node').then(()=>{depInstall.node=true;}).catch(()=>{
+              console.error(`${chalk.inverse(`${chalk.blue.bold('node')} command not found${'\n'.repeat(2)} Please install ${chalk.blue.bold('NodeJS')} version ${chalk.yellow.bold('>=10')} ${'\n'.repeat(2)} Then Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up`)}`)
+              process.exit(1);
+            })
           },
           {
             title: `Checking ${chalk.inverse('NodeJS')} Version`,
@@ -154,20 +257,11 @@ export async function createAnalysis(options) {
               if(parseFloat(version.substr(1,version.length))>=10){
                 depInstall.nodeVers = true;
               }else{
-                console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(process.version)} is outdated${'\n'.repeat(2)}Please Update node to version ${chalk.yellow.bold('>=10')}`)}`)
+                console.error(`${chalk.inverse(`The current version of node ${chalk.blue.bold(version)} is outdated${'\n'.repeat(2)}Please Update node to version ${chalk.yellow.bold('>=10')} ${'\n'.repeat(2)} Then Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up`)}`)
                 process.exit(1);
               }
             }
           },
-          // {
-          //   title: `Updating ${chalk.inverse('Node')}`,
-          //   enabled: () => true,
-          //   skip: () => depInstall.nodeVers,
-          //   task: () => {
-          //     updateNodeVersionSync();
-          //     depInstall.nodeVers = true;
-          //   }
-          // },
           {
             title: `Checking ${chalk.inverse('VSCode')} Installation`,
             enabled: () => true,
@@ -181,7 +275,7 @@ export async function createAnalysis(options) {
           {
             title: `Checking ${chalk.inverse('SVF')} Installation`,
             enabled: () => true,
-            task: () => commandExists('wpa').then(()=>{depInstall.svf=true;}).catch(()=>{})
+            task: () => commandExists('wpa -ander').then(()=>{depInstall.svf=true;}).catch(()=>{})
           }
         ], {concurrent: false});
       }      
@@ -196,42 +290,77 @@ export async function createAnalysis(options) {
       },
       task: () => {
         return new Listr([
-          
-          {
-            title: `Installing ${chalk.inverse('NPM')}`,
-            enabled: () => true,
-            skip: () => depInstall.npm,
-            task: () => installDependencies('npm').then(()=>depInstall.npm = true).catch((e)=>{
-              
-              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('npm')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-              console.error(e);
-            })
-          },
-          {
-            title: `Installing ${chalk.inverse('NodeJS')}`,
-            enabled: () => true,
-            skip: () => depInstall.node,
-            task: () => installDependencies('node').then(()=>depInstall.node = true).catch((e)=>{
-              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('NodeJS')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-              console.error(e);
-            })
-          },
           {
             title: `Installing ${chalk.inverse('VSCode')}`,
             enabled: () => true,
             skip: () => depInstall.vscode,
-            task: () => installDependencies('code').then(()=>depInstall.vscode = true).catch((e)=>{
-              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('VSCode')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-              console.error(e);
-            })
+            task: () => {
+              return new Listr([
+              //  { 
+              //   title: `Updating ${chalk.blue('Ubuntu Packages')}`,
+              //   enabled: () => true,
+              //   task: () => updatePackages().then(()=>{}).catch((e)=>{
+              //     console.error(`${chalk.inverse(`Something went wrong updating ${chalk.red.bold('Ubuntu Packages')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+              //     console.error(e);
+              //     process.exit(1);
+              //   })
+              //   },
+                {
+                  title: `Installing ${chalk.blue('Dependencies')}`,
+                  enabled: () => true,
+                  task: () => installVSCodeDependencies().then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('Dependencies')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                    console.error(e);
+                    process.exit(1);
+                  })
+                },
+                {
+                  title: `Downloading ${chalk.blue('VSCode Install File')}`,
+                  enabled: () => true,
+                  task: () => execao('wget', ['https://az764295.vo.msecnd.net/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb'])
+                },
+                // {
+                //   title: `Enabling ${chalk.blue('VSCode Repository')}`,
+                //   enabled: () => true,
+                //   task: () => enableVSCodeRepository().then(()=>{}).catch((e)=>{
+                //     console.error(`${chalk.inverse(`Something went wrong enabling ${chalk.red.bold('VSCode Repository')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                //     console.error(e);
+                //     process.exit(1);
+                //   })
+                // },
+                {
+                  title: `Installing ${chalk.yellow('VSCode')}`,
+                  enabled: () => true,
+                  task: () => installVSCode().then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('VSCode')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                    console.error(e);
+                    process.exit(1);
+                  })
+                },
+                {
+                  title: `Removing ${chalk.yellow('VSCode Install File')}`,
+                  enabled: () => true,
+                  task: () => removeInstallFiles().then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong removing ${chalk.red.bold('VSCode INstall File')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                    console.error(e);
+                    process.exit(1);
+                  })
+                }
+              ],{concurrent: false})
+            }
+            // installDependencies('code').then(()=>depInstall.vscode = true).catch((e)=>{
+            //   console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('VSCode')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+            //   console.error(e);
+            // })
           },
           {
             title: `Installing ${chalk.inverse('Git')}`,
             enabled: () => true,
             skip: () => depInstall.git,
             task: () => installDependencies('git').then(()=>depInstall.git = true).catch((e)=>{
-              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('Git')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('Git')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
               console.error(e);
+              process.exit(1);
             })
           }
         ], {concurrent: false});
@@ -244,54 +373,129 @@ export async function createAnalysis(options) {
       task: () => {
         return new Listr([
           {
-            title: `Installing ${chalk.blue('SVF Dependencies')}`,
+            title: `Installing ${chalk.inverse(chalk.blue('SVF Dependencies'))}`,
             enabled: () => true,
             task: () => {
               return new Listr([
                 {
                   title: `Updating ${chalk.blue('Ubuntu Packages')}`,
                   enabled: () => true,
-                  task: () => updatePackages.then(()=>{}).catch((e)=>{
-                    console.error(`${chalk.inverse(`Something went wrong updating ${chalk.red.bold('Ubuntu Packages')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                  task: () => updatePackages().then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong updating ${chalk.red.bold('Ubuntu Packages')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
                     console.error(e);
+                    process.exit(1);
                   })
                 },
                 {
-                  title: `Installing ${chalk.inverse('Essential Tools')}`,
+                  title: `Installing ${chalk.blue('Essential Tools')}`,
                   enabled: () => true,
-                  task: () => installSVFEssentialTools.then(()=>{}).catch((e)=>{
-                    console.error(`${chalk.inverse(`Something went wrong instaling ${chalk.red.bold('Essential Tools for SVF Installation')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                  task: () => installSVFEssentialTools().then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong instaling ${chalk.red.bold('Essential Tools for SVF Installation')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
                     console.error(e);
+                    process.exit(1);
                   })
                 },
                 {
-                  title: `Installing ${chalk.inverse('WLLVM and pygraphviz')}`,
+                  title: `Installing ${chalk.blue('WLLVM and pygraphviz')}`,
                   enabled: () => true,
-                  task: () => installSVFDependencies.then(()=>{}).catch((e)=>{
-                    console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('WLLVM and pygraphviz')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                  task: () => installSVFDependencies().then(()=>{}).catch((e)=>{
+                    console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('WLLVM and pygraphviz')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
                     console.error(e);
+                    process.exit(1);
                   })
                 },
                 
               ],{concurrent: false})
             }
           },
+          // {
+          //   title: `Downloading and Installing ${chalk.blue('LLVM, Clang & SVF')}`,
+          //   enabled: () => true,
+          //   task: () => execao('sh', ['setupSVF.sh'],{
+          //       cwd: templateDir,
+          //     }, (result)=>{console.error(result)})
+            
+          //   // installSVF(templateDir).then(()=>{}).catch((e)=>{
+          //   //   console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('SVF')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+          //   //   console.error(e);
+          //   // })
+          // }
+          // {
+          //   title: `Checking if ${chalk.blue('SVF-Tools')} directory exists`,
+          //   enabled: () => true,
+          //   task: () => checkReadWritePermissions('~/SVFTools','read').then(()=>{dirPresence.svfToolsR=true}).catch(()=>{})
+          //  },
+          // {
+          //   title: `Checking if ${chalk.blue('SVF-Tools/SVF')} directory exists`,
+          //   enabled: () => true,
+          //   task: () => {
+
+          //     let readable = false;
+
+          //     try {
+          //       await access('~/SVF-Tools/SVF', fs.constants.R_OK);
+          //     } catch (err) {
+          //       // console.error('%s Invalid template name', chalk.red.bold('ERROR'));
+          //       // process.exit(1);
+          //       readable = false;
+          //     }
+              
+          //     if(readable===true){
+          //       dirPresence.svfR = true;
+          //     }
+          //   }
+          // },
+          // {
+          //   title: `Checking for ${chalk.blue('Write Access')}`,
+          //   enabled: () => true,
+          //   //skip: () => ,
+          //   task: () => {
+
+          //     let readable = false;
+
+          //     try {
+          //       await access('~/', fs.constants.W_OK);
+          //     } catch (err) {
+          //       // console.error('%s Invalid template name', chalk.red.bold('ERROR'));
+          //       // process.exit(1);
+          //       readable = false;
+          //     }
+              
+          //     if(readable===true){
+          //       dirPresence.homeW = true;
+          //     }
+          //   }
+          // },
           {
-            title: `Run ${chalk.inverse('setupSVF.sh')} Script`,
-            enabled: () => true,
-            task: () => installSVF(templateDir).then(()=>{}).catch((e)=>{
-              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('SVF')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+            title: `Deleting ${chalk.inverse.blue('Old SVF Files')}`,
+            enabled: () => dirPresence.svfR,
+            skip: () => !dirPresence.homeW,
+            task: () => removeOldSVF().then(()=>{}).catch((e)=>{
+              console.error(`${chalk.inverse(`Something went wrong removing ${chalk.red.bold('Old SVF Files')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
               console.error(e);
+              process.exit(1);
             })
           },
           {
-            title: `Checking ${chalk.inverse('SVF')} Installation`,
-            enabled: () => true,
-            task: () => commandExists('wpa').then(()=>{depInstall.svf = true;}).catch((e)=>{
-              console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('SVF')}${'\n'.repeat(2)} ${templateDir} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+            title: `Creating ${chalk.inverse.blue('SVF-Tools')} directory`,
+            enabled: () => !dirPresence.svfToolsR,
+            skip: () => !dirPresence.homeW,
+            task: () => createSVFToolsDirectory().then(()=>{}).catch((e)=>{
+              console.error(`${chalk.inverse(`Something went wrong creating ${chalk.red.bold('SVF-Tools')} directory${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
               console.error(e);
+              process.exit(1);
             })
           },
+          // {
+          //   title: `Creating ${chalk.blue('SVF-Tools')} directory`,
+          //   enabled: () => !dirPresence.svfR,
+          //   skip: () => !dirPresence.homeW,
+          //   task: () => createSVFToolsDirectory().then(()=>{}).catch((e)=>{
+          //     console.error(`${chalk.inverse(`Something went wrong creating ${chalk.red.bold('SVF-Tools')} directory${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+          //     console.error(e);
+          //     process.exit(1);
+          //   })
+          // }
         ], {concurrent: false})
       }
     },
@@ -314,6 +518,7 @@ export async function createAnalysis(options) {
   }
 
   console.log(depInstall);
+  console.log(dirPresence);
 
   return true;
 }
