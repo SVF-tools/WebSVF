@@ -40,7 +40,7 @@ After the program is compiled by analysis, it is used to display the analysis no
 
 **1. Vscode open a C/C++ project**
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/project.gif" width='120'>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/project.gif" width='120'>
 
 As you see, 3D_CODE_GRAPH is needed to store control graph and value follow graph.
 You can try to use TEST.zip to unzip and open it for test.
@@ -68,18 +68,18 @@ After click to make it work, it will show like this.
 **1. Show CFG or VFG**
 Click the CFG or VFG button will show the two graph.
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/1.gif" width='480'>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/1.gif" width='480'>
 
 
 **2. show node label**
 Hover over any node will show the label.
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/2.gif" width='480'>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/2.gif" width='480'>
 
 **3. Jump to line**
 Right Click node will jump to the code line.
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/3.gif" width='480'>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/3.gif" width='480'>
 
 
 **4. Show all label**
@@ -87,12 +87,12 @@ Click `NODE ID MODE` button will show all label on node.
 
 Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least. 
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/4.gif" width='480'>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/4.gif" width='480'>
 
 **5. Highlight Node and Jump to code line**
 If the node info show the fileName and lineNumber, Click the node will jump into the code line.
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/5.gif" width='480'>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/5.gif" width='480'>
 
 **6. Show code line nodes**
 active one or more code line and input:
@@ -103,7 +103,7 @@ MAC: `cmd + alt + l`
 
 It will show the all the code line nodes. if there is no highlight there. it means there is no node link the code line.
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/6.gif" width='480'>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/6.gif" width='480'>
 
 **7. Camera Positioning**
 
@@ -115,5 +115,5 @@ MAC: `cmd + alt + ->` or `cmd + alt + <-`
 
 It will make camera find the highlight node position.
 
-<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/7.gif" width='480'>
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/7.gif" width='480'>
 
