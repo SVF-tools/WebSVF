@@ -11,7 +11,7 @@ After the program is compiled by analysis, it is used to display the analysis no
 
 ## **Architecture Overview**
 
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/codemap_flowchart.png' width='480'/>
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/codemap_flowchart.png' width='720'/>
 
 ## **Dev Instructions**
 
