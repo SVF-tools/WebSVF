@@ -105,7 +105,7 @@ The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](h
 
   Through this picture show to install extension. and then unzip TEST.zip. Use vscode open TEST work folder.
 - **Installed situation**  
-  <img src='./docs/3D_CODEMAP.png' width='480'/>
+  <img src='./docs/after_install.png' width='480'/>
 
   After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 - **Follow [User Instructions](./src/codemap_extension/README.md)**
