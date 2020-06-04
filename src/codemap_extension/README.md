@@ -28,7 +28,7 @@ After the program is compiled by analysis, it is used to display the analysis no
 
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/VSIX_installation.png' width='720'/>
 
-  Through this picture show to install extension. and then unzip TEST.zip. Use vscode open TEST work folder.
+  Through this picture show to install extension. and then unzip TEST.zip. Use vscode open **TEST** work folder.
 
 **3. Installed situation**  
 
@@ -40,10 +40,12 @@ After the program is compiled by analysis, it is used to display the analysis no
 
 **1. Vscode open a C/C++ project**
 
+You can try to use **TEST.zip** to unzip and open it for test.
+
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/project.gif" width='720'>
 
 As you see, 3D_CODE_GRAPH is needed to store control graph and value follow graph.
-You can try to use TEST.zip to unzip and open it for test.
+
 
 **2. Click statusbar to show 3D CODE MAP**
 
