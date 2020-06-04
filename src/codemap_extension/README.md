@@ -1,6 +1,6 @@
-# **3D Code Map**
+# **<center>3D Code Map</center>**
 
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='520'/>
+<center><img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='520'/></center>
 
 Program Analysis tool for bug detection.
 It is a vscode extension which can be installed into Vscode 1.43.0 at least.
