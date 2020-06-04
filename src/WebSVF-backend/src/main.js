@@ -417,25 +417,10 @@ export async function createAnalysis(options) {
       enabled: () => depInstall.vscode && !dirPresence.frontend && !dirPresence.codemap,
       skip: () => !options.runInstall,
       task: () => {
-        //execao('chmod', ['u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0.zip`]);
-        //execao('chmod', ['u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1.zip`])
         execao('chmod', ['-R','u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`]);
         execao('chmod', ['-R','u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/codemap-extension/`]);
       }
     },
-    // {
-    //   title: `Allowing ${chalk.blue('access to extensions')}`,
-    //   enabled: () => depInstall.vscode,
-    //   skip: () => !options.runInstall,
-    //   task: () => {
-    //     execao('sudo', ['chmod','-R','u=rwx,g=rwx,o=rwx','*'],{
-    //       cwd: `/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`
-    //     });
-    //     execao('sudo', ['chmod','-R','u=rwx,g=rwx,o=rwx','*'],{
-    //       cwd: `/home/${options.user}/.vscode/extensions/codemap-extension/`
-    //     });
-    //   }
-    // },
     {
       title: `Removing ${chalk.blue('Extension files')}`,
       enabled: () => depInstall.vscode && !dirPresence.frontend && !dirPresence.codemap,
@@ -581,7 +566,7 @@ export async function createAnalysis(options) {
             title: `${chalk.inverse.blue('Cleaning Up')}`,
             enabled: () => (dirPresence.svfR && dirPresence.llvmclang),
             skip: () => !dirPresence.homeW,
-            task: () => execao('rm', ['-rf','clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz', `SVF.tar.xz` ],{//, 'setupSVF.sh'
+            task: () => execao('rm', ['-rf','clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz', `SVF.tar.xz`, 'setupSVF.sh' ],{
                 cwd: `/home/${options.user}/SVFTools/`
               })
           }
