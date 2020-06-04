@@ -1,4 +1,4 @@
-# **<p align="center">3D Code Map<p>**
+# **<p align="center">3D Code Map</p>**
 
 <p align="center">
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='480'/>
@@ -9,9 +9,11 @@ It is a vscode extension which can be installed into Vscode 1.43.0 at least.
 
 After the program is compiled by analysis, it is used to display the analysis node information.
 
-## **Architecture Overview**
+## **<p align="center">Architecture Overview</p>**
 
+<p align="center">
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/codemap_flowchart.png' width='720'/>
+</p>
 
 ## **Dev Instructions**
 
