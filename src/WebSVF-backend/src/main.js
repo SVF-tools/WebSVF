@@ -139,7 +139,9 @@ export async function createAnalysis(options) {
     homeW: true,
     svfR: true,
     llvmclangUnpack: true,
-    llvmclang: true
+    llvmclang: true,
+    codemap: true,
+    frontend: true
   }
   
 
@@ -168,10 +170,18 @@ export async function createAnalysis(options) {
   }
 
   try {
-    await access(`/home/${options.user}/SVFTools/SVF`, fs.constants.R_OK);
+    await access(`/home/${options.user}/.vscode/extensions/codemap-extension`, fs.constants.R_OK);
   } catch (err) {
-    dirPresence.svfR = false;
+    dirPresence.codemap = false;
   }
+
+  try {
+    await access(`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension`, fs.constants.R_OK);
+  } catch (err) {
+    dirPresence.frontend = false;
+  }
+
+  
 
   let currentFileUrl = import.meta.url;
   let templateDir = '/'+path.join(
@@ -297,7 +307,7 @@ export async function createAnalysis(options) {
                 {
                   title: `Installing ${chalk.yellow('VSCode')}`,
                   enabled: () => true,
-                  task: () => installVSCode().then(()=>{}).catch((e)=>{
+                  task: () => installVSCode().then(()=>{depInstall.vscode=true}).catch((e)=>{
                     console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('VSCode')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
                     console.error(e);
                     process.exit(1);
@@ -319,14 +329,120 @@ export async function createAnalysis(options) {
             title: `Installing ${chalk.inverse('Git')}`,
             enabled: () => true,
             skip: () => depInstall.git,
-            task: () => installDependencies('git').then(()=>depInstall.git = true).catch((e)=>{
+            task: () => installDependencies('git').then(()=>{depInstall.git = true}).catch((e)=>{
               console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('Git')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
               console.error(e);
               process.exit(1);
             })
+          },
+          {
+            title: `Installing ${chalk.inverse('Git')}`,
+            enabled: () => true,
+            //skip: () => depInstall.git,
+            task: () => execao('sudo', ['apt', 'install', '-y', 'unzip'])
           }
         ], {concurrent: false});
       }      
+    },
+    {
+      title: `Downloading ${chalk.inverse('WebSVF-frontend-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.frontend,
+      skip: () => !options.runInstall,
+      task: () => execao('wget', ['-c','https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix'])
+    },
+    {
+      title: `Downloading ${chalk.inverse('WebSVF-codemap-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.codemap,
+      skip: () => !options.runInstall,
+      task: () => execao('wget', ['-c', 'https://github.com/SVF-tools/WebSVF/releases/download/0.0.1/codemap-extension-0.0.1.vsix'])
+    },
+    {
+      title: `Copying ${chalk.blue('WebSVF-frontend-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.frontend,
+      skip: () => !options.runInstall,
+      task: () => execao('mv', ['-f','WebSVF-frontend-extension_0.9.0.vsix', `/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0.zip`])
+    },
+    {
+      title: `Copying ${chalk.blue('WebSVF-codemap-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.codemap,
+      skip: () => !options.runInstall,
+      task: () => execao('mv', ['-f','codemap-extension-0.0.1.vsix',`/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1.zip`])
+    },
+    {
+      title: `Making directory ${chalk.blue('WebSVF-codemap-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.codemap,
+      skip: () => !options.runInstall,
+      task: () => execao('mkdir', ['-m', 'a=rwx','codemap-extension-0.0.1'],{
+        cwd: `/home/${options.user}/.vscode/extensions`
+      })
+    },
+    {
+      title: `Making directory ${chalk.blue('WebSVF-frontend-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.frontend,
+      skip: () => !options.runInstall,
+      task: () => execao('mkdir', ['-m', 'a=rwx','WebSVF-frontend-extension_0.9.0'],{
+        cwd: `/home/${options.user}/.vscode/extensions`
+      })
+    },
+    {
+      title: `Extracting ${chalk.blue('WebSVF-codemap-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.codemap,
+      skip: () => !options.runInstall,
+      task: () => execao('unzip', ['codemap-extension-0.0.1.zip', '-d', `/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1`],{
+        cwd: `/home/${options.user}/.vscode/extensions`
+      })
+    },
+    {
+      title: `Extracting ${chalk.blue('WebSVF-frontend-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.frontend,
+      skip: () => !options.runInstall,
+      task: () => execao('unzip', ['WebSVF-frontend-extension_0.9.0.zip', '-d', `/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0`],{
+        cwd: `/home/${options.user}/.vscode/extensions`
+      })
+    },
+    {
+      title: `Extracting ${chalk.blue('WebSVF-codemap-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.codemap,
+      skip: () => !options.runInstall,
+      task: () => execao('mv', ['-f',`/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1/extension/`,`/home/${options.user}/.vscode/extensions/codemap-extension/`])
+    },
+    {
+      title: `Extracting ${chalk.blue('WebSVF-frontend-extension')}`,
+      enabled: () => depInstall.vscode && !dirPresence.frontend,
+      skip: () => !options.runInstall,
+      task: () => execao('mv', ['-f',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0/extension/`,`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`])
+    },
+    {
+      title: `Allowing ${chalk.blue('access to extensions')}`,
+      enabled: () => depInstall.vscode && !dirPresence.frontend && !dirPresence.codemap,
+      skip: () => !options.runInstall,
+      task: () => {
+        //execao('chmod', ['u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension_0.9.0.zip`]);
+        //execao('chmod', ['u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/codemap-extension-0.0.1.zip`])
+        execao('chmod', ['-R','u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`]);
+        execao('chmod', ['-R','u=rwx,g=rwx,o=rwx',`/home/${options.user}/.vscode/extensions/codemap-extension/`]);
+      }
+    },
+    // {
+    //   title: `Allowing ${chalk.blue('access to extensions')}`,
+    //   enabled: () => depInstall.vscode,
+    //   skip: () => !options.runInstall,
+    //   task: () => {
+    //     execao('sudo', ['chmod','-R','u=rwx,g=rwx,o=rwx','*'],{
+    //       cwd: `/home/${options.user}/.vscode/extensions/WebSVF-frontend-extension/`
+    //     });
+    //     execao('sudo', ['chmod','-R','u=rwx,g=rwx,o=rwx','*'],{
+    //       cwd: `/home/${options.user}/.vscode/extensions/codemap-extension/`
+    //     });
+    //   }
+    // },
+    {
+      title: `Removing ${chalk.blue('Extension files')}`,
+      enabled: () => depInstall.vscode && !dirPresence.frontend && !dirPresence.codemap,
+      skip: () => !options.runInstall,
+      task: () => execao('rm', ['-rf','WebSVF-frontend-extension_0.9.0.zip','codemap-extension-0.0.1.zip', 'codemap-extension-0.0.1/', 'WebSVF-frontend-extension_0.9.0/'],{
+        cwd: `/home/${options.user}/.vscode/extensions`
+      })
     },
     {
       title: `Installing ${chalk.inverse('SVF')}`,
@@ -442,7 +558,7 @@ export async function createAnalysis(options) {
                   }
                   const dataSplit = data.toString().replace('#########', `########\nINSTALL_DIR="/home/${options.user}/SVFTools"`).replace(/\r\n/gm, "\n");
 
-                  fs.writeFile(`/home/${options.user}/SVFTools/setupSVF.sh`, `########\nINSTALL_DIR="/home/${options.user}/SVFTools"`, (err) => {
+                  fs.writeFile(`/home/${options.user}/SVFTools/setupSVF.sh`, `${dataSplit}`, (err) => {
                     if (err) throw err;
 
                     execao('sh', ['setupSVF.sh'],{
