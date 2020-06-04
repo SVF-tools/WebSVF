@@ -1,6 +1,6 @@
 # **3D Code Map**
 
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='520'/>
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='480'/>
 
 Program Analysis tool for bug detection.
 It is a vscode extension which can be installed into Vscode 1.43.0 at least.
@@ -47,6 +47,7 @@ After the program is compiled by analysis, it is used to display the analysis no
 - **`control_follow_graph.json` in `3D_CODE_GRAPH`**
 - **`value_follow_graph.json` in `3D_CODE_GRAPH`**
 
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/require.png' width='480'/>
 
 You can try to use **TEST.zip** to unzip and open it for test.
 
