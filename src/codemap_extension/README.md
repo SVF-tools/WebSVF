@@ -34,7 +34,7 @@ Through this picture show to install extension. and then unzip TEST.zip. Use vsc
 
 **3. Installed situation**
 
-  <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/3D_CODEMAP.png' width='720'/>
+  <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/after_install.png' width='720'/>
 
 After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 
