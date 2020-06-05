@@ -3,19 +3,14 @@
 import * as vscode from "vscode";
 
 export class ActivateVscodeContext {
-    /**
-     * test start
-     */
-    private static _activeEditor: vscode.TextEditor | undefined;
+    private static _activeEditor: vscode.TextEditor | undefined =
+        vscode.window.activeTextEditor;
     public static get activeEditor(): vscode.TextEditor | undefined {
         return ActivateVscodeContext._activeEditor;
     }
     public static set activeEditor(value: vscode.TextEditor | undefined) {
         ActivateVscodeContext._activeEditor = value;
     }
-    /**
-     * test end
-     */
     private static _context: vscode.ExtensionContext;
     private static _have_not_store_yet: boolean = true;
     public static get have_not_store_yet(): boolean {
@@ -37,6 +32,9 @@ export function StoreVscodeContext(context: vscode.ExtensionContext): boolean {
     const store_success_or_not: boolean =
         ActivateVscodeContext.have_not_store_yet;
     ActivateVscodeContext.context = context;
+    let settings = vscode.workspace.getConfiguration("codeMap");
+    settings.update("ShowOrHide", "hide").then();
+    settings.update("GraphMode", "NotSelect").then();
 
     return store_success_or_not;
 }
