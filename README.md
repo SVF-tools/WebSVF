@@ -31,6 +31,8 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 - **[WebSVF-backend](https://github.com/SVF-tools/WebSVF/tree/generateJSON/src/WebSVF-generateJSON) :**
 
+This is a simple NodeJS CLI tool to easily install ***[WebSVF](https://github.com/SVF-tools/WebSVF)*** and run it.
+
 
 # Installation Guide
 
@@ -58,22 +60,8 @@ sudo apt install -y npm
 
 ## Install WebSVF-backend
 
-Download the **[binary (websvf-create-analysis-1.0.0.tgz)](https://github.com/SVF-tools/WebSVF/releases/download/0.9.1/websvf-create-analysis-1.0.0.tgz)** file
-
-Extract it:
 ```
-tar zxvf websvf-create-analysis-1.0.0.tgz
-```
-
-Test it:
-```
-cd package
-sudo npm link
-```
-
-Run it:
-```
---- COMING SOON ---
+npm install -g @websvf/create-analysis
 ```
 
 ### Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
