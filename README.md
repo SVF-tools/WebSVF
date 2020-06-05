@@ -29,7 +29,7 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 This VSCode Extension could use 3D force graph to present bug information. Vsix file need to create by user self. Please follow the user guide link to install. This extension needs to be used when there is a network.
 
-- **[WebSVF-backend](https://github.com/SVF-tools/WebSVF/tree/generateJSON/src/WebSVF-generateJSON) :**
+- **[WebSVF-backend](/src/WebSVF-backend) :**
 
 This is a simple NodeJS CLI tool to easily install ***[WebSVF](https://github.com/SVF-tools/WebSVF)*** and run it.
 
@@ -85,6 +85,9 @@ Generate the bitcode file for your program or project then run the following com
 ```
 create-analysis -g [bc-file-directory]
 ```
+
+**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
+
 
   
 ## Step 3. Run WebSVF-frontend: server and extension
