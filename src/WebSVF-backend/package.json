@@ -1,6 +1,6 @@
 {
   "name": "@websvf/create-analysis",
-  "version": "1.0.0",
+  "version": "0.0.13",
   "description": "A CLI to bootstrap my new projects",
   "main": "src/index.js",
   "bin": {
@@ -11,7 +11,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [
     "cli",
@@ -35,6 +35,7 @@
     "getos": "^3.2.1",
     "inquirer": "^7.1.0",
     "listr": "^0.14.3",
+    "mocha": "^7.2.0",
     "ncp": "^2.0.0",
     "pkg-install": "^1.0.0"
   }
