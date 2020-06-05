@@ -31,6 +31,8 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 - **[WebSVF-backend](https://github.com/SVF-tools/WebSVF/tree/generateJSON/src/WebSVF-generateJSON) :**
 
+This is a simple NodeJS CLI tool to easily install ***[WebSVF](https://github.com/SVF-tools/WebSVF)*** and run it.
+
 
 # Installation Guide
 
