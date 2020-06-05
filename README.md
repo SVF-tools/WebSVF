@@ -38,7 +38,7 @@ This is a simple NodeJS CLI tool to easily install ***[WebSVF](https://github.co
 
 ## Pre-Requisites
 
-- WebSVF only tested and targetted for **Ubuntu 20.04** (Not compatible with versions of Ubuntu older than 19.10) 
+- WebSVF is only tested and targetted for **Ubuntu 20.04** (Not compatible with versions of Ubuntu older than 19.10) 
 
 ## Step 1. Install NPM (v>=10.0.0)
 
