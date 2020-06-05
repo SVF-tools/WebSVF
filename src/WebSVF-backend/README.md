@@ -6,7 +6,6 @@ This is a simple NodeJS CLI tool to easily install ***[WebSVF](https://github.co
 
 ## Installation
 
-
 ```
 npm install -g @websvf/create-analysis
 ```
