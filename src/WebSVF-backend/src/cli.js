@@ -2,6 +2,9 @@ import arg from 'arg';
 import inquirer from 'inquirer';
 import { createAnalysis } from './main';
 import execa from 'execa';
+import getos from 'getos';
+import Listr from 'listr';
+import chalk from 'chalk';
 
 
 function parseArgumentsIntoOptions(rawArgs) {
@@ -28,6 +31,49 @@ function parseArgumentsIntoOptions(rawArgs) {
     output: args['--output'] || '',
     runInstall: args['--install'] || false,
   };
+}
+
+async function runListr(){
+  const tasks = new Listr([
+    {
+      title: 'Checking OS Compatibility',
+      enabled: () => true,
+      task: () => getos((e,os) => {
+        if(e) return console.error(e)
+
+        if(!os.os){
+          console.error(`%s ${os}`, chalk.red.bold('ERROR'));
+          process.exit(1);
+        }
+      
+        if(os.os!=='linux'){
+          console.error(`%s Sorry WebSVF is not compatible with %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.blue.bold(`${os.os}`), chalk.black.bgWhite('-- Please check back later --'));
+          process.exit(1);
+        }
+        else if(os.dist!=='Ubuntu'){
+          console.error(`%s Sorry WebSVF is not compatible with the %s distribution of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${os.dist}`), chalk.blue.bold(`${os.os}`), chalk.black.bgWhite('-- Please check back later --'));
+          process.exit(1);
+        }
+        else if(!os.release){
+          console.error(`%s %s release version could not be verified${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.cyan.bold(`${os.dist}`), chalk.black.bgWhite('-- Please check back later --'));
+          process.exit(1);
+        }
+        else if(!os.release.includes('20.04')){
+          console.error(`%s Sorry WebSVF is not compatible with version %s of %s${'\n'.repeat(2)}%s`, chalk.red.bold('ERROR'), chalk.yellow(`${os.release}`), chalk.cyan.bold(`${os.dist}`), chalk.black.bgWhite('-- Please check back later --'));
+          process.exit(1);
+        }
+        
+        return true;
+      })
+    }
+  ])
+
+  //Run the list of tasks defined above
+  try{
+    await tasks.run();
+  }catch(e){
+    console.error(e);
+  }
 }
 
 async function promptForMissingOptions(options) {
@@ -100,6 +146,8 @@ async function promptForMissingOptions(options) {
 export async function cli(args) {
 
     let options = parseArgumentsIntoOptions(args);
+
+    await runListr();
 
     options = await promptForMissingOptions(options);
 
