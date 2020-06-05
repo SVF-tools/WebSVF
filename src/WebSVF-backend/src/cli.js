@@ -9,12 +9,10 @@ function parseArgumentsIntoOptions(rawArgs) {
     {
       '--yes': Boolean,
       '--install': Boolean,
-      '--out': String,
       '--generateJSON': String,
       '--user': String,
       '-g': '--generateJSON',
       '-u': '--user',
-      '-o': '--out',
       '-y': '--yes',
       '-i': '--install',
     },
@@ -26,7 +24,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     skipPrompts: args['--yes'] || false,
     template: args._[0],
     user: args['--user'] || '',
-    generateJSON: args['--generateJSON'] || '',
+    generateJSON: args['--generateJSON'] || process.cwd(),
     output: args['--output'] || '',
     runInstall: args['--install'] || false,
   };
@@ -56,7 +54,7 @@ async function promptForMissingOptions(options) {
   // }
  
   const questions = [];
-  if (!options.user) {
+  if (!options.user&&options.runInstall) {
     questions.push({
       type: 'list',
       name: 'user',
@@ -65,7 +63,7 @@ async function promptForMissingOptions(options) {
       default: defaultTemplate,
     });
   }
-  else if(mapT.indexOf(`${options.user}`)===-1){
+  else if(mapT.indexOf(`${options.user}`)===-1&&options.runInstall){
     console.log(`${options.user}`);
     questions.push({
       type: 'list',
@@ -89,7 +87,6 @@ async function promptForMissingOptions(options) {
   return {
     ...options,
     user: options.user || answers.user,
-
     //template: options.template || answers.template,
 
     //git: options.git || answers.git,

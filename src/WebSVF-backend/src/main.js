@@ -186,9 +186,14 @@ export async function createAnalysis(options) {
   
 
   let currentFileUrl = import.meta.url;
-  let templateDir = '/'+path.join(
+  let scriptsPath = '/'+path.join(
     decodeURI(new URL(currentFileUrl).pathname.substring(new URL(currentFileUrl).pathname.indexOf('/')+1)),
     '../../scripts'
+  );
+
+  let srcPath = '/'+path.join(
+    decodeURI(new URL(currentFileUrl).pathname.substring(new URL(currentFileUrl).pathname.indexOf('/')+1)),
+    '../'
   );
 
   //Define the list of tasks to run using the listr node module
@@ -552,7 +557,7 @@ export async function createAnalysis(options) {
             title: `Setting PATHs for ${chalk.inverse.blue('LLVM, Clang & SVF')}`,
             enabled: () => true,
             task: () => execao('cp', ['-f', 'setupSVF.sh', `/home/${options.user}/SVFTools/`],{
-                cwd: templateDir,
+                cwd: scriptsPath,
               }, (result)=>{
                 fs.readFile(`/home/${options.user}/SVFTools/setupSVF.sh`, (err, data) => {
                   if (err) {
@@ -582,7 +587,7 @@ export async function createAnalysis(options) {
       title: `Generating ${chalk.yellow.bold('Bug-Report-Analysis.json')}`,
       enabled: () => options.generateJSON!=='',
       //skip: () => depInstall.svf,
-      task: () => generateJSON(templateDir, options.generateJSON).then(()=>depInstall.svf = true).catch((e)=>{
+      task: () => generateJSON(srcPath, options.generateJSON).then(()=>depInstall.svf = true).catch((e)=>{
         console.error(`${chalk.inverse(`Something went wrong generating ${chalk.red.bold('Bug-Report-Analysis.json')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
         console.error(e);
       })
