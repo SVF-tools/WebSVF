@@ -1,13 +1,14 @@
 {
     "name": "codemap-extension",
-    "displayName": "ForceGraph3D For Code Analysis",
-    "description": "ForceGraph3D For Code Analysis",
+    "displayName": "CODE MAP",
+    "description": "Analysis online",
+    "icon": "images/logo.png",
     "version": "0.0.1",
     "publisher": "Raymond",
     "author": {
         "name": "Raymond Guan",
         "email": "spcidealacm@gmail.com",
-        "url": "https://github.com/spcidealacm"
+        "url": "https://github.com/SVF-tools/WebSVF/tree/master/src/codemap_extension"
     },
     "engines": {
         "vscode": "^1.43.0"
@@ -28,6 +29,22 @@
             {
                 "command": "extension.textControl",
                 "title": "Text Control"
+            },
+            {
+                "command": "extension.ForceNodeNext",
+                "title": "ForceNodeNext"
+            },
+            {
+                "command": "extension.ForceNodeBefore",
+                "title": "ForceNodeBefore"
+            },
+            {
+                "command": "extension.SelectRangeUp",
+                "title": "SelectRange"
+            },
+            {
+                "command": "extension.SelectRangeDown",
+                "title": "SelectRange"
             }
         ],
         "configuration": {
@@ -38,6 +55,11 @@
                     "type": "string",
                     "default": "hide",
                     "description": "Enable or disable the highlight"
+                },
+                "codeMap.GraphMode": {
+                    "type": "string",
+                    "default": "NotSelect",
+                    "description": "Select graph mode"
                 }
             }
         },
@@ -46,6 +68,30 @@
                 "command": "extension.textControl",
                 "key": "ctrl+alt+l",
                 "mac": "cmd+alt+l",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.ForceNodeNext",
+                "key": "ctrl+alt+j",
+                "mac": "cmd+alt+Right",
+                "when": "editorFocus"
+            },
+            {
+                "command": "extension.ForceNodeBefore",
+                "key": "ctrl+alt+k",
+                "mac": "cmd+alt+Left",
+                "when": "editorFocus"
+            },
+            {
+                "command": "extension.SelectRangeUp",
+                "key": "ctrl+alt+i",
+                "mac": "cmd+alt+Up",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.SelectRangeDown",
+                "key": "ctrl+alt+m",
+                "mac": "cmd+alt+Down",
                 "when": "editorTextFocus"
             }
         ]
@@ -85,10 +131,5 @@
         "mocha": "^7.0.1",
         "typescript": "^3.7.5",
         "vscode-test": "^1.3.0"
-    },
-    "dependencies": {
-        "three": "^0.117.1",
-        "three-spritetext": "^1.5.1",
-        "three-trackballcontrols": "^0.0.8"
     }
 }
