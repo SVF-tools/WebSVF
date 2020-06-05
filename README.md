@@ -34,52 +34,58 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 # Installation Guide
 
-## Step 1. Install Requisite Software
+## Pre-Requisites
 
-- **[Git](https://git-scm.com/downloads)**
+- WebSVF only tested and targetted for **Ubuntu 20.04** (Not compatible with versions of Ubuntu older than 19.10) 
 
-- **[NodeJS](https://nodejs.org/en/download/)**
+## Step 1. Install NPM (v>=10.0.0)
 
-- **[VSCode](https://code.visualstudio.com/download)**
+On an Ubuntu 20.04 Installation, simply open terminal and enter the following commads:
 
+### Refresh Ubuntu Repositories
 
-## Step 2. Install WebSVF-backend
+```
+sudo apt-get update
+```
 
-1. Install **[SVF (Ubuntu 18.04 and 20.04 only)](/src/SetupSVF/)**
-2. Download the **[generateJSON.js](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/generateJSON.js)** to the root path of SVF.  
+### Install NPM
 
-3. Use WLLVM to compile a C project to LLVM Bitcode (.bc) file.  
+```
+sudo apt install -y npm
+```
 
-4. Run following command line in the root path of SVF.  
+## Step 2. Install and Run ***WebSVF-backend***
 
-      
-       node generateJSON.js your_path_of_c_project  
-      
-      
-5. Bug-Analysis-Report.json will be generated at the root path of your C project.  
+### 1. Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
-The example of your_path_of_c_project: (Make sure you have compile a C project to LLVM Bitcode (.bc) successfully).  
+```
+sudo create-analysis -i [-u user]
+```
 
-       node generateJSON.js /home/pie/Downloads/pkg-config-0.26
+#### **`-i`** or **`--install`** :
 
-The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
+To install WebSVF and all its dependencies
+
+#### **`-u user`** or **`--user user`**: 
+
+Where the `--user` flag indicates that a String is being provided which is the `user` for which WebSVF should be installed. If the user is not specified with the `--user` flag then the user is prompted with a list of users to select from.
+
+### 2. Generate Analysis for LLVM Bitcode (.bc) file
+
+Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
+
+```
+create-analysis -g [bc-file-directory]
+```
 
   
-## Step 3. Install WebSVF-frontend: server and extension
+## Step 3. Run WebSVF-frontend: server and extension
 
 ### **Guide Video (Youtube)**
 
 [![Installation Guide for Bug Analysis Tool (WebSVF)](https://img.youtube.com/vi/--a1rgFE_Cs/hqdefault.jpg)](https://www.youtube.com/watch?v=--a1rgFE_Cs)
 
-### Setup Intructions:  
-
-- **Download [VSCode Extension File](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)**
-
-- **Install '*WebSVF-frontend*' VSCode Extension**
-
-     Enter the following command in the terminal to Install the Extension:
-     
-     `code PathToDownloadedVSIX\WebSVF-frontend-extension_0.9.0.vsix`
+### Intructions:  
 
 - **Open Project Folder in VSCode**
 
@@ -94,12 +100,8 @@ The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](h
     View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. The button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
     (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more          information)
 
-## Step 4. Install WebSVF-codemap-extension
+## Step 4. Run WebSVF-codemap-extension
 
-- **Download extension: [VSIX release](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**  
-  <img src='./docs/DOWNLOAD_VISX.png' width='480'/>
-- **Extension installation**  
-  <img src='./docs/VSIX_installation.png' width='480'/>
 - **Installed situation**  
   <img src='./docs/3D_CODEMAP.png' width='480'/>
 - **Follow [User Instructions](./src/codemap_extension/README.md)**
@@ -109,7 +111,7 @@ The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](h
 
 # Known Issues
 
-- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 18.04 or 20.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
+- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 19.10 or 20.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
