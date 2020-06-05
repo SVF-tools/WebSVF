@@ -103,7 +103,8 @@ create-analysis  [-g bc-file-directory]
 
 ## Step 4. Run WebSVF-codemap-extension
 
-- **Installed situation**  
+- **Installed situation**
+[vsix file download page](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)  
   <img src='./docs/after_install.png' width='480'/>
 
   After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
@@ -116,8 +117,6 @@ create-analysis  [-g bc-file-directory]
 
 
 # Known Issues
-
-- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 19.10 or 20.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
