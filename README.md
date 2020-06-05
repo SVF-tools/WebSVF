@@ -58,22 +58,8 @@ sudo apt install -y npm
 
 ## Install WebSVF-backend
 
-Download the **[binary (websvf-create-analysis-1.0.0.tgz)](https://github.com/SVF-tools/WebSVF/releases/download/0.9.1/websvf-create-analysis-1.0.0.tgz)** file
-
-Extract it:
 ```
-tar zxvf websvf-create-analysis-1.0.0.tgz
-```
-
-Test it:
-```
-cd package
-sudo npm link
-```
-
-Run it:
-```
---- COMING SOON ---
+npm install -g @websvf/create-analysis
 ```
 
 ### Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
