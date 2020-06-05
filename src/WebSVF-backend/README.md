@@ -33,3 +33,6 @@ Generate the bitcode file for your program or project then run the following com
 ```
 create-analysis -g [bc-file-directory]
 ```
+
+**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
+
