@@ -3,6 +3,8 @@
 const vscode = acquireVsCodeApi();
 let highlightNodes = new Set();
 let highlightLink = new Set();
+let forceNodeNum = 0;
+let ForceNodes = new Array();
 let hoverNode = null;
 let locking = false;
 const N = 80;
@@ -90,6 +92,7 @@ Graph.nodeColor((node) =>
             start: 0,
             end: 0,
             themeName: "Theme_2",
+            flag: "onNodeClick",
         };
         let hasSameHightLightNode = false;
         highlightNodes.forEach((h_node) => {
@@ -103,6 +106,7 @@ Graph.nodeColor((node) =>
                 return false;
             }
         });
+        console.log("INFO: ", info);
         if (!hasSameHightLightNode) {
             postHighLightInfo(info);
         } else {
@@ -290,6 +294,7 @@ window.addEventListener("resize", function () {
 });
 window.addEventListener("message", (event) => {
     const message = event.data;
+    let position = 0;
     switch (message.status) {
         case "connected":
             document.getElementById("showSpan").textContent = "CONNECTED";
@@ -299,13 +304,162 @@ window.addEventListener("message", (event) => {
             const dataObj = JSON.parse(message.data);
             Graph.graphData(dataObj);
             GraphData = Graph.graphData();
-
+            forceNodeNum = 0;
+            ForceNodes = new Array();
             console.log("GraphData:", GraphData);
+            break;
+        case "NodeHighLight":
+            nodeHighLight(message);
+            break;
+        case "ForceNodeNext":
+            position = NodesNext(ForceNodes, forceNodeNum);
+            if (position === -1) {
+                ForceHightLight();
+            } else {
+                forceNodeNum = position;
+            }
+           
+            if (forceNodeNum === -1) {
+                postMessage("There is no nodes to force", "error");
+            }
+            break;
+        case "ForceNodeBefore":
+            position = NodesBefore(ForceNodes, forceNodeNum);
+            if (position === -1) {
+                ForceHightLight();
+            } else {
+                forceNodeNum = position;
+            }
+            if (forceNodeNum === -1) {
+                postMessage("There is no nodes to force", "error");
+            }
             break;
         default:
             break;
     }
 });
+
+function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+function ForceHightLight() {
+    console.log("[forceNodeNum IN]: ", forceNodeNum);
+    let nodes = Array.from(highlightNodes);
+    console.log("[NODES]: ", nodes);
+    forceNodeNum = NodesNext(nodes, forceNodeNum);
+    console.log("[forceNodeNum OUT]: ", forceNodeNum);
+}
+
+function NodesNext(nodes, position) {
+    if (nodes.length === 0) {
+        // postMessage("error", "There is no nodes to force");
+        position = -1;
+    } else {
+        console.log("[nodes.length]: ", nodes.length);
+        if (nodes.length - 1 === position) {
+            console.log("[nodes.length - 1 === position]: ");
+            position = 0;
+        } else {
+            console.log("position++");
+            position++;
+        }
+        console.log("[position]:", position);
+        forceOnNode(nodes[position]);
+        sleep(3000).then(() => {
+            showNodeInfo(nodes[position]);
+        });
+    }
+    return position;
+}
+
+function NodesBefore(nodes, position) {
+    if (nodes.length === 0) {
+        // postMessage("error", "There is no nodes to force");
+        position = -1;
+    } else {
+        if (position === 0) {
+            position = nodes.length - 1;
+        } else {
+            position--;
+        }
+        forceOnNode(nodes[position]);
+        sleep(3000).then(() => {
+            showNodeInfo(nodes[position]);
+        });
+    }
+    return position;
+}
+
+function nodeHighLight(message) {
+    console.log("NodeHighLight: \n", message);
+    GraphData = Graph.graphData();
+    ForceNodes = [];
+    forceNodeNum = 0;
+    message.selections.forEach((selectNode) => {
+        let selectSwitch = selectNode.switch;
+        selectNode.switch = false; // sent back info false means don't have the node in GraphData, so the line try to flash
+        GraphData.nodes.forEach((graphNode) => {
+            if (
+                graphNode.fsPath === selectNode.fileName &&
+                graphNode.line === selectNode.line
+            ) {
+                selectNode.switch = true; // have the node
+                if (!selectSwitch && highlightNodes.has(graphNode)) {
+                    //turn off
+                    locking = false;
+                    highlightNodes.delete(graphNode);
+                    GraphData.links.forEach((link) => {
+                        if (
+                            link.source === graphNode &&
+                            highlightLink.has(link)
+                        ) {
+                            highlightLink.delete(link);
+                        }
+                    });
+                } else {
+                    if (selectSwitch && !highlightNodes.has(graphNode)) {
+                        //turn on
+                        locking = true;
+                        highlightNodes.add(graphNode);
+                        ForceNodes.push(graphNode);
+                        GraphData.links.forEach((link) => {
+                            if (
+                                link.source === graphNode &&
+                                !highlightLink.has(link)
+                            ) {
+                                highlightLink.add(link);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
+
+    let newMessage = {
+        command: message.status,
+        selections: message.selections,
+    };
+
+    // console.log("[ForceNodes: ]", ForceNodes);
+    // forceOnNode(ForceNodes[0]);
+
+    vscode.postMessage(newMessage);
+    updateHighlight();
+}
+
+function forceOnNode(node) {
+    const distance = 120;
+    const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+
+    Graph.cameraPosition(
+        { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, // new position
+        node, // lookAt ({ x, y, z })
+        3000 // ms transition duration
+    );
+    console.log("DONE!");
+}
 
 document.onreadystatechange = function () {
     if (document.readyState === "complete") {

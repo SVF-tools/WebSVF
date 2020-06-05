@@ -104,7 +104,13 @@ export class WebPanelForceGraph3D extends WebPanel {
             case "toSomeWhere":
                 this.CodeFindPosition(message);
                 break;
+            case "NodeHighLight":
+                this.NodeHightLight(message);
+                break;
         }
+    }
+    protected NodeHightLight(message: any) {
+        RegisterCommandForceGraph3DManager.rct?.HandleHightLight(message);
     }
     protected CodeGraphShow(message: any) {
         let rootPath = vscode.workspace.rootPath;
@@ -112,6 +118,8 @@ export class WebPanelForceGraph3D extends WebPanel {
             vscode.window.showErrorMessage("Cannot find a workspace.");
             return;
         }
+        let settings = vscode.workspace.getConfiguration("codeMap");
+        settings.update("GraphMode", message.text).then();
         let graphFileName = message.text + ".json";
         let graphFilePath = path.join(rootPath, "3D_CODE_GRAPH", graphFileName);
         const data = fs.readFileSync(graphFilePath, "utf-8");
@@ -147,6 +155,7 @@ export class WebPanelForceGraph3D extends WebPanel {
             startPosition: message.start,
             endPosition: message.end,
             themeName: message.themeName,
+            flag: message.flag,
         };
         return info;
     }
@@ -191,7 +200,8 @@ export class WebPanelForceGraph3D extends WebPanel {
             info.lineNumber,
             info.startPosition,
             info.endPosition,
-            info.themeName
+            info.themeName,
+            info.flag
         );
     }
     protected LoadTag(
@@ -199,7 +209,8 @@ export class WebPanelForceGraph3D extends WebPanel {
         lineNumber: number,
         start: number,
         end: number,
-        themeName: string
+        themeName: string,
+        flag: string
     ) {
         const preKey: string = LineTagManager.assemblyKey(uri, lineNumber);
 
@@ -209,8 +220,10 @@ export class WebPanelForceGraph3D extends WebPanel {
                 lineNumber,
                 start,
                 end,
-                themeName
+                themeName,
+                flag
             );
+            console.log("key: ", key);
         } else {
             if (!LineTagManager.deleteLineTag(preKey)) {
                 vscode.window.showErrorMessage("deleteLineTag false.");

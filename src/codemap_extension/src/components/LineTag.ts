@@ -54,7 +54,8 @@ export class LineTagManager {
         start: number,
         end: number,
         themeName: string,
-        filePathOrType: string | vscode.TextEditorDecorationType // Decoration file or Type
+        filePathOrType: string | vscode.TextEditorDecorationType, // Decoration file or Type
+        flag: string
     ): string | undefined {
         const key: string = this.assemblyKey(activeEditorUri, markLine);
         const range: vscode.Range = this.assemblyVscodeRange(
@@ -72,21 +73,70 @@ export class LineTagManager {
         );
 
         if (createLineTagInfo) {
-            const lineTag: LineTag = new LineTag(createLineTagInfo);
+            const lineTag: LineTag = new LineTag(createLineTagInfo, flag);
             this.LineTagList.set(key, lineTag);
             return key;
         }
     }
 
-    public static deleteLineTag(key: string): boolean {
-        const lintTag: LineTag | undefined = this.findLineTag(key);
-        if (lintTag === undefined) {
+    public static isKeyThere(key: string): boolean {
+        if (this.findLineTag(key)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static turnOff(key: string, flag?: string, mode?: string): boolean {
+        if (!this.isKeyThere(key)) {
             return false;
+        }
+        if (flag && mode) {
+            switch (mode) {
+                case "deleteByFlag":
+                    return this.deleteLineTag(key, flag);
+                case "saveByFlag":
+                    const lineTag = this.findLineTag(key);
+                    if (lineTag) {
+                        const innerFlag = lineTag.lineTagFlag;
+                        if (flag === innerFlag) {
+                            return false; // flag same will save
+                        }
+                    }
+                    return this.deleteLineTagBase(key);
+                default:
+                    console.log("MODE ERROR: ", mode);
+                    return false;
+            }
         } else {
+            if (!flag && !mode) {
+                return this.deleteLineTagBase(key);
+            }
+        }
+        return false;
+    }
+
+    public static deleteLineTag(key: string, flag?: string): boolean {
+        // flag same will delete
+        if (flag) {
+            const lineTag = this.findLineTag(key);
+            if (lineTag) {
+                const innerFlag = lineTag.lineTagFlag;
+                if (flag !== innerFlag) {
+                    return false; // flag different will save
+                }
+            }
+        }
+        return this.deleteLineTagBase(key);
+    }
+
+    public static deleteLineTagBase(key: string): boolean {
+        const lintTag: LineTag | undefined = this.findLineTag(key);
+        if (lintTag) {
             lintTag.UnLoadDecoration();
             this.LineTagList.delete(key);
             return true;
         }
+        return false;
     }
     public static clear() {
         this.LineTagList.forEach((element) => {
@@ -95,8 +145,16 @@ export class LineTagManager {
         this.LineTagList.clear();
     }
 
-    public static findLineTag(key: string): LineTag | undefined {
-        return this.LineTagList.get(key);
+    public static findLineTag(key: string, flag?: string): LineTag | undefined {
+        const lineTag = this.LineTagList.get(key);
+        if(!flag){
+            return lineTag;
+        }else{
+            if(lineTag && lineTag.lineTagFlag === flag){
+                return lineTag;
+            }
+            return undefined;
+        }
     }
 
     public static assemblyVscodeRange(
@@ -309,7 +367,13 @@ export class LineTagManager {
 }
 
 export class LineTag {
-    constructor(private createLineTagInfo: CreateLineTagInfo) {}
+    private _lineTagFlag: string; //store who set the LinTag. like "onNodeClick", "TextControl"
+    public get lineTagFlag(): string {
+        return this._lineTagFlag;
+    }
+    constructor(private createLineTagInfo: CreateLineTagInfo, flag: string) {
+        this._lineTagFlag = flag;
+    }
 
     public LoadDecoration(newDec?: vscode.TextEditorDecorationType) {
         newDec =
@@ -325,6 +389,10 @@ export class LineTag {
                     newDec,
                     this.createLineTagInfo.markSpace
                 );
+            } else {
+                console.log("ERROR: ");
+                console.log(this.createLineTagInfo.activeEditorUri.fsPath);
+                console.log(uri.fsPath);
             }
         }
     }
