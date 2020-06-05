@@ -103,8 +103,13 @@ create-analysis -g [bc-file-directory]
 ## Step 4. Run WebSVF-codemap-extension
 
 - **Installed situation**  
-  <img src='./docs/3D_CODEMAP.png' width='480'/>
-- **Follow [User Instructions](./src/codemap_extension/README.md)**
+  <img src='./docs/after_install.png' width='480'/>
+
+  After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
+- **Follow [User Instructions](./src/codemap_extension/README.md)**  
+  <img src='./docs/7.gif' width='480'/>
+  
+  Please follow the User Instruction to use it.
 
 
 

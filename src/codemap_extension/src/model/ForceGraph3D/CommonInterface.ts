@@ -18,6 +18,7 @@ export interface PositionInfo {
     startPosition: number;
     endPosition: number;
     themeName: string;
+    flag: string;
 }
 
 export enum SwitchBar {

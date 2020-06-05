@@ -136,10 +136,10 @@ export class WebPanel {
     public webReady() {
         return this.webStatus === WebStatus.complete ? true : false;
     }
-    protected get webPanel(): vscode.WebviewPanel {
+    public get webPanel(): vscode.WebviewPanel {
         return this._webPanel;
     }
-    protected set webPanel(value: vscode.WebviewPanel) {
+    public set webPanel(value: vscode.WebviewPanel) {
         this._webPanel = value;
     }
 
