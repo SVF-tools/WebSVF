@@ -585,7 +585,7 @@ export async function createAnalysis(options) {
     },
     {
       title: `Generating ${chalk.yellow.bold('Bug-Report-Analysis.json')}`,
-      enabled: () => options.generateJSON!=='',
+      enabled: () => (options.generateJSON!=='' && !options.runInstall),
       //skip: () => depInstall.svf,
       task: () => generateJSON(srcPath, options.generateJSON).then(()=>depInstall.svf = true).catch((e)=>{
         console.error(`${chalk.inverse(`Something went wrong generating ${chalk.red.bold('Bug-Report-Analysis.json')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
