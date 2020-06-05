@@ -111,7 +111,7 @@ create-analysis  [-g bc-file-directory]
 - **Follow [User Instructions](./src/codemap_extension/README.md)**  
   <img src='./docs/7.gif' width='480'/>
   
-  Please follow the [User Instruction](./src/codemap_extension/README.md) to use it.
+  Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
 
 
 
