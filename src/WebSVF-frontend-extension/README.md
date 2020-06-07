@@ -13,7 +13,7 @@ This is a **Bug Analysis Extension** installed in VSCode, which can run across p
 <img src="https://raw.githubusercontent.com/SVF-tools/WebSVF/master/docs/WebSVF%20Architecture.jpg">
 This extension can detect whether the **Bug Analysis Tool** is missing. If missing, it will download the **Bug Analysis Tool** as a `` zip``  file in the user's root path, decompress the `` zip``  into a `` hidden folder``  in the user's root path and then remove the `` zip``. Also, if the **Bug Analysis Tool** is missing, but the `` hidden folder``  exists, this extension will remove the `` hidden folder``  firstly and then load the **Bug Analysis Tool** again.
 
-This extension requires **[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF#setup-intructions)** file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
+This extension requires **[Bug-Analysis-Report.json](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json)** file in the workspace directory, and will prompt users if this file is missing. It gets the absolute path of `` Bug-Analysis-Report.json `` file and writes it in the `` bug-analysis-JSON_absolute-dir.config `` to provide the path for the **Bug Analysis Tool**.
 
 The extension can run the **Bug Analysis Tool** and start an ininternal webview in the VSCode to listen to the port 3000 to show the ***Analysis Report***.
 
@@ -51,7 +51,7 @@ Press F5 in your VSCode application window
 
 # VSIX Setup Instruction
 ## 1. Get Vsix file:
-**[Download the VSIX file](https://github.com/SVF-tools/WebSVF#step-2-download-vscode-extension-file)** or **[Generate the vsix file via source code](#Vsix-Generation-Guide)**
+**[Download the VSIX file](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)** or **[Generate the vsix file via source code](#Vsix-Generation-Guide)**
 
 ## 2. Install the WebSVF-frontend-extension vsix file
 -   Click the **Extensions** in the left side.
