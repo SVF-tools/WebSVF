@@ -136,7 +136,7 @@ async function promptForMissingOptions(options) {
   // }
  
   const questions = [];
-  if (!options.account && (options.runInstall || options.runUnInstall)) {
+  if (!options.account && options.runInstall) {
     questions.push({
       type: 'list',
       name: 'account',
@@ -145,7 +145,26 @@ async function promptForMissingOptions(options) {
       default: defaultAccount,
     });
   }
-  else if(mapT.indexOf(`${options.account}`)===-1 && (options.runInstall || options.runUnInstall)){
+  else if(mapT.indexOf(`${options.account}`)===-1 && options.runInstall ){
+    console.log(`${options.account}`);
+    questions.push({
+      type: 'list',
+      name: 'account',
+      message: 'User does not Exist, Please select one of the user accounts:',
+      choices: mapT,
+      default: defaultAccount,
+    });
+  }
+  else if (!options.account && options.runUnInstall) {
+    questions.push({
+      type: 'list',
+      name: 'account',
+      message: 'Please choose which user account to install WebSVF for:',
+      choices: mapT,
+      default: defaultAccount,
+    });
+  }
+  else if(mapT.indexOf(`${options.account}`)===-1 && options.runUnInstall ){
     console.log(`${options.account}`);
     questions.push({
       type: 'list',
