@@ -5,6 +5,7 @@
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
 1. **[Installation Guide](#installation-guide)**
+1. **[How to Uninstall](#uninstalling-websvf-extensions-and-dependencies-svf-llvm-clang)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
 1. **[Acknowledgement](#acknowledgement)**
@@ -122,7 +123,7 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
   Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
 
 
-## Uninstalling WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+# Uninstalling WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
 sudo create-analysis -u
