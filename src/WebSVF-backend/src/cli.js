@@ -197,7 +197,7 @@ async function promptForMissingOptions(options) {
   const answers = await inquirer.prompt(questions);
   return {
     ...options,
-    account: options.account || answers.account || defaultAccount,
+    account: options.account || answers.account,
     cancel: answers.cancel || false,
     //template: options.template || answers.template,
 
