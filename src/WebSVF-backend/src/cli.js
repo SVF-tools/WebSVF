@@ -136,7 +136,7 @@ async function promptForMissingOptions(options) {
   // }
  
   const questions = [];
-  if (!options.account && options.runInstall && options.runUnInstall) {
+  if (!options.account && (options.runInstall || options.runUnInstall)) {
     questions.push({
       type: 'list',
       name: 'account',
@@ -145,7 +145,7 @@ async function promptForMissingOptions(options) {
       default: defaultAccount,
     });
   }
-  else if(mapT.indexOf(`${options.account}`)===-1 && options.runInstall && options.runUnInstall){
+  else if(mapT.indexOf(`${options.account}`)===-1 && (options.runInstall || options.runUnInstall)){
     console.log(`${options.account}`);
     questions.push({
       type: 'list',
