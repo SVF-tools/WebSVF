@@ -57,4 +57,4 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
 sudo create-analysis -u
 ```
 
-**NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -u`**
+**NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**

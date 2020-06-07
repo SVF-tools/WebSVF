@@ -1,6 +1,6 @@
 {
   "name": "@websvf/create-analysis",
-  "version": "0.0.16",
+  "version": "0.0.171",
   "description": "A CLI to bootstrap my new projects",
   "main": "src/index.js",
   "bin": {
