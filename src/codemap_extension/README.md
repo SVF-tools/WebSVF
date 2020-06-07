@@ -110,7 +110,7 @@ Right Click node will jump to the code line.
 
 Click `NODE ID MODE` button will show all label on node.
 
-Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least.
+**Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least. More nodes or lines you have more cores and memory you need. Be carefull :)**
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/4.gif" width='720'>
 
