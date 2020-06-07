@@ -53,7 +53,7 @@ After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 
 **1. Vscode open a C/C++ project**
 
-**Require Folder and Files**
+**Require Folder and Files [[How to generate them]](https://github.com/SVF-tools/WebSVF/tree/master/src/codemap_extension/backend)**
 
 -   **`C/C++ Project` in `VSCODE WORKSPACE`**
 -   **`3D_CODE_GRAPH` as folder in `VSCODE WORKSPACE`**
