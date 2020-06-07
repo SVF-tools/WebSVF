@@ -387,10 +387,10 @@ export async function createAnalysis(options) {
               execao('rm', ['-rf','bug_analyis_front-end-0.0.9.tgz'], {
                 cwd: `/home/${options.account}/.bug-report/`
               });
-              // execao('rm', ['-rf','package/'],{
-              //   cwd: `/home/${options.account}/.bug-report`
-              // });
-          }
+              execao('rm', ['-rf','package/'],{
+                cwd: `/home/${options.account}/.bug-report/`
+              });
+            }
           },
         ],{concurrent: false})
       }
