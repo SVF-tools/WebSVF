@@ -38,7 +38,7 @@ This is a simple NodeJS CLI tool to easily install ***[WebSVF](https://github.co
 
 ## Pre-Requisites
 
-- WebSVF only tested and targetted for **Ubuntu 20.04** (Not compatible with versions of Ubuntu older than 19.10) 
+- WebSVF is only tested and targetted for **Ubuntu 20.04** (Not compatible with versions of Ubuntu older than 19.10) 
 
 ## Step 1. Install NPM (v>=10.0.0)
 
@@ -67,21 +67,12 @@ npm install -g @websvf/create-analysis
 ### Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
-sudo create-analysis -i [-u user]
+sudo create-analysis -i
 ```
 **NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
 
-#### **`-i`** or **`--install`** :
-
-To install WebSVF and all its dependencies
-
-#### **`-u user`** or **`--user user`** (Optional): 
-
-Where the `--user` flag indicates that a String is being provided which is the `user` for which WebSVF should be installed. If the user is not specified with the `--user` flag then the user is prompted with a list of users to select from.
 
 ### Generate Analysis for LLVM Bitcode (.bc) file
-
-Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
 
 ```
 create-analysis  [-g bc-file-directory]
@@ -89,19 +80,11 @@ create-analysis  [-g bc-file-directory]
 
 **NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
 
-#### **`[-g bc-file-directory]`** or **`--generateJSON`** (Optional):
-
-Where `-g` or `--generateJSON` flags indicate that the user wants to provide a path for the directory/folder containing the LLVM Bitcode (.bc) files. The `-g` flag is used cannot be left empty, it must be provided with a directory or the command will fail. If no `-g` flag is specified then the path for the directory containg the .bc files is assumed to be the current working directory from the terminal.
-
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
 
   
 ## Step 3. Run WebSVF-frontend: server and extension
-
-### **Guide Video (Youtube)**
-
-[![Installation Guide for Bug Analysis Tool (WebSVF)](https://img.youtube.com/vi/--a1rgFE_Cs/hqdefault.jpg)](https://www.youtube.com/watch?v=--a1rgFE_Cs)
 
 ### Intructions:  
 
@@ -120,21 +103,20 @@ Where `-g` or `--generateJSON` flags indicate that the user wants to provide a p
 
 ## Step 4. Run WebSVF-codemap-extension
 
-- **Installed situation**  
+- **Installed situation**
+[vsix file download page](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)  
   <img src='./docs/after_install.png' width='480'/>
 
   After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 - **Follow [User Instructions](./src/codemap_extension/README.md)**  
   <img src='./docs/7.gif' width='480'/>
   
-  Please follow the User Instruction to use it.
+  Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
 
 
 
 
 # Known Issues
-
-- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 19.10 or 20.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 

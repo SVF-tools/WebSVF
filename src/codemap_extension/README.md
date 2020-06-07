@@ -17,10 +17,15 @@
 
 ## **Dev Instructions**
 
--   **Clone the repository**
--   **Run `cd codemap_extension`**
+-   **Clone `WebSVF` repository**
+-   **Run `cd ./WebSVF/src/codemap_extension`**
 -   **Run `yarn`**
 -   **Run `yarn go` for build or `F5` for debug**
+
+If you want to make VSIX install file, make sure install vsce tools.
+
+-  **[Install vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)**
+-  **Run `vsce package`**
 
 ## **User Instructions**
 
