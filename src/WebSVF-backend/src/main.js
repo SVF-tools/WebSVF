@@ -189,7 +189,9 @@ export async function createAnalysis(options) {
     dirPresence.extDir = false;
   }
 
-  
+  if(dirPresence.llvmclang && dirPresence.svfR){
+    depInstall.svf = true;
+  }
 
   let currentFileUrl = import.meta.url;
   let scriptsPath = '/'+path.join(
@@ -248,16 +250,16 @@ export async function createAnalysis(options) {
             enabled: () => true,
             task: () => commandExists('git').then(()=>{depInstall.git=true;}).catch(()=>{})
           },
-          {
-            title: `Checking ${chalk.inverse('SVF')} Installation`,
-            enabled: () => true,
-            task: () => {
-              if(dirPresence.llvmclang && dirPresence.svfR){
-                depInstall.svf = true;
-              }
-            }
-            //commandExists('wpa').then(()=>{depInstall.svf=true;}).catch(()=>{})
-          }
+          // {
+          //   title: `Checking ${chalk.inverse('SVF')} Installation`,
+          //   enabled: () => true,
+          //   task: () => {
+          //     if(dirPresence.llvmclang && dirPresence.svfR){
+          //       depInstall.svf = true;
+          //     }
+          //   }
+          //   //commandExists('wpa').then(()=>{depInstall.svf=true;}).catch(()=>{})
+          // }
         ], {concurrent: false});
       }      
     },
@@ -390,7 +392,7 @@ export async function createAnalysis(options) {
               execao('rm', ['-rf','package/'],{
                 cwd: `/home/${options.account}/.bug-report/`
               });
-            }
+          }
           },
         ],{concurrent: false})
       }
@@ -659,7 +661,7 @@ export async function createAnalysis(options) {
                     execao('sh', ['removeSVF.sh'],{
                       cwd: `/home/${options.account}/SVFTools/`,
                     }, (result)=>{
-                      console.error(`${chalk.inverse.green('SUCCESS')}: Please RESTART your system to finish Installation`);
+                      console.error(`${chalk.inverse.green('SUCCESS')}: WebSVF Uninstalled`);
                       execao('rm', ['-rf','SVFTools', '.bug-report'],{
                         cwd: `/home/${options.account}`
                       });
