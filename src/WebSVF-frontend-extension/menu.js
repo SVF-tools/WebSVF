@@ -12,12 +12,10 @@ var net = require('net')
 module.exports = function(context) {
 
     let timeInterval = null;
-
     context.subscriptions.push(vscode.commands.registerCommand('extension.menu', function () {
         let workspace = vscode.workspace.rootPath;
         let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
         let status = StatusBar.statusBar.text.split(": ")[1];
-
 
         let node_abspath = null;
         let config_abspath = null;
@@ -25,7 +23,12 @@ module.exports = function(context) {
         if(os.platform() == "win32"){
             config_abspath = os.userInfo().homedir + path.sep + constants.node_app + constants.node_branch + constants.config_abspath;
         }else{
+            if(typeof(constants.workspace) == "undefined"){
+                vscode.window.showErrorMessage('No workplace opened, please open the target workplace!');
+                return;
+            }
             node_abspath = constants.workspace.substring(0,constants.workspace.indexOf(path.sep,6)+1) + constants.node_app//node app absolute path.
+            
             config_abspath = node_abspath + constants.node_branch + constants.config_abspath;
         }
 
