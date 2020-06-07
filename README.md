@@ -74,11 +74,19 @@ sudo create-analysis -i
 
 ### Generate Analysis for LLVM Bitcode (.bc) file
 
+Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
+
 ```
-create-analysis  [-g bc-file-directory]
+create-analysis [options]
 ```
 
 **NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
+
+#### Options
+
+##### **`-d bc-file-directory`** or **`--dir bc-file-directory`** (Optional):
+
+Where `-d` or `--dir` flags indicate that the user wants to provide a path for the directory/folder containing the LLVM Bitcode (.bc) files. The `-d` flag is used cannot be left empty, it must be provided with a directory or the command will fail. If no `-d` flag is specified then the path for the directory containg the .bc files is assumed to be the current working directory from the terminal.
 
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
