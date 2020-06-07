@@ -62,7 +62,7 @@ After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/require.png' width='480'/>
 
-You can try to use **TEST.zip** to unzip and open it for test.
+You can try to use **TEST.zip** to unzip and open it for test or read [[How to generate them]](https://github.com/SVF-tools/WebSVF/tree/master/src/codemap_extension/backend) to build them for real project.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/project.gif" width='720'>
 
