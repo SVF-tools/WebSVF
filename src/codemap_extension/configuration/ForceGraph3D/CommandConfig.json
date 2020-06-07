@@ -1,4 +1,14 @@
 {
-    "name": "ForceGraph3D",
-    "command": "extension.graphVisualization"
+    "name_ForceGraph3D": "ForceGraph3D",
+    "command_ForceGraph3D": "extension.graphVisualization",
+    "name_TextControl": "TextControl",
+    "command_TextControl": "extension.textControl",
+    "name_ForceNodeNext": "ForceNodeNext",
+    "command_ForceNodeNext": "extension.ForceNodeNext",
+    "name_ForceNodeBefore": "ForceNodeBefore",
+    "command_ForceNodeBefore": "extension.ForceNodeBefore",
+    "name_SelectRangeUp": "SelectRangeUp",
+    "command_SelectRangeUp": "extension.SelectRangeUp",
+    "name_SelectRangeDown": "SelectRangeDown",
+    "command_SelectRangeDown": "extension.SelectRangeDown"
 }

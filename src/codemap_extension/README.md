@@ -1,73 +1,145 @@
-# 3D Code Map
+# **<p align="center">3D CODE MAP</p>**
 
-Program Analysis tool for bug detection.
-It is a vscode extension which can be installed into Vscode 1.41.0 at least.
+<p align="center">
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/logo.png' width='480'/>
+</p>
 
-![](https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/demo.gif)
+**<p align="center">Program Analysis tool for bug detection. It is a vscode extension which can be installed into Vscode 1.43.0 at least.</p>**
 
-After the program is compiled by analysis, it is used to display the analysis node information.
+**<p align="center">After the program is compiled by analysis, it is used to display the analysis node information.</p>**
 
-## Dev Instructions
 
--   Clone the repository
--   Run `cd codemap_extension`
--   Run `yarn`  
--   Run `yarn go`
+## **<p align="center">Architecture Overview</p>**
 
-## User Instructions
+<p align="center">
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/codemap_flowchart.png' width='720'/>
+</p>
 
-This project uses yarn workspaces and consists of the sub-projects _data-process_, _extension_ and _render-web-panel_.
-To setup a dev environment, follow these steps:
+## **Dev Instructions**
 
--   Clone the repository
--   Run `cd codemap_extension`
--   Run `yarn`
--   Run `yarn go`
--   Run `vsce package`
+-   **Clone `WebSVF` repository**
+-   **Run `cd ./WebSVF/src/codemap_extension`**
+-   **Run `yarn`**
+-   **Run `yarn go` for build or `F5` for debug**
 
-It will create vsix file, then install by vscode ide.
+If you want to make VSIX install file, make sure install vsce tools.
 
-Open a project first and open a long lines file.
+-  **[Install vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)**
+-  **Run `vsce package`**
+
+## **User Instructions**
+
+### **Installation**
+
+**1. Download extension: [VSIX file and TEST zip](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**
+
+  <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/DOWNLOAD_VISX.png' width='720'/>
+
+VSIX file is vscdoe extension. TEST zip for extension testing.
+
+**2. Extension installation**
+
+  <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/VSIX_installation.png' width='720'/>
+
+Through this picture show to install extension. and then unzip TEST.zip. Use vscode open **TEST** work folder.
+
+**3. Installed situation**
+
+  <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/after_install.png' width='720'/>
+
+After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
+
+### **3D CODE MAP**
+
+**1. Vscode open a C/C++ project**
+
+**Require Folder and Files**
+
+-   **`C/C++ Project` in `VSCODE WORKSPACE`**
+-   **`3D_CODE_GRAPH` as folder in `VSCODE WORKSPACE`**
+-   **`control_follow_graph.json` in `3D_CODE_GRAPH`**
+-   **`value_follow_graph.json` in `3D_CODE_GRAPH`**
+
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/require.png' width='480'/>
+
+You can try to use **TEST.zip** to unzip and open it for test.
+
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/project.gif" width='720'>
+
+As you see, **3D_CODE_GRAPH** is needed to store control graph and value follow graph.
+
+**2. Click statusbar to show 3D CODE MAP**
 
 Trying to click on the button at the bottom left.
 
-![](https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/red.png)
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/red.png" width='480'>
 
 After a while time to wait all function load.
 
-![](https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/load.png)
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/load.png" width='480'>
 
 It will show the red block when all function stopped.
 
-![](https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/blue.png)
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/blue.png" width='480'>
 
-And server running will show light blue.
+After click to make it work, it will show like this.
 
-Click the node, it will hightlight on a file which you have open before.
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/show.png" width='720'>
 
-## Publish Instructions
+### **Control Graph**
 
--   Follow the Build Instructions
--   Run `cd codemap_extension`
--   Run `yarn`
--   Run `yarn go`
--   Run `vsce package`
+**1. Show CFG or VFG**
 
-## Webview
+Click the CFG or VFG button will show the two graph.
 
-Implements the UI and is hosted inside a webview in VS Code.
-Can be opened in a browser window.
-Uses websockets and JSON RPC to communicate with the extension.
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/1.gif" width='720'>
 
-## Extension
+**2. Show node label**
 
-Creates the webview in VS Code, data server and a render server.
-The render server serves the _WebShow.ts_ that is loaded by the webview.
+Hover over any node will show the label.
 
-If click the lower-left button of `3D CODE MAP Web page` will loading and data process will listen get / post information from render server.
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/2.gif" width='720'>
 
-The webview is served from an http server rather than the file system to work around some security mechanisms,
+**3. Jump to line**
 
-## Consideration
+Right Click node will jump to the code line.
 
-All source coding in TS. After yarn compilation, They will become general js code among the ./out. Please modify the code in TS. Otherwise, your replacement information in JS will disappear with the update.
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/3.gif" width='720'>
+
+**4. Show all label**
+
+Click `NODE ID MODE` button will show all label on node.
+
+Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least.
+
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/4.gif" width='720'>
+
+**5. Highlight Node and Jump to code line**
+
+If the node info show the fileName and lineNumber, Click the node will jump into the code line.
+
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/5.gif" width='720'>
+
+**6. Show code line nodes**
+
+active one or more code line and input:
+
+Window or Linux: `ctrl + alt + l`
+
+MAC: `cmd + alt + l`
+
+It will show the all the code line nodes. if there is no highlight there. it means there is no node link the code line.
+
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/6.gif" width='720'>
+
+**7. Camera Positioning**
+
+If you have highlight node there. you can use:
+
+Window or Linux: `ctrl + alt + j` or `ctrl + alt + k`
+
+MAC: `cmd + alt + ->` or `cmd + alt + <-`
+
+It will make camera find the highlight node position.
+
+<img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/7.gif" width='720'>
