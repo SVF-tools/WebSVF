@@ -33,7 +33,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     //skipPrompts: args['--yes'] || false,
     template: args._[0],
     arguements: args._,
-    account: args['--account'] || '',
+    account: args['--account'] || false,
     generateJSONDir: args['--dir'] || process.cwd(),
     output: args['--output'] || '',
     runInstall: args['--install'] || false,
@@ -197,7 +197,7 @@ async function promptForMissingOptions(options) {
   const answers = await inquirer.prompt(questions);
   return {
     ...options,
-    account: options.account || answers.account,
+    account: options.account || answers.account || defaultAccount,
     cancel: answers.cancel || false,
     //template: options.template || answers.template,
 
