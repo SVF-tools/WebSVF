@@ -122,6 +122,14 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
   Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
 
 
+## Uninstalling WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+
+```
+sudo create-analysis -u
+```
+
+**NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -u`**
+
 
 
 # Known Issues
