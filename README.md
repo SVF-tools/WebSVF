@@ -65,7 +65,7 @@ sudo apt install -y npm
 npm install -g @websvf/create-analysis
 ```
 
-### Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+## Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
 sudo create-analysis -i
@@ -73,7 +73,7 @@ sudo create-analysis -i
 **NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
 
 
-### Generate Analysis for LLVM Bitcode (.bc) file
+## Generate Analysis for LLVM Bitcode (.bc) file
 
 Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
 
