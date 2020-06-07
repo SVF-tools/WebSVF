@@ -5,6 +5,7 @@
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
 1. **[Installation Guide](#installation-guide)**
+1. **[Uninstall](#uninstalling-websvf-extensions-and-dependencies-svf-llvm-clang)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
 1. **[Acknowledgement](#acknowledgement)**
@@ -61,10 +62,10 @@ sudo apt install -y npm
 ## Install WebSVF-backend
 
 ```
-npm install -g @websvf/create-analysis
+sudo npm install -g @websvf/create-analysis
 ```
 
-### Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+## Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
 sudo create-analysis -i
@@ -72,13 +73,21 @@ sudo create-analysis -i
 **NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
 
 
-### Generate Analysis for LLVM Bitcode (.bc) file
+## Generate Analysis for LLVM Bitcode (.bc) file
+
+Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
 
 ```
-create-analysis  [-g bc-file-directory]
+create-analysis [options]
 ```
 
 **NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
+
+#### Options
+
+##### **`-d bc-file-directory`** or **`--dir bc-file-directory`** (Optional):
+
+Where `-d` or `--dir` flags indicate that the user wants to provide a path for the directory/folder containing the LLVM Bitcode (.bc) files. The `-d` flag is used cannot be left empty, it must be provided with a directory or the command will fail. If no `-d` flag is specified then the path for the directory containg the .bc files is assumed to be the current working directory from the terminal.
 
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
@@ -113,6 +122,14 @@ create-analysis  [-g bc-file-directory]
   
   Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
 
+
+# Uninstalling WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+
+```
+sudo create-analysis -u
+```
+
+**NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -u`**
 
 
 

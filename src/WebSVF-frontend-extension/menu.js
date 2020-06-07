@@ -73,13 +73,29 @@ module.exports = function(context) {
     }
 
     function analysis(){
-        utils.setStatusBar("Bug Analysis Tool: Running", "Red");
-        new Promise(function (resolve, reject) {                
-            utils.bug_report();//Send command via terminal to start the node app.
-            resolve(1);
-        }).then(function () {
-            timeInterval = setInterval(function () {portIsOccupied(3000);}, 1000);
-        })
+        var server = net.createServer().listen(3000);
+        server.on('error', function (err) {
+
+            let flag = err.message.split(" ")[1];
+            flag = flag.substring(0, flag.length-1);
+
+            if (flag === 'EADDRINUSE') { // The port has been occupied
+                utils.setStatusBar("Bug Analysis Tool: Running", "Red");
+                utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side.
+            }
+        });
+
+        server.on('listening', function () { // Execution of this code indicates that the port is not occupied
+            server.close(); // Close the service
+            utils.setStatusBar("Bug Analysis Tool: Running", "Red");
+            new Promise(function (resolve, reject) {                
+                utils.bug_report();//Send command via terminal to start the node app.
+                resolve(1);
+            }).then(function () {
+                timeInterval = setInterval(function () {portIsOccupied(3000);}, 1000);
+            });
+          });
+
     }
 
     function stop(){
@@ -108,4 +124,5 @@ module.exports = function(context) {
             }
         });
       }
+
 };
