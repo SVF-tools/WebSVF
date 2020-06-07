@@ -70,15 +70,15 @@ As you see, **3D_CODE_GRAPH** is needed to store control graph and value follow 
 
 **2. Click statusbar to show 3D CODE MAP**
 
-Trying to click on the button at the bottom left.
+Trying to click on the button at the bottom left to run or stop.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/red.png" width='480'>
 
-After a while time to wait all function load.
+After a while time to wait all function load. if always loading, you can cancel it by **`[X]`** close the page.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/load.png" width='480'>
 
-It will show the red block when all function stopped.
+It will show the red block when all function stopped or show blue block when code map running.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/blue.png" width='480'>
 
