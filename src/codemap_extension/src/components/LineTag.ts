@@ -6,18 +6,31 @@ import { activate } from "../extension";
 export interface TagInfo {
     [key: string]: string;
     svgPath: string;
+    gutterIconSize: string;
+    color: string;
+    backgroundColor: string;
+    overviewRulerColor: string;
+}
+
+export interface RenderOption {
+    [key: string]: string | boolean;
+    isWholeLine: boolean;
+    backgroundColor: string;
+    border: string;
 }
 
 export interface LineTagInfo {
-    [key: string]: string | TagInfo;
+    [key: string]: string | TagInfo | RenderOption;
     name: string;
     light: TagInfo;
     dark: TagInfo;
+    renderOption: RenderOption;
 }
 
-export enum LightOrDark {
+export enum TagInfoEnum {
     light,
     dark,
+    renderOption,
 }
 
 export interface CreateLineTagInfo {
@@ -40,38 +53,108 @@ export class LineTagManager {
         markLine: number, // which line
         start: number,
         end: number,
-        filePathOrType: string | vscode.TextEditorDecorationType // Decoration file or Type
-    ): string {
+        themeName: string,
+        filePathOrType: string | vscode.TextEditorDecorationType, // Decoration file or Type
+        flag: string
+    ): string | undefined {
         const key: string = this.assemblyKey(activeEditorUri, markLine);
         const range: vscode.Range = this.assemblyVscodeRange(
             markLine,
             start,
             end
         );
-        const createLineTagInfo: CreateLineTagInfo = this.assemblyCreateLineTagInfo(
+        const createLineTagInfo:
+            | CreateLineTagInfo
+            | undefined = this.assemblyCreateLineTagInfo(
+            themeName,
             activeEditorUri,
             range,
             filePathOrType
         );
 
-        const lineTag: LineTag = new LineTag(createLineTagInfo);
-        this.LineTagList.set(key, lineTag);
-        return key;
+        if (createLineTagInfo) {
+            const lineTag: LineTag = new LineTag(createLineTagInfo, flag);
+            this.LineTagList.set(key, lineTag);
+            return key;
+        }
     }
 
-    public static deleteLineTag(key: string): boolean {
-        const lintTag: LineTag | undefined = this.findLineTag(key);
-        if (lintTag === undefined) {
+    public static isKeyThere(key: string): boolean {
+        if (this.findLineTag(key)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static turnOff(key: string, flag?: string, mode?: string): boolean {
+        if (!this.isKeyThere(key)) {
             return false;
+        }
+        if (flag && mode) {
+            switch (mode) {
+                case "deleteByFlag":
+                    return this.deleteLineTag(key, flag);
+                case "saveByFlag":
+                    const lineTag = this.findLineTag(key);
+                    if (lineTag) {
+                        const innerFlag = lineTag.lineTagFlag;
+                        if (flag === innerFlag) {
+                            return false; // flag same will save
+                        }
+                    }
+                    return this.deleteLineTagBase(key);
+                default:
+                    console.log("MODE ERROR: ", mode);
+                    return false;
+            }
         } else {
+            if (!flag && !mode) {
+                return this.deleteLineTagBase(key);
+            }
+        }
+        return false;
+    }
+
+    public static deleteLineTag(key: string, flag?: string): boolean {
+        // flag same will delete
+        if (flag) {
+            const lineTag = this.findLineTag(key);
+            if (lineTag) {
+                const innerFlag = lineTag.lineTagFlag;
+                if (flag !== innerFlag) {
+                    return false; // flag different will save
+                }
+            }
+        }
+        return this.deleteLineTagBase(key);
+    }
+
+    public static deleteLineTagBase(key: string): boolean {
+        const lintTag: LineTag | undefined = this.findLineTag(key);
+        if (lintTag) {
             lintTag.UnLoadDecoration();
             this.LineTagList.delete(key);
             return true;
         }
+        return false;
+    }
+    public static clear() {
+        this.LineTagList.forEach((element) => {
+            element.UnLoadDecoration();
+        });
+        this.LineTagList.clear();
     }
 
-    public static findLineTag(key: string): LineTag | undefined {
-        return this.LineTagList.get(key);
+    public static findLineTag(key: string, flag?: string): LineTag | undefined {
+        const lineTag = this.LineTagList.get(key);
+        if(!flag){
+            return lineTag;
+        }else{
+            if(lineTag && lineTag.lineTagFlag === flag){
+                return lineTag;
+            }
+            return undefined;
+        }
     }
 
     public static assemblyVscodeRange(
@@ -85,24 +168,32 @@ export class LineTagManager {
     }
 
     public static assemblyCreateLineTagInfo(
+        themeName: string,
         activeEditorUri: vscode.Uri,
         markLine: vscode.Range,
         filePathOrType: string | vscode.TextEditorDecorationType
-    ): CreateLineTagInfo {
+    ): CreateLineTagInfo | undefined {
         const markSpace: Array<vscode.Range> = new Array();
         markSpace.push(markLine);
 
-        const textLoadEditorDecoration: vscode.TextEditorDecorationType =
+        const textLoadEditorDecoration:
+            | vscode.TextEditorDecorationType
+            | undefined =
             typeof filePathOrType === "string"
-                ? this.generateTextEditorDecorationByJsonFile(filePathOrType)
+                ? this.generateTextEditorDecorationByJsonFile(
+                      themeName,
+                      filePathOrType
+                  )
                 : filePathOrType;
-        const createLineTagInfo: CreateLineTagInfo = {
-            activeEditorUri: activeEditorUri,
-            markSpace: markSpace,
-            textLoadEditorDecoration: textLoadEditorDecoration,
-        };
+        if (textLoadEditorDecoration) {
+            const createLineTagInfo: CreateLineTagInfo = {
+                activeEditorUri: activeEditorUri,
+                markSpace: markSpace,
+                textLoadEditorDecoration: textLoadEditorDecoration,
+            };
 
-        return createLineTagInfo;
+            return createLineTagInfo;
+        }
     }
 
     public static assemblyKey(
@@ -113,78 +204,152 @@ export class LineTagManager {
     }
 
     private static assemblyLineTagFromJsonFile(
+        themeName: string,
         filePath: string,
-        choice: LightOrDark
-    ): TagInfo {
-        const info = require(filePath);
+        choice: TagInfoEnum
+    ): TagInfo | undefined {
         const model = this.getModel(choice);
-        const tagInfo: TagInfo = {
-            svgPath: AbsolutePath(info[model]["svgPath"]),
-        };
-        return tagInfo;
+        const info = require(filePath)[themeName][model];
+        if (model === "light" || model === "dark") {
+            const tagInfo: TagInfo = {
+                svgPath: AbsolutePath(info["svgPath"]),
+                gutterIconSize: info["gutterIconSize"],
+                color: info["color"],
+                backgroundColor: info["backgroundColor"],
+                overviewRulerColor: info["overviewRulerColor"],
+            };
+            return tagInfo;
+        }
     }
-    private static getModel(choice: LightOrDark): string {
-        return choice === LightOrDark.light ? "light" : "dark";
+    private static assemblyRenderOptionFromJsonFile(
+        themeName: string,
+        filePath: string,
+        choice: TagInfoEnum
+    ): RenderOption | undefined {
+        const model = this.getModel(choice);
+        const info = require(filePath)[themeName][model];
+        if (model === "renderOption") {
+            const renderOption: RenderOption = {
+                isWholeLine: info["isWholeLine"],
+                backgroundColor: info["backgroundColor"],
+                border: info["border"],
+            };
+            return renderOption;
+        }
+    }
+    private static getModel(choice: TagInfoEnum): string {
+        let result = "";
+        switch (choice) {
+            case TagInfoEnum.light:
+                result = "light";
+                break;
+            case TagInfoEnum.dark:
+                result = "dark";
+                break;
+            case TagInfoEnum.renderOption:
+                result = "renderOption";
+                break;
+            default:
+                break;
+        }
+        return result;
     }
     private static assemblyLineTagInfoFromJsonFile(
+        themeName: string,
         filePath: string
-    ): LineTagInfo {
-        const info = require(filePath);
-        const lineTagInfo: LineTagInfo = {
-            name: info["name"],
-            light: this.assemblyLineTagFromJsonFile(
-                filePath,
-                LightOrDark.light
-            ),
-            dark: this.assemblyLineTagFromJsonFile(filePath, LightOrDark.dark),
-        };
-        return lineTagInfo;
+    ): LineTagInfo | undefined {
+        const info = require(filePath)[themeName];
+        const light = this.assemblyLineTagFromJsonFile(
+            themeName,
+            filePath,
+            TagInfoEnum.light
+        );
+        const dark = this.assemblyLineTagFromJsonFile(
+            themeName,
+            filePath,
+            TagInfoEnum.dark
+        );
+        const render = this.assemblyRenderOptionFromJsonFile(
+            themeName,
+            filePath,
+            TagInfoEnum.renderOption
+        );
+        try {
+            if (light && dark && render) {
+                const lineTagInfo: LineTagInfo = {
+                    name: info["name"],
+                    light: light,
+                    dark: dark,
+                    renderOption: render,
+                };
+                return lineTagInfo;
+            } else {
+                throw TypeError;
+            }
+        } catch (e) {
+            console.log("light:", light);
+            console.log("dark:", dark);
+            console.log("render:", render);
+        }
     }
     private static generateDecorationOptionsByJsonFile(
+        themeName: string,
         filePath: string
-    ): vscode.DecorationRenderOptions {
-        const lineTagInfo: LineTagInfo = this.assemblyLineTagInfoFromJsonFile(
+    ): vscode.DecorationRenderOptions | undefined {
+        const lineTagInfo:
+            | LineTagInfo
+            | undefined = this.assemblyLineTagInfoFromJsonFile(
+            themeName,
             filePath
         );
         return this.generateDecorationOptions(lineTagInfo);
     }
     private static generateDecorationOptions(
-        info: LineTagInfo
-    ): vscode.DecorationRenderOptions {
-        const lightOptions: vscode.ThemableDecorationRenderOptions = {
-            gutterIconPath: vscode.Uri.file(info["light"]["svgPath"]),
-            gutterIconSize: "contain",
-            color: "#fff",
-            backgroundColor: "#ffbd2a",
-            overviewRulerColor: "rgba(255,189,42,0.8)",
-        };
-        const darkOptions: vscode.ThemableDecorationRenderOptions = {
-            gutterIconPath: vscode.Uri.file(info["dark"]["svgPath"]),
-            gutterIconSize: "contain",
-            color: "#fff",
-            backgroundColor: "#ffbd2a",
-            overviewRulerColor: "rgba(255,189,42,0.8)",
-        };
-        const options: vscode.DecorationRenderOptions = {
-            light: lightOptions,
-            dark: darkOptions,
-            isWholeLine: true,
-            overviewRulerLane: vscode.OverviewRulerLane.Full,
-            backgroundColor: "green",
-            border: "2px solid white",
-        };
-        return options;
+        info: LineTagInfo | undefined
+    ): vscode.DecorationRenderOptions | undefined {
+        if (info) {
+            const lightOptions: vscode.ThemableDecorationRenderOptions = {
+                gutterIconPath: vscode.Uri.file(info["light"]["svgPath"]),
+                gutterIconSize: info["light"]["gutterIconSize"],
+                color: info["light"]["color"],
+                backgroundColor: info["light"]["backgroundColor"],
+                overviewRulerColor: info["light"]["overviewRulerColor"],
+            };
+            const darkOptions: vscode.ThemableDecorationRenderOptions = {
+                gutterIconPath: vscode.Uri.file(info["dark"]["svgPath"]),
+                gutterIconSize: info["dark"]["gutterIconSize"],
+                color: info["dark"]["color"],
+                backgroundColor: info["dark"]["backgroundColor"],
+                overviewRulerColor: info["dark"]["overviewRulerColor"],
+            };
+            const options: vscode.DecorationRenderOptions = {
+                light: lightOptions,
+                dark: darkOptions,
+                isWholeLine: info["renderOption"]["isWholeLine"],
+                overviewRulerLane: vscode.OverviewRulerLane.Full,
+                backgroundColor: info["renderOption"]["backgroundColor"],
+                border: info["renderOption"]["border"],
+            };
+            console.log("OPTION: ", options);
+            return options;
+        }
     }
     private static generateTextEditorDecoration(
-        options: vscode.DecorationRenderOptions
-    ): vscode.TextEditorDecorationType {
-        return vscode.window.createTextEditorDecorationType(options);
+        options: vscode.DecorationRenderOptions | undefined
+    ): vscode.TextEditorDecorationType | undefined {
+        if (options) {
+            return vscode.window.createTextEditorDecorationType(options);
+        }
     }
 
     private static generateTextEditorDecorationByJsonFile(
+        themeName: string,
         filePath: string
-    ): vscode.TextEditorDecorationType {
-        const options = this.generateDecorationOptionsByJsonFile(filePath);
+    ): vscode.TextEditorDecorationType | undefined {
+        const options = this.generateDecorationOptionsByJsonFile(
+            themeName,
+            filePath
+        );
         return this.generateTextEditorDecoration(options);
     }
 
@@ -202,7 +367,13 @@ export class LineTagManager {
 }
 
 export class LineTag {
-    constructor(private createLineTagInfo: CreateLineTagInfo) {}
+    private _lineTagFlag: string; //store who set the LinTag. like "onNodeClick", "TextControl"
+    public get lineTagFlag(): string {
+        return this._lineTagFlag;
+    }
+    constructor(private createLineTagInfo: CreateLineTagInfo, flag: string) {
+        this._lineTagFlag = flag;
+    }
 
     public LoadDecoration(newDec?: vscode.TextEditorDecorationType) {
         newDec =
@@ -218,6 +389,10 @@ export class LineTag {
                     newDec,
                     this.createLineTagInfo.markSpace
                 );
+            } else {
+                console.log("ERROR: ");
+                console.log(this.createLineTagInfo.activeEditorUri.fsPath);
+                console.log(uri.fsPath);
             }
         }
     }

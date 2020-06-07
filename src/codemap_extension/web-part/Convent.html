@@ -33,9 +33,9 @@
 
             #showSpan {
                 position: absolute;
-                top: 10px;
+                top: 5px;
                 right: 200px;
-                font-size: 10px;
+                font-size: 18px;
                 /* visibility: hidden; */
             }
 
@@ -45,6 +45,25 @@
                 right: 40px;
                 font-size: 10px;
             }
+            #infoGround {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 200px;
+                font-size: 12px;
+            }
+            #welcomeInfo {
+                text-align: center; /*让div内部文字居中*/
+                border-radius: 20px;
+                width: 300px;
+                height: 350px;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
         </style>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,27 +71,11 @@
         <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/three.min.js"></script>
         <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/three-trackballcontrols.min.js"></script>
         <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/three-spritetext.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-            crossorigin="anonymous"
-        />
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"
-        ></script>
+        <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/dat.gui.js"></script>
+        <link rel="stylesheet" href="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/bootstrap.min.css" />
+        <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/jquery-3.4.1.slim.min.js"></script>
+        <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/popper.min.js"></script>
+        <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/bootstrap.min.js"></script>
         <title>3D FORCE GRAPH</title>
     </head>
     <body>
@@ -93,7 +96,7 @@
                 Right
             </button>
 
-            <span id="showSpan" class="badge badge-success">to connect...</span>
+            <span id="showSpan" class="badge badge-success">TO CONNECT...</span>
         </div>
         <div
             id="modeGroup"
@@ -102,8 +105,39 @@
             aria-label="mode example"
         >
             <button id="modeBtn" type="button" class="btn btn-info">
-                WHOLE LABEL
+                NODE ID MODE
             </button>
+        </div>
+        <div id="welcomeInfo" class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well done!</h4>
+            <p>
+                Aww yeah, you successfully read this important alert message.
+                This example text is going to run a bit longer so that you can
+                see how spacing within an alert works with this kind of content.
+            </p>
+            <hr />
+            <p class="mb-0">
+                Whenever you need to, be sure to use margin utilities to keep
+                things nice and tidy.
+            </p>
+        </div>
+        <div
+            id="infoGround"
+            class="alert alert-info"
+            role="alert"
+            style="display: none;"
+        >
+            <h4 class="alert-heading">NODE INFO</h4>
+            <p>
+                Aww yeah, you successfully read this important alert message.
+                This example text is going to run a bit longer so that you can
+                see how spacing within an alert works with this kind of content.
+            </p>
+            <hr />
+            <p class="mb-0">
+                Whenever you need to, be sure to use margin utilities to keep
+                things nice and tidy.
+            </p>
         </div>
         <script src="vscode-resource:/Users/apple/WORKSPACE_3/WebSVF/src/codemap_extension/web-part/index.js"></script>
     </body>

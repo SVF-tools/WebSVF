@@ -29,57 +29,64 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 This VSCode Extension could use 3D force graph to present bug information. Vsix file need to create by user self. Please follow the user guide link to install. This extension needs to be used when there is a network.
 
-- **[WebSVF-backend](https://github.com/SVF-tools/WebSVF/tree/generateJSON/src/WebSVF-generateJSON) :**
+- **[WebSVF-backend](/src/WebSVF-backend) :**
+
+This is a simple NodeJS CLI tool to easily install ***[WebSVF](https://github.com/SVF-tools/WebSVF)*** and run it.
 
 
 # Installation Guide
 
-## Step 1. Install Requisite Software
+## Pre-Requisites
 
-- **[Git](https://git-scm.com/downloads)**
+- WebSVF is only tested and targetted for **Ubuntu 20.04** (Not compatible with versions of Ubuntu older than 19.10) 
 
-- **[NodeJS](https://nodejs.org/en/download/)**
+## Step 1. Install NPM (v>=10.0.0)
 
-- **[VSCode](https://code.visualstudio.com/download)**
+On an Ubuntu 20.04 Installation, simply open terminal and enter the following commads:
+
+### Refresh Ubuntu Repositories
+
+```
+sudo apt-get update
+```
+
+### Install NPM
+
+```
+sudo apt install -y npm
+```
+
+## Step 2. Install and Run ***WebSVF-backend***
+
+## Install WebSVF-backend
+
+```
+npm install -g @websvf/create-analysis
+```
+
+### Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+
+```
+sudo create-analysis -i
+```
+**NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
 
 
-## Step 2. Install WebSVF-backend
+### Generate Analysis for LLVM Bitcode (.bc) file
 
-1. Install **[SVF (Ubuntu 18.04 and 20.04 only)](/src/SetupSVF/)**
-2. Download the **[generateJSON.js](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/generateJSON.js)** to the root path of SVF.  
+```
+create-analysis  [-g bc-file-directory]
+```
 
-3. Use WLLVM to compile a C project to LLVM Bitcode (.bc) file.  
+**NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
 
-4. Run following command line in the root path of SVF.  
+**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
-      
-       node generateJSON.js your_path_of_c_project  
-      
-      
-5. Bug-Analysis-Report.json will be generated at the root path of your C project.  
-
-The example of your_path_of_c_project: (Make sure you have compile a C project to LLVM Bitcode (.bc) successfully).  
-
-       node generateJSON.js /home/pie/Downloads/pkg-config-0.26
-
-The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
   
-## Step 3. Install WebSVF-frontend: server and extension
+## Step 3. Run WebSVF-frontend: server and extension
 
-### **Guide Video (Youtube)**
-
-[![Installation Guide for Bug Analysis Tool (WebSVF)](https://img.youtube.com/vi/--a1rgFE_Cs/hqdefault.jpg)](https://www.youtube.com/watch?v=--a1rgFE_Cs)
-
-### Setup Intructions:  
-
-- **Download [VSCode Extension File](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix)**
-
-- **Install '*WebSVF-frontend*' VSCode Extension**
-
-     Enter the following command in the terminal to Install the Extension:
-     
-     `code PathToDownloadedVSIX\WebSVF-frontend-extension_0.9.0.vsix`
+### Intructions:  
 
 - **Open Project Folder in VSCode**
 
@@ -94,22 +101,22 @@ The way to compile a C project to LLVM Bitcode (.bc): [Detecting memory leaks](h
     View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. The button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
     (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more          information)
 
-## Step 4. Install WebSVF-codemap-extension
+## Step 4. Run WebSVF-codemap-extension
 
-- **Download extension: [VSIX release](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)**  
-  <img src='./docs/DOWNLOAD_VISX.png' width='480'/>
-- **Extension installation**  
-  <img src='./docs/VSIX_installation.png' width='480'/>
-- **Installed situation**  
-  <img src='./docs/3D_CODEMAP.png' width='480'/>
-- **Follow [User Instructions](./src/codemap_extension/README.md)**
+- **Installed situation**
+[vsix file download page](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)  
+  <img src='./docs/after_install.png' width='480'/>
+
+  After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
+- **Follow [User Instructions](./src/codemap_extension/README.md)**  
+  <img src='./docs/7.gif' width='480'/>
+  
+  Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
 
 
 
 
 # Known Issues
-
-- **3D-CodeMap Components not compatible with OS:** Please note that certain legacy components were developed specifically for ***Ubuntu 18.04 or 20.04***. If the component of Web-SVF you want to work with is not compatible with your OS please refer to [this guide](https://github.com/SVF-tools/WebSVF/blob/master/docs/Install_VirtualBox.md) for assistance setting up a Virtual Machine. 
 
 - **Repository Website:** If  https://svf-tools.github.io/WebSVF/  displays a blank page, please find an error icon in the address bar of your browser and click on it. An error window will pop out saying 'Insecure Content Blocked' since page security is not implemented yet, click on 'Load unsafe Scripts' to load the webpage.
 
