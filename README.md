@@ -5,7 +5,7 @@
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
 1. **[Installation Guide](#installation-guide)**
-1. **[How to Uninstall](#uninstalling-websvf-extensions-and-dependencies-svf-llvm-clang)**
+1. **[Uninstall](#uninstalling-websvf-extensions-and-dependencies-svf-llvm-clang)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
 1. **[Acknowledgement](#acknowledgement)**
