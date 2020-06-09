@@ -571,7 +571,7 @@ export async function createAnalysis(options) {
             title: `Downloading ${chalk.inverse.blue('SVF')} binary`,
             enabled: () => !dirPresence.svfR,
             skip: () => !dirPresence.homeW,
-            task: () => execao('wget', ['-c', 'https://github.com/codemapweb/SVF/releases/download/1.0/SVF.tar.xz'],{
+            task: () => execao('wget', ['-c', 'https://github.com/SVF-tools/WebSVF/releases/download/1.0/SVF.tar.xz'],{
                 cwd: `/home/${options.account}/SVFTools/`
               })
           },
