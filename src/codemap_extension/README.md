@@ -53,7 +53,7 @@ After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 
 **1. Vscode open a C/C++ project**
 
-**Require Folder and Files**
+**Require Folder and Files [[How to generate them]](https://github.com/SVF-tools/WebSVF/tree/master/src/codemap_extension/backend)**
 
 -   **`C/C++ Project` in `VSCODE WORKSPACE`**
 -   **`3D_CODE_GRAPH` as folder in `VSCODE WORKSPACE`**
@@ -62,7 +62,7 @@ After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/require.png' width='480'/>
 
-You can try to use **TEST.zip** to unzip and open it for test.
+You can try to use **TEST.zip** to unzip and open it for test or read [[How to generate them]](https://github.com/SVF-tools/WebSVF/tree/master/src/codemap_extension/backend) to build them for real project.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/project.gif" width='720'>
 
@@ -70,15 +70,15 @@ As you see, **3D_CODE_GRAPH** is needed to store control graph and value follow 
 
 **2. Click statusbar to show 3D CODE MAP**
 
-Trying to click on the button at the bottom left.
+Trying to click on the button at the bottom left to run or stop.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/red.png" width='480'>
 
-After a while time to wait all function load.
+After a while time to wait all function load. if always loading, you can cancel it by **`[X]`** close the page.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/load.png" width='480'>
 
-It will show the red block when all function stopped.
+It will show the red block when all function stopped or show blue block when code map running.
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/blue.png" width='480'>
 
@@ -110,7 +110,7 @@ Right Click node will jump to the code line.
 
 Click `NODE ID MODE` button will show all label on node.
 
-Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least.
+- **Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least. More nodes or lines you have, more cores and memory you need. Be careful :)**
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/4.gif" width='720'>
 
