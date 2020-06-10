@@ -8,7 +8,6 @@
 
 **<p align="center">After the program is compiled by analysis, it is used to display the analysis node information.</p>**
 
-
 ## **<p align="center">Architecture Overview</p>**
 
 <p align="center">
@@ -24,8 +23,8 @@
 
 If you want to make VSIX install file, make sure install vsce tools.
 
--  **[Install vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)**
--  **Run `vsce package`**
+-   **[Install vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)**
+-   **Run `vsce package`**
 
 ## **User Instructions**
 
@@ -57,8 +56,8 @@ After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 
 -   **`C/C++ Project` in `VSCODE WORKSPACE`**
 -   **`3D_CODE_GRAPH` as folder in `VSCODE WORKSPACE`**
--   **`control_follow_graph.json` in `3D_CODE_GRAPH`**
--   **`value_follow_graph.json` in `3D_CODE_GRAPH`**
+-   **`control_flow_graph.json` in `3D_CODE_GRAPH`**
+-   **`value_flow_graph.json` in `3D_CODE_GRAPH`**
 
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/src/codemap_extension/images/require.png' width='480'/>
 
@@ -110,7 +109,7 @@ Right Click node will jump to the code line.
 
 Click `NODE ID MODE` button will show all label on node.
 
-- **Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least. More nodes or lines you have, more cores and memory you need. Be careful :)**
+-   **Ps: If you want use this function, Please make sure you PC or MAC have 4 cores and 4GB memory at least. More nodes or lines you have, more cores and memory you need. Be careful :)**
 
 <img src="https://github.com/SVF-tools/WebSVF/blob/master/docs/4.gif" width='720'>
 

@@ -231,7 +231,7 @@ document.getElementById("modeBtn").addEventListener("click", () => {
 document.getElementById("leftBtn").addEventListener("click", () => {
     highlightNodes.clear();
     highlightLink.clear();
-    postMessage("value_follow_graph", "3dCodeGraph");
+    postMessage("value_flow_graph", "3dCodeGraph");
     // postMessage("Value Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: VFG";
     deleteWelcome();
@@ -239,7 +239,7 @@ document.getElementById("leftBtn").addEventListener("click", () => {
 document.getElementById("middleBtn").addEventListener("click", () => {
     highlightNodes.clear();
     highlightLink.clear();
-    postMessage("control_follow_graph", "3dCodeGraph");
+    postMessage("control_flow_graph", "3dCodeGraph");
     // postMessage("Control Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: CFG";
     deleteWelcome();
@@ -318,7 +318,7 @@ window.addEventListener("message", (event) => {
             } else {
                 forceNodeNum = position;
             }
-           
+
             if (forceNodeNum === -1) {
                 postMessage("There is no nodes to force", "error");
             }

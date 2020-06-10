@@ -7,8 +7,8 @@ if [ -d ${dir} ]; then
 fi
 mkdir $"${dir}"
 
-cfg="control_follow_graph"
-vfg="value_follow_graph"
+cfg="control_flow_graph"
+vfg="value_flow_graph"
 
 mv "${cfg}.dot" "${dir}"
 mv "${vfg}.dot" "${dir}"

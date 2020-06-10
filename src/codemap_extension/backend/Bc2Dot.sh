@@ -18,6 +18,6 @@ rm vfg_initial.dot
 rm SVFG_before_opt.dot
 rm "${optFile}"
 
-mv svfg_final.dot value_follow_graph.dot
-mv icfg_initial.dot control_follow_graph.dot
+mv svfg_final.dot value_flow_graph.dot
+mv icfg_initial.dot control_flow_graph.dot
 
