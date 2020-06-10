@@ -73,14 +73,12 @@
             {
                 "command": "extension.ForceNodeNext",
                 "key": "ctrl+alt+j",
-                "mac": "cmd+alt+Right",
-                "when": "editorFocus"
+                "mac": "cmd+alt+Right"
             },
             {
                 "command": "extension.ForceNodeBefore",
                 "key": "ctrl+alt+k",
-                "mac": "cmd+alt+Left",
-                "when": "editorFocus"
+                "mac": "cmd+alt+Left"
             },
             {
                 "command": "extension.SelectRangeUp",
