@@ -78,7 +78,7 @@ sudo create-analysis -i
 Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
 
 ```
-create-analysis [options]
+create-analysis
 ```
 
 **NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
