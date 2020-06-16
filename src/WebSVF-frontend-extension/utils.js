@@ -6,6 +6,7 @@ var constants = require("./constants"); //Constants
 var StatusBar = require("./statusBar"); //StatusBarItem
 var os = require("os");
 var path = require("path");
+var ProgressBar = require('progress');
 
 let panel =  null;//webview
 
@@ -56,18 +57,22 @@ function init(uri){
         if(fs.existsSync(node_abspath)){
             //If the folder exists, then remove it.
             if(platform == "win32"){
-                terminal.sendText("# Step(1/3) Removing the broken WebSVF-Frontend-Server, please wait...");
+                setStatusBar("Bug Analysis Tool: Initializing -> Cleaning", "Red");
+                //terminal.sendText("# Removing the broken WebSVF-Frontend-Server, please wait...");
                 //terminal.sendText(`rd/s/q "${node_abspath}"`); // Will replace the old one without warning.
             }else{
-                terminal.sendText("# Step(1/3) Removing the broken WebSVF-Frontend-Server, please wait...");
+                setStatusBar("Bug Analysis Tool: Initializing -> Cleaning", "Red");
+                //terminal.sendText("# Removing the broken WebSVF-Frontend-Server, please wait...");
                 terminal.sendText("rm -rf "+node_abspath);
             }
             
         }
 
-        downloadFile(terminal, uri,node_abspath+".zip",function(){
-            extractZip(node_abspath,terminal);
-        });
+        // downloadFile(terminal, uri,node_abspath+".zip",function(){
+        //     extractZip(node_abspath,terminal);
+        // });
+        var bar = new ProgressBar('progress: [:bar] :percent :elapsed'+'s', { total: 10, width: 5, complete: '█', incomplete: '░' });
+        download(bar, uri, node_abspath+".zip",node_abspath, terminal);
     }catch(e){
         //Show logs when exception occured
         let log = vscode.window.createOutputChannel('bug_report/log');
@@ -84,9 +89,55 @@ function init(uri){
  * @param {*} callback 
  */
 function downloadFile(terminal, uri, destination, callback){
-    terminal.sendText("# Step(2/3) Loading the WebSVF-Frontend-Server, please wait...");
+    //terminal.sendText("# Loading the WebSVF-Frontend-Server, please wait...");
     var stream = fs.createWriteStream(destination);
     request(uri).pipe(stream).on('close', callback);
+}
+
+function download(bar, uri, destination, node_abspath, terminal){
+    setStatusBar("Bug Analysis Tool: Initializing -> Downloading", "Red");
+    //terminal.sendText("# Loading the WebSVF-Frontend-Server, please wait...");
+    var file_url = uri;
+    //var file_url = 'https://github.com/SVF-tools/WebSVF/releases/download/0.1.0/WebSVF-bug-report-fe.zip';
+    var out = fs.createWriteStream(destination);
+
+    var total;
+    var progress = 0;
+
+    var req = request({
+        method: 'GET',
+        uri: file_url
+    });
+
+    req.pipe(out);
+
+    req.on('data', function (chunk) {
+        // console.log('data')
+        //console.log('data: '+ chunk.length);
+        progress += chunk.length;
+        if(total != 0){
+            var currentProgress = (progress*100/total).toFixed(2);
+            setStatusBar("Bug Analysis Tool: Initializing -> Downloading (" + currentProgress + "%)", "Red");
+            bar.update(progress/total);
+        }
+        
+    });
+
+    req.on( 'response', function ( data ) {
+        //console.log('response: ' + data.headers[ 'content-length' ] );
+        total = data.headers[ 'content-length' ];
+    } );
+
+    req.on('error', function(data){
+        console.log("Download failed! Please try again.");
+    })
+
+    req.on('end', function() {
+        //Do something
+        console.log('end');
+        setStatusBar("Bug Analysis Tool: Initializing -> Extracting", "Red");
+        extractZip(node_abspath,terminal);
+    });
 }
 
 /**
@@ -95,7 +146,8 @@ function downloadFile(terminal, uri, destination, callback){
  * @param {*} terminal 
  */
 function extractZip(node_abspath,terminal){
-    terminal.sendText("# Step(3/3) Uncompressing the WebSVF-Frontend-Server, please wait...")
+    setStatusBar("Bug Analysis Tool: Initializing -> Extracting", "Red");
+    //terminal.sendText("# Uncompressing the WebSVF-Frontend-Server, please wait...")
     extract(node_abspath+".zip", {dir: node_abspath}, function (err) {
         // extraction is complete. make sure to handle the err
         if(err){
