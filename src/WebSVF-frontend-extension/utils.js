@@ -134,7 +134,6 @@ function download(bar, uri, destination, node_abspath, terminal){
 
     req.on('end', function() {
         //Do something
-        console.log('end');
         setStatusBar("Bug Analysis Tool: Initializing -> Extracting", "Red");
         extractZip(node_abspath,terminal);
     });
@@ -187,7 +186,7 @@ function bug_report(){
     if(platform == "win32"){
         terminal.sendText("npm run start");
     }else{
-        terminal.sendText("sudo npm run start");
+        terminal.sendText("npm run start");
     }
 }
 
