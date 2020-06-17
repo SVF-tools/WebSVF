@@ -250,6 +250,9 @@ export async function createAnalysis(options) {
             enabled: () => true,
             task: () => commandExists('git').then(()=>{depInstall.git=true;}).catch(()=>{})
           },
+
+          //Checking for SVF Installation by checking if the wpa command works (FAILs since wpa gives an error when run without parameters):
+
           // {
           //   title: `Checking ${chalk.inverse('SVF')} Installation`,
           //   enabled: () => true,
@@ -274,45 +277,49 @@ export async function createAnalysis(options) {
       task: () => {
         return new Listr([
           {
-            title: `Installing ${chalk.inverse('VSCode')}`,
+            title: `Installing ${chalk.inverse('VSCode')} (using snap package manager)`,
             enabled: () => true,
             skip: () => depInstall.vscode,
-            task: () => {
-              return new Listr([
-                {
-                  title: `Installing ${chalk.blue('Dependencies')}`,
-                  enabled: () => true,
-                  task: () => installVSCodeDependencies().then(()=>{}).catch((e)=>{
-                    console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('Dependencies')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-                    console.error(e);
-                    process.exit(1);
-                  })
-                },
-                {
-                  title: `Downloading ${chalk.blue('VSCode Install File')}`,
-                  enabled: () => true,
-                  task: () => execao('wget', ['https://az764295.vo.msecnd.net/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb'])
-                },
-                {
-                  title: `Installing ${chalk.yellow('VSCode')}`,
-                  enabled: () => true,
-                  task: () => installVSCode().then(()=>{depInstall.vscode=true}).catch((e)=>{
-                    console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('VSCode')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-                    console.error(e);
-                    process.exit(1);
-                  })
-                },
-                {
-                  title: `Removing ${chalk.yellow('VSCode Install File')}`,
-                  enabled: () => true,
-                  task: () => removeInstallFiles().then(()=>{}).catch((e)=>{
-                    console.error(`${chalk.inverse(`Something went wrong removing ${chalk.red.bold('VSCode INstall File')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-                    console.error(e);
-                    process.exit(1);
-                  })
-                }
-              ],{concurrent: false})
-            }
+            task: () => execao('snap', ['install', 'code', '--classic'], null, ()=>{depInstall.vscode=true})
+
+            //  Installing VSCode from a downloaded .deb file:
+
+            // {
+            //   return new Listr([
+            //     {
+            //       title: `Installing ${chalk.blue('Dependencies')}`,
+            //       enabled: () => true,
+            //       task: () => installVSCodeDependencies().then(()=>{}).catch((e)=>{
+            //         console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('Dependencies')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+            //         console.error(e);
+            //         process.exit(1);
+            //       })
+            //     },
+            //     {
+            //       title: `Downloading ${chalk.blue('VSCode Install File')}`,
+            //       enabled: () => true,
+            //       task: () => execao('wget', ['https://az764295.vo.msecnd.net/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb'])
+            //     },
+            //     {
+            //       title: `Installing ${chalk.yellow('VSCode')}`,
+            //       enabled: () => true,
+            //       task: () => installVSCode().then(()=>{depInstall.vscode=true}).catch((e)=>{
+            //         console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('VSCode')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+            //         console.error(e);
+            //         process.exit(1);
+            //       })
+            //     },
+            //     {
+            //       title: `Removing ${chalk.yellow('VSCode Install File')}`,
+            //       enabled: () => true,
+            //       task: () => removeInstallFiles().then(()=>{}).catch((e)=>{
+            //         console.error(`${chalk.inverse(`Something went wrong removing ${chalk.red.bold('VSCode INstall File')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis --install')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+            //         console.error(e);
+            //         process.exit(1);
+            //       })
+            //     }
+            //   ],{concurrent: false})
+            // }
           },
           {
             title: `Installing ${chalk.inverse('Git')}`,
@@ -528,10 +535,10 @@ export async function createAnalysis(options) {
                   })
                 },
                 {
-                  title: `Installing ${chalk.blue('Essential Tools')}`,
+                  title: `Installing ${chalk.blue('Essential Tools')}\n${chalk.yellow('Please wait...')}\n${chalk.yellow('It may take some time if you are running the installation for the first time')}`,
                   enabled: () => true,
                   task: () => installSVFEssentialTools().then(()=>{}).catch((e)=>{
-                    console.error(`${chalk.inverse(`Something went wrong instaling ${chalk.red.bold('Essential Tools for SVF Installation')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+                    console.error(`${chalk.inverse(`Something went wrong installing ${chalk.red.bold('Essential Tools for SVF Installation')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
                     console.error(e);
                     process.exit(1);
                   })
@@ -638,7 +645,6 @@ export async function createAnalysis(options) {
           {
             title: `Removing ${chalk.blue('Extension files')}`,
             enabled: () => true,
-            //skip: () => !options.runInstall,
             task: () => execao('rm', ['-rf','WebSVF-frontend-extension','codemap-extension', 'codemap-extension-0.0.1/', 'WebSVF-frontend-extension_0.9.0/'],{
               cwd: `/home/${options.account}/.vscode/extensions`
             })
@@ -677,10 +683,14 @@ export async function createAnalysis(options) {
       title: `Generating ${chalk.yellow.bold('Bug-Report-Analysis.json')}`,
       enabled: () => (!options.runInstall && !options.runUnInstall),
       //skip: () => depInstall.svf,
-      task: () => generateJSON(srcPath, options.generateJSONDir).then(()=>depInstall.svf = true).catch((e)=>{
-        console.error(`${chalk.inverse(`Something went wrong generating ${chalk.red.bold('Bug-Report-Analysis.json')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
-        console.error(e);
-      })
+      task: () => execao('node', [`${srcPath}generateJSON.js`, `${options.generateJSONDir}`], null, ()=>{depInstall.svf = true})
+
+      // Running generate JSON through execa.node (instead of execao):
+      
+      // generateJSON(srcPath, options.generateJSONDir).then(()=>depInstall.svf = true).catch((e)=>{
+      //   console.error(`${chalk.inverse(`Something went wrong generating ${chalk.red.bold('Bug-Report-Analysis.json')}${'\n'.repeat(2)} Please Run the command ${chalk.green.italic('sudo create-analysis')} again to finish setting up  ${'\n'.repeat(2)} The Error Log from the failed installation:`)}`);
+      //   console.error(e);
+      // })
     }
   ]);
 
