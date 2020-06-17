@@ -32,19 +32,23 @@ filesList.forEach(element => {
     }
 });
 
+if (bcFilesList.length == 0) {
+    throw new Error('No .bc files were found. Please specify a directory containing the LLVM Bitcode (.bc) files.');
+}
+
 //Step 3: Loop bcFilesList and generate bug reports
 bcFilesList.forEach(element => {
     console.log(element);
     var commend = 'saber -leak -stat=false ' + element;
     exec(commend, (err, stdout, stderr) => {
         if (stderr != "" && !(stderr.indexOf("failed") != -1)) {
-            analyzeData_1(stderr.toString());
+            analyzeData(stderr.toString());
         }
     });
 });
 
 //Functions used in process
-function analyzeData_1(output) {
+function analyzeData(output) {
     var bugreports;
     var bugreportsArray = [];
     var errors = [];
