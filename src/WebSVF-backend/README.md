@@ -15,7 +15,7 @@ sudo npm install -g @websvf/create-analysis
 ### 1. Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
-sudo create-analysis -i [options]
+sudo create-analysis -i
 ```
 
 **NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
@@ -35,7 +35,7 @@ Where the `--account` flag indicates that a String is being provided which is th
 Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
 
 ```
-create-analysis [options]
+create-analysis
 ```
 
 **NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
