@@ -92,7 +92,7 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
 
-  
+
 ## Step 3. Run WebSVF-frontend: server and extension
 
 ### Intructions:  
@@ -114,11 +114,11 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
 
 - **Installed situation**
 [vsix file download page](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)  
-  <img src='./docs/after_install.png' width='480'/>
+  <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/after_install.png' width='480'/>
 
   After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
 - **Follow [User Instructions](./src/codemap_extension/README.md)**  
-  <img src='./docs/7.gif' width='480'/>
+  <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/7.gif' width='480'/>
   
   Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
 
