@@ -29,7 +29,8 @@ module.exports = function(context) {
             }
             node_abspath = constants.workspace.substring(0,constants.workspace.indexOf(path.sep,6)+1) + constants.node_app//node app absolute path.
             
-            config_abspath = node_abspath + constants.node_branch + constants.config_abspath;
+            //config_abspath = node_abspath + constants.node_branch + constants.config_abspath;
+            config_abspath = node_abspath + constants.config_abspath;
         }
 
         if(status == "Initializing"){

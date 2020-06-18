@@ -167,7 +167,8 @@ function extractZip(node_abspath,terminal){
 function bug_report(){
     //Get or Create a terminal
     let terminal = this.get_terminal("bug_report");
-    let cfg_abspath = os.userInfo().homedir + path.sep + constants.node_app + constants.node_branch + constants.config_abspath;
+    //let cfg_abspath = os.userInfo().homedir + path.sep + constants.node_app + constants.node_branch + constants.config_abspath;
+    let cfg_abspath = os.userInfo().homedir + path.sep + constants.node_app + constants.config_abspath;
     fs.writeFileSync(cfg_abspath,constants.workspace + constants.workspace_json);
     //cd to the folder
     //let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1)//node app absolute path.
@@ -176,7 +177,8 @@ function bug_report(){
     if(platform == "win32"){
         node_branch = os.userInfo().homedir + path.sep + constants.node_app + constants.node_branch; //node app absolute path.
     }else{
-        node_branch = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app + constants.node_branch; //node app absolute path.
+        //node_branch = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app + constants.node_branch; //node app absolute path.
+        node_branch = constants.workspace.substring(0,constants.workspace.indexOf("/",6)+1) + constants.node_app; //node app absolute path.
     }
     terminal.sendText(`cd "${node_branch}"`);
     //Show commands in the terminal
