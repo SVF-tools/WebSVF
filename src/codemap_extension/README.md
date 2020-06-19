@@ -125,7 +125,7 @@ active one or more code line and input:
 
 Window or Linux: `ctrl + alt + l`
 
-MAC: `cmd + alt + l`
+MAC: `cmd + opt/alt + l`
 
 It will show the all the code line nodes. if there is no highlight there. it means there is no node link the code line.
 
@@ -137,7 +137,7 @@ If you have highlight node there. you can use:
 
 Window or Linux: `ctrl + alt + j` or `ctrl + alt + k`
 
-MAC: `cmd + alt + ->` or `cmd + alt + <-`
+MAC: `cmd + opt/alt + ->` or `cmd + opt/alt + <-`
 
 It will make camera find the highlight node position.
 
