@@ -1,14 +1,17 @@
 {
-    "name": "codemap-extension",
+    "name": "codemap",
     "displayName": "CODE MAP",
     "description": "Analysis online",
     "icon": "images/logo.png",
     "version": "0.0.1",
-    "publisher": "Raymond",
+    "publisher": "TianyangGuan",
     "author": {
-        "name": "Raymond Guan",
-        "email": "spcidealacm@gmail.com",
-        "url": "https://github.com/SVF-tools/WebSVF/tree/master/src/codemap_extension"
+        "name": "Tianyang Guan",
+        "email": "spcidealacm@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/codemapweb/codemap_extension/"
     },
     "engines": {
         "vscode": "^1.43.0"
