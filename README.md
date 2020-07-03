@@ -130,8 +130,15 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
 
 # Uninstalling WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
+
+## Uninstall WebSVF components except WebSVF-backend
 ```
 sudo create-analysis -u
+```
+
+## Uninstall WebSVF-backend
+```
+sudo npm install -g @websvf/create-analysis
 ```
 
 **NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -u`**
