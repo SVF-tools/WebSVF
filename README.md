@@ -138,7 +138,7 @@ sudo create-analysis -u
 
 ## Uninstall WebSVF-backend
 ```
-sudo npm install -g @websvf/create-analysis
+sudo npm uninstall -g @websvf/create-analysis
 ```
 
 **NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -u`**
