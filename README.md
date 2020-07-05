@@ -66,38 +66,39 @@ sudo apt install -y npm
 
 ## Step 2. Install and Run ***WebSVF-backend***
 
-## Install WebSVF-backend
+## - Install WebSVF-backend
 
 ```
 sudo npm install -g @websvf/create-analysis
 ```
 
-## Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+## - Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
 sudo create-analysis -i
 ```
 **NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
 
+## - Generate LLVM Bitcode (.bc) file
 
-## Generate Analysis for LLVM Bitcode (.bc) file
+Generate the bitcode file for your program or project by using the following [WLLVM command](https://github.com/travitch/whole-program-llvm#building-a-bitcode-module-with-clang):
 
-Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
+```
+extract-bc c-project-executable -o c-project-executable.bc
+```
+Where *c-project-executable* and *c-project-executable.bc* are the names of your C/C++ project executable and the desired name for the LLVM Bitcode (.bc) file of the project executable, respectively.
+
+**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
+
+## - Generate Analysis for LLVM Bitcode (.bc) file
+
+Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file using the **`-d bc-file-directory`** option (Refer to **[WebSVF-backend](https://github.com/akshatsinghkaushik/WebSVF-backend)** for more details about the command ***options***).
 
 ```
 create-analysis
 ```
 
 **NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
-
-#### Options
-
-##### **`-d bc-file-directory`** or **`--dir bc-file-directory`** (Optional):
-
-Where `-d` or `--dir` flags indicate that the user wants to provide a path for the directory/folder containing the LLVM Bitcode (.bc) files. The `-d` flag is used cannot be left empty, it must be provided with a directory or the command will fail. If no `-d` flag is specified then the path for the directory containg the .bc files is assumed to be the current working directory from the terminal.
-
-**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
-
 
 
 ## Step 3. Run WebSVF-frontend: server and extension
