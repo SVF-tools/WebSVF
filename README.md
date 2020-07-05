@@ -77,7 +77,7 @@ sudo npm install -g @websvf/create-analysis
 ```
 sudo create-analysis -i
 ```
-**NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
+**NOTE**: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`
 
 ### - Generate LLVM Bitcode (.bc) file
 
@@ -144,7 +144,7 @@ sudo create-analysis -u
 sudo npm uninstall -g @websvf/create-analysis
 ```
 
-**NOTE: These commands will not work without Elevated/Administrator Privelages (without 'sudo' in the command) i.e. `create-analysis -u`**
+**NOTE**: These commands will not work without Elevated/Administrator Privelages (without 'sudo' in the command) i.e. `create-analysis -u`
 
 
 
