@@ -66,20 +66,20 @@ sudo apt install -y npm
 
 ## Step 2. Install and Run ***WebSVF-backend***
 
-## - Install WebSVF-backend
+### - Install WebSVF-backend
 
 ```
 sudo npm install -g @websvf/create-analysis
 ```
 
-## - Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+### - Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
 sudo create-analysis -i
 ```
 **NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
 
-## - Generate LLVM Bitcode (.bc) file
+### - Generate LLVM Bitcode (.bc) file
 
 Generate the bitcode file for your program or project by using the following [WLLVM command](https://github.com/travitch/whole-program-llvm#building-a-bitcode-module-with-clang):
 
@@ -90,7 +90,7 @@ Where *c-project-executable* and *c-project-executable.bc* are the names of your
 
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
-## - Generate Analysis for LLVM Bitcode (.bc) file
+### - Generate Analysis for LLVM Bitcode (.bc) file
 
 Run the following command from the same directory as the .bc file or specify the directory of the .bc file using the **`-d /path/to/bc-file-directory`** option (Refer to **[WebSVF-backend](https://github.com/akshatsinghkaushik/WebSVF-backend)** for more details about the **`create-analysis`** command ***options***).
 
