@@ -92,7 +92,7 @@ Where *c-project-executable* and *c-project-executable.bc* are the names of your
 
 ## - Generate Analysis for LLVM Bitcode (.bc) file
 
-Run the following command from the same directory as the .bc file or specify the directory of the .bc file using the **`-d bc-file-directory`** option (Refer to **[WebSVF-backend](https://github.com/akshatsinghkaushik/WebSVF-backend)** for more details about the **`create-analysis`** command ***options***).
+Run the following command from the same directory as the .bc file or specify the directory of the .bc file using the **`-d /path/to/bc-file-directory`** option (Refer to **[WebSVF-backend](https://github.com/akshatsinghkaushik/WebSVF-backend)** for more details about the **`create-analysis`** command ***options***).
 
 ```
 create-analysis
