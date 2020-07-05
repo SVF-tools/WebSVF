@@ -98,7 +98,7 @@ Run the following command from the same directory as the .bc file or specify the
 create-analysis
 ```
 
-**NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
+**NOTE**: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`
 
 
 ## Step 3. Run WebSVF-frontend: server and extension
