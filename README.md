@@ -29,7 +29,7 @@ This VSCode Extension could use 3D force graph to present bug information. Vsix 
 
 - **[WebSVF-frontend-server](/src/WebSVF-frontend-server) :**
 
-NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. It is deployed automatically by the **[WebSVF-frontend-extension](/src/WebSVF-frontend-extension)**. Please refer to the **[WebSVF-frontend-extension](/src/WebSVF-frontend-extension)** for instructions regarding its deployment. 
+NodeJS based Web-Server that is responsible for Front-End output of the *Bug Analysis* Tool. It is deployed automatically by the **WebSVF-frontend-extension** (Please refer to the **[WebSVF-frontend-extension](/src/WebSVF-frontend-extension)** for instructions regarding its deployment).
 
 - **[WebSVF-frontend-extension](/src/WebSVF-frontend-extension) :**
 
