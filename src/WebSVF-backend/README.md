@@ -4,6 +4,14 @@
 
 This is a simple NodeJS CLI tool to easily install ***[WebSVF](https://github.com/SVF-tools/WebSVF)*** and run it.
 
+## System Requirements - Pre-Requesites
+
+### - Ubuntu >=20.04
+Currently due to limitions of the WebSVF's dependency, SVF. WebSVF-backend can only be used with Ubuntu 20.04 or newer.
+
+### - NPM >=v10.0
+To run the WebSVF-backend scripts, npm version greater than 10.0 is required.
+
 ## Installation
 
 ```
