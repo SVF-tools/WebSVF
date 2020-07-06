@@ -26,7 +26,7 @@ sudo npm install -g @websvf/create-analysis
 sudo create-analysis -i
 ```
 
-**NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
+**NOTE**: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`
 
 #### Options
 
@@ -46,7 +46,7 @@ Generate the bitcode file for your program or project then run the following com
 create-analysis
 ```
 
-**NOTE: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`**
+**NOTE**: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`
 
 #### Options
 
@@ -65,4 +65,4 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
 sudo create-analysis -u
 ```
 
-**NOTE: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`**
+**NOTE**: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`
