@@ -54,7 +54,7 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 ### - Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
-sudo npx create-analysis -i
+sudo npx @websvf/create-analysis -i
 ```
 **NOTE**: This will not work without Elevated/Administrator Privelages i.e. `npx create-analysis -i`
 
@@ -74,7 +74,7 @@ Where *c-project-executable* and *c-project-executable.bc* are the names of your
 Run the following command from the same directory as the .bc file or specify the directory of the .bc file using the **`-d /path/to/bc-file-directory`** option (Refer to **[WebSVF-backend](https://github.com/akshatsinghkaushik/WebSVF-backend)** for more details about the **`create-analysis`** command ***options***).
 
 ```
-npx create-analysis
+npx @websvf/create-analysis
 ```
 
 **NOTE**: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`
@@ -115,7 +115,7 @@ npx create-analysis
 
 ## Uninstall WebSVF components except WebSVF-backend
 ```
-sudo npx create-analysis -u
+sudo npx @websvf/create-analysis -u
 ```
 
 
