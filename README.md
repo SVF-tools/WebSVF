@@ -41,43 +41,22 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 ## Pre-Requisites
 
-- WebSVF is only tested and targetted for **Ubuntu 20.04** (Not compatible with versions of Ubuntu older than 19.10) 
+- WebSVF is only tested and targetted for **Ubuntu 20.04** (Not compatible with versions of Ubuntu older than 19.10)
+- Installation of **NodeJS v10.0 or later**
 
 ## System Requirements
 
 - WebSVF requires atleast **6GB** free on your Ubuntu system to set up necessary dependecies.
 - If you are running Ubuntu as a **Virtual Machine**, make sure there is atleast **15GB** free on the disk where the Virtual Machine is installed.
 
-## Step 1. Install NPM (v>=10.0.0)
-
-On an Ubuntu 20.04 Installation, simply open terminal and enter the following commads:
-
-### Refresh Ubuntu Repositories
-
-```
-sudo apt-get update
-```
-
-### Install NPM
-
-```
-sudo apt install -y npm
-```
-
-## Step 2. Install and Run ***WebSVF-backend***
-
-### - Install WebSVF-backend
-
-```
-sudo npm install -g @websvf/create-analysis
-```
+## Step 1. Install WebSVF components using ***WebSVF-backend***
 
 ### - Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 ```
-sudo create-analysis -i
+sudo npx create-analysis -i
 ```
-**NOTE**: This will not work without Elevated/Administrator Privelages i.e. `create-analysis -i`
+**NOTE**: This will not work without Elevated/Administrator Privelages i.e. `npx create-analysis -i`
 
 ### - Generate LLVM Bitcode (.bc) file
 
@@ -95,13 +74,13 @@ Where *c-project-executable* and *c-project-executable.bc* are the names of your
 Run the following command from the same directory as the .bc file or specify the directory of the .bc file using the **`-d /path/to/bc-file-directory`** option (Refer to **[WebSVF-backend](https://github.com/akshatsinghkaushik/WebSVF-backend)** for more details about the **`create-analysis`** command ***options***).
 
 ```
-create-analysis
+npx create-analysis
 ```
 
 **NOTE**: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`
 
 
-## Step 3. Run WebSVF-frontend: server and extension
+## Step 2. Run WebSVF-frontend: server and extension
 
 ### Intructions:  
 
@@ -136,15 +115,8 @@ create-analysis
 
 ## Uninstall WebSVF components except WebSVF-backend
 ```
-sudo create-analysis -u
+sudo npx create-analysis -u
 ```
-
-## Uninstall WebSVF-backend
-```
-sudo npm uninstall -g @websvf/create-analysis
-```
-
-**NOTE**: These commands will not work without Elevated/Administrator Privelages (without 'sudo' in the command) i.e. `create-analysis -u`
 
 
 
