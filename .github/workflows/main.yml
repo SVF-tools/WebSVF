@@ -15,7 +15,7 @@ jobs:
   
 
   # This workflow contains a single job called "build"
-  build:
+  build & test:
     runs-on: ubuntu-20.04
     
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -30,7 +30,7 @@ jobs:
         node-version: 10.15.0
     
     - name: Install npm global packages
-      run: npm install -g vsce
+      run: npm install -g vsce yarn
     
     # Runs a set of commands using the runners shell
     - name: Build WebSVF-backend
@@ -39,10 +39,13 @@ jobs:
         npm install
     
     # Runs a set of commands using the runners shell
-    - name: Build WebSVF-frontend-server
+    - name: Build and Test WebSVF-frontend-server
       run: |
         cd src/WebSVF-frontend-server/
         npm install
+        npm run start &
+        sleep 10 &&
+        curl http://localhost:3000
         
     # Runs a set of commands using the runners shell
     - name: Build WebSVF-frontend-extension
@@ -52,19 +55,10 @@ jobs:
         vsce package
         
     # Runs a set of commands using the runners shell
-    #- name: Build WebSVF-backend
-    #  run: |
-    #    cd src/WebSVF-backend/
-    #    npm install -g
-  
-  test: 
-    runs-on: ubuntu-20.04
-    needs: build
-    steps: 
-      
-      - name: Build WebSVF-frontend-server
-        run: |
-          cd WebSVF/src/WebSVF-frontend-server/
-          npm run start &
-          sleep 10 &&
-          curl http://localhost:3000
+    - name: Build WebSVF-codemap-extension
+      run: |
+        cd src/codemap_extension
+        yarn
+        yarn go
+        vsce package
+          
