@@ -51,11 +51,12 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 ## Step 1. Install WebSVF components using ***WebSVF-backend***
 
-### - Install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
+Run the following command to install WebSVF Extensions and Dependencies (SVF, LLVM, Clang...):
 
 ```
 sudo npx @websvf/create-analysis -i
 ```
+
 **NOTE**: This will not work without Elevated/Administrator Privelages i.e. `npx create-analysis -i`
 
 ## Step 2. Perform Pre-Processing (Analysis)
