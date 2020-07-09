@@ -64,7 +64,7 @@ jobs:
       
       - name: Build WebSVF-frontend-server
         run: |
-          cd src/WebSVF-frontend-server/
+          cd $GITHUB_WORKSPACE/src/WebSVF-frontend-server/
           npm run start &
           sleep 10 &&
           curl http://localhost:3000
