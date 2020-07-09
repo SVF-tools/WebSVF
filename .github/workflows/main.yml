@@ -27,22 +27,29 @@ jobs:
       with:
         # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
         node-version: 10.15.0
-    
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
 
     # Runs a set of commands using the runners shell
-    - name: build WebSVF-backend
+    - name: Build WebSVF-backend
       run: |
         cd src/WebSVF-backend/
-        npm install -g
-        
-    - name: List npm packages
+        npm install
+    
+    # Runs a set of commands using the runners shell
+    - name: Build and Run WebSVF-frontend-server
       run: |
-        npm ls -g
+        cd src/WebSVF-frontend-server/
+        npm install
+        npm run start
         
-    # Test WebSVF install using WebSVF-backend
-    #- name: Install WebSVF using WebSVF-backend
+    # Runs a set of commands using the runners shell
+    - name: Build WebSVF-frontend-extension
+      run: |
+        cd src/WebSVF-frontend-extension/
+        npm install
+        vsce package
+        
+    # Runs a set of commands using the runners shell
+    #- name: Build WebSVF-backend
     #  run: |
-    #    sudo create-analysis -i
+    #    cd src/WebSVF-backend/
+    #    npm install -g
