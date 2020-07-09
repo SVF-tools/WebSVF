@@ -36,7 +36,7 @@ jobs:
     - name: build WebSVF-backend
       run: |
         cd src/WebSVF-backend/
-        npm install
+        npm install -g
         
     # Test WebSVF install using WebSVF-backend
     - name: Install WebSVF using WebSVF-backend
