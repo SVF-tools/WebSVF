@@ -27,7 +27,10 @@ jobs:
       with:
         # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
         node-version: 10.15.0
-
+    
+    - name: Install npm global packages
+      run: npm install -g vsce
+    
     # Runs a set of commands using the runners shell
     - name: Build WebSVF-backend
       run: |
@@ -39,7 +42,9 @@ jobs:
       run: |
         cd src/WebSVF-frontend-server/
         npm install
-        npm run start
+        npm run start &
+        sleep 10 &&
+        curl http://localhost:3000
         
     # Runs a set of commands using the runners shell
     - name: Build WebSVF-frontend-extension
