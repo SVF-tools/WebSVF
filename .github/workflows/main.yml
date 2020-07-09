@@ -38,7 +38,11 @@ jobs:
         cd src/WebSVF-backend/
         npm install -g
         
-    # Test WebSVF install using WebSVF-backend
-    - name: Install WebSVF using WebSVF-backend
+    - name: List npm packages
       run: |
-        sudo create-analysis -i
+        npm ls -g
+        
+    # Test WebSVF install using WebSVF-backend
+    #- name: Install WebSVF using WebSVF-backend
+    #  run: |
+    #    sudo create-analysis -i
