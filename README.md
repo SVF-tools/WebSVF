@@ -58,6 +58,8 @@ sudo npx @websvf/create-analysis -i
 ```
 **NOTE**: This will not work without Elevated/Administrator Privelages i.e. `npx create-analysis -i`
 
+## Step 2. Perform Pre-Processing (Analysis)
+
 ### - Generate LLVM Bitcode (.bc) file
 
 Generate the bitcode file for your program or project by using the following [WLLVM command](https://github.com/travitch/whole-program-llvm#building-a-bitcode-module-with-clang):
@@ -69,7 +71,7 @@ Where *c-project-executable* and *c-project-executable.bc* are the names of your
 
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
-### - Generate Analysis for LLVM Bitcode (.bc) file
+### - Generate Bug Analysis from LLVM Bitcode (.bc) file
 
 Run the following command from the same directory as the .bc file or specify the directory of the .bc file using the **`-d /path/to/bc-file-directory`** option (Refer to **[WebSVF-backend](https://github.com/akshatsinghkaushik/WebSVF-backend)** for more details about the **`create-analysis`** command ***options***).
 
@@ -77,10 +79,10 @@ Run the following command from the same directory as the .bc file or specify the
 npx @websvf/create-analysis
 ```
 
-**NOTE**: This will not work with Elevated/Administrator Privelages i.e. `sudo create-analysis`
+**NOTE**: This will not work with Elevated/Administrator Privelages i.e. `sudo npx @websvf/create-analysis`
 
 
-## Step 2. Run WebSVF-frontend: server and extension
+## Step 3. Run WebSVF-frontend: server and extension
 
 ### Intructions:  
 
