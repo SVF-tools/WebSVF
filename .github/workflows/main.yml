@@ -44,7 +44,7 @@ jobs:
         cd src/WebSVF-frontend-server/
         npm install
         npm run start &
-        sleep 10 &&
+        sleep 3 &&
         curl http://localhost:3000
         
     # Runs a set of commands using the runners shell
