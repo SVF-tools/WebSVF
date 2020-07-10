@@ -87,9 +87,9 @@ npx @websvf/create-analysis
 
 ### Intructions:  
 
-- **Open Project Folder in VSCode**
+- **Open Project Folder in VSCode and Run WebSVF-backend**
 
-    Download and copy the [``Bug-Analysis-Report.json``](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/Bug-Analysis-Report.json) file in the current folder opened in your VSCode application window.
+    Run WebSVF-backend in the current project folder opened in your VSCode application window.
 
 - **Initialise the '*WebSVF-frontend*' VSCode Extension**
 
@@ -107,7 +107,7 @@ npx @websvf/create-analysis
   <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/after_install.png' width='480'/>
 
   After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
-- **Follow [User Instructions](./src/codemap_extension/README.md)**  
+- **Follow [User Instructions](./src/codemap_extension/README.md) [Please Update using WebSVF-backend (@spcidealacm)]**  
   <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/7.gif' width='480'/>
   
   Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
