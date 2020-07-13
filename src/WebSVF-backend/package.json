@@ -1,6 +1,6 @@
 {
   "name": "@websvf/create-analysis",
-  "version": "0.0.189",
+  "version": "0.0.1918",
   "description": "A CLI to bootstrap my new projects",
   "main": "src/index.js",
   "bin": {
@@ -33,11 +33,15 @@
     "execa": "^4.0.2",
     "execa-output": "^2.0.0",
     "getos": "^3.2.1",
-    "inquirer": "^7.1.0",
+    "inquirer": "^7.3.0",
     "is-elevated": "^3.0.0",
     "listr": "^0.14.3",
     "mocha": "^7.2.0",
     "ncp": "^2.0.0",
     "pkg-install": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshatsinghkaushik/WebSVF-backend.git"
   }
 }
