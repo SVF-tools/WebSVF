@@ -116,7 +116,7 @@ npx @websvf/create-analysis
 # Uninstalling WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
 
 
-## Uninstall WebSVF components except WebSVF-backend
+## Uninstall WebSVF components
 ```
 sudo npx @websvf/create-analysis -u
 ```
