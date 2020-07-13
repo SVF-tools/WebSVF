@@ -107,7 +107,7 @@ npx @websvf/create-analysis
   <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/after_install.png' width='480'/>
 
   After 30 seconds installation, you can see the 3D CODE MAP logo at below left.
-- **Follow [User Instructions](./src/codemap_extension/README.md) [Please Update using WebSVF-backend (@spcidealacm)]**  
+- **Follow [User Instructions](./src/codemap_extension/README.md)**  
   <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/7.gif' width='480'/>
   
   Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
