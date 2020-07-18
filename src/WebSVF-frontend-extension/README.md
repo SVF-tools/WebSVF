@@ -59,7 +59,7 @@ Press F5 in your VSCode application window
 -   Click **Install from VSIX**.
 -   Choose the target vsix file, which should be ***WebSVF-frontend-extension** or other custom name.
 -   Reload the VSCode window if required.
-<img src="https://raw.githubusercontent.com/SVF-tools/WebSVF/master/docs/VSIX_installation.png">
+<img src="gifs/VSIX_installation.png">
 **Note :** Currently, the **WebSVF-frontend-extension** should be installed and can be triggered. Please refer to the **[Extension Operation Guide](#Extension-Operation-Guide)**
 
 # Extension Operation Guide
