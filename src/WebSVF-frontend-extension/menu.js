@@ -13,75 +13,72 @@ module.exports = function(context) {
 
     let timeInterval = null;
     context.subscriptions.push(vscode.commands.registerCommand('extension.menu', function () {
-        let workspace = vscode.workspace.rootPath;
+        let workspace = vscode.workspace.rootPath; //Get the path of current workspace.
         let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
-        let status = StatusBar.statusBar.text.split(": ")[1];
+        let status = StatusBar.statusBar.text.split(": ")[1]; //Determine different situations via the text prompt of the status bar.
 
-        let node_abspath = null;
-        let config_abspath = null;
+        let node_abspath = null; //The path of WebSVF frontend server, which is also called bug analysis tool.
+        let config_abspath = null; //The absolute path of config file in the WebSVF frontend server folder.
 
-        if(os.platform() == "win32"){
+        //Determine the Operating System, currently supports for Windows and Ubuntu.
+        if(os.platform() == "win32"){//This is for Windows.
             config_abspath = os.userInfo().homedir + path.sep + constants.node_app + constants.node_branch + constants.config_abspath;
-        }else{
+        }else{//This is for Ubuntu.
             if(typeof(constants.workspace) == "undefined"){
-                vscode.window.showErrorMessage('No workplace opened, please open the target workplace!');
+                vscode.window.showErrorMessage('No workplace opened, please open the target workplace!'); //Prompt users that no workplace opened yet.
                 return;
             }
-            node_abspath = constants.workspace.substring(0,constants.workspace.indexOf(path.sep,6)+1) + constants.node_app//node app absolute path.
-            
-            //config_abspath = node_abspath + constants.node_branch + constants.config_abspath;
-            config_abspath = node_abspath + constants.config_abspath;
+            node_abspath = constants.workspace.substring(0,constants.workspace.indexOf(path.sep,6)+1) + constants.node_app//The absolute path of the WebSVF frontend server.
+            config_abspath = node_abspath + constants.config_abspath; //The absolute path of config file in the WebSVF frontend server folder.
         }
-
+        //Perform different methods according to different circumstains.
         if(status == "Initializing"){
-            vscode.window.showInformationMessage("Please wait a moment for initializing, do you want to stop?", "Yes", "No").then(selection => {//Display a message box for user to choose.
+            //Display a message box for user to choose whether cancel initializing.
+            vscode.window.showInformationMessage("Please wait a moment for initializing, do you want to stop?", "Yes", "No").then(selection => {
                 if(selection == "Yes"){
                     stop();
                 }
             });
         }else if(status == "Running"){
-            vscode.window.showInformationMessage("Stop this 'Bug Analysis Tool'?", "Yes", "No").then(selection => {//Display a message box for user to choose.
+            //Display a message box for user to choose whether stop.
+            vscode.window.showInformationMessage("Stop this 'Bug Analysis Tool'?", "Yes", "No").then(selection => {
                 if(selection == "Yes"){
                     stop();
                 }
             });
         }else if (fs.existsSync(workspace_json) && fs.existsSync(config_abspath)) {
-            analysis();
-            // vscode.window.showInformationMessage("Please select an option:", "Report Init", "Report Analysis").then(selection => {//Display a message box for user to choose.
-            //     if(selection == "Report Init"){
-            //         init();
-            //     }else if(selection == "Report Analysis"){
-            //         analysis();
-            //     }
-            // });
+            analysis(); //Start analysis when both the workspace json and config file exist.
         }else if(fs.existsSync(workspace_json) && !fs.existsSync(config_abspath)){
-            init();
-            // vscode.window.showInformationMessage("Missing necessary files, do you want to load the 'Bug Analysis Tool'?", "Yes", "No").then(selection => {//Display a message box for user to choose.
-            //     if(selection == "Yes"){
-            //         init();
-            //     }
-            // });
+            init(); //Start initializing the WebSVF frontend server if workspace json exists, but config files misses.
         }else{
             //Display an error message box to the user when there is no test.json found.
             vscode.window.showErrorMessage('No Bug-Analysis-Report.json found in the workplace, the bug_report plugin cannot be actived!');
         }
     }));
 
-
+    /**
+     * Initialization if files or tools missing.
+     */
     function init(){
-        utils.setStatusBar("Bug Analysis Tool: Initializing", "Red");
-        utils.init(constants.download_uri);//Download the zip, unzip it to a folder and then remove the zip.
+        utils.setStatusBar("Bug Analysis Tool: Initializing", "Red"); //Update the text and color of the status bar for Bug Analysis Tool button.
+        utils.init(constants.download_uri);//Download the zip, uncompress the zip locally to a specific hidden directory (the directory is consistent with the address downloaded by the WebSVF Backend script), and then remove the zip.
     }
 
+    /**
+     * Start analysis when all elements prepared.
+     * Will create a server to listen to port 3000 and open an internal webview inside the vscode.
+     * More functions please refer to the readme of this extension.
+     */
     function analysis(){
-        var server = net.createServer().listen(3000);
+        var server = net.createServer().listen(3000);//Create a server to listen to the port 3000.
+        //It means that the WebSVF frontend server has been started successfully if the port 3000 has already been eaddrinused.
         server.on('error', function (err) {
 
             let flag = err.message.split(" ")[1];
             flag = flag.substring(0, flag.length-1);
 
             if (flag === 'EADDRINUSE') { // The port has been occupied
-                utils.setStatusBar("Bug Analysis Tool: Running", "Red");
+                utils.setStatusBar("Bug Analysis Tool: Running", "Red");//Update the status bar.
                 utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side.
             }
         });
@@ -93,15 +90,15 @@ module.exports = function(context) {
                 utils.bug_report();//Send command via terminal to start the node app.
                 resolve(1);
             }).then(function () {
-                timeInterval = setInterval(function () {portIsOccupied(3000);}, 1000);
+                timeInterval = setInterval(function () {portIsOccupied(3000);}, 1000);//Check if the port 3000 has been started every one second.
             });
           });
 
     }
 
     function stop(){
-        utils.setStatusBar("Bug Analysis Tool", "White");
-        utils.bug_report_stop();
+        utils.setStatusBar("Bug Analysis Tool", "White");//Update the status bar.
+        utils.bug_report_stop();//Stop the webview.
     }
 
     function portIsOccupied (port) {
