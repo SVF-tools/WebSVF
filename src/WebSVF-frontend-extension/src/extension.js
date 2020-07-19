@@ -13,12 +13,9 @@ function activate(context) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension is now active!');
-	require('./menu.js')(context);
-	// require('./init.js')(context);
-	// require('./stop.js')(context);
-	// require('./bugreport.js')(context);
-	require('./statusBar').getSttatusBar();
-	require('./terminalListener')(context);
+	require('./menu.js')(context); //The main program entrance. This menu.js uses other JavaScript files.
+	require('./statusBar').getSttatusBar(); //Status bar generation.
+	require('./terminalListener')(context); //Listen to the terminal when being closed manually.
 
 }
 //exports.activate = activate;

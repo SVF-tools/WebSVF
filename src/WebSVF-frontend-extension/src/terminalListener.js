@@ -5,9 +5,9 @@ const utils = require('./utils'); //utils
  */
 module.exports = function(context) {
 
-    vscode.window.onDidOpenTerminal(e => {
-		//console.log(`Open terminal changed, name=${e ? e.name : 'undefined'}`);
-    });
+    // vscode.window.onDidOpenTerminal(e => {
+	// 	console.log(`Open terminal changed, name=${e ? e.name : 'undefined'}`);
+    // });
     
 	vscode.window.onDidCloseTerminal(e => {
         //console.log(`Close terminal changed, name=${e ? e.name : 'undefined'}`);
@@ -19,7 +19,7 @@ module.exports = function(context) {
     
     function stop(){
         utils.setStatusBar("Bug Analysis Tool", "White");
-        utils.terminal_stop();
+        utils.panel_dispose();
     }
 
 };
