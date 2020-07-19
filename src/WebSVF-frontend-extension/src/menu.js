@@ -11,14 +11,17 @@ var net = require('net')
  */
 module.exports = function(context) {
 
-    let timeInterval = null;
+    let timeInterval = null; //timeInterval for listening to when the port 3000 opened by the WebSVF frontend server.
+
     context.subscriptions.push(vscode.commands.registerCommand('extension.menu', function () {
+
         let workspace = vscode.workspace.rootPath; //Get the path of current workspace.
         let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
+
         let status = StatusBar.statusBar.text.split(": ")[1]; //Determine different situations via the text prompt of the status bar.
 
-        let node_abspath = null; //The path of WebSVF frontend server, which is also called bug analysis tool.
-        let config_abspath = null; //The absolute path of config file in the WebSVF frontend server folder.
+        //let node_abspath = null; //The path of WebSVF frontend server, which is also called bug analysis tool.
+        let config_abspath = null; //The absolute path of config file in the WebSVF frontend server folder, which should be different in different OS.
 
         //Determine the Operating System, currently supports for Windows and Ubuntu.
         if(os.platform() == "win32"){//This is for Windows.
@@ -28,9 +31,10 @@ module.exports = function(context) {
                 vscode.window.showErrorMessage('No workplace opened, please open the target workplace!'); //Prompt users that no workplace opened yet.
                 return;
             }
-            node_abspath = constants.workspace.substring(0,constants.workspace.indexOf(path.sep,6)+1) + constants.node_app//The absolute path of the WebSVF frontend server.
+            let node_abspath = constants.workspace.substring(0,constants.workspace.indexOf(path.sep,6)+1) + constants.node_app; //The absolute path of the WebSVF frontend server.
             config_abspath = node_abspath + constants.config_abspath; //The absolute path of config file in the WebSVF frontend server folder.
         }
+
         //Perform different methods according to different circumstains.
         if(status == "Initializing"){
             //Display a message box for user to choose whether cancel initializing.
@@ -71,15 +75,15 @@ module.exports = function(context) {
      */
     function analysis(){
         var server = net.createServer().listen(3000);//Create a server to listen to the port 3000.
+
         //It means that the WebSVF frontend server has been started successfully if the port 3000 has already been eaddrinused.
         server.on('error', function (err) {
-
             let flag = err.message.split(" ")[1];
             flag = flag.substring(0, flag.length-1);
 
             if (flag === 'EADDRINUSE') { // The port has been occupied
                 utils.setStatusBar("Bug Analysis Tool: Running", "Red");//Update the status bar.
-                utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side.
+                utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side inside the vscode if eaddrinused.
             }
         });
 
@@ -87,13 +91,12 @@ module.exports = function(context) {
             server.close(); // Close the service
             utils.setStatusBar("Bug Analysis Tool: Running", "Red");
             new Promise(function (resolve, reject) {                
-                utils.bug_report();//Send command via terminal to start the node app.
+                utils.bug_report();//Send command via terminal to start the node app (WebSVF frontend server).
                 resolve(1);
             }).then(function () {
                 timeInterval = setInterval(function () {portIsOccupied(3000);}, 1000);//Check if the port 3000 has been started every one second.
             });
           });
-
     }
 
     function stop(){
@@ -117,8 +120,8 @@ module.exports = function(context) {
 
             if (flag === 'EADDRINUSE') { // The port has been occupied
                 //console.log('The port【' + port + '】 is occupied, please change other port.');
-                utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side.
-                clearInterval(timeInterval);
+                utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side inside the vscode.
+                clearInterval(timeInterval);//Close the check every one second if the WebSVF frontend server has been started.
             }
         });
       }

@@ -11,7 +11,7 @@ const StatusBar = {
             this.statusBar.text = "Bug Analysis Tool"
             this.statusBar.command = 'extension.menu';
             this.statusBar.show();
-            this.flag = false;
+            this.flag = false; //make this function can only be executed for once.
         }
     }
 
