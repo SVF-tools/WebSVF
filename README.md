@@ -83,9 +83,9 @@ npx @websvf/create-analysis
 **NOTE**: This will not work with Elevated/Administrator Privelages i.e. `sudo npx @websvf/create-analysis`
 
 
-## Step 3. Run WebSVF-frontend: server and extension
+# User Guide
 
-### Intructions:  
+## WebSVF-frontend: server and extension
 
 - **Open Project Folder in VSCode and Run WebSVF-backend**
 
@@ -100,7 +100,7 @@ npx @websvf/create-analysis
     View the Bug Analysis for the Project by clicking on the ***'Bug Analysis Tool: Initialized' button***. The button text will turn red and the button will read ***'Bug Analysis Tool: Running'***. 
     (Please refer to the [Extension's Operation Guide](/src/WebSVF-frontend-extension/README.md#Extension-Operation-Guide) for more          information)
 
-## Step 4. Run WebSVF-codemap-extension
+## WebSVF-codemap-extension
 
 - **Installed situation**
 [vsix file download page](https://github.com/SVF-tools/WebSVF/releases/tag/0.0.1)  
