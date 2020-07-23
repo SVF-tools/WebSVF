@@ -76,10 +76,7 @@ sudo create-analysis --setup-env
 
 **PLEASE NOTE:** A system RESTART is required for changes to take effect after running the above command
 
-This command also installs dependencies for the project demo which requires the following tools:
-- libglib2.0-dev
-- libncurses5
-- libtool
+*This command also installs dependencies for the project demo.
 
 
 ### **1. Install WebSVF components**
