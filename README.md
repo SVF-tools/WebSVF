@@ -5,7 +5,7 @@
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
 1. **[Installation Guide](#installation-guide)**
-1. **[Uninstall](#uninstalling-websvf-extensions-and-dependencies-svf-llvm-clang)**
+1. **[User Guide](#user-guide)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
 1. **[Acknowledgement](#acknowledgement)**
@@ -83,6 +83,11 @@ npx @websvf/create-analysis
 **NOTE**: This will not work with Elevated/Administrator Privelages i.e. `sudo npx @websvf/create-analysis`
 
 
+## Uninstall WebSVF components
+```
+sudo npx @websvf/create-analysis -u
+```
+
 # User Guide
 
 ## WebSVF-frontend: server and extension
@@ -111,17 +116,6 @@ npx @websvf/create-analysis
   <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/7.gif' width='480'/>
   
   Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
-
-
-# Uninstalling WebSVF Extensions and Dependencies (SVF, LLVM, Clang...)
-
-
-## Uninstall WebSVF components
-```
-sudo npx @websvf/create-analysis -u
-```
-
-
 
 # Known Issues
 
