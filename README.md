@@ -41,16 +41,16 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 ## Pre-Requisites
 
-- ### Ubuntu 18.04 or 20.04
+- **Ubuntu 18.04 or 20.04**
 WebSVF-backend can only be used with Ubuntu 18.04 or 20.04.
 
-- ### NPM >=v10.0
+- **NPM >=v10.0**
 To run the WebSVF-backend scripts, npm version greater than 10.0 is required.
 
-- ### LLVM and Clang
+- **LLVM and Clang**
 The LLVM and Clang compiler tools need to be installed and accessible from the terminal.
 
-- ### WLLVM
+- **WLLVM**
 For compiling entire projects into a LLVM Bitcode (.bc) file for analysis.
 
 ## System Requirements
@@ -65,11 +65,8 @@ Install the command-line tool globally on your system using npm, by running the 
 ```
 sudo npm i -g @websvf/create-analysis
 ```
-<hr/>
 
 ## **Usage**
-
-<hr style="width: 70%"/>
 
 ### ***(Optional) Setup Additional Project Dependencies (LLVM, Clang, Python, WLLVM)***
 
@@ -86,8 +83,6 @@ This command also installs dependencies for the project demo which requires the 
 - libncurses5
 - libtool
 
-<hr style="width: 50%"/>
-
 
 ### **1. Install WebSVF components**
 
@@ -102,9 +97,6 @@ sudo create-analysis -i
 To install WebSVF and all its dependencies
 
 
-<hr style="width: 50%"/>
-
-
 ### ***(Optional) Test the installation by creating analysis for a demo project***
 
 ```
@@ -112,8 +104,6 @@ create-analysis --setup-eg
 ```
 
 If you run into errors, run the `sudo create-analysis --setup-env` command and restart your system to make sure all the dependencies for the demo are installed.
-
-<hr style="width: 70%"/>
 
 ### **2. Generate Analysis for LLVM Bitcode (.bc) file**
 
@@ -130,8 +120,6 @@ create-analysis
 Where `-d` or `--dir` flags indicate that the user wants to provide a path for the directory/folder containing the LLVM Bitcode (.bc) files. The `-d` flag is used cannot be left empty, it must be provided with a directory or the command will fail. If no `-d` flag is specified then the path for the directory containg the .bc files is assumed to be the current working directory from the terminal.
 
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
-
-<hr style="width: 70%"/>
 
 ### **3. Generate Analysis using Custom Backend**
 
@@ -159,7 +147,6 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
 ```
 sudo create-analysis -u
 ```
-<hr style="width: 50%"/>
 
 ### ***(Optional) Reset the LLVM and Clang environment***
 
