@@ -44,8 +44,8 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 - **Ubuntu 18.04 or 20.04**: 
 WebSVF-backend can only be used with Ubuntu 18.04 or 20.04.
 
-- **NPM >=v10.0**: 
-To run the WebSVF-backend scripts, npm version greater than 10.0 is required.
+- **Node >=v10.0**: 
+To run the WebSVF-backend scripts, node version greater than 10.0 is required.
 
 - **LLVM and Clang**: 
 The LLVM and Clang compiler tools need to be installed and accessible from the terminal.
