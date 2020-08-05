@@ -5,7 +5,8 @@ var constants = require("./constants"); //Constants
 var StatusBar = require("./statusBar"); //StatusBarItem
 var os = require("os");
 var path = require("path");
-var net = require('net')
+var net = require('net');
+var script = require('./generateJsonForOneFIle.js');
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -16,7 +17,12 @@ module.exports = function (context) {
     context.subscriptions.push(vscode.commands.registerCommand('extension.menu', function () {
 
         let workspace = vscode.workspace.rootPath; //Get the path of current workspace.
-        let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
+        // let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
+
+        let c_path = vscode.window.activeTextEditor.document.fileName;//It is the location of single C or C++ file.
+        let file_suffix = c_path.substring((c_path.lastIndexOf(".")+1), c_path.length);//Gets the suffix of the current open file.
+
+        let svfPath = './bin/svf-ex -stat=false'; //'svfPath' is the path of svf bin folder and the analyze options(svf-ex -stat=false).
 
         let status = StatusBar.statusBar.text.split(": ")[1]; //Determine different situations via the text prompt of the status bar.
 
@@ -50,13 +56,13 @@ module.exports = function (context) {
                     stop();
                 }
             });
-        } else if (fs.existsSync(workspace_json) && fs.existsSync(config_abspath)) {
-            analysis(); //Start analysis when both the workspace json and config file exist.
-        } else if (fs.existsSync(workspace_json) && !fs.existsSync(config_abspath)) {
-            init(); //Start initializing the WebSVF frontend server if workspace json exists, but config files misses.
+        } else if (isC_Cplusplus(file_suffix) && fs.existsSync(config_abspath)) {
+            analysis(c_path, svfPath); //Start analysis when both the C or C++ file and config file exist.
+        } else if (isC_Cplusplus(file_suffix) && !fs.existsSync(config_abspath)) {
+            init(); //Start initializing the WebSVF frontend server if C or C++ exists, but config files misses.
         } else {
             //Display an error message box to the user when there is no test.json found.
-            vscode.window.showErrorMessage('No Bug-Analysis-Report.json found in the workplace, the bug_report plugin cannot be actived!');
+            vscode.window.showErrorMessage('No C or C++ file opened in the workplace, the bug analysis tool cannot be actived!');
         }
     }));
 
@@ -68,12 +74,21 @@ module.exports = function (context) {
         utils.init(constants.download_uri);//Download the zip, uncompress the zip locally to a specific hidden directory (the directory is consistent with the address downloaded by the WebSVF Backend script), and then remove the zip.
     }
 
+    function analysis(c_path, svfPath) {
+
+        script.generateJSONForOneFile(c_path, svfPath, function() {
+            //if you want to do something when the process finished, add the code in this callback function.
+            //console.log("success!");
+            analysis_bugreport();
+        });
+    }
+
     /**
      * Start analysis when all elements prepared.
      * Will create a server to listen to port 3000 and open an internal webview inside the vscode.
      * More functions please refer to the readme of this extension.
      */
-    function analysis() {
+    function analysis_bugreport() {
         var server = net.createServer().listen(3000);//Create a server to listen to the port 3000.
 
         //It means that the WebSVF frontend server has been started successfully if the port 3000 has already been eaddrinused.
@@ -126,6 +141,14 @@ module.exports = function (context) {
                 clearInterval(timeInterval);//Close the check every one second if the WebSVF frontend server has been started.
             }
         });
+    }
+
+    function isC_Cplusplus(file_suffix){
+        if(file_suffix.toLowerCase() == "c" || file_suffix.toLowerCase() == "cpp"){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 };
