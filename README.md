@@ -4,8 +4,8 @@
 
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
-1. **[Installation Guide (Local)](#installation-guide)**
-1. **[Installation Guide (Cloud)](#installation-guide)**
+1. **[Installation Guide (Local)](#installation-guide-local)**
+1. **[Installation Guide (Cloud)](#installation-guide-cloud)**
 1. **[User Guide](#user-guide)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
