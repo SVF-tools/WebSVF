@@ -4,7 +4,8 @@
 
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
-1. **[Installation Guide](#installation-guide)**
+1. **[Installation Guide (Local)](#installation-guide)**
+1. **[Installation Guide (Cloud)](#installation-guide)**
 1. **[User Guide](#user-guide)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
@@ -37,7 +38,7 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 
 
-# Installation Guide
+# Installation Guide (Local)
 
 ## Pre-Requisites
 
@@ -156,6 +157,69 @@ The dependency tools installed for testing the demo project are left installed i
 - libncurses5
 - libtool
 
+# Installation Guide (Cloud)
+
+## Pre-Requisites
+
+- **Ubuntu 18.04 or 20.04**: 
+WebSVF-backend can only be used with Ubuntu 18.04 or 20.04.
+
+- **[Node](https://nodejs.org/en/download/) >=v10.0**: 
+To run the WebSVF-backend scripts, node version greater than 10.0 is required.
+
+- **LLVM and Clang**: 
+The LLVM and Clang compiler tools need to be installed and accessible from the terminal.
+
+- **WLLVM**: 
+For compiling entire projects into a LLVM Bitcode (.bc) file for analysis.
+
+- **[Code-Server](https://github.com/cdr/code-server)**:
+Run VS Code on any machine anywhere and access it in the browser.
+
+## System Requirements
+
+- WebSVF requires atleast **6GB** free on your Ubuntu instance to set up necessary dependecies.
+
+## **Installation**
+
+### **Setup a Cloud Server using code-server**
+
+Please follow the Wiki to setup a Cloud Server with code-server setup on it: **[WebSVF on Cloud](https://github.com/SVF-tools/WebSVF/wiki/WebSVF-on-Cloud)**
+
+### **Install WebSVF-backend (Command Line Tool)**
+
+Install the command-line tool globally using npm, by running the following command:
+
+```
+sudo npm i -g @websvf/create-analysis
+```
+
+### ***Setup Additional Project Dependencies (LLVM, Clang, Python, WLLVM)***
+
+Skip this step if you already have the required dependencies.
+
+```
+sudo create-analysis --setup-env
+```
+
+**PLEASE NOTE:** A system RESTART is required for changes to take effect after running the above command
+
+*This command also installs dependencies for the project demo.
+
+
+### **Install SVF**
+
+```
+sudo create-analysis -i
+```
+
+### **Install WebSVF extensions**
+
+Download the .vsix files for [codemap-extension](https://github.com/SVF-tools/WebSVF/releases/download/0.0.1/codemap-extension-0.0.1.vsix) and the [frontend-extension](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix).
+
+Then install them as follows:
+
+![VSIX Install](https://github.com/SVF-tools/WebSVF/blob/master/src/WebSVF-frontend-extension/gifs/VSIX_installation.png)
 
 # User Guide
 
