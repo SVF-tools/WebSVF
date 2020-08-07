@@ -74,6 +74,8 @@ Skip this step if you already have the required dependencies.
 ```
 sudo create-analysis --setup-env
 ```
+Installs LLVM-Clang 10 in the ***~/llvm-clang/10/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04*** directory.
+
 *This command also installs dependencies for the project demo.
 
 ### **1. Install WebSVF components**
@@ -177,22 +179,16 @@ Skip this step if you already have the required dependencies.
 ```
 sudo create-analysis --setup-env
 ```
+Installs LLVM-Clang 10 in the ***~/llvm-clang/10/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04*** directory.
+
 *This command also installs dependencies for the project demo.
 
 
-### **Install SVF**
+### **Install WebSVF**
 
 ```
-sudo create-analysis -i
+sudo create-analysis --cloud-install
 ```
-
-### **Install WebSVF extensions**
-
-Download the .vsix files for [codemap-extension](https://github.com/SVF-tools/WebSVF/releases/download/0.0.1/codemap-extension-0.0.1.vsix) and the [frontend-extension](https://github.com/SVF-tools/WebSVF/releases/download/0.9.0/WebSVF-frontend-extension_0.9.0.vsix).
-
-Then install them as follows:
-
-![VSIX Install](https://github.com/SVF-tools/WebSVF/blob/master/src/WebSVF-frontend-extension/gifs/VSIX_installation.png)
 
 # User Guide
 
