@@ -114,13 +114,13 @@ Where `-d` or `--dir` flags indicate that the user wants to provide a path for t
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
 
-### **3. Uninstall WebSVF Extensions and Dependencies**
+## **Uninstall WebSVF Extensions and Dependencies**
 
 ```
 sudo create-analysis -u
 ```
 
-### ***(Optional) Reset the LLVM and Clang environment***
+### ***Reset the LLVM and Clang environment***
 
 If you want to reset the environment setup by the `sudo create-analysis --setup-env`, you can do so by running the following command:
 
