@@ -4,12 +4,14 @@
 /node_modules
 /.pnp
 .pnp.js
-codemap-extension-*.vsix
+codemap-*.vsix
 # testing
 /coverage
 
 # production
 /build
+
+/web-part/Convent.html
 
 # misc
 .DS_Store

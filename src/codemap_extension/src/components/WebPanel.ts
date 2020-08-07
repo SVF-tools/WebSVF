@@ -108,7 +108,7 @@ export class WebPanelManager {
         if (info["column"] === "active") {
             column =
                 vscode.window.activeTextEditor &&
-                vscode.window.activeTextEditor.viewColumn
+                    vscode.window.activeTextEditor.viewColumn
                     ? vscode.window.activeTextEditor.viewColumn
                     : vscode.ViewColumn.One;
         }
@@ -210,9 +210,13 @@ export class WebPanel {
                 break;
             case "connect":
                 this._webStatus = WebStatus.complete;
-                this.webPanel.webview.postMessage({
+                this._webPanel.webview.postMessage({
                     status: "connected",
                 });
+                break;
+            case "test":
+                this._webStatus = WebStatus.complete;
+                this._webPanel.webview.postMessage(message.text);
                 break;
         }
     }

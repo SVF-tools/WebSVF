@@ -231,18 +231,21 @@ document.getElementById("modeBtn").addEventListener("click", () => {
 document.getElementById("leftBtn").addEventListener("click", () => {
     highlightNodes.clear();
     highlightLink.clear();
-    postMessage("value_flow_graph", "3dCodeGraph");
-    // postMessage("Value Follow Graph", "info");
+    Msg("value_flow_graph", "3dCodeGraph");
+    // Msg("Value Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: VFG";
     deleteWelcome();
 });
 document.getElementById("middleBtn").addEventListener("click", () => {
     highlightNodes.clear();
     highlightLink.clear();
-    postMessage("control_flow_graph", "3dCodeGraph");
-    // postMessage("Control Follow Graph", "info");
+    Msg("control_flow_graph", "3dCodeGraph");
+    // Msg("Control Follow Graph", "info");
     document.getElementById("showSpan").textContent = "MODE: CFG";
     deleteWelcome();
+});
+document.getElementById("rightBtn").addEventListener("click", () => {
+    Msg("HELLO", "test");
 });
 function deleteWelcome() {
     deleteDocElement("welcomeInfo");
@@ -262,13 +265,14 @@ function deleteDocElement(id) {
         parentObj.removeChild(obj);
     }
 }
-function postMessage(send_text, command) {
+function Msg(send_text, command) {
     vscode.postMessage({
         command: command,
         text: send_text,
     });
 }
 function postPosition(info) {
+    console.log(info);
     vscode.postMessage({
         command: "toSomeWhere",
         path: info.path,
@@ -278,6 +282,7 @@ function postPosition(info) {
     });
 }
 function postHighLightInfo(info) {
+    console.log(info);
     vscode.postMessage({
         command: "toSomeWhereHighLight",
         path: info.path,
@@ -295,6 +300,7 @@ window.addEventListener("resize", function () {
 window.addEventListener("message", (event) => {
     const message = event.data;
     let position = 0;
+    console.log(message);
     switch (message.status) {
         case "connected":
             document.getElementById("showSpan").textContent = "CONNECTED";
@@ -320,7 +326,7 @@ window.addEventListener("message", (event) => {
             }
 
             if (forceNodeNum === -1) {
-                postMessage("There is no nodes to force", "error");
+                Msg("There is no nodes to force", "error");
             }
             break;
         case "ForceNodeBefore":
@@ -331,7 +337,7 @@ window.addEventListener("message", (event) => {
                 forceNodeNum = position;
             }
             if (forceNodeNum === -1) {
-                postMessage("There is no nodes to force", "error");
+                Msg("There is no nodes to force", "error");
             }
             break;
         default:
@@ -353,7 +359,7 @@ function ForceHightLight() {
 
 function NodesNext(nodes, position) {
     if (nodes.length === 0) {
-        // postMessage("error", "There is no nodes to force");
+        // Msg("error", "There is no nodes to force");
         position = -1;
     } else {
         console.log("[nodes.length]: ", nodes.length);
@@ -375,7 +381,7 @@ function NodesNext(nodes, position) {
 
 function NodesBefore(nodes, position) {
     if (nodes.length === 0) {
-        // postMessage("error", "There is no nodes to force");
+        // Msg("error", "There is no nodes to force");
         position = -1;
     } else {
         if (position === 0) {

@@ -233,8 +233,7 @@ export class RegisterCommandTextControl extends CommonInterface.RegisterCommand 
     }
 
     protected Load() {
-        let settings = vscode.workspace.getConfiguration("codeMap");
-        let graphMode = settings.get("GraphMode");
+        let graphMode = ActivateVscodeContext.graph_mode;
         switch (graphMode) {
             case "NotSelect":
                 LineTagManager.UnLoadDecoration();
@@ -320,20 +319,19 @@ export class RegisterCommandForceGraph3D extends CommonInterface.RegisterCommand
     protected changeConfigForHightLine(
         status: CommonInterface.statusHighLight
     ) {
-        let settings = vscode.workspace.getConfiguration("codeMap");
         let Flag = 0;
         switch (status) {
             case CommonInterface.statusHighLight.show:
                 Flag = 1;
-                settings.update("ShowOrHide", "show").then(showInfo);
+                ActivateVscodeContext.show_mode = "show";
                 break;
             case CommonInterface.statusHighLight.hide:
                 Flag = 2;
-                settings.update("ShowOrHide", "hide").then(showInfo);
+                ActivateVscodeContext.show_mode = "hide";
                 break;
             default:
                 Flag = 3;
-                settings.update("ShowOrHide", "hide").then(showInfo);
+                ActivateVscodeContext.show_mode = "hide";
                 break;
         }
 

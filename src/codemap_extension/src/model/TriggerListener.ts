@@ -6,11 +6,9 @@ import { LineTagManager } from "../components/LineTag";
 
 export function configListener() {
     let context = ActivateVscodeContext.context;
-    let settings = vscode.workspace.getConfiguration("codeMap");
     vscode.workspace.onDidChangeConfiguration(
         function () {
-            let settings = vscode.workspace.getConfiguration("codeMap");
-            let showOrHide = settings.get("ShowOrHide");
+            let showOrHide = ActivateVscodeContext.show_mode;
             // vscode.window.showInformationMessage(`ShowOrHide: ${showOrHide}`);
             if (vscode.window.activeTextEditor) {
                 switch (showOrHide) {
@@ -29,8 +27,7 @@ export function configListener() {
 
     vscode.window.onDidChangeActiveTextEditor(
         function (editor) {
-            let settings = vscode.workspace.getConfiguration("codeMap");
-            let showOrHide = settings.get("ShowOrHide");
+            let showOrHide = ActivateVscodeContext.show_mode;
             if (editor) {
                 let fsPath = editor.document.uri.fsPath;
                 ActivateVscodeContext.activeEditor = editor;
