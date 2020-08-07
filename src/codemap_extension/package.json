@@ -50,22 +50,6 @@
                 "title": "SelectRange"
             }
         ],
-        "configuration": {
-            "type": "object",
-            "title": "3D CODE GRAPH",
-            "properties": {
-                "codeMap.ShowOrHide": {
-                    "type": "string",
-                    "default": "hide",
-                    "description": "Enable or disable the highlight"
-                },
-                "codeMap.GraphMode": {
-                    "type": "string",
-                    "default": "NotSelect",
-                    "description": "Select graph mode"
-                }
-            }
-        },
         "keybindings": [
             {
                 "command": "extension.textControl",
