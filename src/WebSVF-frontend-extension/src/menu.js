@@ -16,11 +16,11 @@ module.exports = function (context) {
 
     context.subscriptions.push(vscode.commands.registerCommand('extension.menu', function () {
 
-        let workspace = vscode.workspace.rootPath; //Get the path of current workspace.
+        //let workspace = vscode.workspace.rootPath; //Get the path of current workspace.
         // let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
 
         let c_path = vscode.window.activeTextEditor.document.fileName;//It is the location of single C or C++ file.
-        let file_suffix = c_path.substring((c_path.lastIndexOf(".")+1), c_path.length);//Gets the suffix of the current open file.
+        let file_suffix = c_path.substring((c_path.lastIndexOf(".") + 1), c_path.length);//Gets the suffix of the current open file.
 
         let svfPath = os.userInfo().homedir + '/SVF-example/bin/svf-ex -stat=false'; //'svfPath' is the path of svf bin folder and the analyze options(svf-ex -stat=false).
 
@@ -75,8 +75,8 @@ module.exports = function (context) {
     }
 
     function analysis(c_path, svfPath) {
-        console.log("Before analysis, call the method 'generateJSONForOneFile'. There should be a console output below, or something may not be right!");
-        script.generateJSONForOneFile(c_path, svfPath, function() {
+        vscode.window.showInformationMessage("Analysis run, call the method 'generateJSONForOneFile'. If there is no response, the SVF may not be right configured!");
+        script.generateJSONForOneFile(c_path, svfPath, function () {
             //if you want to do something when the process finished, add the code in this callback function.
             console.log("Run success. If there is no this console output, the SVF may not be right configured!");
             analysis_bugreport();
@@ -99,7 +99,7 @@ module.exports = function (context) {
             if (flag === 'EADDRINUSE') { // The port has been occupied
                 utils.setStatusBar("Bug Analysis Tool: Running", "Red");//Update the status bar.
                 //utils.open_internal_browser("http://localhost:3000/");//Open a internal webview in the right side inside the vscode if eaddrinused.
-                vscode.commands.executeCommand('browser-preview.openPreview','http://localhost:3000');//// Call another extension 'Browser Preview' and listen to localhost with port 3000.
+                vscode.commands.executeCommand('browser-preview.openPreview', 'http://localhost:3000');//// Call another extension 'Browser Preview' and listen to localhost with port 3000.
             }
         });
 
@@ -143,10 +143,10 @@ module.exports = function (context) {
         });
     }
 
-    function isC_Cplusplus(file_suffix){
-        if(file_suffix.toLowerCase() == "c" || file_suffix.toLowerCase() == "cpp"){
+    function isC_Cplusplus(file_suffix) {
+        if (file_suffix.toLowerCase() == "c" || file_suffix.toLowerCase() == "cpp") {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
