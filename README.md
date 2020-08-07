@@ -189,6 +189,7 @@ Installs LLVM-Clang 10 in the ***~/llvm-clang/10/clang+llvm-10.0.0-x86_64-linux-
 ```
 sudo create-analysis --cloud-install
 ```
+Refresh the webpage to see the extensions.
 
 # User Guide
 
