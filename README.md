@@ -90,15 +90,6 @@ sudo create-analysis -i
 
 To install WebSVF and all its dependencies
 
-
-### ***(Optional) Test the installation by creating analysis for a demo project***
-
-```
-create-analysis --setup-eg
-```
-
-If you run into errors, run the `sudo create-analysis --setup-env` command and restart your system to make sure all the dependencies for the demo are installed.
-
 ### **2. Generate Analysis for LLVM Bitcode (.bc) file**
 
 Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
