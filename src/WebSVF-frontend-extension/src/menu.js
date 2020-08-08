@@ -16,11 +16,13 @@ module.exports = function (context) {
 
     context.subscriptions.push(vscode.commands.registerCommand('extension.menu', function () {
 
-        //let workspace = vscode.workspace.rootPath; //Get the path of current workspace.
-        // let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
+        let workspace = vscode.workspace.rootPath; //Get the path of current workspace.
+        let workspace_json = workspace + constants.workspace_json; //workspace/Bug-Analysis-Report.json
 
-        let c_path = vscode.window.activeTextEditor.document.fileName;//It is the location of single C or C++ file.
-        let file_suffix = c_path.substring((c_path.lastIndexOf(".") + 1), c_path.length);//Gets the suffix of the current open file.
+        let c_path = "";
+        let file_suffix = "";
+        // let c_path = vscode.window.activeTextEditor.document.fileName;//It is the location of single C or C++ file.
+        // let file_suffix = c_path.substring((c_path.lastIndexOf(".") + 1), c_path.length);//Gets the suffix of the current open file.
 
         let svfPath = os.userInfo().homedir + '/SVF-example/bin/svf-ex -stat=false'; //'svfPath' is the path of svf bin folder and the analyze options(svf-ex -stat=false).
 
@@ -56,13 +58,14 @@ module.exports = function (context) {
                     stop();
                 }
             });
-        } else if (isC_Cplusplus(file_suffix) && fs.existsSync(config_abspath)) {
+        } else if (fs.existsSync(workspace_json) && fs.existsSync(config_abspath)) {
             analysis(c_path, svfPath); //Start analysis when both the C or C++ file and config file exist.
-        } else if (isC_Cplusplus(file_suffix) && !fs.existsSync(config_abspath)) {
+        } else if (fs.existsSync(workspace_json) && !fs.existsSync(config_abspath)) {
             init(); //Start initializing the WebSVF frontend server if C or C++ exists, but config files misses.
         } else {
             //Display an error message box to the user when there is no test.json found.
-            vscode.window.showErrorMessage('No C or C++ file opened in the workplace, the bug analysis tool cannot be actived!');
+            // vscode.window.showErrorMessage('No C or C++ file opened in the workplace, the bug analysis tool cannot be actived!');
+            vscode.window.showErrorMessage('No Bug-Analysis-Report.json file found in the workplace, the bug analysis tool cannot be actived!');
         }
     }));
 
@@ -75,12 +78,12 @@ module.exports = function (context) {
     }
 
     function analysis(c_path, svfPath) {
-        vscode.window.showInformationMessage("Analysis run, call the method 'generateJSONForOneFile'. If there is no response, the SVF may not be right configured!");
-        script.generateJSONForOneFile(c_path, svfPath, function () {
-            //if you want to do something when the process finished, add the code in this callback function.
-            console.log("Run success. If there is no this console output, the SVF may not be right configured!");
+        // vscode.window.showInformationMessage("Analysis run, call the method 'generateJSONForOneFile'. If there is no response, the SVF may not be right configured!");
+        // script.generateJSONForOneFile(c_path, svfPath, function () {
+        //     //if you want to do something when the process finished, add the code in this callback function.
+        //     console.log("Run success. If there is no this console output, the SVF may not be right configured!");
             analysis_bugreport();
-        });
+        // });
     }
 
     /**
