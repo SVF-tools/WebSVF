@@ -154,7 +154,7 @@ Run VS Code on any machine anywhere and access it in the browser.
 
 ### **Setup a Cloud Server using code-server**
 
-Please follow the Wiki to setup a Cloud Server with code-server setup on it: **[WebSVF on Cloud](https://github.com/SVF-tools/WebSVF/wiki/WebSVF-on-Cloud)**
+Please follow the Wiki to setup a Cloud Server with code-server setup on it: **[Deploy CodeServer on AWS](https://github.com/SVF-tools/WebSVF/wiki/Deploy-CodeServer-on-AWS)**
 
 ### **Install WebSVF-backend (Command Line Tool)**
 
