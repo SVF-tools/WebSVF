@@ -48,7 +48,7 @@ WebSVF-backend can only be used with Ubuntu 18.04 or 20.04.
 
 - **[Node](https://nodejs.org/en/download/) >=v10.0**: 
 To run the WebSVF-backend scripts, node version greater than 10.0 is required.
-For Ubuntu 18.04, nodejs needs to be [upgraded using curl](https://bit.ly/2DyFBjh).
+For Ubuntu 18.04, the default NodeJS version is <10.0, please add the NodeJS 10.0 repository first [using curl](https://bit.ly/2DyFBjh).
 
 - **LLVM and Clang**: 
 The LLVM and Clang compiler tools need to be installed and accessible from the terminal.
@@ -137,6 +137,7 @@ WebSVF-backend can only be used with Ubuntu 18.04 or 20.04.
 
 - **[Node](https://nodejs.org/en/download/) >=v10.0**: 
 To run the WebSVF-backend scripts, node version greater than 10.0 is required.
+For Ubuntu 18.04, the default NodeJS version is <10.0, please add the NodeJS 10.0 repository first [using curl](https://bit.ly/2DyFBjh).
 
 - **LLVM and Clang**: 
 The LLVM and Clang compiler tools need to be installed and accessible from the terminal.
