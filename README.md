@@ -7,6 +7,7 @@
 1. **[Installation Guide (Local)](#installation-guide-local)**
 1. **[Installation Guide (Cloud)](#installation-guide-cloud)**
 1. **[User Guide](#user-guide)**
+1. **[Testing](#testing)**
 1. **[Known Issues](#known-issues)**
 1. **[Developer Notes](#developer-notes)**
 1. **[Acknowledgement](#acknowledgement)**
@@ -211,6 +212,12 @@ Refresh the webpage to see the extensions.
   <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/7.gif' width='480'/>
   
   Please follow the **[User Instructions](./src/codemap_extension/README.md)** to use it.
+
+# Testing
+
+## [Test WebSVF frontend locally](https://github.com/SVF-tools/WebSVF/wiki/Test-WebSVF-frontend-locally)
+
+## [Test WebSVF frontend on Cloud](https://github.com/SVF-tools/WebSVF/wiki/Test-WebSVF-frontend-on-Cloud)
 
 # Known Issues
 
