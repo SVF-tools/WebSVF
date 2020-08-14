@@ -71,8 +71,6 @@ sudo npm i -g @websvf/create-analysis
 
 ### ***Setup Additional Project Dependencies (LLVM, Clang, Python, WLLVM)***
 
-Skip this step if you already have the required dependencies.
-
 ```
 sudo create-analysis --setup-env
 ```
@@ -167,8 +165,6 @@ sudo npm i -g @websvf/create-analysis
 ```
 
 ### ***Setup Additional Project Dependencies (LLVM, Clang, Python, WLLVM)***
-
-Skip this step if you already have the required dependencies.
 
 ```
 sudo create-analysis --setup-env
