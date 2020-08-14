@@ -69,7 +69,7 @@ Install the command-line tool globally on your system using npm, by running the 
 sudo npm i -g @websvf/create-analysis
 ```
 
-### ***(Optional) Setup Additional Project Dependencies (LLVM, Clang, Python, WLLVM)***
+### ***Setup Additional Project Dependencies (LLVM, Clang, Python, WLLVM)***
 
 Skip this step if you already have the required dependencies.
 
