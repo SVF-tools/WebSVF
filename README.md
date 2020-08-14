@@ -4,8 +4,8 @@
 
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
-1. **[Installation Guide (Local)](#installation-guide-local)**
-1. **[Installation Guide (Cloud)](#installation-guide-cloud)**
+1. **[Installation (Local)](#installation-local)**
+1. **[Installation (Cloud)](#installation-cloud)**
 1. **[User Guide](#user-guide)**
 1. **[Testing](#testing)**
 1. **[Known Issues](#known-issues)**
@@ -39,7 +39,7 @@ This VSCode Extension serves as a wrapper for the NodeJS based Front-End for the
 
 
 
-# Installation Guide (Local)
+# Setup Guide
 
 ## Pre-Requisites
 
@@ -56,12 +56,15 @@ The LLVM and Clang compiler tools need to be installed and accessible from the t
 - **WLLVM**: 
 For compiling entire projects into a LLVM Bitcode (.bc) file for analysis.
 
+- **[Code-Server](https://github.com/cdr/code-server) [for cloud install]**:
+Run VS Code on any machine anywhere and access it in the browser.
+
 ## System Requirements
 
 - WebSVF requires atleast **6GB** free on your Ubuntu system to set up necessary dependecies.
 - If you are running Ubuntu as a **Virtual Machine**, make sure there is atleast **15GB** free on the disk where the Virtual Machine is installed.
 
-## **Installation**
+## **Installation (Local)**
 
 Install the command-line tool globally on your system using npm, by running the following command:
 
@@ -84,12 +87,6 @@ Installs LLVM-Clang 10 in the ***~/llvm-clang/10/clang+llvm-10.0.0-x86_64-linux-
 sudo create-analysis -i
 ```
 
-#### Options
-
-##### **`-i`** or **`--install`** :
-
-To install WebSVF and all its dependencies
-
 ### **2. Generate Analysis for LLVM Bitcode (.bc) file**
 
 Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
@@ -98,16 +95,10 @@ Generate the bitcode file for your program or project then run the following com
 create-analysis
 ```
 
-#### Options
-
-##### **`-d bc-file-directory`** or **`--dir bc-file-directory`** (Optional):
-
-Where `-d` or `--dir` flags indicate that the user wants to provide a path for the directory/folder containing the LLVM Bitcode (.bc) files. The `-d` flag is used cannot be left empty, it must be provided with a directory or the command will fail. If no `-d` flag is specified then the path for the directory containg the .bc files is assumed to be the current working directory from the terminal.
-
 **How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
 
 
-## **Uninstall WebSVF Extensions and Dependencies**
+### **Uninstall WebSVF Extensions and Dependencies**
 
 ```
 sudo create-analysis -u
@@ -126,31 +117,7 @@ The dependency tools installed for testing the demo project are left installed i
 - libncurses5
 - libtool
 
-# Installation Guide (Cloud)
-
-## Pre-Requisites
-
-- **Ubuntu 18.04 or 20.04**: 
-WebSVF-backend can only be used with Ubuntu 18.04 or 20.04.
-
-- **[Node](https://nodejs.org/en/download/) >=v10.0**: 
-To run the WebSVF-backend scripts, node version greater than 10.0 is required.
-For Ubuntu 18.04, the default NodeJS version is <10.0, please add the NodeJS 10.0 repository first [using curl](https://joshtronic.com/2018/05/08/how-to-install-nodejs-10-on-ubuntu-1804-lts/).
-
-- **LLVM and Clang**: 
-The LLVM and Clang compiler tools need to be installed and accessible from the terminal.
-
-- **WLLVM**: 
-For compiling entire projects into a LLVM Bitcode (.bc) file for analysis.
-
-- **[Code-Server](https://github.com/cdr/code-server)**:
-Run VS Code on any machine anywhere and access it in the browser.
-
-## System Requirements
-
-- WebSVF requires atleast **6GB** free on your Ubuntu instance to set up necessary dependecies.
-
-## **Installation**
+## **Installation (Cloud)**
 
 ### **Setup a Cloud Server using code-server**
 
@@ -229,6 +196,8 @@ If you followed the steps to install WebSVF using the WebSVF-backend. You will f
 - _**svf-ex**_ binary/executable (_~/svf/svf-ex_), built using the unmodified [SVF-example](https://github.com/SVF-tools/SVF-example)
 - A directory called **_svf-lib_** (_~/svf/svf-lib/_) which contains the [SVF](https://github.com/SVF-tools/SVF) library for static code analysis, which can be used to build custom code analysis programs like [SVF-example](https://github.com/SVF-tools/SVF-example), which used this library by specifying the path to this directory in the SVF_DIR environment variable (-DSVF_DIR=path_to_svf-lib_directory).
 - A directory called _**SVF-example**_ (_~/svf/SVF-example/_) which is cloned from the GitHub Repository [SVF-example](https://github.com/SVF-tools/SVF-example). Using the SVF-example code as a template, you can create your own customized static analysis program to replace the _svf-ex_ binary/executable used by WebSVF to perform its backend analysis
+
+## [Build your own SVF backend for WebSVF](https://github.com/SVF-tools/WebSVF/wiki/Build-your-own-SVF-backend-for-WebSVF)
 
 ## Patch Notes
 
