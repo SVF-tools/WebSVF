@@ -81,41 +81,11 @@ Installs LLVM-Clang 10 in the ***~/llvm-clang/10/clang+llvm-10.0.0-x86_64-linux-
 
 *This command also installs dependencies for the project demo.
 
-### **1. Install WebSVF components**
+### Install WebSVF components**
 
 ```
 sudo create-analysis -i
 ```
-
-### **2. Generate Analysis for LLVM Bitcode (.bc) file**
-
-Generate the bitcode file for your program or project then run the following command from the same directory as the .bc file or specify the directory of the .bc file.
-
-```
-create-analysis
-```
-
-**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)
-
-
-### **Uninstall WebSVF Extensions and Dependencies**
-
-```
-sudo create-analysis -u
-```
-
-### ***Reset the LLVM and Clang environment***
-
-If you want to reset the environment setup by the `sudo create-analysis --setup-env`, you can do so by running the following command:
-
-```
-sudo create-analysis --reset-env
-```
-
-The dependency tools installed for testing the demo project are left installed in the system. The installed tools are as follows (if you wish to uninstall them):
-- libglib2.0-dev
-- libncurses5
-- libtool
 
 ## **Installation (Cloud)**
 
@@ -154,7 +124,12 @@ Refresh the webpage to see the extensions.
 
 - **Open Project Folder in VSCode and Run WebSVF-backend**
 
-    Run WebSVF-backend in the current project folder opened in your VSCode application window.
+    Generate the ***Bug-Analysis-Report.json*** in the current project folder opened in your VSCode application window by using WebSVF-backend.
+    To create the ***Bug-Analysis-Report.json*** using WebSVF-backend:
+    - Compile your C/C++ project using Clang or WLLVM
+    - Generate a LLVM Bitcode file (.bc) for you C program/project using Clang or WLLVM [**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)]
+    - With the .bc file from your program/project present in the root of the folder opened in the VSCode window, run the `create-analysis` command from the terminal to generate the ***Bug-Analysis-Report.json*** file (with VSCode workspace directory as the current working directory in the terminal)
+    
 
 - **Initialise the '*WebSVF-frontend*' VSCode Extension**
 
@@ -189,7 +164,7 @@ Refresh the webpage to see the extensions.
 
 # Developer Notes
 
-## Environment setup by the `create-analysis -i` or the `create-analysis --cloud-install` command
+### Environment setup by the `create-analysis -i` or the `create-analysis --cloud-install` command
 
 If you followed the steps to install WebSVF using the WebSVF-backend. You will find a directory called svf in your home directory (_~/svf_). This directory contains 3 components:
 
@@ -197,7 +172,7 @@ If you followed the steps to install WebSVF using the WebSVF-backend. You will f
 - A directory called **_svf-lib_** (_~/svf/svf-lib/_) which contains the [SVF](https://github.com/SVF-tools/SVF) library for static code analysis, which can be used to build custom code analysis programs like [SVF-example](https://github.com/SVF-tools/SVF-example), which used this library by specifying the path to this directory in the SVF_DIR environment variable (-DSVF_DIR=path_to_svf-lib_directory).
 - A directory called _**SVF-example**_ (_~/svf/SVF-example/_) which is cloned from the GitHub Repository [SVF-example](https://github.com/SVF-tools/SVF-example). Using the SVF-example code as a template, you can create your own customized static analysis program to replace the _svf-ex_ binary/executable used by WebSVF to perform its backend analysis
 
-## [Build your own SVF backend for WebSVF](https://github.com/SVF-tools/WebSVF/wiki/Build-your-own-SVF-backend-for-WebSVF)
+### [Build your own SVF backend for WebSVF](https://github.com/SVF-tools/WebSVF/wiki/Build-your-own-SVF-backend-for-WebSVF)
 
 ## Patch Notes
 
