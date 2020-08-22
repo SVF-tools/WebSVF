@@ -164,15 +164,13 @@ Refresh the webpage to see the extensions.
 
 # Developer Notes
 
-### Environment setup by the `create-analysis -i` or the `create-analysis --cloud-install` command
+- ### Environment setup by the `create-analysis -i` or the `create-analysis --cloud-install` command**
+    If you followed the steps to install WebSVF using the WebSVF-backend. You will find a directory called svf in your home directory (_~/svf_). This directory contains 3      components:
+    - _**svf-ex**_ binary/executable (_~/svf/svf-ex_), built using the unmodified [SVF-example](https://github.com/SVF-tools/SVF-example)
+    - A directory called **_svf-lib_** (_~/svf/svf-lib/_) which contains the [SVF](https://github.com/SVF-tools/SVF) library for static code analysis, which can be used to build custom code analysis programs like [SVF-example](https://github.com/SVF-tools/SVF-example), which used this library by specifying the path to this directory in the SVF_DIR environment variable (-DSVF_DIR=path_to_svf-lib_directory).
+    - A directory called _**SVF-example**_ (_~/svf/SVF-example/_) which is cloned from the GitHub Repository [SVF-example](https://github.com/SVF-tools/SVF-example). Using the SVF-example code as a template, you can create your own customized static analysis program to replace the _svf-ex_ binary/executable used by WebSVF to perform its backend analysis
 
-If you followed the steps to install WebSVF using the WebSVF-backend. You will find a directory called svf in your home directory (_~/svf_). This directory contains 3 components:
-
-- _**svf-ex**_ binary/executable (_~/svf/svf-ex_), built using the unmodified [SVF-example](https://github.com/SVF-tools/SVF-example)
-- A directory called **_svf-lib_** (_~/svf/svf-lib/_) which contains the [SVF](https://github.com/SVF-tools/SVF) library for static code analysis, which can be used to build custom code analysis programs like [SVF-example](https://github.com/SVF-tools/SVF-example), which used this library by specifying the path to this directory in the SVF_DIR environment variable (-DSVF_DIR=path_to_svf-lib_directory).
-- A directory called _**SVF-example**_ (_~/svf/SVF-example/_) which is cloned from the GitHub Repository [SVF-example](https://github.com/SVF-tools/SVF-example). Using the SVF-example code as a template, you can create your own customized static analysis program to replace the _svf-ex_ binary/executable used by WebSVF to perform its backend analysis
-
-### [Build your own SVF backend for WebSVF](https://github.com/SVF-tools/WebSVF/wiki/Build-your-own-SVF-backend-for-WebSVF)
+- ### [Build your own SVF backend for WebSVF](https://github.com/SVF-tools/WebSVF/wiki/Build-your-own-SVF-backend-for-WebSVF)
 
 ## Patch Notes
 
