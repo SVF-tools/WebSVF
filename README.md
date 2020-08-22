@@ -126,8 +126,8 @@ Refresh the webpage to see the extensions.
 
     Generate the ***Bug-Analysis-Report.json*** in the current project folder opened in your VSCode application window by using WebSVF-backend.
     To create the ***Bug-Analysis-Report.json*** using WebSVF-backend:
-    - Compile your C/C++ project using Clang or WLLVM
-    - Generate a LLVM Bitcode file (.bc) for you C program/project using Clang or WLLVM [**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)]
+    - Compile your C/C++ project
+    - Generate a LLVM Bitcode file (.bc) for your compiled C program/project using Clang or WLLVM [**How to compile a C project or program to LLVM Bitcode (.bc)**: [Detecting memory leaks](https://github.com/SVF-tools/SVF/wiki/Detecting-memory-leaks) (Step 2)]
     - With the .bc file from your program/project present in the root of the folder opened in the VSCode window, run the `create-analysis` command from the terminal to generate the ***Bug-Analysis-Report.json*** file (with VSCode workspace directory as the current working directory in the terminal)
     
 
