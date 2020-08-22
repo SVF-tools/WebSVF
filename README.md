@@ -81,7 +81,7 @@ Installs LLVM-Clang 10 in the ***~/llvm-clang/10/clang+llvm-10.0.0-x86_64-linux-
 
 *This command also installs dependencies for the project demo.
 
-### Install WebSVF components**
+### **Install WebSVF components**
 
 ```
 sudo create-analysis -i
