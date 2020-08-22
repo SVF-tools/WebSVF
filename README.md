@@ -154,9 +154,9 @@ Refresh the webpage to see the extensions.
 
 # Testing
 
-## [Test WebSVF frontend locally](https://github.com/SVF-tools/WebSVF/wiki/Test-WebSVF-frontend-locally)
+- ### [Test WebSVF-frontend locally](https://github.com/SVF-tools/WebSVF/wiki/Test-WebSVF-frontend-locally)
 
-## [Test WebSVF frontend on Cloud](https://github.com/SVF-tools/WebSVF/wiki/Test-WebSVF-frontend-on-Cloud)
+- ### [Test WebSVF-frontend on Cloud](https://github.com/SVF-tools/WebSVF/wiki/Test-WebSVF-frontend-on-Cloud)
 
 # Known Issues
 
