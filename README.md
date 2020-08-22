@@ -164,7 +164,7 @@ Refresh the webpage to see the extensions.
 
 # Developer Notes
 
-- ### Environment setup by the `create-analysis -i` or the `create-analysis --cloud-install` command**
+- ### Environment setup by the `create-analysis -i` or the `create-analysis --cloud-install` command
     If you followed the steps to install WebSVF using the WebSVF-backend. You will find a directory called svf in your home directory (_~/svf_). This directory contains 3      components:
     - _**svf-ex**_ binary/executable (_~/svf/svf-ex_), built using the unmodified [SVF-example](https://github.com/SVF-tools/SVF-example)
     - A directory called **_svf-lib_** (_~/svf/svf-lib/_) which contains the [SVF](https://github.com/SVF-tools/SVF) library for static code analysis, which can be used to build custom code analysis programs like [SVF-example](https://github.com/SVF-tools/SVF-example), which used this library by specifying the path to this directory in the SVF_DIR environment variable (-DSVF_DIR=path_to_svf-lib_directory).
