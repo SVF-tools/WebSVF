@@ -1,750 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
 
-    <title>Web-SVF - Online Code Analysis Platform powered by SVF-Tools</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Electrolize"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Inconsolata"
-      rel="stylesheet"
-    />
+  <title>Web-SVF - Online Code Analysis Platform powered by SVF-Tools</title>
 
-    <!-- Bootstrap core JavaScript -->
-    <!--<script src="src/WebSVF-webpage/vendor/jquery/jquery.min.js"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="src/WebSVF-webpage/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Electrolize" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
 
-    <!-- Bootstrap core CSS -->
-    <link
-      href="src/WebSVF-webpage/vendor/bootstrap/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+  <!-- Bootstrap core JavaScript -->
+  <!--<script src="src/WebSVF-webpage/vendor/jquery/jquery.min.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="src/WebSVF-webpage/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Alert CSS -->
-    <link
-      href="src/WebSVF-webpage/css/sign-up.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+  <!-- Bootstrap core CSS -->
+  <link href="src/WebSVF-webpage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Carousel Snippet-->
-    <link href="src/WebSVF-webpage/css/carousel.css" rel="stylesheet" />
-    <script src="src/WebSVF-webpage/js/carousel.js"></script>
+  <!-- Alert CSS -->
+  <link href="src/WebSVF-webpage/css/sign-up.css" rel="stylesheet" type="text/css" />
 
-    <!-- Custom fonts for this template -->
-    <link
-      href="src/WebSVF-webpage/vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="src/WebSVF-webpage/vendor/simple-line-icons/css/simple-line-icons.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
-      rel="stylesheet"
-      type="text/css"
-    />
+  <!-- Carousel Snippet-->
+  <link href="src/WebSVF-webpage/css/carousel.css" rel="stylesheet" />
+  <script src="src/WebSVF-webpage/js/carousel.js"></script>
 
-    <!-- Custom styles for this template -->
-    <link href="src/WebSVF-webpage/css/landing-page.min.css" rel="stylesheet" />
-  </head>
+  <!-- Custom fonts for this template -->
+  <link href="src/WebSVF-webpage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <link href="src/WebSVF-webpage/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+    type="text/css" />
 
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-light bg-light static-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <h1
-            style="
+  <!-- Custom styles for this template -->
+  <link href="src/WebSVF-webpage/css/landing-page.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <h1 style="
               font-weight: bold;
               color: black;
               font-size: 2em;
               font-family: 'Electrolize';
-            "
-            data="WebSVF"
-          >
-            Web-SVF
-          </h1>
-        </a>
-        <a class="btn btn-primary" href="#header-top">Sign Up</a>
-      </div>
-    </nav>
+            " data="WebSVF">
+          Web-SVF
+        </h1>
+      </a>
+      <a class="btn btn-primary" href="#header-top">Sign Up</a>
+    </div>
+  </nav>
 
-    <!-- Masthead -->
-    <header id="header-top" class="masthead text-white text-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12 mx-auto">
-            <h1
-              style="
+  <!-- Masthead -->
+  <header id="header-top" class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 mx-auto">
+          <h1 style="
                 font-weight: bold;
                 font-family: 'Inconsolata';
                 font-size: 2.5em;
                 color: #dadada;
-              "
-              class="mb-5"
-            >
-              <div
-                style="
+              " class="mb-5">
+            <div style="
                   font-weight: bold;
                   color: #4b75ff;
                   font-family: 'Electrolize';
                   font-size: 2.5em;
-                "
-              >
-                Web-SVF:
-              </div>
-              Online Code Analysis Platform powered by
-              <a style="font-weight: bold; text-decoration: underline;"
-                >SVF-Tools</a
-              >
-              <br /><br />
-              Sign Up to stay updated on the latest develepments
-            </h1>
-          </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <form id="signupform">
-              <div class="form-row">
-                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input
-                    type="email"
-                    id="header-email"
-                    class="form-control form-control-lg"
-                    placeholder="Enter your email..."
-                    required
-                  />
-                </div>
-                <div class="col-12 col-md-3">
-                  <button
-                    type="submit"
-                    class="btn btn-block btn-lg btn-primary"
-                  >
-                    Sign Up!
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div id="alertsignup" class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <h2></h2>
-            <div class="alert">
-              <span
-                class="closebtn"
-                onclick="this.parentElement.style.display='none';"
-                >&times;</span
-              >
-              Email added to Mailing List. Please Use
-              <a style="text-decoration: underline;">Password:</a>
-              <a style="font-weight: bold; color: black;">21G12T7Y14</a> to log
-              into Web-SVF
+                ">
+              Web-SVF:
             </div>
+            Online Code Analysis Platform powered by
+            <a style="font-weight: bold; text-decoration: underline;">SVF-Tools</a>
+            <br /><br />
+            Sign Up to stay updated on the latest develepments
+          </h1>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <form id="signupform">
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <input type="email" id="header-email" class="form-control form-control-lg"
+                  placeholder="Enter your email..." required />
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">
+                  Sign Up!
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div id="alertsignup" class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <h2></h2>
+          <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Email added to Mailing List. Please Use
+            <a style="text-decoration: underline;">Password:</a>
+            <a style="font-weight: bold; color: black;">21G12T7Y14</a> to log
+            into Web-SVF
           </div>
         </div>
       </div>
-    </header>
-
-    <!-- Carousel -->
-
-    <div
-      id="myCarousel"
-      class="carousel slide carousel-fade"
-      data-ride="carousel"
-    >
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="mask flex-center">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-md-7 col-12 order-md-1 order-2">
-                  <h4>
-                    Code Anywhere <br />
-                    with our Online Code Editor
-                  </h4>
-                  <p>
-                    Our online code editor powered by VSCode Online allows you
-                    to work on your projects anywhere. <br />
-                    Hosted on scalable AWS Servers means you can compile and
-                    computer faster than even your local machine.
-                  </p>
-                  <a href="https://github.com/SVF-tools/WebSVF" target="_blank"
-                    ><i class="fab fa-github fa-fw"></i>Find Out More</a
-                  >
-                </div>
-                <div class="col-md-5 col-12 order-md-2 order-1">
-                  <img
-                    src="src/WebSVF-webpage/img/vscode_online_carousel.png"
-                    class="mx-auto"
-                    alt="slide"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="mask flex-center">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-md-7 col-12 order-md-1 order-2">
-                  <h4>
-                    Visualize Your Projects<br />
-                    as 3D Forced Graphs
-                  </h4>
-                  <p>
-                    Dive into code analysis with ease using our React powered 3D
-                    Forced Graph Analysis <br />
-                    Every file including external libraries are represented as
-                    nodes clustered in groups following the project heirarchy
-                  </p>
-                  <a href="https://github.com/SVF-tools/WebSVF" target="_blank"
-                    ><i class="fab fa-github fa-fw"></i>Find Out More</a
-                  >
-                </div>
-                <div class="col-md-5 col-12 order-md-2 order-1">
-                  <img
-                    src="src/WebSVF-webpage/img/Forced-Graph_carousel.png"
-                    class="mx-auto"
-                    alt="slide"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="mask flex-center">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-md-7 col-12 order-md-1 order-2">
-                  <h4>
-                    Deep Bug Search <br />
-                    Using SVF's Code Analysis
-                  </h4>
-                  <p>
-                    With the click of a button, analyse your entire project for
-                    compile and runtime errors <br />
-                    as well as highlight potential points of failure within
-                    indvidual files
-                  </p>
-                  <a href="https://github.com/SVF-tools/WebSVF" target="_blank"
-                    ><i class="fab fa-github fa-fw"></i>Find Out More</a
-                  >
-                </div>
-                <div class="col-md-5 col-12 order-md-2 order-1">
-                  <img
-                    src="src/WebSVF-webpage/img/bug_carousel_alt_2_480.png"
-                    class="mx-auto"
-                    alt="slide"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a
-        class="carousel-control-prev"
-        href="#myCarousel"
-        role="button"
-        data-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a
-        class="carousel-control-next"
-        href="#myCarousel"
-        role="button"
-        data-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
+  </header>
 
-    <!-- Icons Grid -->
-    <section class="features-icons bg-light text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-4">
-              <div class="features-icons-icon d-flex">
-                <i class="far fa-file-code m-auto text-primary"></i>
+  <!-- Carousel -->
+
+  <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="mask flex-center">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-7 col-12 order-md-1 order-2">
+                <h4>
+                  Code Anywhere <br />
+                  with our Online Code Editor
+                </h4>
+                <p>
+                  Our online code editor powered by VSCode Online allows you
+                  to work on your projects anywhere. <br />
+                  Hosted on scalable AWS Servers means you can compile and
+                  computer faster than even your local machine.
+                </p>
+                <a href="https://github.com/SVF-tools/WebSVF" target="_blank"><i class="fab fa-github fa-fw"></i>Find
+                  Out More</a>
               </div>
-              <h3>C++ Project Support</h3>
-              <p class="lead mb-0">
-                Upload you C++ project onto our online code editor and compile
-                and run it on our secured server
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-4">
-              <div class="features-icons-icon d-flex">
-                <i class="fas fa-project-diagram m-auto text-primary"></i>
+              <div class="col-md-5 col-12 order-md-2 order-1">
+                <img src="src/WebSVF-webpage/img/vscode_online_carousel.png" class="mx-auto" alt="slide" />
               </div>
-              <h3>Visualize your Data in 3D</h3>
-              <p class="lead mb-0">
-                In a single click Web-SVF can compile your project and visualize
-                as a 3D Forced graph with interacable nodes within our editor
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-0 mb-lg-4">
-              <div class="features-icons-icon d-flex">
-                <i class="fas fa-bug m-auto text-primary"></i>
-              </div>
-              <h3>Bug Analysis</h3>
-              <p class="lead mb-0">
-                One click can analyse you project for bugs and potential points
-                of failure, highlighting them in the 3D forced graph as well as
-                generate a detailed Bug Report.
-              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Install Now Banner -->
-
-    <section class="install-banner">
-      <div class="features-icons-icon d-flex">
-        <i
-          class="fas fa-server m-auto"
-          style="font-size: 5rem; color: #4b75ff;"
-        ></i>
-      </div>
-      <br />
-      <h1>Setup your own local instance of</h1>
-      <h1 style="color: #4b75ff; font-size: 3em;">Web-SVF</h1>
-      <h2>in a few simple steps:</h2>
-    </section>
-
-    <!-- Setup Guide (Youtube Showcases) -->
-    <section class="showcase">
-      <div class="container-fluid p-0">
-        <div class="row no-gutters">
-          <div class="col-lg-5 order-lg-1 my-auto showcase-text">
-            <div class="features-icons text-center">
-              <div class="features-icons-item mx-auto">
-                <div class="features-icons-icon d-flex">
-                  <i class="fab fa-ubuntu m-auto text-primary"></i>
-                </div>
+      <div class="carousel-item">
+        <div class="mask flex-center">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-7 col-12 order-md-1 order-2">
+                <h4>
+                  Visualize Your Projects<br />
+                  as 3D Forced Graphs
+                </h4>
+                <p>
+                  Dive into code analysis with ease using our React powered 3D
+                  Forced Graph Analysis <br />
+                  Every file including external libraries are represented as
+                  nodes clustered in groups following the project heirarchy
+                </p>
+                <a href="https://github.com/SVF-tools/WebSVF" target="_blank"><i class="fab fa-github fa-fw"></i>Find
+                  Out More</a>
               </div>
-              <h2>Setup and Test WebSVF (Ubuntu 20.04)</h2>
-              <p class="lead mb-0">
-                Get started with setting up WebSVF and using it with a sample C
-                Project.
-              </p>
-            </div>
-          </div>
-          <div
-            class="col-lg-7 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9"
-          >
-            <iframe
-              src="https://www.youtube.com/embed/ArzYCh7vOU0"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <div class="row no-gutters">
-          <div class="col-lg-5 order-lg-2 my-auto showcase-text">
-            <div class="features-icons text-center">
-              <div class="features-icons-item mx-auto">
-                <div class="features-icons-icon d-flex">
-                  <i class="fas fa-cogs m-auto text-primary"></i>
-                </div>
+              <div class="col-md-5 col-12 order-md-2 order-1">
+                <img src="src/WebSVF-webpage/img/Forced-Graph_carousel.png" class="mx-auto" alt="slide" />
               </div>
-              <h2>WebSVF-frontend User Guide</h2>
-              <p class="lead mb-0">
-                An overview of the WebSVF-frontend and WebSVF-frontend-server
-                and how to use them to get started with WebSVF.
-              </p>
             </div>
-          </div>
-          <div
-            class="col-lg-7 order-lg-1 text-white showcase-img embed-responsive embed-responsive-16by9"
-          >
-            <iframe
-              src="https://www.youtube.com/embed/ybl9vLaBeE8"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <div class="row no-gutters">
-          <div class="col-lg-5 order-lg-1 my-auto showcase-text">
-            <div class="features-icons text-center">
-              <div class="features-icons-item mx-auto">
-                <div class="features-icons-icon d-flex">
-                  <i class="fas fa-laptop-code m-auto text-primary"></i>
-                </div>
-              </div>
-              <h2>WebSVF-codemap-extension User Guide</h2>
-              <p class="lead mb-0">
-                A step by step guide taking you through the WebSVF's
-                codemap-extension and all of its features.
-              </p>
-            </div>
-          </div>
-          <div
-            class="col-lg-7 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9"
-          >
-            <iframe
-              src="https://www.youtube.com/embed/3f2VE1nvC0I"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Contributors (Testimonials) -->
-    <section class="testimonials text-center bg-light">
-      <div class="container">
-        <h2 class="mb-5">
-          This project would not have been possible without our core
-          contributors...
-        </h2>
-        <div class="row pb-3">
-          <div class="col-xl-3">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-4">
-              <a href="https://github.com/spcidealacm/" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Tianyang_Guan.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Tianyang Guan</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-3">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-4">
-              <a href="https://github.com/akshatsinghkaushik" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Akshat_Kaushik.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Akshat Kaushik</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-3">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-0">
-              <a href="https://github.com/ZichengQu" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Zicheng_Qu.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Zicheng Qu</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-3">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-0">
-              <a href="https://github.com/JIACHENLIU09" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Jiachen_Liu.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Jiachen Liu</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row pb-3">
-          <div class="col-xl-3">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-4">
-              <a href="https://github.com/sthprashant" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Prashant_Shrestha.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Prashant Shrestha</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-3">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-4">
-              <a href="https://github.com/zexiliudai" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Lee.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Lee</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-3">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-0">
-              <a href="https://github.com/winoooops" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Wei.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Wei</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-3">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-0">
-              <a href="https://github.com/yukinsnow" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Zeren_Yu.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Zeren Yu</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="row">
-          <div class="col-xl-4">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-0">
-              <a href="https://github.com/sthprashant" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Prashant_Shrestha.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Prashant Shrestha</h5>
-              <p class="font-weight-light mb-0">
-                <strong>Developer</strong><br />
-                <a href="https://www.uts.edu.au/" target="_blank"
-                  >University of Technology Sydney</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-4">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-0">
-              <a href="http://helloqirun.github.io/" target="_blank">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Qirun-Zhang.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Dr Qirun Zhang</h5>
-              <p class="font-weight-light mb-0">
-                Project Supervisor <br />
-                <strong
-                  >Assistant Professor<br />
-                  <a href="http://www.gatech.edu/" target="_blank"
-                    >Georgia Institute of Technology</a
-                  ></strong
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-4">
-            <div class="testimonial-item mx-auto mb-5 mb-xl-4">
-              <a href="https://yuleisui.github.io/">
-                <img
-                  class="img-fluid rounded-circle mb-3"
-                  src="src/WebSVF-webpage/img/Yulei-Sui.jpg"
-                  alt=""
-                />
-              </a>
-              <h5>Dr Yulei Sui</h5>
-              <p class="font-weight-light mb-0">
-                Project Supervisor <br />
-                <strong
-                  >Senior Lecturer <br />
-                  <a href="https://www.uts.edu.au/" target="_blank"
-                    >University of Technology Sydney</a
-                  ></strong
-                >
-              </p>
-            </div>
-          </div>
-        </div> -->
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="call-to-action text-white text-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-          </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <form>
-              <div class="form-row">
-                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input
-                    type="email"
-                    class="form-control form-control-lg"
-                    placeholder="Enter your email..."
-                  />
-                </div>
-                <div class="col-12 col-md-3">
-                  <button
-                    type="submit"
-                    class="btn btn-block btn-lg btn-primary"
-                  >
-                    Sign up!
-                  </button>
-                </div>
+      <div class="carousel-item">
+        <div class="mask flex-center">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-7 col-12 order-md-1 order-2">
+                <h4>
+                  Deep Bug Search <br />
+                  Using SVF's Code Analysis
+                </h4>
+                <p>
+                  With the click of a button, analyse your entire project for
+                  compile and runtime errors <br />
+                  as well as highlight potential points of failure within
+                  indvidual files
+                </p>
+                <a href="https://github.com/SVF-tools/WebSVF" target="_blank"><i class="fab fa-github fa-fw"></i>Find
+                  Out More</a>
               </div>
-            </form>
+              <div class="col-md-5 col-12 order-md-2 order-1">
+                <img src="src/WebSVF-webpage/img/bug_carousel_alt_2_480.png" class="mx-auto" alt="slide" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 
-    <!-- Footer -->
-    <footer class="footer bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-            <ul class="list-inline mb-2">
-              <li class="list-inline-item">
-                <a href="#">About</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Contact</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-            </ul>
-
-            <p id="site-yr" class="text-muted small mb-4 mb-lg-0">
-              &copy; SVF-Tools . All Rights Reserved.
+  <!-- Icons Grid -->
+  <section class="features-icons bg-light text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-4">
+            <div class="features-icons-icon d-flex">
+              <i class="far fa-file-code m-auto text-primary"></i>
+            </div>
+            <h3>C++ Project Support</h3>
+            <p class="lead mb-0">
+              Upload you C++ project onto our online code editor and compile
+              and run it on our secured server
             </p>
           </div>
-          <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item mr-3">
-                <a href="#">
-                  <i class="fas fa-cloud-upload-alt fa-2x fa-fw"></i>
-                </a>
-              </li>
-
-              <li class="list-inline-item mr-3">
-                <a href="https://github.com/SVF-tools/WebSVF" target="_blank">
-                  <i class="fab fa-github fa-2x fa-fw"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a
-                  href="https://github.com/SVF-tools/WebSVF/fork"
-                  target="_blank"
-                >
-                  <i class="fas fa-code-branch fa-2x fa-fw"></i>
-                </a>
-              </li>
-            </ul>
+        </div>
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-4">
+            <div class="features-icons-icon d-flex">
+              <i class="fas fa-project-diagram m-auto text-primary"></i>
+            </div>
+            <h3>Visualize your Data in 3D</h3>
+            <p class="lead mb-0">
+              In a single click Web-SVF can compile your project and visualize
+              as a 3D Forced graph with interacable nodes within our editor
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-4">
+            <div class="features-icons-icon d-flex">
+              <i class="fas fa-bug m-auto text-primary"></i>
+            </div>
+            <h3>Bug Analysis</h3>
+            <p class="lead mb-0">
+              One click can analyse you project for bugs and potential points
+              of failure, highlighting them in the 3D forced graph as well as
+              generate a detailed Bug Report.
+            </p>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <!-- Firebase Database Requisites (7.5.0)-->
+  <!-- Install Now Banner -->
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="src/WebSVF-webpage/js/firebase/firebase-app-7.5.0.js"></script>
+  <section class="install-banner">
+    <div class="features-icons-icon d-flex">
+      <i class="fas fa-server m-auto" style="font-size: 5rem; color: #4b75ff;"></i>
+    </div>
+    <br />
+    <h1>Setup your own local instance of</h1>
+    <h1 style="color: #4b75ff; font-size: 3em;">Web-SVF</h1>
+    <h2>in a few simple steps:</h2>
+  </section>
 
-    <!--// TODO: Add SDKs for Firebase products that you want to use
+  <!-- Setup Guide (Youtube Showcases) -->
+  <section class="showcase">
+    <div class="container-fluid p-0">
+      <div class="row no-gutters">
+        <div class="col-lg-5 order-lg-1 my-auto showcase-text">
+          <div class="features-icons text-center">
+            <div class="features-icons-item mx-auto">
+              <div class="features-icons-icon d-flex">
+                <i class="fab fa-ubuntu m-auto text-primary"></i>
+              </div>
+            </div>
+            <h2>Setup and Test WebSVF (Ubuntu 20.04)</h2>
+            <p class="lead mb-0">
+              Get started with setting up WebSVF and using it with a sample C
+              Project.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-7 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9">
+          <iframe src="https://www.youtube.com/embed/ArzYCh7vOU0" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-5 order-lg-2 my-auto showcase-text">
+          <div class="features-icons text-center">
+            <div class="features-icons-item mx-auto">
+              <div class="features-icons-icon d-flex">
+                <i class="fas fa-cogs m-auto text-primary"></i>
+              </div>
+            </div>
+            <h2>WebSVF-frontend User Guide</h2>
+            <p class="lead mb-0">
+              An overview of the WebSVF-frontend and WebSVF-frontend-server
+              and how to use them to get started with WebSVF.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-7 order-lg-1 text-white showcase-img embed-responsive embed-responsive-16by9">
+          <iframe src="https://www.youtube.com/embed/ybl9vLaBeE8" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-5 order-lg-1 my-auto showcase-text">
+          <div class="features-icons text-center">
+            <div class="features-icons-item mx-auto">
+              <div class="features-icons-icon d-flex">
+                <i class="fas fa-laptop-code m-auto text-primary"></i>
+              </div>
+            </div>
+            <h2>WebSVF-codemap-extension User Guide</h2>
+            <p class="lead mb-0">
+              A step by step guide taking you through the WebSVF's
+              codemap-extension and all of its features.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-7 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9">
+          <iframe src="https://www.youtube.com/embed/3f2VE1nvC0I" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contributors (Testimonials) -->
+  <section class="testimonials text-center bg-light">
+    <div class="container">
+      <h2 class="mb-5">
+        This project would not have been possible without our core
+        contributors...
+      </h2>
+      <div class="row pb-3">
+        <div class="col-xl-3">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-4">
+            <a href="https://github.com/spcidealacm/" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Tianyang_Guan.jpg" alt="" />
+            </a>
+            <h5>Tianyang Guan</h5>
+            <p class="font-weight-light mb-0">
+              <strong>Developer</strong><br />
+              <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-4">
+            <a href="https://github.com/akshatsinghkaushik" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Akshat_Kaushik.jpg" alt="" />
+            </a>
+            <h5>Akshat Kaushik</h5>
+            <p class="font-weight-light mb-0">
+              <strong>Developer</strong><br />
+              <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-0">
+            <a href="https://github.com/ZichengQu" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Zicheng_Qu.jpg" alt="" />
+            </a>
+            <h5>Zicheng Qu</h5>
+            <p class="font-weight-light mb-0">
+              <strong>Developer</strong><br />
+              <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-0">
+            <a href="https://github.com/JIACHENLIU09" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Jiachen_Liu.jpg" alt="" />
+            </a>
+            <h5>Jiachen Liu</h5>
+            <p class="font-weight-light mb-0">
+              <strong>Developer</strong><br />
+              <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row pb-3">
+        <div class="col-xl-3">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-4">
+            <a href="https://github.com/sthprashant" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Prashant_Shrestha.jpg" alt="" />
+            </a>
+            <h5>Prashant Shrestha</h5>
+            <p class="font-weight-light mb-0">
+              <strong>Developer</strong><br />
+              <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-4">
+            <a href="https://github.com/zexiliudai" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Lee.jpg" alt="" />
+            </a>
+            <h5>Lee</h5>
+            <p class="font-weight-light mb-0">
+              <strong>Developer</strong><br />
+              <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-0">
+            <a href="https://github.com/winoooops" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Wei.jpg" alt="" />
+            </a>
+            <h5>Wei</h5>
+            <p class="font-weight-light mb-0">
+              <strong>Developer</strong><br />
+              <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-0">
+            <a href="https://github.com/yukinsnow" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Zeren_Yu.jpg" alt="" />
+            </a>
+            <h5>Zeren Yu</h5>
+            <p class="font-weight-light mb-0">
+              <strong>Developer</strong><br />
+              <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-6">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-0">
+            <a href="http://helloqirun.github.io/" target="_blank">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Qirun-Zhang.jpg" alt="" />
+            </a>
+            <h5>Dr Qirun Zhang</h5>
+            <p class="font-weight-light mb-0">
+              Project Supervisor <br />
+              <strong>Assistant Professor<br />
+                <a href="http://www.gatech.edu/" target="_blank">Georgia Institute of Technology</a></strong>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="testimonial-item mx-auto mb-5 mb-xl-4">
+            <a href="https://yuleisui.github.io/">
+              <img class="img-fluid rounded-circle mb-3" src="src/WebSVF-webpage/img/Yulei-Sui.jpg" alt="" />
+            </a>
+            <h5>Dr Yulei Sui</h5>
+            <p class="font-weight-light mb-0">
+              Project Supervisor <br />
+              <strong>Senior Lecturer <br />
+                <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a></strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="call-to-action text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <form>
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <input type="email" class="form-control form-control-lg" placeholder="Enter your email..." />
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">
+                  Sign up!
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item">
+              <a href="#">About</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Contact</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+
+          <p id="site-yr" class="text-muted small mb-4 mb-lg-0">
+            &copy; SVF-Tools . All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fas fa-cloud-upload-alt fa-2x fa-fw"></i>
+              </a>
+            </li>
+
+            <li class="list-inline-item mr-3">
+              <a href="https://github.com/SVF-tools/WebSVF" target="_blank">
+                <i class="fab fa-github fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/SVF-tools/WebSVF/fork" target="_blank">
+                <i class="fas fa-code-branch fa-2x fa-fw"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase Database Requisites (7.5.0)-->
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="src/WebSVF-webpage/js/firebase/firebase-app-7.5.0.js"></script>
+
+  <!--// TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-    <script src="src/WebSVF-webpage/js/firebase/firebase-database-7.5.0.js"></script>
+  <script src="src/WebSVF-webpage/js/firebase/firebase-database-7.5.0.js"></script>
 
-    <!-- Import JS Code for Logging email IDs-->
-    <script src="src/WebSVF-webpage/js/firebase-email-signup.js"></script>
+  <!-- Import JS Code for Logging email IDs-->
+  <script src="src/WebSVF-webpage/js/firebase-email-signup.js"></script>
 
-    <script type="text/javascript">
-      $('#site-yr').html(
-        `&copy; SVF-Tools ${new Date().getFullYear()}. All Rights Reserved.`
-      );
-    </script>
-  </body>
+  <script type="text/javascript">
+    $('#site-yr').html(
+      `&copy; SVF-Tools ${new Date().getFullYear()}. All Rights Reserved.`
+    );
+  </script>
+</body>
+
 </html>
