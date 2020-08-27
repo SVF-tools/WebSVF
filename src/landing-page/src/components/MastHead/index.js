@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/database';
 import firebaseConfig from '../../apis/firebaseConfig';
 
-const MastHead = () => {
+const MastHead = ({ link, password }) => {
   const signUpForm = useRef();
   const alertSignUp = useRef();
 
@@ -37,8 +37,10 @@ const MastHead = () => {
       var delayInMilliseconds = 5000; //5 seconds
 
       setTimeout(() => {
-        window.open('https://websvf.top/', '_blank');
+        window.open(link, '_blank');
       }, delayInMilliseconds);
+
+      //'https://websvf.top/'
 
       // Hide alert after 15 seconds
       setTimeout(() => {
@@ -62,7 +64,7 @@ const MastHead = () => {
         email: email,
       });
     }
-  }, []);
+  }, [link]);
 
   return (
     <header id="header-top" className="masthead text-white text-center">
@@ -130,17 +132,13 @@ const MastHead = () => {
                 Demo website is opening in a new tab...
                 <br />
                 If the demo page does not open automatically after 5 seconds,{' '}
-                <a
-                  href="https://websvf.top"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={link} target="_blank" rel="noopener noreferrer">
                   click here
                 </a>
               </p>
 
               <p className="highlight">Password:</p>
-              <p className="password">Vincent_2020</p>
+              <p className="password">{password}</p>
             </div>
           </div>
         </div>
