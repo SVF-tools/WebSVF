@@ -1,0 +1,28 @@
+{
+  "carousel": [
+    {
+      "heading": "Code Anywhere",
+      "subHeading": "with our Online Code Editor",
+      "description": "Our online code editor powered by VSCode Online allows you to work on your projects anywhere.",
+      "extendedDescription": "Hosted on scalable AWS Servers means you can compile and computer faster than even your local machine.",
+      "image": "vscode_online_carousel.png",
+      "active": "active"
+    },
+    {
+      "heading": "Visualize Your Projects",
+      "subHeading": "as 3D Forced Graphs",
+      "description": "Dive into code analysis with ease using our React powered 3D Forced Graph Analysis",
+      "extendedDescription": "Every file including external libraries are represented as nodes clustered in groups following the project heirarchy",
+      "image": "Forced-Graph_carousel.png",
+      "active": ""
+    },
+    {
+      "heading": "Deep Bug Search",
+      "subHeading": "Using SVF's Code Analysis",
+      "description": "With the click of a button, analyse your entire project for compile and runtime errors",
+      "extendedDescription": "as well as highlight potential points of failure within indvidual files",
+      "image": "bug_carousel_alt_2_480.png",
+      "active": ""
+    }
+  ]
+}

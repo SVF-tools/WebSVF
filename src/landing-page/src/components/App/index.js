@@ -2,226 +2,35 @@ import React from 'react';
 
 import './App.scss';
 
+import Header from '../Header';
+import MastHead from '../MastHead';
+import CarouselContainer from '../Carousel/CarouselContainer';
+import CarouselItem from '../Carousel/CarouselItem';
+
+import staticData from '../../staticData.json';
+
 const App = () => {
+  const mapCarouselItems = () =>
+    staticData.carousel.map((item) => {
+      return (
+        <CarouselItem
+          heading={item.heading}
+          subHeading={item.subHeading}
+          desc={item.description}
+          extDesc={item.extendedDescription}
+          image={item.image}
+          active={item.active}
+        />
+      );
+    });
+
   return (
     <div>
-      {/*<!-- Navigation -->*/}
-      <nav className="navbar navbar-light bg-light static-top">
-        <div className="container">
-          <a className="navbar-brand" href="#">
-            <h1
-              style={{
-                fontWeight: 'bold',
-                color: 'black',
-                fontSize: '2em',
-                fontFamily: 'Electrolize',
-              }}
-              data="WebSVF"
-            >
-              Web-SVF
-            </h1>
-          </a>
-          <a className="btn btn-primary" href="#header-top">
-            Sign Up
-          </a>
-        </div>
-      </nav>
+      <Header />
 
-      {/*<!-- Masthead -->*/}
-      <header id="header-top" className="masthead text-white text-center">
-        <div className="overlay"></div>
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12 mx-auto">
-              <h1 className="mb-5 masthead-heading">
-                <div className="title">Web-SVF:</div>
-                Online Code Analysis Platform powered by
-                <a className="link">SVF-Tools</a>
-                <br />
-                <br />
-                Sign Up to stay updated on the latest develepments
-              </h1>
-            </div>
-            <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
-              <form id="signupform">
-                <div className="form-row">
-                  <div className="col-12 col-md-9 mb-2 mb-md-0">
-                    <input
-                      type="email"
-                      id="header-email"
-                      className="form-control form-control-lg"
-                      placeholder="Enter your email..."
-                      required
-                    />
-                  </div>
-                  <div className="col-12 col-md-3">
-                    <button
-                      type="submit"
-                      className="btn btn-block btn-lg btn-primary"
-                    >
-                      Sign Up!
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div
-              id="alertsignup"
-              className="col-md-10 col-lg-8 col-xl-7 mx-auto"
-            >
-              <h2></h2>
-              <div className="alert">
-                <span
-                  className="closebtn"
-                  onClick={() => {
-                    this.parentElement.style.display = 'none';
-                  }}
-                >
-                  &times;
-                </span>
-                Email added to Mailing List. Please Use
-                <a className="highlight">Password:</a>
-                <a className="password">21G12T7Y14</a> to log into Web-SVF
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <MastHead />
 
-      {/*<!-- Carousel -->*/}
-
-      <div
-        id="myCarousel"
-        className="carousel slide carousel-fade"
-        data-ride="carousel"
-      >
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <div className="mask flex-center">
-              <div className="container">
-                <div className="row align-items-center">
-                  <div className="col-md-7 col-12 order-md-1 order-2">
-                    <h4>
-                      Code Anywhere <br />
-                      with our Online Code Editor
-                    </h4>
-                    <p>
-                      Our online code editor powered by VSCode Online allows you
-                      to work on your projects anywhere. <br />
-                      Hosted on scalable AWS Servers means you can compile and
-                      computer faster than even your local machine.
-                    </p>
-                    <a
-                      href="https://github.com/SVF-tools/WebSVF"
-                      target="_blank"
-                    >
-                      <i className="fab fa-github fa-fw"></i>Find Out More
-                    </a>
-                  </div>
-                  <div className="col-md-5 col-12 order-md-2 order-1">
-                    <img
-                      src="img/vscode_online_carousel.png"
-                      className="mx-auto"
-                      alt="slide"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="mask flex-center">
-              <div className="container">
-                <div className="row align-items-center">
-                  <div className="col-md-7 col-12 order-md-1 order-2">
-                    <h4>
-                      Visualize Your Projects
-                      <br />
-                      as 3D Forced Graphs
-                    </h4>
-                    <p>
-                      Dive into code analysis with ease using our React powered
-                      3D Forced Graph Analysis <br />
-                      Every file including external libraries are represented as
-                      nodes clustered in groups following the project heirarchy
-                    </p>
-                    <a
-                      href="https://github.com/SVF-tools/WebSVF"
-                      target="_blank"
-                    >
-                      <i className="fab fa-github fa-fw"></i>Find Out More
-                    </a>
-                  </div>
-                  <div className="col-md-5 col-12 order-md-2 order-1">
-                    <img
-                      src="img/Forced-Graph_carousel.png"
-                      className="mx-auto"
-                      alt="slide"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="mask flex-center">
-              <div className="container">
-                <div className="row align-items-center">
-                  <div className="col-md-7 col-12 order-md-1 order-2">
-                    <h4>
-                      Deep Bug Search <br />
-                      Using SVF's Code Analysis
-                    </h4>
-                    <p>
-                      With the click of a button, analyse your entire project
-                      for compile and runtime errors <br />
-                      as well as highlight potential points of failure within
-                      indvidual files
-                    </p>
-                    <a
-                      href="https://github.com/SVF-tools/WebSVF"
-                      target="_blank"
-                    >
-                      <i className="fab fa-github fa-fw"></i>Find Out More
-                    </a>
-                  </div>
-                  <div className="col-md-5 col-12 order-md-2 order-1">
-                    <img
-                      src="img/bug_carousel_alt_2_480.png"
-                      className="mx-auto"
-                      alt="slide"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a
-          className="carousel-control-prev"
-          href="#myCarousel"
-          role="button"
-          data-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only">Previous</span>
-        </a>
-        <a
-          className="carousel-control-next"
-          href="#myCarousel"
-          role="button"
-          data-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only">Next</span>
-        </a>
-      </div>
+      <CarouselContainer>{mapCarouselItems()}</CarouselContainer>
 
       {/*<!-- Icons Grid -->*/}
       <section className="features-icons bg-light text-center">
@@ -292,7 +101,7 @@ const App = () => {
                     <i className="fab fa-ubuntu m-auto text-primary"></i>
                   </div>
                 </div>
-                <h2>Setup and Test WebSVF (Ubuntu 20.04)</h2>
+                <h2>Setup and Test WebSVF</h2>
                 <p className="lead mb-0">
                   Get started with setting up WebSVF and using it with a sample
                   C Project.
@@ -301,6 +110,7 @@ const App = () => {
             </div>
             <div className="col-lg-7 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9">
               <iframe
+                title="Setup and Test WebSVF"
                 src="https://www.youtube.com/embed/ArzYCh7vOU0"
                 frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -325,6 +135,7 @@ const App = () => {
             </div>
             <div className="col-lg-7 order-lg-1 text-white showcase-img embed-responsive embed-responsive-16by9">
               <iframe
+                title="WebSVF-frontend User Guide"
                 src="https://www.youtube.com/embed/ybl9vLaBeE8"
                 frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -349,6 +160,7 @@ const App = () => {
             </div>
             <div className="col-lg-7 order-lg-2 text-white showcase-img embed-responsive embed-responsive-16by9">
               <iframe
+                title="WebSVF-codemap-extension User Guide"
                 src="https://www.youtube.com/embed/3f2VE1nvC0I"
                 frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -369,7 +181,11 @@ const App = () => {
           <div className="row pb-3">
             <div className="col-xl-3">
               <div className="testimonial-item mx-auto mb-5 mb-xl-4">
-                <a href="https://github.com/spcidealacm/" target="_blank">
+                <a
+                  href="https://github.com/spcidealacm/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Tianyang_Guan.jpg"
@@ -380,7 +196,11 @@ const App = () => {
                 <p className="font-weight-light mb-0">
                   <strong>Developer</strong>
                   <br />
-                  <a href="https://www.uts.edu.au/" target="_blank">
+                  <a
+                    href="https://www.uts.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     University of Technology Sydney
                   </a>
                 </p>
@@ -388,7 +208,11 @@ const App = () => {
             </div>
             <div className="col-xl-3">
               <div className="testimonial-item mx-auto mb-5 mb-xl-4">
-                <a href="https://github.com/akshatsinghkaushik" target="_blank">
+                <a
+                  href="https://github.com/akshatsinghkaushik"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Akshat_Kaushik.jpg"
@@ -399,7 +223,11 @@ const App = () => {
                 <p className="font-weight-light mb-0">
                   <strong>Developer</strong>
                   <br />
-                  <a href="https://www.uts.edu.au/" target="_blank">
+                  <a
+                    href="https://www.uts.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     University of Technology Sydney
                   </a>
                 </p>
@@ -407,7 +235,11 @@ const App = () => {
             </div>
             <div className="col-xl-3">
               <div className="testimonial-item mx-auto mb-5 mb-xl-0">
-                <a href="https://github.com/ZichengQu" target="_blank">
+                <a
+                  href="https://github.com/ZichengQu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Zicheng_Qu.jpg"
@@ -418,7 +250,11 @@ const App = () => {
                 <p className="font-weight-light mb-0">
                   <strong>Developer</strong>
                   <br />
-                  <a href="https://www.uts.edu.au/" target="_blank">
+                  <a
+                    href="https://www.uts.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     University of Technology Sydney
                   </a>
                 </p>
@@ -426,7 +262,11 @@ const App = () => {
             </div>
             <div className="col-xl-3">
               <div className="testimonial-item mx-auto mb-5 mb-xl-0">
-                <a href="https://github.com/JIACHENLIU09" target="_blank">
+                <a
+                  href="https://github.com/JIACHENLIU09"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Jiachen_Liu.jpg"
@@ -437,7 +277,11 @@ const App = () => {
                 <p className="font-weight-light mb-0">
                   <strong>Developer</strong>
                   <br />
-                  <a href="https://www.uts.edu.au/" target="_blank">
+                  <a
+                    href="https://www.uts.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     University of Technology Sydney
                   </a>
                 </p>
@@ -447,7 +291,11 @@ const App = () => {
           <div className="row pb-3">
             <div className="col-xl-3">
               <div className="testimonial-item mx-auto mb-5 mb-xl-4">
-                <a href="https://github.com/sthprashant" target="_blank">
+                <a
+                  href="https://github.com/sthprashant"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Prashant_Shrestha.jpg"
@@ -458,7 +306,11 @@ const App = () => {
                 <p className="font-weight-light mb-0">
                   <strong>Developer</strong>
                   <br />
-                  <a href="https://www.uts.edu.au/" target="_blank">
+                  <a
+                    href="https://www.uts.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     University of Technology Sydney
                   </a>
                 </p>
@@ -466,7 +318,11 @@ const App = () => {
             </div>
             <div className="col-xl-3">
               <div className="testimonial-item mx-auto mb-5 mb-xl-4">
-                <a href="https://github.com/zexiliudai" target="_blank">
+                <a
+                  href="https://github.com/zexiliudai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Lee.jpg"
@@ -477,7 +333,11 @@ const App = () => {
                 <p className="font-weight-light mb-0">
                   <strong>Developer</strong>
                   <br />
-                  <a href="https://www.uts.edu.au/" target="_blank">
+                  <a
+                    href="https://www.uts.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     University of Technology Sydney
                   </a>
                 </p>
@@ -485,7 +345,11 @@ const App = () => {
             </div>
             <div className="col-xl-3">
               <div className="testimonial-item mx-auto mb-5 mb-xl-0">
-                <a href="https://github.com/winoooops" target="_blank">
+                <a
+                  href="https://github.com/winoooops"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Wei.jpg"
@@ -496,7 +360,11 @@ const App = () => {
                 <p className="font-weight-light mb-0">
                   <strong>Developer</strong>
                   <br />
-                  <a href="https://www.uts.edu.au/" target="_blank">
+                  <a
+                    href="https://www.uts.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     University of Technology Sydney
                   </a>
                 </p>
@@ -504,7 +372,11 @@ const App = () => {
             </div>
             <div className="col-xl-3">
               <div className="testimonial-item mx-auto mb-5 mb-xl-0">
-                <a href="https://github.com/yukinsnow" target="_blank">
+                <a
+                  href="https://github.com/yukinsnow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Zeren_Yu.jpg"
@@ -515,7 +387,11 @@ const App = () => {
                 <p className="font-weight-light mb-0">
                   <strong>Developer</strong>
                   <br />
-                  <a href="https://www.uts.edu.au/" target="_blank">
+                  <a
+                    href="https://www.uts.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     University of Technology Sydney
                   </a>
                 </p>
@@ -526,7 +402,11 @@ const App = () => {
           <div className="row">
             <div className="col-xl-6">
               <div className="testimonial-item mx-auto mb-5 mb-xl-0">
-                <a href="http://helloqirun.github.io/" target="_blank">
+                <a
+                  href="http://helloqirun.github.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="img-fluid rounded-circle mb-3"
                     src="img/Qirun-Zhang.jpg"
@@ -539,7 +419,11 @@ const App = () => {
                   <strong>
                     Assistant Professor
                     <br />
-                    <a href="http://www.gatech.edu/" target="_blank">
+                    <a
+                      href="http://www.gatech.edu/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Georgia Institute of Technology
                     </a>
                   </strong>
@@ -560,7 +444,11 @@ const App = () => {
                   Project Supervisor <br />
                   <strong>
                     Senior Lecturer <br />
-                    <a href="https://www.uts.edu.au/" target="_blank">
+                    <a
+                      href="https://www.uts.edu.au/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       University of Technology Sydney
                     </a>
                   </strong>
@@ -611,19 +499,19 @@ const App = () => {
             <div className="col-lg-6 h-100 text-center text-lg-left my-auto">
               <ul className="list-inline mb-2">
                 <li className="list-inline-item">
-                  <a href="#">About</a>
+                  <a href="#navbar">About</a>
                 </li>
                 <li className="list-inline-item">&sdot;</li>
                 <li className="list-inline-item">
-                  <a href="#">Contact</a>
+                  <a href="#navbar">Contact</a>
                 </li>
                 <li className="list-inline-item">&sdot;</li>
                 <li className="list-inline-item">
-                  <a href="#">Terms of Use</a>
+                  <a href="#navbar">Terms of Use</a>
                 </li>
                 <li className="list-inline-item">&sdot;</li>
                 <li className="list-inline-item">
-                  <a href="#">Privacy Policy</a>
+                  <a href="#navbar">Privacy Policy</a>
                 </li>
               </ul>
 
@@ -634,13 +522,17 @@ const App = () => {
             <div className="col-lg-6 h-100 text-center text-lg-right my-auto">
               <ul className="list-inline mb-0">
                 <li className="list-inline-item mr-3">
-                  <a href="#">
+                  <a href="#navbar">
                     <i className="fas fa-cloud-upload-alt fa-2x fa-fw"></i>
                   </a>
                 </li>
 
                 <li className="list-inline-item mr-3">
-                  <a href="https://github.com/SVF-tools/WebSVF" target="_blank">
+                  <a
+                    href="https://github.com/SVF-tools/WebSVF"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <i className="fab fa-github fa-2x fa-fw"></i>
                   </a>
                 </li>
@@ -648,6 +540,7 @@ const App = () => {
                   <a
                     href="https://github.com/SVF-tools/WebSVF/fork"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fas fa-code-branch fa-2x fa-fw"></i>
                   </a>
