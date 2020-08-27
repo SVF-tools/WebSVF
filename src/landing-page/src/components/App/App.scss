@@ -1,0 +1,40 @@
+.masthead-heading {
+  font-weight: bold;
+  font-family: 'Inconsolata';
+  font-size: 2.5em;
+  color: #dadada;
+
+  .title {
+    font-weight: bold;
+    color: #4b75ff;
+    font-family: 'Electrolize';
+    font-size: 2.5em;
+  }
+
+  .link {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
+.install-banner {
+  .icon {
+    font-size: 5rem;
+    color: #4b75ff;
+  }
+  .highlight {
+    color: #4b75ff;
+    font-size: 3em;
+  }
+}
+
+#alertsignup {
+  .highlight {
+    text-decoration: underline;
+  }
+
+  .password {
+    font-weight: bold;
+    color: black;
+  }
+}
