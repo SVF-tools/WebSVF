@@ -28,7 +28,10 @@ const App = () => {
     <div>
       <Header />
 
-      <MastHead />
+      <MastHead
+        link={staticData.demo.link}
+        password={staticData.demo.password}
+      />
 
       <CarouselContainer>{mapCarouselItems()}</CarouselContainer>
 
