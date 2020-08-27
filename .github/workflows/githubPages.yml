@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [master] [react-landing]
+    branches: [master, react-landing]
   # Not sure if we want to deploy on PRs as we might break what's currently working...
   # pull_request:
   #   branches: [master]
