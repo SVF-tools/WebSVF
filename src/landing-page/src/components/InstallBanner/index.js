@@ -10,7 +10,7 @@ const InstallBanner = ({ callToAction, subHeading }) => {
       </div>
       <br />
       <h1>{callToAction}</h1>
-      <h1 className="highlight">Web-SVF</h1>
+      <h1 className="highlight">WebSVF</h1>
       <h2>{subHeading}</h2>
     </section>
   );
