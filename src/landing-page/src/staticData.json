@@ -150,9 +150,8 @@
     ]
   },
   "signUpBanner": {
-    "heading": "Ready to get started? Sign up now!",
-    "placeholder": "Enter your email...",
-    "buttonText": "Sign up!"
+    "heading": "Ready to get started?",
+    "buttonText": "Sign up now!"
   },
   "footer": {
     "navigation": [
