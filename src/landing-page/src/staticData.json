@@ -38,7 +38,7 @@
     {
       "icon": "fas fa-project-diagram",
       "heading": "Visualize your Data in 3D",
-      "content": "In a single click Web-SVF can compile your project and visualize as a 3D Forced graph with interacable nodes within our editor"
+      "content": "In a single click WebSVF can compile your project and visualize as a 3D Forced graph with interacable nodes within our editor"
     },
     {
       "icon": "fas fa-bug",
