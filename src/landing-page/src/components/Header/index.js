@@ -14,7 +14,7 @@ const Header = () => {
             }}
             data="WebSVF"
           >
-            Web-SVF
+            WebSVF
           </h1>
         </a>
         <a className="btn btn-primary" href="#header-top">
