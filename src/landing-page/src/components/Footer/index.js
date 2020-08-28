@@ -5,17 +5,17 @@ const Footer = ({ navigation, icons }) => {
     return navigation.map((nav, index) => {
       if (index !== 0) {
         return (
-          <React.Fragment>
+          <React.Fragment key={index}>
             <li className="list-inline-item">&sdot;</li>
-            <li key={index} className="list-inline-item">
+            <li className="list-inline-item">
               <a href={`${nav.link}`}>{nav.title}</a>
             </li>
           </React.Fragment>
         );
       } else {
         return (
-          <React.Fragment>
-            <li key={index} className="list-inline-item">
+          <React.Fragment key={index}>
+            <li className="list-inline-item">
               <a href={`${nav.link}`}>{nav.title}</a>
             </li>
           </React.Fragment>
