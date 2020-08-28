@@ -75,7 +75,7 @@ const MastHead = ({ link, password }) => {
         <div className="row">
           <div className="col-xl-12 mx-auto">
             <h1 className="mb-5 masthead-heading">
-              <div className="title">Web-SVF:</div>
+              <div className="title">WebSVF:</div>
               Online Code Analysis Platform powered by
               <br />
               <a
