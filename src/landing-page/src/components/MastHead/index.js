@@ -5,6 +5,8 @@ import * as firebase from 'firebase/app';
 import 'firebase/database';
 import firebaseConfig from '../../apis/firebaseConfig';
 
+import './sign-up.scss';
+
 const MastHead = ({ link, password }) => {
   const signUpForm = useRef();
   const alertSignUp = useRef();
