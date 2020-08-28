@@ -1,6 +1,6 @@
 # WebSVF
 
-## **Index**
+## **Index** 
 
 1. **[Architecture Overview](#architecture-overview)**
 1. **[Description](#description)**
