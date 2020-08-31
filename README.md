@@ -16,34 +16,34 @@
 
 ## **Install Instructions**
 
-### **Requirement**
+-   ### **Requirement**
 
--   **System: [Ubuntu 18.04 / 20.04](https://releases.ubuntu.com/20.04/)**
+    -   **System: [Ubuntu 18.04 / 20.04](https://releases.ubuntu.com/20.04/)**
 
-### **Install Software**
+-   ### **Install Software**
 
--   **Editor: [Vscode](https://code.visualstudio.com/)(Local) or [Code-Server](https://github.com/cdr/code-server)(Online)**
--   **Extension: [SVF ANALYSIS TOOLS](https://marketplace.visualstudio.com/items?itemName=TianyangGuan.svftools)**
+    -   **Editor: [Vscode](https://code.visualstudio.com/)(Local) or [Code-Server](https://github.com/cdr/code-server)(Online)**
+    -   **Extension: [SVF ANALYSIS TOOLS](https://marketplace.visualstudio.com/items?itemName=TianyangGuan.svftools)**
 
 ## **[User Instructions](https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/README.md)**
 
 ## **Dev Instructions**
 
-### **Requirement**
+-   ### **Requirement**
 
--   **Editor: [Vscode](https://code.visualstudio.com/)**
+    -   **Editor: [Vscode](https://code.visualstudio.com/)**
 
-### **Prepare Project**
+    ### **Prepare Project**
 
--   **Clone `WebSVF` repository**
--   **Vscode open `WebSVF/src/BugReport`**
--   **Vscode open terminial and run `yarn` for library**
+    -   **Clone `WebSVF` repository**
+    -   **Vscode open `WebSVF/src/BugReport`**
+    -   **Vscode open terminial and run `yarn` for library**
 
-### **Test and Debug**
+    ### **Test and Debug**
 
--   **Vscode `F5`**
+    -   **Vscode `F5`**
 
-### **Generate extension**
+    ### **Generate extension**
 
--   **[Install vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)**
--   **Run `vsce package`**
+    -   **[Install vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)**
+    -   **Run `vsce package`**
