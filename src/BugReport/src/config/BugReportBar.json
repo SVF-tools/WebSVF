@@ -5,7 +5,7 @@
     "command": "BugReport",
     "wait": {
         "text": "$(beaker) SVF ANALYSIS TOOLS",
-        "color": "errorForeground"
+        "color": "activityBar.activeBorder"
     },
     "load": {
         "text": "$(sync~spin) SVF TOOLS LOADING...",
