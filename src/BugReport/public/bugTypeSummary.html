@@ -1,0 +1,138 @@
+<html lang="en">
+
+<head>
+  <!-- Google Prettify -->
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/4.4.1/bootstrap.min.css">
+
+  <!-- FontAwesome CSS -->
+  <link rel="stylesheet" type="text/css" href="./vendor/font-awesome/5.12.1/all.min.css">
+  <link rel="stylesheet" type="text/css" href="./vendor/font-awesome/4.7.0/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./css/landingPage.css">
+</head>
+
+<body>
+  <div class="invisible">
+    <button>
+      <a id="fileclick" href="./fileReport.html" target="_self">File Report</a>
+    </button>
+  </div>
+
+  <a class="mx-4" href="javascript:history.back()" target="_self" }><i
+      class="fas fa-arrow-alt-circle-left fa-3x pb-4"></i></a>
+  <div id="test">
+    <div class="row pb-4">
+      <div class="col-md-3">
+        <!-- Tabs nav -->
+        <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
+          aria-orientation="vertical">
+          <a class="nav-link-syntax mb-3 p-3 d-flex justify-content-center shadow active" id="v-pills-syntaxError-tab"
+            data-toggle="pill" href="#v-pills-syntaxError" role="tab" aria-controls="v-pills-syntaxError"
+            aria-selected="true">
+            <i class="fas fa-code fa-2x mr-4"></i>
+            <span class="font-weight-bold large text-uppercase text-center"
+              style="font-size: 1.5rem; ">Syntax</span></a>
+
+          <a class="nav-link-semantic mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-semanticError-tab"
+            data-toggle="pill" href="#v-pills-semanticError" role="tab" aria-controls="v-pills-semanticError"
+            aria-selected="false">
+            <i class="fas fa-exclamation-triangle fa-2x mr-4"></i>
+            <span class="font-weight-bold large text-uppercase text-center"
+              style="font-size: 1.5rem; ">Semantic</span></a>
+
+          <a class="nav-link-logical mb-3 p-3 d-flex justify-content-center shadow" id="v-pills-logicalError-tab"
+            data-toggle="pill" href="#v-pills-logicalError" role="tab" aria-controls="v-pills-logicalError"
+            aria-selected="false">
+            <i class="fas fa-brain fa-2x mr-4"></i>
+            <span class="font-weight-bold large text-uppercase text-center"
+              style="font-size: 1.5rem; ">Logical</span></a>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <!-- Tabs content -->
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-syntaxError" role="tabpanel"
+            aria-labelledby="v-pills-syntaxError-tab">
+            <h4 class="font-italic mb-4">
+              <a id="header-syntaxError-tab" class="fileRepLink h1" style="padding-left: 3rem;"
+                href="#v-pills-syntaxError-tab" target="">Syntax Errors</a>
+            </h4>
+            <hr>
+          </div>
+
+
+          <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-semanticError" role="tabpanel"
+            aria-labelledby="v-pills-semanticError-tab">
+            <h4 class="font-italic mb-4">
+              <a id="header-semanticError-tab" class="fileRepLink h1" style="padding-left: 3rem;"
+                href="#v-pills-semanticError-tab" target="">Semantic Errors</a>
+            </h4>
+            <hr>
+          </div>
+
+
+          <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-logicalError" role="tabpanel"
+            aria-labelledby="v-pills-logicalError-tab">
+            <h4 class="font-italic mb-4">
+              <a id="header-logicalError-tab" class="fileRepLink h1" style="padding-left: 3rem;"
+                href="#v-pills-logicalError-tab" target="">Logical Errors</a>
+            </h4>
+            <hr>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Bootstrap JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script type="text/javascript" src="./vendor/jquery/3.4.1/jquery-3.4.1.slim.min.js"></script>
+  <script type="text/javascript" src="./vendor/popper-js/1.16.0/popper.min.js"></script>
+  <script type="text/javascript" src="./vendor/bootstrap/4.4.1/bootstrap.min.js"></script>
+
+  <script src="./js/bugReportJSON.js"></script>
+
+  <script src="./js/genBugTypeSummary.js"></script>
+
+  <!-- Socket JS -->
+  <script src="./socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.emit('bugSummary');
+
+    $('.fileRepLink').click(function (event) {
+      event.preventDefault(); // prevent page reloading
+
+      socket.emit("file-clicked", $(this).attr('id'));
+
+      document.getElementById("fileclick").click();
+    });
+
+    $('.fileRepLink1').click(function (event) {
+      event.preventDefault();
+
+      var href1 = $(this).attr("href");
+
+      var href2 = $('#fileclick').attr("href");
+
+      $('#fileclick').attr("href", href2 + href1);
+
+      socket.emit("file-clicked", $(this).closest('.container').prev().prev().find('.fileRepLink').attr('id'));
+
+      document.getElementById("fileclick").click();
+
+      $('#fileclick').attr("href", href2);
+    });
+
+  </script>
+
+</body>
+
+</html>
