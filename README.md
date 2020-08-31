@@ -25,7 +25,7 @@
     -   **Editor: [Vscode](https://code.visualstudio.com/)(Local) or [Code-Server](https://github.com/cdr/code-server)(Online)**
     -   **Extension: [SVF ANALYSIS TOOLS](https://marketplace.visualstudio.com/items?itemName=TianyangGuan.svftools)**
 
-## **[User Instructions](https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/README.md)**
+## **[User Instructions](https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/README.md#user-instructions)**
 
 ## **Dev Instructions**
 
