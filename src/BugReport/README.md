@@ -23,3 +23,6 @@
 
 -   **<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/docs/build_backend.png?raw=true' height='20'/>**  
     Build svf backend.
+
+-   **<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/docs/svf_analysis.png?raw=true' height='20'/>**  
+    Show Analysis Report.
