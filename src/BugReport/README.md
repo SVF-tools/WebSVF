@@ -7,7 +7,7 @@
 ## **User Instructions**
 
 **After install this extenison, some new bar will show at bottom.**
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/docs/show.png?raw=true' width='1080'/>
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/docs/example.png?raw=true' width='1080'/>
 
 -   **<img src='https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/docs/extension.png?raw=true' height='40'/>**  
     Install svf environment.
