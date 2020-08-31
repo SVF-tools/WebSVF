@@ -18,7 +18,7 @@ fi
 clang -c -g -fno-discard-value-names -emit-llvm $1 -o ${1%%.*}.bc
 
 svf-ex ${1%%.*}.bc
-rm ${1%%.*}.bc
+# rm ${1%%.*}.bc
 if [ -d 3D_CODE_GRAPH ]; then
     rm 3D_CODE_GRAPH -rf
 fi
