@@ -35,15 +35,15 @@
 
     ### **Prepare Project**
 
-    -   **Clone `WebSVF` repository**
-    -   **Vscode open `WebSVF/src/BugReport`**
-    -   **Vscode open terminial and run `yarn` for library**
+    -   **Clone _`WebSVF`_ repository**
+    -   **Vscode open _`WebSVF/src/BugReport`_**
+    -   **Vscode open terminial and run _`yarn`_ for library**
 
     ### **Test and Debug**
 
-    -   **Vscode `F5`**
+    -   **Vscode _`F5`_**
 
     ### **Generate extension**
 
     -   **[Install vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)**
-    -   **Run `vsce package`**
+    -   **Run _`vsce package`_**
