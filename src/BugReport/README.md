@@ -4,6 +4,8 @@
 <img src='https://github.com/spcidealacm/BugReport/blob/master/img/icon.png?raw=true' width='360'/>
 </p>
 
+## **System: [Ubuntu 18.04 / 20.04](https://releases.ubuntu.com/20.04/)**
+
 ## **User Instructions**
 
 **After install this extenison, some new bar will show at bottom.**
