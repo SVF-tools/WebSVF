@@ -1,0 +1,18 @@
+{
+    "name": "BugReport",
+    "alignment": "left",
+    "priority": 100,
+    "command": "BugReport",
+    "wait": {
+        "text": "$(beaker) SVF ANALYSIS TOOLS",
+        "color": "errorForeground"
+    },
+    "load": {
+        "text": "$(sync~spin) SVF TOOLS LOADING...",
+        "color": "inputValidation.warningBackground"
+    },
+    "ready": {
+        "text": "$(verified) SVF ANALYSIS TOOLS",
+        "color": "activityBar.activeBorder"
+    }
+}

@@ -1,0 +1,91 @@
+<html lang="en"><head>
+  <!-- Custom StyleSheet for File Report -->
+  <link rel="stylesheet" type="text/css" href="./css/fileReport.css">
+
+  <!-- CSS and JavaScript for Code Annotation using Google Prettify-->
+  <link rel="stylesheet" type="text/css" href="./vendor/prettify/prettify_dessert.css">
+  <script type="text/javascript" src="./vendor/prettify/prettify.js"></script>
+
+  <!-- leader-line javscript library for generating reference lines in Bug Report -->
+  <script type="text/javascript" src="./vendor/leader-line/leader-line.min.js"></script>
+</head>
+
+<body>
+  <div class="nocode" style="display: flex; align-items: center;justify-content: center;">
+    <p id="heading">xxx.c</p>
+
+    <a href="javascript:history.back()" target="_self" style="margin-left: auto;">
+      <button class="show-button nocode">Home</button>
+    </a>
+    <button id="show-lines-button" class="show-button nocode" onclick="showLines()">Show Lines</button>
+    <button class="remove-button nocode" onclick="removeLines()">Remove Lines</button>
+
+
+
+  </div>
+  <pre id="test" class="prettyprint linenums"><a class="code-body" id="1">   #include &lt;stdio.h&gt;</a>
+<a class="code-body" id="2">    int main()</a>
+<a class="code-body" id="3">    {</a>
+<span id="err0" class="alert-logical nocode"><button id="0*!*err" onclick="add_errLines(0)" class="err-button">Null Reference</button>
+<a>Description - Placeholder
+ - Lorem ipsum dolor sit...</a></span><a class="code-body" id="4">       char c;</a>
+<a class="code-body" id="5">       printf("Enter a character: ");</a>
+<a class="code-body" id="6">       scanf("%c",&amp;c);</a>
+<a class="code-body" id="7">       if( (c&gt;='a' &amp;&amp; c&lt;='z') || (c&gt;='A'<br class="nocode">        &amp;&amp; c&lt;='Z'))</a>
+<span id="err1" class="alert-semantic nocode"><button id="1*!*err" onclick="add_errLines(1)" class="err-button">Variable 'statc' not
+ recognised</button>
+<a>Description - Placeholder
+ - Lorem ipsum dolor sit...</a></span><a class="code-body" id="8">           printf("%c is an alphabet.",c);</a>
+<a class="code-body" id="9">       else</a>
+<span id="err2" class="alert-syntax nocode"><button id="2*!*err" onclick="add_errLines(2)" class="err-button">Unexpected end of line</button>
+<a>Description - Placeholder
+ - Lorem ipsum dolor sit...</a></span><a class="code-body" id="10">          printf("%c is not an alphabet.",c);</a>
+<a class="code-body" id="11">      return 0;</a>
+<a class="code-body" id="12">  }</a></pre>
+
+  <script type="text/javascript" src="./vendor/jquery/3.4.1/jquery-3.4.1.slim.min.js"></script>
+
+  <script>
+    PR.prettyPrint();
+  </script>
+
+  <script src="./js/bugReportJSON.js"></script>
+
+  <script id="LeaderLines">
+		var ref_lines =[{"start":"err0","end":4},{"start":"err1","end":8},{"start":"err2","end":10}];
+		var lines =[{"start":4,"end":8},{"start":8,"end":10}];
+		var stacktrace_array =[{"ln":4,"type":"Logical","StackTrace":[{"ln":1,"Title":"Null Reference"},{"ln":3,"Title":"Unexpected end of line"},{"ln":4,"Title":"Unexpected end of line"}]},{"ln":8,"type":"Semantic","StackTrace":[{"ln":4,"Title":"Null Reference"},{"ln":6,"Title":"Unexpected end of line"}]},{"ln":10,"type":"Syntax","StackTrace":[{"ln":7,"Title":"Null Reference"},{"ln":10,"Title":"Unexpected end of line"}]}];
+		var file_id = 0</script>
+
+  <script src="./js/leader-line_pseudo_code.js"></script>
+
+  <script src="./js/drawErrLines.js"></script>
+
+  <script>
+    function removeLines() {
+      const elem = document.querySelector("#leader-line-defs");
+      elem.parentNode.removeChild(elem);
+
+      document
+        .querySelectorAll("#leader-line")
+        .forEach(e => e.parentNode.removeChild(e));
+      document
+        .querySelectorAll(".leader-line")
+        .forEach(e => e.parentNode.removeChild(e));
+
+      document.querySelector("#show-lines-button").innerHTML = "Show Lines";
+    }
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $("li")
+        .has("span.nocode")
+        .css("margin-bottom", "5vw");
+    });
+  </script>
+
+
+
+
+</body></html>

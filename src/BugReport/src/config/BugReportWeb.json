@@ -1,0 +1,10 @@
+{
+    "viewType": "bug_report",
+    "title": "SVF ANALYSIS TOOLS",
+    "column": -1,
+    "enableScripts": true,
+    "localResourceRoots": ["public"],
+    "retainContextWhenHidden": true,
+    "homeRelativePath": "./public/index.html",
+    "fileRelativePath": "./public/fileReport.html"
+}

@@ -1,0 +1,9 @@
+{
+    "command": "AnalysisEnv",
+    "title": "INSTALL ENV",
+    "SCRIPTS_PATH": "./scripts",
+    "BASE_ENV": "./scripts/env_svf.sh",
+    "GRAPH_ENV": "./scripts/env_graphs.sh",
+    "BACKEND_DOWNLOAD": "./scripts/download.sh",
+    "SVF_EX": "./scripts/svf-ex.sh"
+}

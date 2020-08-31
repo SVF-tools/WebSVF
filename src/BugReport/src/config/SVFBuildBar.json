@@ -1,0 +1,34 @@
+{
+    "name": "Build Svf-ex",
+    "alignment": "left",
+    "OpenConifg": {
+        "command": "OpenConifg",
+        "text": "$(files) OPEN SVF BACKEND",
+        "text2": "$(files) OPEN INPUT PROJECT",
+        "color": "",
+        "folder": "svf-backend",
+        "path": "src/svf-ex.cpp",
+        "priority": 3
+    },
+    "BuildTarget": {
+        "command": "BuildTarget",
+        "text": "$(debug-start) BUILD INPUT PROJECT",
+        "color": "",
+        "folder": "",
+        "path": "example.c",
+        "resultPath": "example.bc",
+        "priority": 2
+    },
+    "BuildSvfEx": {
+        "command": "BuildSvfEx",
+        "text": "$(debug-start) BUILD SVF BACKEND",
+        "color": "",
+        "priority": 1
+    },
+    "InstallEnv": {
+        "command": "AnalysisEnv",
+        "text": "$(extensions) INSTALL SVF ENVIRONMENT",
+        "color": "",
+        "priority": 4
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "name": "SVF BACKEND",
+    "env": "./scripts/env_svf.sh",
+    "svf-ex": "./scripts/svf-ex.sh",
+    "llvm_path": "/usr/bin/llvm"
+}
