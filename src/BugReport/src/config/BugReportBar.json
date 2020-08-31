@@ -5,14 +5,14 @@
     "command": "BugReport",
     "wait": {
         "text": "$(beaker) SVF ANALYSIS TOOLS",
-        "color": "activityBar.activeBorder"
+        "color": ""
     },
     "load": {
-        "text": "$(sync~spin) SVF TOOLS LOADING...",
-        "color": "inputValidation.warningBackground"
+        "text": "$(sync~spin) LOADING...",
+        "color": ""
     },
     "ready": {
         "text": "$(verified) SVF ANALYSIS TOOLS",
-        "color": "activityBar.activeBorder"
+        "color": ""
     }
 }

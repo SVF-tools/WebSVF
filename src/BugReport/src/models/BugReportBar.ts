@@ -45,7 +45,7 @@ class BugReportBar extends statusbar.BasicBar {
                 obj = bugInfo.wait;
                 break;
         }
-        super.setBasicBar(bugInfo.command, obj.text, obj.color, true);
+        super.setBasicBar(bugInfo.command, obj.text);
     }
 
     public setWait() {
