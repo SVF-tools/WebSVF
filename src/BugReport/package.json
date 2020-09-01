@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/spcidealacm/BugReport.git"
+        "url": "https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/README.md#user-instructions"
     },
     "engines": {
         "vscode": "^1.43.0"
