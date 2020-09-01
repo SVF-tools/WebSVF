@@ -6,6 +6,7 @@ import { BugReportTerminal } from "./models/BugReportTerminal";
 import { SVFBuildCommand } from "./models/SVFBuildCommand";
 import { InstallEnvCommand } from "./models/InstallEnvCommand";
 import { SVFBarType, SVFBuildBar } from "./models/SVFBuildBar";
+import { SVFTreeDataProvider } from "./models/SVFTreeDataProvider";
 import * as BarInfo from "./config/SVFBuildBar.json";
 import * as fs from "fs";
 import * as path from "path";
@@ -27,6 +28,13 @@ class StoreInfo {
     private static _svfBuildSvfExBar: SVFBuildBar;
     private static _targetBuildBar: SVFBuildBar;
     private static _installEnvBar: SVFBuildBar;
+    private static _svfTreeView: SVFTreeDataProvider;
+    public static get svfTreeView(): SVFTreeDataProvider {
+        return StoreInfo._svfTreeView;
+    }
+    public static set svfTreeView(value: SVFTreeDataProvider) {
+        StoreInfo._svfTreeView = value;
+    }
     public static get installEnvBar(): SVFBuildBar {
         return StoreInfo._installEnvBar;
     }
@@ -132,7 +140,6 @@ function StartActive(context: vscode.ExtensionContext) {
     StoreInfo.extensionContext = context;
     StoreInfo.bugReportBar = new BugReportBar();
     StoreInfo.bugReportCommand = new BugReportCommand();
-    // StoreInfo.bugReportTerminal = new BugReportTerminal();
     StoreInfo.svfOpenConfigCommand = new SVFBuildCommand(SVFBarType.OpenConifg);
     StoreInfo.svfBuildSvfExCommand = new SVFBuildCommand(SVFBarType.BuildSvfEx);
     StoreInfo.targetBuildCommand = new SVFBuildCommand(SVFBarType.BuildTarget);
@@ -153,6 +160,7 @@ function StartActive(context: vscode.ExtensionContext) {
         SVFBarType.InstallEnv,
         BarInfo.InstallEnv.priority
     );
+    StoreInfo.svfTreeView = new SVFTreeDataProvider();
     OpenTargetFile();
     OpenBackEndFile();
     SetBar();
