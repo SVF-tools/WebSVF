@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
-import * as firebase from 'firebase/app';
+//import * as firebase from 'firebase/app';
 //import 'firebase/auth';
-import 'firebase/database';
-import firebaseConfig from '../../apis/firebaseConfig';
+//import 'firebase/database';
+import { db } from '../../services/firebase';
 
 import './sign-up.scss';
 
@@ -13,10 +13,10 @@ const MastHead = ({ link, password }) => {
 
   useEffect(() => {
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    //firebase.initializeApp(firebaseConfig);
 
     // Reference signup-email collection
-    var messagesRef = firebase.database().ref('signup-email');
+    var messagesRef = db.ref('signup-email');
 
     // Listen for form submit
     signUpForm.current.addEventListener('submit', submitForm);
