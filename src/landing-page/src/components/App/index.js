@@ -11,14 +11,13 @@ import Login from '../Pages/Login';
 import Profile from '../Pages/Profile';
 
 import Header from '../Header';
+import Footer from '../Footer';
 
 import './App.scss';
 
 import { auth } from '../../services/firebase';
 
-// const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
-//   return <Route {...rest} render={(props) => <Component {...props} />} />;
-// };
+import staticData from '../../staticData.json';
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
   return (
@@ -91,6 +90,11 @@ const App = (props) => {
             <Login setRoute={setRoute} authenticated={authenticated} />
           </Route>
         </Switch>
+        <Footer
+          navigation={staticData.footer.navigation}
+          icons={staticData.footer.icons}
+          setRoute={setRoute}
+        />
       </Router>
     </div>
   );
