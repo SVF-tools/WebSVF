@@ -1,2 +1,3 @@
+*.lock
 *.vsix
 node_modules
