@@ -1,10 +1,11 @@
 #login {
   display: flex;
-  background-image: url('/img/Annotation 2019-11-28 005244.png');
+  background-image: url('../../../img/Annotation\ 2019-11-28\ 005244.png');
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  height: 90vh;
+  min-height: 90vh;
+  height: 100%;
   flex: 1;
   span {
     display: none;

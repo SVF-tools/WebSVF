@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 import { logout } from '../../helpers/auth';
@@ -6,7 +6,27 @@ import { logout } from '../../helpers/auth';
 import './Header.scss';
 
 const Header = (props) => {
-  const [active, setActive] = useState('About');
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    switch (props.route) {
+      case '/':
+        setActive('About');
+        //console.log(props.route);
+        break;
+      case '/profile':
+        setActive('Profile');
+        //console.log(props.route);
+        break;
+      case '/login':
+        setActive('Login');
+        //console.log(props.route);
+        break;
+      default:
+        break;
+    }
+  }, [props.route]);
+
   return (
     <nav
       id="nav"
@@ -78,8 +98,8 @@ const Header = (props) => {
                   <Link
                     className="nav-link"
                     to="/profile"
-                    replace
                     onClick={() => setActive('Profile')}
+                    replace
                   >
                     Profile
                   </Link>
@@ -96,7 +116,7 @@ const Header = (props) => {
                     to="/login"
                     replace
                     onClick={() => {
-                      setActive('Sign Out');
+                      props.setRoute('/login');
                       logout();
                     }}
                   >
