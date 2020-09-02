@@ -1,52 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  //Redirect,
+} from 'react-router-dom';
+
+import About from '../Pages/About';
+import Login from '../Pages/Login';
+import Profile from '../Pages/Profile';
+
+import Header from '../Header';
 
 import './App.scss';
 
-import Header from '../Header';
-import MastHead from '../MastHead';
-import IconsGrid from '../IconsGrid';
-import Carousel from '../Carousel';
-import InstallBanner from '../InstallBanner';
-import VideoShowcase from '../VideoShowcase';
-import Contributors from '../Contributors';
-import SignUpBanner from '../SignUpBanner';
-import Footer from '../Footer';
+import { auth } from '../../services/firebase';
 
-import staticData from '../../staticData.json';
+const App = (props) => {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-const App = () => {
-  return (
+  useEffect(() => {
+    auth().onAuthStateChanged((user) => {
+      if (user) {
+        setAuthenticated(true);
+        setLoading(false);
+      } else {
+        setAuthenticated(false);
+        setLoading(false);
+      }
+    });
+  }, []);
+
+  return loading === true ? (
+    <div
+      className="spinner-border text-success"
+      role="status"
+      style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+      }}
+    >
+      <span className="sr-only">Loading...</span>
+    </div>
+  ) : (
     <div>
-      <Header />
-
-      <MastHead
-        link={staticData.demo.link}
-        password={staticData.demo.password}
-      />
-
-      <Carousel carousel={staticData.carousel} />
-
-      <IconsGrid icons={staticData.icons} />
-
-      <InstallBanner
-        callToAction={staticData['install-banner'].callToAction}
-        subHeading={staticData['install-banner'].subHeading}
-      />
-
-      <VideoShowcase videos={staticData.videos} />
-
-      <Contributors contributors={staticData.contributors} />
-
-      <SignUpBanner
-        heading={staticData.signUpBanner.heading}
-        placeholder={staticData.signUpBanner.placeholder}
-        buttonText={staticData.signUpBanner.buttonText}
-      />
-
-      <Footer
-        navigation={staticData.footer.navigation}
-        icons={staticData.footer.icons}
-      />
+      <Router basename="/">
+        <Header authenticated={authenticated} />
+        <Switch>
+          <Route exact path="/">
+            <About />
+          </Route>
+          {authenticated || (
+            <Route exact path="/login">
+              <Login />
+            </Route>
+          )}
+          {!authenticated || (
+            <Route exact path="/profile">
+              <Profile />
+            </Route>
+          )}
+        </Switch>
+      </Router>
     </div>
   );
 };
