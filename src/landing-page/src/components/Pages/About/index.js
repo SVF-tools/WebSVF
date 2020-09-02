@@ -7,7 +7,6 @@ import InstallBanner from '../../InstallBanner';
 import VideoShowcase from '../../VideoShowcase';
 import Contributors from '../../Contributors';
 import SignUpBanner from '../../SignUpBanner';
-import Footer from '../../Footer';
 
 import staticData from '../../../staticData.json';
 
@@ -36,11 +35,6 @@ const About = () => {
         heading={staticData.signUpBanner.heading}
         placeholder={staticData.signUpBanner.placeholder}
         buttonText={staticData.signUpBanner.buttonText}
-      />
-
-      <Footer
-        navigation={staticData.footer.navigation}
-        icons={staticData.footer.icons}
       />
     </div>
   );
