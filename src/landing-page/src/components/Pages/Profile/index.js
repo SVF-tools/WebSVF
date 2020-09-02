@@ -116,39 +116,44 @@ class Profile extends Component {
   };
   handlePhotoChange = () => {
     const { image } = this.state;
-    const uploadTask = storage
-      .ref('ProfilePhoto/' + this.state.user.uid)
-      .put(image);
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        // progrss function ....
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        this.setState({ progress });
-      },
-      (error) => {
-        // error function ....
-        console.log(error);
-      },
-      async () => {
-        // complete function ....
-        await storage
-          .ref('ProfilePhoto')
-          .child(this.state.user.uid)
-          .getDownloadURL()
-          .then((url) => {
-            this.setState({
-              url: url,
-              error: 'The profile image was uploaded successfully.',
+    try {
+      const uploadTask = storage.ref('ProfilePhoto/' + this.state.user.uid);
+      uploadTask.put(image).on(
+        'state_changed',
+        (snapshot) => {
+          // progrss function ....
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          this.setState({ progress });
+        },
+        (error) => {
+          // error function ....
+          console.log(error);
+        },
+        async () => {
+          // complete function ....
+          await storage
+            .ref('ProfilePhoto')
+            .child(this.state.user.uid)
+            .getDownloadURL()
+            .then((url) => {
+              this.setState({
+                url: url,
+                error: 'The profile image was uploaded successfully.',
+              });
+            })
+            .catch((error) => {});
+          if (this.state.url) {
+            await db.ref(`users/${this.state.user.uid}`).update({
+              profilePic: this.state.url,
             });
-          });
-        await db.ref(`users/${this.state.user.uid}`).update({
-          profilePic: this.state.url,
-        });
-      }
-    );
+          }
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
   //Email Callback
   handleEmailCancel(e) {
@@ -255,7 +260,7 @@ class Profile extends Component {
   }
   //Refreshes the user details by pulling new data from the database
 
-  refreshUserDetails() {
+  async refreshUserDetails() {
     this.setState({ readError: null });
 
     try {
@@ -265,14 +270,21 @@ class Profile extends Component {
           username: snapshot.val().name ? snapshot.val().name : null,
         });
       });
-      storage
+
+      const exists = await storage
         .ref('ProfilePhoto')
         .child(this.state.user.uid)
-        .getDownloadURL()
-        .then((url) => {
-          console.log(url);
-          this.setState({ url });
-        });
+        .listAll();
+
+      if (exists.items.length !== 0) {
+        const url = await storage
+          .ref('ProfilePhoto')
+          .child(this.state.user.uid)
+          .getDownloadURL();
+
+        console.log(url);
+        this.setState({ url });
+      }
     } catch (error) {
       this.setState({ readError: error.message });
     }
