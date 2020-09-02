@@ -15,7 +15,7 @@ fi
 #######
 #2. compile c file by clang & generate bc and dot file through svf-ex
 #######
-clang -c -g -fno-discard-value-names -emit-llvm $1 -o ${1%%.*}.bc
+clang -c -g -S -fno-discard-value-names -emit-llvm $1 -o ${1%%.*}.bc
 
 svf-ex ${1%%.*}.bc
 # rm ${1%%.*}.bc

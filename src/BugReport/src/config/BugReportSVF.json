@@ -2,5 +2,7 @@
     "name": "SVF BACKEND",
     "env": "./scripts/env_svf.sh",
     "svf-ex": "./scripts/svf-ex.sh",
-    "llvm_path": "/usr/bin/llvm"
+    "llvm_path": "/usr/bin/llvm",
+    "svf_env_path": "./scripts/whole_svf_env.sh",
+    "target_env_path": "./scripts/whole_target_env.sh"
 }

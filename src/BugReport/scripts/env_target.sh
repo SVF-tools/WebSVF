@@ -16,7 +16,7 @@ if [ ! -d /usr/bin/llvm ]; then
     elif [[ $sysOS == "Linux" ]]; then
         sudo apt-get update
         sudo apt-get upgrade -y
-        sudo apt-get install build-essential libtinfo-dev wget curl git cmake python3-pip libgraphviz-dev graphviz -y
+        sudo apt-get install build-essential libtinfo-dev libtinfo5 wget curl git cmake python3-pip libgraphviz-dev graphviz -y
         sudo pip3 install pygraphviz
         wget -c https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -O $llvm_zip
     fi
