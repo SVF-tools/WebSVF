@@ -1,10 +1,9 @@
 PROJECTHOME=$(pwd)
-sysOS=`uname -s`
+sysOS=$(uname -s)
 install_path=$1
-function highlight(){
+function highlight() {
     echo -e "\033[1;45;37m$1\033[0m"
 }
-
 if [ ! -d /usr/bin/llvm ]; then
     location=$(pwd)
     #######
@@ -21,7 +20,7 @@ if [ ! -d /usr/bin/llvm ]; then
         sudo pip3 install pygraphviz
         wget -c https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz -O $llvm_zip
     fi
-    
+
     sudo mkdir $llvm_path
     echo "[LOADING...]PLEASE WAIT FOR A MOMENT..."
     sudo tar -xf $llvm_zip -C $llvm_path --strip-components 1
@@ -40,18 +39,15 @@ if [ -L $install_path/SVF ]; then
 fi
 
 echo "["$flag"]BUILD NEW LINK.."
-if [[ $sysOS == "Darwin" ]]
-then 
+if [[ $sysOS == "Darwin" ]]; then
     ln -s $install_path/lib/SVF-osx $install_path/SVF
     export SVF_DIR=$install_path/SVF/
-elif [[ $sysOS == "Linux" ]]
-then 
+elif [[ $sysOS == "Linux" ]]; then
     ln -s $install_path/lib/SVF-linux $install_path/SVF
     export SVF_DIR=$install_path/SVF/
-fi 
+fi
 let flag++
 echo "["$flag"]LLVM_DIR="$sysOS
 let flag++
 echo "["$flag"]SVF_DIR="$SVF_DIR
 highlight "[CONFIG SVF DONE.]"
-
