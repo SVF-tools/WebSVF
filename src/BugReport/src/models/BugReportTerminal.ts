@@ -78,12 +78,31 @@ class BugReportTerminal extends Terminal {
 
         switch (this.mode) {
             case CommandMode.SVF:
-                this.terminal.sendText(this.envSvfCli);
-                this.terminal.sendText(this.svfCli);
+                let svf_env_path = path.join(
+                    StoreInfo.extensionContext.extensionPath,
+                    svfInfo.svf_env_path
+                );
+                if (fs.existsSync(svf_env_path)) {
+                    fs.unlinkSync(svf_env_path);
+                }
+                fs.appendFileSync(svf_env_path, `${this.envSvfCli}` + "\n");
+                fs.appendFileSync(svf_env_path, `${this.svfCli}` + "\n");
+                this.terminal.sendText(`source ${svf_env_path}`);
                 break;
             case CommandMode.TARGET:
-                this.terminal.sendText(this.envTargetCli);
-                this.terminal.sendText(this.targetCli);
+                let target_env_path = path.join(
+                    StoreInfo.extensionContext.extensionPath,
+                    svfInfo.target_env_path
+                );
+                if (fs.existsSync(target_env_path)) {
+                    fs.unlinkSync(target_env_path);
+                }
+                fs.appendFileSync(
+                    target_env_path,
+                    `${this.envTargetCli}` + "\n"
+                );
+                fs.appendFileSync(target_env_path, `${this.targetCli}` + "\n");
+                this.terminal.sendText(`source ${target_env_path}`);
                 break;
             default:
                 break;

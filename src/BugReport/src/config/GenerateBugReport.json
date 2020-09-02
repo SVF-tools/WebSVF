@@ -1,6 +1,5 @@
 {
     "name": "GENERATE BUGREPORT",
     "compile_c": "./scripts/compile.sh",
-    "compile_bc": "./scripts/"
-
+    "compile_bc": "./scripts/compile_bc.sh"
 }

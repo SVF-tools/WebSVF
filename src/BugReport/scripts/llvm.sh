@@ -1,7 +1,7 @@
-!/bin/bash
+#!/bin/bash
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install build-essential libtinfo-dev wget curl git cmake python3-pip libgraphviz-dev graphviz -y
+sudo apt-get install build-essential libtinfo-dev libtinfo5 wget curl git cmake python3-pip libgraphviz-dev graphviz -y
 sudo pip3 install pygraphviz
 
 location=$(pwd)
