@@ -157,19 +157,19 @@
     "navigation": [
       {
         "title": "About",
-        "link": "#navbar"
+        "link": "/"
       },
       {
         "title": "Contact",
-        "link": "#navbar"
+        "link": "/"
       },
       {
         "title": "Terms of Use",
-        "link": "#navbar"
+        "link": "/"
       },
       {
         "title": "Privacy Policy",
-        "link": "#navbar"
+        "link": "/"
       }
     ],
     "icons": [

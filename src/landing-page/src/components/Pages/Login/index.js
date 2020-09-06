@@ -54,6 +54,9 @@ class Login extends Component {
     this.setState({ loginError: '' });
     try {
       await signin(this.state.email, this.state.password);
+      console.log(this.props);
+      this.props.setRoute('/profile');
+      window.open('#/profile', '_self');
     } catch (error) {
       this.setState({ loginError: error.message });
     }
@@ -88,6 +91,8 @@ class Login extends Component {
     this.setState({ signupError: '' });
     try {
       await signup(this.state.email, this.state.password, this.state.username);
+      this.props.setRoute('/profile');
+      window.open('#/profile', '_self');
     } catch (error) {
       this.setState({ signupError: error.message });
     }
@@ -96,6 +101,8 @@ class Login extends Component {
   async googleSignIn() {
     try {
       await signInWithGoogle();
+      this.props.setRoute('/profile');
+      window.open('#/profile', '_self');
     } catch (error) {
       this.setState({ loginError: error.message });
     }
@@ -104,6 +111,8 @@ class Login extends Component {
   async githubSignIn() {
     try {
       await signInWithGitHub();
+      this.props.setRoute('/profile');
+      window.open('#/profile', '_self');
     } catch (error) {
       this.setState({ loginError: error.message });
     }

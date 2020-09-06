@@ -3,7 +3,7 @@ import {
   HashRouter as Router,
   Switch,
   Route,
-  //Redirect,
+  Redirect,
 } from 'react-router-dom';
 
 import About from '../Pages/About';
@@ -11,14 +11,35 @@ import Login from '../Pages/Login';
 import Profile from '../Pages/Profile';
 
 import Header from '../Header';
+import Footer from '../Footer';
 
 import './App.scss';
 
 import { auth } from '../../services/firebase';
 
+import staticData from '../../staticData.json';
+
+const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        authenticated === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/login', state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
+
 const App = (props) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [route, setRoute] = useState('/');
 
   useEffect(() => {
     auth().onAuthStateChanged((user) => {
@@ -30,7 +51,7 @@ const App = (props) => {
         setLoading(false);
       }
     });
-  }, []);
+  });
 
   return loading === true ? (
     <div
@@ -47,22 +68,33 @@ const App = (props) => {
   ) : (
     <div>
       <Router basename="/">
-        <Header authenticated={authenticated} />
+        <Header
+          authenticated={authenticated}
+          route={route}
+          setRoute={setRoute}
+        />
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <About />
+          </Route> */}
+          <Route path="/" exact>
+            <About authenticated={authenticated} />
           </Route>
-          {authenticated || (
-            <Route exact path="/login">
-              <Login />
-            </Route>
-          )}
-          {!authenticated || (
-            <Route exact path="/profile">
-              <Profile />
-            </Route>
-          )}
+          <PrivateRoute
+            path="/profile"
+            exact
+            authenticated={authenticated}
+            component={Profile}
+          />
+          <Route path="/login" exact>
+            <Login setRoute={setRoute} authenticated={authenticated} />
+          </Route>
         </Switch>
+        <Footer
+          navigation={staticData.footer.navigation}
+          icons={staticData.footer.icons}
+          setRoute={setRoute}
+        />
       </Router>
     </div>
   );
