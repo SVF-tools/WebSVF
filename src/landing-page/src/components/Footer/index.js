@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Footer = ({ navigation, icons }) => {
+import { Link } from 'react-router-dom';
+
+const Footer = ({ navigation, icons, setRoute }) => {
   const mapNavigation = () => {
     return navigation.map((nav, index) => {
       if (index !== 0) {
@@ -8,7 +10,9 @@ const Footer = ({ navigation, icons }) => {
           <React.Fragment key={index}>
             <li className="list-inline-item">&sdot;</li>
             <li className="list-inline-item">
-              <a href={`${nav.link}`}>{nav.title}</a>
+              <Link replace onClick={() => setRoute('/')} to={`${nav.link}`}>
+                {nav.title}
+              </Link>
             </li>
           </React.Fragment>
         );
@@ -16,7 +20,9 @@ const Footer = ({ navigation, icons }) => {
         return (
           <React.Fragment key={index}>
             <li className="list-inline-item">
-              <a href={`${nav.link}`}>{nav.title}</a>
+              <Link onClick={() => setRoute('/')} to={`${nav.link}`}>
+                {nav.title}
+              </Link>
             </li>
           </React.Fragment>
         );
