@@ -1,0 +1,120 @@
+{
+    "command": {
+        "INSTALL_ENV": "SVFTOOLS.INSTALL.ENV",
+        "OPEN_TARGET": "SVFTOOLS.OPEN.TARGET",
+        "OPEN_BACKEND": "SVFTOOLS.OPEN.BACKEND",
+        "BUILD_BACKEND": "SVFTOOLS.BUILD.BACKEND",
+        "BUILD_TARGET": "SVFTOOLS.BUILD.TARGET",
+        "SHOW_REPORT": "SVFTOOLS.SHOW.REPORT"
+    },
+    "statusbar": [
+        {
+            "key": "BAR.INSTALL.ENV",
+            "command": "SVFTOOLS.INSTALL.ENV",
+            "alignment": "left",
+            "priority": 6,
+            "status": [
+                {
+                    "title": "$(extensions) INSTALL SVF ENVIRONMENT"
+                }
+            ]
+        },
+        {
+            "key": "BAR.OPEN.TARGET",
+            "command": "SVFTOOLS.OPEN.TARGET",
+            "alignment": "left",
+            "priority": 5,
+            "status": [
+                {
+                    "title": "$(files) OPEN INPUT TARGET"
+                }
+            ]
+        },
+        {
+            "key": "BAR.BUILD.TARGET",
+            "command": "SVFTOOLS.BUILD.TARGET",
+            "alignment": "left",
+            "priority": 4,
+            "status": [
+                {
+                    "title": "$(debug-start) BUILD INPUT TARGET"
+                }
+            ]
+        },
+        {
+            "key": "BAR.OPEN.BACKEND",
+            "command": "SVFTOOLS.OPEN.BACKEND",
+            "alignment": "left",
+            "priority": 3,
+            "status": [
+                {
+                    "title": "$(files) OPEN SVF BACKEND"
+                }
+            ]
+        },
+        {
+            "key": "BAR.BUILD.BACKEND",
+            "command": "SVFTOOLS.BUILD.BACKEND",
+            "alignment": "left",
+            "priority": 2,
+            "status": [
+                {
+                    "title": "$(debug-start) BUILD SVF BACKEND"
+                }
+            ]
+        },
+        {
+            "key": "BAR.SHOW.REPORT",
+            "command": "SVFTOOLS.SHOW.REPORT",
+            "alignment": "left",
+            "priority": 1,
+            "status": [
+                {
+                    "title": "$(beaker) TARGET REPORT"
+                }
+            ]
+        }
+    ],
+    "terminal": [
+        {
+            "key": "INSTALL SVF ENVIRONMENT",
+            "command": "SVFTOOLS.INSTALL.ENV",
+            "exeHead": "source",
+            "scriptPath": "./scripts/environment.sh"
+        },
+        {
+            "key": "BUILD INPUT PROJECT",
+            "command": "SVFTOOLS.BUILD.TARGET",
+            "exeHead": "source",
+            "scriptPath": "./scripts/target.sh"
+        },
+        {
+            "key": "BUILD SVF BACKEND",
+            "command": "SVFTOOLS.BUILD.BACKEND",
+            "exeHead": "source",
+            "scriptPath": "./scripts/backend.sh"
+        }
+    ],
+    "path": [
+        {
+            "key": "TARGET_PATH",
+            "position": "home",
+            "folder": "INPUT_PROJECT",
+            "mainFile": "example.c",
+            "openFlag": "OpenTarget.flag"
+        },
+        {
+            "key": "EXAMPLE_PATH",
+            "position": "extension",
+            "folder": "example",
+            "mainFile": "example.c"
+        },
+        {
+            "key": "BACKEND_PATH",
+            "position": "home",
+            "folder": "SVF-example",
+            "mainFile": "src/svf-ex.cpp",
+            "openFlag": "OpenSVFEX.flag"
+        }
+    ]
+}
