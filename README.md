@@ -39,7 +39,7 @@
     -   **Vscode open _`WebSVF/src/SVFTOOLS`_**
     -   **Vscode open terminial and run _`yarn`_ for library**
 
-    ### **Test and Debug**
+    ### **[Test and Debug](https://github.com/SVF-tools/WebSVF/blob/master/src/SVFTOOLS/vsc-extension-quickstart.md)**
 
     -   **Vscode _`F5`_**
 
