@@ -25,7 +25,7 @@
     -   **Editor: [Vscode](https://code.visualstudio.com/)(Local) or [Code-Server](https://github.com/cdr/code-server)(Online)**
     -   **Extension: [SVF ANALYSIS TOOLS](https://marketplace.visualstudio.com/items?itemName=TianyangGuan.svftools)**
 
-## **[User Instructions](https://github.com/SVF-tools/WebSVF/blob/master/src/BugReport/README.md#user-instructions)**
+## **[User Instructions](https://github.com/SVF-tools/WebSVF/blob/master/src/SVFTOOLS/README.md#user-instructions)**
 
 ## **Dev Instructions**
 
@@ -36,7 +36,7 @@
     ### **Prepare Project**
 
     -   **Clone _`WebSVF`_ repository**
-    -   **Vscode open _`WebSVF/src/BugReport`_**
+    -   **Vscode open _`WebSVF/src/SVFTOOLS`_**
     -   **Vscode open terminial and run _`yarn`_ for library**
 
     ### **Test and Debug**
