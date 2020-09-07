@@ -31,7 +31,7 @@ jobs:
             # Runs a set of commands using the runners shell
             - name: Build SVF ANALYSIS TOOLS
               run: |
-                  cd src/BugReport
+                  cd src/SVFTOOLS
                   yarn
                   yarn compile
                   vsce package
