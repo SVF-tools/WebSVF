@@ -44,7 +44,7 @@ For Debug source code.
 It will generate a new extension named: **svftools-[version].vsix**  
 
 
-****  
+***  
 
 
 ### Test System: **_Ubuntu 18.04/20.04_**
