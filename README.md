@@ -14,36 +14,42 @@
 <img src='https://github.com/codemapweb/codemap_extension/blob/master/images/codemap_flowchart.png?raw=true' width='720'/>
 </p> -->
 
-## **Install Instructions**
 
--   ### **Requirement**
+## **Developer Instructions**
+## Devloper System: **Linux or Mac**  
+### **Step 0. Install development tools.**
+- **git**. **[The git download link](https://code.visualstudio.com/)**
+- **nodejs**. **[The nodejs download link](https://nodejs.org/zh-cn/download/)**
+- **yarn**. **[The yarn download link](https://classic.yarnpkg.com/en/docs/install/#windows-stable)**
+- **vscode**. **[The vscode download link](https://code.visualstudio.com/)**
 
-    -   **System: [Ubuntu 18.04 / 20.04](https://releases.ubuntu.com/20.04/)**
+### **Step 1. Prepare development environment.**
+- **cmd: `git clone https://github.com/SVF-tools/WebSVF.git`**
+For clone WebSVF project.
+- **cmd: `cd ./WebSVF/src/SVFTOOLS`**  
+For get into extension part.
+- **cmd: `yarn && npm install -i vsce`**  
+For install library and install vsce publish extension tool.
+- **cmd: `code .`**  
+For open project in vscode.
+### **Step 2. Compile and Debug project on vscode.** 
+- **keyboard: [ ctrl + ` ]**  
+For open vscode terminal
+- **cmd: `yarn compile`**  
+For compile extension source code. 
+- **keyboard: [ F5 ]**  
+For Debug source code.
+### **Step 3. Generate extension**
+- **cmd: `vsce package`**  
+It will generate a new extension named: **svftools-[version].vsix**
 
--   ### **Install Software**
 
-    -   **Editor: [Vscode](https://code.visualstudio.com/)(Local) or [Code-Server](https://github.com/cdr/code-server)(Online)**
-    -   **Extension: [SVF ANALYSIS TOOLS](https://marketplace.visualstudio.com/items?itemName=TianyangGuan.svftools)**
 
-## **[User Instructions](https://github.com/SVF-tools/WebSVF/blob/master/src/SVFTOOLS/README.md#user-instructions)**
-
-## **Dev Instructions**
-
--   ### **Requirement**
-
-    -   **Editor: [Vscode](https://code.visualstudio.com/)**
-
-    ### **Prepare Project**
-
-    -   **Clone _`WebSVF`_ repository**
-    -   **Vscode open _`WebSVF/src/SVFTOOLS`_**
-    -   **Vscode open terminial and run _`yarn`_ for library**
-
-    ### **[Test and Debug](https://github.com/SVF-tools/WebSVF/blob/master/src/SVFTOOLS/vsc-extension-quickstart.md)**
-
-    -   **Vscode _`F5`_**
-
-    ### **Generate extension**
-
-    -   **[Install vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)**
-    -   **Run _`vsce package`_**
+## Test System: **Ubuntu 18.04/20.04**
+### **Step 1. Install platform.**
+- **Local test: [ vscode ] [The vscode download link](https://code.visualstudio.com/)**
+- **Cloud test: [ code-server ] [The code-server download link](https://github.com/cdr/code-server)**
+### **Step 2. Install extension.**
+- **Transfer the plug-in to the test machine.**  
+- **Install through the position shown in the figure below.**  
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='480'/>
