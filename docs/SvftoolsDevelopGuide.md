@@ -29,8 +29,10 @@ It will generate a new extension named: **svftools-[version].vsix**
 ****
 
 ### Test System: **Ubuntu 18.04/20.04**
-### **Step 0. Install platform.**
+### **Step 1. Install platform.**
 - **Local test: [ vscode ] [The vscode download link](https://code.visualstudio.com/)**
 - **Cloud test: [ code-server ] [The code-server download link](https://github.com/cdr/code-server)**
-### **Step 1. Install extension.**
-<img src='https://github.com/codemapweb/codemap_extension/blob/master/images/logo.png?raw=true' width='480'/>
+### **Step 2. Install extension.**
+- **Transfer the plug-in to the test machine.**  
+- **Install through the position shown in the figure below.**  
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='480'/>
