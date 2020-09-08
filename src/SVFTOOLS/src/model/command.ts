@@ -157,18 +157,13 @@ export class InstallSVFEnvironment extends TerminialCommand {
         if (fs.existsSync(backendinfo.folder)) {
 
             vscode.window.showInformationMessage(
-                "A backend folder is detected, do you use the original settings? (Note: Note that choosing No will delete the original configuration.)",
+                "Do you want to reinstall SVF evironment and delete the current SVF folder?",
                 "YES",
                 "NO"
             )
                 .then((result) => {
                     switch (result) {
                         case "YES":
-
-                            super.Func();
-                            break;
-
-                        case "NO":
 
                             console.log(`time=$(date "+%Y-%m-%d-%H-%M-%S")&&mv ${backendinfo.folder} ${backendinfo.folder}.$time.bak`);
                             let backupFolder = path.join(backendinfo.position, "SVFBackup");
@@ -184,8 +179,13 @@ export class InstallSVFEnvironment extends TerminialCommand {
                             execSync(`time=$(date "+%Y-%m-%d-%H-%M-%S")&&mv ${backendinfo.folder} ${backupFolderPath}.$time.bak`);
 
                             super.Func();
-
                             break;
+
+                        case "NO":
+
+                            super.Func();
+                            break;
+
                         default:
                             break;
                     }

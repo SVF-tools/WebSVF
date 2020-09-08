@@ -72,7 +72,7 @@ if [[ -d $backup ]]; then
     cd $backup
     count=`ls | wc -w`
     # echo "Backup count: ${count}"
-    if [[ $count > 3 ]]; then
+    if [[ $count > 0 ]]; then
         cd ~
         # echo "Up to limit. Release all backup."
         rm -rf $backup
