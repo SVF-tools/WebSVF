@@ -15,16 +15,16 @@
 </p> -->
 
 
-## **Developer Instructions**
-### Developer System: **Linux or Mac**  
-### **Step 0. Install development tools.**
+## **Developer Instructions**  
+### Developer System: **`Linux` or `Mac`**  
+### **Step 0. Install development tools.**  
 - **git**. **[The git download link](https://code.visualstudio.com/)**
 - **nodejs**. **[The nodejs download link](https://nodejs.org/zh-cn/download/)**
 - **yarn**. **[The yarn download link](https://classic.yarnpkg.com/en/docs/install/#windows-stable)**
 - **vscode**. **[The vscode download link](https://code.visualstudio.com/)**
 
 ### **Step 1. Prepare development environment.**
-- **cmd: `git clone https://github.com/SVF-tools/WebSVF.git`**
+- **cmd: `git clone https://github.com/SVF-tools/WebSVF.git`**  
 For clone WebSVF project.
 - **cmd: `cd ./WebSVF/src/SVFTOOLS`**  
 For get into extension part.
