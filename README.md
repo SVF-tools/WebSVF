@@ -33,11 +33,11 @@ For install library and install vsce publish extension tool.
 - **cmd: `code .`**  
 For open project in vscode.
 ### **Step 2. Compile and Debug project on vscode.** 
-- **keyboard: [ ctrl + ` ]**  
+- **keyboard: [ _ctrl_ + _`_ ]**  
 For open vscode terminal
 - **cmd: `yarn compile`**  
 For compile extension source code. 
-- **keyboard: [ F5 ]**  
+- **keyboard: [ _F5_ ]**  
 For Debug source code.
 ### **Step 3. Generate extension**
 - **cmd: `vsce package`**  
