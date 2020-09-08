@@ -54,4 +54,4 @@ It will generate a new extension named: **svftools-[version].vsix**
 ### **Step 2. Install extension.**
 - **Transfer the plug-in to the test machine.**  
 - **Install through the position shown in the figure below.**  
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='480'/>
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
