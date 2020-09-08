@@ -16,7 +16,7 @@
 
 
 ## **Developer Instructions**  
-### Developer System: **`Linux` or `Mac`**  
+### Developer System: **_Linux_ or _Mac_**  
 ### **Step 0. Install development tools.**  
 - **git**. **[The git download link](https://code.visualstudio.com/)**
 - **nodejs**. **[The nodejs download link](https://nodejs.org/zh-cn/download/)**
@@ -47,7 +47,7 @@ It will generate a new extension named: **svftools-[version].vsix**
 ****  
 
 
-### Test System: **Ubuntu 18.04/20.04**
+### Test System: **_Ubuntu 18.04/20.04_**
 ### **Step 1. Install platform.**
 - **Local test: [ vscode ] [The vscode download link](https://code.visualstudio.com/)**
 - **Cloud test: [ code-server ] [The code-server download link](https://github.com/cdr/code-server)**
