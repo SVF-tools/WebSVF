@@ -16,7 +16,7 @@
 
 
 ## **Developer Instructions**
-## Devloper System: **Linux or Mac**  
+### Developer System: **Linux or Mac**  
 ### **Step 0. Install development tools.**
 - **git**. **[The git download link](https://code.visualstudio.com/)**
 - **nodejs**. **[The nodejs download link](https://nodejs.org/zh-cn/download/)**
@@ -41,11 +41,13 @@ For compile extension source code.
 For Debug source code.
 ### **Step 3. Generate extension**
 - **cmd: `vsce package`**  
-It will generate a new extension named: **svftools-[version].vsix**
+It will generate a new extension named: **svftools-[version].vsix**  
 
 
+****  
 
-## Test System: **Ubuntu 18.04/20.04**
+
+### Test System: **Ubuntu 18.04/20.04**
 ### **Step 1. Install platform.**
 - **Local test: [ vscode ] [The vscode download link](https://code.visualstudio.com/)**
 - **Cloud test: [ code-server ] [The code-server download link](https://github.com/cdr/code-server)**
