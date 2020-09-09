@@ -18,6 +18,7 @@
     - **cmd: `sudo npm install -g vsce`** 
     - **cmd: `vsce package`**  
 It will generate a extension named: **svftools-[version].vsix**
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsce.gif?raw=true' width='720'/>
 
 -  ### **To Compile:**   
     - **cmd: `yarn compile`**  
