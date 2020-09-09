@@ -15,6 +15,9 @@
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/env.gif?raw=true' width='720'/>
 
 - ### **Step 3. Generate extension**
+    - **keyboard (for open vscode terminal):**  
+        - **Linux: [ Ctrl + shift + `]**  
+        - **Mac: [ ^ + ⇧ + ` ]**
     - **cmd: `sudo npm install -g vsce`** 
     - **cmd: `vsce package`**  
 It will generate a extension named: **svftools-[version].vsix**
