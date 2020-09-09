@@ -12,7 +12,7 @@
     - **cmd: `cd ./WebSVF/src/SVFTOOLS`**  
     - **cmd: `yarn`**  
     - **cmd: `code .`**  
-
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/env.gif?raw=true' width='720'/>
 - ### **Step 3. Generate extension**
     - **cmd: `sudo npm install -i vsce`** 
     - **cmd: `vsce package`**  
@@ -26,5 +26,6 @@ It will generate a extension named: **svftools-[version].vsix**
 ## **How to install extension ?**
 
 -  ### System: **Ubuntu 18.04 or 20.04**
-- **Open [vscode](https://code.visualstudio.com/) or [code-server](https://github.com/cdr/code-server):**  
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='480'/>
+    - **Open [vscode](https://code.visualstudio.com/) or [code-server](https://github.com/cdr/code-server)**  
+    - **Install extension**  
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
