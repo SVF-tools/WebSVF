@@ -15,7 +15,7 @@
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/env.gif?raw=true' width='720'/>
 
 - ### **Step 3. Generate extension**
-    - **cmd: `sudo npm install -i vsce`** 
+    - **cmd: `sudo npm install -g vsce`** 
     - **cmd: `vsce package`**  
 It will generate a extension named: **svftools-[version].vsix**
 
