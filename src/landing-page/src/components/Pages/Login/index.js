@@ -55,8 +55,8 @@ class Login extends Component {
     try {
       await signin(this.state.email, this.state.password);
       console.log(this.props);
-      this.props.setRoute('/profile');
-      window.open('#/profile', '_self');
+      this.props.setRoute('/dashboard');
+      window.open('#/dashboard', '_self');
     } catch (error) {
       this.setState({ loginError: error.message });
     }
@@ -91,8 +91,8 @@ class Login extends Component {
     this.setState({ signupError: '' });
     try {
       await signup(this.state.email, this.state.password, this.state.username);
-      this.props.setRoute('/profile');
-      window.open('#/profile', '_self');
+      this.props.setRoute('/dashboard');
+      window.open('#/dashboard', '_self');
     } catch (error) {
       this.setState({ signupError: error.message });
     }

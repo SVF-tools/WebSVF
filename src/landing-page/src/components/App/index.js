@@ -9,6 +9,8 @@ import {
 import About from '../Pages/About';
 import Login from '../Pages/Login';
 import Profile from '../Pages/Profile';
+import Dashboard from '../Pages/Dashboard'
+
 
 import Header from '../Header';
 import Footer from '../Footer';
@@ -86,6 +88,9 @@ const App = (props) => {
             authenticated={authenticated}
             component={Profile}
           />
+          <Route path="/dashboard" exact>
+            <Dashboard setRoute={setRoute} authenticated={authenticated} />
+          </Route>
           <Route path="/login" exact>
             <Login setRoute={setRoute} authenticated={authenticated} />
           </Route>
