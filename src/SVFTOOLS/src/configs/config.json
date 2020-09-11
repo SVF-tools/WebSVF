@@ -115,6 +115,13 @@
             "folder": "SVF-example",
             "mainFile": "src/svf-ex.cpp",
             "openFlag": "OpenSVFEX.flag"
+        },
+        {
+            "key": "ENVIRONMENT_SCRIPT_PATH",
+            "position": "extension",
+            "folder": "scripts",
+            "mainFile": "environment.sh",
+            "openFlag": "OpenEnv.flag"
         }
     ]
 }

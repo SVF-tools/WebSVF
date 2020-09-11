@@ -1,4 +1,7 @@
 import * as vscode from "vscode";
+import * as fs from "fs";
+import * as path from "path";
+import { execSync } from "child_process";
 
 interface CommandElement {
     key: string;
@@ -21,6 +24,81 @@ class CommandBasic {
     }
 
     protected Func() { }
+
+    ShowFolderOnWorkspace(folderPath: string) {
+
+        if (fs.existsSync(folderPath)) {
+
+            let stat = fs.statSync(folderPath);
+
+            if (stat.isDirectory()) {
+                let uri = vscode.Uri.file(folderPath);
+                vscode.commands.executeCommand("vscode.openFolder", uri);
+            }
+
+        }
+    }
+
+    ShowFileInTextDoc(filePath: string) {
+
+        vscode.commands.executeCommand("workbench.files.action.focusFilesExplorer");
+
+        if (fs.existsSync(filePath)) {
+
+            let stat = fs.statSync(filePath);
+
+            if (stat.isFile()) {
+                vscode.window.showTextDocument(vscode.Uri.file(filePath));
+            }
+        }
+    }
+
+    CreateFolder(folderPath: string) {
+
+        if (!fs.existsSync(folderPath)) {
+
+            let upFolderPath = path.resolve(folderPath, "..");
+
+            if (!fs.existsSync(upFolderPath)) {
+                this.CreateFolder(upFolderPath);
+            } else {
+                fs.mkdirSync(folderPath);
+            }
+        }
+    }
+
+    CreateFile(filePath: string) {
+
+        if (!fs.existsSync(filePath)) {
+            let folderPath = path.resolve(filePath, "..");
+            this.CreateFolder(folderPath);
+        }
+
+        fs.writeFileSync(filePath, "");
+    }
+
+    Copy(from: string, to: string) {
+
+        if (fs.existsSync(from)) {
+
+            let upFolder = path.resolve(to, "..");
+            this.CreateFolder(upFolder);
+
+            execSync(`cp -rf ${from} ${to}`);
+
+        } else {
+            console.log(`[ERROR]: CopyFile form: ${from} is not exist`);
+        }
+
+    }
+
+    Delete(thePath: string) {
+
+        if (fs.existsSync(thePath)) {
+            execSync(`rm -rf ${thePath}`);
+        }
+
+    }
 }
 
 class CommandArray {

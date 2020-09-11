@@ -66,80 +66,9 @@ export class OpenFileCommand extends data.CommandBasic {
 
     Func() { }
 
-    ShowFolderOnWorkspace(folderPath: string) {
-
-        if (fs.existsSync(folderPath)) {
-
-            let stat = fs.statSync(folderPath);
-
-            if (stat.isDirectory()) {
-                let uri = vscode.Uri.file(folderPath);
-                vscode.commands.executeCommand("vscode.openFolder", uri);
-            }
-
-        }
-    }
-
     ShowFileInTextDoc(filePath: string) {
-
-        vscode.commands.executeCommand("workbench.files.action.focusFilesExplorer");
         data.mterminal.hide();
-
-        if (fs.existsSync(filePath)) {
-
-            let stat = fs.statSync(filePath);
-
-            if (stat.isFile()) {
-                vscode.window.showTextDocument(vscode.Uri.file(filePath));
-            }
-        }
-    }
-
-    CreateFolder(folderPath: string) {
-
-        if (!fs.existsSync(folderPath)) {
-
-            let upFolderPath = path.resolve(folderPath, "..");
-
-            if (!fs.existsSync(upFolderPath)) {
-                this.CreateFolder(upFolderPath);
-            } else {
-                fs.mkdirSync(folderPath);
-            }
-        }
-    }
-
-    CreateFile(filePath: string) {
-
-        if (!fs.existsSync(filePath)) {
-            let folderPath = path.resolve(filePath, "..");
-            this.CreateFolder(folderPath);
-        }
-
-        fs.writeFileSync(filePath, "");
-    }
-
-    Copy(from: string, to: string) {
-
-        if (fs.existsSync(from)) {
-
-            let upFolder = path.resolve(to, "..");
-            this.CreateFolder(upFolder);
-
-            execSync(`cp -rf ${from} ${to}`);
-
-        } else {
-            console.log(`[ERROR]: CopyFile form: ${from} is not exist`);
-        }
-
-    }
-
-    Delete(thePath: string) {
-
-        if (fs.existsSync(thePath)) {
-            execSync(`rm -rf ${thePath}`);
-        }
-
+        super.ShowFileInTextDoc(filePath);
     }
 
 }
@@ -152,9 +81,34 @@ export class InstallSVFEnvironment extends TerminialCommand {
 
     Func() {
 
+        let targetInfo = data.config.getPathInfo(data.config.pathType.TARGET_PATH); // get target info
+
+        let envInfo = data.config.getPathInfo(data.config.pathType.ENVIRONMENT_SCRIPT_PATH);
+
+        console.log("targetInfo:", targetInfo);
+
+        if (targetInfo && envInfo) {
+
+            // if folder is not target
+            if (targetInfo.folder !== data.rootPath()) {
+
+                console.log(targetInfo.folder);
+                console.log(data.rootPath());
+
+                execSync(`touch ${envInfo.openFlag}`); // create open target flag
+                this.ShowFolderOnWorkspace(targetInfo.folder); // open target folder
+
+            } else {
+
+                if (fs.existsSync(envInfo.openFlag)) {
+                    execSync(`rm ${envInfo.openFlag}`); // delete open target flag
+                }
+            }
+        }
+
         let backendinfo = data.config.getPathInfo(data.config.pathType.BACKEND_PATH);
 
-        if (fs.existsSync(backendinfo.folder)) {
+        if (backendinfo && fs.existsSync(backendinfo.folder)) {
 
             vscode.window.showInformationMessage(
                 "Do you want to reinstall SVF evironment and delete the current SVF folder?",
