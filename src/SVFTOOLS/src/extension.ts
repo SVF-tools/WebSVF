@@ -104,12 +104,10 @@ function initial(context: vscode.ExtensionContext) {
 }
 
 function checkFlag() {
-    let targetPathInfo = data.config.getPathInfo(
-        data.config.pathType.TARGET_PATH
-    );
-    let backednPathInfo = data.config.getPathInfo(
-        data.config.pathType.BACKEND_PATH
-    );
+
+    let targetPathInfo = data.config.getPathInfo(data.config.pathType.TARGET_PATH);
+    let backednPathInfo = data.config.getPathInfo(data.config.pathType.BACKEND_PATH);
+    let envInfo = data.config.getPathInfo(data.config.pathType.ENVIRONMENT_SCRIPT_PATH);
 
     if (targetPathInfo.openFlag && fs.existsSync(targetPathInfo.openFlag)) {
         vscode.commands.executeCommand(data.config.command.OPEN_TARGET);
@@ -117,6 +115,10 @@ function checkFlag() {
 
     if (backednPathInfo.openFlag && fs.existsSync(backednPathInfo.openFlag)) {
         vscode.commands.executeCommand(data.config.command.OPEN_BACKEND);
+    }
+
+    if (envInfo.openFlag && fs.existsSync(envInfo.openFlag)) {
+        vscode.commands.executeCommand(data.config.command.INSTALL_ENV);
     }
 }
 

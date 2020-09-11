@@ -2,7 +2,7 @@
     "name": "svftools",
     "displayName": "SVFTOOLS",
     "description": "SVF ANALYSIS TOOLS",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "icon": "img/icon.png",
     "enableProposedApi": true,
     "publisher": "TianyangGuan",

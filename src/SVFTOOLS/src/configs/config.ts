@@ -19,6 +19,7 @@ export class Config {
         TARGET_PATH: "TARGET_PATH",
         EXAMPLE_PATH: "EXAMPLE_PATH",
         BACKEND_PATH: "BACKEND_PATH",
+        ENVIRONMENT_SCRIPT_PATH: "ENVIRONMENT_SCRIPT_PATH",
     };
 
     private _statusbar = new Array();
