@@ -7,8 +7,16 @@ function errorshow() {
     echo -e "\033[1;41;37m$1\033[0m"
 }
 
+
 if [[ $sysOS == "Linux" ]]; then
 
+    isup=0
+
+    lsb_release -i
+    if [[ $? -ne 0 ]]; then
+        sudo apt-get update && sudo apt-get install -y lsb-release
+        isup=1
+    fi
     release_name=$(lsb_release -i --short)
     release_num=$(lsb_release -r --short)
 
@@ -20,9 +28,12 @@ if [[ $sysOS == "Linux" ]]; then
             cd ~
             flagFile=".allsvfinstall.flag"
             if [ ! -f $flagFile ]; then
-                sudo apt-get update
+                if [[ isup -ne 0 ]]; then
+                    sudo apt-get update
+                fi
                 sudo apt-get upgrade -y
                 sudo apt-get install build-essential libtinfo-dev libtinfo5 wget curl git cmake python3-pip libgraphviz-dev graphviz -y
+                sudo apt-get clean all
                 touch $flagFile
                 # sudo pip3 install pygraphviz
             fi
