@@ -44,6 +44,7 @@ It will generate a extension named: **svftools-[version].vsix**
 
 - **How to install extension ?**
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
+
 ### **User Guide**
 
 ### **Online**
