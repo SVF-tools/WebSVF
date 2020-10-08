@@ -14,6 +14,7 @@ const Iframe = (props) => {
             <div className="embed-responsive embed-responsive-1by1">
               <iframe
                 className="embed-responsive-item px-4"
+                title="codespace"
                 src={props.source}
               ></iframe>
             </div>

@@ -16,7 +16,7 @@ import Footer from "../Footer";
 
 import "./App.scss";
 
-import { auth, db } from "../../services/firebase";
+import { auth} from "../../services/firebase";
 
 import staticData from "../../staticData.json";
 

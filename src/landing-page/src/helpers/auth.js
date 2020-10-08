@@ -91,18 +91,18 @@ function setInstanceData(user) {
   }
 }
 
-function clearInstanceData() {
-  setTimeout(function () {
-    console.log(
-      `values before clearing instance data conatiner id: ${containerId} \n host port: ${hostPort} \n public IP: ${publicIP}`
-    );
+// function clearInstanceData() {
+//   setTimeout(function () {
+//     console.log(
+//       `values before clearing instance data conatiner id: ${containerId} \n host port: ${hostPort} \n public IP: ${publicIP}`
+//     );
 
-    containerId = null;
-    hostPort = null;
-    publicIP = null;
+//     containerId = null;
+//     hostPort = null;
+//     publicIP = null;
 
-    console.log(
-      `values after clearing instance data conatiner id: ${containerId} \n host port: ${hostPort} \n public IP: ${publicIP}`
-    );
-  }, 90000);
-}
+//     console.log(
+//       `values after clearing instance data conatiner id: ${containerId} \n host port: ${hostPort} \n public IP: ${publicIP}`
+//     );
+//   }, 90000);
+// }

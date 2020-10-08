@@ -1,7 +1,5 @@
-import { Checkbox } from "@material-ui/core";
 //describeInstance to get the public
 import { ec2 } from "../../services/aws";
-import { awsRunTask } from "./ecs";
 
 var publicIp = "";
 var currentEc2Id = "";
