@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   HashRouter as Router,
   Switch,
   Route,
   Redirect,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import About from '../Pages/About';
-import Login from '../Pages/Login';
-import Profile from '../Pages/Profile';
-import Dashboard from '../Pages/Dashboard'
+import About from "../Pages/About";
+import Login from "../Pages/Login";
+import Profile from "../Pages/Profile";
+import Dashboard from "../Pages/Dashboard";
 
+import Header from "../Header";
+import Footer from "../Footer";
 
-import Header from '../Header';
-import Footer from '../Footer';
+import "./App.scss";
 
-import './App.scss';
+import { auth, db } from "../../services/firebase";
 
-import { auth } from '../../services/firebase';
-
-import staticData from '../../staticData.json';
+import staticData from "../../staticData.json";
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
   return (
@@ -30,7 +29,7 @@ const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
+            to={{ pathname: "/login", state: { from: props.location } }}
           />
         )
       }
@@ -41,7 +40,7 @@ const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
 const App = (props) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [route, setRoute] = useState('/');
+  const [route, setRoute] = useState("/");
 
   useEffect(() => {
     auth().onAuthStateChanged((user) => {
@@ -60,9 +59,9 @@ const App = (props) => {
       className="spinner-border text-success"
       role="status"
       style={{
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
+        position: "absolute",
+        left: "50%",
+        top: "50%",
       }}
     >
       <span className="sr-only">Loading...</span>
@@ -88,9 +87,15 @@ const App = (props) => {
             authenticated={authenticated}
             component={Profile}
           />
-          <Route path="/dashboard" exact>
+          <PrivateRoute
+            path="/dashboard"
+            exact
+            authenticated={authenticated}
+            component={Dashboard}
+          />
+          {/* <Route path="/dashboard" exact>
             <Dashboard setRoute={setRoute} authenticated={authenticated} />
-          </Route>
+          </Route> */}
           <Route path="/login" exact>
             <Login setRoute={setRoute} authenticated={authenticated} />
           </Route>
