@@ -1,58 +1,79 @@
-import React from 'react'
+import React from "react";
+import "./dashboard.scss";
+import { db, auth } from "../../../services/firebase";
+import Iframe from "../../Iframe/index.js";
+import Loader from "../../Loader/index.js";
 
-//import InstanceCard from '../../InstanceCards'
+class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: auth().currentUser,
+      publicIP: null,
+      port: null,
+      source: null,
+    };
+    this.setPublicIP = this.setPublicIP.bind(this);
+    this.setPort = this.setPort.bind(this);
+    this.setSource = this.setSource.bind(this);
+  }
 
-const Dashboard = () => {
+  componentDidMount() {
+    console.log(`component did mount fired`);
+    this.publicIPRef = db.ref("users/" + this.state.user.uid).child("publicIP");
+    this.portRef = db.ref("users/" + this.state.user.uid).child("port");
+    console.log(this.sourceRef);
+
+    this.publicIPRef.on("value", (dataSnapshot) => {
+      console.log(dataSnapshot.val());
+
+      this.setPublicIP(dataSnapshot.val());
+    });
+
+    this.portRef.on("value", (dataSnapshot) => {
+      console.log(dataSnapshot.val());
+
+      this.setPort(dataSnapshot.val());
+    });
+
+    if (this.state.port && this.state.publicIP) {
+      var source = `${this.state.publicIP}:${this.state.port}`;
+      this.setSource(source);
+    }
+  }
+
+  setPublicIP(value) {
+    console.log(`setting public IP as ${value}`);
+    this.setState({
+      publicIP: value,
+    });
+  }
+
+  setPort(value) {
+    console.log(`setting port as ${value}`);
+    this.setState({
+      port: value,
+    });
+  }
+
+  setSource(value) {
+    console.log(`source is about to set as ${value}`);
+    this.setState({
+      source: value,
+    });
+  }
+
+  render() {
     return (
-        <div className="dashboard__main">
-            <div className="content-wrapper">
-                <div className="container">
-                    <div className="row d-flex justify-content-between">
-                        {/* <h1>Dashboard </h1> */}
-                        {/* <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#create-instance">
-                            Create Instance
-                        </button> */}
-                    </div>
-                    {/* <div className="modal fade" id="create-instance">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title">Enter Details to create Instance</h5>
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">
-                                    <form>
-                                        <div className="form-group">
-                                            <label htmlFor="instance-name">Name</label>
-                                            <input type="text" className="form-control" id="instance-name" placeholder="Enter a name for your instance " />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="description">Description</label>
-                                            <textarea className="form-control" id="description" rows="3" placeholder="Enter Description"></textarea>
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" className="btn btn-primary">Create</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div> */}
-
-
-                    <div className="embed-responsive embed-responsive-1by1 my-3">
-                        <iframe className="embed-responsive-item" src="https://websvf.tools/" allowFullScreen></iframe>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
+      <div>
+        {this.state.publicIP && this.state.port ? (
+          <Iframe source={`http://${this.state.publicIP}:${this.state.port}`} />
+        ) : (
+          <Loader />
+        )}
+      </div>
     );
+  }
 }
 
 export default Dashboard;
