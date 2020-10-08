@@ -1,12 +1,12 @@
-import './Login.scss';
+import "./Login.scss";
 
-import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
+import React, { Component } from "react";
+import TextField from "@material-ui/core/TextField";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
-import './Login.scss';
+import "./Login.scss";
 
 import {
   signin,
@@ -15,7 +15,7 @@ import {
   signInWithGitHub,
   forgotpass,
   updatepass,
-} from '../../../helpers/auth';
+} from "../../../helpers/auth";
 
 class Login extends Component {
   constructor() {
@@ -25,10 +25,11 @@ class Login extends Component {
       loginError: null,
       signupError: null,
       forgotpwError: null,
-      email: '',
-      password: '',
-      newpass: '',
-      username: '',
+      email: "",
+      password: "",
+      newpass: "",
+      username: "",
+      instanceId: "",
       showForgot: false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -51,12 +52,12 @@ class Login extends Component {
 
   async handleSignIn(event) {
     event.preventDefault();
-    this.setState({ loginError: '' });
+    this.setState({ loginError: "" });
     try {
       await signin(this.state.email, this.state.password);
       console.log(this.props);
-      this.props.setRoute('/profile');
-      window.open('#/profile', '_self');
+      this.props.setRoute("/dashboard");
+      window.open("#/dashboard", "_self");
     } catch (error) {
       this.setState({ loginError: error.message });
     }
@@ -64,7 +65,7 @@ class Login extends Component {
 
   async handleUpdatePass(event) {
     event.preventDefault();
-    this.setState({ forgotpwError: '' });
+    this.setState({ forgotpwError: "" });
     try {
       await signin(this.state.email, this.state.password).then(
         async function () {
@@ -78,7 +79,7 @@ class Login extends Component {
 
   async handleForgotPass(event) {
     event.preventDefault();
-    this.setState({ forgotpwError: '' });
+    this.setState({ forgotpwError: "" });
     try {
       await forgotpass(this.state.email);
     } catch (error) {
@@ -88,11 +89,12 @@ class Login extends Component {
 
   async handleSignUp(event) {
     event.preventDefault();
-    this.setState({ signupError: '' });
+    this.setState({ signupError: "" });
     try {
+      //createMachine();
       await signup(this.state.email, this.state.password, this.state.username);
-      this.props.setRoute('/profile');
-      window.open('#/profile', '_self');
+      this.props.setRoute("/dashboard");
+      window.open("#/dashboard", "_self");
     } catch (error) {
       this.setState({ signupError: error.message });
     }
@@ -101,9 +103,10 @@ class Login extends Component {
   async googleSignIn() {
     try {
       await signInWithGoogle();
-      this.props.setRoute('/profile');
-      window.open('#/profile', '_self');
+      this.props.setRoute("/profile");
+      window.open("#/profile", "_self");
     } catch (error) {
+      console.log(error);
       this.setState({ loginError: error.message });
     }
   }
@@ -111,27 +114,27 @@ class Login extends Component {
   async githubSignIn() {
     try {
       await signInWithGitHub();
-      this.props.setRoute('/profile');
-      window.open('#/profile', '_self');
+      this.props.setRoute("/profile");
+      window.open("#/profile", "_self");
     } catch (error) {
       this.setState({ loginError: error.message });
     }
   }
 
   onLogin() {
-    document.getElementById('container').classList.remove('right-panel-active');
+    document.getElementById("container").classList.remove("right-panel-active");
     setTimeout(() => {
       this.setState({ showForgot: false });
     }, 500);
   }
 
   onRegister() {
-    document.getElementById('container').classList.add('right-panel-active');
+    document.getElementById("container").classList.add("right-panel-active");
     this.setState({ showForgot: false });
   }
 
   onForgot() {
-    document.getElementById('container').classList.add('right-panel-active');
+    document.getElementById("container").classList.add("right-panel-active");
     this.setState({ showForgot: true });
   }
 
@@ -191,7 +194,7 @@ class Login extends Component {
           ) : (
             <div className="form-container sign-up-container forgot">
               <form
-                style={{ height: 'auto' }}
+                style={{ height: "auto" }}
                 autoComplete="off"
                 onSubmit={this.handleForgotPass}
               >
@@ -237,7 +240,7 @@ class Login extends Component {
                   InputProps={{ value: this.state.password }}
                 />
                 <span
-                  style={{ display: 'block', textAlign: 'left' }}
+                  style={{ display: "block", textAlign: "left" }}
                   onClick={this.onForgot}
                 >
                   Forgot Password?
@@ -269,8 +272,8 @@ class Login extends Component {
               <div className="overlay-panel overlay-left">
                 <h1>
                   {this.state.showForgot
-                    ? 'Remember password?'
-                    : 'Already have an account?'}
+                    ? "Remember password?"
+                    : "Already have an account?"}
                 </h1>
                 <button onClick={this.onLogin} className="ghost">
                   Sign In

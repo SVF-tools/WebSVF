@@ -112,6 +112,24 @@ const Header = (props) => {
                 >
                   <Link
                     className="nav-link"
+                    to="/dashboard"
+                    replace
+                    onClick={() => {
+                      props.setRoute('/dashboard');
+                    }}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+              {!props.authenticated || (
+                <li
+                  className={`nav-item ${
+                    props.route === '/login' ? 'active' : ''
+                  }`}
+                >
+                  <Link
+                    className="nav-link"
                     to="/login"
                     replace
                     onClick={() => {
