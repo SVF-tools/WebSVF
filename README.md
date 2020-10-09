@@ -1,53 +1,50 @@
+
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
 
 ## **Install Guide**
+-  **Install Git**
+	- Install on Ubuntu: `sudp apt install git-all`
+	- Install on MacOS: `brew install git`
+	- Download Git on Windows (https://git-scm.com/download/win) 
+- **Install Node.JS (https://nodejs.org/en/download/)**
+- **Install yarn**
+	- Install on Ubuntu: 
+		- `curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -`
+		- `echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
+		- `apt update && apt install yarn `
+	- Install on MacOS: `brew install yarn`
+	- Download on Windows (https://classic.yarnpkg.com/en/docs/install/#windows-stable) 
+- **Install VSCode**
+	- Install on Ubuntu:
+		- Update Package: `sudo apt update`
+		- Install dependencies: `sudo apt install software-properties-common apt-transport-https wget`
+		- Import the Microsoft GPG key: `wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -`
+		- Once apt repo is enabled, install VS Code: `sudo apt install code`
+	- Download on MacOS & Windows (https://code.visualstudio.com/download)
+- **Install Docker**
+	- Install on Ubuntu: 
+		- Uninstall previous versions of Docker:`sudo apt-get remove docker docker-engine docker.io containerd runc`
+		- Install dependencies: `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
+		- Add Docker GPG key: `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+		- Install Docker Engine: `sudo apt-get update sudo apt-get install docker-ce docker-ce-cli containerd.io`
+		-   Verify Docker Engine is installed correctly:  `sudo docker run hello-world`
 
-### **Docker**
-- **Uninstall previous versions of Docker: `sudo apt-get remove docker docker-engine docker.io containerd runc`**
-- **Install packages: `sudo apt-get install \
-                        apt-transport-https \
-                        ca-certificates \
-                        curl \
-                        gnupg-agent \
-                        software-properties-common`**
-- **Add Docker Official GPG key: `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`**
-- **Install Docker Engine: `sudo apt-get update sudo apt-get install docker-ce docker-ce-cli containerd.io`**
-- **Verify Docker Engine is installed correctly: `sudo docker run hello-world`**
-### **Local**
-- **Step 1. Install development tools.**
-    - **git**. **[The git download link](https://code.visualstudio.com/)**
-    - **nodejs**. **[The nodejs download link](https://nodejs.org/zh-cn/download/)**
-    - **yarn**. **[The yarn download link](https://classic.yarnpkg.com/en/docs/install/#windows-stable)**
-    - **vscode**. **[The vscode download link](https://code.visualstudio.com/)**
-- **Step 2. Prepare development environment.**
-    - **cmd: `git clone https://github.com/SVF-tools/WebSVF.git --depth 1`**  
-    - **cmd: `cd ./WebSVF/src/SVFTOOLS`**  
-    - **cmd: `yarn`**  
-    - **cmd: `code .`**  
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/env.gif?raw=true' width='720'/>
+## **User Guide**
+1. **Local Single-User Code Space Using Docker Container(Ubuntu)** 
+First, pull the image from Docker hub:  
+` sudo docker pull winoooops/websvf-docker ` 
+After Terminal finishes downloadinng, check the image has been successfully downloaded:
+ ` sudo docker images -a `
+You should see a list of images and one of them is winoooops/websvf-docker. 
+Now try run the Docker Container: 
+` sudo docker run -p 8080:8080 --name websvf winoooops/websvf-docker `
+This comand will trigger the code server to first install the extension and then listen on `0.0.0.0:8080` without requiring password. It will take a coule of seconds for the browser to finish the buffering. 
 
-- **Step 3. Generate extension**
-    - **keyboard (for open vscode terminal):**  
-        - **Linux: [ Ctrl + shift + `]**  
-        - **Mac: [ ^ + ⇧ + ` ]**
-    - **cmd: `sudo npm install -g vsce`** 
-    - **cmd: `vsce package`**  
-It will generate a extension named: **svftools-[version].vsix**
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsce.gif?raw=true' width='720'/>
+2. **Local Multi-User Code Space**
 
-- **To Compile:**   
-    - **cmd: `yarn compile`**  
-- **To Debug:**  
-    - **keyboard: [ _F5_ ]**  
 
-- **How to install extension ?**
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
+3. **AWS Multi-User Code Space**
 
-### **User Guide**
-
-### **Online**
-
-### **Operation**
 
 ## **Dev Guide**
 
@@ -68,7 +65,7 @@ The following points show steps on how to install websvf on AWS (as a developer)
       -	Requires Compatibilities: EC2
       -	Task Role: Leave Blank i.e. None
       -	Network Mode: default
-      -	Task Execution Role: Create New Role
+      - Task Execution Role: Create New Role
       -	Task Memory: 300 (or more)
       -	Task CPU: 200 (or more)
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS2.png?raw=true' width='720'/>
@@ -106,3 +103,24 @@ The following points show steps on how to install websvf on AWS (as a developer)
   
   - **The Amazon Elastic Container Service [(ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html) [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) is now ready for use. The tasks (WebSVF containers) are programmatically created upon user signup.**
 
+
+
+### Extension Installation Breakdown
+**Dev Preparation**
+- Clone the project: `git clone https://github.com/SVF-tools/WebSVF.git --depth 1`
+- Go to SVFTools Repo: `cd ./WebSVF/src/SVFTOOLS`
+- Install the dependencies: `yarn`
+- Start the code-server: `code .`
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/env.gif?raw=true' width='720'/>
+
+**Genearte Extension**
+- open vscode terminal:  
+        - Linux: `[ Ctrl + shift + ]`  
+        - Mac: `[ ^ + ⇧ +  ]`
+ - cmd: `sudo npm install -g vsce`
+ - cmd: `vsce package` 
+It will generate a extension named: **svftools-[version].vsix**
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsce.gif?raw=true' width='720'/>
+
+**Install extension from .vsix file ?**
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
