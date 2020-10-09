@@ -126,3 +126,11 @@ It will generate a extension named: **svftools-[version].vsix**
 
 **Install extension from .vsix file ?**
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
+
+
+### **How to use the DockerFile && Docker Hub Repository**
+- In the root repo: `sudo docker build -t websvf:0.4 .`
+- After the image is built (usually takes 20-30mins), go check if the image's created: `sudo docker images -a`
+- Try testing the local image by creating a new container：`sudo docker run -p 8080:8080 --name websvf-local websvf:0.4`
+- Open `0.0.0.0:8080` to see if the container is valid 
+- More is coming concerning Docker Hub Push Automation
