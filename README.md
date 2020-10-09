@@ -134,12 +134,12 @@ It will generate a extension named: **svftools-[version].vsix**
 
 ### **How to use the DockerFile && Docker Hub Repository**
 -  **Build from DockerFile**
-  - In the root repo: `sudo docker build -t websvf:0.4 .`
-  - After the image is built (usually takes 20-30mins), go check if the image's created: `sudo docker images -a`
-  - Try testing the local image by creating a new container：`sudo docker run -p 8080:8080 --name websvf-local websvf:0.4`
-  - Open `0.0.0.0:8080` to see if the container is valid 
+   - In the root repo: `sudo docker build -t websvf:0.4 .`
+   - After the image is built (usually takes 20-30mins), go check if the image's created: `sudo docker images -a`
+   - Try testing the local image by creating a new container：`sudo docker run -p 8080:8080 --name websvf-local websvf:0.4`
+   - Open `0.0.0.0:8080` to see if the container is valid 
 -  **Using Docker Hub**
-  - pull image from docker hub: `sudo docker pull winoooops/websvf-docker`
-  - After the image download had finished, go check if the image's exist: `sudo docker images -a`
-  - Try testing the local image by creating a new container：`sudo docker run -p 8080:8080 --name websvf-local winoooops/websvf-docker`
-  - Open `0.0.0.0:8080` to see if the container is valid 
+   - pull image from docker hub: `sudo docker pull winoooops/websvf-docker`
+   - After the image download had finished, go check if the image's exist: `sudo docker images -a`
+   - Try testing the local image by creating a new container：`sudo docker run -p 8080:8080 --name websvf-local winoooops/websvf-docker`
+   - Open `0.0.0.0:8080` to see if the container is valid 
