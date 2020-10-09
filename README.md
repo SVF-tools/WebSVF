@@ -31,16 +31,16 @@
 
 ## **User Guide**
 1. **Local Single-User Code Space Using Docker Container(Ubuntu)**   
-First, pull the image from Docker hub:    
-` sudo docker pull winoooops/websvf-docker `   
+	First, pull the image from Docker hub:    
+	` sudo docker pull winoooops/websvf-docker `   
 
-After Terminal finishes downloadinng, check the image has been successfully downloaded:
- ` sudo docker images -a `  
-You should see a list of images and one of them is winoooops/websvf-docker.   
+	After Terminal finishes downloadinng, check the image has been successfully downloaded:
+	 ` sudo docker images -a `  
+	You should see a list of images and one of them is winoooops/websvf-docker.   
 
-Now try run the Docker Container:   
-` sudo docker run -p 8080:8080 --name websvf winoooops/websvf-docker `  
-This comand will trigger the code server to first install the extension and then listen on `0.0.0.0:8080` without requiring password. It will take a coule of seconds for the browser to finish the buffering. 
+	Now try run the Docker Container:   
+	` sudo docker run -p 8080:8080 --name websvf winoooops/websvf-docker `  
+	This comand will trigger the code server to first install the extension and then listen on `0.0.0.0:8080` without requiring password. It will take a coule of seconds for the browser to finish the buffering. 
 
 2. **Local Multi-User Code Space**
 
