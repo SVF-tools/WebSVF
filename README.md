@@ -2,8 +2,6 @@
 
 ## **Install Guide**
 
-### **AWS**
-
 ### **Docker**
 - **Uninstall previous versions of Docker: `sudo apt-get remove docker docker-engine docker.io containerd runc`**
 - **Install packages: `sudo apt-get install \
@@ -54,14 +52,16 @@ It will generate a extension named: **svftools-[version].vsix**
 ## **Dev Guide**
 
 ### **Preparing AWS environment for WebSVF docker images**
-**Amazon Elastic Container Service (ECS) is used to run WebSVF Docker containers.**
+**[Amazon Elastic Container Service (ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html) is used to run WebSVF Docker containers.**
 
 The following points show steps on how to install websvf on AWS (as a developer) using Amazon ECS and WebSVF Docker container.
 
-**Please note that creating cluster is only a one-time process. Creating new tasks and updating task-definition are done programmatically using AWS SDK for Javascript.**
+**Please note that creating cluster is only a one-time process. Creating new tasks and updating task-definition are done programmatically using [AWS SDK for Javascript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/).**
 
 - **Log in to the AWS console and go to Elastic Container Service**
-- **Once ECS is open, click on Task definitions. Then click on “create task definition”**
+- **Once ECS is open, click on [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html). Then click on “create task definition”**
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS1.png?raw=true' width='720'/>
+
 - **You will then be prompted to select between EC2 and Fargate. Select EC2**
     - Enter the details as below:
       -	Task Definition Name: <Name of your choice>
@@ -71,15 +71,20 @@ The following points show steps on how to install websvf on AWS (as a developer)
       -	Task Execution Role: Create New Role
       -	Task Memory: 300 (or more)
       -	Task CPU: 200 (or more)
+  <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS2.png?raw=true' width='720'/>
   
   
-- **Still on the Create Task Definition Page, click on “Add container”. This is where you specify what container needs to run**
+- **Still on the Create [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) Page, click on “Add container”. This is where you specify what container needs to run**
     - Enter the details as below (rest of the field can be left as default):
       -	Container name: <Name of your choice>
       -	Image: winoooops/websvf-docker
       -	Container port: 8080
   
-- **Once your Task definition is ready, we need to create a cluster. Click on “cluster” from the left and then click on “Create Cluster”. Select the below option for each prompt respectively. Some options while creating cluster are not mentioned below because they can have the default value**
+- **Once your [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) is ready, we need to create a [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html). Click on “cluster” from the left and then click on “Create Cluster”. Select the below option for each prompt respectively. Some options while creating [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) are not mentioned below because they can have the default value**
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS3.png?raw=true' width='720'/>
+
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS4.png?raw=true' width='720'/>
+
   -	Select Cluster template
     -	EC2 Linux + Networking
   -	Configure Cluster
@@ -90,12 +95,13 @@ The following points show steps on how to install websvf on AWS (as a developer)
     -	Subnets: <add all subnets from the dropdown>
     -	Security group: Create a new security group if you do not have one
     -	Assigned Security group needs to have all TCP allowed from anywhere
+      <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS5.png?raw=true' width='720'/>
     -	Container Instance IAM role: Create new role
 
-- **After your cluster and task definition have been set, you will need to go to EC2 service sure that the Launch template has been set.**
+- **After your [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) and [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) have been set, you will need to go to EC2 service sure that the [Launch Template](https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-launch-templates-for-amazon-ec2-instances/) has been set.**
   - From your EC2 Dashboard, click on Launch template. There should be a Launch template that has been created by ECS automatically. Usually named as “EC2ConatinerService-<clustername>-….”
   
-  - **If the launch template is there, just test things, launch a new instance from template (using ECS template) and see if that instance appears within your ECS cluster (can be seen under the ECS instances tab) by matching the EC2 Instance Ids.**
+  - **If the [Launch Template](https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-launch-templates-for-amazon-ec2-instances/) is there, just test things, launch a new instance from template (using ECS template) and see if that instance appears within your [Amazon Elastic Container Service (ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html) [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) (can be seen under the ECS instances tab) by matching the EC2 Instance Ids.**
   
-  - **The ECS cluster is now ready for use. The tasks (WebSVF containers) are programmatically created upon user signup.**
+  - **The Amazon Elastic Container Service [(ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html) [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) is now ready for use. The tasks (WebSVF containers) are programmatically created upon user signup.**
 
