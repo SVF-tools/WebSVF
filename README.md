@@ -12,8 +12,8 @@
 		- `curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -`
 		- `echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
 		- `apt update && apt install yarn `
-	- Install on MacOS: `brew install yarn`
-	- Download on Windows (https://classic.yarnpkg.com/en/docs/install/#windows-stable) 
+- Install on MacOS: `brew install yarn`
+- Download on Windows (https://classic.yarnpkg.com/en/docs/install/#windows-stable) 
 - **Install VSCode**
 	- Install on Ubuntu:
 		- Update Package: `sudo apt update`
@@ -22,14 +22,19 @@
 		- Once apt repo is enabled, install VS Code: `sudo apt install code`
 	- Download on MacOS & Windows (https://code.visualstudio.com/download)
 - **Install Docker**
-	- Install on Ubuntu: 
-		- Uninstall previous versions of Docker:`sudo apt-get remove docker docker-engine docker.io containerd runc`
-		- Install dependencies: `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
-		- Add Docker GPG key: `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
-		- Install Docker Engine: `sudo apt-get update sudo apt-get install docker-ce docker-ce-cli containerd.io`
-		-   Verify Docker Engine is installed correctly:  `sudo docker run hello-world`
+ -  Install on Ubuntu: 
+     - Uninstall previous versions of Docker:`sudo apt-get remove docker docker-engine docker.io containerd runc`
+     	- Install dependencies: `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
+     	- Add Docker GPG key: `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+     	- Install Docker Engine: `sudo apt-get update sudo apt-get install docker-ce docker-ce-cli containerd.io`
+     	-   Verify Docker Engine is installed correctly:  `sudo docker run hello-world`
+ - Install on MacOS: 
+      - Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-mac/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
+ - Install on Windows: 
+      - Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-windows/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
 
 ## **User Guide**
+
 1. **Local Single-User Code Space Using Docker Container(Ubuntu)**   
 	First, pull the image from Docker hub:    
 	` sudo docker pull winoooops/websvf-docker `   
@@ -72,7 +77,6 @@ The following points show steps on how to install websvf on AWS (as a developer)
       -	Task CPU: 200 (or more)
   <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS2.png?raw=true' width='720'/>
   
-  
 - **Still on the Create [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) Page, click on “Add container”. This is where you specify what container needs to run**
     - Enter the details as below (rest of the field can be left as default):
       -	Container name: Name of your choice
@@ -95,7 +99,7 @@ The following points show steps on how to install websvf on AWS (as a developer)
     -	Security group: Create a new security group if you do not have one
     -	Assigned Security group needs to have all TCP allowed from anywhere
       <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS5.png?raw=true' width='720'/>
-  
+    
     -	Container Instance IAM role: Create new role
 
 - **After your [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) and [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) have been set, you will need to go to EC2 service sure that the [Launch Template](https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-launch-templates-for-amazon-ec2-instances/) has been set.**
