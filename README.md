@@ -64,10 +64,10 @@ The following points show steps on how to install websvf on AWS (as a developer)
 
 - **You will then be prompted to select between EC2 and Fargate. Select EC2**
     - Enter the details as below:
-      -	Task Definition Name: <Name of your choice>
+      -	Task Definition Name: Name of your choice
       -	Requires Compatibilities: EC2
-      -	Task Role: <Leave Blank> i.e. None
-      -	Network Mode: <default>
+      -	Task Role: Leave Blank i.e. None
+      -	Network Mode: default
       -	Task Execution Role: Create New Role
       -	Task Memory: 300 (or more)
       -	Task CPU: 200 (or more)
@@ -76,7 +76,7 @@ The following points show steps on how to install websvf on AWS (as a developer)
   
 - **Still on the Create [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) Page, click on “Add container”. This is where you specify what container needs to run**
     - Enter the details as below (rest of the field can be left as default):
-      -	Container name: <Name of your choice>
+      -	Container name: Name of your choice
       -	Image: winoooops/websvf-docker
       -	Container port: 8080
   
@@ -92,14 +92,15 @@ The following points show steps on how to install websvf on AWS (as a developer)
     -	EC2 instance Type: t2.medium
     -	Keypair: Select an existing keypair or create a new one (do not leave as “None”)
     -	VPC: Select VPC if one exists, or create a new VPC
-    -	Subnets: <add all subnets from the dropdown>
+    -	Subnets: add all subnets from the dropdown
     -	Security group: Create a new security group if you do not have one
     -	Assigned Security group needs to have all TCP allowed from anywhere
       <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/AWS5.png?raw=true' width='720'/>
+  
     -	Container Instance IAM role: Create new role
 
 - **After your [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) and [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) have been set, you will need to go to EC2 service sure that the [Launch Template](https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-launch-templates-for-amazon-ec2-instances/) has been set.**
-  - From your EC2 Dashboard, click on Launch template. There should be a Launch template that has been created by ECS automatically. Usually named as “EC2ConatinerService-<clustername>-….”
+  - From your EC2 Dashboard, click on Launch template. There should be a Launch template that has been created by ECS automatically. Usually named as “EC2ConatinerService-clustername-….”
   
   - **If the [Launch Template](https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-launch-templates-for-amazon-ec2-instances/) is there, just test things, launch a new instance from template (using ECS template) and see if that instance appears within your [Amazon Elastic Container Service (ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html) [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) (can be seen under the ECS instances tab) by matching the EC2 Instance Ids.**
   
