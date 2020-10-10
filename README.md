@@ -14,15 +14,11 @@
 - **Install VSCode (https://code.visualstudio.com/)**
 - **Install Docker**
   -  Install on Ubuntu: 
-     - Uninstall previous versions of Docker:`sudo apt-get remove docker docker-engine docker.io containerd runc`
-     - Install dependencies: `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
-     - Add Docker GPG key: `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
-     - Install Docker Engine: `sudo apt-get update sudo apt-get install docker-ce docker-ce-cli containerd.io`
-     - Verify Docker Engine is installed correctly:  `sudo docker run hello-world`
+  	- Install Docker Engine on Ubuntu（https://docs.docker.com/engine/install/ubuntu/）
   - Install on MacOS: 
-      - Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-mac/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
+      	- Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-mac/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
   - Install on Windows: 
-      - Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-windows/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
+      	- Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-windows/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
 
 ## **User Guide**
 
