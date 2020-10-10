@@ -8,26 +8,17 @@
 	- Download Git on Windows (https://git-scm.com/download/win) 
 - **Install Node.JS (https://nodejs.org/en/download/)**
 - **Install yarn**
-	- Install on Ubuntu: 
-		- `curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -`
-		- `echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
-		- `apt update && apt install yarn `
-- Install on MacOS: `brew install yarn`
-- Download on Windows (https://classic.yarnpkg.com/en/docs/install/#windows-stable) 
-- **Install VSCode**
-	- Install on Ubuntu:
-		- Update Package: `sudo apt update`
-		- Install dependencies: `sudo apt install software-properties-common apt-transport-https wget`
-		- Import the Microsoft GPG key: `wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -`
-		- Once apt repo is enabled, install VS Code: `sudo apt install code`
-	- Download on MacOS & Windows (https://code.visualstudio.com/download)
+	- Install on Ubuntu (https://classic.yarnpkg.com/en/docs/install/#debian-stable)
+	- Install on MacOS: `brew install yarn`
+	- Download on Windows (https://classic.yarnpkg.com/en/docs/install/#windows-stable) 
+- **Install VSCode (https://code.visualstudio.com/)**
 - **Install Docker**
   -  Install on Ubuntu: 
      - Uninstall previous versions of Docker:`sudo apt-get remove docker docker-engine docker.io containerd runc`
-     	- Install dependencies: `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
-     	- Add Docker GPG key: `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
-     	- Install Docker Engine: `sudo apt-get update sudo apt-get install docker-ce docker-ce-cli containerd.io`
-     	-   Verify Docker Engine is installed correctly:  `sudo docker run hello-world`
+     - Install dependencies: `sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common`
+     - Add Docker GPG key: `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+     - Install Docker Engine: `sudo apt-get update sudo apt-get install docker-ce docker-ce-cli containerd.io`
+     - Verify Docker Engine is installed correctly:  `sudo docker run hello-world`
   - Install on MacOS: 
       - Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-mac/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
   - Install on Windows: 
