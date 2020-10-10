@@ -163,10 +163,11 @@ function StartActive(context: vscode.ExtensionContext) {
     StoreInfo.svfTreeView = new SVFTreeDataProvider();
     OpenTargetFile();
     OpenBackEndFile();
-    SetBar();
-    setInterval(() => {
-        SetBar();
-    }, 1000);
+    SetTestBar();
+    // SetBar();
+    // setInterval(() => {
+    //     SetBar();
+    // }, 1000);
     // getCommand();
 }
 
@@ -202,6 +203,16 @@ function SetBar() {
         StoreInfo.targetBuildBar.setShow(false);
         StoreInfo.bugReportBar.setShow(false);
     }
+}
+
+function SetTestBar() {
+    StoreInfo.installEnvBar.setShow(false);
+    StoreInfo.svfOpenConfigBar.setShow(false);
+    StoreInfo.svfBuildSvfExBar.setShow(false);
+    StoreInfo.targetBuildBar.setShow(false);
+    StoreInfo.bugReportBar.setShow(false);
+
+    StoreInfo.bugReportBar.setShow(true);
 }
 
 function CheckBackEnd(): boolean {
