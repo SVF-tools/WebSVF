@@ -124,7 +124,7 @@ class WebPanel {
      * Listener basis structure.
      * @param message Receive massage info.
      */
-    protected receiveMessage(message: { command: string; text: string }) {
+    protected receiveMessage(message: any) {
         switch (message.command) {
             case "error":
                 vscode.window.showErrorMessage(message.text);
@@ -138,6 +138,9 @@ class WebPanel {
                     command: "connect",
                     text: "",
                 });
+                break;
+            case "pos":
+                vscode.window.showInformationMessage(`Line: ${message.line} File: ${message.file}`);
                 break;
         }
     }
