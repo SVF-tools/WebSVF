@@ -13,6 +13,7 @@ export class Config {
         BUILD_BACKEND: configInfo.command.BUILD_BACKEND,
         BUILD_TARGET: configInfo.command.BUILD_TARGET,
         SHOW_REPORT: configInfo.command.SHOW_REPORT,
+        SHOW_CODEMAP: configInfo.command.SHOW_CODEMAP,
     };
 
     private _pathType = {

@@ -4,6 +4,7 @@ import { CommandBasic, mcommand } from "./components/command";
 import { BarBasic, mbar } from "./components/statusbar";
 import { mterminal } from "./components/terminial";
 import { RgisterTreeDataProvider } from "./components/treeview";
+import { WebInfo, WebPanel } from "./components/webview";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -41,6 +42,8 @@ export { BarBasic, mbar };
 export { mterminal };
 
 export { RgisterTreeDataProvider };
+
+export { WebInfo, WebPanel };
 
 export function getCommands() {
     vscode.commands.getCommands().then((result) => {

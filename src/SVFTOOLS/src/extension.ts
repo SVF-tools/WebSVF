@@ -94,6 +94,8 @@ function initial(context: vscode.ExtensionContext) {
     let backendInfo = data.config.getPathInfo(data.config.pathType.BACKEND_PATH);
     new data.RgisterTreeDataProvider(backendInfo.key, backendInfo.folder);
 
+    // console.log(webviewInfo);
+
     /*some times, extension will open a target folder. it will load all extension again.
     so extension will forget what it should do before. the flag will remind extension what it should do.*/
     checkFlag();

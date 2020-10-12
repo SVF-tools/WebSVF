@@ -278,6 +278,9 @@ export class ShowReportCommand extends data.CommandBasic {
     }
 
     Func() {
-        vscode.window.showInformationMessage("SHOW REPORT", "YES");
+        // vscode.window.showInformationMessage("SHOW REPORT", "YES");
+        let webviewInfo: data.WebInfo = data.config.getWeibviewInfo(data.config.command.SHOW_CODEMAP);
+        new data.WebPanel(webviewInfo, data.context);
+
     }
 }

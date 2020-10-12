@@ -5,7 +5,8 @@
         "OPEN_BACKEND": "SVFTOOLS.OPEN.BACKEND",
         "BUILD_BACKEND": "SVFTOOLS.BUILD.BACKEND",
         "BUILD_TARGET": "SVFTOOLS.BUILD.TARGET",
-        "SHOW_REPORT": "SVFTOOLS.SHOW.REPORT"
+        "SHOW_REPORT": "SVFTOOLS.SHOW.REPORT",
+        "SHOW_CODEMAP": "SVFTOOLS.SHOW.CODEMAP"
     },
     "statusbar": [
         {
@@ -122,6 +123,21 @@
             "folder": "scripts",
             "mainFile": "environment.sh",
             "openFlag": "OpenEnv.flag"
+        }
+    ],
+    "webview": [
+        {
+            "key": "SVFTOOLS.SHOW.CODEMAP",
+            "viewType": "svf_analysis",
+            "title": "SVF ANALYSIS TOOLS",
+            "column": -1,
+            "enableScripts": true,
+            "localResourceRoots": [
+                "public"
+            ],
+            "retainContextWhenHidden": true,
+            "homeRelativePath": "./public/index.html",
+            "svgRelativePath": "./public/index.svg"
         }
     ]
 }
