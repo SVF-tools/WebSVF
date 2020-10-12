@@ -40,11 +40,9 @@ export class Config {
         return this._statusbar;
     }
 
-
     public get terminal() {
         return this._terminal;
     }
-
 
     public get path() {
         return this._path;
@@ -63,14 +61,18 @@ export class Config {
         let rootPath = data.rootPath();
 
         if (rootPath) {
+
             let filePath = path.join(rootPath, "config.json");
+
             const data1 = JSON.stringify(this.command, null, 4);
             const data2 = JSON.stringify(this.statusbar, null, 4);
             const data3 = JSON.stringify(this.terminal, null, 4);
             const data4 = JSON.stringify(this.webview, null, 4);
+
             if (fs.existsSync(filePath)) {
                 fs.unlinkSync(filePath);
             }
+
             fs.appendFileSync(filePath, data1);
             fs.appendFileSync(filePath, data2);
             fs.appendFileSync(filePath, data3);
@@ -99,6 +101,7 @@ export class Config {
                     break;
             }
         }
+
     }
 
     private analysisBarInfo(statusbar: any[]) {

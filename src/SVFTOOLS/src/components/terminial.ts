@@ -85,7 +85,7 @@ class TerminalArray {
                     return element.key !== key;
                 });
 
-                delete this.list;
+                // delete this.list;
                 this.list = newList;
                 flag = true;
                 return true;
