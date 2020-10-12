@@ -25,6 +25,12 @@ elements.forEach(function (el) {
             }
         }
         console.log("ln:", +ln, "fl:", fl);
+        vscode.postMessage({
+            command: "pos",
+            text: "pos",
+            line: ln,
+            file: fl
+        });
     });
 })
 
@@ -39,9 +45,9 @@ window.addEventListener("message", (event) => {
 
 document.onreadystatechange = function () {
     if (document.readyState === "complete") {
-        vscode.postMessage({
-            command: "connect",
-            text: "Hello world",
-        });
+        // vscode.postMessage({
+        //     command: "connect",
+        //     text: "Hello world",
+        // });
     }
 };
