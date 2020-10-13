@@ -1,43 +1,28 @@
 
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
 
-## **Install Guide**
--  **Install Git**
-	- Install on Ubuntu: `sudp apt install git-all`
-	- Install on MacOS: `brew install git`
-	- Download Git on Windows (https://git-scm.com/download/win) 
-- **Install Node.JS (https://nodejs.org/en/download/)**
-- **Install yarn**
-	- Install on Ubuntu (https://classic.yarnpkg.com/en/docs/install/#debian-stable)
-	- Install on MacOS: `brew install yarn`
-	- Download on Windows (https://classic.yarnpkg.com/en/docs/install/#windows-stable) 
-- **Install VSCode (https://code.visualstudio.com/)**
-- **Install Docker**
-  -  Install on Ubuntu: 
-  	- Install Docker Engine on Ubuntu（https://docs.docker.com/engine/install/ubuntu/）
-  - Install on MacOS: 
-      	- Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-mac/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
-  - Install on Windows: 
-      	- Download and Install docker([https://hub.docker.com/editions/community/docker-ce-desktop-windows/](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
+## Prerequisite
+Follow the [Dev Tools Requirements Guide](https://github.com/SVF-tools/WebSVF/wiki/Dev-Tools-Requirements) to prepare your local machine for WebSVF.
+
+
+## Extension Installation 
+1. `cd ./WebSVF/src/SVFTOOLS` to go to SVFTOOLs root 
+2. `yarn` to install the website's npm dependencies
+3. `sudo npm install -g vsce` to install the Visual Studio Code Extension Manager
+4. `vsce package` to generate a .vsix file
+5. Click on the Extensions icon in the Activity Bar on the side of VS Code, then click more to install extension from .vsix file
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
+
 
 ## **User Guide**
 
-1. **Local Single-User Code Space Using Docker Container(Ubuntu)**   
-	First, pull the image from Docker hub:    
-	` sudo docker pull winoooops/websvf-docker `   
-
-	After Terminal finishes downloadinng, check the image has been successfully downloaded:
-	 ` sudo docker images -a `  
-	You should see a list of images and one of them is winoooops/websvf-docker.   
-
-	Now try run the Docker Container:   
-	` sudo docker run -p 8080:8080 --name websvf winoooops/websvf-docker `  
-	This comand will trigger the code server to first install the extension and then listen on `0.0.0.0:8080` without requiring password. It will take a coule of seconds for the browser to finish the buffering. 
-
-2. **Local Multi-User Code Space**
+1. **Running Single-User WebSVF locally**   
+    - First, pull the image from Docker hub: ` sudo docker pull winoooops/websvf-docker `   
+    - After Terminal finishes downloading, check the image has been successfully downloaded:` sudo docker images -a `. You should see a list of images and one of them is winoooops/websvf-docker.
+    - Now try run the Docker Container: ` sudo docker run -p 8080:8080 --name websvf winoooops/websvf-docker ` This comand will trigger the code server to first install the extension and then listen on `0.0.0.0:8080` without requiring password. It will take a coule of seconds for the browser to finish the buffering. 
 
 
-3. **AWS Multi-User Code Space**
+2. **AWS Multi-User Code Space**
 
 
 ## **Dev Guide**
@@ -95,28 +80,6 @@ The following points show steps on how to install websvf on AWS (as a developer)
   - **If the [Launch Template](https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-launch-templates-for-amazon-ec2-instances/) is there, just test things, launch a new instance from template (using ECS template) and see if that instance appears within your [Amazon Elastic Container Service (ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html) [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) (can be seen under the ECS instances tab) by matching the EC2 Instance Ids.**
   
   - **The Amazon Elastic Container Service [(ECS)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html) [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) is now ready for use. The tasks (WebSVF containers) are programmatically created upon user signup.**
-
-
-
-### Extension Installation Breakdown
-**Dev Preparation**
-- Clone the project: `git clone https://github.com/SVF-tools/WebSVF.git --depth 1`
-- Go to SVFTools Repo: `cd ./WebSVF/src/SVFTOOLS`
-- Install the dependencies: `yarn`
-- Start the code-server: `code .`
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/env.gif?raw=true' width='720'/>
-
-**Genearte Extension**
-- open vscode terminal:  
-        - Linux: `[ Ctrl + shift + ]`  
-        - Mac: `[ ^ + ⇧ +  ]`
- - cmd: `sudo npm install -g vsce`
- - cmd: `vsce package` 
-It will generate a extension named: **svftools-[version].vsix**
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsce.gif?raw=true' width='720'/>
-
-**Install extension from .vsix file ?**
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
 
 
 ### **How to use the DockerFile && Docker Hub Repository**
