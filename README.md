@@ -33,5 +33,5 @@ This building process will output a **svftools-[version].vsix** file, which coul
 
 
 ## **Developer Guide** ##
-### **Local Server with Docker** ###
+### **[Local Development Web Server](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-Local-Development-Web-Server)** ###
 ### **[AWS Setup Using ECS](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-AWS-Setup-Using-ECS)** ###
