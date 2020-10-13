@@ -1,0 +1,254 @@
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  list-style-type: decimal !important;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.err-line {
+  overflow: hidden;
+}
+a{
+  margin:0;
+}
+#heading {
+  color: white;
+  font-size: 60px;
+}
+/* #heading {
+  padding-left: 4vw;
+  color: white;
+  font-size: 4em;
+  margin-block-end: 0.4em;
+  margin-block-start: 0.2em;
+} */
+.home-button {
+  
+}
+.code-body{
+  font-size: 25px;
+  line-height: 60px;
+  max-width: 85%;
+}
+
+pre{
+  margin:0
+}
+
+body{
+  margin: 40px !important;
+  background-color: #3c3c3c !important; 
+}
+
+#text a {
+  padding-right: 5em;
+}
+
+/* .show-button {
+  background-color: #3399ff;
+  color: white;
+  padding: 0.3em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.5em;
+  border-radius: 12px;
+  border-color: #3399ff;
+}
+
+.remove-button {
+  background-color: grey;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size:1.5em;
+  border-radius: 12px;
+  justify-self: right;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid grey;
+}
+ */
+.err-button {
+  font-size: 18px;
+  background-color: #151616ce;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.pre .nocode {
+  color: #ffffff00;
+}
+
+/* The alert message box margin-bottom: 15px;padding: 20px;*/
+.alert {
+  background-color: #a03030ab; 
+  color: rgb(0, 0, 0);
+  margin-right: 10px;
+  float: right;
+  border-color: #181616cb;
+  border-style: dashed;
+  border-width: 3px;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bolder;
+  padding: 3px;
+  font-size: 20px;
+  max-width: 30%;
+  min-width: 340px;
+}
+
+.alert a {
+  background-color: rgba(255, 255, 255, 0.466); 
+  color: black;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.alert-syntax {
+  background-color: #56ccfbea; 
+  color: rgb(0, 0, 0);
+  margin-right: 10px;
+  float: right;
+  border-color: #181616cb;
+  border-style: dashed;
+  border-width: 3px;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bolder;
+  padding: 3px;
+  font-size: 20px;
+/*   padding-top: 0.2vw;
+  padding-bottom: 0.2vw; */
+  max-width: 30%;
+  min-width: 340px;
+}
+
+.alert-syntax a {
+  background-color: rgba(255, 255, 255, 0.575); 
+  color: black;
+  margin: 3px;
+  font-weight: bold;
+  font-size: 20px;
+  max-width: 25%;
+}
+
+.alert-syntax .error-title a {
+  font-weight: bolder;
+  font-size: 25px;
+  
+}
+
+.alert-semantic {
+  background-color: #f7fa52ec; 
+  color: rgb(0, 0, 0);
+  margin-right: 10px;
+  float: right;
+  border-color: #181616cb;
+  border-style: dashed;
+  border-width: 3px;
+  text-align: center;
+  font-weight: bolder;
+  padding: 5px;
+  font-size: 10px;
+  max-width: 30%;
+  max-height: 150px;
+  min-width: 340px;
+}
+
+.alert-semantic a {
+  background-color: rgba(255, 255, 255, 0.575); 
+  color: black;
+  margin:3px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.alert-semantic .error-title a {
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+.alert-logical {
+  background-color: #89fa3ee5; 
+  color: rgb(0, 0, 0);
+  margin-right: 20px;
+  float: right;
+  border-color: #181616cb;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+/*   line-height: 1.9vw; */
+  font-weight: bolder;
+  padding: 5px;
+  font-size: 20px;
+/*   padding-top: 0.2vw; */
+/*   padding-bottom: 0.2vw; */
+  max-width: 30%;
+  max-height: 150px;
+  min-width: 340px;
+}
+
+.alert-logical a {
+  background-color: rgba(255, 255, 255, 0.575); 
+  color: black;
+  margin: 3px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.alert-logical .error-title a {
+  font-weight: bolder;
+  font-size: 25px;
+}
+/*pretiffy css */
+/* desert scheme ported from vim to google prettify */
+pre.prettyprint { display: block; background-color: #333 }
+pre .nocode { background-color: none; color: none }
+pre .str { color: #ffa0a0 } /* string  - pink */
+pre .kwd { color: #f0e68c; font-weight: bold }
+pre .com { color: #87ceeb } /* comment - skyblue */
+pre .typ { color: #98fb98 } /* type    - lightgreen */
+pre .lit { color: #cd5c5c } /* literal - darkred */
+pre .pun { color: #fff }    /* punctuation */
+pre .pln { color: #fff }    /* plaintext */
+pre .tag { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
+pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */
+pre .atv { color: #ffa0a0 } /* attribute value - pink */
+pre .dec { color: #98fb98 } /* decimal         - lightgreen */
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0;  font-size: 25px; margin-left: 25px; color: white; } /* IE indents via margin-left */
+li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+li.L1,li.L3,li.L5,li.L7,li.L9 { background-color:#333333 }
+/* Alternate shading for lines */
+/*li.L1,li.L3,li.L5,li.L7,li.L9 { }*/
+
+@media print {
+  pre.prettyprint { background-color: none }
+  pre .str, code .str { color: #060 }
+  pre .kwd, code .kwd { color: #006; font-weight: bold }
+  pre .com, code .com { color: #600; font-style: italic }
+  pre .typ, code .typ { color: #404; font-weight: bold }
+  pre .lit, code .lit { color: #044 }
+  pre .pun, code .pun { color: #440 }
+  pre .pln, code .pln { color: #000 }
+  pre .tag, code .tag { color: #006; font-weight: bold }
+  pre .atn, code .atn { color: #404 }
+  pre .atv, code .atv { color: #060 }
+}
+li.L1,li.L3,li.L5,li.L7,li.L9 { background: #grey !important }
