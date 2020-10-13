@@ -31,6 +31,14 @@ This building process will output a **svftools-[version].vsix** file, which coul
 2. Click more to install extension from the generated .vsix file
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
 
+### **Use SVFTOOLS extension** ###
+After installed SVFTOOLS extension,
+1. Click "INSTALL SVF ENVIRONMENT" to install the svf environment
+    <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/envir_install.png?raw=true' width='720'/>
+2. Click button below to open the target file
+    <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/target_input.png?raw=true' width='720'/>
+3. Tap "TARGET REPORT" button to get the report
+    <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/report.png?raw=true' width='720'/>
 
 ## **Developer Guide** ##
 ### **[Local Development Web Server](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-Local-Development-Web-Server)** ###
