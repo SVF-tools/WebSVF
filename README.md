@@ -1,8 +1,8 @@
 
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
 
-## Prerequisite
-Follow the [Dev Tools Requirements Guide](https://github.com/SVF-tools/WebSVF/wiki/Dev-Tools-Requirements) to prepare your local machine for WebSVF.
+## Development Setup
+Follow the [Development Setup](https://github.com/SVF-tools/WebSVF/wiki/Development-Setup) to prepare your local machine for WebSVF.
 
 
 ## Extension Installation 
