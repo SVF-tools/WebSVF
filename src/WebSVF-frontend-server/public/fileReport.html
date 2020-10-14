@@ -49,23 +49,25 @@
 <a class="code-body" id="11">      return 0;</a>
 <a class="code-body" id="12">  }</a></pre>
 
-    <script type="text/javascript" src="/vendor/jquery/3.4.1/jquery-3.4.1.slim.min.js"></script>
+    <!-- bootstrap js  -->
+    <script type="text/javascript" src="./vendor/jquery/3.4.1/jquery-3.4.1.slim.min.js"></script>
+    <script type="text/javascript" src="./vendor/popper-js/1.16.0/popper.min.js"></script>
+    <script type="text/javascript" src="./vendor/bootstrap/4.4.1/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="./vendor/jquery/3.4.1/jquery-3.4.1.slim.min.js"></script>
 
     <script>
       PR.prettyPrint();
     </script>
-    <!-- bootstrap js  -->
-    <script type="text/javascript" src="/vendor/jquery/3.4.1/jquery-3.4.1.slim.min.js"></script>
-    <script type="text/javascript" src="/vendor/popper-js/1.16.0/popper.min.js"></script>
-    <script type="text/javascript" src="/vendor/bootstrap/4.4.1/bootstrap.min.js"></script>
 
     <script src="./js/bugReportJSON.js"></script>
 
     <script id="LeaderLines">
 		var ref_lines =[{"start":"err0","end":4},{"start":"err1","end":8},{"start":"err2","end":10}];
 		var lines =[{"start":4,"end":8},{"start":8,"end":10}];
-		var stacktrace_array =[{"ln":4,"type":"Syntax","StackTrace":[{"ln":4,"Title":"Null Reference"},{"ln":10,"Title":"Unexpected end of line"}]},{"ln":13,"type":"Semantic","StackTrace":[{"ln":4,"Title":"Null Reference"},{"ln":10,"Title":"Unexpected end of line"}]},{"ln":18,"type":"Logical","StackTrace":[{"ln":4,"Title":"Null Reference"},{"ln":10,"Title":"Unexpected end of line"}]}];
-		var file_id = 1</script>
+    var stacktrace_array =[{"ln":4,"type":"Logical","StackTrace":[{"ln":1,"Title":"Null Reference"},{"ln":3,"Title":"Unexpected end of line"},{"ln":4,"Title":"Unexpected end of line"}]},{"ln":8,"type":"Semantic","StackTrace":[{"ln":4,"Title":"Null Reference"},{"ln":6,"Title":"Unexpected end of line"}]},{"ln":10,"type":"Syntax","StackTrace":[{"ln":7,"Title":"Null Reference"},{"ln":10,"Title":"Unexpected end of line"}]}];
+    var file_id = 0
+    </script>
 
     <script src="./js/leader-line_pseudo_code.js"></script>
 
@@ -88,11 +90,11 @@
     </script>
 
     <script>
-      $(document).ready(function() {
-        $("li")
-          .has("span.nocode")
-          .css("margin-bottom", "5vw");
-      });
+      // $(document).ready(function() {
+      //   $("li")
+      //     .has("span.nocode")
+      //     .css("margin-bottom", "5vw");
+      // });
     </script>
   
 
