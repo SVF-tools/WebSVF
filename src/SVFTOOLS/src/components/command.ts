@@ -53,6 +53,23 @@ class CommandBasic {
         }
     }
 
+    ShowFileWithPos(filePath: string, line: number) {
+
+        vscode.commands.executeCommand("workbench.files.action.focusFilesExplorer");
+
+        if (fs.existsSync(filePath)) {
+
+            let stat = fs.statSync(filePath);
+
+            let range: vscode.Range = new vscode.Range(line, 0, line, 0);
+
+            if (stat.isFile()) {
+                vscode.window.showTextDocument(vscode.Uri.file(filePath), { selection: range, viewColumn: 2 });
+            }
+        }
+
+    }
+
     CreateFolder(folderPath: string) {
 
         if (!fs.existsSync(folderPath)) {

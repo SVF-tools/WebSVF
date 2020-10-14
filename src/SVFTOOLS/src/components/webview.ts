@@ -139,9 +139,6 @@ class WebPanel {
                     text: "",
                 });
                 break;
-            case "pos":
-                vscode.window.showInformationMessage(`Line: ${message.line} File: ${message.file}`);
-                break;
         }
     }
     /**
