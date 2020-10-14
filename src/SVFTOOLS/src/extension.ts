@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as data from "./data";
 import * as cmd from "./model/command";
 import * as bar from "./model/statusbar";
+
 import * as fs from "fs";
 
 export function activate(context: vscode.ExtensionContext) {

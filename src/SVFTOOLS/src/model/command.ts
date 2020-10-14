@@ -3,6 +3,7 @@ import * as data from "../data";
 import * as fs from "fs";
 import * as path from "path";
 import { execSync } from "child_process";
+import * as web from "./webview";
 
 interface TerInfo {
     title: string;
@@ -280,7 +281,8 @@ export class ShowReportCommand extends data.CommandBasic {
     Func() {
         // vscode.window.showInformationMessage("SHOW REPORT", "YES");
         let webviewInfo: data.WebInfo = data.config.getWeibviewInfo(data.config.command.SHOW_CODEMAP);
-        new data.WebPanel(webviewInfo, data.context);
+        // new data.WebPanel(webviewInfo, data.context);
+        new web.WebView(webviewInfo);
 
     }
 }
