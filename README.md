@@ -40,6 +40,18 @@ After installed SVFTOOLS extension,
 3. Tap "TARGET REPORT" button to get the report
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/report.png?raw=true' width='720'/>
 
+### **Multi-User on Cloud** ###
+
+To get started with WebSVF, simply signup on our [website]( https://svf-tools.github.io/WebSVF/#/) and get a code space with all the required SVF tools preinstalled.
+
+This feature is still on beta and you might face issues while using it.  We might already be aware about the issue and have started working on it. Please check our [known issues](#) section for further info
+
+1. Click on Log in  which will take you to the Login/Signup Page
+2. If you do not have an account with us, you can signup to get your own personalised code space with all the Web SVF tools pre-installed
+
+If you want to run the WebApp locally, you will need to follow the [Guide](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-Running-WebSVF-WebApp-locally) here.
+
+
 ## **Developer Guide** ##
 ### **[Local Development Web Server](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-Local-Development-Web-Server)** ###
 ### **[AWS Setup Using ECS](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-AWS-Setup-Using-ECS)** ###
