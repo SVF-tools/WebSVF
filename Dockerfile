@@ -43,4 +43,4 @@ ENV XDG_DATA_HOME="~/.local/share/code-server/extensions"
 RUN cp svftools-0.0.3.vsix ~/.local/share/code-server/extensions
 
 #start code-server without pwd and automatically install the extension, along with some port forwarding
-CMD code-server --install-extension ~/.local/share/code-server/extensions/svftools-0.0.3.vsix --force && code-server --auth="none" --host 0.0.0.0 --port 8080
+CMD code-server --install-extension ~/.local/share/code-server/extensions/svftools-0.0.3.vsix --force && code-server --cert --auth="none" --host 0.0.0.0 --port 8080
