@@ -1,8 +1,19 @@
 
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
 
-## Development Setup
-Follow the [Development Setup](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-Prerequisite) to prepare your local machine for WebSVF.
+## **Prerequisites**
+1. **Git**
+2. **[Node.JS](https://nodejs.org/en/download/)**
+3. **Yarn** 
+	- Install on [Ubuntu](https://classic.yarnpkg.com/en/docs/install/#debian-stable)
+	- Install on MacOS: `brew install yarn`
+	- Download on [Windows](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
+4. **[VSCode](https://code.visualstudio.com/)** OR **[Code-Server](https://github.com/cdr/code-server)**
+5. **Docker**
+    - Install on [Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+    - Install on [MacOS](https://hub.docker.com/editions/community/docker-ce-desktop-mac/)
+    - Install on [Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
+6. **Clone of the [WebSVF repo](https://github.com/SVF-tools/WebSVF) on your local machine**
 
 ## **User Guide** ##
 
