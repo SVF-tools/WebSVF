@@ -40,7 +40,7 @@ After installed SVFTOOLS extension,
 3. Tap "TARGET REPORT" button to get the report
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/report.png?raw=true' width='720'/>
 
-### **Multi-User on Cloud** ###
+### **Installation Guide for Multi-User on Cloud** ###
 
 To get started with WebSVF, simply signup on our [website]( https://svf-tools.github.io/WebSVF/#/) and get a code space with all the required SVF tools preinstalled.
 
