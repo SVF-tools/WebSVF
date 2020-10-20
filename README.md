@@ -13,9 +13,8 @@
     - Install on [Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
     - Install on [MacOS](https://hub.docker.com/editions/community/docker-ce-desktop-mac/)
     - Install on [Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
-6. **Clone of the [WebSVF repo](https://github.com/SVF-tools/WebSVF) on your local machine**
 
-## **User Guide** ##
+## **Installation Guide** ##
 
 ### **Building WebSVF Extension** ###
 To build WebSVF, you need to clone the source code repository and use VS Code Extension Manager to install the SVFTOOLS
@@ -51,7 +50,14 @@ After installed SVFTOOLS extension,
 3. Tap "TARGET REPORT" button to get the report
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/report.png?raw=true' width='720'/>
 
-### **Installation Guide for Multi-User on Cloud** ###
+
+## ***User Guide** ##
+
+
+
+
+
+### **WebSVF on the Cloud** ###
 
 To get started with WebSVF, simply signup on our [website]( https://svf-tools.github.io/WebSVF/#/) and get a code space with all the required SVF tools preinstalled.
 
