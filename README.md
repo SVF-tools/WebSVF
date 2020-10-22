@@ -59,12 +59,11 @@ This building process will output a **svftools-[version].vsix** file, which coul
 After installed SVFTOOLS extension,
 1. Click "INSTALL SVF ENVIRONMENT" to install the svf environment
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/envir_install.png?raw=true' width='720'/>
-2. Click button below to open the target file
+2. Click "BUILD INPUT TARGET" to generate a code sample for demonstration
+3. Click button below to open the target file
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/target_input.png?raw=true' width='720'/>
-3. Tap "TARGET REPORT" button to get the report
+4. Simply tap "TARGET REPORT" button to get the analysis report
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/report.png?raw=true' width='720'/>
-
-
 
 ### **WebSVF on the Cloud** ###
 
