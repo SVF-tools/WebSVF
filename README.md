@@ -63,7 +63,7 @@ After installed SVFTOOLS extension,
 3. Click button below to open the target file
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/target_input.png?raw=true' width='720'/>
 4. Simply tap "TARGET REPORT" button to get the analysis report
-    <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/report.png?raw=true' width='720'/>
+    <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/target_report.png?raw=true' width='720'/>
 
 ### **WebSVF on the Cloud** ###
 
