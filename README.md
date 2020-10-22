@@ -1,5 +1,9 @@
 
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
+## **Architecture**
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/Architecture.png?raw=true' width='720'/>
+The overall architecture for the WebSVF is composed of three major parts: the AWS ECS, Front-end UI and Docker Containers which is basically the WebSVF Backend.
+
 
 ## **Prerequisites**
 1. **Git**
