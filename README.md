@@ -2,7 +2,9 @@
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
 ## **Architecture**
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/Architecture.png?raw=true' width='720'/>
-The overall architecture for the WebSVF is composed of three major parts: the AWS ECS, Front-end UI and Docker Containers which is basically the WebSVF Backend.
+The overall architecture for the WebSVF is composed of three major parts: The landing page, where users will be able to access their code spaces, ECS service in AWS where we run users codespaces as container which is pulled from docker hub and Docker Containers which is basically the WebSVF Backend.
+
+Detailed explanation of the architecutre can be found [here](https://github.com/SVF-tools/WebSVF/wiki/Architecture)
 
 
 ## **Prerequisites**
