@@ -1,6 +1,6 @@
 
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
-## **Architecture**
+## **1. Architecture**
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/Architecture.png?raw=true' width='720'/>
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/Architecture2.png?raw=true' width='720'/>
 
@@ -13,7 +13,7 @@
 * Detailed explanation of the architecutre can be found [here](https://github.com/SVF-tools/WebSVF/wiki/Architecture)
 
 
-## **Prerequisites**
+## **2. Prerequisites**
 1. **Git**
 2. **[Node.JS](https://nodejs.org/en/download/)**
 3. **Yarn** 
@@ -26,37 +26,18 @@
     - Install on [MacOS](https://hub.docker.com/editions/community/docker-ce-desktop-mac/)
     - Install on [Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
 
-## **Installation Guide** ##
+## **3. Installation Guide** ##
 
-### **Building WebSVF Extension** ###
-If you cannot find it in VScode market, you can build it by yourself.
-To build WebSVF, you need to clone the source code repository and use VS Code Extension Manager to install the SVFTOOLS
-```
-# Clone from WebSVF repo
-git clone https://github.com/SVF-tools/WebSVF --depth 1 
+### **Installing WebSVF using docker image (recommended)**
+* To install WebSVF using docker, ensure you have docker installed as per our prerequisite
+* Run `docker container run -d -p 8080:8080 --name websvf winoooops/websvf-docker`. This will run WebSVF on port 8080 of your device and will name the container "websvf"
 
-# Go to SVFTOOLS directory 
-cd ./WebSVF/src/SVFTOOLS
+> Otherways to install WebSVF locally can be found [here](https://github.com/SVF-tools/WebSVF/wiki/Installing-WebSVF)
 
-# Install dependencies
-yarn
 
-# Install the Visual Studio Code Extension Manager
-npm install -g vsce 
+## **4. User Guide** ##
 
-# Generate a .vsix file
-vsce package 
-```
-
-### **Enable the SVFTOOLS extension** ###
-This building process will output a **svftools-[version].vsix** file, which could be used to generate the extension. 
-1. Click on the Extensions icon in the Activity Bar on the side of VS Code 
-2. Click more to install extension from the generated .vsix file
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/vsix_install.png?raw=true' width='720'/>
-
-## ***User Guide** ##
-
-### **Use SVFTOOLS extension** ###
+### **4.1 Use SVFTOOLS extension** ###
 After installed SVFTOOLS extension,
 1. Click "INSTALL SVF ENVIRONMENT" to install the svf environment
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/envir_install.png?raw=true' width='720'/>
@@ -66,7 +47,7 @@ After installed SVFTOOLS extension,
 4. Simply tap "TARGET REPORT" button to get the analysis report
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/target_report.png?raw=true' width='720'/>
 
-### **WebSVF on the Cloud** ###
+### **4.2 WebSVF on the Cloud** ###
 
 To get started with WebSVF, simply signup on our [website]( https://svf-tools.github.io/WebSVF/#/) and get a code space with all the required SVF tools preinstalled.
 
@@ -78,6 +59,6 @@ This feature is still on beta and you might face issues while using it.  We migh
 If you want to run the WebApp locally, you will need to follow the [Guide](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-Running-WebSVF-WebApp-locally) here.
 
 
-## **Developer Guide** ##
+## **5. Developer Guide** ##
 ### **[Local Development Web Server](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-Local-Development-Web-Server)** ###
 ### **[AWS Setup Using ECS](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-AWS-Setup-Using-ECS)** ###
