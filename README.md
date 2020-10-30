@@ -4,7 +4,12 @@
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/Architecture.png?raw=true' width='720'/>
 <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/Architecture2.png?raw=true' width='720'/>
 
-* The overall architecture for the WebSVF is composed of three major parts: The landing page, where users will be able to access their code spaces, ECS service in AWS where we run users codespaces as container which is pulled from docker hub and Docker Containers which is basically the WebSVF Backend.
+* The overall architecture for the WebSVF is composed of following components:
+	* **Landing Page**: Users will be able to view their codespace on the landing page. Landing page is hosted on github pages.It integrates with Firebase for authentication and storage as well as communicates with AWS for codespaces
+	* **Cloud (AWS)**: ECS service on AWS is used to host WebSVF Docker containers. Docker containers run as task on ECS. 
+	* **Docker Container**: Code-Server runs on the container with all the WebSVF extension preinstalled
+	* **WebSVF Extensions**: There are 4 extensions that come preinstalled. These extension helps create build user's input code and backend code which is used to generate the bug report for code analysis
+
 * Detailed explanation of the architecutre can be found [here](https://github.com/SVF-tools/WebSVF/wiki/Architecture)
 
 
