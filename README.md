@@ -1,7 +1,7 @@
 
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
 ## **1. Architecture**
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/ArchitectureV2.png?raw=true' width='720'/>
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/ArchitectureV2.png?raw=true' width='520'/>
 
 * The overall architecture for the WebSVF is composed of following components:
 	* **Landing Page**: Users will be able to view their codespace on the landing page. Landing page is hosted on github pages.It integrates with Firebase for authentication and storage as well as communicates with AWS for codespaces
