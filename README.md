@@ -1,29 +1,23 @@
 
 # **<p align="center">SVF ANALYSIS TOOLS</p>**
 ## **1. Architecture**
-<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/ArchitectureV2.png?raw=true' width='520'/>
+<img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/ArchitectureV3.png?raw=true' width='520'/>
 
 * The overall architecture for the WebSVF is composed of following components:
 	* **Landing Page**: Users will be able to view their codespace on the landing page. Landing page is hosted on github pages.It integrates with Firebase for authentication and storage as well as communicates with AWS for codespaces
-	* **Cloud (AWS)**: ECS service on AWS is used to host WebSVF Docker containers. Docker containers run as task on ECS. 
+	* **Cloud (AWS)**: ECS service on AWS is used to host WebSVF Docker containers. Docker containers run as tasks on ECS. 
 	* **Docker Container**: Code-Server runs on the container with all the WebSVF extension preinstalled
-	* **WebSVF Extensions**: There are 4 extensions that come preinstalled. These extension helps create build user's input code and backend code which is used to generate the bug report for code analysis
+	* **WebSVF Extensions**: There are 4 extensions that come preinstalled. These extensions help build user's input code and backend code which is used to generate the bug report for code analysis
 
 * Detailed explanation of the architecutre can be found [here](https://github.com/SVF-tools/WebSVF/wiki/Architecture)
 
 
 ## **2. Prerequisites**
-1. **Git**
-2. **[Node.JS](https://nodejs.org/en/download/)**
-3. **Yarn** 
-	- Install on [Ubuntu](https://classic.yarnpkg.com/en/docs/install/#debian-stable)
-	- Install on MacOS: `brew install yarn`
-	- Download on [Windows](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
-4. **[VSCode](https://code.visualstudio.com/)** OR **[Code-Server](https://github.com/cdr/code-server)**
-5. **Docker**
+1. **Docker**
     - Install on [Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
     - Install on [MacOS](https://hub.docker.com/editions/community/docker-ce-desktop-mac/)
     - Install on [Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
+2. **Git (if not using dockerhub)**
 
 ## **3. Installation Guide** ##
 
@@ -42,7 +36,7 @@ b. Download from DockerHub
 `docker run -d -p 8080:8080 --name websvf websvf/websvf`
 
 **To access the local server**  
-if you are using Docker Destop, start the image by clicking the run button.
+if you are using Docker Desktop, start the image by clicking the run button.
 Alternatively, you can also enter the following URL into your web browser `http://0.0.0.0:8080`
 
 ## **4. User Guide** ##
