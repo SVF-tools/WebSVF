@@ -39,7 +39,7 @@ b. Download from DockerHub
 2. After the building or downloading completes, you can verify the Docker Image exists  
 `docker images -a `
 3. Then you can start the web server by running   
-`docker run -p 8080:8080 --name websvf websvf/websvf`
+`docker run -d -p 8080:8080 --name websvf websvf/websvf`
 
 **To access the local server**  
 if you are using Docker Destop, start the image by clicking the run button.
