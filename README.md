@@ -28,11 +28,23 @@
 ## **3. Installation Guide** ##
 
 ### **Installing WebSVF using docker image (recommended)**
-* To install WebSVF using docker, ensure you have docker installed as per our prerequisite
-* Run `docker container run -d -p 8080:8080 --name websvf winoooops/websvf-docker`. This will run WebSVF on port 8080 of your device and will name the container "websvf"
+To debug code and run tests, it is often useful to have a local HTTP server. For the purpose of further deploying the project on AWS, we have made available a local web server with a dockerized code-server.
 
-> Otherways to install WebSVF locally can be found [here](https://github.com/SVF-tools/WebSVF/wiki/Installing-WebSVF)
+* To install WebSVF using docker, ensure you have docker installed as per our prerequisite *
 
+1. In order to have a local Docker Image in place, you can choose to either build from Dockerfile or download from DockerHub  
+a. Build from Dockerfile in the root directory  
+`docker build -t websvf/websvf. `  
+b. Download from DockerHub   
+`sudo docker pull websvf/websvf` 
+2. After the building or downloading completes, you can verify the Docker Image exists  
+`docker images -a `
+3. Then you can start the web server by running   
+`docker run -p 8080:8080 --name websvf websvf/websvf`
+
+**To access the local server**  
+if you are using Docker Destop, start the image by clicking the run button.
+Alternatively, you can also enter the following URL into your web browser `http://0.0.0.0:8080`
 
 ## **4. User Guide** ##
 
