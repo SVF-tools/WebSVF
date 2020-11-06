@@ -45,12 +45,12 @@ function initial(context: vscode.ExtensionContext) {
     ];
     // statusbar generate
     const statusbar = [
-        {
-            key: data.config.getStatusbarKeyFromCommand(
-                data.config.command.INSTALL_ENV
-            ),
-            instance: new bar.GenerateBar(data.config.command.INSTALL_ENV),
-        },
+        // {
+        //     key: data.config.getStatusbarKeyFromCommand(
+        //         data.config.command.INSTALL_ENV
+        //     ),
+        //     instance: new bar.GenerateBar(data.config.command.INSTALL_ENV),
+        // },
         {
             key: data.config.getStatusbarKeyFromCommand(
                 data.config.command.BUILD_BACKEND

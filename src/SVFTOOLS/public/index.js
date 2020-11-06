@@ -2,6 +2,7 @@ const vscode = acquireVsCodeApi();
 const svg = document.getElementById("svg");
 
 let elements = Array.from(svg.querySelectorAll(".node"));
+let ctrlDown = false;
 
 elements.forEach(function (el) {
 
@@ -39,6 +40,7 @@ window.addEventListener("message", (event) => {
     }
 });
 
+
 document.onreadystatechange = function () {
     if (document.readyState === "complete") {
         vscode.postMessage({
@@ -47,3 +49,5 @@ document.onreadystatechange = function () {
         });
     }
 };
+
+window.addEventListener()
