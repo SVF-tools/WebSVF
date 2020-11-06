@@ -25,11 +25,8 @@
 To debug code and run tests, it is often useful to have a local HTTP server. For the purpose of further deploying the project on AWS, we have made available a local web server with a dockerized code-server.
 *To install WebSVF using docker, ensure you have docker installed as per our prerequisite*
 
-1. In order to have a local Docker Image in place, you can choose to either build from Dockerfile or download from DockerHub  
-a. Build from Dockerfile in the root directory  
-`docker build -t websvf/websvf . `  
-b. Download from DockerHub   
-`sudo docker pull websvf/websvf` 
+1. In order to have a local Docker Image in place, you can choose to either build from Dockerfile or download from DockerHub
+`docker pull websvf/websvf` 
 2. After the building or downloading completes, you can verify the Docker Image exists  
 `docker images -a `
 3. Then you can start the web server by running   
