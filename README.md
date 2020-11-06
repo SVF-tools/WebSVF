@@ -39,13 +39,10 @@ Alternatively, you can also enter the following URL into your web browser `http:
 ## **4. User Guide** ##
 
 ### **4.1 Use SVFTOOLS extension** ###
-After installed SVFTOOLS extension,
-1. Click "INSTALL SVF ENVIRONMENT" to install the svf environment
-    <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/envir_install.png?raw=true' width='720'/>
-2. Click "BUILD INPUT TARGET" to generate a code sample for demonstration
-3. Click button below to open the target file
+1. Click "BUILD INPUT TARGET" to generate a code sample for demonstration
+2. Click button below to open the target file
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/target_input.png?raw=true' width='720'/>
-4. Simply tap "TARGET REPORT" button to get the analysis report
+3. Simply tap "TARGET REPORT" button to get the analysis report
     <img src='https://github.com/SVF-tools/WebSVF/blob/master/docs/target_report.png?raw=true' width='720'/>
 
 ### **4.2 WebSVF on the Cloud** ###
