@@ -30,7 +30,7 @@ To debug code and run tests, it is often useful to have a local HTTP server. For
 2. After the building or downloading completes, you can verify the Docker Image exists  
 `docker images -a `
 3. Then you can start the web server by running   
-`docker run -d -p 8080:8080 --name websvf websvf/websvf`
+`docker run -itd -p 127.0.0.1:9000:9000 --name websvf websvf/websvf`
 
 **To access the local server**  
 if you are using Docker Desktop, start the image by clicking the run button.
