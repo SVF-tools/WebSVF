@@ -74,7 +74,7 @@ export class NewTreeDataProvider implements vscode.TreeDataProvider<NewTreeItem>
         dir.forEach((itemElement) => {
 
             const itemPath: string = path.join(rootPath, itemElement);
-            const collapsible: vscode.TreeItemCollapsibleState = this.isDir(itemPath) ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.None;
+            const collapsible: vscode.TreeItemCollapsibleState = this.isDir(itemPath) ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None;
 
             if (this.isDir(itemPath)) {
 
