@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # install necessary
 RUN apt update
-RUN apt install -y curl git zsh lsb-core net-tools cmake sudo wget build-essential libtinfo-dev libtinfo5 wget curl git cmake python3-pip libgraphviz-dev graphviz
+RUN apt install -y curl git zsh vim lsb-core net-tools cmake sudo wget build-essential libtinfo-dev libtinfo5 wget curl git cmake python3-pip libgraphviz-dev graphviz
 # install oh-my-zsh
 RUN echo y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # install code-server
@@ -45,4 +45,7 @@ RUN source env.sh && cmake . && make
 
 # start code-server without pwd and automatically install the extension, along with some port forwarding
 ENV SHELL /bin/zsh
-CMD code-server --install-extension /root/WebSVF/src/SVFTOOLS/svftools-0.0.3.vsix --force && code-server --auth="none" --host 0.0.0.0 --port 9000
+RUN code-server --install-extension /root/WebSVF/src/SVFTOOLS/svftools-0.0.3.vsix --force
+RUN code-server --install-extension liviuschera.noctis --force
+RUN cp /root/WebSVF/docs/settings.json /root/.local/share/code-server/User/settings.json
+CMD code-server --auth="none" --host 0.0.0.0 --port 9000
