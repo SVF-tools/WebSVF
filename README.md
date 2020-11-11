@@ -34,7 +34,7 @@ To debug code and run tests, it is often useful to have a local HTTP server. For
 
 **To access the local server**  
 if you are using Docker Desktop, start the image by clicking the run button.
-Alternatively, you can also enter the following URL into your web browser `http://localhost:8080`
+Alternatively, you can also enter the following URL into your web browser `http://127.0.0.1:9090`
 
 ## **4. User Guide** ##
 
