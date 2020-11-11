@@ -44,4 +44,5 @@ WORKDIR /root/SVF-example/
 RUN source env.sh && cmake . && make
 
 # start code-server without pwd and automatically install the extension, along with some port forwarding
-CMD code-server --install-extension /root/WebSVF/src/SVFTOOLS/svftools-0.0.3.vsix --force && code-server --auth="none" --host 0.0.0.0 --port 9000 && ["/bin/bash"]
+ENV SHELL /bin/zsh
+CMD code-server --install-extension /root/WebSVF/src/SVFTOOLS/svftools-0.0.3.vsix --force && code-server --auth="none" --host 0.0.0.0 --port 9000
