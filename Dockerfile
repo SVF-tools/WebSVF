@@ -48,4 +48,7 @@ ENV SHELL /bin/zsh
 RUN code-server --install-extension /root/WebSVF/src/SVFTOOLS/svftools-0.0.3.vsix --force
 RUN code-server --install-extension liviuschera.noctis --force
 RUN cp /root/WebSVF/docs/settings.json /root/.local/share/code-server/User/settings.json
+RUN mkdir /root/INPUT_PROJECT/
+RUN mkdir /root/INPUT_PROJECT/.vscode
+RUN cp /root/WebSVF/docs/settings.json /root/INPUT_PROJECT/.vscode/settings.json
 CMD code-server --auth="none" --host 0.0.0.0 --port 9000
