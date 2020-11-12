@@ -39,6 +39,17 @@ else
     errorshow "[COMPILE JOB ERROR.]"
 fi
 
+svg="svg"
+cd ${folder}
+mkdir ${svg}
+for i in `ls`
+do
+    if [ -f $i ] && [ "${i##*.}"x = "dot"x ]; then
+        dot -q -Tsvg $i > ${svg}/${i%%.*}.svg
+    fi
+done
+
+
 cd ~
 script="target.sh"
 if [[ -f $script ]]; then
