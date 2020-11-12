@@ -283,6 +283,5 @@ export class ShowReportCommand extends data.CommandBasic {
         let webviewInfo: data.WebInfo = data.config.getWeibviewInfo(data.config.command.SHOW_CODEMAP);
         // new data.WebPanel(webviewInfo, data.context);
         new web.WebView(webviewInfo);
-
     }
 }
