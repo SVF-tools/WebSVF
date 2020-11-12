@@ -49,7 +49,6 @@ do
     fi
 done
 
-
 cd ~
 script="target.sh"
 if [[ -f $script ]]; then
