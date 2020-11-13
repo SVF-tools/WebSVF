@@ -26,9 +26,9 @@ To debug code and run tests, it is often useful to have a local HTTP server. For
 *To install WebSVF using docker, ensure you have docker installed as per our prerequisite*
 
 1. Download image  
-`docker pull websvf/websvf` 
+`docker pull svftools/websvf` 
 2. Run a server  
-`docker run -itd -p 127.0.0.1:9000:9000 --name websvf websvf/websvf`
+`docker run -itd -p 127.0.0.1:9000:9000 --name websvf svftools/websvf`
 3. Browser enter  
 `http://127.0.0.1:9000`
 
