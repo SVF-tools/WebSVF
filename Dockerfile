@@ -47,6 +47,7 @@ RUN source env.sh && cmake . && make
 ENV SHELL /bin/zsh
 RUN code-server --install-extension /root/WebSVF/src/SVFTOOLS/svftools-0.0.3.vsix --force
 RUN code-server --install-extension liviuschera.noctis --force
+RUN code-server --install-extension pkief.material-icon-theme --force
 RUN cp /root/WebSVF/docs/settings.json /root/.local/share/code-server/User/settings.json
 RUN mkdir /root/INPUT_PROJECT/
 RUN mkdir /root/INPUT_PROJECT/.vscode
