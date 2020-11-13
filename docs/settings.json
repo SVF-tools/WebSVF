@@ -1,4 +1,5 @@
 {
     "workbench.colorTheme": "Noctis Lilac",
-    "editor.fontSize": 15
+    "editor.fontSize": 15,
+    "workbench.iconTheme": "material-icon-theme"
 }
