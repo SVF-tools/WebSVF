@@ -7,7 +7,7 @@ function errorshow() {
 }
 
 cd ~/SVF-example
-source ./env.sh
+source ./env.sh >> /dev/null 2>&1
 cmake .
 make
 
