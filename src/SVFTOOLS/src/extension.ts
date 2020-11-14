@@ -2,6 +2,8 @@ import * as vscode from "vscode";
 import * as data from "./data";
 import * as cmd from "./model/command";
 import * as bar from "./model/statusbar";
+import * as tree from "./model/treeview";
+
 
 import * as fs from "fs";
 
@@ -75,12 +77,12 @@ function initial(context: vscode.ExtensionContext) {
             ),
             instance: new bar.GenerateBar(data.config.command.OPEN_BACKEND),
         },
-        {
-            key: data.config.getStatusbarKeyFromCommand(
-                data.config.command.SHOW_REPORT
-            ),
-            instance: new bar.GenerateBar(data.config.command.SHOW_REPORT),
-        },
+        // {
+        //     key: data.config.getStatusbarKeyFromCommand(
+        //         data.config.command.SHOW_REPORT
+        //     ),
+        //     instance: new bar.GenerateBar(data.config.command.SHOW_REPORT),
+        // },
     ];
 
     // command register in manager
@@ -93,8 +95,10 @@ function initial(context: vscode.ExtensionContext) {
     });
 
     let backendInfo = data.config.getPathInfo(data.config.pathType.BACKEND_PATH);
-    new data.RgisterTreeDataProvider(backendInfo.key, backendInfo.folder);
+    new data.RgisterTreeDataProvider(backendInfo.key, backendInfo.folder, "fileExplorer.open.backendFile");
 
+    let svgresultInfo = data.config.getPathInfo(data.config.pathType.SVG_RESULT_PATH);
+    new tree.RgisterTreeView(svgresultInfo.key, svgresultInfo.folder, "fileExplorer.open.svgresultFile");
     // console.log(webviewInfo);
 
     /*some times, extension will open a target folder. it will load all extension again.

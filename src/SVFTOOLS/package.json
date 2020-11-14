@@ -30,6 +30,10 @@
                 {
                     "id": "BACKEND_PATH",
                     "name": "SVF BACK-END"
+                },
+                {
+                    "id": "SVG_RESULT_PATH",
+                    "name": "SVF GRAPH SHOW"
                 }
             ]
         }

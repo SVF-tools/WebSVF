@@ -128,7 +128,7 @@
             "key": "SVG_RESULT_PATH",
             "position": "home",
             "folder": "INPUT_PROJECT/Graph_Files/svf",
-            "mainFile": "*.svf"
+            "mainFile": "*.svg"
         }
     ],
     "webview": [
@@ -143,7 +143,7 @@
             ],
             "retainContextWhenHidden": true,
             "homeRelativePath": "./public/index.html",
-            "svgRelativePath": "./public/index.svg"
+            "svgRelativePath": "~/INPUT_PROJECT/Graph_Files/svf/"
         }
     ]
 }

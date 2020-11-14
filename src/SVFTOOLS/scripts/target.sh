@@ -3,7 +3,7 @@ function highlight() {
 }
 
 function run() {
-    echo -e "\033[1;43;37m$1\033[0m"
+    echo -e "\033[1;43;37m$1\033[0m\c"
 }
 
 function don() {
@@ -35,7 +35,7 @@ do
 done
 run "-- [1/3] Clang JOB RUNNING..."
 clang -c -g -S -fno-discard-value-names -emit-llvm $fileName -o ${fileName%%.*}.${time}.bc 2>${fileName%%.*}.${time}.clangbug.log
-# delete
+delete
 
 
 folder="Graph_Files"
@@ -59,7 +59,7 @@ if [ -f ${fileName%%.*}.${time}.bc ]; then
     mv *.dot ./${folder}/
     mkdir ${Log}
     mv *.log ./${Log}/
-    # delete
+    delete
     don "-- [2/3] SVF JOB DONE.       "
 
     run "-- [3/3] GRAPH JOB RUNNING..."
@@ -74,7 +74,7 @@ if [ -f ${fileName%%.*}.${time}.bc ]; then
             mv $i ${i%%.*}.${time}.dot
         fi
     done
-    # delete
+    delete
     don "-- [3/3] GRAPH JOB DONE.     "
 
     highlight "TASK: ${timeshow} ALL JOB DONE."
