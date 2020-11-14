@@ -27,7 +27,8 @@ export class WebView extends data.WebPanel {
         }
         let filePath = path.join(rootPath, file);
 
-        vscode.commands.executeCommand("workbench.files.action.focusFilesExplorer");
+        // It will open explorer
+        // vscode.commands.executeCommand("workbench.files.action.focusFilesExplorer");
 
         if (fs.existsSync(filePath)) {
 

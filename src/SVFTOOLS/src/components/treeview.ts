@@ -18,18 +18,17 @@ export class NewTreeItem extends vscode.TreeItem {
 
 export class NewTreeDataProvider implements vscode.TreeDataProvider<NewTreeItem> {
 
-    private _onDidChangeTreeData: vscode.EventEmitter<NewTreeItem | undefined | void> = new vscode.EventEmitter<NewTreeItem | undefined | void>();
+    protected _onDidChangeTreeData: vscode.EventEmitter<NewTreeItem | undefined | void> = new vscode.EventEmitter<NewTreeItem | undefined | void>();
     readonly onDidChangeTreeData: vscode.Event<NewTreeItem | undefined | void> = this._onDidChangeTreeData.event;
 
-    constructor(private rootPath: string) {
-
-        vscode.commands.registerCommand("fileExplorer.openFile", (resource) =>
+    constructor(protected rootPath: string, protected cmd: string) {
+        vscode.commands.registerCommand(cmd, (resource) =>
             this.openResource(resource)
         );
 
     }
 
-    private openResource(resource: vscode.Uri): void {
+    protected openResource(resource: vscode.Uri): void {
         vscode.window.showTextDocument(resource);
     }
 
@@ -85,7 +84,7 @@ export class NewTreeDataProvider implements vscode.TreeDataProvider<NewTreeItem>
             } else {
 
                 let command = {
-                    command: "fileExplorer.openFile",
+                    command: this.cmd,
                     title: "Open File",
                     arguments: [vscode.Uri.file(itemPath)],
                 };
@@ -107,13 +106,13 @@ export class NewTreeDataProvider implements vscode.TreeDataProvider<NewTreeItem>
 
 export class RgisterTreeDataProvider {
 
-    constructor(id: string, rootPath: string) {
-        this.registerTree(id, rootPath);
+    constructor(id: string, rootPath: string, command: string) {
+        this.registerTree(id, rootPath, command);
     }
 
-    registerTree(id: string, rootPath: string) {
+    registerTree(id: string, rootPath: string, command: string) {
 
-        let provider = new NewTreeDataProvider(rootPath);
+        let provider = new NewTreeDataProvider(rootPath, command);
 
         vscode.window.createTreeView(id, { treeDataProvider: provider });
 

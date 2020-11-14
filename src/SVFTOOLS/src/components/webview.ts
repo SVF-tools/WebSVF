@@ -203,9 +203,11 @@ class WebPanel {
         svgPath: string,
         context: vscode.ExtensionContext
     ) {
+
         let html = this.conventHtml(relativePath, context);
-        const resourcePath = path.join(context.extensionPath, svgPath);
-        const dirPath = path.dirname(resourcePath);
+        const resourcePath = svgPath;
+        const dirPath = path.dirname(path.join(context.extensionPath, relativePath));
+
         let svg = fs.readFileSync(resourcePath, "utf-8");
         let result = (svg.split("<svg ")[1]).split("</svg>")[0];
 
