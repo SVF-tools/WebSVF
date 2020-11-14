@@ -123,6 +123,12 @@
             "folder": "scripts",
             "mainFile": "environment.sh",
             "openFlag": "OpenEnv.flag"
+        },
+        {
+            "key": "SVG_RESULT_PATH",
+            "position": "home",
+            "folder": "INPUT_PROJECT/Graph_Files/svf",
+            "mainFile": "*.svf"
         }
     ],
     "webview": [

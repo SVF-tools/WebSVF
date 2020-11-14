@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # install necessary
 RUN apt update
-RUN apt install -y curl git zsh vim lsb-core net-tools cmake sudo wget build-essential libtinfo-dev libtinfo5 wget curl git cmake python3-pip libgraphviz-dev graphviz
+RUN apt install -y curl git zsh vim lsb-core net-tools cmake sudo wget build-essential libtinfo-dev libtinfo5 wget curl git cmake python3-pip libgraphviz-dev graphviz libncurses5-dev libncursesw5-dev
 # install oh-my-zsh
 RUN echo y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # install code-server
