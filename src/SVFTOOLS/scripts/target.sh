@@ -31,10 +31,16 @@ do
         sudo rm ${i}
     elif [ -f $i ] && [ "${i##*.}"x = "log"x ]; then
         sudo rm ${i}
+    elif [ -f $i ] && [ "${i##*.}"x = "ll"x ]; then
+        sudo rm ${i}
     fi
 done
 run "-- [1/3] Clang JOB RUNNING..."
 clang -c -g -S -fno-discard-value-names -emit-llvm $fileName -o ${fileName%%.*}.${time}.bc 2>${fileName%%.*}.${time}.clangbug.log
+
+if [ -f ${fileName%%.*}.${time}.bc ]; then
+    clang -emit-llvm -S example.c -o example.${time}.ll 2>>${fileName%%.*}.${time}.clangbug.log
+fi
 delete
 
 
