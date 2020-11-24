@@ -30,7 +30,7 @@ function initial(context: vscode.ExtensionContext) {
         },
         {
             key: data.config.command.BUILD_TARGET,
-            instance: new cmd.TerminialCommand(
+            instance: new cmd.BuildTargetCommand(
                 data.config.command.BUILD_TARGET
             ),
         },

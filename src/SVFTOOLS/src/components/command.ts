@@ -39,7 +39,7 @@ class CommandBasic {
         }
     }
 
-    ShowFileInTextDoc(filePath: string) {
+    ShowFileInTextDoc(filePath: string, options?: object) {
 
         vscode.commands.executeCommand("workbench.files.action.focusFilesExplorer");
 
@@ -48,7 +48,7 @@ class CommandBasic {
             let stat = fs.statSync(filePath);
 
             if (stat.isFile()) {
-                vscode.window.showTextDocument(vscode.Uri.file(filePath));
+                vscode.window.showTextDocument(vscode.Uri.file(filePath), options);
             }
         }
     }

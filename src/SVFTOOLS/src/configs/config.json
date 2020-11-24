@@ -129,6 +129,12 @@
             "position": "home",
             "folder": "INPUT_PROJECT/Graph_Files/svf",
             "mainFile": "*.svg"
+        },
+        {
+            "key": "LOG_PATH",
+            "position": "home",
+            "folder": "INPUT_PROJECT/Build_Logs",
+            "mainFile": ""
         }
     ],
     "webview": [
