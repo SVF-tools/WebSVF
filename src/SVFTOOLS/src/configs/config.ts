@@ -21,7 +21,8 @@ export class Config {
         EXAMPLE_PATH: "EXAMPLE_PATH",
         BACKEND_PATH: "BACKEND_PATH",
         ENVIRONMENT_SCRIPT_PATH: "ENVIRONMENT_SCRIPT_PATH",
-        SVG_RESULT_PATH: "SVG_RESULT_PATH"
+        SVG_RESULT_PATH: "SVG_RESULT_PATH",
+        LOG_PATH: "LOG_PATH"
     };
 
     private _statusbar = new Array();

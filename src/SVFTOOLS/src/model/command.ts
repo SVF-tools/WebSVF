@@ -4,6 +4,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { execSync } from "child_process";
 import * as web from "./webview";
+import { setInterval } from "timers";
 
 interface TerInfo {
     title: string;
@@ -283,5 +284,50 @@ export class ShowReportCommand extends data.CommandBasic {
         let webviewInfo: data.WebInfo = data.config.getWeibviewInfo(data.config.command.SHOW_CODEMAP);
         // new data.WebPanel(webviewInfo, data.context);
         new web.WebView(webviewInfo);
+    }
+}
+
+export class BuildTargetCommand extends TerminialCommand {
+    constructor(command: string) {
+        super(command);
+    }
+
+    Func() {
+        super.Func();
+        let handle = setInterval(() => {
+            let homePath = data.userHome();
+            if (homePath) {
+                let targetPath = path.join(homePath, "target.sh");
+                if (!fs.existsSync(targetPath)) {
+                    let logPath = data.config.getPathInfo(data.config.pathType.LOG_PATH);
+                    let filePath = logPath.folder;
+                    console.log(filePath);
+                    let rootPath = data.rootPath();
+                    console.log(rootPath);
+                    if (rootPath) {
+                        this.ShowFile(rootPath, "clangbug");
+                    }
+                    this.ShowFile(filePath, "basic");
+                    clearInterval(handle);
+                }
+            }
+        }, 200);
+
+    }
+
+    ShowFile(filePath: string, logtype: string) {
+        if (fs.existsSync(filePath)) {
+            const dirCont = fs.readdirSync(filePath);
+            const logTypeMatch = `.*\.${logtype}\.log`;
+            const logRegExp = new RegExp(logTypeMatch);
+            const files = dirCont.filter(e => e.match(logRegExp));
+            console.log(files);
+
+            if (files.length !== 0) {
+                for (let i = 0; i < files.length; i++) {
+                    super.ShowFileInTextDoc(path.join(filePath, files[i]), { preview: true });
+                }
+            }
+        }
     }
 }
