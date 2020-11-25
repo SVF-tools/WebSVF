@@ -5,7 +5,7 @@ vsce package
 flag="0";
 exFolder="~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3"
 if [ -f ${exfile} ]; then
-    cd ${exFolder}
+    cd ~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3
     if [ -f "Reload.flag" ]; then
         flag="1";
     fi
