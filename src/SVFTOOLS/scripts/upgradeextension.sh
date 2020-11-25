@@ -1,3 +1,13 @@
+svfPATH="~/WebSVF/src/SVFTOOLS/"
+websvfPath="~/WebSVF/"
+if [ ! -d ${svfPATH} ]; then
+    if [ -d ${websvfPath} ]; then
+        rm -rf ${websvfPath}
+    fi
+
+    cd ~
+    git clone https://github.com/SVF-tools/WebSVF.git --depth 1
+fi
 cd ~/WebSVF/src/SVFTOOLS/
 exfile="svftools-0.0.3.vsix"
 rm ${exfile}
