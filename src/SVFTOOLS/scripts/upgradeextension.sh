@@ -2,9 +2,21 @@ cd ~/WebSVF/src/SVFTOOLS/
 exfile="svftools-0.0.3.vsix"
 rm ${exfile}
 vsce package
+flag="0";
+exFolder="~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3"
 if [ -f ${exfile} ]; then
-    rm -rf ~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3
+    cd ${exFolder}
+    if [ -f ${Reload.flag} ]; then
+        flag="1";
+    fi
+    cd ~/WebSVF/src/SVFTOOLS/
+    rm -rf ${exFolder}
     code-server --install-extension svftools-0.0.3.vsix
+
+    if [ flag = "1" ]; then
+        touch ${exFolder}/Reload.flag
+    fi
+    
 fi
 cd ~/INPUT_PROJECT
 script="upgradeextension.sh"
