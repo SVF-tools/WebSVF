@@ -16,7 +16,7 @@ if [ -f ${exfile} ]; then
     code-server --install-extension svftools-0.0.3.vsix
 
     if [ flag="1" ]; then
-        touch ${exFolder}/Reload.flag
+        touch ~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3/Reload.flag
         echo "222222222222222222222222222222"
     fi
     
