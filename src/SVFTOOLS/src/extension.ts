@@ -49,6 +49,12 @@ function initial(context: vscode.ExtensionContext) {
             instance: new cmd.ReBuildBackendCommand(
                 data.config.command.REBUILD_BACKEND
             ),
+        },
+        {
+            key: data.config.command.UPGRADE_EXTENSION,
+            instance: new cmd.UpgradeExtensionCommand(
+                data.config.command.UPGRADE_EXTENSION
+            ),
         }
     ];
     // statusbar generate
@@ -89,6 +95,12 @@ function initial(context: vscode.ExtensionContext) {
             ),
             instance: new bar.GenerateBar(data.config.command.REBUILD_BACKEND),
         },
+        {
+            key: data.config.getStatusbarKeyFromCommand(
+                data.config.command.UPGRADE_EXTENSION
+            ),
+            instance: new bar.GenerateBar(data.config.command.UPGRADE_EXTENSION),
+        }
         // {
         //     key: data.config.getStatusbarKeyFromCommand(
         //         data.config.command.SHOW_REPORT
