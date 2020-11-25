@@ -45,9 +45,11 @@ RUN source env.sh && cmake . && make
 
 # start code-server without pwd and automatically install the extension, along with some port forwarding
 ENV SHELL /bin/zsh
-RUN code-server --install-extension /root/WebSVF/src/SVFTOOLS/svftools-0.0.3.vsix --force
-RUN code-server --install-extension liviuschera.noctis --force
-RUN code-server --install-extension pkief.material-icon-theme --force
+RUN export SERVICE_URL=https://open-vsx.org/vscode/gallery
+RUN export ITEM_URL=https://open-vsx.org/vscode/item
+RUN code-server --install-extension /root/WebSVF/src/SVFTOOLS/svftools-0.0.3.vsix; exit 0
+RUN code-server --install-extension liviuschera.noctis
+RUN code-server --install-extension pkief.material-icon-theme
 RUN cp /root/WebSVF/docs/settings.json /root/.local/share/code-server/User/settings.json
 RUN mkdir /root/INPUT_PROJECT/
 RUN mkdir /root/INPUT_PROJECT/.vscode
