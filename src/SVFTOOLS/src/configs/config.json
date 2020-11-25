@@ -8,7 +8,8 @@
         "SHOW_REPORT": "SVFTOOLS.SHOW.REPORT",
         "SHOW_CODEMAP": "SVFTOOLS.SHOW.CODEMAP",
         "REBUILD_BACKEND": "SVFTOOLS.REBUILD.BACKEND",
-        "UPGRADE_EXTENSION": "SVFTOOLS.UPGRADE.EXTENSION"
+        "UPGRADE_EXTENSION": "SVFTOOLS.UPGRADE.EXTENSION",
+        "RELOAD_EXTENSION": "SVFTOOLS.UPGRADE.RELOAD_EXTENSION"
     },
     "statusbar": [
         {
@@ -173,8 +174,8 @@
             "mainFile": ""
         },
         {
-            "key": "RRLOAD_FLAG",
-            "position": "home",
+            "key": "RELOAD_FLAG",
+            "position": "extension",
             "folder": "",
             "mainFile": "",
             "openFlag": "Reload.flag"
