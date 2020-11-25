@@ -156,8 +156,8 @@ export class InstallSVFEnvironment extends TerminialCommand {
 
 export class OpenTargetCommand extends OpenFileCommand {
 
-    constructor() {
-        super(data.config.command.OPEN_TARGET);
+    constructor(cmd: string) {
+        super(cmd);
     }
 
     Func() {
@@ -362,17 +362,32 @@ export class UpgradeExtensionCommand extends TerminialCommand {
         rebuild.then(result => {
             if (result === "YES") {
                 // vscode.window.showInformationMessage("YES.");
-                let targetInfo = data.config.getPathInfo(
-                    data.config.pathType.TARGET_PATH
+                let reloadInfo = data.config.getPathInfo(
+                    data.config.pathType.RELOAD_FLAG
                 ); // get target info
 
-                if (!fs.existsSync(targetInfo.openFlag)) {
-                    execSync(`touch ${targetInfo.openFlag}`); // delete open target flag
+                if (!fs.existsSync(reloadInfo.openFlag)) {
+                    execSync(`touch ${reloadInfo.openFlag}`); // delete open target flag
                 }
                 terminal(this.cmd);
             } else {
                 // vscode.window.showInformationMessage("NO.");
             }
         })
+    }
+}
+
+export class ReloadCommand extends OpenTargetCommand {
+    constructor(cmd: string) {
+        super(cmd);
+    }
+    Func() {
+        let reloadInfo = data.config.getPathInfo(
+            data.config.pathType.RELOAD_FLAG
+        ); // get target info
+        if (fs.existsSync(reloadInfo.openFlag)) {
+            execSync(`rm ${reloadInfo.openFlag}`); // delete open target flag
+        }
+        super.Func();
     }
 }
