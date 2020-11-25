@@ -15,7 +15,7 @@ if [ -f ${exfile} ]; then
     rm -rf ${exFolder}
     code-server --install-extension svftools-0.0.3.vsix
 
-    if [ flag = "1" ]; then
+    if [ flag="1" ]; then
         touch ${exFolder}/Reload.flag
         echo "222222222222222222222222222222"
     fi
