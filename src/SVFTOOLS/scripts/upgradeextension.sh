@@ -1,6 +1,7 @@
 cd ~/WebSVF/src/SVFTOOLS/
 exfile="svftools-0.0.3.vsix"
 rm ${exfile}
+git pull
 vsce package
 flag="0";
 exFolder="~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3"
