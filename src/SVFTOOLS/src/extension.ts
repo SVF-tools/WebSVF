@@ -109,12 +109,6 @@ function initial(context: vscode.ExtensionContext) {
             ),
             instance: new bar.GenerateBar(data.config.command.UPGRADE_EXTENSION),
         }
-        // {
-        //     key: data.config.getStatusbarKeyFromCommand(
-        //         data.config.command.SHOW_REPORT
-        //     ),
-        //     instance: new bar.GenerateBar(data.config.command.SHOW_REPORT),
-        // },
     ];
 
     // command register in manager
@@ -131,7 +125,6 @@ function initial(context: vscode.ExtensionContext) {
 
     let svgresultInfo = data.config.getPathInfo(data.config.pathType.SVG_RESULT_PATH);
     new tree.RgisterTreeView(svgresultInfo.key, svgresultInfo.folder, "fileExplorer.open.svgresultFile");
-    // console.log(webviewInfo);
 
     /*some times, extension will open a target folder. it will load all extension again.
     so extension will forget what it should do before. the flag will remind extension what it should do.*/

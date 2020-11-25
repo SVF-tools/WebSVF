@@ -42,7 +42,6 @@ export class Config {
         return this._pathType;
     }
 
-
     public get statusbar() {
         return this._statusbar;
     }
@@ -86,6 +85,7 @@ export class Config {
             fs.appendFileSync(filePath, data4);
         }
     }
+
     private analysis(config: any) {
 
         for (let element in config) {
