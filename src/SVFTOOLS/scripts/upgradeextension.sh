@@ -7,6 +7,7 @@ if [ ! -d ${svfPATH} ]; then
 
     cd ~
     git clone https://github.com/SVF-tools/WebSVF.git --depth 1
+    cd ~/WebSVF/src/SVFTOOLS/
     npm install
     npm install -y -g vsce
 fi
