@@ -209,6 +209,7 @@ export class OpenTargetCommand extends OpenFileCommand {
         }
     }
 }
+
 export class OpenBackendCommand extends OpenFileCommand {
 
     constructor() {
