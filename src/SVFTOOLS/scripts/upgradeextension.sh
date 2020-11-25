@@ -7,6 +7,8 @@ if [ ! -d ${svfPATH} ]; then
 
     cd ~
     git clone https://github.com/SVF-tools/WebSVF.git --depth 1
+    npm install
+    npm install -y -g vsce
 fi
 cd ~/WebSVF/src/SVFTOOLS/
 exfile="svftools-0.0.3.vsix"
@@ -19,7 +21,7 @@ if [ -f ${exfile} ]; then
     cd ~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3
     if [ -f "Reload.flag" ]; then
         flag="1";
-        echo "11111111111111111111111111111"
+        # echo "11111111111111111111111111111"
     fi
     cd ~/WebSVF/src/SVFTOOLS/
     rm -rf ${exFolder}
@@ -27,7 +29,7 @@ if [ -f ${exfile} ]; then
 
     if [ flag="1" ]; then
         touch ~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3/Reload.flag
-        echo "222222222222222222222222222222"
+        # echo "222222222222222222222222222222"
     fi
     
 fi
