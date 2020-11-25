@@ -44,6 +44,12 @@ function initial(context: vscode.ExtensionContext) {
             key: data.config.command.SHOW_REPORT,
             instance: new cmd.ShowReportCommand(),
         },
+        {
+            key: data.config.command.REBUILD_BACKEND,
+            instance: new cmd.ReBuildBackendCommand(
+                data.config.command.REBUILD_BACKEND
+            ),
+        }
     ];
     // statusbar generate
     const statusbar = [
@@ -76,6 +82,12 @@ function initial(context: vscode.ExtensionContext) {
                 data.config.command.OPEN_BACKEND
             ),
             instance: new bar.GenerateBar(data.config.command.OPEN_BACKEND),
+        },
+        {
+            key: data.config.getStatusbarKeyFromCommand(
+                data.config.command.REBUILD_BACKEND
+            ),
+            instance: new bar.GenerateBar(data.config.command.REBUILD_BACKEND),
         },
         // {
         //     key: data.config.getStatusbarKeyFromCommand(

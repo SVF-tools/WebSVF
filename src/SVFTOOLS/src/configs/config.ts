@@ -14,6 +14,7 @@ export class Config {
         BUILD_TARGET: configInfo.command.BUILD_TARGET,
         SHOW_REPORT: configInfo.command.SHOW_REPORT,
         SHOW_CODEMAP: configInfo.command.SHOW_CODEMAP,
+        REBUILD_BACKEND: configInfo.command.REBUILD_BACKEND
     };
 
     private _pathType = {
