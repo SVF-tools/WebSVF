@@ -17,6 +17,7 @@ if [ -f ${exfile} ]; then
 
     if [ flag = "1" ]; then
         touch ${exFolder}/Reload.flag
+        echo "222222222222222222222222222222"
     fi
     
 fi
