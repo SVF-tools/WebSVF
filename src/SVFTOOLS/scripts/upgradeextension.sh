@@ -6,7 +6,7 @@ flag="0";
 exFolder="~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3"
 if [ -f ${exfile} ]; then
     cd ${exFolder}
-    if [ -f ${Reload.flag} ]; then
+    if [ -f "Reload.flag" ]; then
         flag="1";
     fi
     cd ~/WebSVF/src/SVFTOOLS/
