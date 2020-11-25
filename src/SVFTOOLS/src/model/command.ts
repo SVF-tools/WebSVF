@@ -331,3 +331,21 @@ export class BuildTargetCommand extends TerminialCommand {
         }
     }
 }
+
+export class ReBuildBackendCommand extends TerminialCommand {
+    constructor(command: string) {
+        super(command);
+    }
+
+    Func() {
+        let rebuild = vscode.window.showInformationMessage("Waring: You try to rebuild svf backend.", "YES", "NO");
+        rebuild.then(result => {
+            if (result === "YES") {
+                // vscode.window.showInformationMessage("YES.");
+                terminal(this.cmd);
+            } else {
+                // vscode.window.showInformationMessage("NO.");
+            }
+        })
+    }
+}

@@ -6,7 +6,8 @@
         "BUILD_BACKEND": "SVFTOOLS.BUILD.BACKEND",
         "BUILD_TARGET": "SVFTOOLS.BUILD.TARGET",
         "SHOW_REPORT": "SVFTOOLS.SHOW.REPORT",
-        "SHOW_CODEMAP": "SVFTOOLS.SHOW.CODEMAP"
+        "SHOW_CODEMAP": "SVFTOOLS.SHOW.CODEMAP",
+        "REBUILD_BACKEND": "SVFTOOLS.REBUILD.BACKEND"
     },
     "statusbar": [
         {
@@ -74,6 +75,17 @@
                     "title": "$(beaker) TARGET REPORT"
                 }
             ]
+        },
+        {
+            "key": "BAR.REBUILD.BACKEND",
+            "command": "SVFTOOLS.REBUILD.BACKEND",
+            "alignment": "right",
+            "priority": 1,
+            "status": [
+                {
+                    "title": "$(debug-start) RESET SVF BACKEND"
+                }
+            ]
         }
     ],
     "terminal": [
@@ -94,6 +106,12 @@
             "command": "SVFTOOLS.BUILD.BACKEND",
             "exeHead": "source",
             "scriptPath": "./scripts/backend.sh"
+        },
+        {
+            "key": "RESET SVF BACKEND",
+            "command": "SVFTOOLS.REBUILD.BACKEND",
+            "exeHead": "source",
+            "scriptPath": "./scripts/rebuildbackend.sh"
         }
     ],
     "path": [
