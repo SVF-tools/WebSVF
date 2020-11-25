@@ -9,6 +9,7 @@ if [ -f ${exfile} ]; then
     cd ~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3
     if [ -f "Reload.flag" ]; then
         flag="1";
+        echo "11111111111111111111111111111"
     fi
     cd ~/WebSVF/src/SVFTOOLS/
     rm -rf ${exFolder}
