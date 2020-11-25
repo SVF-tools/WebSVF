@@ -14,7 +14,8 @@ export class Config {
         BUILD_TARGET: configInfo.command.BUILD_TARGET,
         SHOW_REPORT: configInfo.command.SHOW_REPORT,
         SHOW_CODEMAP: configInfo.command.SHOW_CODEMAP,
-        REBUILD_BACKEND: configInfo.command.REBUILD_BACKEND
+        REBUILD_BACKEND: configInfo.command.REBUILD_BACKEND,
+        UPGRADE_EXTENSION: configInfo.command.UPGRADE_EXTENSION
     };
 
     private _pathType = {
@@ -23,7 +24,8 @@ export class Config {
         BACKEND_PATH: "BACKEND_PATH",
         ENVIRONMENT_SCRIPT_PATH: "ENVIRONMENT_SCRIPT_PATH",
         SVG_RESULT_PATH: "SVG_RESULT_PATH",
-        LOG_PATH: "LOG_PATH"
+        LOG_PATH: "LOG_PATH",
+        RELOAD_FLAG: "RELOAD_FLAG"
     };
 
     private _statusbar = new Array();

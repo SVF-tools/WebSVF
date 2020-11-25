@@ -7,7 +7,8 @@
         "BUILD_TARGET": "SVFTOOLS.BUILD.TARGET",
         "SHOW_REPORT": "SVFTOOLS.SHOW.REPORT",
         "SHOW_CODEMAP": "SVFTOOLS.SHOW.CODEMAP",
-        "REBUILD_BACKEND": "SVFTOOLS.REBUILD.BACKEND"
+        "REBUILD_BACKEND": "SVFTOOLS.REBUILD.BACKEND",
+        "UPGRADE_EXTENSION": "SVFTOOLS.UPGRADE.EXTENSION"
     },
     "statusbar": [
         {
@@ -86,6 +87,17 @@
                     "title": "$(debug-start) RESET SVF BACKEND"
                 }
             ]
+        },
+        {
+            "key": "BAR.UPGRADE.EXTENSION",
+            "command": "SVFTOOLS.UPGRADE.EXTENSION",
+            "alignment": "right",
+            "priority": 2,
+            "status": [
+                {
+                    "title": "$(debug-start) UPGRADE EXTENSION"
+                }
+            ]
         }
     ],
     "terminal": [
@@ -112,6 +124,12 @@
             "command": "SVFTOOLS.REBUILD.BACKEND",
             "exeHead": "source",
             "scriptPath": "./scripts/rebuildbackend.sh"
+        },
+        {
+            "key": "UPGRADE EXTENSION",
+            "command": "SVFTOOLS.UPGRADE.EXTENSION",
+            "exeHead": "source",
+            "scriptPath": "./scripts/upgradeextension.sh"
         }
     ],
     "path": [
@@ -153,6 +171,13 @@
             "position": "home",
             "folder": "INPUT_PROJECT/Build_Logs",
             "mainFile": ""
+        },
+        {
+            "key": "RRLOAD_FLAG",
+            "position": "home",
+            "folder": "",
+            "mainFile": "",
+            "openFlag": "Reload.flag"
         }
     ],
     "webview": [

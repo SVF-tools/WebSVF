@@ -349,3 +349,30 @@ export class ReBuildBackendCommand extends TerminialCommand {
         })
     }
 }
+
+export class UpgradeExtensionCommand extends TerminialCommand {
+    constructor(command: string) {
+        super(command);
+    }
+
+    Func() {
+        let rebuild = vscode.window.showInformationMessage("Waring: You try to upgrade svf extension.", "YES", "NO");
+
+
+        rebuild.then(result => {
+            if (result === "YES") {
+                // vscode.window.showInformationMessage("YES.");
+                let targetInfo = data.config.getPathInfo(
+                    data.config.pathType.TARGET_PATH
+                ); // get target info
+
+                if (!fs.existsSync(targetInfo.openFlag)) {
+                    execSync(`touch ${targetInfo.openFlag}`); // delete open target flag
+                }
+                terminal(this.cmd);
+            } else {
+                // vscode.window.showInformationMessage("NO.");
+            }
+        })
+    }
+}
