@@ -67,7 +67,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         {this.state.publicIP && this.state.port ? (
-          <Iframe source={`https://${this.state.publicIP}:${this.state.port}`} />
+          <Iframe source={`http://${this.state.publicIP}:${this.state.port}`} />
         ) : (
           <Loader />
         )}
