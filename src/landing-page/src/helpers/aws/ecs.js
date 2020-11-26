@@ -9,9 +9,9 @@ export var protocol;
 export var publicIP = null;
 
 const params = {
-  cluster: "websvf-cluster",
+  cluster: "websvf-cloud",
   launchType: "EC2",
-  taskDefinition: "websvf-ec2-td:6",
+  taskDefinition: "websvfcloud-td",
 };
 
 //function creates a new ECS task for slected ECS cluster
@@ -43,7 +43,7 @@ export const awsRunTask = () => {
 };
 export const checkNumberOfRunningTasks = () => {
   var params = {
-    cluster: "websvf-cluster",
+    cluster: "websvf-cloud",
   };
 
   ecs.listTasks(params, (err, data) => {
@@ -55,7 +55,7 @@ export const checkNumberOfRunningTasks = () => {
       var runningTasksChecker = data.taskArns.length;
       console.log(runningTasksChecker + "task current running");
       console.log(runningTasksChecker);
-      if (runningTasksChecker % 2 === 0) {
+      if (runningTasksChecker % 3 === 0) {
         newEC2Instance();
       }
     }
@@ -64,7 +64,7 @@ export const checkNumberOfRunningTasks = () => {
 
 function getIPAddress(conatinerInstanceId) {
   const params = {
-    cluster: "websvf-cluster",
+    cluster: "websvf-cloud",
     containerInstances: [conatinerInstanceId],
   };
   ecs.describeContainerInstances(params, (err, data) => {
@@ -83,7 +83,7 @@ function getIPAddress(conatinerInstanceId) {
 
 const getNetworkBindings = (taskArn) => {
   var params = {
-    cluster: "websvf-cluster",
+    cluster: "websvf-cloud",
     tasks: [taskArn],
   };
   console.log(taskArn + "before describing task");
