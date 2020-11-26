@@ -28,7 +28,7 @@ export const newEC2Instance = () => {
   console.log(`in newEC2Instancefunction`);
   const params = {
     LaunchTemplate: {
-      LaunchTemplateId: "lt-060bd836cd9bc2cea",
+      LaunchTemplateId: "lt-0b3f3f3d67565d29d",
     },
     MinCount: 1,
     MaxCount: 1,
@@ -91,6 +91,7 @@ export function getCreatedEC2Status() {
 }
 
 function setPublicIP(value) {
+  console.log(`value passed to setpublicIP ${value}`)
   publicIp = value;
   console.log(` public ip from set public ip function ${publicIp}`);
 }
