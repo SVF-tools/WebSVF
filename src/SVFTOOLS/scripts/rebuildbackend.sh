@@ -10,6 +10,7 @@ cd ~
 BACKENDFOLDER="SVF-example"
 if [ -d ${BACKENDFOLDER} ]; then
     rm -rf ${BACKENDFOLDER}
+    npm i --silent svf-lib --prefix ${HOME}
     git clone https://github.com/SVF-tools/SVF-example.git
 fi
 cd ~/SVF-example
