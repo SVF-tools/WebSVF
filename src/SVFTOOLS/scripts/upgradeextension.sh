@@ -2,7 +2,7 @@ svfPATH="~/WebSVF/src/SVFTOOLS/"
 websvfPath="~/WebSVF/"
 if [ ! -d ${svfPATH} ]; then
     if [ -d ${websvfPath} ]; then
-        rm -rf ${websvfPath}
+        sudo rm -rf ${websvfPath}
     fi
 
     cd ~
@@ -11,10 +11,10 @@ if [ ! -d ${svfPATH} ]; then
     
 fi
 cd ~/WebSVF/src/SVFTOOLS/
-npm install
-npm install -y -g vsce
+sudo npm install
+sudo npm install -y -g vsce
 exfile="svftools-0.0.3.vsix"
-rm ${exfile}
+sudo rm ${exfile}
 git pull
 vsce package
 flag="0";
@@ -26,11 +26,11 @@ if [ -f ${exfile} ]; then
         # echo "11111111111111111111111111111"
     fi
     cd ~/WebSVF/src/SVFTOOLS/
-    rm -rf ${exFolder}
+    sudo rm -rf ${exFolder}
     code-server --install-extension svftools-0.0.3.vsix
 
     if [ flag="1" ]; then
-        touch ~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3/Reload.flag
+        sudo touch ~/.local/share/code-server/extensions/tianyangguan.svftools-0.0.3/Reload.flag
         # echo "222222222222222222222222222222"
     fi
     
@@ -38,7 +38,7 @@ fi
 cd ~/INPUT_PROJECT
 script="upgradeextension.sh"
 if [[ -f $script ]]; then
-    rm $script
+    sudo rm $script
 fi
 cd ~
 code-server --reuse-window ~/
