@@ -96,9 +96,13 @@ const App = (props) => {
           {/* <Route path="/dashboard" exact>
             <Dashboard setRoute={setRoute} authenticated={authenticated} />
           </Route> */}
-          <Route path="/login" exact>
+          {/* <Route path="/login" exact>
             <Login setRoute={setRoute} authenticated={authenticated} />
-          </Route>
+          </Route> */}
+          <Route path='/login' component={() => { 
+     window.location.href = 'http://websvf.tools/#/login'; 
+     return null;
+}}/>
         </Switch>
         <Footer
           navigation={staticData.footer.navigation}
