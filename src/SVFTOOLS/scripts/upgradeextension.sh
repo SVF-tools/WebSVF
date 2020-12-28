@@ -1,15 +1,12 @@
 svfPATH="~/WebSVF/src/SVFTOOLS/"
 websvfPath="~/WebSVF/"
-if [ ! -d ${svfPATH} ]; then
-    if [ -d ${websvfPath} ]; then
-        sudo rm -rf ${websvfPath}
-    fi
-
+cd ~
+if [[ -d ${websvfPath} ]]; then
+    sudo rm -rf ~/WebSVF/
     cd ~
     git clone https://github.com/SVF-tools/WebSVF.git --depth 1
-    cd ~/WebSVF/src/SVFTOOLS/
-    
 fi
+
 cd ~/WebSVF/src/SVFTOOLS/
 sudo npm install
 sudo npm install -y -g vsce
