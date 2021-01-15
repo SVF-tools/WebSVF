@@ -12,8 +12,9 @@ cd ~
 BACKENDFOLDER="SVF-example"
 if [ -d ${BACKENDFOLDER} ]; then
     rm -rf ${BACKENDFOLDER}
-    git clone https://github.com/SVF-tools/SVF-example.git
 fi
+
+git clone https://github.com/SVF-tools/SVF-example.git
 cd ~/SVF-example
 source ./env.sh
 cmake .
