@@ -60,7 +60,7 @@ fi
 if [ -f ${fileName%%.*}.${time}.bc ]; then
     don "-- [1/3] Clang JOB DONE.     "
     run "-- [2/3] SVF JOB RUNNING...  "
-    ~/SVF-example/bin/svf-ex ${fileName%%.*}.${time}.bc 1>${fileName%%.*}.${time}.basic.log 2>${fileName%%.*}.${time}.svfbug.log
+    ~/SVF-example/bin/svf-ex -dump-inst ${fileName%%.*}.${time}.bc 1>${fileName%%.*}.${time}.basic.log 2>${fileName%%.*}.${time}.svfbug.log
     mkdir ${folder}
     mv *.dot ./${folder}/
     mkdir ${Log}
