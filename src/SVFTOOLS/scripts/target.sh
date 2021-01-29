@@ -38,9 +38,9 @@ done
 run "-- [1/3] Clang JOB RUNNING..."
 clang -c -g -S -fno-discard-value-names -emit-llvm $fileName -o ${fileName%%.*}.${time}.bc 2>${fileName%%.*}.${time}.clangbug.log
 
-if [ -f ${fileName%%.*}.${time}.bc ]; then
-    clang -O0 -g -S -emit-llvm example.c -o example.${time}.ll 2>${fileName%%.*}.${time}.clangbug.log
-fi
+# if [ -f ${fileName%%.*}.${time}.bc ]; then
+#     clang -O0 -g -S -emit-llvm example.c -o example.${time}.ll 2>${fileName%%.*}.${time}.clangbug.log
+# fi
 delete
 
 
