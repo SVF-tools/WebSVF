@@ -1,4 +1,5 @@
 *.lock
 *.vsix
 node_modules
+creds.js
 websvf
