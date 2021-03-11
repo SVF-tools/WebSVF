@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { Paper, Grid, Box } from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
+import { Paper, Grid, Box } from '@material-ui/core';
+import AddFile from './Components/AddFile';
+import FileList from './Components/FileList';
+import Editor from '../Editor/Components/Editor';
+import websvf from '../api/websvf';
+import prettyFormat from 'pretty-format';
+import './codefiles.css';
 
-import AddFile from "./Components/AddFile";
-import FileList from "./Components/FileList";
-import Editor from "../Editor/Components/Editor";
-
-import websvf from "../api/websvf";
-
-import prettyFormat from "pretty-format";
-
-import "./codefiles.css";
-
-const CodeFiles = ({ code, setCode, markers,annotation }) => {
-  const [response, setResponse] = useState("");
-  const [fileName, setFileName] = useState("");
+const CodeFiles = ({ code, setCode, markers, annotation }) => {
+  const [response, setResponse] = useState('');
+  const [fileName, setFileName] = useState('');
   const [dialogBox, setDialogBox] = useState(false);
   //const [code, setCode] = useState(`//write your C code here`);
   const [project, setProject] = useState([]);
 
   const [userCode, setUserCode] = useState([
     {
-      fileID: "init-temp",
-      fileName: "example.c",
-      version: "0.0",
+      fileID: 'init-temp',
+      fileName: 'example.c',
+      version: '0.0',
       content: `#include <math.h>
       #include <stdio.h>
       int main() {
@@ -49,8 +45,8 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
           }
           return 0;
       } `,
-      files: [],
-    },
+      files: []
+    }
   ]);
   const [selectedFile, setselectedFile] = useState(userCode[0].fileName);
 
@@ -62,7 +58,7 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
   }, [selectedFile, userCode]);
 
   const loadProject = async () => {
-    const response = await websvf.get("/db/getFiles/");
+    const response = await websvf.get('/db/getFiles/');
     if (response) {
       setProject(response.data.projects[0]);
       setUserCode(response.data.projects[0].userCode);
@@ -76,8 +72,8 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
         fileId: Math.random(),
         fileName: fileName,
         version: 0.1,
-        content: `//write your C code here`,
-      },
+        content: `//write your C code here`
+      }
     ]);
 
     closeDialog();
@@ -110,24 +106,24 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
 
     tempUserCode[elementIndex] = {
       ...tempUserCode[elementIndex],
-      content: newValue,
+      content: newValue
     };
 
     setUserCode(tempUserCode);
   };
 
   const clearFileName = () => {
-    setFileName("");
+    setFileName('');
   };
 
   const codeSubmit = async () => {
     const response = await websvf.post(
-      "/db/saveFile/",
+      '/db/saveFile/',
       //`code=${code}&fileName=${selectedFile}&fileVersion=${'1.0'}`,
       {
         code: code,
         fileName: selectedFile,
-        fileVersion: "1.0",
+        fileVersion: '1.0'
       }
     );
 
@@ -140,10 +136,10 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
   return (
     <div>
       <Box>
-        <Grid container direction="row">
+        <Grid container direction='row'>
           <Grid item>
             <Paper>
-              <Grid container direction="column" justify="center">
+              <Grid container direction='column' justify='center'>
                 <AddFile
                   handleAddFile={handleAddFile}
                   handleFileName={handleFileName}
@@ -154,11 +150,7 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
                   closeDialog={closeDialog}
                   dialogBox={dialogBox}
                 />
-                <FileList
-                  userCode={userCode}
-                  selectedFile={selectedFile}
-                  updateSelectedFile={updateSelectedFile}
-                />
+                <FileList userCode={userCode} selectedFile={selectedFile} updateSelectedFile={updateSelectedFile} />
               </Grid>
             </Paper>
           </Grid>
@@ -168,16 +160,16 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
                 return (
                   <Editor
                     key={index}
-                    mode={"c_cpp"}
-                    name={"main-editor"}
+                    mode={'c_cpp'}
+                    name={'main-editor'}
                     value={data.content}
                     onChange={handleChange}
                     markers={markers}
-                    annotation = {annotation}
+                    annotation={annotation}
                   />
                 );
               }
-              return "";
+              return '';
             })}
             {/* <Editor value={code} onChange={handleChange} /> */}
           </Grid>
