@@ -1,0 +1,25 @@
+{
+  "name": "websvfexpress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/akshatsinghkaushik/WebSVFExpress.git",
+  "author": "akshatsinghkaushik <akshatsingh99@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"node index.js\" \"cd client && yarn && yarn start\"",
+    "dev": "concurrently \"nodemon index.js\" \"cd client && yarn && yarn start\"",
+    "dev-concurrently": "concurrently \"nodemon index.js\" \"cd client && yarn && yarn start\"",
+    "start-concurrently": "concurrently \"node index.js\" \"cd client && yarn && yarn start\""
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.0.0",
+    "cors": "^2.8.5",
+    "execa": "^5.0.0",
+    "express": "^4.17.1",
+    "mongoose": "5.11.15"
+  }
+}

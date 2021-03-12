@@ -1,5 +1,3 @@
-*.lock
-*.vsix
 node_modules
 creds.js
-websvf
+.DS_Store

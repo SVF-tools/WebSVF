@@ -52,6 +52,7 @@ This feature is still on beta and you might face issues while using it.  We migh
 
 If you want to run the WebApp locally, you will need to follow the [Guide](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-Running-WebSVF-WebApp-locally) here.
 
+We are building WebSVF with a new structure which is still in the early stages of developed. Details [here](./src/WebSVF2-0/README.md)
 
 ## **5. Developer Guide** ##
 ### **[AWS Setup Using ECS](https://github.com/SVF-tools/WebSVF/wiki/Developer-Guide-%7C%7C-AWS-Setup-Using-ECS)** ###
