@@ -1,0 +1,12 @@
+.test-marker{
+    position:absolute;
+    background:rgba(216, 3, 3, 0.836);
+    /* z-index:40; width:2px!important */
+  }
+  
+  /* .line-marker::before{
+    position:absolute;
+    background:rgba(100,100,200,0.5);
+    z-index:999;
+    top: -100%; content: 'Khoa Ma'; left:0px; font-family: Arial; padding:1px 2px
+  } */
