@@ -1,7 +1,37 @@
 import React, { useEffect } from 'react';
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 
 import './rendersvg.css';
+
+const transform = (node, index) => {
+  if (node.type === 'tag') {
+    if (node.name === 'svg') {
+      const children = node.children;
+      const { viewbox: viewBox, 'xmlns:xlink': xmlnsXlink, ...rest } = node.attribs;
+
+      return (
+        <svg key={index} viewBox={viewBox} xmlnsXlink={xmlnsXlink} {...rest}>
+          {children.map((x, i) => convertNodeToElement(x, i, transform))}
+        </svg>
+      );
+    }
+
+    if (node.name === 'text') {
+      const child = node.children[0];
+      const { 'text-anchor': textAnchor, 'font-family': fontFamily, 'font-size': fontSize, ...rest } = node.attribs;
+      return (
+        <text key={index} textAnchor={textAnchor} fontFamily={fontFamily} fontSize={fontSize} {...rest}>
+          {convertNodeToElement(child, index, transform)}
+        </text>
+      );
+    }
+
+    if (node.name === 'path') {
+      const { 'stroke-dasharray': strokeDasharray, ...rest } = node.attribs;
+      return <path key={index} strokeDasharray={strokeDasharray} {...rest} />;
+    }
+  }
+};
 
 const RenderSVG = (props) => {
   function handleOnClick(e) {
@@ -58,7 +88,13 @@ const RenderSVG = (props) => {
     }
   });
 
-  return <div>{props.output ? ReactHtmlParser(props.output) : <div></div>}</div>;
+  if (props.output) {
+    let html = props.output;
+
+    return <div>{ReactHtmlParser(html, { transform: transform })}</div>;
+  }
+
+  return <div></div>;
 };
 
 export default RenderSVG;
