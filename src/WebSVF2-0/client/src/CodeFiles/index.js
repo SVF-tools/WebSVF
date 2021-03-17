@@ -11,7 +11,6 @@ const CodeFiles = ({ code, setCode, markers, annotation }) => {
   const [response, setResponse] = useState('');
   const [fileName, setFileName] = useState('');
   const [dialogBox, setDialogBox] = useState(false);
-  //const [code, setCode] = useState(`//write your C code here`);
   const [project, setProject] = useState([]);
 
   const [userCode, setUserCode] = useState([
