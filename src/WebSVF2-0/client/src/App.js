@@ -140,7 +140,7 @@ function App() {
           <Grid container justify='center' alignItems='center' direction='column'></Grid>
         </Grid>
       </Grid>
-      <Dialog maxWidth open={graphDialog} onClose={closeGraphDialog}>
+      <Dialog maxWidth='xl' open={graphDialog} onClose={closeGraphDialog}>
         <DialogTitle>{graphDialogTitle}</DialogTitle>
         <DialogContent>
           <Grid container justify='center' alignItems='center' direction='column'>
