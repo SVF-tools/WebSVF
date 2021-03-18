@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Paper, Grid, Box } from "@material-ui/core";
-
+import { Box, Grid, Paper } from "@material-ui/core";
+import prettyFormat from "pretty-format";
+import React, { useEffect, useState } from "react";
+import websvf from "../api/websvf";
+import Editor from "../Editor/Components/Editor";
+import "./codefiles.css";
 import AddFile from "./Components/AddFile";
 import FileList from "./Components/FileList";
-import Editor from "../Editor/Components/Editor";
 
-import websvf from "../api/websvf";
 
-import prettyFormat from "pretty-format";
 
-import "./codefiles.css";
 
-const CodeFiles = ({ code, setCode, markers,annotation }) => {
+
+const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnnotation }) => {
   const [response, setResponse] = useState("");
   const [fileName, setFileName] = useState("");
   const [dialogBox, setDialogBox] = useState(false);
@@ -101,8 +101,10 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
   };
 
   const handleChange = (newValue) => {
+    updateMarker([])
+    updateAnnotation([])
     setCode(newValue);
-
+    
     const elementIndex = userCode.findIndex((value) => {
       return value.fileName === selectedFile;
     });
@@ -173,7 +175,7 @@ const CodeFiles = ({ code, setCode, markers,annotation }) => {
                     value={data.content}
                     onChange={handleChange}
                     markers={markers}
-                    annotation = {annotation}
+                    annotation={annotation}
                   />
                 );
               }

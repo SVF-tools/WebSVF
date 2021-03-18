@@ -37,6 +37,7 @@ const RenderSVG = (props) => {
     ];
     props.updateMarker(markers);
     props.updateAnnotation(annotation);
+    props.closeGraphDialog();
   }
 
   useEffect(() => {
