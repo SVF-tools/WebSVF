@@ -33,7 +33,7 @@ const transform = (node, index) => {
   }
 };
 
-const RenderSVG = ({ output, code, markers, updateMarker, updateAnnotation }) => {
+const RenderSVG = ({ output, updateMarker, updateAnnotation }) => {
   function handleOnClick(e) {
     var splitString = e.target.innerHTML.split(' ');
 

@@ -5,7 +5,7 @@ import FileList from './Components/FileList';
 import Editor from '../Editor/Components/Editor';
 import './codefiles.css';
 
-const CodeFiles = ({ code, setCode, markers, annotation }) => {
+const CodeFiles = ({ setCode, markers, annotation }) => {
   const [fileName, setFileName] = useState('');
   const [dialogBox, setDialogBox] = useState(false);
 
@@ -43,6 +43,7 @@ const CodeFiles = ({ code, setCode, markers, annotation }) => {
       files: []
     }
   ]);
+
   const [selectedFile, setselectedFile] = useState(userCode[0].fileName);
 
   useEffect(() => {

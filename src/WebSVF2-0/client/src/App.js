@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './App.css';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
@@ -14,7 +14,10 @@ import websvf from './api/websvf';
 import RenderSVG from './RenderSVG/RenderSVG';
 
 function App() {
-  const [code, setCode] = useState(`//write your C code here`);
+  const codeRef = useRef('//write your C code here');
+
+  const onSetCode = (code) => (codeRef.current = code);
+
   const [output, setOutput] = useState('');
   const [markers, setMarkers] = useState([]);
   const [annotation, setAnnotation] = useState([]);
@@ -22,7 +25,6 @@ function App() {
   const [graphDialogTitle, setGraphDialogTitle] = useState('');
 
   const handleGraphDialog = () => {
-    //setGraphDialogTitle(e.target.value);
     setGraphDialog(true);
   };
 
@@ -44,7 +46,7 @@ function App() {
   };
   const genCallGraph = async (selected) => {
     const response = await websvf.post('/analysis/callGraph', {
-      code: code,
+      code: codeRef.current,
       fileName: 'example'
     });
     if (response) {
@@ -57,7 +59,7 @@ function App() {
 
   const genICFG = async (selected) => {
     const response = await websvf.post('/analysis/icfg', {
-      code: code,
+      code: codeRef.current,
       fileName: 'example'
     });
     if (response) {
@@ -70,7 +72,7 @@ function App() {
 
   const genSVFG = async (selected) => {
     const response = await websvf.post('/analysis/svfg', {
-      code: code,
+      code: codeRef.current,
       fileName: 'example'
     });
     if (response) {
@@ -83,7 +85,7 @@ function App() {
 
   const genVFG = async (selected) => {
     const response = await websvf.post('/analysis/vfg', {
-      code: code,
+      code: codeRef.current,
       fileName: 'example'
     });
     if (response) {
@@ -95,7 +97,7 @@ function App() {
   };
   const genPAG = async (selected) => {
     const response = await websvf.post('/analysis/pag', {
-      code: code,
+      code: codeRef.current,
       fileName: 'example'
     });
     if (response) {
@@ -129,7 +131,7 @@ function App() {
         <Grid item>
           <Box my={3}>
             {console.log(markers)}
-            <CodeFiles code={code} setCode={setCode} markers={markers} annotation={annotation} />
+            <CodeFiles setCode={onSetCode} markers={markers} annotation={annotation} />
           </Box>
         </Grid>
         <Grid container justify='center' alignItems='center' direction='column'>
@@ -158,7 +160,7 @@ function App() {
               <h1>No Graph Selected</h1>
             </Box>
           ) : (
-            <RenderSVG output={output} code={code} markers={markers} updateMarker={updateMarker} updateAnnotation={updateAnnotation} />
+            <RenderSVG output={output} updateMarker={updateMarker} updateAnnotation={updateAnnotation} />
           )}
         </DialogContent>
       </Dialog>
