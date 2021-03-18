@@ -33,7 +33,7 @@ const transform = (node, index) => {
   }
 };
 
-const RenderSVG = (props) => {
+const RenderSVG = ({ output, code, markers, updateMarker, updateAnnotation }) => {
   function handleOnClick(e) {
     var splitString = e.target.innerHTML.split(' ');
 
@@ -59,14 +59,14 @@ const RenderSVG = (props) => {
         type: 'text'
       }
     ];
-    props.updateMarker(markers);
-    props.updateAnnotation(annotation);
+    updateMarker(markers);
+    updateAnnotation(annotation);
   }
 
   useEffect(() => {
     if (document.querySelector(`#graph0`)) {
       const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(props.output, 'text/xml');
+      const xmlDoc = parser.parseFromString(output, 'text/xml');
 
       let text = Array.from(xmlDoc.getElementsByTagName('g'));
 
@@ -88,10 +88,8 @@ const RenderSVG = (props) => {
     }
   });
 
-  if (props.output) {
-    let html = props.output;
-
-    return <div>{ReactHtmlParser(html, { transform: transform })}</div>;
+  if (output) {
+    return <div>{ReactHtmlParser(output, { transform: transform })}</div>;
   }
 
   return <div></div>;
