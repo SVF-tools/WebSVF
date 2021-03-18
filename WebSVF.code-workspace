@@ -1,12 +1,59 @@
 {
-    "folders": [
-      {
-        "path": "."
-      }
-    ],
-    "settings": {
-      "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/**": true,
+      "**/tmp/**": true,
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/dist/**": true,
+      "**/log/**": true,
+      "**/logs/**": true,
+      "**/.fdk/**": true
+    },
+    "files.exclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/**": true,
+      "**/tmp/**": true,
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/dist/**": true,
+      "**/log/**": true,
+      "**/.fdk/**": true
+    },
+    "search.exclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/**": true,
+      "**/tmp/**": true,
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/dist/**": true,
+      "**/log/**": true
     }
   }
-  
+}
