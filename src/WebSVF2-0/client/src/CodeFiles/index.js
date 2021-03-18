@@ -3,15 +3,11 @@ import { Paper, Grid, Box } from '@material-ui/core';
 import AddFile from './Components/AddFile';
 import FileList from './Components/FileList';
 import Editor from '../Editor/Components/Editor';
-import websvf from '../api/websvf';
-import prettyFormat from 'pretty-format';
 import './codefiles.css';
 
 const CodeFiles = ({ code, setCode, markers, annotation }) => {
-  const [response, setResponse] = useState('');
   const [fileName, setFileName] = useState('');
   const [dialogBox, setDialogBox] = useState(false);
-  const [project, setProject] = useState([]);
 
   const [userCode, setUserCode] = useState([
     {
@@ -54,15 +50,7 @@ const CodeFiles = ({ code, setCode, markers, annotation }) => {
       return value.fileName === selectedFile;
     });
     setCode(userCode[elementIndex].content);
-  }, [selectedFile, userCode]);
-
-  const loadProject = async () => {
-    const response = await websvf.get('/db/getFiles/');
-    if (response) {
-      setProject(response.data.projects[0]);
-      setUserCode(response.data.projects[0].userCode);
-    }
-  };
+  }, [selectedFile, userCode, setCode]);
 
   const handleAddFile = () => {
     setUserCode([
@@ -113,23 +101,6 @@ const CodeFiles = ({ code, setCode, markers, annotation }) => {
 
   const clearFileName = () => {
     setFileName('');
-  };
-
-  const codeSubmit = async () => {
-    const response = await websvf.post(
-      '/db/saveFile/',
-      //`code=${code}&fileName=${selectedFile}&fileVersion=${'1.0'}`,
-      {
-        code: code,
-        fileName: selectedFile,
-        fileVersion: '1.0'
-      }
-    );
-
-    setResponse(prettyFormat(response.data, { escapeString: false }));
-    (async function asyncWorkaround() {
-      await loadProject();
-    })();
   };
 
   return (

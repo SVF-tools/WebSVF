@@ -73,8 +73,8 @@ const RenderSVG = (props) => {
       let filtered = text
         .filter(
           (value) =>
-            /\{[\s]+ln\:[\s]+[0-9]+[\s]+cl\:[\s]+[0-9]+[\s]+fl\:[\s]+[a-z]+\.c[\s]+\}/.test(value.innerHTML) ||
-            /\{[\s]+in[\s]+line\:[\s]+[0-9]+[\s]+file\:[\s]+[a-z]+\.c[\s]+\}/.test(value.innerHTML)
+            /\{[\s]+ln:[\s]+[0-9]+[\s]+cl:[\s]+[0-9]+[\s]+fl:[\s]+[a-z]+\.c[\s]+\}/.test(value.innerHTML) ||
+            /\{[\s]+in[\s]+line:[\s]+[0-9]+[\s]+file:[\s]+[a-z]+\.c[\s]+\}/.test(value.innerHTML)
         )
         .map((value) => {
           return value.id;
