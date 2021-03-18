@@ -142,21 +142,9 @@ const CodeFiles = ({ setCode, markers, annotation }) => {
               }
               return '';
             })}
-            {/* <Editor value={code} onChange={handleChange} /> */}
           </Grid>
         </Grid>
       </Box>
-      {/* <button onClick={codeSubmit}> Submit </button>
-      <h1>Response from the POST request:</h1>
-      <Editor
-        mode={"json"}
-        theme={"terminal"}
-        //onChange={onChange}
-        name={"UNIQUE_ID_OF_DIV1"}
-        editorProps={{ $blockScrolling: true }}
-        wrapEnabled={true}
-        value={response}
-      /> */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 
 import './rendersvg.css';
@@ -33,35 +33,42 @@ const transform = (node, index) => {
   }
 };
 
-const RenderSVG = ({ output, updateMarker, updateAnnotation }) => {
-  function handleOnClick(e) {
-    var splitString = e.target.innerHTML.split(' ');
+const RenderSVG = ({ output, onGraphClick }) => {
+  const handleOnClickRef = useRef(0);
 
-    let lineElementIndex = splitString.findIndex((value) => {
-      return value === 'ln:';
-    });
+  const handleOnClick = (e) => {
+    if (handleOnClickRef.current) {
+      clearTimeout(handleOnClickRef.current);
+    }
 
-    //ace editor line number starts from 0 although users can see it start from one in frontend
-    var lineNumber = splitString[lineElementIndex + 1] - 1;
-    const markers = [
-      {
-        startRow: lineNumber,
-        endRow: lineNumber + 1,
-        type: 'text',
-        className: 'test-marker'
-      }
-    ];
-    const annotation = [
-      {
-        row: lineNumber,
-        column: 3,
-        text: e.target.innerHTML,
-        type: 'text'
-      }
-    ];
-    updateMarker(markers);
-    updateAnnotation(annotation);
-  }
+    handleOnClickRef.current = setTimeout(() => {
+      var splitString = e.target.innerHTML.split(' ');
+
+      let lineElementIndex = splitString.findIndex((value) => {
+        return value === 'ln:';
+      });
+
+      //ace editor line number starts from 0 although users can see it start from one in frontend
+      var lineNumber = splitString[lineElementIndex + 1] - 1;
+      const markers = [
+        {
+          startRow: lineNumber,
+          endRow: lineNumber + 1,
+          type: 'text',
+          className: 'test-marker'
+        }
+      ];
+      const annotation = [
+        {
+          row: lineNumber,
+          column: 3,
+          text: e.target.innerHTML,
+          type: 'text'
+        }
+      ];
+      onGraphClick({ markers: markers, annotation: annotation });
+    }, 1000);
+  };
 
   useEffect(() => {
     if (document.querySelector(`#graph0`)) {

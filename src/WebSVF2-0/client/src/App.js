@@ -29,8 +29,7 @@ function App() {
   };
 
   const handleSelection = (e) => {
-    let selected = e.target.value;
-    // setGraphDialogTitle(selected);
+    const selected = e.target.value;
     if (selected === 'CallGraph') {
       genCallGraph(selected);
     } else if (selected === 'ICFG') {
@@ -42,7 +41,7 @@ function App() {
     } else if (selected === 'VFG') {
       genVFG(selected);
     }
-    console.log(selected);
+    console.log('graph', selected);
   };
   const genCallGraph = async (selected) => {
     const response = await websvf.post('/analysis/callGraph', {
@@ -107,13 +106,13 @@ function App() {
       setOutput(response.data);
     }
   };
-  const updateMarker = (newValue) => {
-    console.log(newValue);
-    setMarkers(newValue);
-  };
-  const updateAnnotation = (newValue) => {
-    console.log(newValue);
-    setAnnotation(newValue);
+
+  const onGraphClick = ({ markers, annotation }) => {
+    console.log('markers', markers);
+    console.log('annotation', annotation);
+
+    setMarkers(markers);
+    setAnnotation(annotation);
   };
 
   const closeGraphDialog = () => {
@@ -130,7 +129,6 @@ function App() {
       <Grid container justify='center' alignItems='center' direction='column'>
         <Grid item>
           <Box my={3}>
-            {console.log(markers)}
             <CodeFiles setCode={onSetCode} markers={markers} annotation={annotation} />
           </Box>
         </Grid>
@@ -160,7 +158,7 @@ function App() {
               <h1>No Graph Selected</h1>
             </Box>
           ) : (
-            <RenderSVG output={output} updateMarker={updateMarker} updateAnnotation={updateAnnotation} />
+            <RenderSVG output={output} onGraphClick={onGraphClick} />
           )}
         </DialogContent>
       </Dialog>
