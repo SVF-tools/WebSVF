@@ -141,6 +141,8 @@ function App() {
               setCode={setCode}
               markers={markers}
               annotation={annotation}
+              updateMarker={updateMarker}
+              updateAnnotation={updateAnnotation}
             />
           </Box>
         </Grid>
@@ -192,6 +194,7 @@ function App() {
               markers={markers}
               updateMarker={updateMarker}
               updateAnnotation={updateAnnotation}
+              closeGraphDialog={closeGraphDialog}
             />
           )}
         </DialogContent>
