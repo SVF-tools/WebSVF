@@ -33,7 +33,7 @@ const transform = (node, index) => {
   }
 };
 
-const RenderSVG = ({ output, onGraphClick }) => {
+const RenderSVG = ({ output, onGraphClick, onClose }) => {
   const handleOnClickRef = useRef(0);
 
   const handleOnClick = (e) => {
@@ -67,6 +67,7 @@ const RenderSVG = ({ output, onGraphClick }) => {
         }
       ];
       onGraphClick({ markers: markers, annotation: annotation });
+      onClose();
     }, 1000);
   };
 
