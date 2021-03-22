@@ -115,7 +115,7 @@ function App() {
     setAnnotation(annotation);
   };
 
-  const closeGraphDialog = () => {
+  const onCloseGraphDialog = () => {
     setGraphDialog(false);
     setGraphDialogTitle('');
   };
@@ -140,7 +140,7 @@ function App() {
           <Grid container justify='center' alignItems='center' direction='column'></Grid>
         </Grid>
       </Grid>
-      <Dialog maxWidth='xl' open={graphDialog} onClose={closeGraphDialog}>
+      <Dialog maxWidth='xl' open={graphDialog} onClose={onCloseGraphDialog}>
         <DialogTitle>{graphDialogTitle}</DialogTitle>
         <DialogContent>
           <Grid container justify='center' alignItems='center' direction='column'>
@@ -158,7 +158,7 @@ function App() {
               <h1>No Graph Selected</h1>
             </Box>
           ) : (
-            <RenderSVG output={output} onGraphClick={onGraphClick} />
+            <RenderSVG output={output} onGraphClick={onGraphClick} onClose={onCloseGraphDialog} />
           )}
         </DialogContent>
       </Dialog>
