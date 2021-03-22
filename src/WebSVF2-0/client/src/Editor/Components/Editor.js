@@ -1,30 +1,31 @@
-import React from "react";
+import React from 'react';
 
-import AceEditor from "react-ace";
+import AceEditor from 'react-ace';
 
-import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/mode-json";
-import "ace-builds/src-noconflict/theme-terminal";
+import 'ace-builds/src-noconflict/mode-c_cpp';
+import 'ace-builds/src-noconflict/mode-json';
+import 'ace-builds/src-noconflict/theme-terminal';
 
-import "ace-builds/webpack-resolver";
+import 'ace-builds/webpack-resolver';
 
-const Editor = (props) => {
+const Editor = ({ markers, mode, onChange, name, editorProps, wrapEnabled, value, focus, annotation }) => {
   return (
     <div>
-      {console.log(props.markers)}
+      {console.log('markers', markers)}
       <AceEditor
-        mode={props.mode}
+        mode={mode}
         theme='terminal'
-        onChange={props.onChange}
-        name={props.name}
-        editorProps={props.editorProps}
-        wrapEnabled={props.wrapEnabled}
-        value={props.value}
+        onChange={onChange}
+        props
+        name={name}
+        editorProps={editorProps}
+        wrapEnabled={wrapEnabled}
+        value={value}
         width='40rem'
         height='30rem'
-        focus={props.focus}
-        annotations={props.annotation}
-        markers={props.markers}
+        focus={focus}
+        annotations={annotation}
+        markers={markers}
       />
     </div>
   );
