@@ -1,28 +1,19 @@
-import { Box, Grid, Paper } from "@material-ui/core";
-import prettyFormat from "pretty-format";
-import React, { useEffect, useState } from "react";
-import websvf from "../api/websvf";
-import Editor from "../Editor/Components/Editor";
-import "./codefiles.css";
-import AddFile from "./Components/AddFile";
-import FileList from "./Components/FileList";
+import React, { useState, useEffect } from 'react';
+import { Paper, Grid, Box } from '@material-ui/core';
+import AddFile from './Components/AddFile';
+import FileList from './Components/FileList';
+import Editor from '../Editor/Components/Editor';
+import './codefiles.css';
 
-
-
-
-
-const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnnotation }) => {
-  const [response, setResponse] = useState("");
-  const [fileName, setFileName] = useState("");
+const CodeFiles = ({ setCode, markers, annotation }) => {
+  const [fileName, setFileName] = useState('');
   const [dialogBox, setDialogBox] = useState(false);
-  //const [code, setCode] = useState(`//write your C code here`);
-  const [project, setProject] = useState([]);
 
   const [userCode, setUserCode] = useState([
     {
-      fileID: "init-temp",
-      fileName: "example.c",
-      version: "0.0",
+      fileID: 'init-temp',
+      fileName: 'example.c',
+      version: '0.0',
       content: `#include <math.h>
       #include <stdio.h>
       int main() {
@@ -49,9 +40,10 @@ const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnn
           }
           return 0;
       } `,
-      files: [],
-    },
+      files: []
+    }
   ]);
+
   const [selectedFile, setselectedFile] = useState(userCode[0].fileName);
 
   useEffect(() => {
@@ -59,15 +51,7 @@ const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnn
       return value.fileName === selectedFile;
     });
     setCode(userCode[elementIndex].content);
-  }, [selectedFile, userCode]);
-
-  const loadProject = async () => {
-    const response = await websvf.get("/db/getFiles/");
-    if (response) {
-      setProject(response.data.projects[0]);
-      setUserCode(response.data.projects[0].userCode);
-    }
-  };
+  }, [selectedFile, userCode, setCode]);
 
   const handleAddFile = () => {
     setUserCode([
@@ -76,8 +60,8 @@ const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnn
         fileId: Math.random(),
         fileName: fileName,
         version: 0.1,
-        content: `//write your C code here`,
-      },
+        content: `//write your C code here`
+      }
     ]);
 
     closeDialog();
@@ -101,10 +85,8 @@ const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnn
   };
 
   const handleChange = (newValue) => {
-    updateMarker([])
-    updateAnnotation([])
     setCode(newValue);
-    
+
     const elementIndex = userCode.findIndex((value) => {
       return value.fileName === selectedFile;
     });
@@ -112,40 +94,23 @@ const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnn
 
     tempUserCode[elementIndex] = {
       ...tempUserCode[elementIndex],
-      content: newValue,
+      content: newValue
     };
 
     setUserCode(tempUserCode);
   };
 
   const clearFileName = () => {
-    setFileName("");
-  };
-
-  const codeSubmit = async () => {
-    const response = await websvf.post(
-      "/db/saveFile/",
-      //`code=${code}&fileName=${selectedFile}&fileVersion=${'1.0'}`,
-      {
-        code: code,
-        fileName: selectedFile,
-        fileVersion: "1.0",
-      }
-    );
-
-    setResponse(prettyFormat(response.data, { escapeString: false }));
-    (async function asyncWorkaround() {
-      await loadProject();
-    })();
+    setFileName('');
   };
 
   return (
     <div>
       <Box>
-        <Grid container direction="row">
+        <Grid container direction='row'>
           <Grid item>
             <Paper>
-              <Grid container direction="column" justify="center">
+              <Grid container direction='column' justify='center'>
                 <AddFile
                   handleAddFile={handleAddFile}
                   handleFileName={handleFileName}
@@ -156,11 +121,7 @@ const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnn
                   closeDialog={closeDialog}
                   dialogBox={dialogBox}
                 />
-                <FileList
-                  userCode={userCode}
-                  selectedFile={selectedFile}
-                  updateSelectedFile={updateSelectedFile}
-                />
+                <FileList userCode={userCode} selectedFile={selectedFile} updateSelectedFile={updateSelectedFile} />
               </Grid>
             </Paper>
           </Grid>
@@ -170,8 +131,8 @@ const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnn
                 return (
                   <Editor
                     key={index}
-                    mode={"c_cpp"}
-                    name={"main-editor"}
+                    mode={'c_cpp'}
+                    name={'main-editor'}
                     value={data.content}
                     onChange={handleChange}
                     markers={markers}
@@ -179,23 +140,11 @@ const CodeFiles = ({ code, setCode, markers, annotation, updateMarker, updateAnn
                   />
                 );
               }
-              return "";
+              return '';
             })}
-            {/* <Editor value={code} onChange={handleChange} /> */}
           </Grid>
         </Grid>
       </Box>
-      {/* <button onClick={codeSubmit}> Submit </button>
-      <h1>Response from the POST request:</h1>
-      <Editor
-        mode={"json"}
-        theme={"terminal"}
-        //onChange={onChange}
-        name={"UNIQUE_ID_OF_DIV1"}
-        editorProps={{ $blockScrolling: true }}
-        wrapEnabled={true}
-        value={response}
-      /> */}
     </div>
   );
 };
