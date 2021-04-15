@@ -64,9 +64,15 @@
       "icon": "fas fa-cogs"
     },
     {
-      "title": "WebSVF-codemap-extension User Guide",
-      "description": "A step by step guide taking you through the WebSVF's codemap-extension and all of its features.",
+      "title": "WebSVF-codemap-extension 2D User Guide",
+      "description": "A step by step guide taking you through the WebSVF's codemap-extension and all of its 2D show features.",
       "youtube-link": "https://www.youtube.com/embed/c-dLTqPTkjA",
+      "icon": "fas fa-laptop-code"
+    },
+    {
+      "title": "WebSVF-codemap-extension 3D Display User Guide",
+      "description": "A step by step guide taking you through the WebSVF's codemap-extension and all of its 3D display features.",
+      "youtube-link": "https://www.youtube.com/embed/whcmPkblx48",
       "icon": "fas fa-laptop-code"
     }
   ],
