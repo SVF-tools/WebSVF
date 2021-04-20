@@ -3,20 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"node index.js\" \"cd client && yarn && yarn start\"",
-    "dev": "concurrently \"nodemon index.js\" \"cd client && yarn && yarn start\"",
-    "dev-concurrently": "concurrently \"nodemon index.js\" \"cd client && yarn && yarn start\"",
-    "start-concurrently": "concurrently \"node index.js\" \"cd client && yarn && yarn start\""
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.6"
+    "start": "concurrently \"cd server && yarn && yarn start\" \"cd client && yarn && yarn start\"",
+    "dev": "concurrently \"cd client && yarn && yarn dev\" \"cd client && yarn && yarn start\""
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "concurrently": "^6.0.0",
-    "cors": "^2.8.5",
-    "execa": "^5.0.0",
-    "express": "^4.17.1",
-    "mongoose": "5.11.15"
+    "concurrently": "^6.0.0"
   }
 }
