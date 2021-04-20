@@ -1,9 +1,6 @@
 {
-  "name": "websvfexpress",
+  "name": "websvf",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/akshatsinghkaushik/WebSVFExpress.git",
-  "author": "akshatsinghkaushik <akshatsingh99@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "concurrently \"node index.js\" \"cd client && yarn && yarn start\"",
