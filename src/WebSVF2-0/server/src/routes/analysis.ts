@@ -1,24 +1,27 @@
 import { Express } from 'express';
 import util from 'util';
 import execa from 'execa';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 
 const fs_writeFile = util.promisify(fs.writeFile);
 
-const tempPath = `${path.resolve('./')}/temp/`;
+const tempPath = `${path.resolve('./')}/src/temp/`;
+const shellScriptsPath = `${path.resolve('./')}/src/scripts/`;
+
+console.log('tempPath', tempPath);
+console.log('shellScriptsPath', shellScriptsPath);
 
 const analysis = (app: Express) => {
   app.post('/analysis/callGraph', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
         message: 'Code is not right'
       });
     } else {
-      //Create a C file temporarily (for compiling) from the code in the request
+      //Create a C file temporarily (for compiling) from the codshellScriptsPathe in the request
       await fs_writeFile(`${filePath}.c`, `${req.body.code}`);
 
       //Copy script for generating graphs to temp folder
@@ -72,7 +75,6 @@ const analysis = (app: Express) => {
 
   app.post('/analysis/icfg', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
@@ -131,7 +133,6 @@ const analysis = (app: Express) => {
 
   app.post('/analysis/pag', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
@@ -190,7 +191,6 @@ const analysis = (app: Express) => {
 
   app.post('/analysis/svfg', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
@@ -206,7 +206,7 @@ const analysis = (app: Express) => {
           cwd: shellScriptsPath
         });
       } catch (err) {
-        console.log(err);
+        console.log(`Error`, err);
       }
 
       //Execute the wllvm compile to bc script on the C code sent through the POST request
@@ -249,7 +249,6 @@ const analysis = (app: Express) => {
 
   app.post('/analysis/vfg', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
