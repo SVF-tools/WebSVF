@@ -9,6 +9,11 @@ const fs_writeFile = util.promisify(fs.writeFile);
 const tempPath = `${path.resolve('./')}/src/temp/`;
 const shellScriptsPath = `${path.resolve('./')}/src/scripts/`;
 
+if (!fs.existsSync(tempPath)) {
+  console.log(`Creating directory ${tempPath}`);
+  fs.mkdirSync(tempPath);
+}
+
 console.log('tempPath', tempPath);
 console.log('shellScriptsPath', shellScriptsPath);
 
@@ -17,6 +22,7 @@ interface IProcessAnalysisRequestProps {
   scriptFileName: string;
   code: string;
   codeFileName: string;
+  onSvgOpen: (stream: fs.ReadStream) => void;
 }
 
 const createTemporaryFile = async (codeFileName: string, code: string) => {
@@ -68,7 +74,7 @@ const cleanupFiles = async () => {
   }
 };
 
-const processAnalysisRequest = async ({ graphName, scriptFileName, code, codeFileName }: IProcessAnalysisRequestProps) => {
+const processAnalysisRequest = async ({ graphName, scriptFileName, code, codeFileName, onSvgOpen }: IProcessAnalysisRequestProps) => {
   await createTemporaryFile(codeFileName, code);
 
   await copyScript(scriptFileName);
@@ -77,11 +83,11 @@ const processAnalysisRequest = async ({ graphName, scriptFileName, code, codeFil
 
   const stream = await readGraphSvg(graphName);
 
+  onSvgOpen(stream);
+
   if (!result.failed) {
     await cleanupFiles();
   }
-
-  return stream;
 };
 
 const analysis = (app: Express) => {
@@ -95,16 +101,17 @@ const analysis = (app: Express) => {
         });
       }
 
-      const stream = await processAnalysisRequest({
+      await processAnalysisRequest({
         graphName: 'icfg',
         scriptFileName: 'gen2DGraphs.sh',
         code: code,
-        codeFileName: fileName
-      });
-
-      stream.on('open', function () {
-        res.set('Content-Type', 'image/svg+xml');
-        stream.pipe(res);
+        codeFileName: fileName,
+        onSvgOpen: (stream) => {
+          stream.on('open', function () {
+            res.set('Content-Type', 'image/svg+xml');
+            stream.pipe(res);
+          });
+        }
       });
     } catch (error) {
       res.status(417).send({
@@ -124,16 +131,17 @@ const analysis = (app: Express) => {
         });
       }
 
-      const stream = await processAnalysisRequest({
+      await processAnalysisRequest({
         graphName: 'icfg',
         scriptFileName: 'gen2DGraphs.sh',
         code: code,
-        codeFileName: fileName
-      });
-
-      stream.on('open', function () {
-        res.set('Content-Type', 'image/svg+xml');
-        stream.pipe(res);
+        codeFileName: fileName,
+        onSvgOpen: (stream) => {
+          stream.on('open', function () {
+            res.set('Content-Type', 'image/svg+xml');
+            stream.pipe(res);
+          });
+        }
       });
     } catch (error) {
       res.status(417).send({
@@ -153,16 +161,17 @@ const analysis = (app: Express) => {
         });
       }
 
-      const stream = await processAnalysisRequest({
+      await processAnalysisRequest({
         graphName: 'pag',
         scriptFileName: 'gen2DGraphs.sh',
         code: code,
-        codeFileName: fileName
-      });
-
-      stream.on('open', function () {
-        res.set('Content-Type', 'image/svg+xml');
-        stream.pipe(res);
+        codeFileName: fileName,
+        onSvgOpen: (stream) => {
+          stream.on('open', function () {
+            res.set('Content-Type', 'image/svg+xml');
+            stream.pipe(res);
+          });
+        }
       });
     } catch (error) {
       res.status(417).send({
@@ -180,18 +189,21 @@ const analysis = (app: Express) => {
         res.status(400).send({
           message: 'Missing code or file name'
         });
+
+        return;
       }
 
-      const stream = await processAnalysisRequest({
+      await processAnalysisRequest({
         graphName: 'svfg',
         scriptFileName: 'gen2DGraphs.sh',
         code: code,
-        codeFileName: fileName
-      });
-
-      stream.on('open', function () {
-        res.set('Content-Type', 'image/svg+xml');
-        stream.pipe(res);
+        codeFileName: fileName,
+        onSvgOpen: (stream) => {
+          stream.on('open', function () {
+            res.set('Content-Type', 'image/svg+xml');
+            stream.pipe(res);
+          });
+        }
       });
     } catch (error) {
       res.status(417).send({
@@ -211,16 +223,17 @@ const analysis = (app: Express) => {
         });
       }
 
-      const stream = await processAnalysisRequest({
+      await processAnalysisRequest({
         graphName: 'vfg',
         scriptFileName: 'gen2DGraphs.sh',
         code: code,
-        codeFileName: fileName
-      });
-
-      stream.on('open', function () {
-        res.set('Content-Type', 'image/svg+xml');
-        stream.pipe(res);
+        codeFileName: fileName,
+        onSvgOpen: (stream) => {
+          stream.on('open', function () {
+            res.set('Content-Type', 'image/svg+xml');
+            stream.pipe(res);
+          });
+        }
       });
     } catch (error) {
       res.status(417).send({
