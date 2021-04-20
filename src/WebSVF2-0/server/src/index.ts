@@ -1,19 +1,11 @@
 import mongoose from 'mongoose';
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
-import fs from 'fs';
 import config from './serverconfig.json';
 import userCode from './routes/userCode';
 import db from './routes/db';
 import builds from './routes/builds';
 import analysis from './routes/analysis';
-
-const tempPath = `${path.resolve('./')}/temp/`;
-if (!fs.existsSync(tempPath)) {
-  console.log(`Creating directory ${tempPath}`);
-  fs.mkdirSync(tempPath);
-}
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
