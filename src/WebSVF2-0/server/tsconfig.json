@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "lib": ["es2019"]
+  },
+  "include": ["src"]
+}

@@ -1,15 +1,17 @@
-const execa = require('execa');
-const path = require('path');
-const util = require('util');
-const fs = require('fs');
+import { Express } from 'express';
+import util from 'util';
+import execa from 'execa';
+import path from 'path';
+import fs from 'fs';
+
 const fs_writeFile = util.promisify(fs.writeFile);
 
 const tempPath = `${path.resolve('./')}/temp/`;
 
-module.exports = (app) => {
+const analysis = (app: Express) => {
   app.post('/analysis/callGraph', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/shellScripts`;
+    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
@@ -21,7 +23,7 @@ module.exports = (app) => {
 
       //Copy script for generating graphs to temp folder
       try {
-        const result = await execa('cp', ['gen2DGraphs.sh', tempPath], {
+        await execa('cp', ['gen2DGraphs.sh', tempPath], {
           cwd: shellScriptsPath
         });
       } catch (err) {
@@ -46,12 +48,12 @@ module.exports = (app) => {
         if (!result.failed) {
           // Delete the files created
           try {
-            const cleanup = await execa('rm', ['-rf', '*'], {
+            await execa('rm', ['-rf', '*'], {
               cwd: tempPath,
               shell: true
             });
           } catch (err) {
-            res.status('417').send({
+            res.status(417).send({
               message: 'Issue deleting local files',
               error: err
             });
@@ -59,7 +61,7 @@ module.exports = (app) => {
           }
         }
       } catch (err) {
-        res.status('417').send({
+        res.status(417).send({
           message: 'Issue executing build file',
           error: err
         });
@@ -70,7 +72,7 @@ module.exports = (app) => {
 
   app.post('/analysis/icfg', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/shellScripts`;
+    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
@@ -82,7 +84,7 @@ module.exports = (app) => {
 
       //Copy script for generating graphs to temp folder
       try {
-        const result = await execa('cp', ['gen2DGraphs.sh', tempPath], {
+        await execa('cp', ['gen2DGraphs.sh', tempPath], {
           cwd: shellScriptsPath
         });
       } catch (err) {
@@ -107,19 +109,19 @@ module.exports = (app) => {
         if (!result.failed) {
           // Delete the files created
           try {
-            const cleanup = await execa('rm', ['-rf', '*'], {
+            await execa('rm', ['-rf', '*'], {
               cwd: tempPath,
               shell: true
             });
           } catch (err) {
-            res.status('417').send({
+            res.status(417).send({
               message: 'Issue deleting local files',
               error: err
             });
           }
         }
       } catch (err) {
-        res.status('417').send({
+        res.status(417).send({
           message: 'Issue executing build file',
           error: err
         });
@@ -129,7 +131,7 @@ module.exports = (app) => {
 
   app.post('/analysis/pag', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/shellScripts`;
+    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
@@ -141,7 +143,7 @@ module.exports = (app) => {
 
       //Copy script for generating graphs to temp folder
       try {
-        const result = await execa('cp', ['gen2DGraphs.sh', tempPath], {
+        await execa('cp', ['gen2DGraphs.sh', tempPath], {
           cwd: shellScriptsPath
         });
       } catch (err) {
@@ -166,19 +168,19 @@ module.exports = (app) => {
         if (!result.failed) {
           // Delete the files created
           try {
-            const cleanup = await execa('rm', ['-rf', '*'], {
+            await execa('rm', ['-rf', '*'], {
               cwd: tempPath,
               shell: true
             });
           } catch (err) {
-            res.status('417').send({
+            res.status(417).send({
               message: 'Issue deleting local files',
               error: err
             });
           }
         }
       } catch (err) {
-        res.status('417').send({
+        res.status(417).send({
           message: 'Issue executing build file',
           error: err
         });
@@ -188,7 +190,7 @@ module.exports = (app) => {
 
   app.post('/analysis/svfg', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/shellScripts`;
+    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
@@ -200,7 +202,7 @@ module.exports = (app) => {
 
       //Copy script for generating graphs to temp folder
       try {
-        const result = await execa('cp', ['gen2DGraphs.sh', tempPath], {
+        await execa('cp', ['gen2DGraphs.sh', tempPath], {
           cwd: shellScriptsPath
         });
       } catch (err) {
@@ -225,19 +227,19 @@ module.exports = (app) => {
         if (!result.failed) {
           // Delete the files created
           try {
-            const cleanup = await execa('rm', ['-rf', '*'], {
+            await execa('rm', ['-rf', '*'], {
               cwd: tempPath,
               shell: true
             });
           } catch (err) {
-            res.status('417').send({
+            res.status(417).send({
               message: 'Issue deleting local files',
               error: err
             });
           }
         }
       } catch (err) {
-        res.status('417').send({
+        res.status(417).send({
           message: 'Issue executing build file',
           error: err
         });
@@ -247,7 +249,7 @@ module.exports = (app) => {
 
   app.post('/analysis/vfg', async (req, res) => {
     const filePath = `${tempPath}${req.body.fileName}`;
-    const shellScriptsPath = `${path.resolve('./')}/shellScripts`;
+    const shellScriptsPath = `${path.resolve('./')}/scripts`;
 
     if (!Boolean(req.body.code)) {
       res.status(400).send({
@@ -259,7 +261,7 @@ module.exports = (app) => {
 
       //Copy script for generating graphs to temp folder
       try {
-        const result = await execa('cp', ['gen2DGraphs.sh', tempPath], {
+        await execa('cp', ['gen2DGraphs.sh', tempPath], {
           cwd: shellScriptsPath
         });
       } catch (err) {
@@ -284,19 +286,19 @@ module.exports = (app) => {
         if (!result.failed) {
           // Delete the files created
           try {
-            const cleanup = await execa('rm', ['-rf', '*'], {
+            await execa('rm', ['-rf', '*'], {
               cwd: tempPath,
               shell: true
             });
           } catch (err) {
-            res.status('417').send({
+            res.status(417).send({
               message: 'Issue deleting local files',
               error: err
             });
           }
         }
       } catch (err) {
-        res.status('417').send({
+        res.status(417).send({
           message: 'Issue executing build file',
           error: err
         });
@@ -304,3 +306,5 @@ module.exports = (app) => {
     }
   });
 };
+
+export default analysis;
