@@ -12,296 +12,221 @@ const shellScriptsPath = `${path.resolve('./')}/src/scripts/`;
 console.log('tempPath', tempPath);
 console.log('shellScriptsPath', shellScriptsPath);
 
+interface IProcessAnalysisRequestProps {
+  graphName: 'callgraph' | 'icfg' | 'pag' | 'svfg' | 'vfg';
+  scriptFileName: string;
+  code: string;
+  codeFileName: string;
+}
+
+const createTemporaryFile = async (codeFileName: string, code: string) => {
+  const filePath = `${tempPath}${codeFileName}`;
+  try {
+    await fs_writeFile(`${filePath}.c`, `${code}`);
+  } catch (error) {
+    throw new Error('Error creating local C file: ' + error);
+  }
+};
+
+const copyScript = async (scriptFileName: string) => {
+  try {
+    await execa('cp', [scriptFileName, tempPath], {
+      cwd: shellScriptsPath
+    });
+  } catch (error) {
+    throw new Error('Error copying script: ' + error);
+  }
+};
+
+const executeScript = async (scriptFileName: string, codeFileName: string) => {
+  try {
+    return await execa('bash', [`./${scriptFileName}`, `${codeFileName}.c`], {
+      cwd: tempPath,
+      shell: true
+    });
+  } catch (error) {
+    throw new Error('Error executing script: ' + error);
+  }
+};
+
+const readGraphSvg = async (graphName: string) => {
+  try {
+    return fs.createReadStream(`${tempPath}/Graph_Files/svf/${graphName}.svg`);
+  } catch (error) {
+    throw new Error('Error reading graph svg: ' + error);
+  }
+};
+
+const cleanupFiles = async () => {
+  try {
+    await execa('rm', ['-rf', '*'], {
+      cwd: tempPath,
+      shell: true
+    });
+  } catch (error) {
+    throw new Error('Error cleaning up files: ' + error);
+  }
+};
+
+const processAnalysisRequest = async ({ graphName, scriptFileName, code, codeFileName }: IProcessAnalysisRequestProps) => {
+  await createTemporaryFile(codeFileName, code);
+
+  await copyScript(scriptFileName);
+
+  const result = await executeScript(scriptFileName, codeFileName);
+
+  const stream = await readGraphSvg(graphName);
+
+  if (!result.failed) {
+    await cleanupFiles();
+  }
+
+  return stream;
+};
+
 const analysis = (app: Express) => {
   app.post('/analysis/callGraph', async (req, res) => {
-    const filePath = `${tempPath}${req.body.fileName}`;
+    try {
+      const { code, fileName }: { code: string; fileName: string } = req.body;
 
-    if (!Boolean(req.body.code)) {
-      res.status(400).send({
-        message: 'Code is not right'
+      if (!code || !fileName) {
+        res.status(400).send({
+          message: 'Missing code or file name'
+        });
+      }
+
+      const stream = await processAnalysisRequest({
+        graphName: 'icfg',
+        scriptFileName: 'gen2DGraphs.sh',
+        code: code,
+        codeFileName: fileName
       });
-    } else {
-      //Create a C file temporarily (for compiling) from the codshellScriptsPathe in the request
-      await fs_writeFile(`${filePath}.c`, `${req.body.code}`);
 
-      //Copy script for generating graphs to temp folder
-      try {
-        await execa('cp', ['gen2DGraphs.sh', tempPath], {
-          cwd: shellScriptsPath
-        });
-      } catch (err) {
-        console.log(err);
-      }
-
-      //Execute the wllvm compile to bc script on the C code sent through the POST request
-      try {
-        const result = await execa('bash', ['./gen2DGraphs.sh', `${req.body.fileName}.c`], {
-          cwd: tempPath,
-          shell: true
-        });
-
-        //Respond to the Request with the CallGraph
-        var s = fs.createReadStream(`${tempPath}/Graph_Files/svf/callgraph.svg`);
-        s.on('open', function () {
-          res.set('Content-Type', 'image/svg+xml');
-          s.pipe(res);
-        });
-
-        //Cleanup the Files
-        if (!result.failed) {
-          // Delete the files created
-          try {
-            await execa('rm', ['-rf', '*'], {
-              cwd: tempPath,
-              shell: true
-            });
-          } catch (err) {
-            res.status(417).send({
-              message: 'Issue deleting local files',
-              error: err
-            });
-            //console.log(err);
-          }
-        }
-      } catch (err) {
-        res.status(417).send({
-          message: 'Issue executing build file',
-          error: err
-        });
-        //console.log(err);
-      }
+      stream.on('open', function () {
+        res.set('Content-Type', 'image/svg+xml');
+        stream.pipe(res);
+      });
+    } catch (error) {
+      res.status(417).send({
+        message: 'Error executing analysis',
+        error: error
+      });
     }
   });
 
   app.post('/analysis/icfg', async (req, res) => {
-    const filePath = `${tempPath}${req.body.fileName}`;
+    try {
+      const { code, fileName }: { code: string; fileName: string } = req.body;
 
-    if (!Boolean(req.body.code)) {
-      res.status(400).send({
-        message: 'Code is not right'
+      if (!code || !fileName) {
+        res.status(400).send({
+          message: 'Missing code or file name'
+        });
+      }
+
+      const stream = await processAnalysisRequest({
+        graphName: 'icfg',
+        scriptFileName: 'gen2DGraphs.sh',
+        code: code,
+        codeFileName: fileName
       });
-    } else {
-      //Create a C file temporarily (for compiling) from the code in the request
-      await fs_writeFile(`${filePath}.c`, `${req.body.code}`);
 
-      //Copy script for generating graphs to temp folder
-      try {
-        await execa('cp', ['gen2DGraphs.sh', tempPath], {
-          cwd: shellScriptsPath
-        });
-      } catch (err) {
-        console.log(err);
-      }
-
-      //Execute the wllvm compile to bc script on the C code sent through the POST request
-      try {
-        const result = await execa('bash', ['./gen2DGraphs.sh', `${req.body.fileName}.c`], {
-          cwd: tempPath,
-          shell: true
-        });
-
-        //Respond to the Request with the CallGraph
-        var s = fs.createReadStream(`${tempPath}/Graph_Files/svf/icfg.svg`);
-        s.on('open', function () {
-          res.set('Content-Type', 'image/svg+xml');
-          s.pipe(res);
-        });
-
-        //Cleanup the Files
-        if (!result.failed) {
-          // Delete the files created
-          try {
-            await execa('rm', ['-rf', '*'], {
-              cwd: tempPath,
-              shell: true
-            });
-          } catch (err) {
-            res.status(417).send({
-              message: 'Issue deleting local files',
-              error: err
-            });
-          }
-        }
-      } catch (err) {
-        res.status(417).send({
-          message: 'Issue executing build file',
-          error: err
-        });
-      }
+      stream.on('open', function () {
+        res.set('Content-Type', 'image/svg+xml');
+        stream.pipe(res);
+      });
+    } catch (error) {
+      res.status(417).send({
+        message: 'Error executing analysis',
+        error: error
+      });
     }
   });
 
   app.post('/analysis/pag', async (req, res) => {
-    const filePath = `${tempPath}${req.body.fileName}`;
+    try {
+      const { code, fileName }: { code: string; fileName: string } = req.body;
 
-    if (!Boolean(req.body.code)) {
-      res.status(400).send({
-        message: 'Code is not right'
+      if (!code || !fileName) {
+        res.status(400).send({
+          message: 'Missing code or file name'
+        });
+      }
+
+      const stream = await processAnalysisRequest({
+        graphName: 'pag',
+        scriptFileName: 'gen2DGraphs.sh',
+        code: code,
+        codeFileName: fileName
       });
-    } else {
-      //Create a C file temporarily (for compiling) from the code in the request
-      await fs_writeFile(`${filePath}.c`, `${req.body.code}`);
 
-      //Copy script for generating graphs to temp folder
-      try {
-        await execa('cp', ['gen2DGraphs.sh', tempPath], {
-          cwd: shellScriptsPath
-        });
-      } catch (err) {
-        console.log(err);
-      }
-
-      //Execute the wllvm compile to bc script on the C code sent through the POST request
-      try {
-        const result = await execa('bash', ['./gen2DGraphs.sh', `${req.body.fileName}.c`], {
-          cwd: tempPath,
-          shell: true
-        });
-
-        //Respond to the Request with the CallGraph
-        var s = fs.createReadStream(`${tempPath}/Graph_Files/svf/pag.svg`);
-        s.on('open', function () {
-          res.set('Content-Type', 'image/svg+xml');
-          s.pipe(res);
-        });
-
-        //Cleanup the Files
-        if (!result.failed) {
-          // Delete the files created
-          try {
-            await execa('rm', ['-rf', '*'], {
-              cwd: tempPath,
-              shell: true
-            });
-          } catch (err) {
-            res.status(417).send({
-              message: 'Issue deleting local files',
-              error: err
-            });
-          }
-        }
-      } catch (err) {
-        res.status(417).send({
-          message: 'Issue executing build file',
-          error: err
-        });
-      }
+      stream.on('open', function () {
+        res.set('Content-Type', 'image/svg+xml');
+        stream.pipe(res);
+      });
+    } catch (error) {
+      res.status(417).send({
+        message: 'Error executing analysis',
+        error: error
+      });
     }
   });
 
   app.post('/analysis/svfg', async (req, res) => {
-    const filePath = `${tempPath}${req.body.fileName}`;
+    try {
+      const { code, fileName }: { code: string; fileName: string } = req.body;
 
-    if (!Boolean(req.body.code)) {
-      res.status(400).send({
-        message: 'Code is not right'
+      if (!code || !fileName) {
+        res.status(400).send({
+          message: 'Missing code or file name'
+        });
+      }
+
+      const stream = await processAnalysisRequest({
+        graphName: 'svfg',
+        scriptFileName: 'gen2DGraphs.sh',
+        code: code,
+        codeFileName: fileName
       });
-    } else {
-      //Create a C file temporarily (for compiling) from the code in the request
-      await fs_writeFile(`${filePath}.c`, `${req.body.code}`);
 
-      //Copy script for generating graphs to temp folder
-      try {
-        await execa('cp', ['gen2DGraphs.sh', tempPath], {
-          cwd: shellScriptsPath
-        });
-      } catch (err) {
-        console.log(`Error`, err);
-      }
-
-      //Execute the wllvm compile to bc script on the C code sent through the POST request
-      try {
-        const result = await execa('bash', ['./gen2DGraphs.sh', `${req.body.fileName}.c`], {
-          cwd: tempPath,
-          shell: true
-        });
-
-        //Respond to the Request with the CallGraph
-        var s = fs.createReadStream(`${tempPath}/Graph_Files/svf/svfg.svg`);
-        s.on('open', function () {
-          res.set('Content-Type', 'image/svg+xml');
-          s.pipe(res);
-        });
-
-        //Cleanup the Files
-        if (!result.failed) {
-          // Delete the files created
-          try {
-            await execa('rm', ['-rf', '*'], {
-              cwd: tempPath,
-              shell: true
-            });
-          } catch (err) {
-            res.status(417).send({
-              message: 'Issue deleting local files',
-              error: err
-            });
-          }
-        }
-      } catch (err) {
-        res.status(417).send({
-          message: 'Issue executing build file',
-          error: err
-        });
-      }
+      stream.on('open', function () {
+        res.set('Content-Type', 'image/svg+xml');
+        stream.pipe(res);
+      });
+    } catch (error) {
+      res.status(417).send({
+        message: 'Error executing analysis',
+        error: error
+      });
     }
   });
 
   app.post('/analysis/vfg', async (req, res) => {
-    const filePath = `${tempPath}${req.body.fileName}`;
+    try {
+      const { code, fileName }: { code: string; fileName: string } = req.body;
 
-    if (!Boolean(req.body.code)) {
-      res.status(400).send({
-        message: 'Code is not right'
+      if (!code || !fileName) {
+        res.status(400).send({
+          message: 'Missing code or file name'
+        });
+      }
+
+      const stream = await processAnalysisRequest({
+        graphName: 'vfg',
+        scriptFileName: 'gen2DGraphs.sh',
+        code: code,
+        codeFileName: fileName
       });
-    } else {
-      //Create a C file temporarily (for compiling) from the code in the request
-      await fs_writeFile(`${filePath}.c`, `${req.body.code}`);
 
-      //Copy script for generating graphs to temp folder
-      try {
-        await execa('cp', ['gen2DGraphs.sh', tempPath], {
-          cwd: shellScriptsPath
-        });
-      } catch (err) {
-        console.log(err);
-      }
-
-      //Execute the wllvm compile to bc script on the C code sent through the POST request
-      try {
-        const result = await execa('bash', ['./gen2DGraphs.sh', `${req.body.fileName}.c`], {
-          cwd: tempPath,
-          shell: true
-        });
-
-        //Respond to the Request with the CallGraph
-        var s = fs.createReadStream(`${tempPath}/Graph_Files/svf/vfg.svg`);
-        s.on('open', function () {
-          res.set('Content-Type', 'image/svg+xml');
-          s.pipe(res);
-        });
-
-        //Cleanup the Files
-        if (!result.failed) {
-          // Delete the files created
-          try {
-            await execa('rm', ['-rf', '*'], {
-              cwd: tempPath,
-              shell: true
-            });
-          } catch (err) {
-            res.status(417).send({
-              message: 'Issue deleting local files',
-              error: err
-            });
-          }
-        }
-      } catch (err) {
-        res.status(417).send({
-          message: 'Issue executing build file',
-          error: err
-        });
-      }
+      stream.on('open', function () {
+        res.set('Content-Type', 'image/svg+xml');
+        stream.pipe(res);
+      });
+    } catch (error) {
+      res.status(417).send({
+        message: 'Error executing analysis',
+        error: error
+      });
     }
   });
 };
