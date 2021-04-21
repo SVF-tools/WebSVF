@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { IAnnotation, IMarker } from 'react-ace';
 import ReactHtmlParser, { convertNodeToElement, Transform } from 'react-html-parser';
-import { IAnnotation } from '../models/Annotation';
-import { IMarker } from '../models/Marker';
 
 const transform: Transform = (node, index) => {
   if (node.type === 'tag') {
@@ -63,20 +62,24 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
 
       //ace editor line number starts from 0 although users can see it start from one in frontend
       var lineNumber = parseInt(splitString[lineElementIndex + 1]) - 1;
+
       const markers: IMarker[] = [
         {
           startRow: lineNumber,
           endRow: lineNumber + 1,
           type: 'text',
-          className: 'test-marker'
+          className: 'test-marker',
+          startCol: 0,
+          endCol: 10
         }
       ];
+
       const annotation: IAnnotation[] = [
         {
           row: lineNumber,
           column: 3,
           text: innerHtml,
-          type: 'text'
+          type: 'info'
         }
       ];
       onGraphClick({ markers: markers, annotation: annotation });
