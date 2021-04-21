@@ -11,8 +11,7 @@ import CodeFiles from './CodeFiles';
 import { Toolbar } from '@material-ui/core';
 import RenderSvg, { IOnGraphClickProps } from './RenderSvg';
 import webSvgApiFactory, { IAnalysisProps } from '../api/webSvfApi';
-import { IMarker } from '../models/Marker';
-import { IAnnotation } from '../models/Annotation';
+import { IAnnotation, IMarker } from 'react-ace';
 
 const webSvgApi = webSvgApiFactory();
 

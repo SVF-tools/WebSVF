@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Paper, Grid, Box } from '@material-ui/core';
 import AddFile from './Components/AddFile';
 import FileList from './Components/FileList';
-import Editor from '../Editor/Components/Editor';
+import Editor from './Editor';
 import { IAnnotation } from '../models/Annotation';
 import { IMarker } from '../models/Marker';
 
@@ -91,7 +91,7 @@ const CodeFiles: React.FC<ICodeFilesProps> = ({ setCode, markers, annotation }) 
     setselectedFile(selectedFileName);
   };
 
-  const handleChange = (newValue) => {
+  const handleChange = (newValue: string) => {
     setCode(newValue);
 
     const elementIndex = userCode.findIndex((value) => {
