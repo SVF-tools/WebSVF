@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import CodeFiles from './CodeFiles';
+import CodeFiles from './CodeFiles/CodeFiles';
 import { Toolbar } from '@material-ui/core';
 import RenderSvg, { IOnGraphClickProps } from './RenderSvg';
 import webSvgApiFactory, { IAnalysisProps } from '../api/webSvfApi';
