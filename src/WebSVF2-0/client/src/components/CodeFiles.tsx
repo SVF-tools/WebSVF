@@ -3,10 +3,13 @@ import { Paper, Grid, Box } from '@material-ui/core';
 import AddFile from './Components/AddFile';
 import FileList from './Components/FileList';
 import Editor from '../Editor/Components/Editor';
-import './codefiles.css';
+import { IAnnotation } from '../models/Annotation';
+import { IMarker } from '../models/Marker';
 
 export interface ICodeFilesProps {
   setCode: (code: string) => void;
+  markers: IMarker[];
+  annotation: IAnnotation[];
 }
 
 const CodeFiles: React.FC<ICodeFilesProps> = ({ setCode, markers, annotation }) => {

@@ -9,8 +9,10 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import CodeFiles from './CodeFiles';
 import { Toolbar } from '@material-ui/core';
-import RenderSVG from './RenderSVG/RenderSVG';
+import RenderSvg, { IOnGraphClickProps } from './RenderSvg';
 import webSvgApiFactory, { IAnalysisProps } from '../api/webSvfApi';
+import { IMarker } from '../models/Marker';
+import { IAnnotation } from '../models/Annotation';
 
 const webSvgApi = webSvgApiFactory();
 
@@ -31,8 +33,8 @@ const App: React.FC = () => {
   const onSetCode = (code: string) => (codeRef.current = code);
 
   const [output, setOutput] = useState('');
-  const [markers, setMarkers] = useState([]);
-  const [annotation, setAnnotation] = useState([]);
+  const [markers, setMarkers] = useState<IMarker[]>([]);
+  const [annotation, setAnnotation] = useState<IAnnotation[]>([]);
   const [graphDialog, setGraphDialog] = useState(false);
   const [graphDialogTitle, setGraphDialogTitle] = useState('');
 
@@ -51,7 +53,7 @@ const App: React.FC = () => {
     setOutput(svg);
   };
 
-  const onGraphClick = ({ markers, annotation }) => {
+  const onGraphClick = ({ markers, annotation }: IOnGraphClickProps) => {
     console.log('markers', markers);
     console.log('annotation', annotation);
 
@@ -102,7 +104,7 @@ const App: React.FC = () => {
               <h1>No Graph Selected</h1>
             </Box>
           ) : (
-            <RenderSVG output={output} onGraphClick={onGraphClick} onClose={onCloseGraphDialog} />
+            <RenderSvg output={output} onGraphClick={onGraphClick} onClose={onCloseGraphDialog} />
           )}
         </DialogContent>
       </Dialog>
