@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Paper, Grid, Box } from '@material-ui/core';
-import AddFile from './Components/AddFile';
-import FileList from './Components/FileList';
-import Editor from './Editor';
-import { IAnnotation } from '../models/Annotation';
-import { IMarker } from '../models/Marker';
+import AddFile from './AddFile';
+import FileList from './FileList';
+import Editor from '../Editor';
+import { IUserCode } from '../../models/UserCode';
+import { IAnnotation, IMarker } from 'react-ace';
 
 export interface ICodeFilesProps {
   setCode: (code: string) => void;
@@ -16,9 +16,9 @@ const CodeFiles: React.FC<ICodeFilesProps> = ({ setCode, markers, annotation }) 
   const [fileName, setFileName] = useState('');
   const [dialogBox, setDialogBox] = useState(false);
 
-  const [userCode, setUserCode] = useState([
+  const [userCode, setUserCode] = useState<IUserCode[]>([
     {
-      fileID: 'init-temp',
+      fileId: 'init-temp',
       fileName: 'example.c',
       version: '0.0',
       content: `#include <math.h>
@@ -46,8 +46,7 @@ const CodeFiles: React.FC<ICodeFilesProps> = ({ setCode, markers, annotation }) 
               printf("root1 = %.2lf+%.2lfi and root2 = %.2f-%.2fi", realPart, imagPart, realPart, imagPart);
           }
           return 0;
-      } `,
-      files: []
+      } `
     }
   ]);
 
@@ -64,7 +63,7 @@ const CodeFiles: React.FC<ICodeFilesProps> = ({ setCode, markers, annotation }) 
     setUserCode([
       ...userCode,
       {
-        fileID: Math.random(),
+        fileId: Math.random().toString(),
         fileName: fileName,
         version: '0.1',
         content: `//write your C code here`
@@ -74,7 +73,7 @@ const CodeFiles: React.FC<ICodeFilesProps> = ({ setCode, markers, annotation }) 
     closeDialog();
     clearFileName();
   };
-  const handleFileName = (e) => {
+  const handleFileName = (e: any) => {
     setFileName(e.target.value);
   };
 
@@ -87,7 +86,7 @@ const CodeFiles: React.FC<ICodeFilesProps> = ({ setCode, markers, annotation }) 
     clearFileName();
   };
 
-  const updateSelectedFile = (selectedFileName) => {
+  const updateSelectedFile = (selectedFileName: string) => {
     setselectedFile(selectedFileName);
   };
 
@@ -119,16 +118,15 @@ const CodeFiles: React.FC<ICodeFilesProps> = ({ setCode, markers, annotation }) 
             <Paper>
               <Grid container direction='column' alignItems='center'>
                 <AddFile
-                  handleAddFile={handleAddFile}
-                  handleFileName={handleFileName}
-                  clearFileName={clearFileName}
+                  onCreateFile={handleAddFile}
+                  onFileNameTextFieldChange={handleFileName}
                   fileName={fileName}
-                  userCode={userCode}
-                  openDialog={openDialog}
-                  closeDialog={closeDialog}
-                  dialogBox={dialogBox}
+                  userCodes={userCode}
+                  onDialogOpen={openDialog}
+                  onDialogClose={closeDialog}
+                  open={dialogBox}
                 />
-                <FileList userCode={userCode} selectedFile={selectedFile} updateSelectedFile={updateSelectedFile} />
+                <FileList userCodes={userCode} selectedFile={selectedFile} updateSelectedFile={updateSelectedFile} />
               </Grid>
             </Paper>
           </Grid>
