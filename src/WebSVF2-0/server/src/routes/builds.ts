@@ -1,4 +1,5 @@
 import { Express } from 'express';
+import { IRoutesFactory } from './routesFactory';
 import util from 'util';
 import execa from 'execa';
 import path from 'path';
@@ -7,7 +8,7 @@ import fs from 'fs';
 const fs_writeFile = util.promisify(fs.writeFile);
 const fs_unlink = util.promisify(fs.unlink);
 
-const builds = (app: Express) => {
+const builds: IRoutesFactory = (app: Express) => {
   app.post('/build/cFile', async (req, res) => {
     const filePath = `${path.resolve('./')}/temp/${req.body.fileName}`;
     const shellScriptsPath = `${path.resolve('./')}/scripts`;
