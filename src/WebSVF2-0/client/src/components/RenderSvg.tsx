@@ -15,6 +15,17 @@ const transform: Transform = (node, index) => {
       );
     }
 
+    if (node.name === 'polygon') {
+      const children = node.children as any[];
+      const { 'stroke-width': strokeWidth, ...rest } = node.attribs;
+
+      return (
+        <polygon key={index} strokeWidth={strokeWidth} {...rest}>
+          {children.map((x, i) => convertNodeToElement(x, i, transform))}
+        </polygon>
+      );
+    }
+
     if (node.name === 'text') {
       const child = node.children[0];
       const { 'text-anchor': textAnchor, 'font-family': fontFamily, 'font-size': fontSize, ...rest } = node.attribs;
