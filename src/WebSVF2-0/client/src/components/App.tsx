@@ -1,17 +1,17 @@
 import React, { useRef, useState } from 'react';
-import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import CodeFiles from './CodeFiles/CodeFiles';
-import { Toolbar } from '@material-ui/core';
 import RenderSvg, { IOnGraphClickProps } from './RenderSvg';
 import webSvgApiFactory, { IAnalysisProps } from '../api/webSvfApi';
 import { IAnnotation, IMarker } from 'react-ace';
+import Layout from './Layout/Layout';
+import Typography from '@material-ui/core/Typography';
 
 const webSvgApi = webSvgApiFactory();
 
@@ -65,12 +65,7 @@ const App: React.FC = () => {
     setGraphDialogTitle('');
   };
   return (
-    <div className='App'>
-      <AppBar position='static' color='primary'>
-        <Toolbar>
-          <Typography variant='h4'>WEBSVF</Typography>
-        </Toolbar>
-      </AppBar>
+    <Layout>
       <Grid container alignItems='center' direction='column'>
         <Grid item>
           <Box my={3}>
@@ -100,14 +95,14 @@ const App: React.FC = () => {
 
           {graphDialogTitle === '' ? (
             <Box p={5}>
-              <h1>No Graph Selected</h1>
+              <Typography variant='h6'>No Graph Selected</Typography>
             </Box>
           ) : (
             <RenderSvg output={output} onGraphClick={onGraphClick} onClose={onCloseGraphDialog} />
           )}
         </DialogContent>
       </Dialog>
-    </div>
+    </Layout>
   );
 };
 
