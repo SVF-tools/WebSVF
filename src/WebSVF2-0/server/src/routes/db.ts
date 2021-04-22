@@ -1,10 +1,11 @@
 import { Express } from 'express';
 import mongoose from 'mongoose';
 import { IUser, userSchema } from '../models/User';
+import { IRoutesFactory } from './routesFactory';
 
 const usersCollection = mongoose.model<IUser>('users', userSchema);
 
-const db = (app: Express) => {
+const db: IRoutesFactory = (app: Express) => {
   app.post('/db/saveFile/', async (req, res) => {
     //Check if the project exists in the current user's collection
     const projectFound = await usersCollection.exists({

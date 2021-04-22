@@ -3,6 +3,7 @@ import util from 'util';
 import execa from 'execa';
 import fs from 'fs';
 import path from 'path';
+import { IRoutesFactory } from './routesFactory';
 
 const fs_writeFile = util.promisify(fs.writeFile);
 
@@ -90,7 +91,7 @@ const processAnalysisRequest = async ({ graphName, scriptFileName, code, codeFil
   }
 };
 
-const analysis = (app: Express) => {
+const analysis: IRoutesFactory = (app: Express) => {
   app.post('/analysis/callGraph', async (req, res) => {
     try {
       const { code, fileName }: { code: string; fileName: string } = req.body;

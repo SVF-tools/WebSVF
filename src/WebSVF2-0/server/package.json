@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node --transpile-only ./src/index.ts",
-    "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "mock": "ts-node-dev --respawn --transpile-only ./src/mock.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
