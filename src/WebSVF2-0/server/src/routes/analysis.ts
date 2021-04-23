@@ -103,7 +103,7 @@ const analysis: IRoutesFactory = (app: Express) => {
       }
 
       await processAnalysisRequest({
-        graphName: 'icfg',
+        graphName: 'callgraph',
         scriptFileName: 'gen2DGraphs.sh',
         code: code,
         codeFileName: fileName,
