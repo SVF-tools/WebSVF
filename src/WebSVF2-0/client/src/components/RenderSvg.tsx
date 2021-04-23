@@ -124,7 +124,6 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
   });
 
   if (output) {
-    console.log('output', output);
     return <div>{ReactHtmlParser(output, { transform: transform })}</div>;
   }
 
