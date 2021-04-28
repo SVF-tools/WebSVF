@@ -134,6 +134,20 @@
         "image": "Zeren_Yu.jpg",
         "university": "University of Technology Sydney",
         "universityLink": "https://www.uts.edu.au/"
+      },
+      {
+        "name": "Rene Cruces",
+        "link": "https://github.com/renecruces",
+        "image": "Rene_Cruces.jpeg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://www.uts.edu.au/"
+      },
+      {
+        "name": "Matthew Veldhuizen",
+        "link": "https://github.com/matthew-veldhuizen",
+        "image": "blank_profile.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://www.uts.edu.au/"
       }
     ],
     "supervisors": [
