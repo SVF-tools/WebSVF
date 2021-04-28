@@ -58,7 +58,7 @@ const executeScript = async (scriptFileName: string, codeFileName: string) => {
 
 const readGraphSvg = async (graphName: string) => {
   try {
-    return fs.createReadStream(`${tempPath}/Graph_Files/svf/${graphName}.svg`);
+    return fs.createReadStream(`${tempPath}Graph_Files/svf/${graphName}.svg`);
   } catch (error) {
     throw new Error('Error reading graph svg: ' + error);
   }
