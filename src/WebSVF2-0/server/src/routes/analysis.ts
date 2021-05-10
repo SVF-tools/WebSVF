@@ -82,20 +82,17 @@ const processAnalysisRequest = async ({ graphName, scriptFileName, code, codeFil
 
   await copyScript(scriptFileName);
 
-  const result = await executeScript(scriptFileName, codeFileName);
+  await executeScript(scriptFileName, codeFileName);
 
   const stream = await readGraphSvg(graphName);
 
   onSvgOpen(stream);
-
-  if (!result.failed) {
-    //await cleanupFiles();
-  }
 };
 
 const analysis: IRoutesFactory = (app: Express) => {
-  app.post('/analysis/callGraph', async (req, res) => {
+  app.post('/analysis/:graphName', async (req, res) => {
     try {
+      const graphName = req.params.graphName as GraphNameType;
       const { code, fileName }: { code: string; fileName: string } = req.body;
 
       if (!code || !fileName) {
@@ -105,133 +102,7 @@ const analysis: IRoutesFactory = (app: Express) => {
       }
 
       await processAnalysisRequest({
-        graphName: 'callgraph',
-        scriptFileName: 'gen2DGraphs.sh',
-        code: code,
-        codeFileName: fileName,
-        onSvgOpen: (stream) => {
-          stream.on('open', function () {
-            res.set('Content-Type', 'image/svg+xml');
-            stream.pipe(res);
-            cleanupFiles();
-          });
-        }
-      });
-    } catch (error) {
-      res.status(417).send({
-        message: 'Error executing analysis',
-        error: error
-      });
-    }
-  });
-
-  app.post('/analysis/icfg', async (req, res) => {
-    try {
-      const { code, fileName }: { code: string; fileName: string } = req.body;
-
-      if (!code || !fileName) {
-        res.status(400).send({
-          message: 'Missing code or file name'
-        });
-      }
-
-      await processAnalysisRequest({
-        graphName: 'icfg',
-        scriptFileName: 'gen2DGraphs.sh',
-        code: code,
-        codeFileName: fileName,
-        onSvgOpen: (stream) => {
-          stream.on('open', function () {
-            res.set('Content-Type', 'image/svg+xml');
-            stream.pipe(res);
-            cleanupFiles();
-          });
-        }
-      });
-    } catch (error) {
-      res.status(417).send({
-        message: 'Error executing analysis',
-        error: error
-      });
-    }
-  });
-
-  app.post('/analysis/pag', async (req, res) => {
-    try {
-      const { code, fileName }: { code: string; fileName: string } = req.body;
-
-      if (!code || !fileName) {
-        res.status(400).send({
-          message: 'Missing code or file name'
-        });
-      }
-
-      await processAnalysisRequest({
-        graphName: 'pag',
-        scriptFileName: 'gen2DGraphs.sh',
-        code: code,
-        codeFileName: fileName,
-        onSvgOpen: (stream) => {
-          stream.on('open', function () {
-            res.set('Content-Type', 'image/svg+xml');
-            stream.pipe(res);
-            cleanupFiles();
-          });
-        }
-      });
-    } catch (error) {
-      res.status(417).send({
-        message: 'Error executing analysis',
-        error: error
-      });
-    }
-  });
-
-  app.post('/analysis/svfg', async (req, res) => {
-    try {
-      const { code, fileName }: { code: string; fileName: string } = req.body;
-
-      if (!code || !fileName) {
-        res.status(400).send({
-          message: 'Missing code or file name'
-        });
-
-        return;
-      }
-
-      await processAnalysisRequest({
-        graphName: 'svfg',
-        scriptFileName: 'gen2DGraphs.sh',
-        code: code,
-        codeFileName: fileName,
-        onSvgOpen: (stream) => {
-          stream.on('open', function () {
-            res.set('Content-Type', 'image/svg+xml');
-            stream.pipe(res);
-            cleanupFiles();
-          });
-        }
-      });
-    } catch (error) {
-      res.status(417).send({
-        message: 'Error executing analysis',
-        error: error
-      });
-    }
-  });
-
-  app.post('/analysis/vfg', async (req, res) => {
-    try {
-      const { code, fileName }: { code: string; fileName: string } = req.body;
-
-      if (!code || !fileName) {
-        res.status(400).send({
-          message: 'Missing code or file name'
-        });
-      }
-
-      await processAnalysisRequest({
-        graphName: 'vfg',
+        graphName: graphName,
         scriptFileName: 'gen2DGraphs.sh',
         code: code,
         codeFileName: fileName,
