@@ -18,8 +18,10 @@ if (!fs.existsSync(tempPath)) {
 console.log('tempPath', tempPath);
 console.log('shellScriptsPath', shellScriptsPath);
 
+type GraphNameType = 'callgraph' | 'icfg' | 'pag' | 'svfg' | 'vfg';
+
 interface IProcessAnalysisRequestProps {
-  graphName: 'callgraph' | 'icfg' | 'pag' | 'svfg' | 'vfg';
+  graphName: GraphNameType;
   scriptFileName: string;
   code: string;
   codeFileName: string;
