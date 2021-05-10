@@ -89,7 +89,7 @@ const processAnalysisRequest = async ({ graphName, scriptFileName, code, codeFil
   onSvgOpen(stream);
 
   if (!result.failed) {
-    await cleanupFiles();
+    //await cleanupFiles();
   }
 };
 
@@ -113,6 +113,7 @@ const analysis: IRoutesFactory = (app: Express) => {
           stream.on('open', function () {
             res.set('Content-Type', 'image/svg+xml');
             stream.pipe(res);
+            cleanupFiles();
           });
         }
       });
@@ -143,6 +144,7 @@ const analysis: IRoutesFactory = (app: Express) => {
           stream.on('open', function () {
             res.set('Content-Type', 'image/svg+xml');
             stream.pipe(res);
+            cleanupFiles();
           });
         }
       });
@@ -173,6 +175,7 @@ const analysis: IRoutesFactory = (app: Express) => {
           stream.on('open', function () {
             res.set('Content-Type', 'image/svg+xml');
             stream.pipe(res);
+            cleanupFiles();
           });
         }
       });
@@ -205,6 +208,7 @@ const analysis: IRoutesFactory = (app: Express) => {
           stream.on('open', function () {
             res.set('Content-Type', 'image/svg+xml');
             stream.pipe(res);
+            cleanupFiles();
           });
         }
       });
@@ -235,6 +239,7 @@ const analysis: IRoutesFactory = (app: Express) => {
           stream.on('open', function () {
             res.set('Content-Type', 'image/svg+xml');
             stream.pipe(res);
+            cleanupFiles();
           });
         }
       });
