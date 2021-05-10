@@ -20,7 +20,7 @@ const webSvgApiFactory: () => IWebSvfApi = () => {
 
   const webSvgApi: IWebSvfApi = {
     callGraph: async ({ code, fileName }) => {
-      const response = await client.post<IAnalysisProps, AxiosResponse<string>>('/analysis/callGraph', {
+      const response = await client.post<IAnalysisProps, AxiosResponse<string>>('/analysis/callgraph', {
         code: code,
         fileName: fileName
       });
