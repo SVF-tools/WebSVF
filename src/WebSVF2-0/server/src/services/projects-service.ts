@@ -3,7 +3,7 @@ import { DocumentsConstants } from '../documents/DocumentsConstants';
 import { fileSchema, IFileDocument } from '../documents/FileDocument';
 import { folderSchema, IFolderDocument } from '../documents/FolderDocument';
 import { IProjectDocument, projectSchema } from '../documents/ProjectDocument';
-import { IFile } from '../models/File';
+import { IFile, ISaveFile } from '../models/File';
 import { IFolder } from '../models/Folder';
 import { IProject } from '../models/Project';
 
@@ -43,6 +43,11 @@ const buildProjectModel = (projectDoc: IProjectDocument, folders: IFolder[]) => 
   return project;
 };
 
+export interface ISaveFileProps {
+  id?: string;
+  data: ISaveFile;
+}
+
 export interface IProjectsService {
   getProjects: () => Promise<IProject[]>;
   getProject: (id: string) => Promise<IProject | undefined>;
@@ -50,6 +55,7 @@ export interface IProjectsService {
   getFoldersByProjectIds: (projectIds: string[]) => Promise<IFolder[]>;
   getFiles: (folderId: string) => Promise<IFile[]>;
   getFilesByFolderIds: (folderIds: string[]) => Promise<IFile[]>;
+  saveFile: (props: ISaveFileProps) => Promise<IFile | undefined>;
 }
 
 export const projectsServiceFactory: () => IProjectsService = () => {
@@ -96,6 +102,58 @@ export const projectsServiceFactory: () => IProjectsService = () => {
       const fileDocs = await filesCollection.find({ folder: { $in: folderIds } });
 
       return fileDocs.map((x) => buildFileModel(x));
+    },
+    saveFile: async ({ id, data }) => {
+      if (id) {
+        const file = await filesCollection.findById(id);
+        if (!file) {
+          throw new Error('File not found with id ' + id);
+        }
+
+        file.name = data.name;
+        file.content = data.content;
+        file.save();
+
+        return {
+          id: file._id?.toHexString() ?? '',
+          folderId: file.folder.toHexString(),
+          name: file.name,
+          content: file.content
+        };
+      }
+
+      let folderId = data.folderId;
+      if (!folderId) {
+        let project = await projectsCollection.findOne();
+        if (!project) {
+          project = await projectsCollection.create({
+            name: 'Default'
+          });
+        }
+
+        let folder = await foldersCollection.findOne({ project: project._id });
+        if (!folder) {
+          folder = await foldersCollection.create({
+            project: project._id,
+            name: 'Default'
+          });
+        }
+
+        folderId = folder._id?.toHexString();
+      }
+
+      const file = await filesCollection.create({
+        folder: folderId,
+        name: data.name,
+        content: data.content
+      });
+
+      return {
+        id: file._id?.toHexString() ?? '',
+        folderId: file.folder.toHexString(),
+        name: file.name,
+        content: file.content
+      };
     }
   };
 
