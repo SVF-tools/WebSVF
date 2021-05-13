@@ -8,22 +8,22 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import CodeFiles from './CodeFiles/CodeFiles';
 import RenderSvg, { IOnGraphClickProps } from './RenderSvg';
-import webSvgApiFactory, { IAnalysisProps } from '../api/webSvfApi';
+import webSvfApiFactory, { GraphNameType } from '../api/webSvfApi';
 import { IAnnotation, IMarker } from 'react-ace';
 import Layout from './Layout/Layout';
 import Typography from '@material-ui/core/Typography';
 
-const webSvgApi = webSvgApiFactory();
+const webSvfApi = webSvfApiFactory();
 
 type SelectionType = 'CallGraph' | 'ICFG' | 'PAG' | 'SVFG' | 'VFG';
-type SelectionApiType = { [key in SelectionType]: (props: IAnalysisProps) => Promise<string> };
+type SelectionApiType = { [key in SelectionType]: GraphNameType };
 
-const selectionApis: SelectionApiType = {
-  CallGraph: webSvgApi.callGraph,
-  ICFG: webSvgApi.genIcfg,
-  PAG: webSvgApi.genPag,
-  SVFG: webSvgApi.genSvfg,
-  VFG: webSvgApi.genVfg
+const graphNames: SelectionApiType = {
+  CallGraph: 'callgraph',
+  ICFG: 'icfg',
+  PAG: 'pag',
+  SVFG: 'svfg',
+  VFG: 'vfg'
 };
 
 const App: React.FC = () => {
@@ -44,7 +44,7 @@ const App: React.FC = () => {
   const handleSelection = async (e: any) => {
     const selection = e.target.value as SelectionType;
 
-    const svg = await selectionApis[selection]({ code: codeRef.current, fileName: 'example' });
+    const svg = await webSvfApi.analyse({ graphName: graphNames[selection], fileName: 'example', code: codeRef.current });
 
     setMarkers([]);
     setAnnotation([]);

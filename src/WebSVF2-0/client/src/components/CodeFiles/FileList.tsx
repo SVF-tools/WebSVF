@@ -3,7 +3,7 @@ import { Typography, Grid, List, ListItemIcon, ListItemText, ListItem } from '@m
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import FolderIcon from '@material-ui/icons/Folder';
-import { IUserCode } from '../../models/UserCode';
+import { IUserCode } from '../../models/userCode';
 
 export interface IFileListProps {
   selectedFile: string;
