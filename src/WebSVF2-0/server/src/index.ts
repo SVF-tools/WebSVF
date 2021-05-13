@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import config from './serverconfig.json';
-import builds from './routes/builds';
 import analysis from './routes/analysis';
 import expressFactory from './express/expressFactory';
 import projects from './routes/projects';
@@ -13,4 +12,4 @@ mongoose.connect(config.mongoURI);
 
 console.log('__dirname', __dirname);
 
-expressFactory({ routes: [projects, builds, analysis, files] });
+expressFactory({ routes: [analysis, projects, files] });
