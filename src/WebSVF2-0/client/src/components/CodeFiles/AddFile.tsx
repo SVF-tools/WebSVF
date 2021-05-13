@@ -5,7 +5,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import { IUserCode } from '../../models/UserCode';
+import { IUserCode } from '../../models/userCode';
 
 export interface IAddFile {
   open: boolean;

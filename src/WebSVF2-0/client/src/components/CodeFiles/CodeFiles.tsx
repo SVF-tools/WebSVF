@@ -3,7 +3,7 @@ import { Paper, Grid, Box } from '@material-ui/core';
 import AddFile from './AddFile';
 import FileList from './FileList';
 import Editor from '../Editor';
-import { IUserCode } from '../../models/UserCode';
+import { IUserCode } from '../../models/userCode';
 import { IAnnotation, IMarker } from 'react-ace';
 
 export interface ICodeFilesProps {
