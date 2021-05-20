@@ -7,6 +7,34 @@ import { IFile, ISaveFile } from '../models/File';
 import { IFolder } from '../models/Folder';
 import { IProject } from '../models/Project';
 
+const defaultFileName = 'example.c';
+const defaultFileContent = `#include <math.h>
+#include <stdio.h>
+int main() {
+    double a, b, c, discriminant, root1, root2, realPart, imagPart;
+    printf("Enter coefficients a, b and c: ");
+    scanf("%lf %lf %lf", &a, &b, &c);
+    discriminant = b * b - 4 * a * c;
+    // condition for real and different roots
+    if (discriminant > 0) {
+        root1 = (-b + sqrt(discriminant)) / (2 * a);
+        root2 = (-b - sqrt(discriminant)) / (2 * a);
+        printf("root1 = %.2lf and root2 = %.2lf", root1, root2);
+    }
+    // condition for real and equal roots
+    else if (discriminant == 0) {
+        root1 = root2 = -b / (2 * a);
+        printf("root1 = root2 = %.2lf;", root1);
+    }
+    // if roots are not real
+    else {
+        realPart = -b / (2 * a);
+        imagPart = sqrt(-discriminant) / (2 * a);
+        printf("root1 = %.2lf+%.2lfi and root2 = %.2f-%.2fi", realPart, imagPart, realPart, imagPart);
+    }
+    return 0;
+} `;
+
 const projectsCollection = mongoose.model<IProjectDocument>(DocumentsConstants.ProjectDocument, projectSchema);
 const foldersCollection = mongoose.model<IFolderDocument>(DocumentsConstants.FolderDocument, folderSchema);
 const filesCollection = mongoose.model<IFileDocument>(DocumentsConstants.FileDocument, fileSchema);
@@ -48,6 +76,33 @@ export interface ISaveFileProps {
   data: ISaveFile;
 }
 
+const createDefaultProject = async () => {
+  const project = await projectsCollection.create({
+    name: 'Default'
+  });
+
+  return project;
+};
+
+const createDefaultFolder = async (projectId: string) => {
+  const folder = await foldersCollection.create({
+    project: projectId,
+    name: 'Default'
+  });
+
+  return folder;
+};
+
+const createFile = async (folderId: string, name: string, content: string) => {
+  const file = await filesCollection.create({
+    folder: folderId,
+    name: name,
+    content: content
+  });
+
+  return file;
+};
+
 export interface IProjectsService {
   getProjects: () => Promise<IProject[]>;
   getProject: (id: string) => Promise<IProject | undefined>;
@@ -56,6 +111,7 @@ export interface IProjectsService {
   getFiles: (folderId: string) => Promise<IFile[]>;
   getFilesByFolderIds: (folderIds: string[]) => Promise<IFile[]>;
   saveFile: (props: ISaveFileProps) => Promise<IFile | undefined>;
+  createDefaultProject: () => Promise<IProject>;
 }
 
 export const projectsServiceFactory: () => IProjectsService = () => {
@@ -66,11 +122,17 @@ export const projectsServiceFactory: () => IProjectsService = () => {
 
       const folders = await projectsService.getFoldersByProjectIds(projectIds);
 
-      return projectDocs.map((projectDoct) => {
+      const projects = projectDocs.map((projectDoct) => {
         const projectFolders = folders.filter((folder) => folder.projectId === projectDoct._id?.toHexString());
 
         return buildProjectModel(projectDoct, projectFolders);
       });
+
+      if (projects.length < 1) {
+        projects.push(await projectsService.createDefaultProject());
+      }
+
+      return projects;
     },
     getProject: async (id) => {
       const projectDoc = await projectsCollection.findById(id);
@@ -124,29 +186,14 @@ export const projectsServiceFactory: () => IProjectsService = () => {
 
       let folderId = data.folderId;
       if (!folderId) {
-        let project = await projectsCollection.findOne();
-        if (!project) {
-          project = await projectsCollection.create({
-            name: 'Default'
-          });
-        }
+        const project = (await projectsCollection.findOne()) ?? (await createDefaultProject());
 
-        let folder = await foldersCollection.findOne({ project: project._id });
-        if (!folder) {
-          folder = await foldersCollection.create({
-            project: project._id,
-            name: 'Default'
-          });
-        }
+        const folder = (await foldersCollection.findOne({ project: project._id })) ?? (await createDefaultFolder(project._id?.toHexString() ?? ''));
 
         folderId = folder._id?.toHexString();
       }
 
-      const file = await filesCollection.create({
-        folder: folderId,
-        name: data.name,
-        content: data.content
-      });
+      const file = await createFile(folderId ?? '', data.name, data.content);
 
       return {
         id: file._id?.toHexString() ?? '',
@@ -154,6 +201,15 @@ export const projectsServiceFactory: () => IProjectsService = () => {
         name: file.name,
         content: file.content
       };
+    },
+    createDefaultProject: async () => {
+      const project = await createDefaultProject();
+
+      const folder = await createDefaultFolder(project._id?.toHexString() ?? '');
+
+      const file = await createFile(folder._id?.toHexString() ?? '', defaultFileName, defaultFileContent);
+
+      return buildProjectModel(project, [buildFolderModel(folder, [buildFileModel(file)])]);
     }
   };
 
