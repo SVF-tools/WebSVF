@@ -1,16 +1,16 @@
 import React from 'react';
 import defaultThemeFactory from '../../themes/defaultTheme';
-import LayoutToolbar from './LayoutToolbar';
+import { LayoutToolbar } from './LayoutToolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LayoutDrawer from './LayoutDrawer';
+import { LayoutDrawer } from './LayoutDrawer';
 import { ThemeProvider } from '../ThemeProvider';
 import styled from 'styled-components';
 
-export const StyledLayout = styled.div`
+const StyledLayout = styled.div`
   display: flex;
 `;
 
-export const Main = styled.main`
+const Main = styled.main`
   flex-grow: 1 !important;
   height: 100vh !important;
   overflow: auto !important;
@@ -18,7 +18,7 @@ export const Main = styled.main`
 
 const defaultTheme = defaultThemeFactory();
 
-const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC = ({ children }) => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -32,5 +32,3 @@ const Layout: React.FC = ({ children }) => {
     </ThemeProvider>
   );
 };
-
-export default Layout;

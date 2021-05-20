@@ -1,12 +1,12 @@
 import { createAction } from '@reduxjs/toolkit';
-import webSvgApiFactory from '../api/webSvfApi';
+import { webSvfApiFactory } from '../api/webSvfApi';
 import { IProject } from '../models/project';
 import { IStore } from './store';
 import { ThunkResultAction } from './thunkResultAction';
 
 export const projectsUpdated = createAction<IProject[]>('projectsUpdated');
 
-const webSvfApi = webSvgApiFactory();
+const webSvfApi = webSvfApiFactory();
 
 export const fetchProjects: ThunkResultAction<never, void, IStore> = () => {
   return async (dispatch) => {
