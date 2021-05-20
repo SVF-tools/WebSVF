@@ -14,7 +14,7 @@ export interface IWebSvfApi {
   getProjects: () => Promise<IProject[]>;
 }
 
-const webSvgApiFactory: () => IWebSvfApi = () => {
+export const webSvfApiFactory: () => IWebSvfApi = () => {
   const client = axios.create({
     baseURL: 'http://localhost:5001/'
   });
@@ -37,5 +37,3 @@ const webSvgApiFactory: () => IWebSvfApi = () => {
 
   return webSvgApi;
 };
-
-export default webSvgApiFactory;

@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
 import styled from 'styled-components';
 import { IThemeProps } from '../../themes/theme';
-import { useDispatch, useSelector } from 'react-redux';
-import { IStore } from '../../store/store';
-import { fetchProjects } from '../../store/actionts';
+import { ProjectsTreeView } from './ProjectsTreeView';
 
 const StyledDrawer = styled(Drawer)`
   && {
@@ -23,25 +20,14 @@ const StyledDrawer = styled(Drawer)`
     position: relative;
     white-space: nowrap;
     width: ${({ theme }: IThemeProps) => theme.spacing(30)};
+    margin-top: ${({ theme }: IThemeProps) => theme.spacing(2)};
   }
 `;
 
-const LayoutDrawer: React.FC = () => {
-  const projects = useSelector((store: IStore) => store.projects);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!projects) {
-      dispatch(fetchProjects());
-    }
-  }, [dispatch, projects]);
-
+export const LayoutDrawer: React.FC = () => {
   return (
     <StyledDrawer variant='permanent' open>
-      {projects?.map((x) => x.name).join(' ')}
-      <Divider />
+      <ProjectsTreeView />
     </StyledDrawer>
   );
 };
-
-export default LayoutDrawer;

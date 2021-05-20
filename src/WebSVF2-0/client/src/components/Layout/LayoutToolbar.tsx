@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 
-const LayoutToolbar: React.FC = () => {
+export const LayoutToolbar: React.FC = () => {
   return (
     <AppBar position='static' color='primary'>
       <Toolbar>
@@ -12,5 +12,3 @@ const LayoutToolbar: React.FC = () => {
     </AppBar>
   );
 };
-
-export default LayoutToolbar;
