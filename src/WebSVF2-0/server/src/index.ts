@@ -5,10 +5,7 @@ import expressFactory from './express/expressFactory';
 import projects from './routes/projects';
 import files from './routes/files';
 
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useFindAndModify', false);
-mongoose.connect(config.mongoURI);
+mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 
 console.log('__dirname', __dirname);
 

@@ -12,6 +12,8 @@ import webSvfApiFactory, { GraphNameType } from '../api/webSvfApi';
 import { IAnnotation, IMarker } from 'react-ace';
 import Layout from './Layout/Layout';
 import Typography from '@material-ui/core/Typography';
+import { Provider } from 'react-redux';
+import { store } from '../store/store';
 
 const webSvfApi = webSvfApiFactory();
 
@@ -65,44 +67,46 @@ const App: React.FC = () => {
     setGraphDialogTitle('');
   };
   return (
-    <Layout>
-      <Grid container alignItems='center' direction='column'>
-        <Grid item>
-          <Box my={3}>
-            <CodeFiles setCode={onSetCode} markers={markers} annotation={annotation} />
-          </Box>
-        </Grid>
+    <Provider store={store}>
+      <Layout>
         <Grid container alignItems='center' direction='column'>
-          <Grid>
-            <Button onClick={() => {}}>Bug Report</Button>
-            <Button onClick={handleGraphDialog}>Graphs</Button>
-          </Grid>
-          <Grid container alignItems='center' direction='column'></Grid>
-        </Grid>
-      </Grid>
-      <Dialog maxWidth='xl' open={graphDialog} onClose={onCloseGraphDialog}>
-        <DialogTitle>{graphDialogTitle}</DialogTitle>
-        <DialogContent>
-          <Grid container alignItems='center' direction='column'>
-            <TextField select label='Graph' value={graphDialogTitle} onChange={handleSelection} helperText='Select Graph to be displayed'>
-              <MenuItem value='CallGraph'>CallGraph</MenuItem>
-              <MenuItem value='ICFG'>ICFG</MenuItem>
-              <MenuItem value='PAG'>PAG</MenuItem>
-              <MenuItem value='SVFG'>SVFG</MenuItem>
-              <MenuItem value='VFG'>VFG</MenuItem>
-            </TextField>
-          </Grid>
-
-          {graphDialogTitle === '' ? (
-            <Box p={5}>
-              <Typography variant='h6'>No Graph Selected</Typography>
+          <Grid item>
+            <Box my={3}>
+              <CodeFiles setCode={onSetCode} markers={markers} annotation={annotation} />
             </Box>
-          ) : (
-            <RenderSvg output={output} onGraphClick={onGraphClick} onClose={onCloseGraphDialog} />
-          )}
-        </DialogContent>
-      </Dialog>
-    </Layout>
+          </Grid>
+          <Grid container alignItems='center' direction='column'>
+            <Grid>
+              <Button onClick={() => {}}>Bug Report</Button>
+              <Button onClick={handleGraphDialog}>Graphs</Button>
+            </Grid>
+            <Grid container alignItems='center' direction='column'></Grid>
+          </Grid>
+        </Grid>
+        <Dialog maxWidth='xl' open={graphDialog} onClose={onCloseGraphDialog}>
+          <DialogTitle>{graphDialogTitle}</DialogTitle>
+          <DialogContent>
+            <Grid container alignItems='center' direction='column'>
+              <TextField select label='Graph' value={graphDialogTitle} onChange={handleSelection} helperText='Select Graph to be displayed'>
+                <MenuItem value='CallGraph'>CallGraph</MenuItem>
+                <MenuItem value='ICFG'>ICFG</MenuItem>
+                <MenuItem value='PAG'>PAG</MenuItem>
+                <MenuItem value='SVFG'>SVFG</MenuItem>
+                <MenuItem value='VFG'>VFG</MenuItem>
+              </TextField>
+            </Grid>
+
+            {graphDialogTitle === '' ? (
+              <Box p={5}>
+                <Typography variant='h6'>No Graph Selected</Typography>
+              </Box>
+            ) : (
+              <RenderSvg output={output} onGraphClick={onGraphClick} onClose={onCloseGraphDialog} />
+            )}
+          </DialogContent>
+        </Dialog>
+      </Layout>
+    </Provider>
   );
 };
 
