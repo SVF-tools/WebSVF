@@ -8,7 +8,7 @@ import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import FolderIcon from '@material-ui/icons/Folder';
 import DescriptionIcon from '@material-ui/icons/Description';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProjects } from '../../store/actionts';
+import { fetchProjects, selectedFileUpdated } from '../../store/actionts';
 import { IStore } from '../../store/store';
 import { IProject } from '../../models/project';
 import { IFolder } from '../../models/folder';
@@ -100,6 +100,8 @@ const ProjectTreeItem: React.FC<IProjectTreeItemProps> = ({ project }) => {
 
 export const ProjectsTreeView: React.FC = () => {
   const projects = useSelector((store: IStore) => store.projects);
+  const selectedFile = useSelector((store: IStore) => store.selectedFile);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -108,11 +110,24 @@ export const ProjectsTreeView: React.FC = () => {
     }
   }, [dispatch, projects]);
 
-  return (
-    <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
+  useEffect(() => {
+    if (projects && !selectedFile) {
+      const file = projects[0].folders[0].files[0];
+      dispatch(selectedFileUpdated(file));
+    }
+  }, [dispatch, projects, selectedFile]);
+
+  return projects && projects.length > 0 ? (
+    <TreeView
+      defaultCollapseIcon={<ExpandMoreIcon />}
+      defaultExpandIcon={<ChevronRightIcon />}
+      defaultExpanded={[projects[0].id, projects[0].folders[0].id, projects[0].folders[0].files[0].id]}
+      onNodeSelect={(event: React.SyntheticEvent, nodeId: string) => console.log(nodeId)}>
       {projects?.map((project) => (
         <ProjectTreeItem key={project.id} project={project} />
       ))}
     </TreeView>
+  ) : (
+    <></>
   );
 };
