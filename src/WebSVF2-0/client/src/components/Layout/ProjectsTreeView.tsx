@@ -117,12 +117,28 @@ export const ProjectsTreeView: React.FC = () => {
     }
   }, [dispatch, projects, selectedFile]);
 
+  const onNodeSelect = (nodeId: string) => {
+    if (!projects || selectedFile?.id === nodeId) {
+      return;
+    }
+
+    const files = projects
+      .map((x) => x.folders)
+      .reduce((a, b) => a.concat(b), [])
+      .map((x) => x.files)
+      .reduce((a, b) => a.concat(b));
+    const file = files.find((x) => x.id === nodeId);
+    if (file) {
+      dispatch(selectedFileUpdated(file));
+    }
+  };
+
   return projects && projects.length > 0 ? (
     <TreeView
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
       defaultExpanded={[projects[0].id, projects[0].folders[0].id, projects[0].folders[0].files[0].id]}
-      onNodeSelect={(event: React.SyntheticEvent, nodeId: string) => console.log(nodeId)}>
+      onNodeSelect={(event: React.SyntheticEvent, nodeId: string) => onNodeSelect(nodeId)}>
       {projects?.map((project) => (
         <ProjectTreeItem key={project.id} project={project} />
       ))}

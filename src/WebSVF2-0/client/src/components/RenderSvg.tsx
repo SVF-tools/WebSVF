@@ -45,7 +45,7 @@ const transform: Transform = (node, index) => {
 
 export interface IOnGraphClickProps {
   markers: IMarker[];
-  annotation: IAnnotation[];
+  annotations: IAnnotation[];
 }
 
 export interface IRenderSvgProps {
@@ -85,7 +85,7 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
         }
       ];
 
-      const annotation: IAnnotation[] = [
+      const annotations: IAnnotation[] = [
         {
           row: lineNumber,
           column: 3,
@@ -93,7 +93,7 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
           type: 'info'
         }
       ];
-      onGraphClick({ markers: markers, annotation: annotation });
+      onGraphClick({ markers: markers, annotations: annotations });
       onClose();
     }, 1000);
   };
