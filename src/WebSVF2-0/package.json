@@ -5,7 +5,7 @@
   "scripts": {
     "start": "concurrently \"cd server && yarn && yarn start\" \"cd client && yarn && yarn start\"",
     "dev": "concurrently \"cd server && yarn && yarn dev\" \"cd client && yarn && yarn start\"",
-    "mock": "concurrently \"cd server && yarn && yarn mock\" \"cd client && yarn && yarn start\""
+    "mock-start": "concurrently \"cd server && yarn && yarn mock\" \"cd client && yarn && yarn start\""
   },
   "dependencies": {
     "concurrently": "^6.0.0"
