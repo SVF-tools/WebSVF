@@ -51,10 +51,9 @@ export interface IOnGraphClickProps {
 export interface IRenderSvgProps {
   output: string;
   onGraphClick: (props: IOnGraphClickProps) => void;
-  onClose: () => void;
 }
 
-const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose }) => {
+const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick }) => {
   const handleOnClickRef = useRef<number>();
 
   const handleOnClick: EventListenerOrEventListenerObject = (e) => {
@@ -94,7 +93,6 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
         }
       ];
       onGraphClick({ markers: markers, annotations: annotations });
-      onClose();
     }, 1000);
   };
 
@@ -124,7 +122,7 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
   });
 
   if (output) {
-    return <div>{ReactHtmlParser(output, { transform: transform })}</div>;
+    return <>{ReactHtmlParser(output, { transform: transform })}</>;
   }
 
   return <div></div>;

@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Box from '@material-ui/core/Box';
-import { Grid, Button, Container, Paper } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
+import { Grid, Button, Container, Paper, ClickAwayListener, ButtonGroup, Popper, Grow, MenuList } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import { IAnnotation, IMarker } from 'react-ace';
-import Typography from '@material-ui/core/Typography';
 import { GraphNameType, webSvfApiFactory } from '../../api/webSvfApi';
 import RenderSvg, { IOnGraphClickProps } from '../RenderSvg';
 import { useSelector } from 'react-redux';
@@ -15,6 +9,7 @@ import { IStore } from '../../store/store';
 import Editor from '../Editor';
 import styled from 'styled-components';
 import { IThemeProps } from '../../themes/theme';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const webSvfApi = webSvfApiFactory();
 
@@ -30,8 +25,8 @@ const graphNames: SelectionApiType = {
 };
 
 const HomeWrapper = styled.div`
-  height: 100%;
-  max-height: 100%;
+  height: calc(100% - ${({ theme }: IThemeProps) => theme.spacing(8)});
+  max-height: calc(100% - ${({ theme }: IThemeProps) => theme.spacing(8)});
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -49,13 +44,49 @@ const HomeContainer = styled(Container)`
 const HomePaper = styled(Paper)`
   && {
     height: 100%;
-    max-height: 100%;
   }
 `;
+
+const ScrollablePaper = styled(HomePaper)`
+  && {
+    max-height: 100%;
+    overflow: scroll;
+  }
+`;
+
+const StaticButtonGroup = styled(ButtonGroup)`
+  && {
+    position: absolute;
+    top: 0;
+    margin-top: ${({ theme }: IThemeProps) => theme.spacing(3)};
+    margin-left: ${({ theme }: IThemeProps) => theme.spacing(3)};
+  }
+`;
+
+const getGraphSelectionLabel = (selection?: SelectionType) => {
+  switch (selection) {
+    case 'CallGraph':
+      return 'Call Graph';
+    case 'ICFG':
+      return 'ICFG';
+    case 'PAG':
+      return 'PAG';
+    case 'SVFG':
+      return 'SVFG';
+    case 'VFG':
+      return 'VFG';
+    default:
+      return 'Please select an option';
+  }
+};
 
 export const Home: React.FC = () => {
   const [editorContent, setEditorContent] = useState('//write your C code here');
   const selectedFile = useSelector((store: IStore) => store.selectedFile);
+
+  const [anlyseDropdownOpen, setAnlyseDropdownOpen] = useState(false);
+  const analyseDropdownRef = React.useRef(null);
+  const [selectedGraph, setSelectedGraph] = useState<SelectionType>();
 
   useEffect(() => {
     if (selectedFile?.content) {
@@ -66,23 +97,6 @@ export const Home: React.FC = () => {
   const [output, setOutput] = useState('');
   const [markers, setMarkers] = useState<IMarker[]>([]);
   const [annotations, setAnnotations] = useState<IAnnotation[]>([]);
-  const [graphDialog, setGraphDialog] = useState(false);
-  const [graphDialogTitle, setGraphDialogTitle] = useState('');
-
-  const handleGraphDialog = () => {
-    setGraphDialog(true);
-  };
-
-  const handleSelection = async (e: any) => {
-    const selection = e.target.value as SelectionType;
-
-    const svg = await webSvfApi.analyse({ graphName: graphNames[selection], fileName: 'example', code: editorContent });
-
-    setMarkers([]);
-    setAnnotations([]);
-    setGraphDialogTitle(selection);
-    setOutput(svg);
-  };
 
   const onGraphClick = ({ markers, annotations }: IOnGraphClickProps) => {
     console.log('markers', markers);
@@ -92,15 +106,36 @@ export const Home: React.FC = () => {
     setAnnotations(annotations);
   };
 
-  const onCloseGraphDialog = () => {
-    setGraphDialog(false);
-    setGraphDialogTitle('');
+  const onAnalyseDropdownToggle = () => {
+    setAnlyseDropdownOpen((prevOpen) => !prevOpen);
   };
+
+  const handleClose = (event: MouseEvent | TouchEvent) => {
+    if (analyseDropdownRef.current && (analyseDropdownRef.current as any).contains(event.target)) {
+      return;
+    }
+
+    setAnlyseDropdownOpen(false);
+  };
+
+  const onAnalyseClick = async (selection?: SelectionType) => {
+    if (selection) {
+      setSelectedGraph(selection);
+      setAnlyseDropdownOpen(false);
+
+      const svg = await webSvfApi.analyse({ graphName: graphNames[selection], fileName: 'example', code: editorContent });
+
+      setMarkers([]);
+      setAnnotations([]);
+      setOutput(svg);
+    }
+  };
+
   return (
     <HomeWrapper>
       <HomeContainer maxWidth='xl'>
-        <Grid container spacing={3} height='100%'>
-          <Grid item xs={12} md={6} lg={6}>
+        <Grid container spacing={3} height='100%' maxHeight='100%'>
+          <Grid item xs={12} md={6} lg={6} height='100%' maxHeight='100%'>
             <HomePaper>
               <Editor
                 mode='c_cpp'
@@ -112,34 +147,37 @@ export const Home: React.FC = () => {
               />
             </HomePaper>
           </Grid>
-          <Grid item xs={12} md={6} lg={6}>
-            {graphDialogTitle === '' ? (
-              <Box p={5}>
-                <Typography variant='h6'>No Graph Selected</Typography>
-              </Box>
-            ) : (
-              <RenderSvg output={output} onGraphClick={onGraphClick} onClose={onCloseGraphDialog} />
-            )}
-          </Grid>
-          <Grid item xs={12}>
-            <Button onClick={() => {}}>Bug Report</Button>
-            <Button onClick={handleGraphDialog}>Graphs</Button>
+          <Grid item xs={12} md={6} lg={6} height='100%' maxHeight='100%' position='relative'>
+            <StaticButtonGroup variant='contained' color='primary' ref={analyseDropdownRef} aria-label='split button'>
+              <Button onClick={() => onAnalyseClick()}>{getGraphSelectionLabel(selectedGraph)}</Button>
+              <Button color='primary' size='small' aria-label='select merge strategy' aria-haspopup='menu' onClick={onAnalyseDropdownToggle}>
+                <ArrowDropDownIcon />
+              </Button>
+            </StaticButtonGroup>
+            <Popper open={anlyseDropdownOpen} anchorEl={analyseDropdownRef.current} role={undefined} transition disablePortal>
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'
+                  }}>
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList id='split-button-menu'>
+                        {Object.keys(graphNames).map((key) => (
+                          <MenuItem key={key} selected={key === selectedGraph} onClick={() => onAnalyseClick(key as SelectionType)}>
+                            {getGraphSelectionLabel(key as SelectionType)}
+                          </MenuItem>
+                        ))}
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+            <ScrollablePaper>{output && <RenderSvg output={output} onGraphClick={onGraphClick} />}</ScrollablePaper>
           </Grid>
         </Grid>
-        <Dialog maxWidth='xl' open={graphDialog} onClose={onCloseGraphDialog}>
-          <DialogTitle>{graphDialogTitle}</DialogTitle>
-          <DialogContent>
-            <Grid container alignItems='center' direction='column'>
-              <TextField select label='Graph' value={graphDialogTitle} onChange={handleSelection} helperText='Select Graph to be displayed'>
-                <MenuItem value='CallGraph'>CallGraph</MenuItem>
-                <MenuItem value='ICFG'>ICFG</MenuItem>
-                <MenuItem value='PAG'>PAG</MenuItem>
-                <MenuItem value='SVFG'>SVFG</MenuItem>
-                <MenuItem value='VFG'>VFG</MenuItem>
-              </TextField>
-            </Grid>
-          </DialogContent>
-        </Dialog>
       </HomeContainer>
     </HomeWrapper>
   );
