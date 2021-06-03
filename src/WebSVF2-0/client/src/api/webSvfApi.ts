@@ -1,61 +1,35 @@
 import axios, { AxiosResponse } from 'axios';
+import { IProject } from '../models/project';
 
-export interface IAnalysisProps {
-  code: string;
+export type GraphNameType = 'callgraph' | 'icfg' | 'pag' | 'svfg' | 'vfg';
+
+export interface IAnalyseProps {
+  graphName: GraphNameType;
   fileName: string;
+  code: string;
 }
 
 export interface IWebSvfApi {
-  callGraph: (props: IAnalysisProps) => Promise<string>;
-  genIcfg: (props: IAnalysisProps) => Promise<string>;
-  genPag: (props: IAnalysisProps) => Promise<string>;
-  genSvfg: (props: IAnalysisProps) => Promise<string>;
-  genVfg: (props: IAnalysisProps) => Promise<string>;
+  analyse: (props: IAnalyseProps) => Promise<string>;
+  getProjects: () => Promise<IProject[]>;
 }
 
-const webSvgApiFactory: () => IWebSvfApi = () => {
+export const webSvfApiFactory: () => IWebSvfApi = () => {
   const client = axios.create({
     baseURL: 'http://localhost:5001/'
   });
 
   const webSvgApi: IWebSvfApi = {
-    callGraph: async ({ code, fileName }) => {
-      const response = await client.post<IAnalysisProps, AxiosResponse<string>>('/analysis/callGraph', {
+    analyse: async ({ graphName, fileName, code }) => {
+      const response = await client.post<IAnalyseProps, AxiosResponse<string>>('/analysis/' + graphName, {
         code: code,
         fileName: fileName
       });
 
       return response.data;
     },
-    genIcfg: async ({ code, fileName }) => {
-      const response = await client.post<IAnalysisProps, AxiosResponse<string>>('/analysis/icfg', {
-        code: code,
-        fileName: fileName
-      });
-
-      return response.data;
-    },
-    genPag: async ({ code, fileName }) => {
-      const response = await client.post<IAnalysisProps, AxiosResponse<string>>('/analysis/pag', {
-        code: code,
-        fileName: fileName
-      });
-
-      return response.data;
-    },
-    genSvfg: async ({ code, fileName }) => {
-      const response = await client.post<IAnalysisProps, AxiosResponse<string>>('/analysis/svfg', {
-        code: code,
-        fileName: fileName
-      });
-
-      return response.data;
-    },
-    genVfg: async ({ code, fileName }) => {
-      const response = await client.post<IAnalysisProps, AxiosResponse<string>>('/analysis/vfg', {
-        code: code,
-        fileName: fileName
-      });
+    getProjects: async () => {
+      const response = await client.get<IAnalyseProps, AxiosResponse<IProject[]>>('/projects');
 
       return response.data;
     }
@@ -63,5 +37,3 @@ const webSvgApiFactory: () => IWebSvfApi = () => {
 
   return webSvgApi;
 };
-
-export default webSvgApiFactory;

@@ -45,16 +45,15 @@ const transform: Transform = (node, index) => {
 
 export interface IOnGraphClickProps {
   markers: IMarker[];
-  annotation: IAnnotation[];
+  annotations: IAnnotation[];
 }
 
 export interface IRenderSvgProps {
   output: string;
   onGraphClick: (props: IOnGraphClickProps) => void;
-  onClose: () => void;
 }
 
-const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose }) => {
+const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick }) => {
   const handleOnClickRef = useRef<number>();
 
   const handleOnClick: EventListenerOrEventListenerObject = (e) => {
@@ -85,7 +84,7 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
         }
       ];
 
-      const annotation: IAnnotation[] = [
+      const annotations: IAnnotation[] = [
         {
           row: lineNumber,
           column: 3,
@@ -93,8 +92,7 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
           type: 'info'
         }
       ];
-      onGraphClick({ markers: markers, annotation: annotation });
-      onClose();
+      onGraphClick({ markers: markers, annotations: annotations });
     }, 1000);
   };
 
@@ -124,7 +122,7 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick, onClose })
   });
 
   if (output) {
-    return <div>{ReactHtmlParser(output, { transform: transform })}</div>;
+    return <>{ReactHtmlParser(output, { transform: transform })}</>;
   }
 
   return <div></div>;
