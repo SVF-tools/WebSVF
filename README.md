@@ -8,7 +8,7 @@
 
 ## **App Architecture**
 
-![Alt text](./docs/websvf2-0-architecture.png)
+![Alt text](./docs/images/websvf2-0-architecture.png)
 
 ## **Pre-requisite**
 
