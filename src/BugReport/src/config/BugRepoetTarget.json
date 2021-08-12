@@ -1,6 +1,0 @@
-{
-    "name": "INPUT PROJECT",
-    "env": "./scripts/env_target.sh",
-    "compile": "./scripts/compile.sh",
-    "llvm_path": "/usr/bin/llvm"
-}
