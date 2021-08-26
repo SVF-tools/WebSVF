@@ -16,7 +16,7 @@ export interface IWebSvfApi {
 
 export const webSvfApiFactory: () => IWebSvfApi = () => {
   const client = axios.create({
-    baseURL: 'http://localhost:5001/'
+    baseURL: 'https://api.websvftechnology.com'
   });
 
   const webSvgApi: IWebSvfApi = {
