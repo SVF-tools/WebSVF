@@ -23,6 +23,11 @@
 - The `/analysis` routes work using SVF.
 - Ubuntu 18.04 is recommended for optimal use.
 - To setup LLVM, Clang and SVF run the following command to install them using [WebSVF-backend](https://www.npmjs.com/package/@websvf/create-analysis):
+  - `sudo apt install zlib`
+  - `sudo apt-get install libxml2`
+  - `sudo apt-get install libxml2-dev`
+  - `sudo apt-get install libtinfo5`
+  - `sudo apt-get install -y libtinfo-dev`
   - `sudo npm install -g https://github.com/renecruces/WebSVF-backend.git`
   - `sudo create-analysis --install-all`
 
