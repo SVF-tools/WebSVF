@@ -1,15 +1,15 @@
 import React from 'react';
-import { Layout } from './Layout/Layout';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
-import { Home } from './Pages/Home';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes } from './Routes';
 
 export const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <Layout>
-        <Home />
-      </Layout>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     </Provider>
   );
 };
