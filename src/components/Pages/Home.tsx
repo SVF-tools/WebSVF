@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { NavBar } from './LandingPage/NavBar';
+import { NavBar } from '../LandingPage/NavBar';
 
 const HomeContainer = styled.div`
   .masthead-heading {
