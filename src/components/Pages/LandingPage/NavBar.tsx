@@ -32,8 +32,7 @@ export const NavBar: React.FC = () => {
             style={{
               fontWeight: 'bold',
               color: 'black',
-              fontSize: '2em',
-              fontFamily: 'Electrolize'
+              fontSize: '2em'
             }}>
             WebSVF
           </h1>
