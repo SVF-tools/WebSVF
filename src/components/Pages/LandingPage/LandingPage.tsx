@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavBar } from '../LandingPage/NavBar';
+import { NavBar } from './NavBar';
+import './LandingPage.css';
 
-const HomeContainer = styled.div`
+const Container = styled.div`
   .masthead-heading {
     font-weight: bold;
-    font-family: 'Inconsolata' !important;
     font-size: 2.5em !important;
     color: #dadada !important;
 
     .title {
       font-weight: bold;
       color: #4b75ff;
-      font-family: 'Electrolize';
       font-size: 2.5em;
     }
 
@@ -35,10 +34,10 @@ const HomeContainer = styled.div`
   }
 `;
 
-export const Home: React.FC = () => {
+export const LandingPage: React.FC = () => {
   return (
-    <HomeContainer>
+    <Container>
       <NavBar />
-    </HomeContainer>
+    </Container>
   );
 };

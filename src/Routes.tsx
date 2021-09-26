@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router';
 import { Layout } from './components/Layout/Layout';
 import { Dashboard } from './components/Pages/Dashboard';
-import { Home } from './components/Pages/Home';
+import { LandingPage } from './components/Pages/LandingPage/LandingPage';
 
 export const Routes: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const Routes: React.FC = () => {
         </Layout>
       </Route>
       <Route path='/'>
-        <Home />
+        <LandingPage />
       </Route>
     </Switch>
   );
