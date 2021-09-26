@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router';
-import { Layout } from './Layout/Layout';
-import { Dashboard } from './Pages/Dashboard';
-import { Home } from './Pages/Home';
+import { Layout } from './components/Layout/Layout';
+import { Dashboard } from './components/Pages/Dashboard';
+import { Home } from './components/Pages/Home';
 
 export const Routes: React.FC = () => {
   return (

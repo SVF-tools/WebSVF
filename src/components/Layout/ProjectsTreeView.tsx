@@ -138,7 +138,7 @@ export const ProjectsTreeView: React.FC = () => {
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
       defaultExpanded={[projects[0].id, projects[0].folders[0].id, projects[0].folders[0].files[0].id]}
-      onNodeSelect={(event: React.SyntheticEvent, nodeId: string) => onNodeSelect(nodeId)}>
+      onNodeSelect={(event: React.ChangeEvent<{}>, nodeId: string) => onNodeSelect(nodeId)}>
       {projects?.map((project) => (
         <ProjectTreeItem key={project.id} project={project} />
       ))}

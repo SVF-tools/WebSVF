@@ -16,14 +16,14 @@ const globalCss = css`
   }
 `;
 
-const GlobalStyle = createGlobalStyle`${globalCss}`;
+const AppStyle = createGlobalStyle`${globalCss}`;
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = ({ children, theme }) => {
   return (
     <NoSsr>
       <MuiThemeProvider theme={theme}>
         <StyledThemeProvider theme={theme}>
-          <GlobalStyle />
+          <AppStyle />
           {children}
         </StyledThemeProvider>
       </MuiThemeProvider>

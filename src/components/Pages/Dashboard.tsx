@@ -25,8 +25,8 @@ const graphNames: SelectionApiType = {
 };
 
 const HomeWrapper = styled.div`
-  height: calc(100% - ${({ theme }: IThemeProps) => theme.spacing(8)});
-  max-height: calc(100% - ${({ theme }: IThemeProps) => theme.spacing(8)});
+  height: calc(100% - ${({ theme }: IThemeProps) => theme.spacing(8)}px);
+  max-height: calc(100% - ${({ theme }: IThemeProps) => theme.spacing(8)}px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@ const HomeContainer = styled(Container)`
     height: 100%;
     max-height: 100%;
     overflow: hidden;
-    padding-top: ${({ theme }: IThemeProps) => theme.spacing(3)};
+    padding-top: ${({ theme }: IThemeProps) => theme.spacing(3)}px;
   }
 `;
 
@@ -58,8 +58,8 @@ const StaticButtonGroup = styled(ButtonGroup)`
   && {
     position: absolute;
     top: 0;
-    margin-top: ${({ theme }: IThemeProps) => theme.spacing(3)};
-    margin-left: ${({ theme }: IThemeProps) => theme.spacing(3)};
+    margin-top: ${({ theme }: IThemeProps) => theme.spacing(3)}px;
+    margin-left: ${({ theme }: IThemeProps) => theme.spacing(3)}px;
   }
 `;
 
@@ -110,7 +110,7 @@ export const Dashboard: React.FC = () => {
     setAnlyseDropdownOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event: MouseEvent | TouchEvent) => {
+  const handleClose = (event: React.MouseEvent<Document>) => {
     if (analyseDropdownRef.current && (analyseDropdownRef.current as any).contains(event.target)) {
       return;
     }
@@ -134,8 +134,8 @@ export const Dashboard: React.FC = () => {
   return (
     <HomeWrapper>
       <HomeContainer maxWidth='xl'>
-        <Grid container spacing={3} height='100%' maxHeight='100%'>
-          <Grid item xs={12} md={6} lg={6} height='100%' maxHeight='100%'>
+        <Grid container spacing={3} style={{ height: '100%', maxHeight: '100%' }}>
+          <Grid item xs={12} md={6} style={{ height: '100%', maxHeight: '100%' }}>
             <HomePaper>
               <Editor
                 mode='c_cpp'
@@ -147,7 +147,7 @@ export const Dashboard: React.FC = () => {
               />
             </HomePaper>
           </Grid>
-          <Grid item xs={12} md={6} lg={6} height='100%' maxHeight='100%' position='relative'>
+          <Grid item xs={12} md={6} lg={6} style={{ height: '100%', maxHeight: '100%', position: 'relative' }}>
             <StaticButtonGroup variant='contained' color='primary' ref={analyseDropdownRef} aria-label='split button'>
               <Button onClick={() => onAnalyseClick()}>{getGraphSelectionLabel(selectedGraph)}</Button>
               <Button color='primary' size='small' aria-label='select merge strategy' aria-haspopup='menu' onClick={onAnalyseDropdownToggle}>
