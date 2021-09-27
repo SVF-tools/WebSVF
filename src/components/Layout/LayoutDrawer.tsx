@@ -9,7 +9,7 @@ const StyledDrawer = styled(Drawer)`
     & > div {
       white-space: nowrap;
       position: relative;
-      width: ${({ theme }: IThemeProps) => theme.spacing(30)};
+      width: ${({ theme }: IThemeProps) => theme.spacing(30)}px;
       transition: ${({ theme }: IThemeProps) =>
         theme.transitions.create('width', {
           easing: theme.transitions.easing.sharp,
@@ -19,8 +19,8 @@ const StyledDrawer = styled(Drawer)`
 
     position: relative;
     white-space: nowrap;
-    width: ${({ theme }: IThemeProps) => theme.spacing(30)};
-    margin-top: ${({ theme }: IThemeProps) => theme.spacing(2)};
+    width: ${({ theme }: IThemeProps) => theme.spacing(30)}px;
+    margin-top: ${({ theme }: IThemeProps) => theme.spacing(2)}px;
   }
 `;
 
