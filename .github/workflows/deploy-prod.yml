@@ -31,13 +31,13 @@ jobs:
           path: 'node_modules'
           key: ${{ runner.os }}-${{ github.event.repository.name }}-${{ hashFiles('**/package-lock.json') }}
 
-      # - name: Automated Version Bump
-      #   uses: 'phips28/gh-action-bump-version@master'
-      #   with:
-      #     tag-prefix: 'v'
-      #     commit-message: 'Version Bump {{version}}'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Automated Version Bump
+        uses: 'phips28/gh-action-bump-version@master'
+        with:
+          tag-prefix: 'v'
+          commit-message: 'Version Bump {{version}}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install packages
         if: steps.cache-modules.outputs.cache-hit != 'true'
