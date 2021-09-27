@@ -1,5 +1,7 @@
 # **WebSVF 2.0**
 
+https://websvftechnology.com
+
 ## **WebSVF 2.0 Framework Techstack**
 
 - **Frontend**: ReactJS
@@ -40,8 +42,5 @@
 ## **Starting the App**
 
 - Navigate to /WebSVF2-0/
-- run `yarn` to initialise the app
-- To start the app run `yarn start`
-- To start the app in development mode `yarn dev`
-- Both `yarn start` and `yarn dev` will automatically start the frontend client as well, on port `3000`
-- Currently runs on PORT as defined in the .env file or `5001`. If PORT isn't defined in .env, the server is accessible locally at http://localhost:5001
+- run `npm install` to initialise the app
+- To start the app run `npm start`
