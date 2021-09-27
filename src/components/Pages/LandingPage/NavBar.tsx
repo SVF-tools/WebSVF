@@ -49,21 +49,6 @@ export const NavBar: React.FC = () => {
             aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon'></span>
           </button>
-          <div className='collapse navbar-collapse' id='navbarNav'>
-            <ul className='navbar-nav'>
-              <li>
-                <Link className='nav-link' to='/' replace>
-                  About
-                </Link>
-              </li>
-
-              <li className={`nav-item`}>
-                <Link className='nav-link' to='/login' replace>
-                  Sign Out
-                </Link>
-              </li>
-            </ul>
-          </div>
         </span>
       </div>
     </Nav>

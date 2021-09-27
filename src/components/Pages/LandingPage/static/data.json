@@ -1,0 +1,209 @@
+{
+  "demo": {
+    "link": "https://websvftechnology.com/"
+  },
+  "carousel": [
+    {
+      "heading": "Code Anywhere",
+      "subHeading": "with our Online Code Editor",
+      "description": "Our online code editor powered by VSCode Online allows you to work on your projects anywhere.",
+      "extendedDescription": "Hosted on scalable AWS Servers means you can compile and computer faster than even your local machine.",
+      "image": "vscode_online_carousel.png",
+      "active": "active"
+    },
+    {
+      "heading": "Visualize Your Projects",
+      "subHeading": "as 3D Forced Graphs",
+      "description": "Dive into code analysis with ease using our React powered 3D Forced Graph Analysis",
+      "extendedDescription": "Every file including external libraries are represented as nodes clustered in groups following the project hierarchy",
+      "image": "Forced-Graph_carousel.png",
+      "active": ""
+    },
+    {
+      "heading": "Deep Bug Search",
+      "subHeading": "Using SVF's Code Analysis",
+      "description": "With the click of a button, analyse your entire project for compile and runtime errors",
+      "extendedDescription": "as well as highlight potential points of failure within individual files",
+      "image": "bug_carousel_alt_2_480.png",
+      "active": ""
+    }
+  ],
+  "icons": [
+    {
+      "icon": "far fa-file-code",
+      "heading": "C++ Project Support",
+      "content": "Upload you C++ project onto our online code editor and compile and run it on our secured server"
+    },
+    {
+      "icon": "fas fa-project-diagram",
+      "heading": "Visualize your Data in 3D",
+      "content": "In a single click WebSVF can compile your project and visualize as a 3D Forced graph with intractable nodes within our editor"
+    },
+    {
+      "icon": "fas fa-bug",
+      "heading": "Bug Analysis",
+      "content": "One click can analyse you project for bugs and potential points of failure, highlighting them in the 3D forced graph as well as generate a detailed Bug Report."
+    }
+  ],
+  "install-banner": {
+    "callToAction": "Setup your own local instance of",
+    "subHeading": "in a few simple steps:"
+  },
+  "videos": [
+    {
+      "title": "Setup and Test WebSVF",
+      "description": "Get started with setting up WebSVF and using it with a sample C Project.",
+      "youtube-link": "https://www.youtube.com/embed/ArzYCh7vOU0",
+      "icon": "fab fa-ubuntu"
+    },
+    {
+      "title": "WebSVF-frontend User Guide",
+      "description": "An overview of the WebSVF-frontend and WebSVF-frontend-server and how to use them to get started with WebSVF.",
+      "youtube-link": "https://www.youtube.com/embed/ybl9vLaBeE8",
+      "icon": "fas fa-cogs"
+    },
+    {
+      "title": "WebSVF-codemap-extension 2D User Guide",
+      "description": "A step by step guide taking you through the WebSVF's codemap-extension and all of its 2D show features.",
+      "youtube-link": "https://www.youtube.com/embed/c-dLTqPTkjA",
+      "icon": "fas fa-laptop-code"
+    },
+    {
+      "title": "WebSVF-codemap-extension 3D Display User Guide",
+      "description": "A step by step guide taking you through the WebSVF's codemap-extension and all of its 3D display features.",
+      "youtube-link": "https://www.youtube.com/embed/whcmPkblx48",
+      "icon": "fas fa-laptop-code"
+    }
+  ],
+  "contributors": {
+    "heading": "This project would not have been possible without our core contributors...",
+    "developers": [
+      {
+        "name": "Rene Cruces",
+        "link": "https://github.com/renecruces",
+        "image": "Rene_Cruces.jpeg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Tianyang Guan",
+        "link": "https://github.com/spcidealacm/",
+        "image": "Tianyang_Guan.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Akshat Kaushik",
+        "link": "https://github.com/akshatsinghkaushik",
+        "image": "Akshat_Kaushik.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Zicheng Qu",
+        "link": "https://github.com/ZichengQu",
+        "image": "Zicheng_Qu.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Jiachen Liu",
+        "link": "https://github.com/JIACHENLIU09",
+        "image": "Jiachen_Liu.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Prashant Shrestha",
+        "link": "https://github.com/sthprashant",
+        "image": "Prashant_Shrestha.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Lee",
+        "link": "https://github.com/zexiliudai",
+        "image": "Lee.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Wei",
+        "link": "https://github.com/winoooops",
+        "image": "Wei.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Zeren Yu",
+        "link": "https://github.com/yukinsnow",
+        "image": "Zeren_Yu.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Matthew Veldhuizen",
+        "link": "https://github.com/matthew-veldhuizen",
+        "image": "blank_profile.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      }
+    ],
+    "supervisors": [
+      {
+        "name": "Dr Qirun Zhang",
+        "link": "http://helloqirun.github.io/",
+        "image": "Qirun-Zhang.jpg",
+        "position": "Assistant Professor",
+        "university": "Georgia Institute of Technology",
+        "universityLink": "http://www.gatech.edu/"
+      },
+      {
+        "name": "Dr Yulei Sui",
+        "link": "https://yuleisui.github.io/",
+        "image": "Yulei-Sui.jpg",
+        "position": "Senior Lecturer",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      }
+    ]
+  },
+  "signUpBanner": {
+    "heading": "Ready to get started?",
+    "buttonText": "Sign up now!"
+  },
+  "footer": {
+    "navigation": [
+      {
+        "title": "About",
+        "link": "/"
+      },
+      {
+        "title": "Contact",
+        "link": "/"
+      },
+      {
+        "title": "Terms of Use",
+        "link": "/"
+      },
+      {
+        "title": "Privacy Policy",
+        "link": "/"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "fas fa-cloud-upload-alt",
+        "link": "#navbar"
+      },
+      {
+        "icon": "fab fa-github",
+        "link": "https://github.com/SVF-tools/WebSVF"
+      },
+      {
+        "icon": "fas fa-code-branch",
+        "link": "https://github.com/SVF-tools/WebSVF/fork"
+      }
+    ]
+  }
+}

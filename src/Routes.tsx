@@ -1,18 +1,22 @@
-import { Route, Switch } from 'react-router';
+import { Route, Switch, useHistory } from 'react-router';
 import { Layout } from './components/Layout/Layout';
-import { Dashboard } from './components/Pages/Dashboard';
+import { Analysis } from './components/Pages/Analysis';
 import { LandingPage } from './components/Pages/LandingPage/LandingPage';
 
+const ANALYSIS_PATH = '/analysis';
+
 export const Routes: React.FC = () => {
+  const history = useHistory();
+
   return (
     <Switch>
-      <Route path='/dashboard'>
+      <Route path={ANALYSIS_PATH}>
         <Layout>
-          <Dashboard />
+          <Analysis />
         </Layout>
       </Route>
       <Route path='/'>
-        <LandingPage />
+        <LandingPage onNext={() => history.push(ANALYSIS_PATH)} />
       </Route>
     </Switch>
   );

@@ -80,7 +80,7 @@ const getGraphSelectionLabel = (selection?: SelectionType) => {
   }
 };
 
-export const Dashboard: React.FC = () => {
+export const Analysis: React.FC = () => {
   const [editorContent, setEditorContent] = useState('//write your C code here');
   const selectedFile = useSelector((store: IStore) => store.selectedFile);
 
