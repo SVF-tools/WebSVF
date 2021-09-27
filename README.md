@@ -1,5 +1,7 @@
 # **WebSVF 2.0**
 
+https://websvftechnology.com
+
 ## **WebSVF 2.0 Framework Techstack**
 
 - **Frontend**: ReactJS
@@ -8,7 +10,7 @@
 
 ## **App Architecture**
 
-![Alt text](./docs/websvf2-0-architecture.png)
+![Alt text](./docs/images/websvf2-0-architecture.png)
 
 ## **Pre-requisite**
 
@@ -23,7 +25,13 @@
 - The `/analysis` routes work using SVF.
 - Ubuntu 18.04 is recommended for optimal use.
 - To setup LLVM, Clang and SVF run the following command to install them using [WebSVF-backend](https://www.npmjs.com/package/@websvf/create-analysis):
-  - `sudo npx @websvf/create-analysis --install-all`
+  - `sudo apt install zlib`
+  - `sudo apt-get install libxml2`
+  - `sudo apt-get install libxml2-dev`
+  - `sudo apt-get install libtinfo5`
+  - `sudo apt-get install -y libtinfo-dev`
+  - `sudo npm install -g https://github.com/renecruces/WebSVF-backend.git`
+  - `sudo create-analysis --install-all`
 
 ### **For Developers:**
 
@@ -34,8 +42,5 @@
 ## **Starting the App**
 
 - Navigate to /WebSVF2-0/
-- run `yarn` to initialise the app
-- To start the app run `yarn start`
-- To start the app in development mode `yarn dev`
-- Both `yarn start` and `yarn dev` will automatically start the frontend client as well, on port `3000`
-- Currently runs on PORT as defined in the .env file or `5001`. If PORT isn't defined in .env, the server is accessible locally at http://localhost:5001
+- run `npm install` to initialise the app
+- To start the app run `npm start`
