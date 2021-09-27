@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavBar } from './NavBar';
 import './LandingPage.css';
+import { About } from './About';
 
 const Container = styled.div`
   .masthead-heading {
@@ -34,10 +35,15 @@ const Container = styled.div`
   }
 `;
 
-export const LandingPage: React.FC = () => {
+export interface ILandingPageProps {
+  onNext: (email: string) => void;
+}
+
+export const LandingPage: React.FC<ILandingPageProps> = ({ onNext }) => {
   return (
     <Container>
       <NavBar />
+      <About onNext={onNext} />
     </Container>
   );
 };
