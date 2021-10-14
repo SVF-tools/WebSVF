@@ -1,16 +1,23 @@
 import axios, { AxiosResponse } from 'axios';
 import { IProject } from '../models/project';
 
-export type GraphNameType = 'callgraph' | 'icfg' | 'pag' | 'svfg' | 'vfg';
+export enum GraphType {
+  Callgraph = 'callgraph',
+  Icfg = 'icfg',
+  Pag = 'pag',
+  Svfg = 'svfg',
+  Vfg = 'vfg'
+}
 
 export interface IAnalyseProps {
-  graphName: GraphNameType;
+  graphName: GraphType;
   fileName: string;
   code: string;
 }
 
 export interface IWebSvfApi {
   analyse: (props: IAnalyseProps) => Promise<string>;
+  analyseAll: ({ fileName, code }: { fileName: string; code: string }) => Promise<Record<GraphType, string>>;
   getProjects: () => Promise<IProject[]>;
 }
 
@@ -21,7 +28,15 @@ export const webSvfApiFactory: () => IWebSvfApi = () => {
 
   const webSvgApi: IWebSvfApi = {
     analyse: async ({ graphName, fileName, code }) => {
-      const response = await client.post<IAnalyseProps, AxiosResponse<string>>('/analysis/' + graphName, {
+      const response = await client.post<IAnalyseProps, AxiosResponse<any>>('/analysis/' + graphName, {
+        code: code,
+        fileName: fileName
+      });
+
+      return response.data[graphName] as string;
+    },
+    analyseAll: async ({ fileName, code }) => {
+      const response = await client.post<IAnalyseProps, AxiosResponse<Record<GraphType, string>>>('/analysis/all', {
         code: code,
         fileName: fileName
       });
