@@ -15,9 +15,11 @@ export interface IAnalyseProps {
   code: string;
 }
 
+type AnalyseAllResponseType = Record<GraphType, string> & { logs: any };
+
 export interface IWebSvfApi {
   analyse: (props: IAnalyseProps) => Promise<string>;
-  analyseAll: ({ fileName, code }: { fileName: string; code: string }) => Promise<Record<GraphType, string>>;
+  analyseAll: ({ fileName, code }: { fileName: string; code: string }) => Promise<AnalyseAllResponseType>;
   getProjects: () => Promise<IProject[]>;
 }
 
@@ -36,7 +38,7 @@ export const webSvfApiFactory: () => IWebSvfApi = () => {
       return response.data[graphName] as string;
     },
     analyseAll: async ({ fileName, code }) => {
-      const response = await client.post<IAnalyseProps, AxiosResponse<Record<GraphType, string>>>('/analysis/all', {
+      const response = await client.post<IAnalyseProps, AxiosResponse<AnalyseAllResponseType>>('/analysis/all', {
         code: code,
         fileName: fileName
       });
