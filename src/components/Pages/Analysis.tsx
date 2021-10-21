@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Grid, Button, Container, Paper, ClickAwayListener, ButtonGroup, Popper, Grow, MenuList } from '@material-ui/core';
+import { Grid, Button, Container, Paper, ClickAwayListener, ButtonGroup, Popper, Grow, MenuList, Backdrop, CircularProgress } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import { IAnnotation, IMarker } from 'react-ace';
 import { GraphType, webSvfApiFactory } from '../../api/webSvfApi';
@@ -94,6 +94,7 @@ const Console = styled.div<IConsoleProps>`
 const getLogPrefix = () => 'Last updated: ' + new Date();
 
 export const Analysis: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const editorContainerRef = useRef<HTMLDivElement>(null);
   const [consoleHeight, setConsoleHeight] = useState<number>();
   const [logs, setLogs] = useState(getLogPrefix());
@@ -133,6 +134,7 @@ export const Analysis: React.FC = () => {
   };
 
   const onAnalyseClick = async () => {
+    setLoading(true);
     setAnlyseDropdownOpen(false);
 
     const { logs, ...rest } = await webSvfApi.analyseAll({ fileName: 'example', code: editorContent });
@@ -150,6 +152,8 @@ export const Analysis: React.FC = () => {
     }
 
     setOutput(rest[selectedGraph]);
+
+    setLoading(false);
   };
 
   if (editorContainerRef.current && !consoleHeight) {
@@ -242,6 +246,9 @@ export const Analysis: React.FC = () => {
           </div>
         </Grid>
       </HomeContainer>
+      <Backdrop style={{ zIndex: 1200 }} open={loading}>
+        <CircularProgress />
+      </Backdrop>
     </HomeWrapper>
   );
 };
