@@ -26,7 +26,7 @@ const Editor: React.FC<IEditorProps> = ({ markers, mode, onChange, name, wrapEna
       value={value}
       annotations={annotations}
       markers={markers}
-      style={{ width: '100%', height: '100%', borderRadius: 4 }}
+      style={{ width: '100%', height: '100%' }}
     />
   );
 };
