@@ -2,6 +2,7 @@
   "name": "websvfreact",
   "version": "0.1.5",
   "private": true,
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
