@@ -1,6 +1,6 @@
 {
-  "short_name": "WebSVF",
-  "name": "WebSVF: Interactive Code Analysis",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
