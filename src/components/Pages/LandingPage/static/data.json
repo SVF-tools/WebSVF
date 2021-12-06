@@ -79,6 +79,13 @@
     "heading": "This project would not have been possible without our core contributors...",
     "developers": [
       {
+        "name": "Ian Huang",
+        "link": "https://github.com/Ian36",
+        "image": "Ian_Huang.jpeg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
         "name": "Rene Cruces",
         "link": "https://github.com/renecruces",
         "image": "Rene_Cruces.jpeg",
