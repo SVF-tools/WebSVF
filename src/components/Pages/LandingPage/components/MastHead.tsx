@@ -26,9 +26,8 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
               Enter your email to try our demo page
             </h1>
           </div>
-          <div className='col-md-10 col-lg-8 col-xl-7 mx-auto'>
-            <div className='row'>
-              <div className='col-12 col-md-9 mb-2 mb-md-0'>
+          <div className='col-xl-12 d-flex justify-content-center'>
+              <div>
                 <input
                   type='email'
                   className='form-control form-control-lg'
@@ -40,10 +39,14 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
               </div>
               <div className='col-12 col-md-3'>
                 <button type='submit' className='btn btn-block btn-lg btn-primary' onClick={() => onNext(email)} disabled={!!email}>
-                  Try it now!
+                  Try WebSVF 2.0 now!
                 </button>
               </div>
-            </div>
+              <div className='col-12 col-md-3'>
+                <a type='submit' className='btn btn-block btn-lg btn-primary' href="https://capstone-project123.herokuapp.com/">
+                  Try WebSVF 3.0 now!
+                </a>
+              </div>
           </div>
         </div>
       </div>
