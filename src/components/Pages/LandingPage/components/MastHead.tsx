@@ -43,7 +43,7 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
                 </button>
               </div>
               <div className='col-12 col-md-3'>
-                <a type='submit' className='btn btn-block btn-lg btn-primary' href="https://capstone-project123.herokuapp.com/">
+                <a type='submit' className='btn btn-block btn-lg btn-primary' href="http://35.165.134.143">
                   Try WebSVF 3.0 now!
                 </a>
               </div>
