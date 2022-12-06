@@ -19,17 +19,7 @@ jobs:
           node-version: '15.x'
 
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cache node modules
-        id: cache-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: ${{ github.event.repository.name }}
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-        with:
-          path: 'node_modules'
-          key: ${{ runner.os }}-${{ github.event.repository.name }}-${{ hashFiles('**/package-lock.json') }}
+        uses: actions/checkout@v3
 
       - name: Build
         run: |
