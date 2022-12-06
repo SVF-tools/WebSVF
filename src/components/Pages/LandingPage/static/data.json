@@ -79,6 +79,20 @@
     "heading": "This project would not have been possible without our core contributors...",
     "developers": [
       {
+        "name": "Tien Long Lam",
+        "link": "https://github.com/Ian36",
+        "image": "blank_profile.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Aung Soe Kyaw",
+        "link": "https://github.com/AungSoeKyaw00s",
+        "image": "aung.jpg",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
+      },
+      {
         "name": "Ian Huang",
         "link": "https://github.com/Ian36",
         "image": "Ian_Huang.jpeg",
