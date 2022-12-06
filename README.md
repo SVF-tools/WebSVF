@@ -7,7 +7,7 @@ Capstone Project for the WebSVF can be found within this Repo as a sub module
 learn more about submodules at https://git-scm.com/book/en/v2/Git-Tools-Submodules 
 
 # pulling the submodule from CapstoneProject
-
+this command will be required to retrieve the files within Capstone Project
 ```
 git submodule update --init
 
@@ -25,6 +25,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubunt
 
 ## 2. Install Angular
 ```
+cd ClientApp \
 sudo npm install -g @angular/cli
 
 ```
