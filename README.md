@@ -1,46 +1,82 @@
-# **WebSVF 2.0**
+# WebSVF
 
-https://websvftechnology.com
+# this is the WebSVF repo which highlights the static webSVF github io for redirecting to the deployed WebSVF pages
+  https://svf-tools.github.io/WebSVF/
 
-## **WebSVF 2.0 Framework Techstack**
+Capstone Project for the WebSVF can be found within this Repo as a sub module
+learn more about submodules at https://git-scm.com/book/en/v2/Git-Tools-Submodules 
 
-- **Frontend**: ReactJS
-- **Backend**: Express JS
-- **Database**: MongoDB
+# pulling the submodule from CapstoneProject
+this command will be required to retrieve the files within Capstone Project
+```
+git submodule update --init
 
-## **App Architecture**
+```
 
-![Alt text](./docs/images/websvf2-0-architecture.png)
+# Installation Guide for WebSVF submodule project
+# Installation guide for Web SVF
 
-## **Pre-requisite**
+## 1. Install Nodejs
+```
+sudo apt install nodejs
 
-- Ubuntu 18.04
-- Node JS 10.x or higher --> ([Update Nodejs in Ubuntu 18.04 to higher than 10.x](https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/))
-- Yarn (preferred) OR NPM
+```
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
 
-## **Initial Setup**
+## 2. Install Angular
+```
+cd ClientApp \
+sudo npm install -g @angular/cli
 
-### **For `/analysis` routes**
+```
+https://angular.io/guide/setup-local
 
-- The `/analysis` routes work using SVF.
-- Ubuntu 18.04 is recommended for optimal use.
-- To setup LLVM, Clang and SVF run the following command to install them using [WebSVF-backend](https://www.npmjs.com/package/@websvf/create-analysis):
-  - `sudo apt install zlib`
-  - `sudo apt-get install libxml2`
-  - `sudo apt-get install libxml2-dev`
-  - `sudo apt-get install libtinfo5`
-  - `sudo apt-get install -y libtinfo-dev`
-  - `sudo npm install -g https://github.com/renecruces/WebSVF-backend.git`
-  - `sudo create-analysis --install-all`
+## 3. Clone this repo
+```
+git clone https://github.com/Re-Tails/CapstoneProject.git
+```
 
-### **For Developers:**
+## 4. Install Dotnet
 
-- An individual mongo atlas account needs to be set up as well in order to run the app with backend. For this:
-  - Navigate to /WebSVF2-0/config/
-  - create a `creds.js` file and add the details. For template, refer to `creds_sample.js`
+### Add the Microsoft package signing key
+```
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+```
 
-## **Starting the App**
+### Install the SDK
+```
+sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-3.1
+```
 
-- Navigate to /WebSVF2-0/
-- run `npm install` to initialise the app
-- To start the app run `npm start`
+### Install the runtime
+```
+sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y aspnetcore-runtime-3.1
+```
+https://docs.microsoft.com/en-au/dotnet/core/install/linux-ubuntu#2004-
+
+## 7. Update the app
+```
+cd  ClientApp \
+npm install \
+npm run start //note: this will only run the Client App
+```
+## 6. Run the app
+Run the following command from the CapstoneProject repo folder:
+```
+dotnet run
+```
+
+## Notes
+
+Install the SVF dependencies if required
+```
+npm i svf-lib
+```
