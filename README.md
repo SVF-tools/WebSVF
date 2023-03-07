@@ -16,9 +16,10 @@ git submodule update --init
 # Installation Guide for WebSVF submodule project
 # Installation guide for Web SVF
 
-## 1. Install Nodejs
+## 1. Install Nodejs 15 and other dependancies
 ```
-sudo apt install nodejs
+sudo apt install nodejs@15
+sudo apt-get install clang cmake gcc g++ doxygen graphviz zlib1g-dev unzip libtinfo5
 
 ```
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
@@ -27,7 +28,6 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubunt
 ```
 cd ClientApp \
 sudo npm install -g @angular/cli
-
 ```
 https://angular.io/guide/setup-local
 
@@ -76,7 +76,7 @@ dotnet run
 
 ## Notes
 
-Install the SVF dependencies if required
+Install the following dependencies if required
 ```
 npm i svf-lib
 ```
