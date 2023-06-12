@@ -6,13 +6,6 @@
 Capstone Project for the WebSVF can be found within this Repo as a sub module
 learn more about submodules at https://git-scm.com/book/en/v2/Git-Tools-Submodules 
 
-# pulling the submodule from CapstoneProject
-this command will be required to retrieve the files within Capstone Project
-```
-git submodule update --init
-
-```
-
 # Installation Guide for WebSVF submodule project
 # Installation guide for Web SVF
 
@@ -20,7 +13,6 @@ git submodule update --init
 ```
 sudo apt install nodejs@15
 sudo apt-get install clang cmake gcc g++ doxygen graphviz zlib1g-dev unzip libtinfo5
-
 ```
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
 
@@ -74,9 +66,18 @@ Run the following command from the CapstoneProject repo folder:
 dotnet run
 ```
 
-## Notes
+# Notes
 
+## Install dependencies
 Install the following dependencies if required
 ```
 npm i svf-lib
 ```
+## Pulling the submodule from CapstoneProject
+This command is be required to retrieve the latest files within CapstoneProject or any other repo you add.
+```
+git submodule update --init
+```
+
+## Create EC2 instance from custom WebSVF AMI
+Use the AMI `ami-06787f758a0b88e83` to create new EC2 instances of WebSVF. This can be achieved through the AWS Management Console or [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html).
