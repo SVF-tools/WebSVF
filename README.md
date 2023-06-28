@@ -6,8 +6,7 @@ This is the WebSVF repo which highlights the static webSVF github io for redirec
 Capstone Project for the WebSVF can be found within this Repo as a sub module
 learn more about submodules at https://git-scm.com/book/en/v2/Git-Tools-Submodules 
 
-# Installation Guide for WebSVF submodule project
-# Installation guide for Web SVF
+# Installation guide for WebSVF
 
 ## 1. Install Nodejs 15 and other dependancies
 ```
