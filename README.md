@@ -1,6 +1,6 @@
 # WebSVF
 
-# this is the WebSVF repo which highlights the static webSVF github io for redirecting to the deployed WebSVF pages
+This is the WebSVF repo which highlights the static webSVF github io for redirecting to the deployed WebSVF pages
   https://svf-tools.github.io/WebSVF/
 
 Capstone Project for the WebSVF can be found within this Repo as a sub module
