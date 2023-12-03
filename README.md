@@ -7,6 +7,7 @@ Capstone Project for the WebSVF can be found within this Repo as a sub module
 learn more about submodules at https://git-scm.com/book/en/v2/Git-Tools-Submodules 
 
 # Installation guide for WebSVF
+Note: Installation should be completed on linux for best results.
 
 ## 1. Install Nodejs 15 and other dependancies
 ```
