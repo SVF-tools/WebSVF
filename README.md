@@ -6,6 +6,11 @@ This is the WebSVF repo which highlights the static webSVF github io for redirec
 Capstone Project for the WebSVF can be found within this Repo as a sub module
 learn more about submodules at https://git-scm.com/book/en/v2/Git-Tools-Submodules 
 
+For a quick introduction to the latest addition in WebSVF 4.0, the CodeGPT panel, please have a watch of this video:
+https://www.youtube.com/watch?v=Gf6vAyzOlJ0
+
+The new feature allows users to communicate with OpenAI's GPT 3.5-Turbo engine, and attach any of their files present on the site!
+
 # Installation guide for WebSVF
 Note: Installation should be completed on linux for best results.
 
