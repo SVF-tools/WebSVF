@@ -48,7 +48,7 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
                 </a>
               </div>
               <div className='col-12 col-md-3'>
-                <a type='submit' className='btn btn-block btn-lg btn-primary' href="http://localhost:5000/">
+                <a type='submit' className='btn btn-block btn-lg btn-primary' href="http://3.26.130.112/">
                   Try WebSVF 4.0 now!
                 </a>
               </div>
