@@ -59,6 +59,25 @@ sudo apt-get update; \
 ```
 https://docs.microsoft.com/en-au/dotnet/core/install/linux-ubuntu#2004-
 
+### If the above commands do not work, you manually download Dotnet 3.1 here
+```
+https://dotnet.microsoft.com/en-us/download/dotnet/3.1
+```
+
+## After downloading go downloads folder and run the following commands.
+```
+mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-3.1.302-win-x64.exe -C $HOME/dotnet
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet
+```
+
+## If you have downloaded manually, you will need to run these commands everytime the machine is started (or add these commands to appropriate source file to avoid repetitvely copy and pasting this command)
+```
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet
+```
+
+
 ## 7. Update the app
 ```
 cd  ClientApp \
