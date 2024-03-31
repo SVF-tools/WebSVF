@@ -67,6 +67,8 @@ https://dotnet.microsoft.com/en-us/download/dotnet/3.1
 
 After downloading, go to downloads folder and run the following commands.
 ```
+cd
+cd Downloads
 mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-3.1.302-win-x64.exe -C $HOME/dotnet
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/dotnet
