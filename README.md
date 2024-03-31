@@ -60,23 +60,23 @@ sudo apt-get update; \
 https://docs.microsoft.com/en-au/dotnet/core/install/linux-ubuntu#2004-
 
 ### If the above commands do not work, you can manually download Dotnet 3.1 here
-```
-https://dotnet.microsoft.com/en-us/download/dotnet/3.1
-```
 
-#### After downloading go downloads folder and run the following commands.
+You can download any version as long as it is 3.1 version of SDK.
+
+https://dotnet.microsoft.com/en-us/download/dotnet/3.1
+
+After downloading, go to downloads folder and run the following commands.
 ```
 mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-3.1.302-win-x64.exe -C $HOME/dotnet
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/dotnet
 ```
 
-#### If you have downloaded manually, you will need to run these commands everytime the machine is started (or add these commands to appropriate source file to avoid repetitvely copy and pasting this command)
+If you have downloaded manually, you will need to run these commands everytime the machine is restarted (or add these commands to appropriate source file to avoid copy and pasting this command when computer restarts)
 ```
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/dotnet
 ```
-
 
 ## 7. Update the app
 ```
@@ -166,6 +166,46 @@ Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/
 4. Under Key pair (login), for Key pair name, choose the key pair that you created when getting set up.
 
 5. Review a summary of your instance configuration in the `Summary` panel, and when you're ready, choose `Launch instance`.
+
+## Troubleshoot
+
+### No usable version of libssl was found error
+If this error occurs, there should be a libssl1.1_1.1.1-1ubuntu2.1~18.04.21_amd64.deb that can be installed by running the following command.
+
+```
+sudo dpkg -i libssl1.1_1.1.1-1ubuntu2.1~18.04.21_amd64.deb
+```
+
+If this libssl file is not here, you can run the following commands
+```
+wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
+tar -xzvf openssl-1.1.1c.tar.gz
+cd openssl-1.1.1c
+./config
+make
+sudo make install (it puts it into /usr/local/lib so it doesn't mess with the rest of your system)
+```
+Then, run this command to map this command temporarily via LD_LIBRARY_PATH. You will need to run this command everytime the computer restarts.
+
+```
+export export LD_LIBRARY_PATH="/usr/local/lib"
+```
+Source for no usable libssl if there is no libssl file.
+https://github.com/dotnet/core/issues/4749 
+
+### API Key
+If you want to change the API key for codeGPT or come across the error 'apiKey' does not exist.
+
+Add the APIKey in environment.ts (clientApp->src/environments->environments.ts).
+
+To generate the API key, you will need to:
+1. create an account with OpenAI.
+2. After logging in, select 'API'.
+3. Click on the GPT icon in the top left corner to expand the sidebar
+4. Select API Keys. Here, you can generate a key and add it as the value to the apiKey variable.
+
+An alternative method can also be to use a dotenv file, you can find some documentation on this here. This will allow you to secure the API keys over public repositories.
+https://betterprogramming.pub/how-to-secure-angular-environment-variables-for-use-in-github-actions-39c07587d590
 
 ## Sources
 
