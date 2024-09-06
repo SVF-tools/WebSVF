@@ -7,7 +7,7 @@
       "heading": "Code Anywhere",
       "subHeading": "with our Online Code Editor",
       "description": "Our online code editor powered by VSCode Online allows you to work on your projects anywhere.",
-      "extendedDescription": "Hosted on scalable AWS Servers means you can compile and computer faster than even your local machine.",
+      "extendedDescription": "Hosted on sxwcalable AWS Servers means you can compile and computer faster than even your local machine.",
       "image": "vscode_online_carousel.png",
       "active": "active"
     },
@@ -79,6 +79,34 @@
     "heading": "This project would not have been possible without our core contributors...",
     "developers": [
       {
+        "name": "Joshua Sy",
+        "link": "https://github.com/joshua-sy",
+        "image": "joshua_sy.jpeg",
+        "university": "University of New South Wales",
+        "universityLink": "https://www.unsw.edu.au/"
+      },
+      {
+        "name": "Sanjana Dinesh",
+        "link": "https://github.com/sanjanadinesh",
+        "image": "blank_profile.jpg",
+        "university": "University of New South Wales",
+        "universityLink": "https://www.unsw.edu.au/"
+      },
+      {
+        "name": "Samiksha Anirudh",
+        "link": "https://github.com/samikshaanirudh",
+        "image": "blank_profile.jpg",
+        "university": "University of New South Wales",
+        "universityLink": "https://www.unsw.edu.au/"
+      },
+      {
+        "name": "Isha Shroff",
+        "link": "https://github.com/IshaShroff/",
+        "image": "Isha_Shroff.jpg",
+        "university": "University of New South Wales",
+        "universityLink": "https://www.unsw.edu.au/"
+      },
+      {
         "name": "Tien Long Lam",
         "link": "https://github.com/Re-Tails/",
         "image": "Tien.jpg",
@@ -98,13 +126,6 @@
         "image": "Ian_Huang.jpeg",
         "university": "University of Technology Sydney",
         "universityLink": "https://uts.edu.au/"
-      },
-      {
-        "name": "Isha Shroff",
-        "link": "https://github.com/IshaShroff/",
-        "image": "Isha_Shroff.jpg",
-        "university": "University of New South Wales",
-        "universityLink": "https://www.unsw.edu.au/"
       },
       {
         "name": "Rene Cruces",
@@ -193,6 +214,14 @@
         "position": "Scientia Associate Professor",
         "university": "University of New South Wales",
         "universityLink": "https://www.unsw.edu.au/"
+      },
+      {
+        "name": "Dr Christy Liang",
+        "link": "https://profiles.uts.edu.au/Jie.Liang",
+        "image": "christy_liang.jpeg",
+        "position": "Scientia Associate Professor",
+        "university": "University of Technology Sydney",
+        "universityLink": "https://uts.edu.au/"
       }
     ]
   },
