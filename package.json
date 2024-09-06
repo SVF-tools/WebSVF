@@ -33,6 +33,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@reduxjs/toolkit": "^1.6.2",
     "axios": "^0.23.0",
+    "caniuse-lite": "^1.0.30001657",
     "re-resizable": "^6.9.1",
     "react": "^17.0.2",
     "react-ace": "^9.4.4",
