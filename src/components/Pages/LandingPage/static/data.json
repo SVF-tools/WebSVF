@@ -200,15 +200,7 @@
     ],
     "supervisors": [
       {
-        "name": "Dr Qirun Zhang",
-        "link": "http://helloqirun.github.io/",
-        "image": "Qirun-Zhang.jpg",
-        "position": "Assistant Professor",
-        "university": "Georgia Institute of Technology",
-        "universityLink": "http://www.gatech.edu/"
-      },
-      {
-        "name": "Dr Yulei Sui",
+        "name": "Yulei Sui",
         "link": "https://yuleisui.github.io/",
         "image": "Yulei-Sui.jpg",
         "position": "Scientia Associate Professor",
@@ -216,10 +208,18 @@
         "universityLink": "https://www.unsw.edu.au/"
       },
       {
-        "name": "Dr Christy Liang",
+        "name": "Qirun Zhang",
+        "link": "http://helloqirun.github.io/",
+        "image": "Qirun-Zhang.jpg",
+        "position": "Assistant Professor",
+        "university": "Georgia Institute of Technology",
+        "universityLink": "http://www.gatech.edu/"
+      },
+      {
+        "name": "Christy Liang",
         "link": "https://profiles.uts.edu.au/Jie.Liang",
         "image": "christy_liang.jpeg",
-        "position": "Scientia Associate Professor",
+        "position": "Associate Professor",
         "university": "University of Technology Sydney",
         "universityLink": "https://uts.edu.au/"
       }
