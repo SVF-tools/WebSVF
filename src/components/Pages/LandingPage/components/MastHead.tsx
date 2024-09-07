@@ -14,7 +14,7 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
           <div className='col-xl-12 mx-auto'>
             <h1 className='mb-5 masthead-heading'>
               <div className='title'>WebSVF:</div>
-              Online Learning and Teaching Platform for Code Analysis
+              Online Learning and Visualization Platform for Code Analysis
               <br /> <br />
               powered by
               <br />
