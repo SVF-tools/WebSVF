@@ -38,11 +38,6 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
                 />
               </div>
               <div className='col-12 col-md-3'>
-                <button type='submit' className='btn btn-block btn-lg btn-primary' onClick={() => onNext(email)} disabled={!!email}>
-                  Try WebSVF 2.0 now!
-                </button>
-              </div>
-              <div className='col-12 col-md-3'>
                 <a type='submit' className='btn btn-block btn-lg btn-primary' href="http://35.165.134.143/">
                   Try WebSVF 3.0 now!
                 </a>
@@ -50,6 +45,11 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
               <div className='col-12 col-md-3'>
                 <a type='submit' className='btn btn-block btn-lg btn-primary' href="http://3.26.130.112/">
                   Try WebSVF 4.0 now!
+                </a>
+              </div>
+              <div className='col-12 col-md-3'>
+                <a type='submit' className='btn btn-block btn-lg btn-primary' href="https://websvf.vercel.app/">
+                  Try WebSVF 5.0 now!
                 </a>
               </div>
           </div>
