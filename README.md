@@ -67,6 +67,21 @@ Backend is currently deployed using fly.io.
 # Frontend Deployment
 Frontend is currently deployed using Vercel.
 
+# API Key
+If you want to change the API key for codeGPT or come across the error 'apiKey' does not exist.
+
+Add the APIKey to a .env.sh file inside frontend folder and outside of src. Add the following to the env file.
+```
+VITE_OPENAI_API_KEY='YOUR_API_KEY'
+```
+
+To generate the API key, you will need to:
+1. create an account with OpenAI.
+2. After logging in, select 'API'.
+3. Click on the GPT icon in the top left corner to expand the sidebar
+4. Select API Keys. Here, you can generate a key and add it as the value to the apiKey variable.
+
+
 END OF WEBSVF 5.0 INSTALLATION
 
 
