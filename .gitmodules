@@ -1,3 +1,9 @@
 [submodule "CapstoneProject"]
 	path = CapstoneProject
 	url = https://github.com/IshaShroff/CapstoneProject.git
+[submodule "webSVF_capstones/webSVF_5.0/capstoneProject2024"]
+	path = webSVF_capstones/webSVF_5.0/capstoneProject2024
+	url = https://github.com/joshua-sy/capstoneProject2024.git
+[submodule "webSVF_capstones/webSVF_4.0/CapstoneProject"]
+	path = webSVF_capstones/webSVF_4.0/CapstoneProject
+	url = https://github.com/IshaShroff/CapstoneProject.git
