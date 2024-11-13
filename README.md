@@ -56,6 +56,10 @@ Go into frontend folder
 ```
 cd frontend
 ```
+Install node packages needed to run frontend by using the following command.
+```
+npm install
+```
 Run npm run dev
 ```
 npm run dev
