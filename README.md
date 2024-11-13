@@ -12,14 +12,15 @@ https://www.youtube.com/watch?v=Gf6vAyzOlJ0
 The new feature allows users to communicate with OpenAI's GPT 3.5-Turbo engine, and attach any of their files present on the site!
 
 # Installation of webSVF 5.0
+Note, webSVF 5.0 uses svf-ex executable from previous webSVF to create graphs. The executable can only run in x86 architecture (not arm64). Installation should be completed on linux for best results.
 
-# Downloading dotnet on Linux
+# Downloading dotnet 8 on Linux
 Go to this website
 ```
 https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 ```
 
-Download sdk for dotnet 8.0. Click on x64 for binaries if using x64 architecture. Click arm64 if running on M-series macbook. This should automatically download the binary as a tar file. 
+Download sdk for dotnet 8.0. Click on x64 for binaries if using x64 architecture. Click arm64 if running on M-series macbook. This should automatically download the binary as a tar file.
 ```
 cd Downloads
 ```
@@ -59,6 +60,15 @@ Run npm run dev
 ```
 npm run dev
 ```
+
+# Backend Deployment
+Backend is currently deployed using fly.io.
+
+# Frontend Deployment
+Frontend is currently deployed using Vercel.
+
+END OF WEBSVF 5.0 INSTALLATION
+
 
 # Installation guide for WebSVF 4.0
 Note: Installation should be completed on linux for best results.
