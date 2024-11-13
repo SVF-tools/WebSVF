@@ -11,7 +11,85 @@ https://www.youtube.com/watch?v=Gf6vAyzOlJ0
 
 The new feature allows users to communicate with OpenAI's GPT 3.5-Turbo engine, and attach any of their files present on the site!
 
-# Installation guide for WebSVF
+# Installation of webSVF 5.0
+Note, webSVF 5.0 uses svf-ex executable from previous webSVF to create graphs. The executable can only run in x86 architecture (not arm64). Installation should be completed on linux for best results.
+
+# Downloading dotnet 8 on Linux
+Go to this website
+```
+https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+```
+
+Download sdk for dotnet 8.0. Click on x64 for binaries if using x64 architecture. Click arm64 if running on M-series macbook. This should automatically download the binary as a tar file.
+```
+cd Downloads
+```
+Go into downloads and run the following commands. (These commands were taken from the download page)
+
+```
+mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-8.0.402-linux-x64.tar.gz -C $HOME/dotnet
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet
+```
+
+Run the 2 export commands every time you open up a new terminal session. You could also edit the your shell profile to permanently add the commands. 
+
+# Downloading node manager for frontend
+
+Install Node Version Manager (nvm) by running the following command
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+```
+
+Install Node version 20 by running following command
+```
+nvm install 20
+```
+
+You can check the node version by running following command. It should say v20.*.*
+```
+node -v
+```
+
+# How to run frontend
+Go into frontend folder
+```
+cd frontend
+```
+Install node packages needed to run frontend by using the following command.
+```
+npm install
+```
+Run npm run dev
+```
+npm run dev
+```
+
+# Backend Deployment
+Backend is currently deployed using fly.io.
+
+# Frontend Deployment
+Frontend is currently deployed using Vercel.
+
+# API Key
+If you want to change the API key for codeGPT or come across the error 'apiKey' does not exist.
+
+Add the APIKey to a .env.sh file inside frontend folder and outside of src. Add the following to the env file.
+```
+VITE_OPENAI_API_KEY='YOUR_API_KEY'
+```
+
+To generate the API key, you will need to:
+1. create an account with OpenAI.
+2. After logging in, select 'API'.
+3. Click on the GPT icon in the top left corner to expand the sidebar
+4. Select API Keys. Here, you can generate a key and add it as the value to the apiKey variable.
+
+
+END OF WEBSVF 5.0 INSTALLATION
+
+
+# Installation guide for WebSVF 4.0
 Note: Installation should be completed on linux for best results.
 
 ## 1. Install Nodejs 15 and other dependancies
