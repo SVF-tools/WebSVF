@@ -13,6 +13,10 @@ To see the new features of WebSVF 5.0, please have a watch of this video:
 
 https://github.com/user-attachments/assets/f0e16e53-2d5a-4691-bb23-fb603b7ea9da
 
+https://github.com/user-attachments/assets/86be6ae2-ee34-42c5-89d2-f73ca2fa4a3c
+
+
+
 
 
 The new feature allows users to communicate with OpenAI's GPT 3.5-Turbo engine, and attach any of their files present on the site!
