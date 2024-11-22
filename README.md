@@ -9,6 +9,12 @@ learn more about submodules at https://git-scm.com/book/en/v2/Git-Tools-Submodul
 For a quick introduction to the latest addition in WebSVF 4.0, the CodeGPT panel, please have a watch of this video:
 https://www.youtube.com/watch?v=Gf6vAyzOlJ0
 
+To see the new features of WebSVF 5.0, please have a watch of this video:
+<video width="600" controls>
+  <source src="https://github.com/your-username/your-repo/raw/main/video.mp4](https://github.com/joshua-sy/WebSVF/tree/master/webSVF_capstones/webSVF_5.0" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 The new feature allows users to communicate with OpenAI's GPT 3.5-Turbo engine, and attach any of their files present on the site!
 
 # Installation of webSVF 5.0
