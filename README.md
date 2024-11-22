@@ -19,6 +19,8 @@ Slides: https://www.canva.com/design/DAGNPdIVvZE/CcezXWfi-C7VX7TTSFeaZA/edit?utm
 
 ## Second Iteration WebSVF 5.0
 https://github.com/user-attachments/assets/86be6ae2-ee34-42c5-89d2-f73ca2fa4a3c
+
+
 Full Video: https://youtu.be/EGwzPoHQUzM
 Slides: https://www.canva.com/design/DAGVJAkBxYs/MSXLoiYFYhyO_qh1qxGCrA/edit?utm_content=DAGVJAkBxYs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
