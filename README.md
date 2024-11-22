@@ -8,6 +8,7 @@ learn more about submodules at https://git-scm.com/book/en/v2/Git-Tools-Submodul
 
 For a quick introduction to the latest addition in WebSVF 4.0, the CodeGPT panel, please have a watch of this video:
 https://www.youtube.com/watch?v=Gf6vAyzOlJ0
+The new feature allows users to communicate with OpenAI's GPT 3.5-Turbo engine, and attach any of their files present on the site!
 
 To see the new features of WebSVF 5.0, please have a watch of this video:
 ## First Iteration WebSVF 5.0
@@ -25,11 +26,6 @@ Full Video: https://youtu.be/EGwzPoHQUzM
 
 Slides: https://www.canva.com/design/DAGVJAkBxYs/MSXLoiYFYhyO_qh1qxGCrA/edit?utm_content=DAGVJAkBxYs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-
-
-
-
-The new feature allows users to communicate with OpenAI's GPT 3.5-Turbo engine, and attach any of their files present on the site!
 
 # Installation of webSVF 5.0
 Note, webSVF 5.0 uses svf-ex executable from previous webSVF to create graphs. The executable can only run in x86 architecture (not arm64). Installation should be completed on linux for best results.
