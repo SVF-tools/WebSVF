@@ -11,20 +11,21 @@ https://www.youtube.com/watch?v=Gf6vAyzOlJ0
 The new feature allows users to communicate with OpenAI's GPT 3.5-Turbo engine, and attach any of their files present on the site!
 
 To see the new features of WebSVF 5.0, please have a watch of this video:
-## First Iteration WebSVF 5.0
-https://github.com/user-attachments/assets/f0e16e53-2d5a-4691-bb23-fb603b7ea9da
 
-Full Video: https://youtu.be/0xt0WGAFV5M
-
-Slides: https://www.canva.com/design/DAGNPdIVvZE/CcezXWfi-C7VX7TTSFeaZA/edit?utm_content=DAGNPdIVvZE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
-
-## Second Iteration WebSVF 5.0
-https://github.com/user-attachments/assets/86be6ae2-ee34-42c5-89d2-f73ca2fa4a3c
-
+## WebSVF 5.0 Final Video
 
 Full Video: https://youtu.be/EGwzPoHQUzM
 
 Slides: https://www.canva.com/design/DAGVJAkBxYs/MSXLoiYFYhyO_qh1qxGCrA/edit?utm_content=DAGVJAkBxYs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+https://github.com/user-attachments/assets/86be6ae2-ee34-42c5-89d2-f73ca2fa4a3c
+
+## Middle term video of WebSVF 5.0
+Full Video: https://youtu.be/0xt0WGAFV5M
+
+Slides: https://www.canva.com/design/DAGNPdIVvZE/CcezXWfi-C7VX7TTSFeaZA/edit?utm_content=DAGNPdIVvZE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+https://github.com/user-attachments/assets/f0e16e53-2d5a-4691-bb23-fb603b7ea9da
 
 
 # Installation of webSVF 5.0
