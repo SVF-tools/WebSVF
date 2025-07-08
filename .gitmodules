@@ -7,10 +7,6 @@
 [submodule "webSVF_capstones/webSVF_4.0/CapstoneProject"]
 	path = webSVF_capstones/webSVF_4.0/CapstoneProject
 	url = https://github.com/IshaShroff/CapstoneProject.git
-[submodule "webSVF_capstones/CapStoneWebSVF6.0"]
-	path = webSVF_capstones/CapStoneWebSVF6.0
-	url = https://github.com/AditiSachan/CapStoneWebSVF6.0
-	branch = main
 [submodule "webSVF_capstones/webSVF6.0"]
 	path = webSVF_capstones/webSVF6.0
 	url = https://github.com/AditiSachan/CapStoneWebSVF6.0.git
