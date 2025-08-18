@@ -196,6 +196,27 @@
         "image": "blank_profile.jpg",
         "university": "University of Technology Sydney",
         "universityLink": "https://uts.edu.au/"
+      },
+      {
+        "name": "Aditi Sachan",
+        "link": "https://github.com/AditiSachan",
+        "image": "Aditi_Sachan.jpg",
+        "university": "University of New South Wales",
+        "universityLink": "https://www.unsw.edu.au/"
+      },
+      {
+        "name": "Christian Tolentino",
+        "link": "https://github.com/istan18",
+        "image": "Christian_Tolentino.jpg",
+        "university": "University of New South Wales",
+        "universityLink": "https://www.unsw.edu.au/"
+      },
+      {
+        "name": "Joshua Wills",
+        "link": "https://github.com/joshuawills",
+        "image": "Joshua_Wills.jpg",
+        "university": "University of New South Wales",
+        "universityLink": "https://www.unsw.edu.au/"
       }
     ],
     "supervisors": [
