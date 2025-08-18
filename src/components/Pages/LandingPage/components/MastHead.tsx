@@ -27,31 +27,31 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
             </h1>
           </div>
           <div className='col-xl-12 d-flex justify-content-center'>
-              <div>
-                <input
-                  type='email'
-                  className='form-control form-control-lg'
-                  placeholder='Enter your email...'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className='col-12 col-md-3'>
-                <a type='submit' className='btn btn-block btn-lg btn-primary' href="http://35.165.134.143/">
-                  Try WebSVF 3.0 now!
-                </a>
-              </div>
-              <div className='col-12 col-md-3'>
-                <a type='submit' className='btn btn-block btn-lg btn-primary' href="http://3.26.130.112/">
-                  Try WebSVF 4.0 now!
-                </a>
-              </div>
-              <div className='col-12 col-md-3'>
-                <a type='submit' className='btn btn-block btn-lg btn-primary' href="https://websvf.vercel.app/">
-                  Try WebSVF 5.0 now!
-                </a>
-              </div>
+            <div>
+              <input
+                type='email'
+                className='form-control form-control-lg'
+                placeholder='Enter your email...'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className='col-12 col-md-3'>
+              <a type='submit' className='btn btn-block btn-lg btn-primary' href='https://websvf-comp6131.vercel.app/'>
+                Try WebSVF 6.0 now!
+              </a>
+            </div>
+            <div className='col-12 col-md-3'>
+              <a type='submit' className='btn btn-block btn-lg btn-primary' href='https://websvf.vercel.app/'>
+                Try WebSVF 5.0 now!
+              </a>
+            </div>
+            <div className='col-12 col-md-3'>
+              <a type='submit' className='btn btn-block btn-lg btn-primary' href='http://3.26.130.112/'>
+                Try WebSVF 4.0 now!
+              </a>
+            </div>
           </div>
         </div>
       </div>
