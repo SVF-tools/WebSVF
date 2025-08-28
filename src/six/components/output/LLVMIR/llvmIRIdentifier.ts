@@ -21,9 +21,9 @@ interface lineNumDetails {
 }
 
 export const llvmHighlight = (codeByLine: string[], llvmIRByLine: string[]) => {
-  let llvmIndex: number = 0;
+  let llvmIndex = 0;
   const highlightDetails: lineNumDetails = {};
-  let highlightColourIndex: number = 0;
+  let highlightColourIndex = 0;
 
   for (let i = 0; i < codeByLine.length; i++) {
     const codeLine: string = codeByLine[i];

@@ -1,28 +1,36 @@
 # Dependencies
 node_modules/
+package-lock.json
+yarn.lock
 
-# Build outputs
-dist/
+# Production
 build/
+dist/
+public/
 
-# Logs
-*.log
+# Generated files
+*.min.js
+*.min.css
 
-# Environment files
-.env
+# Config files
+.git/
+.vscode/
+.idea/
+
+# 6.0 build output
+6.0/frontend/dist/
+
+# Coverage
+coverage/
+
+# Misc
+.DS_Store
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# Package manager lock files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
-# Generated files
-*.d.ts
-
-# IDE files
-.vscode/
-.idea/ 
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

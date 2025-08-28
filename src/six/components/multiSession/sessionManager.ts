@@ -46,7 +46,7 @@ const SessionManager = {
   },
 
   // Create a new session
-  createSession: (title: string = 'New Project'): Session => {
+  createSession: (title = 'New Project'): Session => {
     const sessions = SessionManager.getSessions();
 
     const defaultCode = `#include <stdio.h>

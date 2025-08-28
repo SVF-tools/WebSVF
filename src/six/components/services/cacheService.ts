@@ -25,7 +25,9 @@ class CacheService {
     totalMisses: 0,
   };
 
-  private constructor() {}
+  private constructor() {
+    // Singleton pattern - no initialization needed
+  }
 
   public static getInstance(): CacheService {
     if (!CacheService.instance) {

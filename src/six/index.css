@@ -1,10 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import Inter font with proper weights */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Tailwind CSS - using CDN version to avoid PostCSS conflicts */
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
 
 * {
   margin: 0;
   padding: 0;
+  font-family: inherit;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Light mode (default) */
@@ -30,8 +46,8 @@
   --danger-hover: #dc2626; /* red-600 */
 
   /* Component specifics (fallbacks kept for existing styles) */
-  --navbar-bg-color: transparent !important;
-  --second-navbar-bg-color: transparent;
+  --navbar-bg-color: #ffffff;
+  --second-navbar-bg-color: #f7f9fb;
   --icon-color: #0f172a;
   --div-bg-color: #f9f9f9;
   --submit-codebar-bg-color: var(--surface-2);
@@ -59,6 +75,43 @@
   --chat-code-bg: #f8fafc; /* slate-50 */
 }
 
+/* Ensure app container uses proper font */
+.app-container {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Graph page specific styles to match original */
+#graph-page-container {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  height: calc(100vh - 60px);
+}
+
+/* Navbar height adjustment */
+#navbar {
+  min-height: 48px !important;
+  height: 60px;
+}
+
+/* Button and form elements styling */
+button,
+input,
+select,
+textarea {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Consistent spacing for UI elements */
+.select-heading {
+  margin: 4px 0;
+}
+
+.select-block {
+  margin-bottom: 20px;
+}
+
 /* Dark mode */
 [data-theme='dark'] {
   --background-color: #0b1020; /* deep slate */
@@ -81,8 +134,8 @@
   --danger: #ef4444; /* red-500 */
   --danger-hover: #dc2626; /* red-600 */
 
-  --navbar-bg-color: transparent !important;
-  --second-navbar-bg-color: transparent;
+  --navbar-bg-color: #0f172a;
+  --second-navbar-bg-color: #111827;
   --icon-color: #e5e7eb;
   --div-bg-color: #1f2937;
   --submit-codebar-bg-color: var(--surface-2);

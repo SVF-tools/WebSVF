@@ -68,8 +68,8 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
       backgroundColor: state.isSelected
         ? 'var(--primary)'
         : state.isFocused
-          ? 'var(--muted)'
-          : 'var(--surface)',
+        ? 'var(--muted)'
+        : 'var(--surface)',
       color: state.isSelected ? 'var(--primary-contrast)' : 'var(--text-color)',
     }),
     menuPortal: (base: any) => ({
@@ -90,7 +90,7 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
       backgroundColor: 'var(--surface)',
       color: 'var(--text-color)',
     }),
-    multiValue: (provided) => ({
+    multiValue: (provided: any) => ({
       ...provided,
       position: 'relative',
       overflow: 'visible',
@@ -98,43 +98,43 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
       color: 'var(--text-color)',
       border: '1px solid var(--border-color)',
     }),
-    multiValueLabel: (provided) => ({
+    multiValueLabel: (provided: any) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    multiValueRemove: (provided) => ({
+    multiValueRemove: (provided: any) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { backgroundColor: 'var(--danger)', color: 'var(--primary-contrast)' },
     }),
-    valueContainer: (provided) => ({
+    valueContainer: (provided: any) => ({
       ...provided,
       overflow: 'visible',
       color: 'var(--text-color)',
     }),
-    input: (provided) => ({
+    input: (provided: any) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    placeholder: (provided) => ({
+    placeholder: (provided: any) => ({
       ...provided,
       color: 'var(--text-color)',
       opacity: 0.8,
     }),
-    singleValue: (provided) => ({
+    singleValue: (provided: any) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    indicatorsContainer: (provided) => ({
+    indicatorsContainer: (provided: any) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    dropdownIndicator: (provided) => ({
+    dropdownIndicator: (provided: any) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { color: 'var(--text-color)' },
     }),
-    clearIndicator: (provided) => ({
+    clearIndicator: (provided: any) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { color: 'var(--danger)' },

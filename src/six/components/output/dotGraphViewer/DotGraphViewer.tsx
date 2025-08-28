@@ -124,7 +124,7 @@ const DotGraphViewer: React.FC<DotGraphViewerProps> = ({
   const graphWidth = window.innerWidth * 0.5;
   const graphHeight = window.innerHeight * 0.85;
 
-  const graphRef = useRef(null);
+  const graphRef = useRef<HTMLDivElement>(null);
   const processedKeyRef = useRef<string>('');
   const lastHighlightSigRef = useRef<string>('');
 
@@ -146,8 +146,10 @@ const DotGraphViewer: React.FC<DotGraphViewerProps> = ({
       if (!node) return;
       const nodeTextList = node.querySelectorAll('text');
       const nodeTextContentList: string[] = [];
-      nodeTextList.forEach((nodeText: { textContent: string }) => {
-        nodeTextContentList.push(nodeText.textContent);
+      nodeTextList.forEach((nodeText) => {
+        if (nodeText.textContent) {
+          nodeTextContentList.push(nodeText.textContent);
+        }
       });
 
       if (currentGraph === 'callgraph' || currentGraph === 'ptacg' || currentGraph === 'tcg') {
@@ -468,7 +470,10 @@ const DotGraphViewer: React.FC<DotGraphViewerProps> = ({
         if (!originalNode.includes('shape')) continue;
         for (const nodeId of highlightIds) {
           if (originalNode.includes(nodeId)) {
-            const modifiedString = `${originalNode.substring(0, originalNode.length - 2)}, fontcolor=red];`;
+            const modifiedString = `${originalNode.substring(
+              0,
+              originalNode.length - 2
+            )}, fontcolor=red];`;
             const replaced = next.replace(originalNode, modifiedString);
             if (replaced !== next) {
               next = replaced;

@@ -99,7 +99,7 @@ function GraphsPage() {
   const { sessionId: routeSessionId } = useParams();
   const navigate = useNavigate();
 
-  const [codeError, setCodeError] = useState([]);
+  const [codeError, setCodeError] = useState<string[]>([]);
   const [currCodeLineNum, setCurrCodeLineNum] = useState(0);
   const [currentOutput, setCurrentOutput] = useState<OutputType>('Graph');
   const [selectedCompileOptions, setSelectedCompileOptions] = useState([
@@ -109,7 +109,14 @@ function GraphsPage() {
     compileOptions[3],
     compileOptions[4],
   ]);
-  const [selectedExecutableOptions, setSelectedExecutableOptions] = useState<string[]>([]);
+  interface executableOption {
+    value: string;
+    label: string;
+    description?: string;
+  }
+  const [selectedExecutableOptions, setSelectedExecutableOptions] = useState<executableOption[]>(
+    []
+  );
 
   const [lineNumDetails, setLineNumDetails] = useState<{
     [key: string]: { nodeOrllvm: string[]; colour: string };
@@ -135,7 +142,7 @@ function GraphsPage() {
     'Run the code to see the terminal output here'
   );
   const [llvmIRString, setllvmIRString] = useState('Run the code to see the LLVM IR of your here');
-  const [graphs, setGraphs] = useState({});
+  const [graphs, setGraphs] = useState<{ [key: string]: string }>({});
   const [savedMessages, setSavedMessages] = useState<{ role: string; content: string }[]>([]);
   const [passedPrompt, setPassedPrompt] = useState('');
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -510,7 +517,7 @@ function GraphsPage() {
         if (responseName == 'Resultant Graphs') {
           const respGraphs = responseGraphs || [];
 
-          const graphObj = {};
+          const graphObj: { [key: string]: string } = {};
           if (Array.isArray(respGraphs) && respGraphs.length > 0) {
             respGraphs.forEach((graph) => {
               const graphName = graph.name || graph.Name;
@@ -612,7 +619,8 @@ function GraphsPage() {
       ) {
         formattedErrors.push('MEMORY LEAK: ' + errorList[i]);
       } else if (errorList[i].includes('######################Buffer Overflow')) {
-        numOverflow = parseInt(errorList[i].match(/\d+/)[0], 10);
+        const match = errorList[i].match(/\d+/);
+        numOverflow = match ? parseInt(match[0], 10) : 0;
       } else if (
         errorList[i].includes('---------------------------------------------') &&
         numOverflow > 0
@@ -682,7 +690,12 @@ function GraphsPage() {
         }
 
         if (decompressedSettings.selectedExecutableOptions) {
-          setSelectedExecutableOptions(decompressedSettings.selectedExecutableOptions);
+          // Convert string[] to executableOption[]
+          const executableOptions = decompressedSettings.selectedExecutableOptions.map((opt) => ({
+            value: opt,
+            label: opt,
+          }));
+          setSelectedExecutableOptions(executableOptions);
         }
 
         // Save these changes to the current session
@@ -753,7 +766,14 @@ function GraphsPage() {
             }
 
             if (decompressedSettings.selectedExecutableOptions) {
-              setSelectedExecutableOptions(decompressedSettings.selectedExecutableOptions);
+              // Convert string[] to executableOption[]
+              const executableOptions = decompressedSettings.selectedExecutableOptions.map(
+                (opt) => ({
+                  value: opt,
+                  label: opt,
+                })
+              );
+              setSelectedExecutableOptions(executableOptions);
             }
 
             // Save these changes to current session

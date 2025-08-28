@@ -32,7 +32,9 @@ export default function ShareLZSettingsModal({
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(shareLink).then(() => {});
+    navigator.clipboard.writeText(shareLink).then(() => {
+      /* noop */
+    });
 
     setShowTooltip(true);
     setTimeout(() => {

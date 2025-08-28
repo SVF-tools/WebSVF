@@ -18,9 +18,7 @@
 .navItem {
   cursor: pointer;
   padding: 10px 20px;
-  transition:
-    background-color 0.3s ease,
-    color 0.2s ease;
+  transition: background-color 0.3s ease, color 0.2s ease;
   border-radius: 10px;
   color: var(--text-color);
 }

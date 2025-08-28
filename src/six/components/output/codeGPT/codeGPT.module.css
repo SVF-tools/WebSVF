@@ -259,9 +259,8 @@
   line-height: 1.55 !important;
   border: 1px solid var(--border-color) !important;
   box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace !important;
 }
 
 .inlineCode {
@@ -271,9 +270,8 @@
   border-radius: 6px;
   padding: 1px 6px;
   margin: 0 2px;
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
   font-size: 0.95em;
 }
 

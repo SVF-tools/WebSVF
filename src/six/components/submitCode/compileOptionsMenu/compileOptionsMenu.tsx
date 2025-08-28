@@ -85,8 +85,8 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
       backgroundColor: state.isSelected
         ? 'var(--primary)'
         : state.isFocused
-          ? 'var(--muted)'
-          : 'var(--surface)',
+        ? 'var(--muted)'
+        : 'var(--surface)',
       color: state.isSelected ? 'var(--primary-contrast)' : 'var(--text-color)',
     }),
     menuPortal: (base: any) => ({

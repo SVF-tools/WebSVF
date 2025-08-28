@@ -25,7 +25,9 @@ const OutputMenuBar: React.FC<OutputMenuBarProps> = ({
           Graphs
         </li>
         <li
-          className={`${styles.navItem} ${currentOutput === 'Terminal Output' ? styles.active : ''}`}
+          className={`${styles.navItem} ${
+            currentOutput === 'Terminal Output' ? styles.active : ''
+          }`}
           onClick={() => setCurrentOutput('Terminal Output')}
           draggable
           onDragStart={(e) => onDragStartTab('Terminal Output', e)}

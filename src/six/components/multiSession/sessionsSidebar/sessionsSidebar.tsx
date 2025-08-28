@@ -116,7 +116,9 @@ const SessionsSidebar: React.FC<SessionsSidebarProps> = ({
                 <div className="session-info">
                   <div className="session-title">{session.title || 'Untitled Project'}</div>
                   <div className="session-date">
-                    {`${new Date(session.lastUpdated).toLocaleDateString()} ${new Date(session.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
+                    {`${new Date(session.lastUpdated).toLocaleDateString()} ${new Date(
+                      session.lastUpdated
+                    ).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
                   </div>
                 </div>
                 <div className="session-actions">

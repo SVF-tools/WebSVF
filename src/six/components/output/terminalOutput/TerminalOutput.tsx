@@ -22,7 +22,7 @@ const TerminalOutput: React.FC<TerminalOutputProps> = ({
     editorRef.current = editor;
     editor.updateOptions({
       readOnly: true,
-      fontSize: useLocalFontSize ? fontSize : (externalFontSize ?? fontSize),
+      fontSize: useLocalFontSize ? fontSize : externalFontSize ?? fontSize,
     });
 
     editor.onDidChangeModelContent(() => {
@@ -34,7 +34,7 @@ const TerminalOutput: React.FC<TerminalOutputProps> = ({
   const monacoInstance = useMonaco();
 
   // Apply effective font size immediately when changed
-  const effectiveFontSize = useLocalFontSize ? fontSize : (externalFontSize ?? fontSize);
+  const effectiveFontSize = useLocalFontSize ? fontSize : externalFontSize ?? fontSize;
 
   const normalizeHex = (value: string, fallback: string) => {
     const raw = (value && value.trim()) || fallback;

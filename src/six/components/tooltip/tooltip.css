@@ -32,9 +32,7 @@
   word-wrap: break-word;
   pointer-events: auto;
   opacity: 0;
-  transition:
-    opacity 0.3s,
-    visibility 0.3s;
+  transition: opacity 0.3s, visibility 0.3s;
 }
 
 .tooltip-content::before {

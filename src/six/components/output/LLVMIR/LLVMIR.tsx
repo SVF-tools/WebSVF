@@ -95,7 +95,7 @@ const LLVMIR: React.FC<LLVMIRProps> = ({
   }, [monacoInstance, applyMonacoThemeFromCSSVars]);
 
   // Compute effective font size and apply immediately to Monaco
-  const effectiveFontSize = useLocalFontSize ? fontSize : (externalFontSize ?? fontSize);
+  const effectiveFontSize = useLocalFontSize ? fontSize : externalFontSize ?? fontSize;
 
   useEffect(() => {
     if (editorRef.current) {

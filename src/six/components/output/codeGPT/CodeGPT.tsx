@@ -213,7 +213,7 @@ const CodeGPT = ({
   };
 
   const callChatGPT = useCallback(
-    async (inputOrContext: string, asHiddenContext: boolean = false) => {
+    async (inputOrContext: string, asHiddenContext = false) => {
       if (!inputOrContext.trim()) return;
 
       const userInput = asHiddenContext ? '' : inputOrContext;
@@ -423,12 +423,14 @@ const CodeGPT = ({
   ) => {
     const pillHtml =
       type === 'graph'
-        ? `<span class='attachmentPill attachmentPill--graph' data-type='graph' data-name='${name ?? ''}' title='Attached ${name ?? 'graph'}'>📎 Graph: ${name ?? ''}</span>`
+        ? `<span class='attachmentPill attachmentPill--graph' data-type='graph' data-name='${
+            name ?? ''
+          }' title='Attached ${name ?? 'graph'}'>📎 Graph: ${name ?? ''}</span>`
         : type === 'code'
-          ? "<span class='attachmentPill attachmentPill--code' data-type='code' title='Attached program code'>📎 Code attached</span>"
-          : type === 'llvm'
-            ? "<span class='attachmentPill attachmentPill--llvm' data-type='llvm' title='Attached LLVM IR'>📎 LLVM IR attached</span>"
-            : "<span class='attachmentPill attachmentPill--terminal' data-type='terminal' title='Attached terminal output'>📎 Terminal output attached</span>`";
+        ? "<span class='attachmentPill attachmentPill--code' data-type='code' title='Attached program code'>📎 Code attached</span>"
+        : type === 'llvm'
+        ? "<span class='attachmentPill attachmentPill--llvm' data-type='llvm' title='Attached LLVM IR'>📎 LLVM IR attached</span>"
+        : "<span class='attachmentPill attachmentPill--terminal' data-type='terminal' title='Attached terminal output'>📎 Terminal output attached</span>`";
     setGptInputQuery(visiblePrompt);
     setPendingAttachments((prev) => {
       // De-dupe: unique by (type, name) where name may be undefined
@@ -584,7 +586,9 @@ const CodeGPT = ({
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`${styles.messageRow} ${message.role === 'user' ? styles.user : styles.assistant}`}
+            className={`${styles.messageRow} ${
+              message.role === 'user' ? styles.user : styles.assistant
+            }`}
           >
             <div className={styles.message}>
               {message.role === 'assistant' && <div className={styles.assistantLabel}>CodeGPT</div>}
@@ -616,25 +620,33 @@ const CodeGPT = ({
         <div className={styles.suggestionCategory}>
           <button
             onClick={() => setSuggestionCategory('code')}
-            className={`${styles.suggestionCategoryButton} ${suggestionCategory === 'code' ? styles.active : ''}`}
+            className={`${styles.suggestionCategoryButton} ${
+              suggestionCategory === 'code' ? styles.active : ''
+            }`}
           >
             Code
           </button>
           <button
             onClick={() => setSuggestionCategory('graphs')}
-            className={`${styles.suggestionCategoryButton} ${suggestionCategory === 'graphs' ? styles.active : ''}`}
+            className={`${styles.suggestionCategoryButton} ${
+              suggestionCategory === 'graphs' ? styles.active : ''
+            }`}
           >
             Graphs
           </button>
           <button
             onClick={() => setSuggestionCategory('terminal')}
-            className={`${styles.suggestionCategoryButton} ${suggestionCategory === 'terminal' ? styles.active : ''}`}
+            className={`${styles.suggestionCategoryButton} ${
+              suggestionCategory === 'terminal' ? styles.active : ''
+            }`}
           >
             Terminal Output
           </button>
           <button
             onClick={() => setSuggestionCategory('llvm')}
-            className={`${styles.suggestionCategoryButton} ${suggestionCategory === 'llvm' ? styles.active : ''}`}
+            className={`${styles.suggestionCategoryButton} ${
+              suggestionCategory === 'llvm' ? styles.active : ''
+            }`}
           >
             LLVM IR
           </button>

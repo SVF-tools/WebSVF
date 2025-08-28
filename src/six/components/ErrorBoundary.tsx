@@ -2,8 +2,11 @@ import React from 'react';
 
 type ErrorBoundaryState = { hasError: boolean; error?: Error };
 
-class ErrorBoundary extends React.Component<React.PropsWithChildren<{}>, ErrorBoundaryState> {
-  constructor(props: React.PropsWithChildren<{}>) {
+class ErrorBoundary extends React.Component<
+  React.PropsWithChildren<Record<string, never>>,
+  ErrorBoundaryState
+> {
+  constructor(props: React.PropsWithChildren<Record<string, never>>) {
     super(props);
     this.state = { hasError: false };
   }

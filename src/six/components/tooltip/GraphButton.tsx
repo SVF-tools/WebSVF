@@ -9,7 +9,7 @@ interface GraphButtonProps {
 }
 
 // Graph-specific context that looks like intentional information
-const GRAPH_CONTEXTS = {
+const GRAPH_CONTEXTS: { [key: string]: string } = {
   callgraph: `Here's some background about call graphs to help with your explanation:
 
 Call graphs are directed graphs showing function calls in programs. The nodes represent functions and edges represent function calls between them. They're fundamental for dependency mapping, code optimization, and detecting unreachable code - parts of a program that can never be executed because there's no way to reach them through any function calls.`,
@@ -40,7 +40,7 @@ TCGs show communication patterns and interactions in multi-threaded programs, vi
 };
 
 // Graph descriptions for tooltips
-const GRAPH_DESCRIPTIONS = {
+const GRAPH_DESCRIPTIONS: { [key: string]: string } = {
   callgraph:
     'Call Graph. Directed graph of function calls showing calling relationships between functions. Nodes = Functions, Edges = Function calls.',
   icfg: 'Interprocedural Control Flow Graph. Tracks execution order across multiple functions. Nodes = Instructions/Statements, Edges = Control-flow dependencies.',

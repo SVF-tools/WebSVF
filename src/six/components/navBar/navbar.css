@@ -63,9 +63,7 @@
   bottom: 2.5px;
   background-color: white;
   border-radius: 50%;
-  transition:
-    transform 0.4s,
-    content 0.4s;
+  transition: transform 0.4s, content 0.4s;
   display: flex;
   align-items: center;
   justify-content: center;

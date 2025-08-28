@@ -44,7 +44,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     editor.setModel(model);
     decorationsRef.current = editor.createDecorationsCollection();
     editor.updateOptions({
-      fontSize: useLocalFontSize ? fontSize : (externalFontSize ?? fontSize),
+      fontSize: useLocalFontSize ? fontSize : externalFontSize ?? fontSize,
       renderValidationDecorations: 'on',
     });
     monaco.languages.register({ id: 'c' });
@@ -84,7 +84,12 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         );
 
         if (!relevantMarker) {
-          return { actions: [], dispose: () => {} };
+          return {
+            actions: [],
+            dispose: () => {
+              /* noop */
+            },
+          };
         }
         const quickFix = {
           title: 'Ask CodeGPT',
@@ -105,7 +110,9 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 
         return {
           actions: [quickFix],
-          dispose: () => {},
+          dispose: () => {
+            /* noop */
+          },
         };
       },
     });
@@ -174,21 +181,21 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
       const clangRegex = /example.c:(\d+):(\d+)/;
       const markers: monaco.editor.IMarkerData[] = [];
       codeError.map((error) => {
-        let match: string[];
+        let match: string[] | null;
         let lnNum = 0;
         let clNum = 1;
-        match = error.match(lnRegexcl) as RegExpMatchArray | null;
+        match = error.match(lnRegexcl);
         if (match) {
           lnNum = parseInt(match[1], 10);
           clNum = parseInt(match[2], 10);
         }
 
-        match = error.match(quotedRegex) as RegExpMatchArray | null;
+        match = error.match(quotedRegex);
         if (match) {
           lnNum = parseInt(match[1], 10);
           clNum = parseInt(match[2], 10);
         }
-        match = error.match(clangRegex) as RegExpMatchArray | null;
+        match = error.match(clangRegex);
         if (match) {
           lnNum = parseInt(match[1], 10);
           clNum = parseInt(match[2], 10);
@@ -246,11 +253,11 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     if (decorationsRef !== null && decorationsRef.current !== null) {
       const model = editorRef.current?.getModel();
       const lineCount = model?.getLineCount() ?? 0;
-      const newDecorations = [];
+      const newDecorations: monaco.editor.IModelDeltaDecoration[] = [];
 
       for (const lineNum in lineNumDetails) {
         const colour = lineNumDetails[lineNum]['colour'].slice(1).toLowerCase();
-        let decoration = {};
+        let decoration: monaco.editor.IModelDeltaDecoration;
         const parsedLineNum = parseInt(lineNum);
         if (!Number.isFinite(parsedLineNum) || parsedLineNum < 1 || parsedLineNum > lineCount) {
           continue;
@@ -286,7 +293,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     if (decorationsRef !== null && decorationsRef.current !== null) {
       const model = editorRef.current?.getModel();
       const lineCount = model?.getLineCount() ?? 0;
-      const newDecorations = [];
+      const newDecorations: monaco.editor.IModelDeltaDecoration[] = [];
 
       for (const lineNum in lineNumDetails) {
         const colour = lineNumDetails[lineNum]['colour'].slice(1).toLowerCase();
@@ -452,7 +459,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   }, [monacoInstance, applyMonacoThemeFromCSSVars]);
 
   // Compute the effective font size: local control wins once user interacts
-  const effectiveFontSize = useLocalFontSize ? fontSize : (externalFontSize ?? fontSize);
+  const effectiveFontSize = useLocalFontSize ? fontSize : externalFontSize ?? fontSize;
 
   // Ensure font size updates are applied to Monaco immediately
   useEffect(() => {
