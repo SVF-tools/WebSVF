@@ -1,44 +1,46 @@
 import React, { useEffect, useRef } from 'react';
 import { IAnnotation, IMarker } from 'react-ace';
-import ReactHtmlParser, { convertNodeToElement, Transform } from 'react-html-parser';
+import parse, { domToReact, HTMLReactParserOptions, Element as HtmlElement } from 'html-react-parser';
 
-const transform: Transform = (node, index) => {
-  if (node.type === 'tag') {
-    if (node.name === 'svg') {
-      const children = node.children as any[];
-      const { viewbox: viewBox, 'xmlns:xlink': xmlnsXlink, ...rest } = node.attribs;
+const options: HTMLReactParserOptions = {
+  replace: (node) => {
+    if ((node as HtmlElement).type === 'tag') {
+      const el = node as HtmlElement;
+      if (el.name === 'svg') {
+        const { attribs, children } = el;
+        const { viewbox: viewBox, 'xmlns:xlink': xmlnsXlink, ...rest } = attribs || {};
+        return (
+          <svg viewBox={viewBox} xmlnsXlink={xmlnsXlink} {...rest}>
+            {domToReact(children as any, options)}
+          </svg>
+        );
+      }
 
-      return (
-        <svg key={index} viewBox={viewBox} xmlnsXlink={xmlnsXlink} {...rest}>
-          {children.map((x, i) => convertNodeToElement(x, i, transform))}
-        </svg>
-      );
-    }
+      if (el.name === 'polygon') {
+        const { attribs, children } = el;
+        const { 'stroke-width': strokeWidth, ...rest } = attribs || {};
+        return (
+          <polygon strokeWidth={strokeWidth} {...rest}>
+            {domToReact(children as any, options)}
+          </polygon>
+        );
+      }
 
-    if (node.name === 'polygon') {
-      const children = node.children as any[];
-      const { 'stroke-width': strokeWidth, ...rest } = node.attribs;
+      if (el.name === 'text') {
+        const { attribs, children } = el;
+        const { 'text-anchor': textAnchor, 'font-family': fontFamily, 'font-size': fontSize, ...rest } = attribs || {};
+        return (
+          <text textAnchor={textAnchor} fontFamily={fontFamily} fontSize={fontSize} {...rest}>
+            {domToReact(children as any, options)}
+          </text>
+        );
+      }
 
-      return (
-        <polygon key={index} strokeWidth={strokeWidth} {...rest}>
-          {children.map((x, i) => convertNodeToElement(x, i, transform))}
-        </polygon>
-      );
-    }
-
-    if (node.name === 'text') {
-      const child = node.children[0];
-      const { 'text-anchor': textAnchor, 'font-family': fontFamily, 'font-size': fontSize, ...rest } = node.attribs;
-      return (
-        <text key={index} textAnchor={textAnchor} fontFamily={fontFamily} fontSize={fontSize} {...rest}>
-          {convertNodeToElement(child, index, transform)}
-        </text>
-      );
-    }
-
-    if (node.name === 'path') {
-      const { 'stroke-dasharray': strokeDasharray, ...rest } = node.attribs;
-      return <path key={index} strokeDasharray={strokeDasharray} {...rest} />;
+      if (el.name === 'path') {
+        const { attribs } = el;
+        const { 'stroke-dasharray': strokeDasharray, ...rest } = attribs || {};
+        return <path strokeDasharray={strokeDasharray} {...rest} />;
+      }
     }
   }
 };
@@ -122,7 +124,7 @@ const RenderSvg: React.FC<IRenderSvgProps> = ({ output, onGraphClick }) => {
   });
 
   if (output) {
-    return <>{ReactHtmlParser(output, { transform: transform })}</>;
+    return <>{parse(output, options)}</>;
   }
 
   return <div></div>;

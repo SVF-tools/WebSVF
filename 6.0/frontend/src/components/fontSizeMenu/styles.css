@@ -1,0 +1,80 @@
+#font-size-menu-container {
+  display: inline-flex;
+  flex-direction: row;
+  border: solid 1px;
+  border-radius: 5px;
+  background-color: var(--font-size-container-bg-color); /* Use same background color */
+  color: var(--font-size-container-text-color); /* Use same text color */
+}
+
+#font-size-dropdown-btn {
+  height: 2em;
+  width: 3em;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#font-size-dropdown-btn:hover {
+  background-color: #d3d3d3;
+}
+
+#font-size-drop-menu-item {
+  color: black;
+  display: block;
+  cursor: pointer;
+}
+
+#font-size-dropdown-menu {
+  display: block;
+  position: absolute;
+  background-color: white;
+  width: 100px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-height: 30%;
+  overflow-y: scroll;
+  transform: translateX(-30%);
+}
+
+.font-size-drop-menu-item {
+  color: black;
+  text-align: center;
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
+.font-size-drop-menu-item.selected {
+  background-color: #d3d3d3;
+}
+
+.font-size-drop-menu-item:hover {
+  background-color: #ebeaea;
+}
+
+.font-size-incDec-button-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.font-size-incDec-button-div:hover {
+  background-color: #d3d3d3;
+}
+
+.font-size-incDec-button-div.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#font-size-decrease {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+#font-size-increase {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

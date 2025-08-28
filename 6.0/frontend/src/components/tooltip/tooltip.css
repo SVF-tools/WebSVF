@@ -1,0 +1,106 @@
+/* Tooltip.css - Updated for better visibility of selected value tooltips */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.tooltip-trigger {
+  display: inline-block;
+  border-bottom: 1px dotted var(--border-color);
+}
+
+.tooltip-content {
+  visibility: hidden;
+  position: absolute;
+  z-index: 9999;
+  left: 0;
+  top: 100%;
+  margin-top: 3px;
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  padding: 8px 12px;
+  border-radius: 4px;
+  min-width: 250px;
+  max-width: 350px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+  pointer-events: auto;
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+}
+
+.tooltip-content::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 10px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--tooltip-bg) transparent;
+}
+
+.tooltip-container:hover .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-button-container {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #555;
+  text-align: center;
+}
+
+.tooltip-button {
+  background-color: var(--primary);
+  color: var(--primary-contrast);
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.tooltip-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Make sure tooltips aren't cut off by parent containers */
+.react-select__menu-list,
+.react-select__menu,
+.react-select__option,
+.react-select__multi-value,
+.react-select__value-container,
+.react-select__control {
+  overflow: visible !important;
+}
+
+/* Special styles for selected value tooltips */
+.react-select__multi-value .tooltip-container {
+  position: relative;
+  z-index: 2;
+}
+
+.react-select__multi-value:hover {
+  z-index: 3; /* Ensure multi-value is above other elements when hovered */
+}
+
+/* Ensure the tooltip content for selected values is visible */
+.react-select__multi-value .tooltip-content {
+  bottom: auto;
+  top: 100%; /* Position below the selected value */
+  left: 0;
+  min-width: 200px;
+}

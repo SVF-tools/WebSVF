@@ -3,7 +3,7 @@ import AceEditor, { IAnnotation, IMarker } from 'react-ace';
 import 'ace-builds/src-noconflict/mode-c_cpp';
 import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/theme-terminal';
-import 'ace-builds/webpack-resolver';
+// Removed webpack resolver to avoid file-loader usage that breaks on Node >= 17
 
 export interface IEditorProps {
   name?: string;

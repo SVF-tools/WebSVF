@@ -1,0 +1,15 @@
+.myLineDecoration {
+  background-color: rgba(255, 255, 0, 0.5); /* Yellow background */
+}
+
+#codeEditor-fontSize-container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: var(--font-size-container-bg-color); /* Dynamic background color */
+  color: var(--font-size-container-text-color); /* Dynamic text color */
+  position: sticky; /* keep above editor and visible */
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid var(--border-color);
+}

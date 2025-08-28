@@ -38,18 +38,8 @@ export const MastHead: React.FC<IMastHeadProps> = ({ onNext }) => {
               />
             </div>
             <div className='col-12 col-md-3'>
-              <a type='submit' className='btn btn-block btn-lg btn-primary' href='https://websvf-comp6131.vercel.app/'>
+              <a type='submit' className='btn btn-block btn-lg btn-primary' href='/WebSVF/6.0/index.html'>
                 Try WebSVF 6.0 now!
-              </a>
-            </div>
-            <div className='col-12 col-md-3'>
-              <a type='submit' className='btn btn-block btn-lg btn-primary' href='https://websvf.vercel.app/'>
-                Try WebSVF 5.0 now!
-              </a>
-            </div>
-            <div className='col-12 col-md-3'>
-              <a type='submit' className='btn btn-block btn-lg btn-primary' href='http://3.26.130.112/'>
-                Try WebSVF 4.0 now!
               </a>
             </div>
           </div>

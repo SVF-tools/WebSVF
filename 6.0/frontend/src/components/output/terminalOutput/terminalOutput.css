@@ -1,0 +1,7 @@
+#terminalOutput-fontSize-container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: var(--font-size-container-bg-color); /* Dynamic background color */
+  color: var(--font-size-container-text-color); /* Dynamic text color */
+}
