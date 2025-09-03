@@ -2,9 +2,11 @@ name: Lint and Format Check
 
 on:
   push:
-    branches: [ main, master ]
+    branches:
+        - master
   pull_request:
-    branches: [ main, master ]
+    branches:
+        - master
 
 jobs:
   lint-format:

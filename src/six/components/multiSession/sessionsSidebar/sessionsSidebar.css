@@ -143,7 +143,7 @@
   cursor: pointer;
   transition: color 0.2s, filter 0.2s;
   color: var(--icon-color-strong, currentColor);
-  filter: drop-shadow(0 0 1px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.35));
 }
 
 .edit-icon:hover {
@@ -219,10 +219,10 @@
   cursor: pointer;
   transition: color 0.2s, filter 0.2s;
   color: var(--icon-color-strong, currentColor);
-  filter: drop-shadow(0 0 1px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.35));
 }
 
 .share-icon:hover {
   color: var(--icon-color-hover, var(--primary-color, #1976d2));
-  filter: drop-shadow(0 0 2px rgba(255,255,255,0.35));
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.35));
 }
