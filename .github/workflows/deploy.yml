@@ -55,11 +55,11 @@ jobs:
           fi
 
       - name: Setup Fly.io CLI
-        if: ${{ steps.check_api.outputs.run_api == 'true' && secrets.FLY_API_TOKEN != '' }}
+        if: ${{ steps.check_api.outputs.run_api == 'true' }}
         uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: Deploy API
-        if: ${{ steps.check_api.outputs.run_api == 'true' && secrets.FLY_API_TOKEN != '' }}
+        if: ${{ steps.check_api.outputs.run_api == 'true' }}
         working-directory: ./api
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
