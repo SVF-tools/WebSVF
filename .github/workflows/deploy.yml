@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Frontend to GitHub Pages and API to Fly.io
 
 on:
   push:
@@ -7,20 +7,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment
-concurrency:
-  group: pages
-  cancel-in-progress: false
+  contents: write
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  deploy-frontend:
+    name: Deploy Frontend to GitHub Pages
     runs-on: ubuntu-latest
 
     steps:
@@ -39,17 +30,12 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to GitHub Pages (gh-pages branch)
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: dist
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          branch: gh-pages
+          folder: dist
+          clean: true
 
   deploy-api:
     name: Deploy API to Fly.io
