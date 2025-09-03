@@ -109,6 +109,8 @@ body {
   --tooltip-bg: #111827;
   --tooltip-text: #ffffff;
   --border: var(--border-color);
+  --icon-color-strong: #e5e7eb; /* brighter icon default */
+  --icon-color-hover: #ffffff;
 
   /* Tabs (distinctive dark colorway) */
   --tab-bg: #0f1a32; /* deep navy */

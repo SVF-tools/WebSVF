@@ -130,7 +130,7 @@
 .session-actions {
   display: flex;
   gap: 10px;
-  opacity: 0.5;
+  opacity: 0.75;
   transition: opacity 0.2s;
 }
 
@@ -141,7 +141,9 @@
 .edit-icon,
 .delete-icon {
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color 0.2s, filter 0.2s;
+  color: var(--icon-color-strong, currentColor);
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.35));
 }
 
 .edit-icon:hover {
@@ -215,9 +217,12 @@
 
 .share-icon {
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color 0.2s, filter 0.2s;
+  color: var(--icon-color-strong, currentColor);
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.35));
 }
 
 .share-icon:hover {
-  color: var(--primary-color, #1976d2);
+  color: var(--icon-color-hover, var(--primary-color, #1976d2));
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.35));
 }
