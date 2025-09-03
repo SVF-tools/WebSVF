@@ -1,23 +1,17 @@
-import { Route, Switch, useHistory } from 'react-router';
-import { Layout } from './components/Layout/Layout';
-import { Analysis } from './components/Pages/Analysis';
-import { LandingPage } from './components/Pages/LandingPage/LandingPage';
-
-const ANALYSIS_PATH = '/analysis';
+import { Routes as RRDRoutes, Route } from 'react-router-dom';
+import { LandingPage } from './Pages/LandingPage/LandingPage';
+import SixApp from './six/App';
+import SixGraphsPage from './six/pages/graphs/graphsPage';
+import React from 'react';
 
 export const Routes: React.FC = () => {
-  const history = useHistory();
-
   return (
-    <Switch>
-      <Route path={ANALYSIS_PATH}>
-        <Layout>
-          <Analysis />
-        </Layout>
+    <RRDRoutes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/6.0" element={<SixApp />}>
+        <Route index element={<SixGraphsPage />} />
+        <Route path="session/:sessionId" element={<SixGraphsPage />} />
       </Route>
-      <Route path='/'>
-        <LandingPage onNext={() => history.push(ANALYSIS_PATH)} />
-      </Route>
-    </Switch>
+    </RRDRoutes>
   );
 };

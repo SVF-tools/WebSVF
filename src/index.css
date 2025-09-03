@@ -1,0 +1,60 @@
+/* Global styles to prevent horizontal scrolling */
+
+/* Prevent horizontal overflow on the entire page */
+html,
+body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure all content stays within viewport */
+* {
+  box-sizing: border-box;
+}
+
+/* Fix Bootstrap row negative margin overflow */
+.container-fluid > .row,
+.container > .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Alternative: Add padding to compensate for negative margins */
+section,
+.testimonials,
+.masthead {
+  overflow-x: hidden;
+}
+
+/* Ensure no element extends beyond viewport */
+img,
+video,
+iframe,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix any potential navbar overflow */
+.navbar {
+  overflow-x: hidden;
+}
+
+/* Ensure containers don't overflow */
+.container,
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow-x: hidden;
+}
+
+/* Global responsive utilities */
+@media (max-width: 576px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

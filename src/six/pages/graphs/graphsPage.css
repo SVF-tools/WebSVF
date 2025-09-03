@@ -1,0 +1,171 @@
+#graph-page-container {
+  display: flex;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--font-size-container-bg-color);
+  height: calc(100vh - 72px); /* viewport minus fixed navbar */
+  overflow: hidden; /* prevent page scrollbar */
+  color: var(--text-color);
+}
+
+.left {
+  order: 1;
+}
+
+.right {
+  order: 2;
+}
+
+#graph-page-code-container,
+#graph-page-output-container {
+  overflow: auto; /* panes scroll */
+  transition: width 0.1s ease;
+  height: 100%;
+}
+
+#graph-page-code-container {
+  border-right: none;
+}
+
+#graph-page-output-container {
+  position: relative;
+  transition: order 0.3s ease;
+}
+
+#graph-page-code-container.drag-over,
+#graph-page-output-container.drag-over {
+  border: 2px dashed #007bff;
+}
+
+.resizer {
+  width: 6px;
+  background-color: var(--muted);
+  cursor: col-resize;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* Center the resizer on the border */
+  transform: translateX(-3px) !important;
+  transition: background-color 0.2s;
+}
+
+.resizer:hover,
+.resizer:active {
+  background-color: var(--primary);
+  width: 6px;
+}
+
+/* session css
+/* Add these styles to your existing CSS */
+
+.app-layout {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 72px); /* Height is viewport minus navbar */
+  position: relative; /* This ensures the absolute positioning of the toggle works */
+  margin-top: 72px; /* Push content below fixed navbar */
+}
+#graph-page-container {
+  flex: 1;
+  display: flex;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--font-size-container-bg-color);
+  height: 100%;
+  overflow: hidden;
+}
+
+.left {
+  order: 1;
+}
+
+.right {
+  order: 2;
+}
+
+#graph-page-code-container {
+  overflow: auto;
+  transition: width 0.1s ease;
+  border-right: 1px solid var(--border-color);
+}
+
+#graph-page-output-container {
+  position: relative;
+  transition: order 0.3s ease;
+  border-left: 1px solid var(--border-color);
+}
+
+#graph-page-code-container.drag-over,
+#graph-page-output-container.drag-over {
+  border: 2px dashed #007bff;
+}
+
+.resizer {
+  width: 8px;
+  background-color: var(--muted);
+  cursor: col-resize;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.resizer:hover {
+  background-color: var(--primary);
+}
+
+.resizer {
+  width: 8px;
+  background-color: var(--muted);
+  cursor: col-resize;
+  z-index: 1000; /* Increase z-index to ensure it's above other elements */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* Don't use transform here - we'll position it directly in the component */
+  transition: background-color 0.2s;
+}
+
+.resizer.resizing {
+  background-color: var(--primary);
+  width: 8 px;
+  opacity: 0.7;
+}
+.resizer:hover,
+.resizer:active {
+  background-color: var(--primary);
+}
+
+/* Remove borders from containers that might interfere */
+#graph-page-code-container,
+#graph-page-output-container {
+  border: none;
+}
+
+/* Add styling to app-layout to ensure proper positioning context */
+.app-layout {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 72px);
+  position: relative;
+  margin-top: 72px; /* Push content below fixed navbar */
+}
+
+/* Make sure graph-page-container has position relative for absolute positioning context */
+#graph-page-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Add this to your CSS */
+.resizing #graph-page-code-container,
+.resizing #graph-page-output-container {
+  transition: none !important; /* Disable transitions during resize */
+}
+
+/* When not resizing, have a very short transition for smoother feel when drag ends */
+#graph-page-code-container,
+#graph-page-output-container {
+  transition: width 0.05s ease-out;
+}

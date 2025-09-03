@@ -1,0 +1,77 @@
+.masthead .btn {
+  min-width: 200px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin: 0.5rem;
+}
+
+.masthead .btn-primary {
+  background: #007bff;
+  border: 2px solid #007bff;
+  color: white !important;
+}
+
+.masthead .btn-primary:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* GitHub button styling */
+.masthead .btn-outline-light {
+  background: transparent;
+  color: white !important;
+  border: 2px solid white;
+}
+
+.masthead .btn-outline-light:hover {
+  background: white;
+  color: #343a40 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.btn-compact {
+  padding: 0.4rem 0.75rem !important;
+  font-size: 0.9rem !important;
+  border-radius: 999px !important;
+}
+
+.masthead .btn i {
+  font-size: 1.1rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+.masthead .d-flex {
+  gap: 0.5rem;
+}
+
+.masthead .dropdown .dropdown-menu {
+  min-width: 12rem;
+}
+
+@media (max-width: 992px) {
+  .masthead .btn {
+    min-width: 180px;
+    font-size: 0.95rem;
+    padding: 0.65rem 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .masthead .d-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .masthead .btn {
+    width: 90%;
+    max-width: 300px;
+    margin: 0.5rem auto;
+    display: block;
+  }
+}

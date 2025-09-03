@@ -1,0 +1,11 @@
+.run-button {
+  background-color: var(--primary);
+  color: var(--primary-contrast);
+  border-radius: 10px;
+  padding: 0.5% 3% 0.5% 3%;
+  border-color: transparent;
+}
+
+.run-button:hover {
+  background-color: var(--primary-hover);
+}

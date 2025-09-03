@@ -1,0 +1,15 @@
+digraph "SVFIR" {
+	label="SVFIR";
+
+	Node0x12de46a10 [shape=record,shape=box,label="{ConstNullPtrValVar ID: 0\n ptr null \{ constant data \}}"];
+	Node0x12de46a10 -> Node0x12de46850[color=black];
+	Node0x12de46850 [shape=record,shape=diamond,label="{DummyValVar ID: 1}"];
+	Node0x12de46c00 [shape=record,shape=box3d,label="{DummyObjVar ID: 3}"];
+	Node0x12de472d0 [shape=record,shape=box,label="{[main] FunValVar ID: 4\nmain}"];
+	Node0x12de30280 [shape=record,shape=box3d,label="{[main] FunObjVar ID: 5 (base object)\nmain}"];
+	Node0x12de30280 -> Node0x12de472d0[color=green];
+	Node0x12de46150 [shape=record,shape=box,label="{[main] RetValPN ID: 6 unique return node for function main}"];
+	Node0x12de46310 [shape=record,shape=box,label="{[main] ValVar ID: 7\n   %1 = alloca i32, align 4 }"];
+	Node0x12de45c80 [shape=record,shape=box3d,label="{[main] StackObjVar ID: 8\n   %1 = alloca i32, align 4 }"];
+	Node0x12de45c80 -> Node0x12de46310[color=green];
+}
