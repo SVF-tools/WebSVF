@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './MastHead.css';
 
 export const MastHead: React.FC = () => {
@@ -25,9 +26,9 @@ export const MastHead: React.FC = () => {
           </div>
           <div className="col-xl-12 d-flex flex-column align-items-center">
             <div className="d-flex justify-content-center flex-wrap">
-              <a className="btn btn-lg btn-primary m-2" href="/6.0">
+              <Link className="btn btn-lg btn-primary m-2" to="/6.0">
                 Try WebSVF 6.0 now!
-              </a>
+              </Link>
 
               <a
                 className="btn btn-lg btn-outline-light m-2"

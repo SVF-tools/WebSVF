@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ShareIcon from '@mui/icons-material/Share';
 import SettingsIcon from '@mui/icons-material/Settings';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -19,13 +20,14 @@ function Navbar({
 }) {
   const [theme, setTheme] = useState('light');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
 
   const handleBack = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (window.history.length > 1) {
       window.history.back();
     } else {
-      window.location.href = '/';
+      navigate('/');
     }
   };
 
@@ -119,7 +121,7 @@ function Navbar({
   return (
     <div id="six-navbar" className="shadow-md">
       <div className="nav-left">
-        <a href="/" className="back-button" onClick={handleBack} aria-label="Go back">
+        <a href="#" className="back-button" onClick={handleBack} aria-label="Go back">
           ← Back
         </a>
         <a
