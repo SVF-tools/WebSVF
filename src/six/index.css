@@ -1,0 +1,138 @@
+/* Tailwind CSS - using CDN version to avoid PostCSS conflicts */
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light mode (default) */
+:root {
+  /* Core palette */
+  --background-color: #ffffff;
+  --text-color: #0f172a;
+  --surface: #ffffff;
+  --surface-2: #f7f9fb;
+  --muted: #e5e7eb;
+  --border-color: #e5e7eb;
+
+  /* Brand colors */
+  --primary: #2563eb; /* blue-600 */
+  --primary-hover: #1d4ed8; /* blue-700 */
+  --primary-contrast: #ffffff;
+  --secondary: #9333ea; /* purple-600 */
+  --secondary-hover: #7e22ce; /* purple-700 */
+  --secondary-contrast: #ffffff;
+  --accent: #0ea5e9; /* sky-500 */
+  --accent-hover: #0284c7; /* sky-600 */
+  --danger: #ef4444; /* red-500 */
+  --danger-hover: #dc2626; /* red-600 */
+
+  /* Component specifics (fallbacks kept for existing styles) */
+  --navbar-bg-color: #ffffff;
+  --second-navbar-bg-color: #f7f9fb;
+  --icon-color: #0f172a;
+  --div-bg-color: #f9f9f9;
+  --submit-codebar-bg-color: var(--surface-2);
+  --font-size-container-bg-color: var(--surface);
+  --font-size-container-text-color: var(--text-color);
+  --tooltip-bg: #111827; /* gray-900 */
+  --tooltip-text: #ffffff;
+  --border: var(--border-color);
+
+  /* List/item interaction defaults */
+  --hover-bg-color: #f5f5f5;
+  --active-bg-color: #e3f2fd;
+  --primary-color: var(--primary);
+
+  /* Tabs */
+  --tab-bg: #eef2ff; /* indigo-50 */
+  --tab-hover-bg: #e0e7ff; /* indigo-100 */
+  --tab-active-bg: var(--primary);
+  --tab-fg: var(--text-color);
+  --tab-active-fg: var(--primary-contrast);
+
+  /* Chat (light) */
+  --chat-assistant-bg: #f3f4f6; /* gray-100 */
+  --chat-user-bg: #dbeafe; /* blue-100 */
+  --chat-code-bg: #f8fafc; /* slate-50 */
+}
+
+/* Ensure app container uses system font stack */
+.app-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  height: auto;
+  overflow: visible;
+}
+
+/* Dark mode */
+[data-theme='dark'] {
+  --background-color: #0b1020; /* deep slate */
+  --text-color: #e5e7eb; /* gray-200 */
+  --surface: #0f172a; /* slate-900 */
+  --surface-2: #111827; /* gray-900 */
+  --muted: #1f2937; /* gray-800 */
+  --border-color: #374151; /* gray-700 */
+
+  /* Use cyan family for dark mode primary to match graph tabs */
+  --primary: #0891b2; /* cyan-600 */
+  --primary-hover: #0e7490; /* cyan-700 */
+  --primary-contrast: #ffffff;
+  /* Make secondary noticeably darker in dark mode for clear contrast vs light mode */
+  --secondary: #5b21b6; /* violet-800-ish */
+  --secondary-hover: #4c1d95; /* violet-900-ish */
+  --secondary-contrast: #ffffff;
+  --accent: #06b6d4; /* cyan-500 */
+  --accent-hover: #0891b2; /* cyan-600 */
+  --danger: #ef4444; /* red-500 */
+  --danger-hover: #dc2626; /* red-600 */
+
+  --navbar-bg-color: #0f172a;
+  --second-navbar-bg-color: #111827;
+  --icon-color: #e5e7eb;
+  --div-bg-color: #1f2937;
+  --submit-codebar-bg-color: var(--surface-2);
+  --font-size-container-bg-color: var(--surface);
+  --font-size-container-text-color: var(--text-color);
+  --tooltip-bg: #111827;
+  --tooltip-text: #ffffff;
+  --border: var(--border-color);
+  --icon-color-strong: #e5e7eb; /* brighter icon default */
+  --icon-color-hover: #ffffff;
+
+  /* Tabs (distinctive dark colorway) */
+  --tab-bg: #0f1a32; /* deep navy */
+  --tab-hover-bg: #1b2b52; /* richer navy */
+  --tab-active-bg: #0891b2; /* cyan-600: darker, less bright */
+  --tab-fg: var(--text-color);
+  --tab-active-fg: #ffffff; /* white text on dark cyan */
+
+  /* Lists/items for dark theme */
+  --hover-bg-color: #0f1a32; /* subtle navy hover */
+  --active-bg-color: rgba(8, 145, 178, 0.23); /* cyan-600 at ~23% for contrast */
+  --primary-color: var(--primary);
+
+  /* Chat (dark) */
+  --chat-assistant-bg: #141b2b; /* slightly lighter than surface for contrast */
+  --chat-user-bg: #1f2a44; /* desaturated navy for a standard chat feel */
+  --chat-code-bg: #0b1020; /* deep slate for code blocks */
+}
+
+/* Apply global background/text */
+html,
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

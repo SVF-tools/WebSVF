@@ -1,0 +1,15 @@
+digraph "ICFG" {
+	label="ICFG";
+
+	Node0x12de41b30 [shape=record,color=purple,label="{GlobalICFGNode0\nCopyStmt: [Var1 \<-- Var0]  \nConstNullPtrValVar ID: 0\n ptr null \{ constant data \}\nAddrStmt: [Var9 \<-- Var3]  \nConstIntValVar ID: 9\n i32 1 \{ constant data \}\nAddrStmt: [Var11 \<-- Var3]  \nConstIntValVar ID: 11\n i32 0 \{ constant data \}\nAddrStmt: [Var4 \<-- Var5]  \nFunValVar ID: 4\nmain}"];
+	Node0x12de41b30 -> Node0x12de33960[style=solid];
+	Node0x12de33960 [shape=record,color=yellow,label="{FunEntryICFGNode1 \{fun: main\}}"];
+	Node0x12de33960 -> Node0x12de44e30[style=solid];
+	Node0x12de30830 [shape=record,color=green,label="{FunExitICFGNode2 \{fun: main\}\nPhiStmt: [Var6 \<-- ([Var11, ICFGNode5],)]  \nValVar ID: 12\n   ret i32 0 }"];
+	Node0x12de44e30 [shape=record,color=black,label="{IntraICFGNode3 \{fun: main\}\nAddrStmt: [Var7 \<-- Var8]  \nValVar ID: 7\n   %1 = alloca i32, align 4 }"];
+	Node0x12de44e30 -> Node0x12de43a90[style=solid];
+	Node0x12de43a90 [shape=record,color=black,label="{IntraICFGNode4 \{fun: main\}\nStoreStmt: [Var7 \<-- Var11]  \nValVar ID: 10\n   store i32 0, ptr %1, align 4 }"];
+	Node0x12de43a90 -> Node0x12de45e30[style=solid];
+	Node0x12de45e30 [shape=record,color=black,label="{IntraICFGNode5 \{fun: main\}\n   ret i32 0 }"];
+	Node0x12de45e30 -> Node0x12de30830[style=solid];
+}

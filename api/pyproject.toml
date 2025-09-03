@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+# Target Python version for linting/formatting
+target-version = "py311"
+# Only lint the API src
+src = ["api"]
+extend-exclude = [
+  "__pycache__",
+  "examples",
+]
+
+[tool.ruff.lint]
+# Keep it focused and low-noise initially
+select = ["E", "F", "I"] # pycodestyle/pyflakes/isort
+
+[tool.mypy]
+python_version = "3.11"
+# Avoid failing on missing stubs for third-party deps
+ignore_missing_imports = true
+
+# Reasonable safety checks without being overbearing
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+no_implicit_optional = true
+
+# Allow untyped defs in existing codebase for now
+check_untyped_defs = false
+disallow_untyped_defs = false
+
+# Show error codes
+show_error_codes = true
+pretty = true
+

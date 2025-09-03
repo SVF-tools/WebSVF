@@ -1,0 +1,228 @@
+.sessions-sidebar,
+.sessions-sidebar * {
+  font-family: var(--font-family, 'Segoe UI', sans-serif), serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.sessions-sidebar {
+  position: relative;
+  width: 300px;
+  height: calc(100vh - 60px); /* Adjust based on your navbar height */
+  background-color: var(--font-size-container-bg-color);
+  border-right: 1px solid var(--border-color, #ccc);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: width 0.3s ease, transform 0.3s ease, padding 0.3s ease;
+  overflow: hidden; /* hide contents during collapse */
+}
+
+/* Smooth collapse animation by narrowing width instead of unmounting */
+.sessions-sidebar.collapsed {
+  width: 1px; /* near-zero width for a smooth width transition */
+  overflow: visible; /* allow the toggle to remain visible outside */
+}
+
+.sessions-sidebar-header {
+  display: flex;
+  flex-direction: row; /* place title and + button on one line */
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px;
+  /* leave space so the toggle arrow fits inside the sidebar width */
+  padding-right: 20px;
+  border-bottom: 1px solid var(--border-color, #ccc);
+}
+
+/* Tighten header when collapsed and hide title/button */
+.sessions-sidebar.collapsed .sessions-sidebar-header {
+  padding: 0;
+  border-bottom: none;
+}
+.sessions-sidebar-header h3,
+.new-session-btn,
+.sessions-list {
+  transition: opacity 0.25s ease;
+}
+.sessions-sidebar.collapsed .sessions-sidebar-header h3,
+.sessions-sidebar.collapsed .new-session-btn,
+.sessions-sidebar.collapsed .sessions-list {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sessions-sidebar-header h3 {
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-color, inherit);
+  font-size: 1.15rem; /* make title stand out */
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.new-session-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* center icon */
+  background-color: var(--primary);
+  color: var(--primary-contrast);
+  border: none;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  flex: 0 0 36px; /* never stretch */
+  border-radius: 50%; /* circle */
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.2s ease, transform 0.05s ease;
+  margin-left: auto; /* push to the right end of the header */
+}
+
+.new-session-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.sessions-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Hide list when collapsed to avoid bleed-through */
+/* keep list mounted but transparent for smoothness */
+
+.session-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border-color-light, #eee);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.session-item:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.session-item.active {
+  background-color: var(--active-bg-color);
+  border-left: 3px solid var(--primary);
+}
+
+.session-info {
+  flex: 1;
+}
+
+.session-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--text-color, inherit);
+}
+
+.session-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary-color, #777);
+}
+
+.session-actions {
+  display: flex;
+  gap: 10px;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.session-item:hover .session-actions {
+  opacity: 1;
+}
+
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
+  transition: color 0.2s, filter 0.2s;
+  color: var(--icon-color-strong, currentColor);
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.35));
+}
+
+.edit-icon:hover {
+  color: var(--primary-color, #1976d2);
+}
+
+.delete-icon:hover {
+  color: var(--error-color, #d32f2f);
+}
+
+.session-edit {
+  width: 100%;
+}
+
+.session-edit input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid var(--primary-color, #1976d2);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.sessions-sidebar-toggle {
+  position: absolute;
+  /* keep the arrow inside the sidebar instead of hanging outside */
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary);
+  color: var(--primary-contrast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.sessions-sidebar.collapsed .sessions-sidebar-toggle {
+  position: fixed; /* detach from collapsing container so it stays visible */
+  left: 0; /* overlay at viewport edge */
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* removed separate collapsed container for smoother animation */
+
+.sessions-sidebar-toggle-collapsed {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  /* normalize colors with expanded toggle */
+  background-color: var(--primary);
+  color: var(--primary-contrast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.share-icon {
+  cursor: pointer;
+  transition: color 0.2s, filter 0.2s;
+  color: var(--icon-color-strong, currentColor);
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.35));
+}
+
+.share-icon:hover {
+  color: var(--icon-color-hover, var(--primary-color, #1976d2));
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.35));
+}

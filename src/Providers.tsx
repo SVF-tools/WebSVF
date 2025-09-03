@@ -1,22 +1,28 @@
 import React from 'react';
-import defaultThemeFactory from './themes/defaultTheme';
-import { ThemeProvider } from './components/ThemeProvider';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { Provider } from 'react-redux';
-import { store } from './store/store';
 import { BrowserRouter } from 'react-router-dom';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const defaultTheme = defaultThemeFactory();
+// Create a default Material-UI theme
+const defaultTheme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+  },
+});
 
 export const Providers: React.FC = ({ children }) => {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <ThemeProvider theme={defaultTheme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <ThemeProvider theme={defaultTheme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </BrowserRouter>
   );
 };
