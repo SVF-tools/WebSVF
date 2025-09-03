@@ -40,16 +40,27 @@ jobs:
   deploy-api:
     name: Deploy API to Fly.io
     runs-on: ubuntu-latest
-    if: ${{ hashFiles('api/fly.toml') != '' && (secrets.FLY_API_TOKEN != '') }}
+    if: ${{ secrets.FLY_API_TOKEN != '' }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check if API directory exists
+        id: check_api
+        run: |
+          if [ -f "api/fly.toml" ]; then
+            echo "run_api=true" >> $GITHUB_OUTPUT
+          else
+            echo "run_api=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Fly.io CLI
+        if: ${{ steps.check_api.outputs.run_api == 'true' }}
         uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: Deploy API
+        if: ${{ steps.check_api.outputs.run_api == 'true' }}
         working-directory: ./api
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
