@@ -17,8 +17,10 @@ const defaultTheme = createTheme({
 });
 
 export const Providers: React.FC = ({ children }) => {
+  const basename = process.env.NODE_ENV === 'production' ? '/WebSVF' : '';
+  
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
         {children}
