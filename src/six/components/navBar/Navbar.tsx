@@ -132,7 +132,7 @@ function Navbar({
           title="CapStoneWebSVF6.0 Repository"
           aria-label="CapStoneWebSVF6.0 Repository"
         >
-          <img src="/svfLogo.png" alt="SVF logo" id="svf-logo" />
+          <img src={`${import.meta.env.BASE_URL}svfLogo.png`} alt="SVF logo" id="svf-logo" />
         </a>
       </div>
       <div className="nav-actions">
