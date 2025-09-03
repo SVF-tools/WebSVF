@@ -62,7 +62,7 @@ const SubmitCodeBar: React.FC<SubmitCodeBarProps> = ({
     // Call the original submit event
     try {
       submitEvent();
-    } catch (error) {
+    } catch {
       setError('An error occurred while running the code');
     } finally {
       // Hide loading state after a short delay

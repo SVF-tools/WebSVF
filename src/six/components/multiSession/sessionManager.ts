@@ -32,7 +32,7 @@ const SessionManager = {
       const parsed = JSON.parse(raw);
       // Ensure we always return an array
       return Array.isArray(parsed) ? parsed : [];
-    } catch (_e) {
+    } catch {
       // If parsing fails (corrupted storage), reset the key and return [] to avoid crashes
       localStorage.removeItem('websvf-sessions');
       return [];

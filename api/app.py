@@ -6,15 +6,15 @@ This replaces the C# backend with Python SVF bindings
 
 import glob
 import os
+import shlex
 import subprocess
 import tempfile
 from typing import List, Optional
-import shlex
 
+import pysvf
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import pysvf
 
 TOOL_NAMES = frozenset(["ae", "cfl", "dvf", "mta", "saber", "svf_ex", "wpa"])
 
@@ -59,7 +59,7 @@ def get_dot_graphs() -> List[DotGraph]:
     """
     Collect and return all generated dot graphs
     """
-    dot_graphs = []
+    dot_graphs: List[DotGraph] = []
 
     # Mapping from SVF output names to simplified names
     file_name_mappings = {
@@ -142,7 +142,11 @@ def run_svf_tools(ll_file: str, extra_executables: List[str]) -> tuple[str, str]
                     cmd.extend(['-race'])  # Enable race detection
             elif tool == 'wpa':
                 # Ensure a pointer analysis is specified; default to Andersen if none
-                has_pta_flag = any(flag.startswith('-') and ('pta' in flag or flag in ['-ander', '-fspta', '-steens']) for flag in args)
+                has_pta_flag = any(
+                    flag.startswith('-')
+                    and ('pta' in flag or flag in ['-ander', '-fspta', '-steens'])
+                    for flag in args
+                )
                 if not has_pta_flag:
                     cmd.append('-ander')
             elif tool == 'ae':
@@ -163,7 +167,8 @@ def run_svf_tools(ll_file: str, extra_executables: List[str]) -> tuple[str, str]
         else:
             supported_tools = ', '.join(TOOL_NAMES)
             raise ValueError(
-                f"Warning: Unknown executable '{executable}'. Supported tools are: {supported_tools}"
+                f"Warning: Unknown executable '{executable}'. "
+                f"Supported tools are: {supported_tools}"
             )
 
     return "\n".join(output_lines), "\n".join(errors)
@@ -173,7 +178,7 @@ def compile_c_to_llvm(c_code: str, compile_options: str = "") -> tuple[bool, str
     Compile C code to LLVM IR
     Returns: (success, output, error)
     """
-    output_lines = []
+    output_lines: List[str] = []
     try:
         # Write C code to temporary file
         with tempfile.NamedTemporaryFile(mode='w', suffix='.c', delete=False) as f:
@@ -223,8 +228,16 @@ async def analyse_code(request_body: RequestBody) -> SvfResult:
         os.unlink(dot_file)
 
     # Compile C code to LLVM IR
+    if request_body.input is None:
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "Error": "No input C code provided.",
+                "Name": "Input Error"
+            }
+        )
     success, llvm_ir, compile_output = compile_c_to_llvm(
-        request_body.input, request_body.compileOptions
+        request_body.input, request_body.compileOptions or ""
     )
 
     if not success:

@@ -17,18 +17,50 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: npm
           cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Prettier check
-        run: npm run format:check
+      - name: Run project validation
+        run: npm run validate
 
-      - name: Run ESLint check
-        run: npm run lint
+  python-lint-type:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Run TypeScript check
-        run: npm run type-check
+      - name: Check if API directory exists
+        id: check_api
+        run: |
+          if [ -d "api" ]; then
+            echo "api_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "api_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set up Python
+        if: steps.check_api.outputs.api_exists == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python tooling
+        if: steps.check_api.outputs.api_exists == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff mypy
+
+      - name: Ruff (lint)
+        if: steps.check_api.outputs.api_exists == 'true'
+        working-directory: ./api
+        run: ruff check .
+
+      - name: Mypy (type-check)
+        if: steps.check_api.outputs.api_exists == 'true'
+        working-directory: ./api
+        run: mypy .
+

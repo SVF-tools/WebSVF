@@ -1,7 +1,22 @@
-import { components } from 'react-select';
+import { components, OptionProps, GroupBase } from 'react-select';
 import Tooltip from './tooltip';
 
-const CustomOption = (props: any) => {
+interface CustomOption {
+  value: string;
+  label: string;
+  description?: string;
+}
+
+interface CustomSelectProps {
+  setPassedPrompt?: (prompt: string) => void;
+  name?: string;
+}
+
+const CustomOption = (
+  props: OptionProps<CustomOption, true, GroupBase<CustomOption>> & {
+    selectProps: CustomSelectProps;
+  }
+) => {
   const { data, selectProps } = props;
   const setPassedPrompt = selectProps?.setPassedPrompt;
   const name = selectProps?.name;

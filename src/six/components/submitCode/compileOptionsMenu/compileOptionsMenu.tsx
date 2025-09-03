@@ -1,6 +1,12 @@
 // compileOptionsMenu.tsx
 import React from 'react';
-import Select, { components } from 'react-select';
+import Select, {
+  components,
+  StylesConfig,
+  GroupBase,
+  type Props as ReactSelectProps,
+  type MultiValueRemoveProps as RSMultiValueRemoveProps,
+} from 'react-select';
 import makeAnimated from 'react-select/animated';
 import CustomOption from '../../tooltip/customOption';
 import CustomMultiValueLabel from '../../tooltip/customMultiValueLabel';
@@ -25,7 +31,13 @@ interface CompileOptionsMenuProps {
 }
 
 // Create a type to extend React-Select props
-type SelectPropsWithCustomProps = React.ComponentProps<typeof Select> & {
+// Note: use react-select Props generic instead of ComponentProps<typeof Select>
+// so Option type is not inferred as unknown
+type SelectPropsWithCustomProps = ReactSelectProps<
+  CompileOption,
+  true,
+  GroupBase<CompileOption>
+> & {
   setPassedPrompt?: (prompt: string) => void;
   name?: string;
 };
@@ -42,19 +54,21 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
   );
 
   // Non-removable chip for -emit-llvm
-  type MultiValueRemoveProps = React.ComponentProps<typeof components.MultiValueRemove> & {
-    data?: { value?: string };
-  };
+  type MultiValueRemoveProps = RSMultiValueRemoveProps<
+    CompileOption,
+    true,
+    GroupBase<CompileOption>
+  >;
 
   const NonRemovableMultiValueRemove: React.FC<MultiValueRemoveProps> = (props) => {
     const { data } = props;
-    if (data?.value === '-emit-llvm') {
+    if ((data as CompileOption | undefined)?.value === '-emit-llvm') {
       return null; // Hide the remove (x) for this option
     }
     return <components.MultiValueRemove {...props} />;
   };
 
-  const handleChange = (selected: any) => {
+  const handleChange = (selected: readonly CompileOption[] | null) => {
     const next = Array.isArray(selected) ? [...selected] : [];
     // Ensure -emit-llvm is always present
     const mustKeep = optionsWithDescriptions.find((o) => o.value === '-emit-llvm');
@@ -66,8 +80,8 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
   };
 
   // Custom styles to ensure tooltips are visible and theme-consistent
-  const customStyles = {
-    control: (provided: any, state: any) => ({
+  const customStyles: StylesConfig<CompileOption, true, GroupBase<CompileOption>> = {
+    control: (provided, state) => ({
       ...provided,
       overflow: 'visible',
       backgroundColor: 'var(--surface)',
@@ -78,7 +92,7 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
         borderColor: 'var(--primary)',
       },
     }),
-    option: (provided: any, state: any) => ({
+    option: (provided, state) => ({
       ...provided,
       position: 'relative',
       overflow: 'visible',
@@ -89,11 +103,11 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
         : 'var(--surface)',
       color: state.isSelected ? 'var(--primary-contrast)' : 'var(--text-color)',
     }),
-    menuPortal: (base: any) => ({
+    menuPortal: (base) => ({
       ...base,
       zIndex: 9999,
     }),
-    menu: (provided: any) => ({
+    menu: (provided) => ({
       ...provided,
       overflow: 'visible',
       zIndex: 9999,
@@ -101,13 +115,13 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
       color: 'var(--text-color)',
       border: '1px solid var(--border-color)',
     }),
-    menuList: (provided: any) => ({
+    menuList: (provided) => ({
       ...provided,
       overflow: 'visible',
       backgroundColor: 'var(--surface)',
       color: 'var(--text-color)',
     }),
-    multiValue: (provided: any) => ({
+    multiValue: (provided) => ({
       ...provided,
       position: 'relative',
       overflow: 'visible',
@@ -115,43 +129,43 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
       color: 'var(--text-color)',
       border: '1px solid var(--border-color)',
     }),
-    multiValueLabel: (provided: any) => ({
+    multiValueLabel: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    multiValueRemove: (provided: any) => ({
+    multiValueRemove: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { backgroundColor: 'var(--danger)', color: 'var(--primary-contrast)' },
     }),
-    valueContainer: (provided: any) => ({
+    valueContainer: (provided) => ({
       ...provided,
       overflow: 'visible',
       color: 'var(--text-color)',
     }),
-    input: (provided: any) => ({
+    input: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    placeholder: (provided: any) => ({
+    placeholder: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
       opacity: 0.8,
     }),
-    singleValue: (provided: any) => ({
+    singleValue: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    indicatorsContainer: (provided: any) => ({
+    indicatorsContainer: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    dropdownIndicator: (provided: any) => ({
+    dropdownIndicator: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { color: 'var(--text-color)' },
     }),
-    clearIndicator: (provided: any) => ({
+    clearIndicator: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { color: 'var(--danger)' },
@@ -171,7 +185,7 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
     isMulti: true,
     options: optionsWithDescriptions,
     value: selectedCompileOptions,
-    onChange: handleChange,
+    onChange: (newValue) => handleChange(newValue as readonly CompileOption[] | null),
     menuPortalTarget: document.body,
     menuPosition: 'fixed',
     defaultValue: [
@@ -184,7 +198,7 @@ const CompileOptionsMenu: React.FC<CompileOptionsMenuProps> = ({
     name: 'compileOptions',
     classNamePrefix: 'react-select',
     // Prevent toggling -emit-llvm from the menu
-    isOptionDisabled: (option: unknown) => (option as CompileOption)?.value === '-emit-llvm',
+    isOptionDisabled: (option: CompileOption) => option.value === '-emit-llvm',
   };
 
   if (setPassedPrompt) {

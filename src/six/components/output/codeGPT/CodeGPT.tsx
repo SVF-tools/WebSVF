@@ -366,7 +366,7 @@ const CodeGPT = ({
   const handleCopy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-    } catch (_e) {
+    } catch {
       // no-op
     }
   };

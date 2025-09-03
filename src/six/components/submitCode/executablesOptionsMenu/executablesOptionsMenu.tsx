@@ -1,6 +1,6 @@
 // executablesOptionsMenu.tsx
 import React from 'react';
-import Select from 'react-select';
+import Select, { StylesConfig, GroupBase, type Props as ReactSelectProps } from 'react-select';
 import makeAnimated from 'react-select/animated';
 import CustomOption from '../../tooltip/customOption';
 import CustomMultiValueLabel from '../../tooltip/customMultiValueLabel';
@@ -25,7 +25,11 @@ interface ExecutableOptionsMenuProps {
 }
 
 // Create a type to extend React-Select props
-type SelectPropsWithCustomProps = React.ComponentProps<typeof Select> & {
+type SelectPropsWithCustomProps = ReactSelectProps<
+  executableOption,
+  true,
+  GroupBase<executableOption>
+> & {
   setPassedPrompt?: (prompt: string) => void;
   name?: string;
 };
@@ -43,14 +47,14 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
   );
 
   // Handler for selection changes
-  const handleChange = (selected: any) => {
-    setSelectedExecutableOptions(selected || []);
+  const handleChange = (selected: readonly executableOption[] | null) => {
+    setSelectedExecutableOptions(selected ? [...selected] : []);
     if (setPassedPrompt) setPassedPrompt('');
   };
 
   // Custom styles to ensure tooltips are visible and theme-consistent
-  const customStyles = {
-    control: (provided: any, state: any) => ({
+  const customStyles: StylesConfig<executableOption, true, GroupBase<executableOption>> = {
+    control: (provided, state) => ({
       ...provided,
       overflow: 'visible',
       backgroundColor: 'var(--surface)',
@@ -61,7 +65,7 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
         borderColor: 'var(--primary)',
       },
     }),
-    option: (provided: any, state: any) => ({
+    option: (provided, state) => ({
       ...provided,
       position: 'relative',
       overflow: 'visible',
@@ -72,11 +76,11 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
         : 'var(--surface)',
       color: state.isSelected ? 'var(--primary-contrast)' : 'var(--text-color)',
     }),
-    menuPortal: (base: any) => ({
+    menuPortal: (base) => ({
       ...base,
       zIndex: 9999,
     }),
-    menu: (provided: any) => ({
+    menu: (provided) => ({
       ...provided,
       overflow: 'visible',
       zIndex: 9999,
@@ -84,13 +88,13 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
       color: 'var(--text-color)',
       border: '1px solid var(--border-color)',
     }),
-    menuList: (provided: any) => ({
+    menuList: (provided) => ({
       ...provided,
       overflow: 'visible',
       backgroundColor: 'var(--surface)',
       color: 'var(--text-color)',
     }),
-    multiValue: (provided: any) => ({
+    multiValue: (provided) => ({
       ...provided,
       position: 'relative',
       overflow: 'visible',
@@ -98,43 +102,43 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
       color: 'var(--text-color)',
       border: '1px solid var(--border-color)',
     }),
-    multiValueLabel: (provided: any) => ({
+    multiValueLabel: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    multiValueRemove: (provided: any) => ({
+    multiValueRemove: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { backgroundColor: 'var(--danger)', color: 'var(--primary-contrast)' },
     }),
-    valueContainer: (provided: any) => ({
+    valueContainer: (provided) => ({
       ...provided,
       overflow: 'visible',
       color: 'var(--text-color)',
     }),
-    input: (provided: any) => ({
+    input: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    placeholder: (provided: any) => ({
+    placeholder: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
       opacity: 0.8,
     }),
-    singleValue: (provided: any) => ({
+    singleValue: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    indicatorsContainer: (provided: any) => ({
+    indicatorsContainer: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
     }),
-    dropdownIndicator: (provided: any) => ({
+    dropdownIndicator: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { color: 'var(--text-color)' },
     }),
-    clearIndicator: (provided: any) => ({
+    clearIndicator: (provided) => ({
       ...provided,
       color: 'var(--text-color)',
       ':hover': { color: 'var(--danger)' },
@@ -153,7 +157,7 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
     isMulti: true,
     options: optionsWithDescriptions,
     value: selectedExecutableOptions,
-    onChange: handleChange,
+    onChange: (newValue) => handleChange(newValue as readonly executableOption[] | null),
     menuPortalTarget: document.body,
     menuPosition: 'fixed',
     name: 'executableOptions',

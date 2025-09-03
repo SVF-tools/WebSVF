@@ -1,5 +1,5 @@
-/* Navbar styles */
-#navbar {
+/* Navbar styles (scoped to six only) */
+#six-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,10 +7,44 @@
   min-height: 48px; /* bigger navbar height */
   background-color: var(--navbar-bg-color);
   border-bottom: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 72px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#six-navbar .nav-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Back button (works in dark/light via CSS vars) */
+#six-navbar .back-button {
+  color: var(--icon-color);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin-right: 8px;
+}
+
+#six-navbar .back-button:hover {
+  background-color: var(--second-navbar-bg-color);
 }
 
 #settings-icon,
 #share-icon {
+  cursor: pointer;
+  color: var(--icon-color);
+}
+
+.nav-icon {
   cursor: pointer;
   color: var(--icon-color);
 }
@@ -22,7 +56,7 @@
   margin-left: 4px;
 }
 
-#webSVF-home-link {
+#six-navbar #webSVF-home-link {
   display: inline-block;
 }
 
@@ -80,7 +114,7 @@ input:checked + .theme-slider:before {
   content: '🌜';
 }
 
-#navbar .nav-actions {
+#six-navbar .nav-actions {
   display: inline-flex;
   align-items: center;
   gap: 14px; /* Even spacing */

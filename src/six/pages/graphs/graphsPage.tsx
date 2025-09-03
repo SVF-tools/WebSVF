@@ -98,6 +98,7 @@ function GraphsPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { sessionId: routeSessionId } = useParams();
   const navigate = useNavigate();
+  const SIX_BASE = '/6.0';
 
   const [codeError, setCodeError] = useState<string[]>([]);
   const [currCodeLineNum, setCurrCodeLineNum] = useState(0);
@@ -170,8 +171,8 @@ function GraphsPage() {
     const compressed = compressToEncodedURIComponent(JSON.stringify(savedSettings));
 
     // Return a URL that points directly to the session
-    return `${baseUrl}/session/${currentSessionId}?data=${compressed}`;
-  }, [currentSessionId]);
+    return `${baseUrl}${SIX_BASE}/session/${currentSessionId}?data=${compressed}`;
+  }, [SIX_BASE, currentSessionId]);
 
   const saveCurrentSession = useCallback(() => {
     if (currentSessionId) {
@@ -538,7 +539,7 @@ function GraphsPage() {
           try {
             const llvmMapping = llvmHighlight(code.split('\n'), (responseLLVM || '').split('\n'));
             setLineNumDetails((prev) => ({ ...prev, ...llvmMapping }));
-          } catch (_e) {
+          } catch {
             // No-op: if highlighting fails, continue without blocking
           }
 
@@ -560,8 +561,7 @@ function GraphsPage() {
         showError(errorMessage);
       }
     } catch (error) {
-      const err = error as any;
-      const errorMessage = (err && err.message) || 'Failed to submit code';
+      const errorMessage = error instanceof Error ? error.message : 'Failed to submit code';
       setTerminalOutputString(`Error: ${errorMessage}`);
       showError('Backend Error: ' + errorMessage);
     }
@@ -675,7 +675,7 @@ function GraphsPage() {
             setCurrentSessionId(decompressedSettings.sessionId);
             loadSession(session);
             // Navigate to the session URL to maintain consistent state
-            navigate(`/session/${decompressedSettings.sessionId}`, { replace: true });
+            navigate(`${SIX_BASE}/session/${decompressedSettings.sessionId}`, { replace: true });
             return; // Exit early since we've loaded a session
           }
         }
@@ -702,7 +702,7 @@ function GraphsPage() {
         if (currentSessionId) {
           saveCurrentSession();
         }
-      } catch (error) {
+      } catch {
         // Error parsing URL data - silently ignore
       }
     }
@@ -737,7 +737,7 @@ function GraphsPage() {
             loadSession(session);
 
             // Update the URL to point to this session without the query parameter
-            const newUrl = `${window.location.origin}/session/${sessionId}`;
+            const newUrl = `${window.location.origin}${SIX_BASE}/session/${sessionId}`;
             window.history.replaceState({}, '', newUrl);
           } else {
             // Session not found, load the first available session
@@ -746,7 +746,7 @@ function GraphsPage() {
               setCurrentSessionId(availableSessions[0].id);
               loadSession(availableSessions[0]);
               // Update URL
-              const newUrl = `${window.location.origin}/session/${availableSessions[0].id}`;
+              const newUrl = `${window.location.origin}${SIX_BASE}/session/${availableSessions[0].id}`;
               window.history.replaceState({}, '', newUrl);
             }
           }
@@ -782,7 +782,7 @@ function GraphsPage() {
             }
           }
         }
-      } catch (error) {
+      } catch {
         // Error parsing URL data - silently ignore
       }
     }
@@ -794,7 +794,7 @@ function GraphsPage() {
 
   const handleSessionSelect = (sessionId: string) => {
     saveCurrentSession();
-    navigate(`/session/${sessionId}`, { replace: true });
+    navigate(`${SIX_BASE}/session/${sessionId}`, { replace: true });
   };
 
   const handleNewSession = () => {
@@ -861,7 +861,7 @@ function GraphsPage() {
     const compressed = compressToEncodedURIComponent(JSON.stringify(shareSettings));
 
     // Create a URL that points directly to this session
-    setShareLink(`${baseUrl}/session/${sessionId}?data=${compressed}`);
+    setShareLink(`${baseUrl}${SIX_BASE}/session/${sessionId}?data=${compressed}`);
     handleOpenShareModal();
   };
 

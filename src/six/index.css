@@ -1,6 +1,3 @@
-/* Import Inter font with proper weights */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 /* Tailwind CSS - using CDN version to avoid PostCSS conflicts */
 @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
 
@@ -14,13 +11,10 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 /* Light mode (default) */
@@ -75,41 +69,12 @@ body {
   --chat-code-bg: #f8fafc; /* slate-50 */
 }
 
-/* Ensure app container uses proper font */
+/* Ensure app container uses system font stack */
 .app-container {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* Graph page specific styles to match original */
-#graph-page-container {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  height: calc(100vh - 60px);
-}
-
-/* Navbar height adjustment */
-#navbar {
-  min-height: 48px !important;
-  height: 60px;
-}
-
-/* Button and form elements styling */
-button,
-input,
-select,
-textarea {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-}
-
-/* Consistent spacing for UI elements */
-.select-heading {
-  margin: 4px 0;
-}
-
-.select-block {
-  margin-bottom: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  height: auto;
+  overflow: visible;
 }
 
 /* Dark mode */

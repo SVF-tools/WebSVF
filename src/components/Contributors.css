@@ -1,0 +1,85 @@
+/* Contributors Component Styles - Balanced and Centered */
+
+/* Section heading - bigger and bolder */
+.testimonials h2 {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  color: #212529 !important;
+  margin-bottom: 3rem !important;
+  text-align: center !important;
+  line-height: 1.3 !important;
+}
+
+.contributor-name {
+  font-weight: 700 !important;
+  font-size: 1.35rem !important;
+  color: #212529 !important;
+  line-height: 1.2 !important;
+  margin: 0.5rem 0 !important;
+  text-align: center !important;
+  display: block !important;
+}
+
+.contributor-role {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  display: block !important;
+  margin-bottom: 0.4rem !important;
+  color: #333 !important;
+  text-align: center !important;
+}
+
+.contributor-university-link {
+  color: #007bff !important;
+  text-decoration: underline !important; /* Always underlined */
+  font-weight: 450 !important;
+  font-size: 0.9rem !important;
+  display: block !important;
+  text-align: center !important;
+  margin-top: 0.2rem !important;
+}
+
+.contributor-university-link:hover {
+  color: #0056b3 !important;
+  text-decoration: underline !important;
+  font-weight: 500 !important; /* Slightly bolder on hover */
+}
+
+/* Ensure proper centering for all content */
+.testimonial-item {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.testimonial-item h3,
+.testimonial-item h4,
+.testimonial-item h5 {
+  font-weight: 700 !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.testimonial-item p {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.testimonial-item strong {
+  font-weight: 600 !important;
+}
+
+/* Ensure images are centered */
+.testimonial-item img {
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+/* Responsive heading size for smaller screens */
+@media (max-width: 768px) {
+  .testimonials h2 {
+    font-size: 2rem !important;
+  }
+}

@@ -17,6 +17,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python tooling
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff mypy
+
+      - name: Ruff (lint)
+        working-directory: ./api
+        run: ruff check .
+
+      - name: Mypy (type-check)
+        working-directory: ./api
+        run: mypy .
+
       - name: Setup Fly.io CLI
         uses: superfly/flyctl-actions/setup-flyctl@master
 
@@ -25,3 +43,4 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         working-directory: ./api # Run deployment from api folder
+

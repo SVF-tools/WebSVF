@@ -1,7 +1,8 @@
 import OpenAI from 'openai';
 
-// Support both Vite-style and generic env var names
-const API_KEY = (process.env.REACT_APP_OPENAI_API_KEY || '') as string;
+// Use Vite env only (browser-safe)
+const API_KEY = ((import.meta as unknown as { env?: Record<string, string | undefined> }).env
+  ?.VITE_OPENAI_API_KEY ?? '') as string;
 const DEFAULT_MODEL = 'gpt-5-mini';
 
 // Create a browser-allowed client. The key is expected to be provided via Vite env.

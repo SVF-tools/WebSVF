@@ -20,6 +20,15 @@ function Navbar({
   const [theme, setTheme] = useState('light');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  const handleBack = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = '/';
+    }
+  };
+
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
@@ -108,25 +117,30 @@ function Navbar({
   };
 
   return (
-    <div id="navbar" className="shadow-md">
-      <a
-        id="webSVF-home-link"
-        href="https://github.com/SVF-tools/CapStoneWebSVF6.0"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="CapStoneWebSVF6.0 Repository"
-        aria-label="CapStoneWebSVF6.0 Repository"
-      >
-        <img src="/svfLogo.png" alt="SVF logo" id="svf-logo" />
-      </a>
+    <div id="six-navbar" className="shadow-md">
+      <div className="nav-left">
+        <a href="/" className="back-button" onClick={handleBack} aria-label="Go back">
+          ← Back
+        </a>
+        <a
+          id="webSVF-home-link"
+          href="https://github.com/SVF-tools/SVF"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="CapStoneWebSVF6.0 Repository"
+          aria-label="CapStoneWebSVF6.0 Repository"
+        >
+          <img src="/svfLogo.png" alt="SVF logo" id="svf-logo" />
+        </a>
+      </div>
       <div className="nav-actions">
         <div className="icon-container">
-          <Publish id="import-export-icon" onClick={handleExportClick} />
+          <Publish className="nav-icon" onClick={handleExportClick} />
           <span className="tooltip">Export Code</span>
         </div>
 
         <div className="icon-container">
-          <ImportExport id="import-export-icon" onClick={handleImportClick} />
+          <ImportExport className="nav-icon" onClick={handleImportClick} />
           <span className="tooltip">Import Code</span>
         </div>
 

@@ -12,10 +12,7 @@ function App() {
   }, []);
 
   return (
-    <div
-      className="app-container"
-      style={{ backgroundColor: 'var(--background-color)', minHeight: '100vh' }}
-    >
+    <div className="app-container" style={{ backgroundColor: 'var(--background-color)' }}>
       <Outlet />
       <ToastContainer />
     </div>

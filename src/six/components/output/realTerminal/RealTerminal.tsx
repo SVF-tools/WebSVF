@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { Terminal } from 'xterm';
-import { FitAddon } from 'xterm-addon-fit';
-import 'xterm/css/xterm.css';
+import { Terminal } from '@xterm/xterm';
+import { FitAddon } from '@xterm/addon-fit';
+import '@xterm/xterm/css/xterm.css';
 
 const RealTerminal: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -67,7 +67,7 @@ const RealTerminal: React.FC = () => {
         console.error('WebSocket error:', error);
         try {
           term.current?.writeln('\r\n[WebSocket error occurred]');
-        } catch (_e) {
+        } catch {
           // ignore if terminal not ready
         }
       };
@@ -76,7 +76,7 @@ const RealTerminal: React.FC = () => {
         console.log('WebSocket closed:', event.code, event.reason);
         try {
           term.current?.writeln('\r\n[Disconnected from terminal]');
-        } catch (_e) {
+        } catch {
           // ignore if terminal not ready
         }
 

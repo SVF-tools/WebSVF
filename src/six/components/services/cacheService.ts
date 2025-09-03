@@ -112,8 +112,11 @@ class CacheService {
 
     // Remove oldest entries if we exceed the limit
     while (sessionEntries.length >= this.MAX_CACHE_SIZE) {
-      const [oldestKey] = sessionEntries.shift()!;
-      cache.delete(oldestKey);
+      const oldestEntry = sessionEntries.shift();
+      if (oldestEntry) {
+        const [oldestKey] = oldestEntry;
+        cache.delete(oldestKey);
+      }
     }
   }
 
