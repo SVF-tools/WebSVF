@@ -138,14 +138,3 @@ VITE_OPENAI_API_KEY='YOUR_API_KEY'
 ## Deployment
 
 The frontend and backend is configured for deployment to GitHub Pages and Fly.io. Push to the `master` branch to trigger automatic deployment via GitHub Actions. 
-
-## Development Scripts
-
-- `npm start` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint issues
-- `npm run format` - Format code with Prettier
-- `npm run format:check` - Check code formatting
-- `npm run type-check` - Run TypeScript type checking
-- `npm run validate` - Run all checks (type-check, lint, format)
