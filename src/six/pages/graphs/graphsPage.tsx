@@ -91,7 +91,7 @@ const executableOptions = [
 
 function GraphsPage() {
   // Initialize toast hook
-  const { showError, showSuccess } = useToast();
+  const { showError, showSuccess, showInfo } = useToast();
   // Add session management state
   const [sessions, setSessions] = useState<Session[]>([]);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
@@ -487,6 +487,8 @@ function GraphsPage() {
   }, [passedPrompt]);
 
   const submitCode = async () => {
+    // Immediate feedback toast on submit
+    showInfo('Submitting code...', { duration: 1500 });
     const selectedCompileOptionString = selectedCompileOptions
       .map((option) => option.value)
       .join(' ');

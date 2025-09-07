@@ -1,25 +1,25 @@
 #submit-codeBar-container {
   background-color: var(--submit-codebar-bg-color);
   color: var(--text-color);
-  padding: 16px 24px; /* fix excessive percentage padding */
+  padding: 5% 3% 5% 3%;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   display: flex;
   align-items: center;
-  min-height: 88px; /* consistent height */
+  height: 12%;
   border-bottom: 1px solid var(--border-color);
 }
 
 #submit-codeBar-compile-options-container {
-  width: 100%;
+  width: 80%;
 }
 
 #submit-code-bar-button-container {
   margin-top: 8px;
-  padding: 0 0 0 16px;
+  padding: 2% 2% 2% 2%;
   display: flex;
-  flex-direction: row; /* align buttons horizontally */
-  gap: 12px; /* space between buttons */
-  align-items: center;
+  flex-direction: column; /* Stack items vertically */
+  gap: 48px; /* Space between stacked buttons */
+  align-items: flex-end; /* Align buttons to the right side */
 }
 
 .select-heading {

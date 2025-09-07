@@ -1,18 +1,9 @@
 .toast {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  min-width: 300px;
-  max-width: 500px;
-  z-index: 1000;
   border-radius: 10px;
   border: 1px solid var(--border-color);
   background-color: var(--surface);
   color: var(--text-color);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.3s ease-in-out;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 

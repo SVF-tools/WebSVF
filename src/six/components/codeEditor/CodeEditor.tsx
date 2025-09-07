@@ -470,7 +470,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 
   return (
     <>
-      <div className="code-editor-wrapper">
+      <div>
         <div id="codeEditor-fontSize-container">
           <FontSizeMenu
             fontSize={effectiveFontSize}
@@ -485,7 +485,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         </div>
         <Editor
           key={editorKey}
-          height="calc(100vh - 72px - 48px)" /* viewport minus navbar and font bar */
+          height="90vh"
           language="c"
           theme={theme}
           value={code}

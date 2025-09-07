@@ -117,7 +117,7 @@
 
 .messageRow.user .message {
   background-color: var(--chat-user-bg, var(--accent));
-  color: var(--primary-contrast);
+  color: var(--text-color);
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
@@ -140,7 +140,7 @@
   justify-content: center;
   border-radius: 6px;
   border: 1px solid var(--border-color);
-  background-color: var(--surface);
+  background-color: transparent;
   color: var(--text-color);
   cursor: pointer;
   z-index: 1;

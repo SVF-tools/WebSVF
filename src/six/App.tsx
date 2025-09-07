@@ -12,10 +12,12 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container" style={{ backgroundColor: 'var(--background-color)' }}>
-      <Outlet />
+    <>
+      <div className="app-container" style={{ backgroundColor: 'var(--background-color)' }}>
+        <Outlet />
+      </div>
       <ToastContainer />
-    </div>
+    </>
   );
 }
 

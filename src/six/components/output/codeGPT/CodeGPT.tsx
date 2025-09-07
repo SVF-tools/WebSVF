@@ -430,7 +430,7 @@ const CodeGPT = ({
         ? "<span class='attachmentPill attachmentPill--code' data-type='code' title='Attached program code'>📎 Code attached</span>"
         : type === 'llvm'
         ? "<span class='attachmentPill attachmentPill--llvm' data-type='llvm' title='Attached LLVM IR'>📎 LLVM IR attached</span>"
-        : "<span class='attachmentPill attachmentPill--terminal' data-type='terminal' title='Attached terminal output'>📎 Terminal output attached</span>`";
+        : "<span class='attachmentPill attachmentPill--terminal' data-type='terminal' title='Attached terminal output'>📎 Terminal output attached</span>";
     setGptInputQuery(visiblePrompt);
     setPendingAttachments((prev) => {
       // De-dupe: unique by (type, name) where name may be undefined

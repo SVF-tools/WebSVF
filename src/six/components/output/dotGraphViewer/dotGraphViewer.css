@@ -37,6 +37,13 @@
   stroke: var(--text-color);
 }
 
+/* Clamp SVG text size so labels don't overflow node shapes */
+#graphviz-container svg g.node text,
+#graphviz-container svg g.edge text,
+#graphviz-container svg g.cluster text {
+  font-size: 12px !important;
+}
+
 /* Themed empty state for when there is no graph */
 .empty-state {
   display: flex;
@@ -249,6 +256,13 @@
 .graph-fullscreen-body svg g.node path[stroke='#000'],
 .graph-fullscreen-body svg g.node path[stroke='#000000'] {
   stroke: var(--text-color);
+}
+
+/* Clamp SVG text size in fullscreen as well */
+.graph-fullscreen-body svg g.node text,
+.graph-fullscreen-body svg g.edge text,
+.graph-fullscreen-body svg g.cluster text {
+  font-size: 12px !important;
 }
 
 /* Only recolor labels for nodes without a fill to keep contrast */
