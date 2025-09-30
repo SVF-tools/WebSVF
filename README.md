@@ -13,6 +13,11 @@ This is the WebSVF repository that has all latest code for WebSVF 6.0.
 - Session management for saving and sharing work
 - CodeGPT integration for AI-assisted learning
 
+## Documentation
+
+See the presentation slides from the *2025 Thesis B Presentation 25T2* by Christian Tolentino
+and Joshua Wills [here](/thesis/2025_Thesis_B_Presentation.pdf)
+
 ## Installation and Setup
 
 ### Prerequisites
