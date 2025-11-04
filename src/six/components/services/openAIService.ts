@@ -1,18 +1,58 @@
 import OpenAI from 'openai';
 
-// Use Vite env only (browser-safe)
-const API_KEY = ((import.meta as unknown as { env?: Record<string, string | undefined> }).env
+const ENV_API_KEY = ((import.meta as unknown as { env?: Record<string, string | undefined> }).env
   ?.VITE_OPENAI_API_KEY ?? '') as string;
 const DEFAULT_MODEL = 'gpt-5-mini';
 
-// Create a browser-allowed client. The key is expected to be provided via Vite env.
-const client = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
+const STORAGE_KEY = 'websvf-openai-api-key';
+
+export const getApiKey = (): string => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY) || '';
+    return stored || ENV_API_KEY || '';
+  } catch {
+    return ENV_API_KEY || '';
+  }
+};
+
+export const setApiKey = (key: string) => {
+  try {
+    if (key && key.trim()) {
+      localStorage.setItem(STORAGE_KEY, key.trim());
+    }
+  } catch {
+    // no-op
+  }
+};
+
+export const clearApiKey = () => {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // no-op
+  }
+};
+
+export const hasUserApiKey = (): boolean => {
+  try {
+    return !!localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return false;
+  }
+};
 
 export const doOpenAICall = async (
   messages: { role: string; content: string }[],
   model: string = DEFAULT_MODEL,
   context?: string
 ) => {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    throw new Error('OpenAI API key not set. Add it in Settings.');
+  }
+
+  const client = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
+
   // Flatten chat messages into a single input string compatible with the Responses API
   const chatBlock = messages.map((m) => `${m.role}: ${m.content}`).join('\n');
   const input = context

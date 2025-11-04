@@ -84,6 +84,26 @@ Keep the explanation educational for students learning static analysis visualiza
     }
   };
 
+  // Track onboarding-active changes via DOM observers so disabled updates after close
+  const computeActive = () =>
+    typeof document !== 'undefined' &&
+    document.documentElement.dataset.onboardingActive === 'true' &&
+    !!document.querySelector('.interactive-onboarding-overlay');
+  const [onboardingActive, setOnboardingActive] = React.useState<boolean>(computeActive);
+  React.useEffect(() => {
+    const update = () => setOnboardingActive(computeActive());
+    const moAttr = new MutationObserver(update);
+    const moTree = new MutationObserver(update);
+    try {
+      moAttr.observe(document.documentElement, { attributes: true, attributeFilter: ['data-onboarding-active'] });
+      moTree.observe(document.body, { childList: true, subtree: true });
+    } catch {}
+    return () => {
+      moAttr.disconnect();
+      moTree.disconnect();
+    };
+  }, []);
+
   return (
     <div className="tooltip-container">
       <div className="tooltip-trigger">
@@ -95,7 +115,7 @@ Keep the explanation educational for students learning static analysis visualiza
         <div className="tooltip-content">
           {description}
           <div className="tooltip-button-container">
-            <button onClick={handleGraphGPT} className="tooltip-button">
+            <button onClick={handleGraphGPT} className="tooltip-button" disabled={onboardingActive}>
               <span style={{ marginRight: '5px' }}>💡</span>
               Ask CodeGPT for more details
             </button>

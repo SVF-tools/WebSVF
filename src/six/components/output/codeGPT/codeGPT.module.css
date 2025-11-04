@@ -229,6 +229,13 @@
   background-color: var(--muted);
 }
 
+.iconActionButton:disabled,
+.iconActionButton[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(20%);
+}
+
 .iconResetButton {
   background-color: var(--secondary);
   color: var(--secondary-contrast);
@@ -243,6 +250,13 @@
   background-color: var(--primary);
   color: var(--primary-contrast);
   border-color: transparent;
+}
+
+.iconSendButton:disabled,
+.iconSendButton[aria-disabled='true'] {
+  background-color: var(--muted);
+  color: var(--text-color);
+  border-color: var(--border-color);
 }
 
 .iconSendButton:hover {

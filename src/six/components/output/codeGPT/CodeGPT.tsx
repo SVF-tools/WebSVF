@@ -696,10 +696,13 @@ const CodeGPT = ({
               <RefreshIcon fontSize="medium" />
             </button>
             <button
+              id="codegpt-send-button"
               onClick={handleSubmit}
               className={`${styles.iconActionButton} ${styles.iconSendButton}`}
               ref={buttonRef}
               title="Send"
+              disabled={!gptInputQuery.trim()}
+              aria-disabled={!gptInputQuery.trim()}
             >
               <SendIcon fontSize="small" />
             </button>

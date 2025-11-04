@@ -18,6 +18,8 @@ import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from
 import ShareLZSettingsModal from '../../components/shareLZSettingsModal/shareLZSettingsModal';
 import SessionsSidebar from '../../components/multiSession/sessionsSidebar/sessionsSidebar';
 import SessionManager, { Session } from '../../components/multiSession/sessionManager';
+import InteractiveOnboarding from '../../components/onboarding/InteractiveOnboarding';
+import { createTutorialSteps } from '../../components/onboarding/tutorialSteps';
 
 type OutputType = 'Graph' | 'CodeGPT' | 'LLVMIR' | 'Terminal Output' | 'Terminal';
 
@@ -150,6 +152,7 @@ function GraphsPage() {
   const [codeFontSize, setCodeFontSize] = useState(16);
   const [llvmIRFontSize, setLLVMIRFontSize] = useState(16);
   const [terminalOutputFontSize, setTerminalOutputFontSize] = useState(16);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   const [tabPositions, setTabPositions] = useState<Record<OutputType, string>>({
     Graph: 'main',
@@ -252,6 +255,25 @@ function GraphsPage() {
       loadSession(newSession);
     }
   }, [setSessions, loadSession]);
+
+  // Open tutorial automatically on the user's first visit to the 6.0 page
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('websvf-6-visited') === 'true';
+    if (!hasVisited) {
+      localStorage.setItem('websvf-6-visited', 'true');
+      // Show onboarding after a brief delay to let the page settle
+      const timer = setTimeout(() => setShowOnboarding(true), 400);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleOnboardingComplete = () => {
+    setShowOnboarding(false);
+  };
+
+  const handleOnboardingClose = () => {
+    setShowOnboarding(false);
+  };
 
   // Load the session specified in the URL (only when a route param exists)
   const lastRouteRef = useRef<string | undefined>(undefined);
@@ -487,6 +509,8 @@ function GraphsPage() {
   }, [passedPrompt]);
 
   const submitCode = async () => {
+    // Notify onboarding/tutorial that a run has started
+    document.dispatchEvent(new CustomEvent('websvf-run-start'));
     // Immediate feedback toast on submit
     showInfo('Submitting code...', { duration: 1500 });
     const selectedCompileOptionString = selectedCompileOptions
@@ -566,6 +590,9 @@ function GraphsPage() {
       const errorMessage = error instanceof Error ? error.message : 'Failed to submit code';
       setTerminalOutputString(`Error: ${errorMessage}`);
       showError('Backend Error: ' + errorMessage);
+    } finally {
+      // Notify onboarding/tutorial that the run has finished (success or error)
+      document.dispatchEvent(new CustomEvent('websvf-run-finish'));
     }
   };
 
@@ -638,6 +665,7 @@ function GraphsPage() {
   };
 
   const resetDefault = () => {
+    // Reset options to defaults
     setSelectedCompileOptions([
       compileOptions[0],
       compileOptions[1],
@@ -646,6 +674,12 @@ function GraphsPage() {
       compileOptions[4],
     ]);
     setSelectedExecutableOptions([]);
+
+    // Clear analysis outputs
+    setGraphs({});
+    setTerminalOutputString('');
+    setllvmIRString('');
+    setSavedMessages([]);
   };
 
   // Add this to your useEffect that handles URL parameters
@@ -847,6 +881,19 @@ function GraphsPage() {
     }
   }, [createLZStringUrl, openShareModal]);
 
+  // Inform onboarding overlay when a modal (settings/share) is open to avoid double overlays
+  useEffect(() => {
+    const anyModalOpen = settingsOpen || openShareModal;
+    if (anyModalOpen) {
+      document.documentElement.dataset.onboardingModalOpen = 'true';
+    } else {
+      delete document.documentElement.dataset.onboardingModalOpen;
+    }
+    return () => {
+      delete document.documentElement.dataset.onboardingModalOpen;
+    };
+  }, [settingsOpen, openShareModal]);
+
   const handleShareSession = (sessionId: string) => {
     // First ensure all sessions are saved
     saveCurrentSession();
@@ -867,8 +914,43 @@ function GraphsPage() {
     handleOpenShareModal();
   };
 
+  // Generate tutorial steps with current context
+  const tutorialSteps = createTutorialSteps({
+    setCode,
+    setCurrentOutput,
+    submitCode,
+    selectedCompileOptions,
+    setSelectedCompileOptions,
+    selectedExecutableOptions,
+    setSelectedExecutableOptions,
+  });
+
+  // Open onboarding and scroll to top first
+  const handleOpenOnboarding = () => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+    setShowOnboarding(true);
+  };
+
   return (
     <>
+      <InteractiveOnboarding
+        isOpen={showOnboarding}
+        onClose={handleOnboardingClose}
+        onComplete={handleOnboardingComplete}
+        steps={tutorialSteps}
+        currentOutput={currentOutput}
+        setCurrentOutput={setCurrentOutput}
+        setCode={setCode}
+        submitCode={submitCode}
+        selectedCompileOptions={selectedCompileOptions}
+        setSelectedCompileOptions={setSelectedCompileOptions}
+        selectedExecutableOptions={selectedExecutableOptions}
+        setSelectedExecutableOptions={setSelectedExecutableOptions}
+      />
       <ShareLZSettingsModal
         open={openShareModal}
         handleClose={handleCloseShareModal}
@@ -879,6 +961,7 @@ function GraphsPage() {
         setCode={setCode}
         code={code}
         openSettings={() => setSettingsOpen(true)}
+        openOnboarding={handleOpenOnboarding}
       />
       <SettingsModal
         open={settingsOpen}

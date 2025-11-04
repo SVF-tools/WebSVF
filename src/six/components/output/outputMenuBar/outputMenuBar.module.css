@@ -31,3 +31,9 @@
   background-color: var(--primary);
   color: var(--primary-contrast);
 }
+
+.disabledItem {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: auto; /* keep hover style but block via handler */
+}

@@ -12,6 +12,7 @@ interface ConfirmationDialogProps {
   message: string;
   onConfirm: () => void;
   onCancel: () => void;
+  confirmText?: string; // optional label override for confirm button
 }
 
 const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
@@ -20,6 +21,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   message,
   onConfirm,
   onCancel,
+  confirmText = 'Delete',
 }) => {
   return (
     <Dialog
@@ -71,7 +73,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
             '&:hover': { bgcolor: 'var(--danger-hover)' },
           }}
         >
-          Delete
+          {confirmText}
         </Button>
       </DialogActions>
     </Dialog>

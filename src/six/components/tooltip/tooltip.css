@@ -19,20 +19,30 @@
   margin-top: 3px;
   background-color: var(--tooltip-bg);
   color: var(--tooltip-text);
-  padding: 8px 12px;
-  border-radius: 4px;
-  min-width: 250px;
-  max-width: 350px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px 14px;
+  border-radius: 8px;
+  /* Force a generous width: responsive but never tiny */
+  width: clamp(420px, 60vw, 720px);
+  box-sizing: border-box;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
   font-family: inherit;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
   text-align: left;
+  /* Ensure horizontal text flow and sensible wrapping */
+  writing-mode: horizontal-tb;
   white-space: normal;
-  word-wrap: break-word;
+  overflow-wrap: break-word; /* prefer wrapping at spaces */
+  word-break: normal; /* avoid per-letter breaks */
   pointer-events: auto;
   opacity: 0;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+@media (max-width: 720px) {
+  .tooltip-content {
+    width: min(92vw, 720px);
+  }
 }
 
 .tooltip-content::before {
@@ -71,6 +81,11 @@
   width: 100%;
 }
 
+.tooltip-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .tooltip-button:hover {
   background-color: var(--primary-hover);
 }
@@ -100,5 +115,5 @@
   bottom: auto;
   top: 100%; /* Position below the selected value */
   left: 0;
-  min-width: 200px;
+  width: clamp(360px, 50vw, 680px);
 }

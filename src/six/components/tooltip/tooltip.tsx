@@ -57,6 +57,28 @@ const Tooltip: React.FC<TooltipProps> = ({
   optionType,
   setPassedPrompt,
 }) => {
+  // Track whether onboarding is active via DOM observers (so this re-renders on close)
+  const computeActive = () =>
+    typeof document !== 'undefined' &&
+    document.documentElement.dataset.onboardingActive === 'true' &&
+    !!document.querySelector('.interactive-onboarding-overlay');
+  const [onboardingActive, setOnboardingActive] = React.useState<boolean>(computeActive);
+  React.useEffect(() => {
+    const update = () => setOnboardingActive(computeActive());
+    const moAttr = new MutationObserver(update);
+    const moTree = new MutationObserver(update);
+    try {
+      moAttr.observe(document.documentElement, { attributes: true, attributeFilter: ['data-onboarding-active'] });
+      moTree.observe(document.body, { childList: true, subtree: true });
+    } catch {
+      /* no-op */
+    }
+    return () => {
+      moAttr.disconnect();
+      moTree.disconnect();
+    };
+  }, []);
+
   // Function to handle Ask CodeGPT button click
   const handleAskCodeGPT = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -112,7 +134,7 @@ Keep the explanation concise and practical for students learning static analysis
         {content}
         {setPassedPrompt && optionValue && (
           <div className="tooltip-button-container">
-            <button onClick={handleAskCodeGPT} className="tooltip-button">
+            <button onClick={handleAskCodeGPT} className="tooltip-button" disabled={onboardingActive}>
               <span style={{ marginRight: '5px' }}>💡</span>
               Ask CodeGPT for more details
             </button>

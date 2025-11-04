@@ -1,5 +1,5 @@
 // SubmitCodeBar.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SubmitCodeBar.css';
 import CompileOptionsMenu from '../compileOptionsMenu/compileOptionsMenu';
 import Button from '@mui/material/Button';
@@ -7,6 +7,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import ExecutableOptionsMenu from '../executablesOptionsMenu/executablesOptionsMenu';
 import CircularProgress from '@mui/material/CircularProgress';
+import ConfirmationDialog from '../../multiSession/confirmationDialog/confirmationDialog';
 
 interface CompileOption {
   value: string;
@@ -72,6 +73,31 @@ const SubmitCodeBar: React.FC<SubmitCodeBarProps> = ({
     }
   };
 
+  const [resetConfirmOpen, setResetConfirmOpen] = useState(false);
+
+  const handleResetClick = () => {
+    setResetConfirmOpen(true);
+  };
+  const handleResetConfirm = () => {
+    setResetConfirmOpen(false);
+    resetCompileOptions();
+  };
+  const handleResetCancel = () => {
+    setResetConfirmOpen(false);
+  };
+
+  // Inform onboarding overlay to avoid double dark layers when modal is open
+  useEffect(() => {
+    if (resetConfirmOpen) {
+      document.documentElement.dataset.onboardingModalOpen = 'true';
+    } else {
+      delete document.documentElement.dataset.onboardingModalOpen;
+    }
+    return () => {
+      delete document.documentElement.dataset.onboardingModalOpen;
+    };
+  }, [resetConfirmOpen]);
+
   return (
     <>
       <div id="submit-codeBar-container">
@@ -103,7 +129,7 @@ const SubmitCodeBar: React.FC<SubmitCodeBarProps> = ({
               size="medium"
               variant="contained"
               color="secondary"
-              onClick={resetCompileOptions}
+              onClick={handleResetClick}
               startIcon={<RestartAltIcon />}
               className="action-button reset-button"
             >
@@ -126,6 +152,14 @@ const SubmitCodeBar: React.FC<SubmitCodeBarProps> = ({
           </div>
         </div>
       </div>
+      <ConfirmationDialog
+        open={resetConfirmOpen}
+        title="Reset Workspace"
+        message="This will clear graphs, terminal output, LLVM IR, and CodeGPT conversation, and reset your compile and executable options. Continue?"
+        onConfirm={handleResetConfirm}
+        onCancel={handleResetCancel}
+        confirmText="Reset"
+      />
     </>
   );
 };

@@ -18,6 +18,7 @@ const style = {
   boxShadow: '0 12px 32px rgba(0,0,0,0.35)',
   borderRadius: 12,
   p: 4,
+  zIndex: 10005, // ensure content sits above MUI backdrop
 };
 
 export default function ShareLZSettingsModal({
@@ -49,6 +50,12 @@ export default function ShareLZSettingsModal({
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{
+          '& .MuiModal-backdrop': {
+            zIndex: 10004,
+          },
+        }}
+        style={{ zIndex: 10005 }}
       >
         <Box sx={style}>
           <Typography

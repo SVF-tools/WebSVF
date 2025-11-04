@@ -78,12 +78,14 @@ const ExecutableOptionsMenu: React.FC<ExecutableOptionsMenuProps> = ({
     }),
     menuPortal: (base) => ({
       ...base,
-      zIndex: 9999,
+      // Ensure dropdown renders above onboarding backdrop (z-index: 10000)
+      zIndex: 10008,
     }),
     menu: (provided) => ({
       ...provided,
       overflow: 'visible',
-      zIndex: 9999,
+      // Keep menu above overlay/backdrop but below tooltip (10010)
+      zIndex: 10008,
       backgroundColor: 'var(--surface)',
       color: 'var(--text-color)',
       border: '1px solid var(--border-color)',
