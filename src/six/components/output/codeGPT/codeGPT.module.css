@@ -17,7 +17,7 @@
   position: sticky;
   bottom: 0;
   background-color: var(--submit-codebar-bg-color);
-  z-index: 1;
+  z-index: 100; /* keep footer and its tooltips above content */
   padding: 20px;
 }
 
@@ -79,6 +79,7 @@
 
 .messageRow.assistant {
   justify-content: flex-start;
+  background: transparent !important; /* ensure row itself never paints background */
 }
 
 .messageRow.user {
@@ -92,12 +93,14 @@
   border-radius: 12px;
   line-height: 1.6;
   position: relative;
-  padding-right: 52px; /* leave space for copy icon */
+  padding-right: 44px; /* add a bit more space for the copy icon */
+  overflow: hidden; /* clip inner backgrounds to rounded corners */
+  background-clip: padding-box; /* prevent bleed under border */
 }
 
 .assistant {
   text-align: left;
-  background-color: var(--chat-assistant-bg, var(--surface-2));
+  background: transparent !important; /* row must be transparent; bubble paints surface */
 }
 
 .userMessage {
@@ -106,6 +109,16 @@
 
 .assistantMessage {
   padding: 0; /* inner message container handles padding */
+  background: transparent !important; /* prevent any background leak */
+  color: inherit;
+}
+
+/* Tighten default paragraph spacing inside assistant messages */
+.assistantMessage p:first-child {
+  margin-top: 0;
+}
+.assistantMessage p:last-child {
+  margin-bottom: 0;
 }
 
 /* Bubble surfaces */
@@ -129,21 +142,50 @@
   margin-left: 2px;
 }
 
-.copyButton {
+.copyContainer {
   position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 28px;
-  height: 28px;
+  top: 12px; /* more spacing from top */
+  right: 14px; /* more spacing from right edge */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
+}
+
+.copyButton {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: none; /* remove border */
   background-color: transparent;
   color: var(--text-color);
   cursor: pointer;
-  z-index: 1;
+}
+
+/* Tooltip for copy button */
+.copyTooltip {
+  visibility: hidden;
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  text-align: center;
+  border-radius: 6px;
+  padding: 4px 8px;
+  position: absolute;
+  z-index: 1200;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.copyContainer:hover .copyTooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .copyButton:hover {
@@ -152,7 +194,7 @@
 
 .codegptInputContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* align buttons to the top of the textarea */
   gap: 10px;
 }
 
@@ -168,8 +210,40 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   margin-left: 6px;
+  align-self: flex-start; /* keep buttons aligned with the textarea top even when attachments show */
+}
+
+/* Tooltip-style labels (match navbar behavior) */
+.iconContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  text-align: center;
+  border-radius: 6px;
+  padding: 4px 8px;
+  position: absolute;
+  z-index: 1200; /* above most app content */
+  top: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.iconContainer:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .codegptTextarea {
@@ -189,7 +263,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 28px;
+  min-height: 24px; /* slightly smaller to reduce visual shift */
   flex-wrap: wrap;
 }
 
@@ -229,6 +303,13 @@
   background-color: var(--muted);
 }
 
+.iconActionButton:disabled,
+.iconActionButton[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(20%);
+}
+
 .iconResetButton {
   background-color: var(--secondary);
   color: var(--secondary-contrast);
@@ -243,6 +324,13 @@
   background-color: var(--primary);
   color: var(--primary-contrast);
   border-color: transparent;
+}
+
+.iconSendButton:disabled,
+.iconSendButton[aria-disabled='true'] {
+  background-color: var(--muted);
+  color: var(--text-color);
+  border-color: var(--border-color);
 }
 
 .iconSendButton:hover {

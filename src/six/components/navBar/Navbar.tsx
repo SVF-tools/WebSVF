@@ -5,6 +5,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import './navbar.css';
 import { ImportExport, Publish } from '@mui/icons-material';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import readFile from '../importExport/importExport';
 
 function Navbar({
@@ -12,11 +13,13 @@ function Navbar({
   setCode,
   code,
   openSettings,
+  openOnboarding,
 }: {
   openShare: () => void;
   setCode: (code: string) => void;
   code: string;
   openSettings: () => void;
+  openOnboarding?: () => void;
 }) {
   const [theme, setTheme] = useState('light');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -137,12 +140,12 @@ function Navbar({
       </div>
       <div className="nav-actions">
         <div className="icon-container">
-          <Publish className="nav-icon" onClick={handleExportClick} />
+          <Publish id="export-icon" className="nav-icon" onClick={handleExportClick} />
           <span className="tooltip">Export Code</span>
         </div>
 
         <div className="icon-container">
-          <ImportExport className="nav-icon" onClick={handleImportClick} />
+          <ImportExport id="import-icon" className="nav-icon" onClick={handleImportClick} />
           <span className="tooltip">Import Code</span>
         </div>
 
@@ -155,6 +158,17 @@ function Navbar({
           <SettingsIcon id="settings-icon" onClick={openSettings} />
           <span className="tooltip">Settings</span>
         </div>
+
+        {openOnboarding && (
+          <div className="icon-container">
+            <HelpOutlineIcon
+              id="help-icon"
+              onClick={openOnboarding}
+              style={{ cursor: 'pointer' }}
+            />
+            <span className="tooltip">Help / Tutorial</span>
+          </div>
+        )}
 
         <div className="icon-container">
           <a

@@ -16,7 +16,7 @@ export const compileOptionDescriptions: Record<string, string> = {
 };
 
 export const executableOptionDescriptions: Record<string, string> = {
-  mta: 'Multi-Thread Analysis. Analyzes concurrent programs to detect potential thread-related issues like race conditions and deadlocks.',
+  mta: 'Multi-Thread Analysis. Analyses concurrent programs to detect potential thread-related issues like race conditions and deadlocks.',
   saber:
     'Memory Leak Detector. Identifies memory that is allocated but never freed, causing memory leaks in your program.',
   'ae -overflow':
@@ -24,7 +24,7 @@ export const executableOptionDescriptions: Record<string, string> = {
   'ae -null-deref':
     'Null Dereference Detector. Identifies places where a null pointer could be dereferenced in your program, helping prevent crashes and undefined behavior.',
   wpa: 'Whole Program Pointer Analysis. Performs comprehensive pointer analysis across the entire program to build accurate points-to relationships.',
-  dvf: 'On-Demand Value Flow Analysis. Performs value-flow analysis on demand, analyzing only the parts of the program relevant to specific queries for efficiency.',
+  dvf: 'On-Demand Value Flow Analysis. Performs value-flow analysis on demand, analysing only the parts of the program relevant to specific queries for efficiency.',
 };
 
 // Helper function to add descriptions to option objects

@@ -28,7 +28,7 @@ VFGs represent the flow of values through program variables. Nodes are statement
 
   pag: `Here's some background about PAG (Program Assignment Graph) to help with your explanation:
 
-PAGs represent assignment constraints between program variables. Nodes are pointers/objects, edges are dependence/constraint relations between nodes. Unlike constraint graphs, PAGs are static and cannot be modified. They help analyze data dependencies within programs, define definition-use relations between variables, and are essential for identifying pointer relations and memory errors.`,
+PAGs represent assignment constraints between program variables. Nodes are pointers/objects, edges are dependence/constraint relations between nodes. Unlike constraint graphs, PAGs are static and cannot be modified. They help analyse data dependencies within programs, define definition-use relations between variables, and are essential for identifying pointer relations and memory errors.`,
 
   ptacg: `Here's some background about PTACG (Points-to Analysis Call Graph) to help with your explanation:
 
@@ -61,6 +61,24 @@ const GraphButton: React.FC<GraphButtonProps> = ({
   const displayName = graphKey.replace(/\.dot$/, '');
   const description = GRAPH_DESCRIPTIONS[displayName] || `Analysis graph: ${displayName}`;
 
+  // Controlled tooltip visibility with small leave delay to allow moving cursor
+  const [open, setOpen] = React.useState(false);
+  const hideTimer = React.useRef<number | null>(null);
+  const clearHideTimer = () => {
+    if (hideTimer.current) {
+      window.clearTimeout(hideTimer.current);
+      hideTimer.current = null;
+    }
+  };
+  const onEnter = () => {
+    clearHideTimer();
+    setOpen(true);
+  };
+  const onLeave = () => {
+    clearHideTimer();
+    hideTimer.current = window.setTimeout(() => setOpen(false), 130);
+  };
+
   // Handle Ask CodeGPT for graphs with simple instruction
   const handleGraphGPT = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -84,18 +102,57 @@ Keep the explanation educational for students learning static analysis visualiza
     }
   };
 
+  // Track onboarding-active changes via DOM observers so disabled updates after close
+  const computeActive = () =>
+    typeof document !== 'undefined' &&
+    document.documentElement.dataset.onboardingActive === 'true' &&
+    !!document.querySelector('.interactive-onboarding-overlay');
+  const [onboardingActive, setOnboardingActive] = React.useState<boolean>(computeActive);
+  React.useEffect(() => {
+    const update = () => setOnboardingActive(computeActive());
+    const moAttr = new MutationObserver(update);
+    const moTree = new MutationObserver(update);
+    try {
+      moAttr.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-onboarding-active'],
+      });
+      moTree.observe(document.body, { childList: true, subtree: true });
+    } catch {
+      // Ignore errors if elements not available
+    }
+    return () => {
+      moAttr.disconnect();
+      moTree.disconnect();
+    };
+  }, []);
+
+  // Close the small tooltip whenever onboarding is active
+  React.useEffect(() => {
+    if (onboardingActive) setOpen(false);
+  }, [onboardingActive]);
+
   return (
-    <div className="tooltip-container">
+    <div className="tooltip-container" onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <div className="tooltip-trigger">
-        <button className={`graph-button ${isSelected ? 'selected' : ''}`} onClick={onClick}>
+        <button
+          className={`graph-button ${isSelected ? 'selected' : ''}`}
+          onClick={onClick}
+          aria-describedby={`graph-tip-${displayName}`}
+        >
           {displayName}
         </button>
       </div>
-      {setPassedPrompt && (
-        <div className="tooltip-content">
+      {setPassedPrompt && !onboardingActive && (
+        <div
+          id={`graph-tip-${displayName}`}
+          className={`tooltip-content ${open ? 'visible' : ''}`}
+          onMouseEnter={onEnter}
+          onMouseLeave={onLeave}
+        >
           {description}
           <div className="tooltip-button-container">
-            <button onClick={handleGraphGPT} className="tooltip-button">
+            <button onClick={handleGraphGPT} className="tooltip-button" disabled={onboardingActive}>
               <span style={{ marginRight: '5px' }}>💡</span>
               Ask CodeGPT for more details
             </button>

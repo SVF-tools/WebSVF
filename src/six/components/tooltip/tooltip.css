@@ -10,44 +10,60 @@
   border-bottom: 1px dotted var(--border-color);
 }
 
-.tooltip-content {
+.tooltip-container .tooltip-content {
   visibility: hidden;
   position: absolute;
   z-index: 9999;
   left: 0;
-  top: 100%;
-  margin-top: 3px;
+  /* Place tooltip ABOVE the trigger to avoid covering controls below */
+  bottom: calc(100% + 6px);
+  top: auto;
   background-color: var(--tooltip-bg);
   color: var(--tooltip-text);
-  padding: 8px 12px;
-  border-radius: 4px;
-  min-width: 250px;
-  max-width: 350px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px 14px;
+  border-radius: 8px;
+  /* Force a generous width: responsive but never tiny */
+  width: clamp(420px, 60vw, 720px);
+  box-sizing: border-box;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
   font-family: inherit;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
   text-align: left;
+  /* Ensure horizontal text flow and sensible wrapping */
+  writing-mode: horizontal-tb;
   white-space: normal;
-  word-wrap: break-word;
-  pointer-events: auto;
+  overflow-wrap: break-word; /* prefer wrapping at spaces */
+  word-break: normal; /* avoid per-letter breaks */
+  /* Let clicks pass through the tooltip so it never blocks controls below */
+  pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transform: translateY(-4px);
 }
 
-.tooltip-content::before {
+@media (max-width: 720px) {
+  .tooltip-container .tooltip-content {
+    width: min(92vw, 720px);
+  }
+}
+
+.tooltip-container .tooltip-content::before {
   content: '';
   position: absolute;
-  bottom: 100%;
+  top: 100%;
   left: 10px;
-  border-width: 5px;
+  border-width: 6px;
   border-style: solid;
-  border-color: transparent transparent var(--tooltip-bg) transparent;
+  border-color: var(--tooltip-bg) transparent transparent transparent;
 }
 
-.tooltip-container:hover .tooltip-content {
+.tooltip-container:hover .tooltip-content,
+.tooltip-container .tooltip-content.visible {
   visibility: visible;
   opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; /* clickable when visible */
 }
 
 .tooltip-button-container {
@@ -55,9 +71,13 @@
   padding-top: 6px;
   border-top: 1px solid #555;
   text-align: center;
+  /* Re-enable pointer events inside the button area */
+  pointer-events: auto;
 }
 
 .tooltip-button {
+  /* Ensure the actual button is clickable */
+  pointer-events: auto;
   background-color: var(--primary);
   color: var(--primary-contrast);
   border: none;
@@ -69,6 +89,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.tooltip-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .tooltip-button:hover {
@@ -100,5 +125,5 @@
   bottom: auto;
   top: 100%; /* Position below the selected value */
   left: 0;
-  min-width: 200px;
+  width: clamp(360px, 50vw, 680px);
 }

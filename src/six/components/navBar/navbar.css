@@ -37,7 +37,8 @@
 }
 
 #settings-icon,
-#share-icon {
+#share-icon,
+#help-icon {
   cursor: pointer;
   color: var(--icon-color);
 }
