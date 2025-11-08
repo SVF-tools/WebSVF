@@ -259,41 +259,44 @@ function GraphsPage() {
   ]);
 
   // Session Management Functions
-  const loadSession = useCallback((session: Session) => {
-    setCode(
-      session.code && session.code.trim() !== ''
-        ? session.code
-        : lang == 'c'
-        ? DEFAULT_C_CODE
-        : DEFAULT_CPP_CODE
-    );
-    const sessionLang = session.language || DEFAULT_LANG;
-    setLang(sessionLang);
-    const raw = localStorage.getItem('websvf-shortcuts');
-    if (raw) {
-      setShortcuts(JSON.parse(raw));
-    } else {
-      setShortcuts(DEFAULT_SHORTCUTS);
-    }
-    setSelectedCompileOptions(session.selectedCompileOptions);
-    setSelectedExecutableOptions(session.selectedExecutableOptions || []);
-    setLineNumDetails(session.lineNumDetails);
-    setGraphs(session.graphs);
-    setTerminalOutputString(session.terminalOutput);
-    setllvmIRString(session.llvmIR);
-    setSavedMessages(session.savedMessages || []); // Add this line
-    setCurrentOutput(session.currentOutput || 'Graph');
-    setlineNumToHighlight(new Set(session.lineNumToHighlight || []));
-    setTabPositions(
-      session.tabPositions || {
-        Graph: 'main',
-        'Terminal Output': 'main',
-        CodeGPT: 'main',
-        LLVMIR: 'main',
-        Terminal: 'main',
+  const loadSession = useCallback(
+    (session: Session) => {
+      setCode(
+        session.code && session.code.trim() !== ''
+          ? session.code
+          : lang == 'c'
+          ? DEFAULT_C_CODE
+          : DEFAULT_CPP_CODE
+      );
+      const sessionLang = session.language || DEFAULT_LANG;
+      setLang(sessionLang);
+      const raw = localStorage.getItem('websvf-shortcuts');
+      if (raw) {
+        setShortcuts(JSON.parse(raw));
+      } else {
+        setShortcuts(DEFAULT_SHORTCUTS);
       }
-    );
-  }, []);
+      setSelectedCompileOptions(session.selectedCompileOptions);
+      setSelectedExecutableOptions(session.selectedExecutableOptions || []);
+      setLineNumDetails(session.lineNumDetails);
+      setGraphs(session.graphs);
+      setTerminalOutputString(session.terminalOutput);
+      setllvmIRString(session.llvmIR);
+      setSavedMessages(session.savedMessages || []); // Add this line
+      setCurrentOutput(session.currentOutput || 'Graph');
+      setlineNumToHighlight(new Set(session.lineNumToHighlight || []));
+      setTabPositions(
+        session.tabPositions || {
+          Graph: 'main',
+          'Terminal Output': 'main',
+          CodeGPT: 'main',
+          LLVMIR: 'main',
+          Terminal: 'main',
+        }
+      );
+    },
+    [lang]
+  );
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const handlers: Partial<Record<keyof Shortcuts, () => void>> = {

@@ -13,7 +13,7 @@ type Handlers = Partial<Record<keyof Shortcuts, () => void>>;
  */
 export default function useMousetrap(shortcuts: Shortcuts, handlers: Handlers) {
   useEffect(() => {
-    const bound: { combo: string; fn: (e: KeyboardEvent) => any }[] = [];
+    const bound: { combo: string; fn: (e: KeyboardEvent) => boolean }[] = [];
 
     (Object.keys(shortcuts) as (keyof Shortcuts)[]).forEach((action) => {
       const combo = shortcuts[action];

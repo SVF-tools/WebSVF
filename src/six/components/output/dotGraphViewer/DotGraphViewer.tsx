@@ -3,6 +3,51 @@ import { Graphviz } from 'graphviz-react';
 import './dotGraphViewer.css';
 import GraphButton from '../../tooltip/GraphButton';
 
+class GraphvizErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback: React.ReactNode; onError?: () => void },
+  { hasError: boolean }
+> {
+  constructor(props: {
+    children: React.ReactNode;
+    fallback: React.ReactNode;
+    onError?: () => void;
+  }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error) {
+    console.error('Graphviz rendering error:', error);
+    // Call onError synchronously after state is set
+    setTimeout(() => {
+      if (this.props.onError) {
+        this.props.onError();
+      }
+    }, 0);
+  }
+
+  componentDidUpdate(
+    _prevProps: { children: React.ReactNode; fallback: React.ReactNode; onError?: () => void },
+    prevState: { hasError: boolean }
+  ) {
+    // If error state changed to true, notify parent immediately
+    if (!prevState.hasError && this.state.hasError && this.props.onError) {
+      this.props.onError();
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
 // Helper function to determine default node colors based on SVF node types
 const getDefaultNodeColor = (nodeString: string): string | null => {
   if (nodeString.includes('FunEntryBlockNode') || nodeString.includes('FormalParmVFGNode')) {
@@ -502,6 +547,7 @@ const DotGraphViewer: React.FC<DotGraphViewerProps> = ({
       setlineNumToHighlight(new Set());
       processedKeyRef.current = '';
       lastHighlightSigRef.current = '';
+      setHasRenderError(false);
       setGraphString(graphObj[graphKey]);
       setCurrentGraph(graphKey);
     }
@@ -511,6 +557,7 @@ const DotGraphViewer: React.FC<DotGraphViewerProps> = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const fsBodyRef = useRef<HTMLDivElement | null>(null);
   const [fsSize, setFsSize] = useState<{ w: number; h: number }>({ w: 0, h: 0 });
+  const [hasRenderError, setHasRenderError] = useState(false);
 
   const resetZoom = useCallback(() => {
     // Force a re-render of the Graphviz component to reset zoom/fit
@@ -539,6 +586,31 @@ const DotGraphViewer: React.FC<DotGraphViewerProps> = ({
     link.download = `${(currentGraph || 'graph').replace(/[^a-z0-9_-]/gi, '_')}.svg`;
     link.click();
   };
+
+  const downloadDotFile = () => {
+    if (!graphString) return;
+    const blob = new Blob([graphString], { type: 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${(currentGraph || 'graph').replace(/[^a-z0-9_-]/gi, '_')}.dot`;
+    link.click();
+  };
+
+  const renderGraphErrorFallback = (
+    <div className="empty-state" role="alert" aria-live="assertive" style={{ padding: '2rem' }}>
+      <div className="empty-icon" aria-hidden>
+        ⚠️
+      </div>
+      <div className="empty-title">Graph too large to render</div>
+      <div className="empty-subtitle" style={{ wordWrap: 'break-word', whiteSpace: 'normal' }}>
+        This graph exceeds browser memory limits. Download the DOT file to view it with a desktop
+        tool like Graphviz or GraphvizOnline.
+      </div>
+      <div style={{ marginTop: '1rem' }}>
+        <button onClick={downloadDotFile}>Download .dot file</button>
+      </div>
+    </div>
+  );
 
   // Track fullscreen container size to stretch graph to fit
   useEffect(() => {
@@ -575,25 +647,35 @@ const DotGraphViewer: React.FC<DotGraphViewerProps> = ({
         </div>
         <div id="graph-container">
           <div id="graphcontainer-menu-bar">
-            <button onClick={resetZoom}>Reset Zoom</button>
-            <button onClick={exportGraphAsSVG}>Export as SVG</button>
-            <button onClick={() => setIsFullscreen(true)}>Fullscreen</button>
+            <button onClick={resetZoom} disabled={hasRenderError}>
+              Reset Zoom
+            </button>
+            <button onClick={exportGraphAsSVG} disabled={hasRenderError}>
+              Export as SVG
+            </button>
+            <button onClick={() => setIsFullscreen(true)} disabled={hasRenderError}>
+              Fullscreen
+            </button>
           </div>
           <div ref={graphRef} id="graphviz-container">
             {graphString ? (
-              <Graphviz
+              <GraphvizErrorBoundary
                 key={`${currentGraph}-${graphString.length}-${renderVersion}`}
-                dot={graphString}
-                options={{
-                  zoom: true,
-                  width: graphWidth,
-                  height: graphHeight,
-                  useWorker: false,
-                  fit: true,
-                  // zoomScaleExtent: [0.5, 2],
-                  // zoomTranslateExtent: [[-1000, -1000], [1000, 1000]],
-                }}
-              />
+                fallback={renderGraphErrorFallback}
+                onError={() => setHasRenderError(true)}
+              >
+                <Graphviz
+                  key={`gv-${currentGraph}-${graphString.length}-${renderVersion}`}
+                  dot={graphString}
+                  options={{
+                    zoom: true,
+                    width: graphWidth,
+                    height: graphHeight,
+                    useWorker: false,
+                    fit: true,
+                  }}
+                />
+              </GraphvizErrorBoundary>
             ) : (
               <div className="empty-state" role="status" aria-live="polite">
                 <div className="empty-icon" aria-hidden>
@@ -621,17 +703,19 @@ const DotGraphViewer: React.FC<DotGraphViewerProps> = ({
             </div>
             <div className="graph-fullscreen-body" ref={fsBodyRef}>
               {graphString ? (
-                <Graphviz
-                  key={`fs-${currentGraph}-${graphString.length}-${renderVersion}`}
-                  dot={graphString}
-                  options={{
-                    zoom: true,
-                    width: fsSize.w || undefined,
-                    height: fsSize.h || undefined,
-                    useWorker: false,
-                    fit: true,
-                  }}
-                />
+                <GraphvizErrorBoundary fallback={renderGraphErrorFallback}>
+                  <Graphviz
+                    key={`fs-${currentGraph}-${graphString.length}-${renderVersion}`}
+                    dot={graphString}
+                    options={{
+                      zoom: true,
+                      width: fsSize.w || undefined,
+                      height: fsSize.h || undefined,
+                      useWorker: false,
+                      fit: true,
+                    }}
+                  />
+                </GraphvizErrorBoundary>
               ) : (
                 <div className="empty-state" role="status" aria-live="polite">
                   <div className="empty-icon" aria-hidden>

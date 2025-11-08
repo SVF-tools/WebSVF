@@ -42,7 +42,7 @@ const SessionManager = {
       const parsed = JSON.parse(raw);
       // Ensure we always return an array and that each session has a language (migrate older sessions)
       if (!Array.isArray(parsed)) return [];
-      return parsed.map((s: any) => ({
+      return parsed.map((s: Session) => ({
         ...s,
         language: s.language || 'c',
       })) as Session[];

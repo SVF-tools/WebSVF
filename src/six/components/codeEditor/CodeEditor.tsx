@@ -5,6 +5,7 @@ import './styles.css';
 import FontSizeMenu from '../fontSizeMenu/FontSizeMenu';
 import LanguageSelector from '../languageSelector/LanguageSelector';
 import DefaultCodeModal from '../defaultCodeModal/DefaultCodeModal';
+import { DEFAULT_C_CODE, DEFAULT_CPP_CODE } from '../../pages/graphs/graphsPage';
 
 interface CodeEditorProps {
   code: string;
@@ -236,7 +237,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
       return markers;
     }
     return [];
-  }, [codeError]);
+  }, [codeError, lang]);
 
   useEffect(() => {
     if (editorRef.current) {
@@ -247,7 +248,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         setEditorKey((prevKey) => prevKey + 1);
       }
     }
-  }, [codeError, applyMarkers]);
+  }, [codeError, applyMarkers, lang]);
 
   useEffect(() => {
     if (!monacoInstance || !editorRef.current) return;
@@ -517,7 +518,18 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
               if (onExternalFontSizeChange) onExternalFontSizeChange(size);
             }}
           />
-          <LanguageSelector lang={lang} setLang={setLang} />
+          <LanguageSelector
+            lang={lang}
+            setLang={setLang}
+            onSwitchToDefaultCode={(newLang) => {
+              const defaultCode = newLang === 'c' ? DEFAULT_C_CODE : DEFAULT_CPP_CODE;
+              setCode(defaultCode);
+              if (editorRef.current) {
+                const model = editorRef.current.getModel();
+                if (model) model.setValue(defaultCode);
+              }
+            }}
+          />
           <button
             type="button"
             title="Reset editor to default code"

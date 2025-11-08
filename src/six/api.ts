@@ -1,13 +1,16 @@
+// Configure API URL based on environment
+const isDevelopment = process.env.NODE_ENV !== 'production';
+export const API_BASE_URL = isDevelopment
+  ? 'http://localhost:8080'
+  : 'https://api-broken-moon.fly.dev';
+
 const submitCodeFetch = async (
   code: string,
   compileOptions: string,
   executables: string[],
   language: string
 ) => {
-  // Configure API URL based on environment
-  const isDevelopment = process.env.NODE_ENV !== 'production';
-  const baseUrl = isDevelopment ? 'http://localhost:8080' : 'https://api-broken-moon.fly.dev';
-  const url = `${baseUrl}/api/controller`;
+  const url = `${API_BASE_URL}/api/controller`;
 
   // Define the request body with correct field names (lowercase to match backend)
   const requestBody = {

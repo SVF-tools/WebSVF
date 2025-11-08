@@ -149,10 +149,17 @@
   cursor: pointer;
 }
 
-#graphcontainer-menu-bar button:hover {
+#graphcontainer-menu-bar button:hover:not(:disabled) {
   background: var(--primary);
   color: var(--primary-contrast);
   border-color: transparent;
+}
+
+#graphcontainer-menu-bar button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--muted);
+  color: var(--text-color);
 }
 
 /* Widen and center tooltips used in graph selection area (CSS-only) */
