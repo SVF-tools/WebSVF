@@ -261,7 +261,13 @@ export default function SettingsModal({
                         aria-label="Save API key"
                         onClick={handleSaveApiKey}
                         edge="end"
-                        sx={{ color: 'var(--text-color)', ml: 0.5 }}
+                        sx={{
+                          color: 'rgba(255, 255, 255, 0.7)',
+                          ml: 0.5,
+                          '&.Mui-disabled': {
+                            color: 'rgba(255, 255, 255, 0.3)',
+                          },
+                        }}
                         disabled={!apiKey.trim()}
                       >
                         <Save />
