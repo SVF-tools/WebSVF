@@ -188,7 +188,7 @@ def run_svf_tools(ll_file: str, extra_executables: List[str]) -> tuple[str, str]
 
     return "\n".join(output_lines), "\n".join(errors)
 
-def compile_code_to_llvm(source_code: str, compile_options: str = "", language: str = "c") -> tuple[bool, str, str]:
+def compile_code_to_llvm(source_code: str, compile_options: str = "", language: str = "c"):
     """
     Compile C or C++ source to LLVM IR.
     Returns: (success, llvm_content, stderr)
