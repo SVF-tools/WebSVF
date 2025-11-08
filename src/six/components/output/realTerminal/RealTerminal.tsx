@@ -85,7 +85,7 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
         ? `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${
             window.location.host
           }/ws/terminal`
-        : 'wss://api-broken-moon-5814.fly.dev/ws/terminal';
+        : 'wss://api-broken-moon.fly.dev/ws/terminal';
       const sid = sidRef.current;
       const url = sid ? `${base}?sid=${encodeURIComponent(sid)}` : base;
       const ws = new WebSocket(url);
