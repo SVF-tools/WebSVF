@@ -3,6 +3,7 @@ import Editor, { OnMount, useMonaco } from '@monaco-editor/react';
 import * as monaco from 'monaco-editor';
 import './styles.css';
 import FontSizeMenu from '../fontSizeMenu/FontSizeMenu';
+import LanguageSelector from '../languageSelector/LanguageSelector';
 
 interface CodeEditorProps {
   code: string;
@@ -14,6 +15,8 @@ interface CodeEditorProps {
   setPassedPrompt: (prompt: string) => void;
   externalFontSize?: number;
   onExternalFontSizeChange?: (size: number) => void;
+  lang: string;
+  setLang: (lang: string) => void;
 }
 
 const CodeEditor: React.FC<CodeEditorProps> = ({
@@ -26,8 +29,12 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   setPassedPrompt,
   externalFontSize,
   onExternalFontSizeChange,
+  lang,
+  setLang,
 }) => {
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+  const monacoInstance = useMonaco();
+
   const [fontSize, setFontSize] = useState(16);
   const [useLocalFontSize, setUseLocalFontSize] = useState(false);
   useState<monaco.editor.IEditorDecorationsCollection | null>(null);
@@ -40,16 +47,16 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 
   const handleEditorDidMount: OnMount = (editor, monaco) => {
     editorRef.current = editor;
-    const model = monaco.editor.createModel(code, 'c', monaco.Uri.parse('inmemory://test_script'));
+    const model = monaco.editor.createModel(code, lang, monaco.Uri.parse('inmemory://test_script'));
     editor.setModel(model);
     decorationsRef.current = editor.createDecorationsCollection();
     editor.updateOptions({
       fontSize: useLocalFontSize ? fontSize : externalFontSize ?? fontSize,
       renderValidationDecorations: 'on',
     });
-    monaco.languages.register({ id: 'c' });
+    monaco.languages.register({ id: lang });
 
-    monaco.languages.setLanguageConfiguration('c', {});
+    monaco.languages.setLanguageConfiguration(lang, {});
 
     editor.onDidChangeModelContent(() => {
       const value = editor.getValue();
@@ -62,7 +69,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
       setCurrCodeLineNum(lineNum);
     });
     const markers = applyMarkers();
-    monaco.editor.setModelMarkers(model, 'c', markers);
+    monaco.editor.setModelMarkers(model, lang, markers);
 
     // Register the ask code gpt command
     monaco.editor.registerCommand('askCodeGPTCommand', (_accessor, ...args) => {
@@ -76,7 +83,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
       codeActionProviderRef.current.dispose();
     }
 
-    codeActionProviderRef.current = monaco.languages.registerCodeActionProvider('c', {
+    codeActionProviderRef.current = monaco.languages.registerCodeActionProvider(lang, {
       provideCodeActions: (model, range) => {
         const markers = monaco.editor.getModelMarkers({ resource: model.uri });
         const relevantMarker = markers.find(
@@ -164,16 +171,16 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   };
   // Adds the red squigly line on the code editor indicating an error or warning to line of code
   const applyMarkers = useCallback((): monaco.editor.IMarkerData[] => {
-    monaco.languages.register({ id: 'c' });
+    monaco.languages.register({ id: lang });
 
-    monaco.languages.setLanguageConfiguration('c', {
+    monaco.languages.setLanguageConfiguration(lang, {
       // Ensure C language supports diagnostics markers
     });
     if (editorRef.current && codeError.length !== 0) {
       const model = editorRef.current.getModel();
       // Clear any previous markers
       if (model) {
-        monaco.editor.setModelMarkers(model, 'c', []);
+        monaco.editor.setModelMarkers(model, lang, []);
       }
 
       const lnRegexcl = /ln:\s*(\d+)\s*cl:\s*(\d+)/;
@@ -211,7 +218,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           const safeEndColumn = lineLength + 1;
           markers.push({
             code: undefined,
-            source: 'c',
+            source: lang,
             startLineNumber: lnNum,
             startColumn: safeStartColumn,
             endLineNumber: lnNum,
@@ -231,11 +238,32 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
       const model = editorRef.current.getModel();
       if (model) {
         const markers = applyMarkers();
-        monaco.editor.setModelMarkers(model, 'c', markers);
+        monaco.editor.setModelMarkers(model, lang, markers);
         setEditorKey((prevKey) => prevKey + 1);
       }
     }
   }, [codeError, applyMarkers]);
+
+  useEffect(() => {
+    if (!monacoInstance || !editorRef.current) return;
+    const model = editorRef.current.getModel();
+    if (!model) return;
+
+    // change model language (this updates syntax highlighting)
+    monacoInstance.editor.setModelLanguage(model, lang);
+
+    // re-register / update any language-specific config you rely on
+    try {
+      monacoInstance.languages.register({ id: lang });
+      monacoInstance.languages.setLanguageConfiguration(lang, {});
+    } catch {
+      // ignore if registration fails (some languages are built-in)
+    }
+
+    // If you have code-action providers or diagnostics registered per-language,
+    // you should re-register/refresh them here (dispose old providers if needed).
+    // e.g. dispose existing provider refs and create new ones bound to `monacoLang`.
+  }, [lang, monacoInstance]);
 
   // Used to detect for any changes in code
   // This is needed for when lz string compression calls setcode
@@ -390,7 +418,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   }, []);
 
   const [theme, setTheme] = useState<string>('websvf-light'); // Monaco theme name
-  const monacoInstance = useMonaco();
 
   // Create a Monaco theme that follows CSS variables
   const normalizeHex = (value: string, fallback: string) => {
@@ -471,7 +498,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   return (
     <>
       <div>
-        <div id="codeEditor-fontSize-container">
+        <div
+          id="codeEditor-fontSize-container"
+          style={{ display: 'flex', alignItems: 'center', gap: 8 }}
+        >
           <FontSizeMenu
             fontSize={effectiveFontSize}
             setFontSize={(size: number) => {
@@ -482,11 +512,12 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
               if (onExternalFontSizeChange) onExternalFontSizeChange(size);
             }}
           />
+          <LanguageSelector lang={lang} setLang={setLang} />
         </div>
         <Editor
           key={editorKey}
           height="90vh"
-          language="c"
+          language={lang}
           theme={theme}
           value={code}
           onMount={handleEditorDidMount}

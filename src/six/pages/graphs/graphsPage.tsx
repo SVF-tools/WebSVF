@@ -34,8 +34,10 @@ interface compileOption {
   label: string;
 }
 
+const DEFAULT_LANG = 'c';
+
 // Fallback default code for empty sessions (matches SessionManager)
-const DEFAULT_CODE = `#include <stdio.h>
+const DEFAULT_C_CODE = `#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct {
@@ -70,6 +72,29 @@ int main() {
     return 0;
 }`;
 
+const DEFAULT_CPP_CODE = `#include <iostream>
+#include <vector>
+using namespace std;
+class IntArray {
+    vector<int> data;
+public:
+    IntArray(int size) : data(size) {}
+    void set(int index, int value) { data[index] = value; }
+    int get(int index) const { return data[index]; }
+    int size() const { return data.size(); }
+};
+int main() {
+    IntArray arr(10);
+    for (int i = 0; i < arr.size(); i++) {
+        arr.set(i, i * 2);
+    }
+    for (int i = 0; i < arr.size(); i++) {
+        cout << arr.get(i) << " ";
+    }
+    cout << endl;
+    return 0;
+}`;
+
 const compileOptions = [
   { value: '-g', label: '-g' },
   { value: '-c', label: '-c' },
@@ -97,6 +122,17 @@ function GraphsPage() {
   // Add session management state
   const [sessions, setSessions] = useState<Session[]>([]);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
+
+  const handleUpdateSessionLanguage = (sessionId: string, language: 'c' | 'cpp') => {
+    const updated = SessionManager.updateSession(sessionId, { language });
+    if (updated) {
+      setSessions((prev) => prev.map((s) => (s.id === sessionId ? { ...s, language } : s)));
+      if (sessionId === currentSessionId) {
+        setLang(language);
+      }
+    }
+  };
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { sessionId: routeSessionId } = useParams();
   const navigate = useNavigate();
@@ -124,7 +160,8 @@ function GraphsPage() {
   const [lineNumDetails, setLineNumDetails] = useState<{
     [key: string]: { nodeOrllvm: string[]; colour: string };
   }>({});
-  const [code, setCode] = useState(DEFAULT_CODE);
+  const [lang, setLang] = useState(DEFAULT_LANG);
+  const [code, setCode] = useState(DEFAULT_C_CODE);
   const [lineNumToHighlight, setlineNumToHighlight] = useState<Set<number>>(new Set());
   const setlineNumToHighlightGuard = useCallback((next: Set<number>) => {
     setlineNumToHighlight((prev) => {
@@ -210,7 +247,15 @@ function GraphsPage() {
 
   // Session Management Functions
   const loadSession = useCallback((session: Session) => {
-    setCode(session.code && session.code.trim() !== '' ? session.code : DEFAULT_CODE);
+    setCode(
+      session.code && session.code.trim() !== ''
+        ? session.code
+        : lang == 'c'
+        ? DEFAULT_C_CODE
+        : DEFAULT_CPP_CODE
+    );
+    const sessionLang = session.language || DEFAULT_LANG;
+    setLang(sessionLang);
     setSelectedCompileOptions(session.selectedCompileOptions);
     setSelectedExecutableOptions(session.selectedExecutableOptions || []);
     setLineNumDetails(session.lineNumDetails);
@@ -538,7 +583,8 @@ function GraphsPage() {
       const response = await submitCodeFetch(
         code,
         selectedCompileOptionString,
-        selectedExecutableOptionsList
+        selectedExecutableOptionsList,
+        lang
       );
 
       if (!response) {
@@ -1035,6 +1081,12 @@ function GraphsPage() {
               setPassedPrompt={setPassedPrompt}
               externalFontSize={codeFontSize}
               onExternalFontSizeChange={(size) => setCodeFontSize(size)}
+              lang={lang}
+              setLang={(newLang) => {
+                setLang(newLang);
+                if (currentSessionId)
+                  handleUpdateSessionLanguage(currentSessionId, newLang as 'c' | 'cpp');
+              }}
             />
           </div>
           {/* Resizer element */}

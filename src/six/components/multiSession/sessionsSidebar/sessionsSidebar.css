@@ -170,6 +170,44 @@
   transition: opacity 0.2s;
 }
 
+.session-language {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: default;
+
+  /* Primary blue background and contrasting text (fallback values included) */
+  background: var(--primary, #1976d2);
+  color: var(--primary-contrast, #ffffff);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Slight spacing between language badge and subsequent icons */
+.session-language + .edit-icon,
+.session-language + span {
+  margin-left: 4px;
+}
+
+/* Dark-mode adjustment: use a subtler filled background and lighter border */
+[data-theme='dark'] .session-language {
+  background: color-mix(in srgb, var(--primary, #1976d2) 18%, transparent);
+  color: var(--primary, #1976d2);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Hover/focus states similar to the + button */
+.session-language:hover,
+.session-language:focus {
+  filter: brightness(0.95);
+}
+
 .session-item:hover .session-actions {
   opacity: 1;
 }
