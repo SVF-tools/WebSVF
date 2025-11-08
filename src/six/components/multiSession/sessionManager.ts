@@ -1,5 +1,5 @@
-// SessionManager.ts
 export type OutputType = 'Graph' | 'CodeGPT' | 'LLVMIR' | 'Terminal Output' | 'Terminal';
+export type Language = 'c' | 'cpp';
 
 export interface LabeledOption {
   value: string;
@@ -21,6 +21,7 @@ export interface Session {
   currentOutput: OutputType; // Now using the defined type
   lineNumToHighlight: number[];
   tabPositions: Record<OutputType, string>;
+  language: Language;
 }
 
 const SessionManager = {
@@ -30,8 +31,12 @@ const SessionManager = {
     if (!raw) return [];
     try {
       const parsed = JSON.parse(raw);
-      // Ensure we always return an array
-      return Array.isArray(parsed) ? parsed : [];
+      // Ensure we always return an array and that each session has a language (migrate older sessions)
+      if (!Array.isArray(parsed)) return [];
+      return parsed.map((s: any) => ({
+        ...s,
+        language: s.language || 'c',
+      })) as Session[];
     } catch {
       // If parsing fails (corrupted storage), reset the key and return [] to avoid crashes
       localStorage.removeItem('websvf-sessions');
@@ -111,6 +116,7 @@ const SessionManager = {
         LLVMIR: 'main',
         Terminal: 'main',
       },
+      language: 'c',
     };
 
     sessions.unshift(newSession);

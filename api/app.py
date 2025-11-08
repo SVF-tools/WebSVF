@@ -29,6 +29,7 @@ class RequestBody(BaseModel):
     input: Optional[str] = None
     compileOptions: Optional[str] = None
     extraExecutables: Optional[List[str]] = None
+    language: Optional[str] = "c"
 
 class ScriptOutput(BaseModel):
     """Model for script output."""
@@ -173,50 +174,60 @@ def run_svf_tools(ll_file: str, extra_executables: List[str]) -> tuple[str, str]
 
     return "\n".join(output_lines), "\n".join(errors)
 
-def compile_c_to_llvm(c_code: str, compile_options: str = "") -> tuple[bool, str, str]:
+def compile_code_to_llvm(source_code: str, compile_options: str = "", language: str = "c") -> tuple[bool, str, str]:
     """
-    Compile C code to LLVM IR
-    Returns: (success, output, error)
+    Compile C or C++ source to LLVM IR.
+    Returns: (success, llvm_content, stderr)
     """
-    output_lines: List[str] = []
     try:
-        # Write C code to temporary file
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.c', delete=False) as f:
-            f.write(c_code)
-            c_file = f.name
+        lang = language.lower()
+        if lang == "cpp" or lang == "c++":
+            suffix = ".cpp"
+            compiler = "clang++"
+            default_std = "-std=c++17"
+        else:
+            suffix = ".c"
+            compiler = "clang"
+            default_std = "-std=c11"
 
-        # Output LLVM file
-        ll_file = c_file.replace('.c', '.ll')
+        # Write source to temporary file
+        with tempfile.NamedTemporaryFile(mode="w", suffix=suffix, delete=False) as f:
+            f.write(source_code)
+            src_file = f.name
 
-        # Use system clang in Docker container, or LLVM 16 on macOS
-        clang_path = "/opt/homebrew/opt/llvm@16/bin/clang"
+        ll_file = src_file.rsplit(".", 1)[0] + ".ll"
 
-        # Check if LLVM 16 is available, otherwise fall back to system clang
-        if not os.path.exists(clang_path):
-            clang_path = "clang"  # Use system clang
+        # Build compile args safely
+        opts = shlex.split(compile_options or "")
+        # add default -std if user didn't provide one
+        if not any(o.startswith("-std") for o in opts):
+            opts.insert(0, default_std)
 
-        # Compile command
-        cmd = f"{clang_path} {compile_options} -emit-llvm -S {c_file} -o {ll_file}"
+        if lang == "cpp" or lang == "c++":
+          opts.append("-fno-inline")
 
-        # Run compilation
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True,
-                              check=False)
+        args = [compiler, *opts, "-emit-llvm", "-S", src_file, "-o", ll_file]
+        print(f"args are {args}")
 
+        result = subprocess.run(args, capture_output=True, text=True, check=False)
         if result.returncode != 0:
-            return False, result.stdout, result.stderr
+            # Return stdout and stderr for diagnostics
+            return False, result.stdout or "", result.stderr or ""
 
-        # Read LLVM IR
-        with open(ll_file, 'r', encoding='utf-8') as f:
+        with open(ll_file, "r", encoding="utf-8") as f:
             llvm_content = f.read()
 
-        # Clean up temporary files
-        os.unlink(c_file)
-        os.unlink(ll_file)
-        return True, llvm_content, "\n".join(output_lines)
+        # Cleanup
+        try:
+            os.unlink(src_file)
+            os.unlink(ll_file)
+        except OSError:
+            pass
 
+        return True, llvm_content, ""
     except (OSError, IOError) as e:
-        output_lines.append(f"Compilation error: {str(e)}")
-        return False, "\n".join(output_lines), str(e)
+        return False, "", str(e)
+
 
 @app.post("/api/controller")
 async def analyse_code(request_body: RequestBody) -> SvfResult:
@@ -236,8 +247,10 @@ async def analyse_code(request_body: RequestBody) -> SvfResult:
                 "Name": "Input Error"
             }
         )
-    success, llvm_ir, compile_output = compile_c_to_llvm(
-        request_body.input, request_body.compileOptions or ""
+
+    request_lang = (request_body.language or "c").lower()
+    success, llvm_ir, compile_output = compile_code_to_llvm(
+      request_body.input, request_body.compileOptions or "", request_lang
     )
 
     if not success:

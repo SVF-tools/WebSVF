@@ -1,4 +1,9 @@
-const submitCodeFetch = async (code: string, compileOptions: string, executables: string[]) => {
+const submitCodeFetch = async (
+  code: string,
+  compileOptions: string,
+  executables: string[],
+  language: string
+) => {
   // Configure API URL based on environment
   const isDevelopment = process.env.NODE_ENV !== 'production';
   const baseUrl = isDevelopment ? 'http://localhost:8080' : 'https://api-broken-moon.fly.dev';
@@ -9,6 +14,7 @@ const submitCodeFetch = async (code: string, compileOptions: string, executables
     input: code,
     compileOptions: compileOptions,
     extraExecutables: executables,
+    language: language,
   };
 
   // return sampleResponse3;

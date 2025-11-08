@@ -122,6 +122,13 @@ const SessionsSidebar: React.FC<SessionsSidebarProps> = ({
                   </div>
                 </div>
                 <div className="session-actions">
+                  <div
+                    className="session-language"
+                    title={`Language: ${session.language === 'cpp' ? 'C++' : 'C'}`}
+                    aria-label={`Language: ${session.language === 'cpp' ? 'C++' : 'C'}`}
+                  >
+                    {session.language === 'cpp' ? 'C++' : 'C'}
+                  </div>
                   <span title="Rename project">
                     <EditIcon
                       titleAccess="Rename project"
