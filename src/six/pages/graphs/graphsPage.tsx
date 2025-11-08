@@ -9,7 +9,7 @@ import CodeGPT from '../../components/output/codeGPT/CodeGPT';
 import LLVMIR from '../../components/output/LLVMIR/LLVMIR';
 import RealTerminal from '../../components/output/realTerminal/RealTerminal';
 import submitCodeFetch from '../../api';
-import NavBar from '../../components/navBar/Navbar';
+import NavBar, { handleExportClick, handleFileChange } from '../../components/navBar/Navbar';
 import SettingsModal from '../../components/settingsModal/SettingsModal';
 import { useToast } from '../../hooks/useToast';
 import './graphsPage.css';
@@ -17,9 +17,11 @@ import { llvmHighlight } from '../../components/output/LLVMIR/llvmIRIdentifier';
 import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
 import ShareLZSettingsModal from '../../components/shareLZSettingsModal/shareLZSettingsModal';
 import SessionsSidebar from '../../components/multiSession/sessionsSidebar/sessionsSidebar';
-import SessionManager, { Session } from '../../components/multiSession/sessionManager';
+import SessionManager, { Session, Shortcuts } from '../../components/multiSession/sessionManager';
 import InteractiveOnboarding from '../../components/onboarding/InteractiveOnboarding';
 import { createTutorialSteps } from '../../components/onboarding/tutorialSteps';
+import ShortcutsModal from '../../components/shortcutsModal./ShortcutsModal';
+import useMousetrap from '../../hooks/useMousetrap';
 
 type OutputType = 'Graph' | 'CodeGPT' | 'LLVMIR' | 'Terminal Output' | 'Terminal';
 
@@ -35,6 +37,15 @@ interface compileOption {
 }
 
 const DEFAULT_LANG = 'c';
+
+const DEFAULT_SHORTCUTS: Shortcuts = {
+  save: 'ctrl+shift+s',
+  run: 'ctrl+enter',
+  toggle_sidebar: 'ctrl+shift+e',
+  import: 'ctrl+shift+i',
+  light_mode: 'ctrl+shift+l',
+  dark_mode: 'ctrl+shift+d',
+};
 
 // Fallback default code for empty sessions (matches SessionManager)
 const DEFAULT_C_CODE = `#include <stdio.h>
@@ -161,6 +172,7 @@ function GraphsPage() {
     [key: string]: { nodeOrllvm: string[]; colour: string };
   }>({});
   const [lang, setLang] = useState(DEFAULT_LANG);
+  const [shortcuts, setShortcuts] = useState(DEFAULT_SHORTCUTS);
   const [code, setCode] = useState(DEFAULT_C_CODE);
   const [lineNumToHighlight, setlineNumToHighlight] = useState<Set<number>>(new Set());
   const setlineNumToHighlightGuard = useCallback((next: Set<number>) => {
@@ -186,6 +198,7 @@ function GraphsPage() {
   const [savedMessages, setSavedMessages] = useState<{ role: string; content: string }[]>([]);
   const [passedPrompt, setPassedPrompt] = useState('');
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
   const [codeFontSize, setCodeFontSize] = useState(16);
   const [llvmIRFontSize, setLLVMIRFontSize] = useState(16);
   const [terminalOutputFontSize, setTerminalOutputFontSize] = useState(16);
@@ -256,6 +269,12 @@ function GraphsPage() {
     );
     const sessionLang = session.language || DEFAULT_LANG;
     setLang(sessionLang);
+    const raw = localStorage.getItem('websvf-shortcuts');
+    if (raw) {
+      setShortcuts(JSON.parse(raw));
+    } else {
+      setShortcuts(DEFAULT_SHORTCUTS);
+    }
     setSelectedCompileOptions(session.selectedCompileOptions);
     setSelectedExecutableOptions(session.selectedExecutableOptions || []);
     setLineNumDetails(session.lineNumDetails);
@@ -275,6 +294,26 @@ function GraphsPage() {
       }
     );
   }, []);
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const handlers: Partial<Record<keyof Shortcuts, () => void>> = {
+    save: () => handleExportClick(code, lang),
+    run: () => submitCode(),
+    toggle_sidebar: () => toggleSidebar(),
+    import: () => {
+      fileInputRef.current?.click();
+    },
+    light_mode: () => {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    },
+    dark_mode: () => {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    },
+  };
+
+  useMousetrap(shortcuts, handlers);
 
   const loadSessions = useCallback(() => {
     const loadedSessions = SessionManager.getSessions();
@@ -1022,8 +1061,10 @@ function GraphsPage() {
         openShare={handleOpenShareModal}
         setCode={setCode}
         code={code}
+        language={lang}
         openSettings={() => setSettingsOpen(true)}
         openOnboarding={handleOpenOnboarding}
+        openShortcuts={() => setShortcutsOpen(true)}
       />
       <SettingsModal
         open={settingsOpen}
@@ -1034,6 +1075,12 @@ function GraphsPage() {
         setLLVMIRFontSize={setLLVMIRFontSize}
         terminalOutputFontSize={terminalOutputFontSize}
         setTerminalOutputFontSize={setTerminalOutputFontSize}
+      />
+      <ShortcutsModal
+        open={shortcutsOpen}
+        handleClose={() => setShortcutsOpen(false)}
+        shortcuts={shortcuts}
+        setShortcuts={setShortcuts}
       />
       <div className="app-layout">
         {/* Sessions Sidebar */}
@@ -1145,6 +1192,13 @@ function GraphsPage() {
           </div>
         </div>
       </div>
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={(e) => handleFileChange(setCode, e)}
+        style={{ display: 'none' }}
+        accept={lang === 'c' ? '.c' : '.cpp'}
+      />
     </>
   );
 }

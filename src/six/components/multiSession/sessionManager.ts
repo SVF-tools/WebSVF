@@ -6,6 +6,15 @@ export interface LabeledOption {
   label: string;
 }
 
+export interface Shortcuts {
+  save: string;
+  run: string;
+  toggle_sidebar: string;
+  import: string;
+  light_mode: string;
+  dark_mode: string;
+}
+
 export interface Session {
   id: string;
   title: string;

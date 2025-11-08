@@ -2,24 +2,106 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShareIcon from '@mui/icons-material/Share';
 import SettingsIcon from '@mui/icons-material/Settings';
+import KeyboardIcon from '@mui/icons-material/Keyboard';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import './navbar.css';
 import { ImportExport, Publish } from '@mui/icons-material';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import readFile from '../importExport/importExport';
 
+export const handleFileChange = async (
+  setCode: (code: string) => void,
+  event: React.ChangeEvent<HTMLInputElement>
+) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
+
+  const userConfirmed = window.confirm(
+    `Are you sure you want to import "${file.name}"? This will replace the current code.`
+  );
+
+  if (!userConfirmed) {
+    event.target.value = '';
+    return;
+  }
+
+  try {
+    const contents = await readFile(file);
+    setCode(contents);
+  } catch (error) {
+    console.error('Failed to import file:', error);
+  } finally {
+    event.target.value = '';
+  }
+};
+
+export const handleExportClick = async (code: string, language: string) => {
+  if ('showSaveFilePicker' in window) {
+    try {
+      const opts = {
+        types: [
+          {
+            description: 'C/C++ Source Files',
+            accept: { 'text/plain': [language === 'c' ? '.c' : '.cpp'] },
+          },
+        ],
+      };
+
+      type FileWriter = { write: (data: string) => Promise<void>; close: () => Promise<void> };
+      type FileHandle = { createWritable: () => Promise<FileWriter> };
+      type SaveFilePicker = {
+        showSaveFilePicker: (o: {
+          types: Array<{ description: string; accept: Record<string, string[]> }>;
+        }) => Promise<FileHandle>;
+      };
+
+      const handle = await (window as unknown as SaveFilePicker).showSaveFilePicker(opts);
+      const writable = await handle.createWritable();
+      await writable.write(code);
+      await writable.close();
+      return;
+    } catch (err) {
+      console.error('File save canceled or failed', err);
+    }
+    return;
+  }
+
+  // Fallback for unsupported browsers
+  const defaultFilename = language === 'c' ? 'exported_code.c' : 'exported_code.cpp';
+  const fileName = window.prompt('Enter filename to save as:', defaultFilename);
+  if (!fileName) return;
+
+  const blob = new Blob([code], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  if (language === 'cpp' || language === 'c++') {
+    a.download = fileName.endsWith('.cpp') ? fileName : `${fileName}.cpp`;
+  } else {
+    a.download = fileName.endsWith('.c') ? fileName : `${fileName}.c`;
+  }
+  a.click();
+
+  URL.revokeObjectURL(url);
+};
+
 function Navbar({
   openShare,
   setCode,
   code,
+  language,
   openSettings,
   openOnboarding,
+  openShortcuts,
 }: {
   openShare: () => void;
   setCode: (code: string) => void;
   code: string;
+  language: string;
   openSettings: () => void;
   openOnboarding?: () => void;
+  openShortcuts?: () => void;
 }) {
   const [theme, setTheme] = useState('light');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -51,76 +133,6 @@ function Navbar({
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const userConfirmed = window.confirm(
-      `Are you sure you want to import "${file.name}"? This will replace the current code.`
-    );
-
-    if (!userConfirmed) {
-      event.target.value = '';
-      return;
-    }
-
-    try {
-      const contents = await readFile(file);
-      setCode(contents);
-    } catch (error) {
-      console.error('Failed to import file:', error);
-    } finally {
-      event.target.value = '';
-    }
-  };
-
-  const handleExportClick = async () => {
-    if ('showSaveFilePicker' in window) {
-      try {
-        const opts = {
-          types: [
-            {
-              description: 'C Source Files',
-              accept: { 'text/plain': ['.c'] },
-            },
-          ],
-        };
-
-        type FileWriter = { write: (data: string) => Promise<void>; close: () => Promise<void> };
-        type FileHandle = { createWritable: () => Promise<FileWriter> };
-        type SaveFilePicker = {
-          showSaveFilePicker: (o: {
-            types: Array<{ description: string; accept: Record<string, string[]> }>;
-          }) => Promise<FileHandle>;
-        };
-
-        const handle = await (window as unknown as SaveFilePicker).showSaveFilePicker(opts);
-        const writable = await handle.createWritable();
-        await writable.write(code);
-        await writable.close();
-        return;
-      } catch (err) {
-        console.error('File save canceled or failed', err);
-      }
-      return;
-    }
-
-    // Fallback for unsupported browsers
-    const defaultFilename = 'exported_code.c';
-    const fileName = window.prompt('Enter filename to save as:', defaultFilename);
-    if (!fileName) return;
-
-    const blob = new Blob([code], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName.endsWith('.c') ? fileName : `${fileName}.c`;
-    a.click();
-
-    URL.revokeObjectURL(url);
-  };
-
   return (
     <div id="six-navbar" className="shadow-md">
       <div className="nav-left">
@@ -140,7 +152,15 @@ function Navbar({
       </div>
       <div className="nav-actions">
         <div className="icon-container">
-          <Publish id="export-icon" className="nav-icon" onClick={handleExportClick} />
+          <KeyboardIcon id="shortcuts-icon" className="nav-icon" onClick={openShortcuts} />
+          <span className="tooltip">Keyboard Shortcuts</span>
+        </div>
+        <div className="icon-container">
+          <Publish
+            id="export-icon"
+            className="nav-icon"
+            onClick={() => handleExportClick(code, language)}
+          />
           <span className="tooltip">Export Code</span>
         </div>
 
@@ -192,9 +212,9 @@ function Navbar({
         <input
           type="file"
           ref={fileInputRef}
-          onChange={handleFileChange}
+          onChange={(e) => handleFileChange(setCode, e)}
           style={{ display: 'none' }}
-          accept=".c"
+          accept={language === 'c' ? '.c' : '.cpp'}
         />
       </div>
     </div>

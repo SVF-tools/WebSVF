@@ -300,7 +300,19 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
       clickMessage: 'Click the `Write code to terminal` button to continue',
     },
 
-    // Step 12: Import/Export
+    // Step 12: Keyboard Shortcuts Button
+    {
+      title: 'Keyboard Shortcuts',
+      content:
+        'Click the keyboard icon to view, and edit, all available keyboard shortcuts! These can speed up your workflow significantly!',
+      targetElement: '#shortcuts-icon',
+      position: 'top',
+      forcePreferredSide: true,
+      arrow: true,
+      highlightPulse: true,
+    },
+
+    // Step 13: Import/Export
     {
       title: 'Import & Export Code',
       content:
@@ -312,7 +324,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
       highlightPulse: true,
     },
 
-    // Step 13: Share Feature
+    // Step 14: Share Feature
     {
       title: 'Share Your Work',
       content:
@@ -324,7 +336,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
       highlightPulse: true,
     },
 
-    // Step 14: Settings
+    // Step 15: Settings
     {
       title: 'Settings & Customization',
       content:
@@ -337,7 +349,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
       allowInteraction: true,
     },
 
-    // Step 15: Help Button
+    // Step 16: Help Button
     {
       title: 'Need Help?',
       content:
@@ -349,11 +361,11 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
       highlightPulse: true,
     },
 
-    // Step 16: Final
+    // Step 17: Final
     {
       title: "You're Ready to Go! 🚀",
       content:
-        'Great job! You now know how to use WebSVF 6.0.\n\nQuick recap:\n✓ Write code in the editor\n✓ Select compiler & analysis options\n✓ Run analysis and view results\n✓ Switch between different output tabs\n✓ Share, import, and export your work\n\nStart analysing your code now, or replay this tutorial anytime!',
+        'Great job! You now know how to use WebSVF 6.0.\n\nQuick recap:\n✓ Write code in the editor\n✓ Select compiler & analysis options\n✓ Run analysis and view results\n✓ Switch between different output tabs\n✓ Share, import, and export your work\n✓ Customize keyboard shortcuts\n\nStart analysing your code now, or replay this tutorial anytime!',
       position: 'center',
     },
   ];
