@@ -1092,7 +1092,8 @@ const InteractiveOnboarding: React.FC<InteractiveOnboardingProps> = ({
             bottom: 'auto',
             zIndex: 10002,
             position: 'fixed',
-            maxWidth: 'clamp(520px, 64vw, 760px)',
+            maxWidth: 'clamp(600px, 70vw, 820px)',
+            minWidth: '600px',
           }}
         >
           {/* Close button */}

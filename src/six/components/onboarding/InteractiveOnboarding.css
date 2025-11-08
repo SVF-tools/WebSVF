@@ -71,7 +71,8 @@
   color: var(--text-color, #333333);
   border-radius: 12px;
   width: auto; /* let content size it */
-  max-width: clamp(520px, 64vw, 760px); /* responsive but not edge-to-edge */
+  max-width: clamp(600px, 70vw, 820px); /* increased minimum and max width */
+  min-width: 600px; /* ensure minimum width */
   max-height: calc(100vh - 24px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   /* Keep tooltip above backdrop (10000) but below modals (10005) */
@@ -633,7 +634,8 @@
 @media (max-width: 768px) {
   .interactive-onboarding-tooltip {
     width: 90vw;
-    max-width: 350px;
+    max-width: 90vw;
+    min-width: 90vw;
   }
 
   .tooltip-content {
