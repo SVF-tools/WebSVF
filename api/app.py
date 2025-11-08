@@ -56,8 +56,9 @@ class SvfResult(BaseModel):
 # FastAPI app
 app = FastAPI()
 
-# Global gate to avoid multiple concurrent terminal WS sessions (helps prevent duplicate echoes)
-terminal_ws_active = False
+# Track active terminal sessions per logical session ID (sid)
+# Allows multiple users concurrently but restricts one terminal per sid
+active_terminal_sessions: dict[str, bool] = {}
 
 # Configure CORS (enable WS across origins in dev)
 app.add_middleware(
@@ -235,7 +236,7 @@ def compile_c_to_llvm(c_code: str, compile_options: str = "") -> tuple[bool, str
 @app.post("/api/controller")
 async def analyse_code(request_body: RequestBody) -> SvfResult:
     """
-    Analyze code using SVF tools and return results with graphs.
+    Analyse code using SVF tools and return results with graphs.
     """
     # Clean up existing .dot files
     for dot_file in glob.glob("*.dot"):
@@ -302,19 +303,20 @@ async def health_check():
 # ------------------------------
 @app.websocket("/ws/terminal")
 async def terminal_ws(websocket: WebSocket):
-    global terminal_ws_active
+    # Per-session limiting: only one terminal per provided sid
+    sid = websocket.query_params.get("sid") or f"conn-{time.time_ns()}"
     try:
-        # Enforce single active terminal session to prevent duplicate input/echo
-        if terminal_ws_active:
+        # If this sid already has an active terminal, reject this connection only for that sid
+        if active_terminal_sessions.get(sid):
             await websocket.accept()
-            await websocket.send_text("[server] Terminal busy: another session is active. Try again later.\r\n")
+            await websocket.send_text("[server] Terminal busy for this session. Close the other terminal or use a different session.\r\n")
             await websocket.close(code=1013)
             return
-        terminal_ws_active = True
+        active_terminal_sessions[sid] = True
 
         # Accept connection
         await websocket.accept()
-        print("[WS] accepted /ws/terminal")
+        print(f"[WS] accepted /ws/terminal sid={sid}")
 
         # Pick a shell that exists on the system
         def pick_shell() -> str:
@@ -336,6 +338,10 @@ async def terminal_ws(websocket: WebSocket):
         env.setdefault("COLORTERM", "truecolor")
         env.setdefault("LANG", env.get("LANG", "en_US.UTF-8"))
         env.setdefault("LC_ALL", env.get("LC_ALL", "en_US.UTF-8"))
+
+        # Initialize defaults to make finally-safe
+        child_pid = -1
+        master_fd = -1
 
         pid, master_fd = pty.fork()
         if pid == 0:
@@ -481,8 +487,12 @@ async def terminal_ws(websocket: WebSocket):
             os.close(master_fd)
         except Exception:
             pass
-        # Mark session as inactive
-        terminal_ws_active = False
+        # Mark session as inactive for this sid
+        try:
+            if sid in active_terminal_sessions:
+                del active_terminal_sessions[sid]
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":

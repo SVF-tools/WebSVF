@@ -80,14 +80,17 @@ const SessionsSidebar: React.FC<SessionsSidebarProps> = ({
     <div className={`sessions-sidebar ${!isOpen ? 'collapsed' : ''}`}>
       <div className="sessions-sidebar-header">
         <h3>Projects</h3>
-        <button
-          className="new-session-btn"
-          onClick={onNewSession}
-          aria-label="Create new project"
-          title="New Project"
-        >
-          <AddIcon fontSize="medium" />
-        </button>
+        <div className="icon-container new-session-container">
+          <button
+            className="new-session-btn"
+            onClick={onNewSession}
+            aria-label="Create new project"
+            title="New Project"
+          >
+            <AddIcon fontSize="medium" />
+          </button>
+          <span className="tooltip">New Project</span>
+        </div>
         <div className="sessions-sidebar-toggle" onClick={toggleSidebar}>
           {isOpen ? '≪' : '≫'}
         </div>

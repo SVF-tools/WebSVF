@@ -162,6 +162,7 @@
 }
 #graph-button-container .tooltip-content {
   top: 100% !important;
+  bottom: auto !important;
   left: 0 !important; /* align left edge with button */
   transform: none !important;
   width: auto !important;
@@ -172,7 +173,9 @@
   padding: 6px 8px !important;
   border-radius: 6px !important;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22) !important;
-  z-index: 10010;
+  background-color: var(--tooltip-bg, #111827) !important; /* ensure opaque background */
+  color: var(--tooltip-text, #ffffff) !important;
+  z-index: 9995 !important; /* above graph menu bar, still below onboarding (10000) */
 }
 #graph-button-container .tooltip-button-container {
   margin-top: 4px !important;

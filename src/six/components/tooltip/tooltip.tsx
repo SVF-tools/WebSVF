@@ -15,7 +15,7 @@ interface TooltipProps {
 const TOOL_CONTEXTS = {
   mta: `Here's some background about MTA (Multi-Threaded Analysis) to help with your explanation:
 
-MTA is a static analysis tool that analyzes value-flow specifically in multi-threaded programs. It uses FSAM (Flow-Sensitive pointer Analysis Model) for efficient handling of large, complex C programs and performs sparse analysis with thread interference checks.
+MTA is a static analysis tool that analyses value-flow specifically in multi-threaded programs. It uses FSAM (Flow-Sensitive pointer Analysis Model) for efficient handling of large, complex C programs and performs sparse analysis with thread interference checks.
 
 It's used to detect data races (when multiple threads access shared data without proper synchronization), evaluate lock safety (ensuring proper use of locks and synchronization primitives), and optimize multithreaded performance to improve efficiency and safety of concurrent code.`,
 
@@ -27,7 +27,7 @@ It's used for high accuracy with fewer false positives in memory leak detection,
 
   ae: `Here's some background about AE (Abstract Execution) to help with your explanation:
 
-AE is a static analysis tool that analyzes programs by examining variable states at each control point. It follows control flow to understand variable states in each statement and helps gather program semantics to identify potential issues.
+AE is a static analysis tool that analyses programs by examining variable states at each control point. It follows control flow to understand variable states in each statement and helps gather program semantics to identify potential issues.
 
 It's used to detect various bugs like buffer overflows and null pointer dereferences, helps identify vulnerabilities by understanding data access and changes, and facilitates security checks while optimizing code based on variable usage patterns.`,
 
@@ -45,9 +45,9 @@ It's used to perform more precise analysis than traditional approaches by consid
 
   dvf: `Here's some background about DVF (On-Demand Value Flow Analysis) to help with your explanation:
 
-DVF performs value-flow analysis on demand, meaning it only analyzes the parts of the program relevant to specific queries rather than analyzing the entire program upfront. This demand-driven approach makes it highly efficient for answering targeted questions about how values flow through the program.
+DVF performs value-flow analysis on demand, meaning it only analyses the parts of the program relevant to specific queries rather than analysing the entire program upfront. This demand-driven approach makes it highly efficient for answering targeted questions about how values flow through the program.
 
-It's used to efficiently answer specific queries about value flow without analyzing the entire program, reduces analysis time and memory usage by focusing only on relevant code paths, and is particularly useful for interactive tools and IDE integrations where quick responses to specific queries are needed.`,
+It's used to efficiently answer specific queries about value flow without analysing the entire program, reduces analysis time and memory usage by focusing only on relevant code paths, and is particularly useful for interactive tools and IDE integrations where quick responses to specific queries are needed.`,
 };
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -110,7 +110,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       } else {
         // For compile flags or other options
         toolContext =
-          'Here is some general background about static analysis tools to help with your explanation: These tools analyze code to find potential issues, bugs, and optimization opportunities.';
+          'Here is some general background about static analysis tools to help with your explanation: These tools analyse code to find potential issues, bugs, and optimization opportunities.';
       }
 
       const prompt = `${toolContext}

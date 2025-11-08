@@ -6,14 +6,15 @@
 }
 
 .sessions-sidebar {
-  position: relative;
+  position: sticky; /* keep sidebar anchored during scroll */
+  top: 0;
   width: 300px;
-  height: calc(100vh - 60px); /* Adjust based on your navbar height */
+  height: auto; /* always fill the viewport to avoid background gaps */
   background-color: var(--font-size-container-bg-color);
   border-right: 1px solid var(--border-color, #ccc);
   display: flex;
   flex-direction: column;
-  z-index: 100;
+  z-index: 200; /* above main content overlays */
   transition: width 0.3s ease, transform 0.3s ease, padding 0.3s ease;
   overflow: hidden; /* hide contents during collapse */
 }
@@ -29,9 +30,11 @@
   flex-direction: row; /* place title and + button on one line */
   justify-content: flex-start;
   align-items: center;
-  padding: 15px;
+  height: 60px; /* fixed header height for predictable list sizing */
+  padding: 0 12px; /* tighter padding to fit tooltip */
+  box-sizing: border-box;
   /* leave space so the toggle arrow fits inside the sidebar width */
-  padding-right: 20px;
+  padding-right: 16px;
   border-bottom: 1px solid var(--border-color, #ccc);
 }
 
@@ -77,7 +80,6 @@
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   transition: background-color 0.2s ease, transform 0.05s ease;
-  margin-left: auto; /* push to the right end of the header */
 }
 
 .new-session-btn:hover {
@@ -85,9 +87,43 @@
   transform: translateY(-1px);
 }
 
+/* Tooltip container and label for new-session button */
+.new-session-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto; /* push container to right edge */
+}
+
+.new-session-container .tooltip {
+  visibility: hidden;
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  text-align: center;
+  border-radius: 6px;
+  padding: 4px 8px;
+  position: absolute;
+  z-index: 1200; /* ensure above content */
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.new-session-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 .sessions-list {
-  flex: 1;
+  flex: 1 1 0; /* occupy all remaining height below header */
+  height: auto; /* let flexbox determine height */
   overflow-y: auto;
+  min-height: 0; /* prevent flex overflow issues */
 }
 
 /* Hide list when collapsed to avoid bleed-through */

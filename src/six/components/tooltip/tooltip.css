@@ -10,13 +10,14 @@
   border-bottom: 1px dotted var(--border-color);
 }
 
-.tooltip-content {
+.tooltip-container .tooltip-content {
   visibility: hidden;
   position: absolute;
   z-index: 9999;
   left: 0;
-  top: 100%;
-  margin-top: 3px;
+  /* Place tooltip ABOVE the trigger to avoid covering controls below */
+  bottom: calc(100% + 6px);
+  top: auto;
   background-color: var(--tooltip-bg);
   color: var(--tooltip-text);
   padding: 10px 14px;
@@ -34,30 +35,35 @@
   white-space: normal;
   overflow-wrap: break-word; /* prefer wrapping at spaces */
   word-break: normal; /* avoid per-letter breaks */
-  pointer-events: auto;
+  /* Let clicks pass through the tooltip so it never blocks controls below */
+  pointer-events: none;
   opacity: 0;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transform: translateY(-4px);
 }
 
 @media (max-width: 720px) {
-  .tooltip-content {
+  .tooltip-container .tooltip-content {
     width: min(92vw, 720px);
   }
 }
 
-.tooltip-content::before {
+.tooltip-container .tooltip-content::before {
   content: '';
   position: absolute;
-  bottom: 100%;
+  top: 100%;
   left: 10px;
-  border-width: 5px;
+  border-width: 6px;
   border-style: solid;
-  border-color: transparent transparent var(--tooltip-bg) transparent;
+  border-color: var(--tooltip-bg) transparent transparent transparent;
 }
 
-.tooltip-container:hover .tooltip-content {
+.tooltip-container:hover .tooltip-content,
+.tooltip-container .tooltip-content.visible {
   visibility: visible;
   opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; /* clickable when visible */
 }
 
 .tooltip-button-container {
@@ -65,9 +71,13 @@
   padding-top: 6px;
   border-top: 1px solid #555;
   text-align: center;
+  /* Re-enable pointer events inside the button area */
+  pointer-events: auto;
 }
 
 .tooltip-button {
+  /* Ensure the actual button is clickable */
+  pointer-events: auto;
   background-color: var(--primary);
   color: var(--primary-contrast);
   border: none;

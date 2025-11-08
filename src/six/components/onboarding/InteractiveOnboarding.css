@@ -70,15 +70,16 @@
   background-color: var(--background-color, #ffffff);
   color: var(--text-color, #333333);
   border-radius: 12px;
-  width: min(560px, calc(100vw - 24px));
-  max-width: calc(100vw - 24px);
+  width: auto; /* let content size it */
+  max-width: clamp(520px, 64vw, 760px); /* responsive but not edge-to-edge */
   max-height: calc(100vh - 24px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   /* Keep tooltip above backdrop (10000) but below modals (10005) */
   z-index: 10002;
   pointer-events: all;
   animation: tooltipFadeIn 0.3s ease-out;
-  overflow: visible;
+  overflow: hidden; /* prevent inner elements from leaking out */
+  box-sizing: border-box;
 }
 
 .interactive-onboarding-tooltip.center-tooltip {
@@ -148,8 +149,10 @@
 
 /* Content */
 .tooltip-content {
-  padding: 18px 20px 22px !important;
-  max-height: calc(100vh - 200px) !important;
+  /* Tighter horizontal padding */
+  padding: 14px 16px 12px !important; /* reduce bottom padding to tighten space above buttons */
+  /* Allow more vertical space for content inside larger panel */
+  max-height: calc(100vh - 150px) !important;
   overflow-y: auto !important;
   display: block !important;
   visibility: visible !important;
@@ -159,12 +162,17 @@
   width: 100% !important;
   max-width: 100% !important; /* override global tooltip.css 350px cap */
   min-width: 0 !important; /* remove global 250px min */
-  margin: 12px 0 0 0 !important;
-  /* Override global tooltip.css which uses dark tooltip vars */
-  background-color: var(--surface-2) !important; /* darker than white for light mode; matches dark mode overrides */
+  /* Reduce top spacing to keep content compact */
+  margin: 8px 0 0 0 !important;
+  /* Match outer panel background so it looks like one surface */
+  background-color: inherit !important;
   color: inherit !important;
-  border: 1px solid var(--border-color) !important; /* requested border */
-  border-radius: 10px !important;
+  /* Add a subtle divider between header area and text */
+  border-top: 1px solid var(--border-color) !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
 }
 
@@ -192,7 +200,7 @@
   font-size: 15px !important;
   line-height: 1.6 !important;
   color: #000000 !important;
-  margin: 0 0 12px 0 !important;
+  margin: 0 0 2px 0 !important;
   padding: 8px 0 !important;
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
@@ -233,14 +241,34 @@
 
 /* Navigation */
 .tooltip-navigation {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'prev dots next';
   align-items: center;
-  justify-content: space-between;
-  padding: 16px 16px 16px; /* add top padding to separate from content */
-  gap: 12px;
+  padding: 8px 12px 8px; /* tighter vertical spacing */
+  column-gap: 12px;
+  row-gap: 8px;
   width: 100%;
   box-sizing: border-box;
+  border-top: 1px solid var(--border-color); /* subtle separator from content */
+  margin-top: 4px; /* small gap between text and divider */
 }
+
+.tooltip-navigation > .tooltip-btn.tooltip-btn-secondary { grid-area: prev; min-width: 0; }
+.tooltip-navigation > .tooltip-dots { grid-area: dots; min-width: 0; }
+.tooltip-navigation > .tooltip-btn.tooltip-btn-primary { grid-area: next; min-width: 0; }
+
+@media (max-width: 640px) {
+  .tooltip-navigation {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'dots dots'
+      'prev next';
+  }
+}
+
+/* Buttons should not overflow container */
+.tooltip-navigation .tooltip-btn { max-width: 100%; }
 
 .tooltip-btn {
   padding: 8px 16px;
@@ -285,12 +313,26 @@
 /* Step dots */
 .tooltip-dots {
   display: flex;
-  gap: 6px;
   align-items: center;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 150px;
 }
+.tooltip-step-label {
+  font-size: 12px;
+  color: var(--secondary-text, #666666);
+}
+.tooltip-dots-row {
+  display: flex;
+  gap: 4px; /* tighter spacing to fit more dots */
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* allow dots to wrap on narrow screens */
+}
+
+/* Slightly smaller base dots to fit long sequences */
+.tooltip-dot { width: 7px; height: 7px; }
+.tooltip-dot.active { width: 9px; height: 9px; }
 
 .tooltip-dot {
   width: 8px;
@@ -464,8 +506,8 @@
 
 /* Dark mode content box background/border */
 [data-theme='dark'] .interactive-onboarding-tooltip .tooltip-content {
-  background-color: #111827 !important;
-  border-color: #374151 !important;
+  background-color: inherit !important;
+  border: none !important;
 }
 
 [data-theme='dark'] .tooltip-btn-secondary {

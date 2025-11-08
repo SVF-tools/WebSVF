@@ -1017,18 +1017,18 @@ const InteractiveOnboarding: React.FC<InteractiveOnboardingProps> = ({
             effectiveTargetElement ? '' : 'center-tooltip'
           }`}
           style={{
-            top: effectiveTargetElement ? `${renderTop}px` : '50%',
-            left: effectiveTargetElement ? `${renderLeft}px` : '50%',
+            // Center the welcome/finish steps; otherwise, dock right when no target element
+            top: effectiveTargetElement ? `${renderTop}px` : (isFirstOrLast ? '50%' : '10vh'),
+            left: effectiveTargetElement ? `${renderLeft}px` : (isFirstOrLast ? '50%' : 'auto'),
+            right: effectiveTargetElement ? 'auto' : (isFirstOrLast ? 'auto' : '24px'),
             transform: effectiveTargetElement
-              ? renderSide === 'right' || renderSide === 'left'
-                ? 'translateY(-50%)'
-                : 'translateX(-50%)'
-              : 'translate(-50%, -50%)',
+              ? (renderSide === 'right' || renderSide === 'left' ? 'translateY(-50%)' : 'translateX(-50%)')
+              : (isFirstOrLast ? 'translate(-50%, -50%)' : 'none'),
             pointerEvents: 'all',
-            right: 'auto',
             bottom: 'auto',
             zIndex: 10002,
             position: 'fixed',
+            maxWidth: 'clamp(520px, 64vw, 760px)',
           }}
         >
         {/* Close button */}
@@ -1041,15 +1041,7 @@ const InteractiveOnboarding: React.FC<InteractiveOnboardingProps> = ({
           <div className="tooltip-progress-fill" style={{ width: `${progress}%` }} />
         </div>
 
-        {/* Step indicator */}
-        <div className="tooltip-step-indicator">
-          Step {currentStep + 1} of {steps.length}
-          {currentStepData.subSteps && currentStepData.subSteps.length > 0 && (
-            <span style={{ marginLeft: '8px', opacity: 0.7 }}>
-              (Part {currentSubStep + 1} of {currentStepData.subSteps.length})
-            </span>
-          )}
-        </div>
+        {/* Step indicator moved near dots (see tooltip-navigation) */}
 
         {/* Content */}
         <div className="tooltip-content" style={{ display: 'block', visibility: 'visible', opacity: 1 }}>
@@ -1103,21 +1095,31 @@ const InteractiveOnboarding: React.FC<InteractiveOnboardingProps> = ({
           </button>
 
           <div className="tooltip-dots">
-            {steps.map((_, index) => (
-              <span
-                key={index}
-                className={`tooltip-dot ${index === currentStep ? 'active' : ''} ${
-                  index < currentStep ? 'completed' : ''
-                }`}
-                onClick={() => {
-                  setCurrentStep(index);
-                  setCurrentSubStep(0);
-                }}
-                role="button"
-                tabIndex={0}
-                aria-label={`Go to step ${index + 1}`}
-              />
-            ))}
+            <div className="tooltip-step-label">
+              Step {currentStep + 1} of {steps.length}
+              {currentStepData.subSteps && currentStepData.subSteps.length > 0 && (
+                <span style={{ marginLeft: '6px', opacity: 0.7 }}>
+                  (Part {currentSubStep + 1}/{currentStepData.subSteps.length})
+                </span>
+              )}
+            </div>
+            <div className="tooltip-dots-row">
+              {steps.map((_, index) => (
+                <span
+                  key={index}
+                  className={`tooltip-dot ${index === currentStep ? 'active' : ''} ${
+                    index < currentStep ? 'completed' : ''
+                  }`}
+                  onClick={() => {
+                    setCurrentStep(index);
+                    setCurrentSubStep(0);
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Go to step ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
           <button className="tooltip-btn tooltip-btn-primary" onClick={handleNext} disabled={(() => {

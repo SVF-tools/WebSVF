@@ -71,6 +71,8 @@
   flex: 1; /* Take remaining space after navbar */
   position: relative; /* This ensures the absolute positioning of the toggle works */
   overflow: hidden;
+  background-color: var(--font-size-container-bg-color);
+
 }
 #graph-page-container {
   flex: 1;

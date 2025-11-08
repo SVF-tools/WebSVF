@@ -430,6 +430,16 @@ function GraphsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // If visiting base '/6.0' without a sessionId, redirect to the current session's URL once loaded
+  const didRedirectToSessionRef = useRef(false);
+  useEffect(() => {
+    if (didRedirectToSessionRef.current) return;
+    if (!routeSessionId && currentSessionId) {
+      didRedirectToSessionRef.current = true;
+      navigate(`${SIX_BASE}/session/${currentSessionId}`, { replace: true });
+    }
+  }, [routeSessionId, currentSessionId, navigate]);
+
   // Auto-save at interval without retriggering loadSessions
   const saveRef = useRef(saveCurrentSession);
   useEffect(() => {
@@ -490,7 +500,13 @@ function GraphsPage() {
       case 'LLVMIR':
         return <LLVMIR LLVMIRString={llvmIRString} externalFontSize={llvmIRFontSize} />;
       case 'Terminal':
-        return <RealTerminal key={`realterminal-${currentSessionId}`} />;
+        return (
+          <RealTerminal
+            key={`realterminal-${currentSessionId}`}
+            codeToPaste={code}
+            sessionId={currentSessionId || undefined}
+          />
+        );
 
       default:
         return null;

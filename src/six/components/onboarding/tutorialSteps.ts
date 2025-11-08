@@ -68,7 +68,6 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
           setCode(DEMO_CODE);
         }
       },
-      nextLabel: 'Code Loaded! Next',
     },
 
     // Step 3: Sessions Sidebar
@@ -209,7 +208,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
           requireOutput: 'LLVMIR',
         },
         {
-          content: 'Great! This is the LLVM IR (Intermediate Representation) - the low-level code that SVF analyzes. The IR shows how your C code is transformed for analysis.',
+          content: 'Great! This is the LLVM IR (Intermediate Representation) - the low-level code that SVF analyses. The IR shows how your C code is transformed for analysis.',
           targetElement: '#graph-page-output-container',
         },
       ],
@@ -247,6 +246,50 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
         },
       ],
       clickMessage: 'Click the CodeGPT tab to continue',
+    },
+
+    // New: Terminal (placed after CodeGPT)
+    {
+      title: 'Interactive Terminal',
+      content:
+        'Open the built-in Terminal to run shell commands in the analysis environment. Core backend files are protected from edits.',
+      targetElement: '.output-menu-bar',
+      position: 'top',
+      forcePreferredSide: true,
+      arrow: true,
+      requireOutput: 'Terminal',
+      subSteps: [
+        {
+          content: "Click on the 'Terminal' tab to open the interactive shell.",
+          targetElement: '.output-menu-bar',
+          requireClick: true,
+          allowInteraction: true,
+          requireOutput: 'Terminal',
+        },
+        {
+          content:
+            "This is a real shell connected to the backend. Try commands like `ls`, `pwd`, or `clang --version`. Use Clear/Reconnect from the header if needed.",
+          targetElement: '#graph-page-output-container',
+        },
+        {
+          content:
+            "You can also send your current editor code to the Terminal. Use 'Paste Code' to insert it into the shell input (not executed), or 'Write code to terminal' to create a file.",
+          targetElement: '#real-terminal-header',
+        },
+        {
+          content: "Click 'Write code to terminal' to send your editor code to the terminal.",
+          targetElement: '#terminal-write-file-btn',
+          requireClick: true,
+          allowInteraction: true,
+        },
+        {
+          content:
+            "Great! Now, you can perform actions such as compiling it manually, shell commands or uploading it to git. ",
+          targetElement: '#graph-page-output-container',
+          allowInteraction: true,
+        },
+      ],
+      clickMessage: 'Click the `Write code to terminal` button to continue',
     },
 
     // Step 12: Import/Export
@@ -302,7 +345,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
     {
       title: "You're Ready to Go! 🚀",
       content:
-        "Great job! You now know how to use WebSVF 6.0.\n\nQuick recap:\n✓ Write code in the editor\n✓ Select compiler & analysis options\n✓ Run analysis and view results\n✓ Switch between different output tabs\n✓ Share, import, and export your work\n\nStart analyzing your code now, or replay this tutorial anytime!",
+        "Great job! You now know how to use WebSVF 6.0.\n\nQuick recap:\n✓ Write code in the editor\n✓ Select compiler & analysis options\n✓ Run analysis and view results\n✓ Switch between different output tabs\n✓ Share, import, and export your work\n\nStart analysing your code now, or replay this tutorial anytime!",
       position: 'center',
     },
   ];

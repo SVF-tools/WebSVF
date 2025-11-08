@@ -592,13 +592,16 @@ const CodeGPT = ({
           >
             <div className={styles.message}>
               {message.role === 'assistant' && <div className={styles.assistantLabel}>CodeGPT</div>}
-              <button
-                className={styles.copyButton}
-                title="Copy message"
-                onClick={() => handleCopy(message.content)}
-              >
-                <ContentCopyIcon fontSize="small" />
-              </button>
+              <div className={styles.copyContainer}>
+                <button
+                  className={styles.copyButton}
+                  aria-label="Copy message"
+                  onClick={() => handleCopy(message.content)}
+                >
+                  <ContentCopyIcon fontSize="small" />
+                </button>
+                <span className={styles.copyTooltip}>Copy</span>
+              </div>
               {renderMessageContent(message.content, message.role)}
             </div>
           </div>
@@ -688,24 +691,30 @@ const CodeGPT = ({
             )}
           </div>
           <div className={styles.inputActions}>
-            <button
-              onClick={handleResetClick}
-              className={`${styles.iconActionButton} ${styles.iconResetButton}`}
-              title="Reset conversation"
-            >
-              <RefreshIcon fontSize="medium" />
-            </button>
-            <button
-              id="codegpt-send-button"
-              onClick={handleSubmit}
-              className={`${styles.iconActionButton} ${styles.iconSendButton}`}
-              ref={buttonRef}
-              title="Send"
-              disabled={!gptInputQuery.trim()}
-              aria-disabled={!gptInputQuery.trim()}
-            >
-              <SendIcon fontSize="small" />
-            </button>
+            <div className={styles.iconContainer}>
+              <button
+                onClick={handleResetClick}
+                className={`${styles.iconActionButton} ${styles.iconResetButton}`}
+                aria-label="Reset conversation"
+              >
+                <RefreshIcon fontSize="medium" />
+              </button>
+              <span className={styles.tooltip}>Reset</span>
+            </div>
+            <div className={styles.iconContainer}>
+              <button
+                id="codegpt-send-button"
+                onClick={handleSubmit}
+                className={`${styles.iconActionButton} ${styles.iconSendButton}`}
+                ref={buttonRef}
+                aria-label="Send"
+                disabled={!gptInputQuery.trim()}
+                aria-disabled={!gptInputQuery.trim()}
+              >
+                <SendIcon fontSize="small" />
+              </button>
+              <span className={styles.tooltip}>Send</span>
+            </div>
           </div>
         </div>
       </div>
