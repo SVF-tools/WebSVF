@@ -6,6 +6,15 @@ export interface LabeledOption {
   label: string;
 }
 
+export interface Shortcuts {
+  save: string;
+  run: string;
+  toggle_sidebar: string;
+  import: string;
+  light_mode: string;
+  dark_mode: string;
+}
+
 export interface Session {
   id: string;
   title: string;
@@ -22,6 +31,7 @@ export interface Session {
   lineNumToHighlight: number[];
   tabPositions: Record<OutputType, string>;
   language: Language;
+  shortcuts: Shortcuts;
 }
 
 const SessionManager = {
@@ -117,6 +127,14 @@ const SessionManager = {
         Terminal: 'main',
       },
       language: 'c',
+      shortcuts: {
+        save: 'ctrl+shift+s',
+        run: 'ctrl+enter',
+        toggle_sidebar: 'ctrl+shift+e',
+        import: 'ctrl+shift+i',
+        light_mode: 'ctrl+shift+l',
+        dark_mode: 'ctrl+shift+d',
+      },
     };
 
     sessions.unshift(newSession);
