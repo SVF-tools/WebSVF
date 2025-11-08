@@ -4,22 +4,21 @@ Python SVF API Backend
 This replaces the C# backend with Python SVF bindings
 """
 
+import asyncio
+import contextlib
+import fcntl
 import glob
+import json
 import os
+import pty
 import shlex
+import signal
+import struct
 import subprocess
 import tempfile
-from typing import List, Optional
-
-import asyncio
-import json
-import pty
-import fcntl
 import termios
-import struct
-import signal
-import contextlib
 import time
+from typing import List, Optional
 
 import pysvf
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
@@ -309,7 +308,10 @@ async def terminal_ws(websocket: WebSocket):
         # If this sid already has an active terminal, reject this connection only for that sid
         if active_terminal_sessions.get(sid):
             await websocket.accept()
-            await websocket.send_text("[server] Terminal busy for this session. Close the other terminal or use a different session.\r\n")
+            await websocket.send_text(
+                "[server] Terminal busy for this session. "
+                "Close the other terminal or use a different session.\r\n"
+            )
             await websocket.close(code=1013)
             return
         active_terminal_sessions[sid] = True
