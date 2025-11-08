@@ -41,7 +41,9 @@ const OutputMenuBar: React.FC<OutputMenuBarProps> = ({
     <nav className={`${styles.navBar} output-menu-bar`}>
       <ul className={styles.navList}>
         <li
-          className={`${styles.navItem} ${currentOutput === 'Graph' ? styles.active : ''} ${disabledClass('Graph')}`}
+          className={`${styles.navItem} ${
+            currentOutput === 'Graph' ? styles.active : ''
+          } ${disabledClass('Graph')}`}
           onClick={() => handleSelect('Graph')}
           draggable
           onDragStart={(e) => onDragStartTab('Graph', e)}
@@ -50,7 +52,9 @@ const OutputMenuBar: React.FC<OutputMenuBarProps> = ({
           Graphs
         </li>
         <li
-          className={`${styles.navItem} ${currentOutput === 'Terminal Output' ? styles.active : ''} ${disabledClass('Terminal Output')}`}
+          className={`${styles.navItem} ${
+            currentOutput === 'Terminal Output' ? styles.active : ''
+          } ${disabledClass('Terminal Output')}`}
           onClick={() => handleSelect('Terminal Output')}
           draggable
           onDragStart={(e) => onDragStartTab('Terminal Output', e)}
@@ -59,7 +63,9 @@ const OutputMenuBar: React.FC<OutputMenuBarProps> = ({
           Terminal Output
         </li>
         <li
-          className={`${styles.navItem} ${currentOutput === 'CodeGPT' ? styles.active : ''} ${disabledClass('CodeGPT')}`}
+          className={`${styles.navItem} ${
+            currentOutput === 'CodeGPT' ? styles.active : ''
+          } ${disabledClass('CodeGPT')}`}
           onClick={() => handleSelect('CodeGPT')}
           draggable
           onDragStart={(e) => onDragStartTab('CodeGPT', e)}
@@ -68,7 +74,9 @@ const OutputMenuBar: React.FC<OutputMenuBarProps> = ({
           CodeGPT
         </li>
         <li
-          className={`${styles.navItem} ${currentOutput === 'LLVMIR' ? styles.active : ''} ${disabledClass('LLVMIR')}`}
+          className={`${styles.navItem} ${
+            currentOutput === 'LLVMIR' ? styles.active : ''
+          } ${disabledClass('LLVMIR')}`}
           onClick={() => handleSelect('LLVMIR')}
           draggable
           onDragStart={(e) => onDragStartTab('LLVMIR', e)}
@@ -77,7 +85,9 @@ const OutputMenuBar: React.FC<OutputMenuBarProps> = ({
           LLVMIR
         </li>
         <li
-          className={`${styles.navItem} ${currentOutput === 'Terminal' ? styles.active : ''} ${disabledClass('Terminal')}`}
+          className={`${styles.navItem} ${
+            currentOutput === 'Terminal' ? styles.active : ''
+          } ${disabledClass('Terminal')}`}
           onClick={() => handleSelect('Terminal')}
           draggable
           onDragStart={(e) => onDragStartTab('Terminal', e)}

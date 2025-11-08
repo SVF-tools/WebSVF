@@ -6,7 +6,7 @@ import styles from './realTerminal.module.css';
 
 interface RealTerminalProps {
   codeToPaste?: string; // optional code payload from the editor
-  sessionId?: string;   // optional logical session id to enforce one terminal per session
+  sessionId?: string; // optional logical session id to enforce one terminal per session
 }
 
 const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) => {
@@ -74,13 +74,17 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
         try {
           const d = dataDisposableRef.current as IDisposable | null;
           d?.dispose();
-        } catch { /* ignore */ }
+        } catch {
+          /* ignore */
+        }
         dataDisposableRef.current = null;
       }
 
       const isDev = process.env.NODE_ENV !== 'production';
       const base = isDev
-        ? `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws/terminal`
+        ? `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${
+            window.location.host
+          }/ws/terminal`
         : 'wss://api-broken-moon-5814.fly.dev/ws/terminal';
       const sid = sidRef.current;
       const url = sid ? `${base}?sid=${encodeURIComponent(sid)}` : base;
@@ -99,7 +103,9 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
             const rows = term.current.rows;
             ws.send(JSON.stringify({ type: 'resize', cols, rows }));
           }
-        } catch { /* ignore */ }
+        } catch {
+          /* ignore */
+        }
         // Don't write anything else here, let the server send the initial prompt
       };
 
@@ -148,7 +154,9 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
         try {
           const d = dataDisposableRef.current as IDisposable | null;
           d?.dispose();
-        } catch { /* ignore */ }
+        } catch {
+          /* ignore */
+        }
         dataDisposableRef.current = term.current.onData((data) => {
           if (connId === sessionRef.current && ws.readyState === WebSocket.OPEN) {
             ws.send(data);
@@ -171,7 +179,9 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
               JSON.stringify({ type: 'resize', cols: term.current.cols, rows: term.current.rows })
             );
           }
-        } catch { /* ignore */ }
+        } catch {
+          /* ignore */
+        }
       }
     };
 
@@ -185,13 +195,19 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
       connectingRef.current = false;
 
       if (socketRef.current) {
-        try { socketRef.current.close(1000, 'Component unmounting'); } catch { /* ignore */ }
+        try {
+          socketRef.current.close(1000, 'Component unmounting');
+        } catch {
+          /* ignore */
+        }
       }
 
       try {
         const d = dataDisposableRef.current as IDisposable | null;
         d?.dispose();
-      } catch { /* ignore */ }
+      } catch {
+        /* ignore */
+      }
       dataDisposableRef.current = null;
 
       if (term.current) {
@@ -203,10 +219,18 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
   }, []);
 
   const onClear = () => {
-    try { term.current?.clear(); } catch { /* ignore */ }
+    try {
+      term.current?.clear();
+    } catch {
+      /* ignore */
+    }
   };
   const onReconnect = () => {
-    try { socketRef.current?.close(1000, 'Manual reconnect'); } catch { /* ignore */ }
+    try {
+      socketRef.current?.close(1000, 'Manual reconnect');
+    } catch {
+      /* ignore */
+    }
     connectRef.current && connectRef.current();
   };
 
@@ -216,7 +240,11 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
     if (!ws || ws.readyState !== WebSocket.OPEN) return;
     if (!codeToPaste) return;
     const payload = `\u001b[200~${codeToPaste}\u001b[201~`;
-    try { ws.send(payload); } catch { /* ignore */ }
+    try {
+      ws.send(payload);
+    } catch {
+      /* ignore */
+    }
   };
 
   // Here-doc: write code into a file (example.c) via the terminal
@@ -228,7 +256,11 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
     const marker = `EOF_${Math.random().toString(36).slice(2, 10)}`;
     const filename = 'example.c';
     const cmd = `cat > ${filename} <<'${marker}'\n${codeToPaste}\n${marker}\n`;
-    try { ws.send(cmd); } catch { /* ignore */ }
+    try {
+      ws.send(cmd);
+    } catch {
+      /* ignore */
+    }
   };
 
   // Reconnect when sessionId prop changes later (e.g., initial load then URL/session picked)
@@ -239,7 +271,11 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
       firstSidApplyRef.current = false;
       return;
     }
-    try { socketRef.current?.close(1000, 'Switching session'); } catch { /* ignore */ }
+    try {
+      socketRef.current?.close(1000, 'Switching session');
+    } catch {
+      /* ignore */
+    }
     connectRef.current && connectRef.current();
   }, [sessionId]);
 
@@ -250,16 +286,34 @@ const RealTerminal: React.FC<RealTerminalProps> = ({ codeToPaste, sessionId }) =
           <span>Terminal</span>
           <span className={styles.status}>
             <span className={`${styles.dot} ${styles[status]}`} />
-            {status === 'online' ? 'Connected' : status === 'connecting' ? 'Connecting…' : 'Disconnected'}
+            {status === 'online'
+              ? 'Connected'
+              : status === 'connecting'
+              ? 'Connecting…'
+              : 'Disconnected'}
           </span>
         </div>
         <div className={styles.actions}>
-          <button className={styles.button} onClick={onClear}>Clear</button>
-          <button className={styles.button} onClick={onReconnect}>Reconnect</button>
-          <button id="terminal-paste-code-btn" className={styles.button} onClick={onPasteCode} disabled={!codeToPaste || status !== 'online'}>
+          <button className={styles.button} onClick={onClear}>
+            Clear
+          </button>
+          <button className={styles.button} onClick={onReconnect}>
+            Reconnect
+          </button>
+          <button
+            id="terminal-paste-code-btn"
+            className={styles.button}
+            onClick={onPasteCode}
+            disabled={!codeToPaste || status !== 'online'}
+          >
             Paste Code
           </button>
-          <button id="terminal-write-file-btn" className={styles.button} onClick={onWriteFile} disabled={!codeToPaste || status !== 'online'}>
+          <button
+            id="terminal-write-file-btn"
+            className={styles.button}
+            onClick={onWriteFile}
+            disabled={!codeToPaste || status !== 'online'}
+          >
             Write code to terminal
           </button>
         </div>

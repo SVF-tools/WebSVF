@@ -55,10 +55,18 @@
   gap: 4px;
   color: var(--text-color);
 }
-.react-select__indicator-separator { display: none; }
-.react-select__dropdown-indicator { color: var(--text-color); }
-.react-select__clear-indicator { color: var(--text-color); }
-.react-select__clear-indicator:hover { color: var(--danger); }
+.react-select__indicator-separator {
+  display: none;
+}
+.react-select__dropdown-indicator {
+  color: var(--text-color);
+}
+.react-select__clear-indicator {
+  color: var(--text-color);
+}
+.react-select__clear-indicator:hover {
+  color: var(--danger);
+}
 
 /* Menu */
 .react-select__menu {

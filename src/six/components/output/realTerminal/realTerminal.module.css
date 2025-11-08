@@ -50,9 +50,15 @@
   border-radius: 9999px;
   background: #9ca3af; /* gray */
 }
-.dot.online { background: #22c55e; }     /* green */
-.dot.offline { background: #ef4444; }    /* red */
-.dot.connecting { background: #f59e0b; } /* amber */
+.dot.online {
+  background: #22c55e;
+} /* green */
+.dot.offline {
+  background: #ef4444;
+} /* red */
+.dot.connecting {
+  background: #f59e0b;
+} /* amber */
 
 .actions {
   display: flex;

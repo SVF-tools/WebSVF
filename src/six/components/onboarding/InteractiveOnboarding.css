@@ -231,7 +231,8 @@
 }
 
 @keyframes pulseRequirement {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -254,9 +255,18 @@
   margin-top: 4px; /* small gap between text and divider */
 }
 
-.tooltip-navigation > .tooltip-btn.tooltip-btn-secondary { grid-area: prev; min-width: 0; }
-.tooltip-navigation > .tooltip-dots { grid-area: dots; min-width: 0; }
-.tooltip-navigation > .tooltip-btn.tooltip-btn-primary { grid-area: next; min-width: 0; }
+.tooltip-navigation > .tooltip-btn.tooltip-btn-secondary {
+  grid-area: prev;
+  min-width: 0;
+}
+.tooltip-navigation > .tooltip-dots {
+  grid-area: dots;
+  min-width: 0;
+}
+.tooltip-navigation > .tooltip-btn.tooltip-btn-primary {
+  grid-area: next;
+  min-width: 0;
+}
 
 @media (max-width: 640px) {
   .tooltip-navigation {
@@ -268,7 +278,9 @@
 }
 
 /* Buttons should not overflow container */
-.tooltip-navigation .tooltip-btn { max-width: 100%; }
+.tooltip-navigation .tooltip-btn {
+  max-width: 100%;
+}
 
 .tooltip-btn {
   padding: 8px 16px;
@@ -331,8 +343,14 @@
 }
 
 /* Slightly smaller base dots to fit long sequences */
-.tooltip-dot { width: 7px; height: 7px; }
-.tooltip-dot.active { width: 9px; height: 9px; }
+.tooltip-dot {
+  width: 7px;
+  height: 7px;
+}
+.tooltip-dot.active {
+  width: 9px;
+  height: 9px;
+}
 
 .tooltip-dot {
   width: 8px;

@@ -113,9 +113,14 @@ Keep the explanation educational for students learning static analysis visualiza
     const moAttr = new MutationObserver(update);
     const moTree = new MutationObserver(update);
     try {
-      moAttr.observe(document.documentElement, { attributes: true, attributeFilter: ['data-onboarding-active'] });
+      moAttr.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-onboarding-active'],
+      });
       moTree.observe(document.body, { childList: true, subtree: true });
-    } catch {}
+    } catch {
+      // Ignore errors if elements not available
+    }
     return () => {
       moAttr.disconnect();
       moTree.disconnect();
@@ -130,12 +135,21 @@ Keep the explanation educational for students learning static analysis visualiza
   return (
     <div className="tooltip-container" onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <div className="tooltip-trigger">
-        <button className={`graph-button ${isSelected ? 'selected' : ''}`} onClick={onClick} aria-describedby={`graph-tip-${displayName}`}>
+        <button
+          className={`graph-button ${isSelected ? 'selected' : ''}`}
+          onClick={onClick}
+          aria-describedby={`graph-tip-${displayName}`}
+        >
           {displayName}
         </button>
       </div>
       {setPassedPrompt && !onboardingActive && (
-        <div id={`graph-tip-${displayName}`} className={`tooltip-content ${open ? 'visible' : ''}`} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+        <div
+          id={`graph-tip-${displayName}`}
+          className={`tooltip-content ${open ? 'visible' : ''}`}
+          onMouseEnter={onEnter}
+          onMouseLeave={onLeave}
+        >
           {description}
           <div className="tooltip-button-container">
             <button onClick={handleGraphGPT} className="tooltip-button" disabled={onboardingActive}>

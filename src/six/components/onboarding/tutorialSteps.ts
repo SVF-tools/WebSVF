@@ -23,24 +23,31 @@ int main() {
     return 0;
 }`;
 
+type OutputType = 'Graph' | 'CodeGPT' | 'LLVMIR' | 'Terminal Output' | 'Terminal';
+
+interface CompileOption {
+  value: string;
+  label: string;
+}
+
 interface TutorialStepsConfig {
   setCode?: (code: string) => void;
-  setCurrentOutput?: (output: any) => void;
+  setCurrentOutput?: (output: OutputType) => void;
   submitCode?: () => void;
-  selectedCompileOptions?: any[];
-  setSelectedCompileOptions?: (options: any[]) => void;
-  selectedExecutableOptions?: any[];
-  setSelectedExecutableOptions?: (options: any[]) => void;
+  selectedCompileOptions?: CompileOption[];
+  setSelectedCompileOptions?: (options: CompileOption[]) => void;
+  selectedExecutableOptions?: CompileOption[];
+  setSelectedExecutableOptions?: (options: CompileOption[]) => void;
 }
 
 export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep[] => {
   const {
     setCode,
     setCurrentOutput,
-    submitCode,
-    selectedCompileOptions,
-    setSelectedCompileOptions,
-    selectedExecutableOptions,
+    submitCode: _submitCode,
+    selectedCompileOptions: _selectedCompileOptions,
+    setSelectedCompileOptions: _setSelectedCompileOptions,
+    selectedExecutableOptions: _selectedExecutableOptions,
     setSelectedExecutableOptions,
   } = config;
 
@@ -57,7 +64,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
     {
       title: 'The Code Editor',
       content:
-        "This is where you write or paste your C/C++ code. The editor supports syntax highlighting and line numbers.",
+        'This is where you write or paste your C/C++ code. The editor supports syntax highlighting and line numbers.',
       targetElement: '#graph-page-code-container',
       position: 'top',
       forcePreferredSide: true,
@@ -106,9 +113,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
       action: () => {
         // Auto-select wpa if available
         if (setSelectedExecutableOptions) {
-          setSelectedExecutableOptions([
-            { value: 'ae', label: 'ae (Buffer Overflow Detector)' },
-          ]);
+          setSelectedExecutableOptions([{ value: 'ae', label: 'ae (Buffer Overflow Detector)' }]);
         }
       },
     },
@@ -133,7 +138,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
     {
       title: 'Output Tabs',
       content:
-        "After running, results appear in different tabs:\n• Graph: Visual analysis results\n• Terminal Output: Compilation logs\n• LLVM IR: Intermediate representation\n• CodeGPT: AI assistant\n\n",
+        'After running, results appear in different tabs:\n• Graph: Visual analysis results\n• Terminal Output: Compilation logs\n• LLVM IR: Intermediate representation\n• CodeGPT: AI assistant\n\n',
       targetElement: '.output-menu-bar',
       position: 'top',
       forcePreferredSide: true,
@@ -201,14 +206,16 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
       requireOutput: 'LLVMIR',
       subSteps: [
         {
-          content: "First, let's switch to the LLVM IR tab. Click on 'LLVMIR' in the menu bar above.",
+          content:
+            "First, let's switch to the LLVM IR tab. Click on 'LLVMIR' in the menu bar above.",
           targetElement: '.output-menu-bar',
           requireClick: true,
           allowInteraction: true,
           requireOutput: 'LLVMIR',
         },
         {
-          content: 'Great! This is the LLVM IR (Intermediate Representation) - the low-level code that SVF analyses. The IR shows how your C code is transformed for analysis.',
+          content:
+            'Great! This is the LLVM IR (Intermediate Representation) - the low-level code that SVF analyses. The IR shows how your C code is transformed for analysis.',
           targetElement: '#graph-page-output-container',
         },
       ],
@@ -218,8 +225,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
     // Step 11: CodeGPT Tab
     {
       title: 'CodeGPT AI Assistant',
-      content:
-        'CodeGPT is your AI-powered code analysis assistant. Let\'s explore it!',
+      content: "CodeGPT is your AI-powered code analysis assistant. Let's explore it!",
       targetElement: '.output-menu-bar',
       position: 'top',
       forcePreferredSide: true,
@@ -234,11 +240,13 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
           requireOutput: 'CodeGPT',
         },
         {
-          content: 'This is CodeGPT! You can ask questions about your code, get explanations of analysis results, and receive suggestions.',
+          content:
+            'This is CodeGPT! You can ask questions about your code, get explanations of analysis results, and receive suggestions.',
           targetElement: '#graph-page-output-container',
         },
         {
-          content: 'Try it out! Click one of the suggestion buttons (e.g., "Explain the code") or type your own question in the input box below. Then click the Send button to submit your message. You\'ll see the response appear above. Note: You\'ll need an OpenAI API key configured in Settings for actual AI responses.',
+          content:
+            'Try it out! Click one of the suggestion buttons (e.g., "Explain the code") or type your own question in the input box below. Then click the Send button to submit your message. You\'ll see the response appear above. Note: You\'ll need an OpenAI API key configured in Settings for actual AI responses.',
           targetElement: '#graph-page-output-container',
           allowInteraction: true,
           requireClick: true,
@@ -268,7 +276,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
         },
         {
           content:
-            "This is a real shell connected to the backend. Try commands like `ls`, `pwd`, or `clang --version`. Use Clear/Reconnect from the header if needed.",
+            'This is a real shell connected to the backend. Try commands like `ls`, `pwd`, or `clang --version`. Use Clear/Reconnect from the header if needed.',
           targetElement: '#graph-page-output-container',
         },
         {
@@ -284,7 +292,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
         },
         {
           content:
-            "Great! Now, you can perform actions such as compiling it manually, shell commands or uploading it to git. ",
+            'Great! Now, you can perform actions such as compiling it manually, shell commands or uploading it to git. ',
           targetElement: '#graph-page-output-container',
           allowInteraction: true,
         },
@@ -320,7 +328,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
     {
       title: 'Settings & Customization',
       content:
-        "In Settings, you can:\n• Adjust font sizes for the code editor\n• Configure LLVM IR font size\n• Set terminal output font size\n• Add your OpenAI API key for CodeGPT\n\nFeel free to explore these options, then close the settings to continue.",
+        'In Settings, you can:\n• Adjust font sizes for the code editor\n• Configure LLVM IR font size\n• Set terminal output font size\n• Add your OpenAI API key for CodeGPT\n\nFeel free to explore these options, then close the settings to continue.',
       targetElement: '#settings-icon',
       position: 'top',
       forcePreferredSide: true,
@@ -345,7 +353,7 @@ export const createTutorialSteps = (config: TutorialStepsConfig): OnboardingStep
     {
       title: "You're Ready to Go! 🚀",
       content:
-        "Great job! You now know how to use WebSVF 6.0.\n\nQuick recap:\n✓ Write code in the editor\n✓ Select compiler & analysis options\n✓ Run analysis and view results\n✓ Switch between different output tabs\n✓ Share, import, and export your work\n\nStart analysing your code now, or replay this tutorial anytime!",
+        'Great job! You now know how to use WebSVF 6.0.\n\nQuick recap:\n✓ Write code in the editor\n✓ Select compiler & analysis options\n✓ Run analysis and view results\n✓ Switch between different output tabs\n✓ Share, import, and export your work\n\nStart analysing your code now, or replay this tutorial anytime!',
       position: 'center',
     },
   ];

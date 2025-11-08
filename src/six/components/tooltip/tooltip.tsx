@@ -68,7 +68,10 @@ const Tooltip: React.FC<TooltipProps> = ({
     const moAttr = new MutationObserver(update);
     const moTree = new MutationObserver(update);
     try {
-      moAttr.observe(document.documentElement, { attributes: true, attributeFilter: ['data-onboarding-active'] });
+      moAttr.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-onboarding-active'],
+      });
       moTree.observe(document.body, { childList: true, subtree: true });
     } catch {
       /* no-op */
@@ -134,7 +137,11 @@ Keep the explanation concise and practical for students learning static analysis
         {content}
         {setPassedPrompt && optionValue && (
           <div className="tooltip-button-container">
-            <button onClick={handleAskCodeGPT} className="tooltip-button" disabled={onboardingActive}>
+            <button
+              onClick={handleAskCodeGPT}
+              className="tooltip-button"
+              disabled={onboardingActive}
+            >
               <span style={{ marginRight: '5px' }}>💡</span>
               Ask CodeGPT for more details
             </button>

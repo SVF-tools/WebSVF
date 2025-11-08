@@ -132,7 +132,6 @@ export default function SettingsModal({
             Settings
           </Typography>
 
-
           {/* Code Editor font size */}
           <Typography id="input-slider" gutterBottom sx={{ color: 'var(--text-color)', mt: 3 }}>
             Code Editor Font Size
