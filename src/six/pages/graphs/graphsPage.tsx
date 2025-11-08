@@ -48,7 +48,7 @@ const DEFAULT_SHORTCUTS: Shortcuts = {
 };
 
 // Fallback default code for empty sessions (matches SessionManager)
-const DEFAULT_C_CODE = `#include <stdio.h>
+export const DEFAULT_C_CODE = `#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct {
@@ -83,7 +83,7 @@ int main() {
     return 0;
 }`;
 
-const DEFAULT_CPP_CODE = `#include <iostream>
+export const DEFAULT_CPP_CODE = `#include <iostream>
 #include <vector>
 using namespace std;
 class IntArray {

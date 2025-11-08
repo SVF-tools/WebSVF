@@ -4,6 +4,7 @@ import * as monaco from 'monaco-editor';
 import './styles.css';
 import FontSizeMenu from '../fontSizeMenu/FontSizeMenu';
 import LanguageSelector from '../languageSelector/LanguageSelector';
+import DefaultCodeModal from '../defaultCodeModal/DefaultCodeModal';
 
 interface CodeEditorProps {
   code: string;
@@ -34,6 +35,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 }) => {
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
   const monacoInstance = useMonaco();
+
+  const [showDefaultModal, setShowDefaultModal] = useState(false);
+  const openDefaultModal = () => setShowDefaultModal(true);
+  const closeDefaultModal = () => setShowDefaultModal(false);
 
   const [fontSize, setFontSize] = useState(16);
   const [useLocalFontSize, setUseLocalFontSize] = useState(false);
@@ -513,7 +518,36 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
             }}
           />
           <LanguageSelector lang={lang} setLang={setLang} />
+          <button
+            type="button"
+            title="Reset editor to default code"
+            className="default-code-button"
+            onClick={openDefaultModal}
+            style={{
+              height: 32,
+              padding: '0 10px',
+              borderRadius: 8,
+              border: '1px solid var(--border-color)',
+              background: 'transparent',
+              color: 'var(--text-color)',
+              cursor: 'pointer',
+            }}
+          >
+            Reset to Default Code
+          </button>
         </div>
+        <DefaultCodeModal
+          open={showDefaultModal}
+          handleClose={closeDefaultModal}
+          setCode={(newCode: string) => {
+            setCode(newCode);
+            if (editorRef.current) {
+              const model = editorRef.current.getModel();
+              if (model) model.setValue(newCode);
+            }
+          }}
+          language={lang}
+        />
         <Editor
           key={editorKey}
           height="90vh"
