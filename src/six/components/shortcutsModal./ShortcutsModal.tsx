@@ -47,6 +47,7 @@ export default function ShortcutsModal({
 
   const handleSave = () => {
     setShortcuts(local);
+    localStorage.setItem('websvf-shortcuts', JSON.stringify(local));
     handleClose();
   };
 

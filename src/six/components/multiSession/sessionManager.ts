@@ -31,7 +31,6 @@ export interface Session {
   lineNumToHighlight: number[];
   tabPositions: Record<OutputType, string>;
   language: Language;
-  shortcuts: Shortcuts;
 }
 
 const SessionManager = {
@@ -127,14 +126,6 @@ const SessionManager = {
         Terminal: 'main',
       },
       language: 'c',
-      shortcuts: {
-        save: 'ctrl+shift+s',
-        run: 'ctrl+enter',
-        toggle_sidebar: 'ctrl+shift+e',
-        import: 'ctrl+shift+i',
-        light_mode: 'ctrl+shift+l',
-        dark_mode: 'ctrl+shift+d',
-      },
     };
 
     sessions.unshift(newSession);

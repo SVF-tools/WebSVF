@@ -269,7 +269,12 @@ function GraphsPage() {
     );
     const sessionLang = session.language || DEFAULT_LANG;
     setLang(sessionLang);
-    setShortcuts(session.shortcuts || DEFAULT_SHORTCUTS);
+    const raw = localStorage.getItem('websvf-shortcuts');
+    if (raw) {
+      setShortcuts(JSON.parse(raw));
+    } else {
+      setShortcuts(DEFAULT_SHORTCUTS);
+    }
     setSelectedCompileOptions(session.selectedCompileOptions);
     setSelectedExecutableOptions(session.selectedExecutableOptions || []);
     setLineNumDetails(session.lineNumDetails);
